@@ -290,7 +290,6 @@
                 </div>
             </div>
 
-            <div style="margin-bottom: 15px; font-weight:bold;">📌 My Workspace</div>
 <div style="margin-bottom: 15px; font-weight:bold; display:flex; justify-content:space-between; align-items:center;">
     <span>📌 My Workspace (Sports)</span>
     <span style="font-size:11px; color:#666;" id="update-time">업데이트: --:--</span>
@@ -495,12 +494,99 @@
                 container.innerHTML = 'Load Fail';
             }
         }
+async function loadSportsData() {
+    // -----------------------------------------------------------
+    // [나중에 교체할 부분] 실제로는 fetch('sports.json')을 사용합니다.
+    // 지금은 테스트를 위해 가상의 데이터를 만듭니다.
+    const mockData = {
+        updated: "12/21 14:00",
+        epl: [
+            { date: "12.22(일)", time: "02:30", home: "토트넘", away: "리버풀", status: "예정" },
+            { date: "12.23(월)", time: "01:30", home: "아스널", away: "C.팰리스", status: "예정" }
+        ],
+        tennis: {
+            tournament: "Australian Open",
+            next_match: { date: "01.14(화)", opponent: "TBD", round: "R1" },
+            rank: "ATP #3"
+        },
+        nba: {
+            last_game: { opp: "MEM", result: "W", score: "123-118" },
+            schedule: [
+                { date: "12.23", opp: "LAL", time: "12:00" },
+                { date: "12.26", opp: "DEN", time: "10:30" }
+            ]
+        },
+        f1: {
+            status: "Off Season",
+            next_race: "Bahrain GP",
+            date: "2026.03.02"
+        }
+    };
+    // -----------------------------------------------------------
+
+    // 1. EPL 렌더링
+    const eplContainer = document.getElementById('epl-list');
+    let eplHtml = '';
+    mockData.epl.forEach(match => {
+        eplHtml += `
+            <div class="match-item">
+                <span class="match-date">${match.date}</span>
+                <span class="match-versus">${match.home} vs ${match.away}</span>
+                <span class="match-status">${match.time}</span>
+            </div>`;
+    });
+    eplContainer.innerHTML = eplHtml;
+
+    // 2. 테니스 (알카라스)
+    const tennisContainer = document.getElementById('tennis-list');
+    tennisContainer.innerHTML = `
+        <div style="font-size:12px; color:#aaa; margin-bottom:5px;">${mockData.tennis.tournament}</div>
+        <div class="match-item" style="align-items:center;">
+            <span class="match-date">${mockData.tennis.next_match.date}</span>
+            <span class="match-versus">vs ${mockData.tennis.next_match.opponent}</span>
+            <span class="match-status">${mockData.tennis.next_match.round}</span>
+        </div>
+        <div style="font-size:11px; text-align:right; color:#555;">Ranking: ${mockData.tennis.rank}</div>
+    `;
+
+    // 3. NBA (골든 스테이트)
+    const nbaContainer = document.getElementById('nba-list');
+    const last = mockData.nba.last_game;
+    let nbaHtml = `
+        <div class="nba-result">
+            <div style="font-size:10px; color:#888;">Recent Result</div>
+            <div>vs ${last.opp} <span style="color:${last.result==='W'?'#ff4400':'#0088ff'}; font-weight:bold;">${last.result}</span> (${last.score})</div>
+        </div>
+        <div style="font-size:10px; color:#888; margin-bottom:3px;">Upcoming</div>
+    `;
+    mockData.nba.schedule.forEach(game => {
+        nbaHtml += `<div class="match-item" style="margin-bottom:2px;">
+            <span class="match-date">${game.date}</span>
+            <span class="match-versus">vs ${game.opp}</span>
+            <span class="match-status">${game.time}</span>
+        </div>`;
+    });
+    nbaContainer.innerHTML = nbaHtml;
+
+    // 4. F1
+    document.getElementById('f1-list').innerHTML = `
+        <div style="text-align:center; padding-top:10px;">
+            <div style="font-size:14px; font-weight:bold; color:#888;">${mockData.f1.status}</div>
+            <div style="margin-top:5px; font-size:12px;">Next: ${mockData.f1.next_race}</div>
+            <div style="font-size:11px; color:#555;">${mockData.f1.date}</div>
+        </div>
+    `;
+    
+    document.getElementById('update-time').innerText = `Update: ${mockData.updated}`;
+}
+
 
         // 실행
         loadBriefingMenu();
         loadCurrentWeather();
         loadHourlyWeather(); // 새로 추가된 함수 실행
         loadWeeklyWeather();
+        loadSportsData();
     </script>
 </body>
 </html>
