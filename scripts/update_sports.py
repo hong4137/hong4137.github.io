@@ -16,23 +16,18 @@ dashboard_data = {
 }
 
 def get_nba_gsw_espn():
-    print("🏀 NBA 데이터 수집 (ESPN Source)...")
+    print("🏀 NBA 데이터 수집 (ESPN Simple Ver)...")
     try:
         # 1. 일정 데이터
         schedule_url = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/gs/schedule"
         res = requests.get(schedule_url, timeout=10)
         data = res.json()
         
-        # 2. 팀 기본 정보 (전적용)
+        # 2. 팀 기본 정보 (여기서 전적과 순위 요약을 한 번에 가져옴)
         team_url = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/gs"
         res_team = requests.get(team_url, timeout=10)
         data_team = res_team.json()
         
-        # 3. 전체 순위표 (서부 컨퍼런스)
-        standings_url = "https://site.api.espn.com/apis/v2/sports/basketball/nba/standings?group=conference"
-        res_stand = requests.get(standings_url, timeout=10)
-        data_stand = res_stand.json()
-
         # --- 데이터 가공 ---
 
         # (1) 전적 (예: "13-15")
@@ -45,32 +40,26 @@ def get_nba_gsw_espn():
         except:
             pass
 
-        # (2) [핵심 수정] 순위 - ID '10' (GSW) 찾기
+        # (2) [타협안] 순위 파싱 (Standing Summary 활용)
+        # API가 주는 텍스트 예시: "3rd in Pacific Division"
         team_rank = "-"
         try:
-            # 전체 컨퍼런스 목록 순회
-            for conference in data_stand.get('children', []):
-                # "Western" 이라는 글자가 들어간 컨퍼런스만 찾음
-                if "West" in conference['name']: 
-                    
-                    entries = conference.get('standings', {}).get('entries', [])
-                    
-                    # 1등부터 순서대로 내려가며 ID 검사
-                    for index, entry in enumerate(entries):
-                        team_id = entry['team']['id'] # 팀 ID 추출
-                        
-                        # GSW의 ID는 '10' 입니다. (문자열 비교)
-                        if str(team_id) == '10':
-                            rank = index + 1 # 인덱스는 0부터 시작하므로 +1
-                            team_rank = f"#{rank} West"
-                            print(f"📍 GSW(ID:10) 발견! 순위: {rank}위")
-                            break
-                    
-                    if team_rank != "-": break
-        except Exception as e:
-            print(f"⚠️ 순위 파싱 에러: {e}")
+            summary = data_team['team'].get('standingSummary', '')
+            if summary:
+                # 공백으로 쪼개서 첫 번째 단어("3rd")만 가져옴
+                rank_num = summary.split(' ')[0] 
+                
+                # "Pacific" 이라는 단어가 있으면 Pacific을 붙여줌
+                if "Pacific" in summary:
+                    team_rank = f"#{rank_num} Pacific"
+                elif "West" in summary:
+                    team_rank = f"#{rank_num} West"
+                else:
+                    team_rank = f"#{rank_num}"
+        except:
+            pass
 
-        # (3) 일정 (기존 코드)
+        # (3) 일정 파싱 (기존 로직 유지)
         events = data.get('events', [])
         completed_games = []
         future_games = []
