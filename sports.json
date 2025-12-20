@@ -1,5 +1,5 @@
 {
-    "updated": "12/21 04:07",
+    "updated": "12/21 04:27",
     "nba": {
         "status": "Active",
         "last": {
@@ -10,4 +10,23 @@
         },
         "schedule": [
             {
-                "date_obj": 
+                "date": "12.21(Sun)",
+                "time": "10:30",
+                "opp": "PHX",
+                "is_home": true
+            },
+            {
+                "date": "12.23(Tue)",
+                "time": "12:00",
+                "opp": "ORL",
+                "is_home": true
+            }
+        ]
+    },
+    "f1": {
+        "status": "Next GP",
+        "name": "Australian GP",
+        "date": "03.08(Sun) 13:00",
+        "circuit": "Albert Park Grand Prix Circuit"
+    }
+}
