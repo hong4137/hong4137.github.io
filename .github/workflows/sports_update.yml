@@ -5,7 +5,7 @@ on:
     - cron: '0 */6 * * *' # 6시간마다 실행
   workflow_dispatch: # 수동 실행 버튼
 
-# [중요] 봇에게 파일 저장(Write) 권한 부여
+# [핵심] 권한 설정: 이 부분이 없어서 에러가 났던 것입니다.
 permissions:
   contents: write
 
@@ -35,5 +35,5 @@ jobs:
         git config --global user.name "GitHub Action Bot"
         git config --global user.email "action@github.com"
         git add sports.json
-        # 변경사항이 있을 때만 커밋
+        # 변경사항이 없으면 에러 내지 않고 넘어감
         git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update sports data" && git push)
