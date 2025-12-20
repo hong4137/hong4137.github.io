@@ -127,7 +127,59 @@
             background-color: rgba(255,255,255,0.02); border: 2px dashed #444; border-radius: 12px;
             height: 300px; display: flex; align-items: center; justify-content: center; color: #555; font-size: 14px;
         }
+/* 스포츠 그리드 레이아웃 */
+.sports-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2열 */
+    gap: 15px;
+}
 
+/* 개별 카드 스타일 */
+.sport-card {
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    padding: 15px;
+    border: 1px solid #333;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sport-header {
+    font-size: 13px;
+    font-weight: bold;
+    color: #ccc;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 8px;
+}
+
+.sport-content {
+    flex: 1;
+    font-size: 13px;
+    color: #e0e0e0;
+}
+
+/* 경기 리스트 아이템 */
+.match-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+.match-date { color: #888; font-size: 11px; margin-right: 5px; min-width: 40px;}
+.match-versus { flex: 1; text-align: left; }
+.match-score { font-weight: bold; color: var(--accent-color); }
+.match-status { font-size: 10px; padding: 2px 4px; border-radius: 3px; background: #333; color: #aaa; margin-left: 5px;}
+
+/* NBA 전용 스타일 */
+.nba-result { border-left: 2px solid var(--accent-color); padding-left: 8px; margin-bottom: 10px; }
+.nba-schedule { margin-top: 5px; color: #aaa; font-size: 11px; }
+
+.loading-text { color: #555; font-style: italic; font-size: 12px; text-align: center; margin-top: 20px;}
     </style>
 </head>
 <body>
@@ -239,9 +291,50 @@
             </div>
 
             <div style="margin-bottom: 15px; font-weight:bold;">📌 My Workspace</div>
-            <div class="empty-space-card">
-                향후 캘린더 및 프로젝트 관리 공간
-            </div>
+<div style="margin-bottom: 15px; font-weight:bold; display:flex; justify-content:space-between; align-items:center;">
+    <span>📌 My Workspace (Sports)</span>
+    <span style="font-size:11px; color:#666;" id="update-time">업데이트: --:--</span>
+</div>
+
+<div class="sports-grid">
+    
+    <div class="sport-card">
+        <div class="sport-header">
+            <i class="fas fa-futbol" style="color:#d0f0c0;"></i> <span class="sport-name">PL Big Match</span>
+        </div>
+        <div id="epl-list" class="sport-content">
+            <div class="loading-text">일정 로딩중...</div>
+        </div>
+    </div>
+
+    <div class="sport-card">
+        <div class="sport-header">
+            <i class="fas fa-table-tennis" style="color:#ffff00;"></i> <span class="sport-name">Alcaraz (ATP)</span>
+        </div>
+        <div id="tennis-list" class="sport-content">
+            <div class="loading-text">일정 확인중...</div>
+        </div>
+    </div>
+
+    <div class="sport-card">
+        <div class="sport-header">
+            <i class="fas fa-basketball-ball" style="color:#fdb927;"></i> <span class="sport-name">Golden State</span>
+        </div>
+        <div id="nba-list" class="sport-content">
+            <div class="loading-text">Warriors 정보...</div>
+        </div>
+    </div>
+
+    <div class="sport-card">
+        <div class="sport-header">
+            <i class="fas fa-flag-checkered" style="color:#ff1801;"></i> <span class="sport-name">Formula 1</span>
+        </div>
+        <div id="f1-list" class="sport-content">
+            <div class="loading-text">Race Schedule</div>
+        </div>
+    </div>
+
+</div>
         </div>
 
         <div id="briefing-view">
