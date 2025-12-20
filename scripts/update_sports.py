@@ -11,19 +11,45 @@ UTC = pytz.timezone('UTC')
 # 기본 데이터 골격
 dashboard_data = {
     "updated": datetime.now(KST).strftime("%m/%d %H:%M"),
-    "nba": {"status": "Loading...", "last": {}, "schedule": []},
+    "nba": {"status": "Loading...", "record": "-", "rank": "-", "last": {}, "schedule": []},
     "f1": {"status": "Loading...", "name": "-", "date": "-"}
 }
 
 def get_nba_gsw_espn():
     print("🏀 NBA 데이터 수집 (ESPN Source)...")
     try:
-        url = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/gs/schedule"
-        res = requests.get(url, timeout=10)
+        # 1. 일정 데이터 가져오기 (기존)
+        schedule_url = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/gs/schedule"
+        res = requests.get(schedule_url, timeout=10)
         data = res.json()
         
-        events = data.get('events', [])
+        # 2. [추가됨] 팀 순위 & 전적 데이터 가져오기 (NEW)
+        team_url = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/gs"
+        res_team = requests.get(team_url, timeout=10)
+        data_team = res_team.json()
         
+        # 전적 파싱 (예: "20-8")
+        team_record = "0-0"
+        try:
+            record_items = data_team['team']['record']['items']
+            total_record = next((item for item in record_items if item['type'] == 'total'), None)
+            if total_record:
+                team_record = total_record['summary']
+        except:
+            pass
+
+        # 순위 파싱 (예: "3rd in Western Conference" -> "3rd West")
+        team_rank = "-"
+        try:
+            standing_text = data_team['team']['standingSummary'] # "3rd in Western Conference"
+            if standing_text:
+                rank_num = standing_text.split(' ')[0] # "3rd" 만 추출
+                team_rank = f"#{rank_num} West"
+        except:
+            pass
+
+        # --- 기존 일정 로직 (그대로 유지) ---
+        events = data.get('events', [])
         completed_games = []
         future_games = []
 
@@ -40,7 +66,7 @@ def get_nba_gsw_espn():
             if not gsw or not opp: continue
 
             game_info = {
-                "date_obj": game_date,  # 정렬용 (나중에 지울 예정)
+                "date_obj": game_date,  
                 "date": game_date.astimezone(KST).strftime("%m.%d(%a)"),
                 "time": game_date.astimezone(KST).strftime("%H:%M"),
                 "opp": opp['team']['abbreviation'],
@@ -60,7 +86,7 @@ def get_nba_gsw_espn():
             else:
                 future_games.append(game_info)
 
-        # 1. 지난 경기
+        # 지난 경기
         last_game_data = {}
         if completed_games:
             completed_games.sort(key=lambda x: x['date_obj'])
@@ -72,22 +98,24 @@ def get_nba_gsw_espn():
                 "score": last['score']
             }
 
-        # 2. 향후 일정 (문제의 구간 수정함)
+        # 향후 일정
         schedule_list = []
         if future_games:
             future_games.sort(key=lambda x: x['date_obj'])
-            # [수정] JSON 저장 시 에러가 나지 않도록 date_obj 삭제 후 저장
             for game in future_games[:2]:
                 game_clean = game.copy()
-                del game_clean['date_obj'] # 범인 제거!
+                del game_clean['date_obj'] 
                 schedule_list.append(game_clean)
 
+        # 데이터 저장 (순위, 전적 추가됨)
         dashboard_data['nba'] = {
             "status": "Active",
+            "record": team_record, # 예: 12-3
+            "rank": team_rank,     # 예: #1 West
             "last": last_game_data,
             "schedule": schedule_list
         }
-        print(f"✅ NBA 완료: 지난경기({bool(last_game_data)}), 예정({len(schedule_list)})")
+        print(f"✅ NBA 완료: {team_record}, {team_rank}")
 
     except Exception as e:
         print(f"❌ NBA 에러: {e}")
