@@ -28,8 +28,7 @@ def get_nba_gsw_espn():
         res_team = requests.get(team_url, timeout=10)
         data_team = res_team.json()
         
-        # 3. [핵심 수정] 전체 순위표 (옵션 추가: group=conference)
-        # 이렇게 하면 디비전이 아니라 '서부 컨퍼런스' 전체 15개 팀이 순서대로 나옵니다.
+        # 3. 전체 순위표 (서부 컨퍼런스 기준)
         standings_url = "https://site.api.espn.com/apis/v2/sports/basketball/nba/standings?group=conference"
         res_stand = requests.get(standings_url, timeout=10)
         data_stand = res_stand.json()
@@ -46,42 +45,39 @@ def get_nba_gsw_espn():
         except:
             pass
 
-        # (2) 순위 파싱 (안전장치 강화)
+        # (2) [핵심 수정] 순위 파싱 - 이름(GS)으로 찾기
         team_rank = "-"
         try:
-            # GSW 팀 ID = '10'
-            target_id = '10' 
-            
+            # 전체 컨퍼런스 목록 순회
             for conference in data_stand.get('children', []):
-                conf_name = conference['name'] # "Western Conference"
-                
-                # 해당 컨퍼런스의 팀 목록 (이미 등수대로 정렬되어 있음)
-                entries = conference.get('standings', {}).get('entries', [])
-                
-                found_rank = None
-                
-                # 리스트를 돌면서 GSW 찾기
-                for index, entry in enumerate(entries):
-                    # ID를 문자열로 변환해서 비교 (가장 안전함)
-                    if str(entry['team']['id']) == target_id:
+                # 이름에 'West'가 들어가는 컨퍼런스만 찾기 (서부)
+                if "West" in conference['name']:
+                    
+                    # 해당 컨퍼런스의 팀 목록 (이미 등수대로 정렬되어 있음)
+                    entries = conference.get('standings', {}).get('entries', [])
+                    
+                    # 리스트를 돌면서 'GS' 찾기
+                    for index, entry in enumerate(entries):
+                        # 안전하게 팀 약어 확인
+                        team_abbr = entry.get('team', {}).get('abbreviation', '')
                         
-                        # 방법 A: 명시된 시드 순위(playoffSeed) 확인
-                        stats = entry.get('stats', [])
-                        seed_stat = next((s for s in stats if s['name'] == 'playoffSeed'), None)
-                        
-                        if seed_stat:
-                            found_rank = int(seed_stat['value'])
-                        else:
-                            # 방법 B: 시드 정보가 없으면 현재 리스트 인덱스+1 (등수) 사용
-                            found_rank = index + 1
-                        
-                        break # 찾았으니 내부 루프 종료
-                
-                if found_rank:
-                    short_conf = "West" if "West" in conf_name else "East"
-                    team_rank = f"#{found_rank} {short_conf}"
-                    break # 찾았으니 외부 루프 종료
-
+                        if team_abbr == 'GS':
+                            # 방법 A: 명시된 시드 값 확인
+                            stats = entry.get('stats', [])
+                            seed_stat = next((s for s in stats if s['name'] == 'playoffSeed'), None)
+                            
+                            rank_num = 0
+                            if seed_stat:
+                                rank_num = int(seed_stat.get('value', 0))
+                            
+                            # 방법 B: 시드 값이 없으면 리스트 순서(등수) 사용
+                            if rank_num == 0:
+                                rank_num = index + 1
+                            
+                            team_rank = f"#{rank_num} West"
+                            break # GS 찾았으니 내부 루프 종료
+                    
+                    if team_rank != "-": break # 순위 찾았으니 외부 루프 종료
         except Exception as e:
             print(f"순위 파싱 에러: {e}")
 
