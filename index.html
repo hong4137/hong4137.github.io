@@ -51,7 +51,6 @@
             cursor: pointer;
         }
         
-        /* Hello, World! 스타일 적용 */
         .logo-icon { color: var(--accent-color); font-size: 1.2em; }
         .brand-text { font-family: 'Consolas', 'Monaco', 'Courier New', monospace; letter-spacing: -0.5px; }
 
@@ -64,7 +63,6 @@
         .nav-item:hover { background-color: rgba(255, 255, 255, 0.05); color: white; }
         .nav-item i { width: 24px; color: var(--text-sub); }
         
-        /* 활성화된 메뉴 스타일 */
         .nav-item.active { background-color: rgba(255, 68, 0, 0.1); color: var(--accent-color); }
         .nav-item.active i { color: var(--accent-color); }
 
@@ -81,7 +79,6 @@
             overflow: hidden;
         }
 
-        /* 1. 대시보드 홈 뷰 */
         #dashboard-view {
             padding: 40px;
             height: 100%;
@@ -89,7 +86,6 @@
             box-sizing: border-box;
         }
 
-        /* 2. 브리핑 뷰 */
         #briefing-view {
             display: none;
             width: 100%;
@@ -109,12 +105,10 @@
         .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .card-title { font-size: 16px; font-weight: 600; color: var(--text-sub); }
         
-        /* 날씨 카드 내부 스타일 */
         .weather-info { display: flex; align-items: center; gap: 15px; }
         .temp-big { font-size: 42px; font-weight: bold; color: white; }
         .weather-desc { font-size: 14px; color: var(--text-sub); }
         
-        /* 시간별 예보 스타일 (새로 추가됨) */
         .hourly-forecast {
             display: flex; justify-content: space-between; align-items: center;
             margin: 25px 0; padding: 0 5px;
@@ -123,18 +117,12 @@
         .hourly-time { font-size: 11px; color: var(--text-sub); }
         .hourly-icon { font-size: 16px; margin: 2px 0; }
 
-        .empty-space-card {
-            background-color: rgba(255,255,255,0.02); border: 2px dashed #444; border-radius: 12px;
-            height: 300px; display: flex; align-items: center; justify-content: center; color: #555; font-size: 14px;
-        }
-        /* 스포츠 그리드 레이아웃 */
         .sports-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2열 */
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
         }
 
-        /* 개별 카드 스타일 */
         .sport-card {
             background-color: #2a2a2a;
             border-radius: 8px;
@@ -152,32 +140,11 @@
             margin-bottom: 12px;
             display: flex;
             align-items: center;
+            justify-content: space-between; /* 양끝 정렬 */
             gap: 8px;
             border-bottom: 1px solid #444;
             padding-bottom: 8px;
         }
-
-        .sport-content {
-            flex: 1;
-            font-size: 13px;
-            color: #e0e0e0;
-        }
-
-        /* 경기 리스트 아이템 */
-        .match-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 12px;
-        }
-        .match-date { color: #888; font-size: 11px; margin-right: 5px; min-width: 40px;}
-        .match-versus { flex: 1; text-align: left; }
-        .match-score { font-weight: bold; color: var(--accent-color); }
-        .match-status { font-size: 10px; padding: 2px 4px; border-radius: 3px; background: #333; color: #aaa; margin-left: 5px;}
-
-        /* NBA 전용 스타일 */
-        .nba-result { border-left: 2px solid var(--accent-color); padding-left: 8px; margin-bottom: 10px; }
-        .nba-schedule { margin-top: 5px; color: #aaa; font-size: 11px; }
 
         .loading-text { color: #555; font-style: italic; font-size: 12px; text-align: center; margin-top: 20px;}
     </style>
@@ -279,8 +246,7 @@
                                 { "s": "NASDAQ:NVDA", "d": "엔비디아" },
                                 { "s": "NASDAQ:MU", "d": "마이크론" },
                                 { "s": "NASDAQ:TSLA", "d": "테슬라" },
-                                { "s": "FX_IDC:USDKRW", "d": "원달러 환율" },
-                                { "s": "BINANCE:BTCUSDT", "d": "비트코인" }
+                                { "s": "FX_IDC:USDKRW", "d": "원달러 환율" }
                             ]
                             }
                         ]
@@ -295,10 +261,10 @@
                 <span style="font-size:11px; color:#666;" id="update-time">업데이트: --:--</span>
             </div>
 
-            <div class="sports-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div class="sports-grid">
                 
-                <div class="sport-card" style="background: #2a2a2a; border-radius: 12px; padding: 20px; border: 1px solid #333; min-height: 140px; display: flex; flex-direction: column;">
-                    <div class="sport-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #444; padding-bottom: 10px;">
+                <div class="sport-card">
+                    <div class="sport-header">
                         <div style="display:flex; align-items:center; gap:8px;">
                             <i class="fas fa-basketball-ball" style="color:#fdb927; font-size: 1.2rem;"></i> 
                             <span style="font-weight:bold; color:#ccc;">GS Warriors</span>
@@ -307,12 +273,12 @@
                     </div>
                     
                     <div id="nba-content" style="flex:1;">
-                        <div class="loading-text" style="color:#555; text-align:center; font-size:12px;">데이터 로딩중...</div>
+                        <div class="loading-text">데이터 로딩중...</div>
                     </div>
                 </div>
 
-                <div class="sport-card" style="background: #2a2a2a; border-radius: 12px; padding: 20px; border: 1px solid #333; min-height: 140px; display: flex; flex-direction: column;">
-                    <div class="sport-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #444; padding-bottom: 10px;">
+                <div class="sport-card">
+                    <div class="sport-header">
                         <div style="display:flex; align-items:center; gap:8px;">
                             <i class="fas fa-flag-checkered" style="color:#ff1801; font-size: 1.2rem;"></i> 
                             <span style="font-weight:bold; color:#ccc;">Formula 1</span>
@@ -484,9 +450,9 @@
         }
 
         // 7. 스포츠 데이터 로드 (JSON 연동)
-async function loadSportsData() {
+        async function loadSportsData() {
             try {
-                // [수정됨] 캐시 방지 코드 추가 (?v=현재시간)
+                // 캐시 방지 (최신 데이터 로드 보장)
                 const response = await fetch('./sports.json?v=' + new Date().getTime());
                 
                 let data;
@@ -502,14 +468,11 @@ async function loadSportsData() {
                 const nba = data.nba;
                 const nbaContainer = document.getElementById('nba-content');
                 
-                // [추가된 코드] 우측 상단에 전적과 순위 표시 (예: 20-8 • #2 West)
+                // [NEW] 전적 및 순위 표시 (상단 헤더)
                 if (nba.record && nba.rank) {
                     document.getElementById('nba-header-info').innerHTML = 
-                        `<span style="color:#fff; font-weight:bold;">${nba.record}</span> <span style="color:#666; margin:0 4px;">|</span> <span style="color:${getComputedStyle(document.documentElement).getPropertyValue('--accent-color')}">${nba.rank}</span>`;
+                        `<span style="color:#fff; font-weight:bold;">${nba.record}</span> <span style="color:#666; margin:0 4px;">|</span> <span style="color:var(--accent-color);">${nba.rank}</span>`;
                 }
-
-                // ... (그 아래 코드는 기존과 동일) ...
-                if (nba.status === "Error") {
                 
                 if (nba.status === "Error") {
                     nbaContainer.innerHTML = `<div style="text-align:center; color:#555;">${nba.msg}</div>`;
@@ -535,7 +498,6 @@ async function loadSportsData() {
                     if (nba.schedule && nba.schedule.length > 0) {
                         html += `<div style="font-size:11px; color:#888; margin-bottom:5px; border-top:1px dashed #444; padding-top:10px;">Upcoming</div>`;
                         nba.schedule.forEach(game => {
-                            // 시간 표시 여부
                             const timeDisplay = game.time ? 
                                 `<span style="background:#333; padding:2px 4px; border-radius:3px; font-size:10px; margin-left:5px;">${game.time}</span>` : "";
 
@@ -566,12 +528,10 @@ async function loadSportsData() {
                     document.getElementById('f1-date').style.color = "#555";
                 }
 
-} catch (e) {
-    console.error(e);
-    // 에러가 나면 화면에 표시
-    document.getElementById('nba-content').innerHTML = `<div style="color:red; text-align:center; font-size:12px;">데이터 로드 실패<br>${e.message}</div>`;
-    document.getElementById('f1-content').innerHTML = `<div style="color:red; text-align:center; font-size:12px;">Fail</div>`;
-}
+            } catch (e) {
+                console.error("데이터 로딩 중 에러 발생:", e);
+                document.getElementById('nba-content').innerHTML = `<div style="color:red; text-align:center; font-size:12px;">JS Error</div>`;
+            }
         }
 
         // 실행
