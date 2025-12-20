@@ -28,14 +28,14 @@ def get_nba_gsw_espn():
         res_team = requests.get(team_url, timeout=10)
         data_team = res_team.json()
         
-        # 3. 전체 순위표 (서부 컨퍼런스 기준)
+        # 3. [핵심 수정] 서부 컨퍼런스 순위표 (이름으로 줄 세우기)
         standings_url = "https://site.api.espn.com/apis/v2/sports/basketball/nba/standings?group=conference"
         res_stand = requests.get(standings_url, timeout=10)
         data_stand = res_stand.json()
 
         # --- 데이터 가공 ---
 
-        # (1) 전적 파싱 (예: "13-15")
+        # (1) 전적 (예: "13-15")
         team_record = "0-0"
         try:
             record_items = data_team['team']['record']['items']
@@ -45,43 +45,32 @@ def get_nba_gsw_espn():
         except:
             pass
 
-        # (2) [핵심 수정] 순위 파싱 - 이름(GS)으로 찾기
+        # (2) 순위 (리스트에서 몇 번째에 있는지 세기)
         team_rank = "-"
         try:
             # 전체 컨퍼런스 목록 순회
             for conference in data_stand.get('children', []):
-                # 이름에 'West'가 들어가는 컨퍼런스만 찾기 (서부)
-                if "West" in conference['name']:
+                if "West" in conference['name']: # 서부 컨퍼런스만 본다
                     
-                    # 해당 컨퍼런스의 팀 목록 (이미 등수대로 정렬되어 있음)
                     entries = conference.get('standings', {}).get('entries', [])
                     
-                    # 리스트를 돌면서 'GS' 찾기
+                    # 위에서부터 하나씩 검사 (이미 1등부터 순서대로 들어있음)
                     for index, entry in enumerate(entries):
-                        # 안전하게 팀 약어 확인
-                        team_abbr = entry.get('team', {}).get('abbreviation', '')
+                        team_name = entry['team']['displayName']
                         
-                        if team_abbr == 'GS':
-                            # 방법 A: 명시된 시드 값 확인
-                            stats = entry.get('stats', [])
-                            seed_stat = next((s for s in stats if s['name'] == 'playoffSeed'), None)
-                            
-                            rank_num = 0
-                            if seed_stat:
-                                rank_num = int(seed_stat.get('value', 0))
-                            
-                            # 방법 B: 시드 값이 없으면 리스트 순서(등수) 사용
-                            if rank_num == 0:
-                                rank_num = index + 1
-                            
-                            team_rank = f"#{rank_num} West"
-                            break # GS 찾았으니 내부 루프 종료
+                        # "Warriors" 라는 글자가 이름에 있으면 무조건 당첨!
+                        if "Warriors" in team_name:
+                            # 컴퓨터는 0부터 세니까 +1 해줌
+                            rank = index + 1
+                            team_rank = f"#{rank} West"
+                            print(f"📍 순위 확인: {team_rank} (Found '{team_name}' at index {index})")
+                            break
                     
-                    if team_rank != "-": break # 순위 찾았으니 외부 루프 종료
+                    if team_rank != "-": break
         except Exception as e:
-            print(f"순위 파싱 에러: {e}")
+            print(f"⚠️ 순위 파싱 에러: {e}")
 
-        # (3) 일정 파싱 (기존 유지)
+        # (3) 일정 (기존 코드)
         events = data.get('events', [])
         completed_games = []
         future_games = []
