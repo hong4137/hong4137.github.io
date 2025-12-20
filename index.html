@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Personal Dashboard</title>
+    <title>Hello, World! Dashboard</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
@@ -37,7 +37,7 @@
             flex-direction: column;
             padding: 20px;
             box-sizing: border-box;
-            flex-shrink: 0; /* 사이드바 크기 고정 */
+            flex-shrink: 0;
         }
 
         .logo-area {
@@ -47,11 +47,14 @@
             margin-bottom: 40px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             cursor: pointer;
         }
         
-        .logo-icon { color: var(--accent-color); }
+        /* Hello, World! 스타일 적용 */
+        .logo-icon { color: var(--accent-color); font-size: 1.2em; }
+        .brand-text { font-family: 'Consolas', 'Monaco', 'Courier New', monospace; letter-spacing: -0.5px; }
+
         .menu-label { font-size: 12px; color: var(--text-sub); text-transform: uppercase; margin-bottom: 10px; font-weight: 600; }
 
         .nav-item {
@@ -72,13 +75,13 @@
         /* 메인 컨텐츠 영역 */
         .main-content {
             flex: 1;
-            padding: 0; /* iframe 꽉 채우기 위해 패딩 제거 */
+            padding: 0;
             position: relative;
             background-color: var(--bg-color);
             overflow: hidden;
         }
 
-        /* 1. 대시보드 홈 뷰 (위젯들) */
+        /* 1. 대시보드 홈 뷰 */
         #dashboard-view {
             padding: 40px;
             height: 100%;
@@ -86,40 +89,39 @@
             box-sizing: border-box;
         }
 
-        /* 2. 브리핑 뷰 (iframe) - 초기에는 숨김 */
+        /* 2. 브리핑 뷰 */
         #briefing-view {
             display: none;
             width: 100%;
             height: 100%;
-            background-color: #fff; /* iframe 배경 */
+            background-color: #fff;
         }
 
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
+        iframe { width: 100%; height: 100%; border: none; display: block; }
 
         /* 위젯 스타일들 */
         .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
         .welcome-msg h1 { margin: 0; font-size: 28px; }
         .welcome-msg p { margin: 5px 0 0; color: var(--text-sub); }
-        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        
         .card { background-color: var(--card-bg); border-radius: 12px; padding: 25px; border: 1px solid var(--border-color); }
         .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .card-title { font-size: 16px; font-weight: 600; color: var(--text-sub); }
         
+        /* 날씨 카드 내부 스타일 */
         .weather-info { display: flex; align-items: center; gap: 15px; }
         .temp-big { font-size: 42px; font-weight: bold; color: white; }
         .weather-desc { font-size: 14px; color: var(--text-sub); }
         
-        .stock-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #333; }
-        .stock-item:last-child { border-bottom: none; }
-        .stock-name { font-weight: 500; }
-        .stock-price { font-weight: bold; }
-        .stock-change.up { color: #ff4400; }
-        .stock-change.down { color: #0088ff; }
+        /* 시간별 예보 스타일 (새로 추가됨) */
+        .hourly-forecast {
+            display: flex; justify-content: space-between; align-items: center;
+            margin: 25px 0; padding: 0 5px;
+        }
+        .hourly-item { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 13px; color: #ccc; }
+        .hourly-time { font-size: 11px; color: var(--text-sub); }
+        .hourly-icon { font-size: 16px; margin: 2px 0; }
 
         .empty-space-card {
             background-color: rgba(255,255,255,0.02); border: 2px dashed #444; border-radius: 12px;
@@ -132,8 +134,8 @@
 
     <nav class="sidebar">
         <div class="logo-area" onclick="showHome()">
-            <i class="fas fa-cube logo-icon"></i>
-            Dashboard
+            <i class="fas fa-earth-americas logo-icon"></i>
+            <span class="brand-text">Hello, World!</span>
         </div>
 
         <div class="menu-label">Menu</div>
@@ -171,64 +173,69 @@
             </header>
 
             <div class="dashboard-grid">
-<div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
-    <div>
-        <div class="card-header">
-            <span class="card-title">🌥️ 서울 날씨</span>
-        </div>
-        <div class="weather-info" id="weather-widget" style="margin-bottom: 20px;">
-            <div class="temp-big">--°</div>
-            <div class="weather-desc">데이터 불러오는 중...</div>
-        </div>
-    </div>
+                <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="card-header">
+                            <span class="card-title">🌥️ 서울 날씨</span>
+                        </div>
+                        
+                        <div class="weather-info" id="weather-widget">
+                            <div class="temp-big">--°</div>
+                            <div class="weather-desc">데이터 불러오는 중...</div>
+                        </div>
 
-    <div style="border-top: 1px solid #333; margin: 10px 0 15px 0;"></div>
+                        <div id="hourly-forecast-container" class="hourly-forecast">
+                            <span style="font-size:12px; color:#555;">단기 예보 로딩중...</span>
+                        </div>
+                    </div>
 
-    <div id="weekly-forecast-container" style="display: flex; justify-content: space-between; text-align: center;">
-        <span style="color:#555; font-size:12px;">주간 날씨 로딩중...</span>
-    </div>
-</div>
+                    <div style="border-top: 1px solid #333; margin: 10px 0 15px 0;"></div>
 
-<div class="card" style="padding: 0; overflow: hidden;">
-    <div class="tradingview-widget-container">
-        <div class="tradingview-widget-container__widget"></div>
-        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-        {
-        "colorTheme": "dark",
-        "dateRange": "12M",
-        "showChart": true,
-        "locale": "kr",
-        "largeChartUrl": "",
-        "isTransparent": true,
-        "showSymbolLogo": true,
-        "showFloatingTooltip": false,
-        "width": "100%",
-        "height": "400",
-        "plotLineColorGrowing": "rgba(255, 68, 0, 1)",
-        "plotLineColorFalling": "rgba(41, 98, 255, 1)",
-        "gridLineColor": "rgba(240, 243, 250, 0)",
-        "scaleFontColor": "rgba(160, 160, 160, 1)",
-        "belowLineFillColorGrowing": "rgba(255, 68, 0, 0.12)",
-        "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
-        "belowLineFillColorGrowingBottom": "rgba(255, 68, 0, 0)",
-        "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
-        "symbolActiveColor": "rgba(255, 68, 0, 0.12)",
-        "tabs": [
-            {
-            "title": "관심 종목",
-            "symbols": [
-                { "s": "NASDAQ:NVDA", "d": "엔비디아" },
-                { "s": "NASDAQ:MU", "d": "마이크론" },
-                { "s": "NASDAQ:TSLA", "d": "테슬라" },
-                { "s": "FX_IDC:USDKRW", "d": "원달러 환율" },
-                { "s": "BINANCE:BTCUSDT", "d": "비트코인" }
-            ]
-            }
-        ]
-        }
-        </script>
-    </div>
-</div>
+                    <div id="weekly-forecast-container" style="display: flex; justify-content: space-between; text-align: center;">
+                        <span style="color:#555; font-size:12px;">주간 날씨 로딩중...</span>
+                    </div>
+                </div>
+
+                <div class="card" style="padding: 0; overflow: hidden;">
+                    <div class="tradingview-widget-container">
+                        <div class="tradingview-widget-container__widget"></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+                        {
+                        "colorTheme": "dark",
+                        "dateRange": "12M",
+                        "showChart": true,
+                        "locale": "kr",
+                        "largeChartUrl": "",
+                        "isTransparent": true,
+                        "showSymbolLogo": true,
+                        "showFloatingTooltip": false,
+                        "width": "100%",
+                        "height": "400",
+                        "plotLineColorGrowing": "rgba(255, 68, 0, 1)",
+                        "plotLineColorFalling": "rgba(41, 98, 255, 1)",
+                        "gridLineColor": "rgba(240, 243, 250, 0)",
+                        "scaleFontColor": "rgba(160, 160, 160, 1)",
+                        "belowLineFillColorGrowing": "rgba(255, 68, 0, 0.12)",
+                        "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
+                        "belowLineFillColorGrowingBottom": "rgba(255, 68, 0, 0)",
+                        "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
+                        "symbolActiveColor": "rgba(255, 68, 0, 0.12)",
+                        "tabs": [
+                            {
+                            "title": "관심 종목",
+                            "symbols": [
+                                { "s": "NASDAQ:NVDA", "d": "엔비디아" },
+                                { "s": "NASDAQ:MU", "d": "마이크론" },
+                                { "s": "NASDAQ:TSLA", "d": "테슬라" },
+                                { "s": "FX_IDC:USDKRW", "d": "원달러 환율" },
+                                { "s": "BINANCE:BTCUSDT", "d": "비트코인" }
+                            ]
+                            }
+                        ]
+                        }
+                        </script>
+                    </div>
+                </div>
             </div>
 
             <div style="margin-bottom: 15px; font-weight:bold;">📌 My Workspace</div>
@@ -244,41 +251,39 @@
     </main>
 
     <script>
+        // 공통 유틸리티: 날씨 코드 -> 아이콘 변환
+        function getWeatherIcon(code) {
+            if (code === 0) return 'fa-sun';
+            if (code >= 1 && code <= 3) return 'fa-cloud-sun';
+            if (code >= 45 && code <= 48) return 'fa-smog';
+            if (code >= 51 && code <= 67) return 'fa-cloud-rain';
+            if (code >= 71 && code <= 77) return 'fa-snowflake';
+            if (code >= 95 && code <= 99) return 'fa-bolt';
+            return 'fa-cloud';
+        }
+
         // 1. 날짜 표시
         const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
         document.getElementById('current-date').innerText = new Date().toLocaleDateString('ko-KR', options);
 
         // 2. 화면 전환 함수들
         function showHome() {
-            // 대시보드 보이기, iframe 숨기기
             document.getElementById('dashboard-view').style.display = 'block';
             document.getElementById('briefing-view').style.display = 'none';
-            
-            // 메뉴 활성화 상태 변경
             document.getElementById('nav-home').classList.add('active');
-            
-            // iframe src 초기화 (선택사항)
             document.getElementById('content-frame').src = ""; 
         }
 
         function openBriefing(url) {
-            // 대시보드 숨기기, iframe 보이기
             document.getElementById('dashboard-view').style.display = 'none';
             document.getElementById('briefing-view').style.display = 'block';
-            
-            // iframe에 주소 주입
             document.getElementById('content-frame').src = url;
-
-            // 메뉴 활성화 상태 변경 (홈 버튼 비활성화)
             document.getElementById('nav-home').classList.remove('active');
         }
 
-        // 3. 브리핑 메뉴 불러오기 (데이터 연동)
+        // 3. 브리핑 메뉴 불러오기
         async function loadBriefingMenu() {
             const menuContainer = document.getElementById('briefing-menu');
-            
-            // ★ 중요: briefing 저장소의 전체 URL을 입력해야 합니다.
-            // 만약 현재 로컬 테스트 중이라면 로컬 경로를 쓰시고, 배포 후엔 아래 주소를 쓰세요.
             const DATA_URL = 'https://hong4137.github.io/briefing/list.json'; 
 
             try {
@@ -288,7 +293,6 @@
                 const data = await response.json();
                 
                 let html = '';
-                // 클릭 시 openBriefing 함수 실행하도록 설정
                 data.slice(0, 10).forEach(item => {
                     html += `<div class="submenu-item" onclick="openBriefing('${item.link}')">
                                 ${item.date} 브리핑
@@ -302,8 +306,8 @@
             }
         }
 
-        // 4. 날씨 위젯
-        async function loadWeather() {
+        // 4. 날씨 위젯 (현재 날씨)
+        async function loadCurrentWeather() {
             try {
                 const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current_weather=true');
                 const data = await res.json();
@@ -312,68 +316,97 @@
                     <div class="temp-big">${temp}°C</div>
                     <div class="weather-desc">서울, 대한민국<br>풍속: ${data.current_weather.windspeed} km/h</div>
                 `;
-            } catch (e) { console.log("Weather Error"); }
+            } catch (e) { console.log("Current Weather Error"); }
         }
 
+        // 5. 시간별 예보 (4시간 간격, 5개 데이터) - NEW
+        async function loadHourlyWeather() {
+            try {
+                // hourly 데이터를 함께 요청
+                const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&hourly=temperature_2m,weathercode&timezone=auto&forecast_days=2');
+                const data = await res.json();
+                
+                const container = document.getElementById('hourly-forecast-container');
+                const currentHour = new Date().getHours();
+                
+                let html = '';
+                let count = 0;
+
+                // 현재 시간부터 시작해서 4시간 간격으로 5개 아이템 추출
+                for (let i = currentHour + 2; i < data.hourly.time.length; i += 4) {
+                    if (count >= 5) break;
+
+                    const timeStr = data.hourly.time[i]; // 예: "2023-12-21T14:00"
+                    const timeObj = new Date(timeStr);
+                    const hourLabel = timeObj.getHours() + ':00';
+                    const temp = Math.round(data.hourly.temperature_2m[i]);
+                    const code = data.hourly.weathercode[i];
+                    const iconClass = getWeatherIcon(code);
+
+                    html += `
+                        <div class="hourly-item">
+                            <span class="hourly-time">${hourLabel}</span>
+                            <i class="fas ${iconClass} hourly-icon"></i>
+                            <span style="font-weight:bold;">${temp}°</span>
+                        </div>
+                    `;
+                    count++;
+                }
+
+                container.innerHTML = html;
+
+            } catch (e) {
+                console.log("Hourly Weather Error", e);
+                document.getElementById('hourly-forecast-container').innerText = '예보 로딩 실패';
+            }
+        }
+
+        // 6. 주간 예보 (카드 하단)
+        async function loadWeeklyWeather() {
+            try {
+                const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto');
+                const data = await res.json();
+                
+                const container = document.getElementById('weekly-forecast-container');
+                let html = '';
+                const days = ['일', '월', '화', '수', '목', '금', '토'];
+
+                for(let i = 0; i < 5; i++) {
+                    const dateStr = data.daily.time[i];
+                    const dateObj = new Date(dateStr);
+                    const dayName = days[dateObj.getDay()];
+                    
+                    const code = data.daily.weathercode[i];
+                    const min = Math.round(data.daily.temperature_2m_min[i]);
+                    const max = Math.round(data.daily.temperature_2m_max[i]);
+                    const iconClass = getWeatherIcon(code);
+
+                    const dayStyle = (i === 0) ? 'color: var(--accent-color); font-weight:bold;' : 'color: var(--text-sub);';
+
+                    html += `
+                        <div style="flex: 1;">
+                            <div style="font-size:12px; margin-bottom:5px; ${dayStyle}">${dayName}</div>
+                            <div style="font-size:18px; margin-bottom:5px; color:#e0e0e0;">
+                                <i class="fas ${iconClass}"></i>
+                            </div>
+                            <div style="font-size:11px; color:#888;">
+                                <span style="color:#4fc3f7">${min}°</span> / <span style="color:#ff8a65">${max}°</span>
+                            </div>
+                        </div>
+                    `;
+                }
+                container.innerHTML = html;
+
+            } catch (e) {
+                console.error(e);
+                container.innerHTML = 'Load Fail';
+            }
+        }
+
+        // 실행
         loadBriefingMenu();
-        loadWeather();
-// [수정됨] 주간 날씨 예보 함수 (카드 내부용)
-async function loadWeeklyWeather() {
-    try {
-        // 서울 좌표 기준 5일치 데이터 요청
-        const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto');
-        const data = await res.json();
-        
-        const container = document.getElementById('weekly-forecast-container');
-        let html = '';
-
-        // 날씨 아이콘 변환기
-        function getIcon(code) {
-            if (code === 0) return 'fa-sun';
-            if (code >= 1 && code <= 3) return 'fa-cloud-sun';
-            if (code >= 45 && code <= 48) return 'fa-smog';
-            if (code >= 51 && code <= 67) return 'fa-cloud-rain';
-            if (code >= 71 && code <= 77) return 'fa-snowflake';
-            if (code >= 95 && code <= 99) return 'fa-bolt';
-            return 'fa-cloud';
-        }
-
-        const days = ['일', '월', '화', '수', '목', '금', '토'];
-
-        // 오늘 포함 향후 5일
-        for(let i = 0; i < 5; i++) {
-            const dateStr = data.daily.time[i];
-            const dateObj = new Date(dateStr);
-            const dayName = days[dateObj.getDay()];
-            
-            const code = data.daily.weathercode[i];
-            const min = Math.round(data.daily.temperature_2m_min[i]);
-            const max = Math.round(data.daily.temperature_2m_max[i]);
-            const iconClass = getIcon(code);
-
-            // 오늘 날짜는 오렌지색 포인트
-            const dayStyle = (i === 0) ? 'color: var(--accent-color); font-weight:bold;' : 'color: var(--text-sub);';
-
-            html += `
-                <div style="flex: 1;">
-                    <div style="font-size:12px; margin-bottom:5px; ${dayStyle}">${dayName}</div>
-                    <div style="font-size:18px; margin-bottom:5px; color:#e0e0e0;">
-                        <i class="fas ${iconClass}"></i>
-                    </div>
-                    <div style="font-size:11px; color:#888;">
-                        <span style="color:#4fc3f7">${min}°</span> / <span style="color:#ff8a65">${max}°</span>
-                    </div>
-                </div>
-            `;
-        }
-        
-        container.innerHTML = html;
-
-    } catch (e) {
-        console.error(e);
-        document.getElementById('weekly-forecast-container').innerHTML = 'Load Fail';
-    }
-}
+        loadCurrentWeather();
+        loadHourlyWeather(); // 새로 추가된 함수 실행
         loadWeeklyWeather();
     </script>
 </body>
