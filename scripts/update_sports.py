@@ -4,7 +4,7 @@ from datetime import datetime
 import pytz
 import sys
 
-# 타임존 설정 (한국 시간, 협정 세계시)
+# 타임존 설정
 KST = pytz.timezone('Asia/Seoul')
 UTC = pytz.timezone('UTC')
 
@@ -18,7 +18,6 @@ dashboard_data = {
 def get_nba_gsw_espn():
     print("🏀 NBA 데이터 수집 (ESPN Source)...")
     try:
-        # 여기가 핵심! ESPN 주소인지 확인하세요.
         url = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/gs/schedule"
         res = requests.get(url, timeout=10)
         data = res.json()
@@ -29,11 +28,9 @@ def get_nba_gsw_espn():
         future_games = []
 
         for event in events:
-            # 날짜 파싱
-            game_date_str = event['date'] # 예: 2024-10-24T02:00Z
+            game_date_str = event['date'] 
             game_date = datetime.strptime(game_date_str, "%Y-%m-%dT%H:%MZ").replace(tzinfo=UTC)
             
-            # 경쟁 팀 정보 찾기
             competition = event['competitions'][0]
             competitors = competition['competitors']
             
@@ -42,16 +39,14 @@ def get_nba_gsw_espn():
             
             if not gsw or not opp: continue
 
-            # 기본 정보 구성
             game_info = {
-                "date_obj": game_date, 
+                "date_obj": game_date,  # 정렬용 (나중에 지울 예정)
                 "date": game_date.astimezone(KST).strftime("%m.%d(%a)"),
                 "time": game_date.astimezone(KST).strftime("%H:%M"),
                 "opp": opp['team']['abbreviation'],
                 "is_home": gsw['homeAway'] == 'home'
             }
 
-            # 경기 상태 확인 (STATUS_FINAL: 종료된 경기)
             status_type = competition['status']['type']['name']
             
             if status_type == 'STATUS_FINAL':
@@ -77,13 +72,16 @@ def get_nba_gsw_espn():
                 "score": last['score']
             }
 
-        # 2. 향후 일정
+        # 2. 향후 일정 (문제의 구간 수정함)
         schedule_list = []
         if future_games:
             future_games.sort(key=lambda x: x['date_obj'])
-            schedule_list = future_games[:2]
+            # [수정] JSON 저장 시 에러가 나지 않도록 date_obj 삭제 후 저장
+            for game in future_games[:2]:
+                game_clean = game.copy()
+                del game_clean['date_obj'] # 범인 제거!
+                schedule_list.append(game_clean)
 
-        # 데이터 저장
         dashboard_data['nba'] = {
             "status": "Active",
             "last": last_game_data,
@@ -93,7 +91,7 @@ def get_nba_gsw_espn():
 
     except Exception as e:
         print(f"❌ NBA 에러: {e}")
-        dashboard_data['nba'] = {"status": "Error", "msg": "ESPN 연결 실패"}
+        dashboard_data['nba'] = {"status": "Error", "msg": "데이터 처리 실패"}
 
 def get_f1_schedule():
     print("🏎️ F1 데이터 수집 시작...")
