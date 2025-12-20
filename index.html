@@ -485,83 +485,91 @@
 
         // 7. 스포츠 데이터 로드 (JSON 연동)
         async function loadSportsData() {
-            try {
-                const response = await fetch('./sports.json');
-                
-                // 아직 데이터 파일이 안 만들어졌을 때를 대비한 '데모 데이터'
-                let data;
-                if (!response.ok) {
-                    console.log("sports.json 파일이 없습니다. 데모 데이터를 표시합니다.");
-                    data = {
-                        updated: "Demo Mode",
-                        nba: {
-                            last: { opp: "LAL", result: "W", score: "120-110", date: "12.25" },
-                            schedule: [{ date: "12.28", opp: "PHX" }]
-                        },
-                        f1: { status: "Off Season", name: "2026 Season", date: "Waiting..." }
-                    };
-                } else {
-                    data = await response.json();
-                }
-
-                document.getElementById('update-time').innerText = `Update: ${data.updated}`;
-
-                // --- 1. NBA 렌더링 ---
-                const nba = data.nba;
-                const nbaContainer = document.getElementById('nba-content');
-                
-                if (nba.status === "Error") {
-                    nbaContainer.innerHTML = `<div style="text-align:center; color:#555;">${nba.msg}</div>`;
-                } else {
-                    let html = '';
-                    
-                    // 지난 경기 결과
-                    if (nba.last && nba.last.result) {
-                        const resultColor = nba.last.result === 'W' ? '#ff4400' : '#0088ff'; // 수정됨
-                        html += `
-                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                                <span style="font-size:11px; color:#888;">Recent</span>
-                                <div style="font-size:13px;">
-                                    vs <b>${nba.last.opp}</b> 
-                                    <span style="color:${resultColor}; font-weight:bold; margin-left:5px;">${nba.last.result}</span>
-                                    <span style="font-size:11px; color:#aaa; margin-left:3px;">(${nba.last.score})</span>
-                                </div>
-                            </div>
-                        `;
-                    }
-
-                    // 다음 경기 일정
-                    if (nba.schedule && nba.schedule.length > 0) {
-                        html += `<div style="font-size:11px; color:#888; margin-bottom:5px; border-top:1px dashed #444; padding-top:10px;">Upcoming</div>`;
-                        nba.schedule.forEach(game => {
-                            html += `
-                                <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:12px;">
-                                    <span style="color:#e0e0e0;">vs ${game.opp}</span>
-                                    <span style="color:#666;">${game.date}</span>
-                                </div>
-                            `;
-                        });
-                    } else {
-                        html += `<div style="font-size:11px; color:#555; margin-top:10px;">이번주 예정된 경기 없음</div>`;
-                    }
-                    nbaContainer.innerHTML = html;
-                }
-
-                // --- 2. F1 렌더링 ---
-                const f1 = data.f1;
-                document.getElementById('f1-status-badge').innerText = f1.status;
-                document.getElementById('f1-race').innerText = f1.name || "정보 없음";
-                document.getElementById('f1-date').innerText = f1.date || "-";
-                document.getElementById('f1-circuit').innerText = f1.circuit || "";
-
-                if(f1.status === "Off Season") {
-                    document.getElementById('f1-date').style.color = "#555";
-                }
-
-            } catch (e) {
-                console.error("데이터 로딩 중 에러 발생:", e);
-            }
+    try {
+        const response = await fetch('./sports.json');
+        
+        let data;
+        // fetch 실패 시 데모 데이터 (여전히 실패할 경우를 대비)
+        if (!response.ok) {
+            console.log("sports.json 로드 실패. Demo Mode");
+            data = {
+                updated: "Demo Mode",
+                nba: {
+                    last: { opp: "LAL", result: "W", score: "120-110", date: "12.25" },
+                    schedule: [{ date: "12.28(토)", opp: "PHX", time: "10:00" }]
+                },
+                f1: { status: "Off Season", name: "2026 Season", date: "Waiting..." }
+            };
+        } else {
+            data = await response.json();
         }
+
+        document.getElementById('update-time').innerText = `Update: ${data.updated}`;
+
+        // --- 1. NBA 렌더링 ---
+        const nba = data.nba;
+        const nbaContainer = document.getElementById('nba-content');
+        
+        if (nba.status === "Error") {
+            nbaContainer.innerHTML = `<div style="text-align:center; color:#555;">${nba.msg}</div>`;
+        } else {
+            let html = '';
+            
+            // 1) 지난 경기 결과
+            if (nba.last && nba.last.result) {
+                const resultColor = nba.last.result === 'W' ? '#ff4400' : '#0088ff';
+                html += `
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="font-size:11px; color:#888;">Recent</span>
+                        <div style="font-size:13px;">
+                            vs <b>${nba.last.opp}</b> 
+                            <span style="color:${resultColor}; font-weight:bold; margin-left:5px;">${nba.last.result}</span>
+                            <span style="font-size:11px; color:#aaa; margin-left:3px;">(${nba.last.score})</span>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // 2) 다음 경기 일정 (Upcoming) - 시간 추가됨
+            if (nba.schedule && nba.schedule.length > 0) {
+                html += `<div style="font-size:11px; color:#888; margin-bottom:5px; border-top:1px dashed #444; padding-top:10px;">Upcoming</div>`;
+                
+                nba.schedule.forEach(game => {
+                    // 시간(time)이 있으면 표시, 없으면 공란
+                    const timeDisplay = game.time && game.time !== "TBD" ? 
+                        `<span style="background:#333; padding:2px 4px; border-radius:3px; font-size:10px; margin-left:5px;">${game.time}</span>` : "";
+
+                    html += `
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; font-size:12px;">
+                            <div style="display:flex; align-items:center;">
+                                <span style="color:#e0e0e0;">vs ${game.opp}</span>
+                                ${timeDisplay}
+                            </div>
+                            <span style="color:#666;">${game.date}</span>
+                        </div>
+                    `;
+                });
+            } else {
+                html += `<div style="font-size:11px; color:#555; margin-top:10px;">예정된 경기 없음</div>`;
+            }
+            nbaContainer.innerHTML = html;
+        }
+
+        // --- 2. F1 렌더링 ---
+        const f1 = data.f1;
+        document.getElementById('f1-status-badge').innerText = f1.status;
+        document.getElementById('f1-race').innerText = f1.name || "정보 없음";
+        document.getElementById('f1-date').innerText = f1.date || "-";
+        document.getElementById('f1-circuit').innerText = f1.circuit || "";
+
+        if(f1.status === "Off Season") {
+            document.getElementById('f1-date').style.color = "#555";
+        }
+
+    } catch (e) {
+        console.error("데이터 로딩 중 에러 발생:", e);
+    }
+}
 
         // 실행
         loadBriefingMenu();
