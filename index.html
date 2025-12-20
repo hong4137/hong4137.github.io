@@ -171,13 +171,23 @@
             </header>
 
             <div class="dashboard-grid">
-                <div class="card">
-                    <div class="card-header"><span class="card-title">🌥️ 서울 날씨</span></div>
-                    <div class="weather-info" id="weather-widget">
-                        <div class="temp-big">--°</div>
-                        <div class="weather-desc">Loading...</div>
-                    </div>
-                </div>
+<div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+    <div>
+        <div class="card-header">
+            <span class="card-title">🌥️ 서울 날씨</span>
+        </div>
+        <div class="weather-info" id="weather-widget" style="margin-bottom: 20px;">
+            <div class="temp-big">--°</div>
+            <div class="weather-desc">데이터 불러오는 중...</div>
+        </div>
+    </div>
+
+    <div style="border-top: 1px solid #333; margin: 10px 0 15px 0;"></div>
+
+    <div id="weekly-forecast-container" style="display: flex; justify-content: space-between; text-align: center;">
+        <span style="color:#555; font-size:12px;">주간 날씨 로딩중...</span>
+    </div>
+</div>
 
 <div class="card" style="padding: 0; overflow: hidden;">
     <div class="tradingview-widget-container">
@@ -307,7 +317,63 @@
 
         loadBriefingMenu();
         loadWeather();
+// [수정됨] 주간 날씨 예보 함수 (카드 내부용)
+async function loadWeeklyWeather() {
+    try {
+        // 서울 좌표 기준 5일치 데이터 요청
+        const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto');
+        const data = await res.json();
+        
+        const container = document.getElementById('weekly-forecast-container');
+        let html = '';
 
+        // 날씨 아이콘 변환기
+        function getIcon(code) {
+            if (code === 0) return 'fa-sun';
+            if (code >= 1 && code <= 3) return 'fa-cloud-sun';
+            if (code >= 45 && code <= 48) return 'fa-smog';
+            if (code >= 51 && code <= 67) return 'fa-cloud-rain';
+            if (code >= 71 && code <= 77) return 'fa-snowflake';
+            if (code >= 95 && code <= 99) return 'fa-bolt';
+            return 'fa-cloud';
+        }
+
+        const days = ['일', '월', '화', '수', '목', '금', '토'];
+
+        // 오늘 포함 향후 5일
+        for(let i = 0; i < 5; i++) {
+            const dateStr = data.daily.time[i];
+            const dateObj = new Date(dateStr);
+            const dayName = days[dateObj.getDay()];
+            
+            const code = data.daily.weathercode[i];
+            const min = Math.round(data.daily.temperature_2m_min[i]);
+            const max = Math.round(data.daily.temperature_2m_max[i]);
+            const iconClass = getIcon(code);
+
+            // 오늘 날짜는 오렌지색 포인트
+            const dayStyle = (i === 0) ? 'color: var(--accent-color); font-weight:bold;' : 'color: var(--text-sub);';
+
+            html += `
+                <div style="flex: 1;">
+                    <div style="font-size:12px; margin-bottom:5px; ${dayStyle}">${dayName}</div>
+                    <div style="font-size:18px; margin-bottom:5px; color:#e0e0e0;">
+                        <i class="fas ${iconClass}"></i>
+                    </div>
+                    <div style="font-size:11px; color:#888;">
+                        <span style="color:#4fc3f7">${min}°</span> / <span style="color:#ff8a65">${max}°</span>
+                    </div>
+                </div>
+            `;
+        }
+        
+        container.innerHTML = html;
+
+    } catch (e) {
+        console.error(e);
+        document.getElementById('weekly-forecast-container').innerHTML = 'Load Fail';
+    }
+}
     </script>
 </body>
 </html>
