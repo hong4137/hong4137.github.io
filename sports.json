@@ -1,8 +1,10 @@
 {
-    "updated": "12/21 03:43",
+    "updated": "12/21 03:51",
     "nba": {
         "status": "Error",
-        "msg": "HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)"
+        "msg": "API 차단됨",
+        "last": {},
+        "schedule": []
     },
     "f1": {
         "status": "Next GP",
