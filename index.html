@@ -295,47 +295,38 @@
     <span style="font-size:11px; color:#666;" id="update-time">업데이트: --:--</span>
 </div>
 
-<div class="sports-grid">
+<div class="sports-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
     
-    <div class="sport-card">
-        <div class="sport-header">
-            <i class="fas fa-futbol" style="color:#d0f0c0;"></i> <span class="sport-name">PL Big Match</span>
+    <div class="sport-card" style="background: #2a2a2a; border-radius: 12px; padding: 20px; border: 1px solid #333; min-height: 140px; display: flex; flex-direction: column;">
+        <div class="sport-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #444; padding-bottom: 10px;">
+            <div style="display:flex; align-items:center; gap:8px;">
+                <i class="fas fa-basketball-ball" style="color:#fdb927; font-size: 1.2rem;"></i> 
+                <span style="font-weight:bold; color:#ccc;">GS Warriors</span>
+            </div>
+            <span style="font-size:10px; color:#666;">NBA</span>
         </div>
-        <div id="epl-list" class="sport-content">
-            <div class="loading-text">일정 로딩중...</div>
-        </div>
-    </div>
-
-    <div class="sport-card">
-        <div class="sport-header">
-            <i class="fas fa-table-tennis" style="color:#ffff00;"></i> <span class="sport-name">Alcaraz (ATP)</span>
-        </div>
-        <div id="tennis-list" class="sport-content">
-            <div class="loading-text">일정 확인중...</div>
+        
+        <div id="nba-content" style="flex:1;">
+            <div class="loading-text" style="color:#555; text-align:center; font-size:12px;">데이터 로딩중...</div>
         </div>
     </div>
 
-    <div class="sport-card">
-        <div class="sport-header">
-            <i class="fas fa-basketball-ball" style="color:#fdb927;"></i> <span class="sport-name">Golden State</span>
+    <div class="sport-card" style="background: #2a2a2a; border-radius: 12px; padding: 20px; border: 1px solid #333; min-height: 140px; display: flex; flex-direction: column;">
+        <div class="sport-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #444; padding-bottom: 10px;">
+            <div style="display:flex; align-items:center; gap:8px;">
+                <i class="fas fa-flag-checkered" style="color:#ff1801; font-size: 1.2rem;"></i> 
+                <span style="font-weight:bold; color:#ccc;">Formula 1</span>
+            </div>
+            <span id="f1-status-badge" style="font-size:10px; background:#333; padding:2px 6px; border-radius:4px; color:#aaa;">Check</span>
         </div>
-        <div id="nba-list" class="sport-content">
-            <div class="loading-text">Warriors 정보...</div>
-        </div>
-    </div>
-
-    <div class="sport-card">
-        <div class="sport-header">
-            <i class="fas fa-flag-checkered" style="color:#ff1801;"></i> <span class="sport-name">Formula 1</span>
-        </div>
-        <div id="f1-list" class="sport-content">
-            <div class="loading-text">Race Schedule</div>
+        
+        <div id="f1-content" style="text-align: center; margin-top: 10px;">
+            <div id="f1-race" style="font-size: 16px; font-weight: bold; color: white; margin-bottom: 8px;">Loading...</div>
+            <div id="f1-date" style="font-size: 18px; color: var(--accent-color); font-weight: bold;">--.--</div>
+            <div id="f1-circuit" style="font-size: 11px; color: #666; margin-top: 5px;">--</div>
         </div>
     </div>
-
 </div>
-        </div>
-
         <div id="briefing-view">
             <iframe id="content-frame" src=""></iframe>
         </div>
@@ -495,92 +486,83 @@
             }
         }
 async function loadSportsData() {
-    // -----------------------------------------------------------
-    // [나중에 교체할 부분] 실제로는 fetch('sports.json')을 사용합니다.
-    // 지금은 테스트를 위해 가상의 데이터를 만듭니다.
-    const mockData = {
-        updated: "12/21 14:00",
-        epl: [
-            { date: "12.22(일)", time: "02:30", home: "토트넘", away: "리버풀", status: "예정" },
-            { date: "12.23(월)", time: "01:30", home: "아스널", away: "C.팰리스", status: "예정" }
-        ],
-        tennis: {
-            tournament: "Australian Open",
-            next_match: { date: "01.14(화)", opponent: "TBD", round: "R1" },
-            rank: "ATP #3"
-        },
-        nba: {
-            last_game: { opp: "MEM", result: "W", score: "123-118" },
-            schedule: [
-                { date: "12.23", opp: "LAL", time: "12:00" },
-                { date: "12.26", opp: "DEN", time: "10:30" }
-            ]
-        },
-        f1: {
-            status: "Off Season",
-            next_race: "Bahrain GP",
-            date: "2026.03.02"
+    try {
+        const response = await fetch('./sports.json');
+        
+        // 아직 데이터 파일이 안 만들어졌을 때를 대비한 '데모 데이터'
+        let data;
+        if (!response.ok) {
+            console.log("sports.json 파일이 없습니다. 데모 데이터를 표시합니다.");
+            data = {
+                updated: "Demo Mode",
+                nba: {
+                    last: { opp: "LAL", result: "W", score: "120-110", date: "12.25" },
+                    schedule: [{ date: "12.28", opp: "PHX" }]
+                },
+                f1: { status: "Off Season", name: "2026 Season", date: "Waiting..." }
+            };
+        } else {
+            data = await response.json();
         }
-    };
-    // -----------------------------------------------------------
 
-    // 1. EPL 렌더링
-    const eplContainer = document.getElementById('epl-list');
-    let eplHtml = '';
-    mockData.epl.forEach(match => {
-        eplHtml += `
-            <div class="match-item">
-                <span class="match-date">${match.date}</span>
-                <span class="match-versus">${match.home} vs ${match.away}</span>
-                <span class="match-status">${match.time}</span>
-            </div>`;
-    });
-    eplContainer.innerHTML = eplHtml;
+        document.getElementById('update-time').innerText = `Update: ${data.updated}`;
 
-    // 2. 테니스 (알카라스)
-    const tennisContainer = document.getElementById('tennis-list');
-    tennisContainer.innerHTML = `
-        <div style="font-size:12px; color:#aaa; margin-bottom:5px;">${mockData.tennis.tournament}</div>
-        <div class="match-item" style="align-items:center;">
-            <span class="match-date">${mockData.tennis.next_match.date}</span>
-            <span class="match-versus">vs ${mockData.tennis.next_match.opponent}</span>
-            <span class="match-status">${mockData.tennis.next_match.round}</span>
-        </div>
-        <div style="font-size:11px; text-align:right; color:#555;">Ranking: ${mockData.tennis.rank}</div>
-    `;
+        // --- 1. NBA 렌더링 ---
+        const nba = data.nba;
+        const nbaContainer = document.getElementById('nba-content');
+        
+        if (nba.status === "Error") {
+            nbaContainer.innerHTML = `<div style="text-align:center; color:#555;">${nba.msg}</div>`;
+        } else {
+            let html = '';
+            
+            // 지난 경기 결과
+            if (nba.last && nba.last.result) {
+                const resultColor = nba.last.result === 'W' ? '#ff4400' : '#0088ff'; # W는 주황, L은 파랑
+                html += `
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="font-size:11px; color:#888;">Recent</span>
+                        <div style="font-size:13px;">
+                            vs <b>${nba.last.opp}</b> 
+                            <span style="color:${resultColor}; font-weight:bold; margin-left:5px;">${nba.last.result}</span>
+                            <span style="font-size:11px; color:#aaa; margin-left:3px;">(${nba.last.score})</span>
+                        </div>
+                    </div>
+                `;
+            }
 
-    // 3. NBA (골든 스테이트)
-    const nbaContainer = document.getElementById('nba-list');
-    const last = mockData.nba.last_game;
-    let nbaHtml = `
-        <div class="nba-result">
-            <div style="font-size:10px; color:#888;">Recent Result</div>
-            <div>vs ${last.opp} <span style="color:${last.result==='W'?'#ff4400':'#0088ff'}; font-weight:bold;">${last.result}</span> (${last.score})</div>
-        </div>
-        <div style="font-size:10px; color:#888; margin-bottom:3px;">Upcoming</div>
-    `;
-    mockData.nba.schedule.forEach(game => {
-        nbaHtml += `<div class="match-item" style="margin-bottom:2px;">
-            <span class="match-date">${game.date}</span>
-            <span class="match-versus">vs ${game.opp}</span>
-            <span class="match-status">${game.time}</span>
-        </div>`;
-    });
-    nbaContainer.innerHTML = nbaHtml;
+            // 다음 경기 일정
+            if (nba.schedule && nba.schedule.length > 0) {
+                html += `<div style="font-size:11px; color:#888; margin-bottom:5px; border-top:1px dashed #444; padding-top:10px;">Upcoming</div>`;
+                nba.schedule.forEach(game => {
+                    html += `
+                        <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:12px;">
+                            <span style="color:#e0e0e0;">vs ${game.opp}</span>
+                            <span style="color:#666;">${game.date}</span>
+                        </div>
+                    `;
+                });
+            } else {
+                html += `<div style="font-size:11px; color:#555; margin-top:10px;">이번주 예정된 경기 없음</div>`;
+            }
+            nbaContainer.innerHTML = html;
+        }
 
-    // 4. F1
-    document.getElementById('f1-list').innerHTML = `
-        <div style="text-align:center; padding-top:10px;">
-            <div style="font-size:14px; font-weight:bold; color:#888;">${mockData.f1.status}</div>
-            <div style="margin-top:5px; font-size:12px;">Next: ${mockData.f1.next_race}</div>
-            <div style="font-size:11px; color:#555;">${mockData.f1.date}</div>
-        </div>
-    `;
-    
-    document.getElementById('update-time').innerText = `Update: ${mockData.updated}`;
+        // --- 2. F1 렌더링 ---
+        const f1 = data.f1;
+        document.getElementById('f1-status-badge').innerText = f1.status;
+        document.getElementById('f1-race').innerText = f1.name || "정보 없음";
+        document.getElementById('f1-date').innerText = f1.date || "-";
+        document.getElementById('f1-circuit').innerText = f1.circuit || "";
+
+        if(f1.status === "Off Season") {
+            document.getElementById('f1-date').style.color = "#555";
+        }
+
+    } catch (e) {
+        console.error("데이터 로딩 중 에러 발생:", e);
+    }
 }
-
-
         // 실행
         loadBriefingMenu();
         loadCurrentWeather();
