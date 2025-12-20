@@ -18,7 +18,7 @@ dashboard_data = {
 def get_nba_gsw_espn():
     print("🏀 NBA 데이터 수집 (ESPN Source)...")
     try:
-        # 1. 일정 데이터 (Schedule)
+        # 1. 일정 데이터
         schedule_url = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/gs/schedule"
         res = requests.get(schedule_url, timeout=10)
         data = res.json()
@@ -28,12 +28,13 @@ def get_nba_gsw_espn():
         res_team = requests.get(team_url, timeout=10)
         data_team = res_team.json()
         
-        # 3. [핵심 수정] 전체 순위표 (Standings) - 여기서 진짜 등수를 찾습니다
-        standings_url = "https://site.api.espn.com/apis/v2/sports/basketball/nba/standings"
+        # 3. [핵심 수정] 전체 순위표 (옵션 추가: group=conference)
+        # 이렇게 하면 디비전이 아니라 '서부 컨퍼런스' 전체 15개 팀이 순서대로 나옵니다.
+        standings_url = "https://site.api.espn.com/apis/v2/sports/basketball/nba/standings?group=conference"
         res_stand = requests.get(standings_url, timeout=10)
         data_stand = res_stand.json()
 
-        # --- 데이터 가공 시작 ---
+        # --- 데이터 가공 ---
 
         # (1) 전적 파싱 (예: "13-15")
         team_record = "0-0"
@@ -45,33 +46,46 @@ def get_nba_gsw_espn():
         except:
             pass
 
-        # (2) 순위 파싱 (디비전 순위가 아닌 '서부 컨퍼런스 시드' 찾기)
+        # (2) 순위 파싱 (안전장치 강화)
         team_rank = "-"
         try:
-            # GSW 팀 ID는 '10'입니다.
-            # 전체 컨퍼런스 목록(children)을 순회하며 GSW를 찾습니다.
+            # GSW 팀 ID = '10'
+            target_id = '10' 
+            
             for conference in data_stand.get('children', []):
-                # 서부/동부 컨퍼런스 이름 (예: "Western Conference")
-                conf_name = conference['name'] 
+                conf_name = conference['name'] # "Western Conference"
                 
-                # 해당 컨퍼런스의 팀 목록 조회
-                for entry in conference.get('standings', {}).get('entries', []):
-                    if entry['team']['id'] == '10': # GSW 발견!
-                        # 통계 목록(stats)에서 'playoffSeed'(시드 배정 순위) 찾기
+                # 해당 컨퍼런스의 팀 목록 (이미 등수대로 정렬되어 있음)
+                entries = conference.get('standings', {}).get('entries', [])
+                
+                found_rank = None
+                
+                # 리스트를 돌면서 GSW 찾기
+                for index, entry in enumerate(entries):
+                    # ID를 문자열로 변환해서 비교 (가장 안전함)
+                    if str(entry['team']['id']) == target_id:
+                        
+                        # 방법 A: 명시된 시드 순위(playoffSeed) 확인
                         stats = entry.get('stats', [])
                         seed_stat = next((s for s in stats if s['name'] == 'playoffSeed'), None)
                         
                         if seed_stat:
-                            rank_num = int(seed_stat['value']) # 9.0 -> 9
-                            # "Western Conference" -> "West"로 줄임
-                            short_conf = "West" if "West" in conf_name else "East"
-                            team_rank = f"#{rank_num} {short_conf}" # 예: "#9 West"
-                        break
-                if team_rank != "-": break
+                            found_rank = int(seed_stat['value'])
+                        else:
+                            # 방법 B: 시드 정보가 없으면 현재 리스트 인덱스+1 (등수) 사용
+                            found_rank = index + 1
+                        
+                        break # 찾았으니 내부 루프 종료
+                
+                if found_rank:
+                    short_conf = "West" if "West" in conf_name else "East"
+                    team_rank = f"#{found_rank} {short_conf}"
+                    break # 찾았으니 외부 루프 종료
+
         except Exception as e:
             print(f"순위 파싱 에러: {e}")
 
-        # (3) 일정 파싱 (기존 로직 유지)
+        # (3) 일정 파싱 (기존 유지)
         events = data.get('events', [])
         completed_games = []
         future_games = []
@@ -130,7 +144,7 @@ def get_nba_gsw_espn():
                 del game_clean['date_obj'] 
                 schedule_list.append(game_clean)
 
-        # 최종 데이터 저장
+        # 데이터 저장
         dashboard_data['nba'] = {
             "status": "Active",
             "record": team_record,
