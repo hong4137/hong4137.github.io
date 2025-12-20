@@ -1,0 +1,4 @@
+requests
+pytz
+nba_api
+pandas
