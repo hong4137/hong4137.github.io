@@ -28,7 +28,7 @@ def get_nba_gsw_espn():
         res_team = requests.get(team_url, timeout=10)
         data_team = res_team.json()
         
-        # 3. [핵심 수정] 서부 컨퍼런스 순위표 (이름으로 줄 세우기)
+        # 3. 전체 순위표 (서부 컨퍼런스)
         standings_url = "https://site.api.espn.com/apis/v2/sports/basketball/nba/standings?group=conference"
         res_stand = requests.get(standings_url, timeout=10)
         data_stand = res_stand.json()
@@ -45,25 +45,25 @@ def get_nba_gsw_espn():
         except:
             pass
 
-        # (2) 순위 (리스트에서 몇 번째에 있는지 세기)
+        # (2) [핵심 수정] 순위 - ID '10' (GSW) 찾기
         team_rank = "-"
         try:
             # 전체 컨퍼런스 목록 순회
             for conference in data_stand.get('children', []):
-                if "West" in conference['name']: # 서부 컨퍼런스만 본다
+                # "Western" 이라는 글자가 들어간 컨퍼런스만 찾음
+                if "West" in conference['name']: 
                     
                     entries = conference.get('standings', {}).get('entries', [])
                     
-                    # 위에서부터 하나씩 검사 (이미 1등부터 순서대로 들어있음)
+                    # 1등부터 순서대로 내려가며 ID 검사
                     for index, entry in enumerate(entries):
-                        team_name = entry['team']['displayName']
+                        team_id = entry['team']['id'] # 팀 ID 추출
                         
-                        # "Warriors" 라는 글자가 이름에 있으면 무조건 당첨!
-                        if "Warriors" in team_name:
-                            # 컴퓨터는 0부터 세니까 +1 해줌
-                            rank = index + 1
+                        # GSW의 ID는 '10' 입니다. (문자열 비교)
+                        if str(team_id) == '10':
+                            rank = index + 1 # 인덱스는 0부터 시작하므로 +1
                             team_rank = f"#{rank} West"
-                            print(f"📍 순위 확인: {team_rank} (Found '{team_name}' at index {index})")
+                            print(f"📍 GSW(ID:10) 발견! 순위: {rank}위")
                             break
                     
                     if team_rank != "-": break
