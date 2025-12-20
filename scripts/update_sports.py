@@ -18,17 +18,24 @@ dashboard_data = {
 def get_nba_gsw_espn():
     print("🏀 NBA 데이터 수집 (ESPN Source)...")
     try:
-        # 1. 일정 데이터 가져오기 (기존)
+        # 1. 일정 데이터 (Schedule)
         schedule_url = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/gs/schedule"
         res = requests.get(schedule_url, timeout=10)
         data = res.json()
         
-        # 2. [추가됨] 팀 순위 & 전적 데이터 가져오기 (NEW)
+        # 2. 팀 기본 정보 (전적용)
         team_url = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/gs"
         res_team = requests.get(team_url, timeout=10)
         data_team = res_team.json()
         
-        # 전적 파싱 (예: "20-8")
+        # 3. [핵심 수정] 전체 순위표 (Standings) - 여기서 진짜 등수를 찾습니다
+        standings_url = "https://site.api.espn.com/apis/v2/sports/basketball/nba/standings"
+        res_stand = requests.get(standings_url, timeout=10)
+        data_stand = res_stand.json()
+
+        # --- 데이터 가공 시작 ---
+
+        # (1) 전적 파싱 (예: "13-15")
         team_record = "0-0"
         try:
             record_items = data_team['team']['record']['items']
@@ -38,17 +45,33 @@ def get_nba_gsw_espn():
         except:
             pass
 
-        # 순위 파싱 (예: "3rd in Western Conference" -> "3rd West")
+        # (2) 순위 파싱 (디비전 순위가 아닌 '서부 컨퍼런스 시드' 찾기)
         team_rank = "-"
         try:
-            standing_text = data_team['team']['standingSummary'] # "3rd in Western Conference"
-            if standing_text:
-                rank_num = standing_text.split(' ')[0] # "3rd" 만 추출
-                team_rank = f"#{rank_num} West"
-        except:
-            pass
+            # GSW 팀 ID는 '10'입니다.
+            # 전체 컨퍼런스 목록(children)을 순회하며 GSW를 찾습니다.
+            for conference in data_stand.get('children', []):
+                # 서부/동부 컨퍼런스 이름 (예: "Western Conference")
+                conf_name = conference['name'] 
+                
+                # 해당 컨퍼런스의 팀 목록 조회
+                for entry in conference.get('standings', {}).get('entries', []):
+                    if entry['team']['id'] == '10': # GSW 발견!
+                        # 통계 목록(stats)에서 'playoffSeed'(시드 배정 순위) 찾기
+                        stats = entry.get('stats', [])
+                        seed_stat = next((s for s in stats if s['name'] == 'playoffSeed'), None)
+                        
+                        if seed_stat:
+                            rank_num = int(seed_stat['value']) # 9.0 -> 9
+                            # "Western Conference" -> "West"로 줄임
+                            short_conf = "West" if "West" in conf_name else "East"
+                            team_rank = f"#{rank_num} {short_conf}" # 예: "#9 West"
+                        break
+                if team_rank != "-": break
+        except Exception as e:
+            print(f"순위 파싱 에러: {e}")
 
-        # --- 기존 일정 로직 (그대로 유지) ---
+        # (3) 일정 파싱 (기존 로직 유지)
         events = data.get('events', [])
         completed_games = []
         future_games = []
@@ -107,11 +130,11 @@ def get_nba_gsw_espn():
                 del game_clean['date_obj'] 
                 schedule_list.append(game_clean)
 
-        # 데이터 저장 (순위, 전적 추가됨)
+        # 최종 데이터 저장
         dashboard_data['nba'] = {
             "status": "Active",
-            "record": team_record, # 예: 12-3
-            "rank": team_rank,     # 예: #1 West
+            "record": team_record,
+            "rank": team_rank,
             "last": last_game_data,
             "schedule": schedule_list
         }
