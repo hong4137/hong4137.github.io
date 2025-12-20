@@ -557,9 +557,12 @@ async function loadSportsData() {
                     document.getElementById('f1-date').style.color = "#555";
                 }
 
-            } catch (e) {
-                console.error("데이터 로딩 중 에러 발생:", e);
-            }
+} catch (e) {
+    console.error(e);
+    // 에러가 나면 화면에 표시
+    document.getElementById('nba-content').innerHTML = `<div style="color:red; text-align:center; font-size:12px;">데이터 로드 실패<br>${e.message}</div>`;
+    document.getElementById('f1-content').innerHTML = `<div style="color:red; text-align:center; font-size:12px;">Fail</div>`;
+}
         }
 
         // 실행
