@@ -1,15 +1,13 @@
 {
-    "updated": "12/21 03:51",
+    "updated": "12/21 03:55",
     "nba": {
-        "status": "Error",
-        "msg": "API 차단됨",
-        "last": {},
-        "schedule": []
-    },
-    "f1": {
-        "status": "Next GP",
-        "name": "Australian GP",
-        "date": "03.08(Sun) 13:00",
-        "circuit": "Albert Park Grand Prix Circuit"
-    }
-}
+        "status": "Active",
+        "last": {
+            "date": "12.19(Fri)",
+            "opp": "PHX",
+            "result": "L",
+            "score": "98-99"
+        },
+        "schedule": [
+            {
+                "date_obj": 
