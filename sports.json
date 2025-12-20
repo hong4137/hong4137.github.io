@@ -1,0 +1,13 @@
+{
+    "updated": "12/21 03:43",
+    "nba": {
+        "status": "Error",
+        "msg": "HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)"
+    },
+    "f1": {
+        "status": "Next GP",
+        "name": "Australian GP",
+        "date": "03.08(Sun) 13:00",
+        "circuit": "Albert Park Grand Prix Circuit"
+    }
+}
