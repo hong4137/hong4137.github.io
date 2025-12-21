@@ -13,19 +13,32 @@ UTC = pytz.timezone('UTC')
 dashboard_data = {
     "updated": datetime.now(KST).strftime("%m/%d %H:%M"),
     "nba": {"status": "Loading...", "record": "-", "rank": "-", "last": {}, "schedule": []},
-    "epl": [], # EPL 데이터는 리스트(배열) 형태입니다.
-    "tennis": {"status": "Off", "info": "Data Loading...", "detail": "-"} 
+    "epl": [], 
+    "tennis": {"status": "Off", "info": "Data Loading...", "detail": "-"},
+    "f1": {"status": "Loading...", "name": "-", "date": "-"} # F1 추가
 }
 
 # ---------------------------------------------------------
-# 1. EPL: 6-Tier Logic & 2-State System (Gemini)
+# 1. Tennis (Gemini)
+# ---------------------------------------------------------
+def get_tennis_gemini(client):
+    print("🎾 Tennis 데이터 수집...")
+    try:
+        today_str = datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
+        prompt = f"Current Time: {today_str}. Search 'Carlos Alcaraz' schedule. JSON output (status, info, detail, time). No markdown."
+        response = client.models.generate_content(model="gemini-2.5-flash", contents=prompt)
+        dashboard_data['tennis'] = json.loads(response.text.replace("```json", "").replace("```", "").strip())
+        print("✅ Tennis 완료")
+    except Exception as e: print(f"❌ Tennis 에러: {e}")
+
+# ---------------------------------------------------------
+# 2. EPL: 6-Tier Logic & 2-State System (Gemini)
 # ---------------------------------------------------------
 def get_epl_data(client):
     print("⚽ EPL 데이터 수집 (6-Tier Logic)...")
     try:
         today_str = datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
         
-        # [프롬프트] 우리가 합의한 6단계 로직 완벽 적용
         prompt = f"""
         Current Time: {today_str}
         
@@ -33,23 +46,19 @@ def get_epl_data(client):
         Task 2: Search for the fixtures/results for the current (or upcoming) matchweek.
         
         Task 3: Select exactly 3 "Matches of the Week" based on this strict priority logic (Tier 1 to 6).
-        You must fill 3 slots. If Tier 1 matches are fewer than 3, move to Tier 2, and so on.
+        You must fill 3 slots.
 
-        [Pre-defined Lists]
-        - Big 6: Man City, Arsenal, Liverpool, Chelsea, Man Utd, Tottenham.
-        - Top 4: (Teams you found in Task 1)
-
-        [Selection Logic] - Priority Order
+        [Selection Logic]
         Tier 1: Big 6 vs Big 6.
         Tier 2: Top 4 vs Top 4.
         Tier 3: Top 4 vs Big 6.
         Tier 4: Sky Sports 'Super Sunday' match (Sunday 16:30 UK time).
         Tier 5: TNT Sports 'Early Kick-off' match (Saturday 12:30 UK time).
-        Tier 6: If slots are still empty, pick matches involving 1st place, then 2nd, then 3rd.
+        Tier 6: If slots are still empty, pick matches involving 1st, then 2nd, then 3rd place teams.
 
         Task 4: For each selected match, identify the status:
-        - If the match is FINISHED: Provide Final Score.
-        - If the match is SCHEDULED (or Live): Provide KST Time, Local UK Time, and UK TV Channel.
+        - If FINISHED: Provide Final Score.
+        - If SCHEDULED: Provide KST Time, Local UK Time, and UK TV Channel.
 
         Return a JSON List of 3 objects (No markdown):
         [
@@ -66,15 +75,10 @@ def get_epl_data(client):
         ]
         """
         
-        response = client.models.generate_content(
-            model="gemini-2.5-flash", 
-            contents=prompt
-        )
+        response = client.models.generate_content(model="gemini-2.5-flash", contents=prompt)
+        epl_list = json.loads(response.text.replace("```json", "").replace("```", "").strip())
         
-        text = response.text.replace("```json", "").replace("```", "").strip()
-        epl_list = json.loads(text)
-        
-        # [정렬] 경기 전(0)인 것을 위로, 경기 후(1)인 것을 아래로
+        # [정렬] 경기 전(0) -> 경기 후(1)
         epl_list.sort(key=lambda x: 1 if x['status'] == 'Finished' else 0)
         
         dashboard_data['epl'] = epl_list
@@ -83,19 +87,6 @@ def get_epl_data(client):
     except Exception as e:
         print(f"❌ EPL 에러: {e}")
         dashboard_data['epl'] = []
-
-# ---------------------------------------------------------
-# 2. Tennis (Gemini)
-# ---------------------------------------------------------
-def get_tennis_gemini(client):
-    print("🎾 Tennis 데이터 수집...")
-    try:
-        today_str = datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
-        prompt = f"Current Time: {today_str}. Search 'Carlos Alcaraz' schedule. JSON output (status, info, detail, time). No markdown."
-        response = client.models.generate_content(model="gemini-2.5-flash", contents=prompt)
-        dashboard_data['tennis'] = json.loads(response.text.replace("```json", "").replace("```", "").strip())
-        print("✅ Tennis 완료")
-    except Exception as e: print(f"❌ Tennis 에러: {e}")
 
 # ---------------------------------------------------------
 # 3. NBA (ESPN)
@@ -109,7 +100,6 @@ def get_nba_gsw_espn():
         res_team = requests.get(team_url, timeout=10).json()
         
         team_record = "0-0"
-        team_rank = "-"
         try:
             team_record = res_team['team']['record']['items'][0]['summary']
             summary = res_team['team'].get('standingSummary', '')
@@ -117,7 +107,7 @@ def get_nba_gsw_espn():
                 parts = summary.split(' in ')
                 team_rank = f"#{parts[0]} {parts[1].split(' ')[0]}"
             else: team_rank = f"#{summary}"
-        except: pass
+        except: team_rank = "-"
 
         events = res.get('events', [])
         completed, future = [], []
@@ -151,19 +141,48 @@ def get_nba_gsw_espn():
         print("✅ NBA 완료")
     except Exception as e: print(f"❌ NBA 에러: {e}")
 
+# ---------------------------------------------------------
+# 4. F1 (Jolpica) - [복구 완료]
+# ---------------------------------------------------------
+def get_f1_schedule():
+    print("🏎️ F1 데이터 수집...")
+    try:
+        res = requests.get("http://api.jolpi.ca/ergast/f1/current/next.json", timeout=10).json()
+        race_table = res.get('MRData', {}).get('RaceTable', {})
+        
+        if not race_table.get('Races'):
+            # 시즌 종료 시
+            dashboard_data['f1'] = {
+                "status": "Off Season", 
+                "name": "Season Finished", 
+                "date": "See you next year!", 
+                "circuit": "-"
+            }
+        else:
+            race = race_table['Races'][0]
+            dt = datetime.strptime(f"{race['date']} {race['time']}", "%Y-%m-%d %H:%M:%SZ").replace(tzinfo=UTC)
+            dashboard_data['f1'] = {
+                "status": "Next GP",
+                "name": race['raceName'].replace(" Grand Prix", " GP"),
+                "date": dt.astimezone(KST).strftime("%m.%d(%a) %H:%M"),
+                "circuit": race['Circuit']['circuitName']
+            }
+        print("✅ F1 완료")
+    except Exception as e:
+        print(f"❌ F1 에러: {e}")
+        dashboard_data['f1'] = {"status": "Error", "name": "-", "date": "-"}
+
 if __name__ == "__main__":
     api_key = os.environ.get("GEMINI_API_KEY")
     if api_key:
         client = genai.Client(api_key=api_key)
-        # 1. 테니스 실행
         get_tennis_gemini(client)
-        # 2. EPL 실행 (6-Tier Logic)
         get_epl_data(client)
     else:
         print("⚠️ API Key 없음. AI 기능 건너뜀.")
 
-    # 3. NBA 실행
-    get_nba_gsw_espn() 
+    get_nba_gsw_espn()
+    get_f1_schedule() # F1 실행
     
     with open('sports.json', 'w', encoding='utf-8') as f:
         json.dump(dashboard_data, f, ensure_ascii=False, indent=4)
