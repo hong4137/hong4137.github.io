@@ -25,16 +25,13 @@ def get_tennis_gemini():
     api_key = os.environ.get("GEMINI_API_KEY")
     
     if not api_key:
-        print("⚠️ GEMINI_API_KEY 없음. 건너뜀.")
+        print("⚠️ GEMINI_API_KEY 없음. 건너뜀 (기본값 유지).")
         return
 
     try:
-        # [NEW] 검증된 최신 SDK 클라이언트
         client = genai.Client(api_key=api_key)
-        
         today_str = datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
         
-        # [프롬프트] 3가지 상태 판단 로직 주입
         prompt = f"""
         Current Time: {today_str}
         Search for the latest schedule of tennis player 'Carlos Alcaraz'.
@@ -68,13 +65,11 @@ def get_tennis_gemini():
         }}
         """
         
-        # [NEW] 검증된 모델명 사용
         response = client.models.generate_content(
             model="gemini-2.5-flash", 
             contents=prompt
         )
         
-        # JSON 파싱 (혹시 모를 마크다운 기호 제거)
         clean_text = response.text.replace("```json", "").replace("```", "").strip()
         tennis_data = json.loads(clean_text)
         
@@ -83,10 +78,9 @@ def get_tennis_gemini():
 
     except Exception as e:
         print(f"❌ Tennis AI 에러: {e}")
-        # 에러 발생 시 기본값("Off") 유지
 
 # ---------------------------------------------------------
-# 2. NBA: ESPN API (기존 로직)
+# 2. NBA: ESPN API
 # ---------------------------------------------------------
 def get_nba_gsw_espn():
     print("🏀 NBA 데이터 수집 (ESPN)...")
@@ -101,10 +95,17 @@ def get_nba_gsw_espn():
         team_rank = "-"
         try:
             team_record = res_team['team']['record']['items'][0]['summary']
+            
+            # [수정된 부분] 순위 텍스트 파싱 ("3rd in Pacific Division" -> "3rd Pacific")
             summary = res_team['team'].get('standingSummary', '')
             if summary:
-                rank_num = summary.split(' ')[0]
-                team_rank = f"#{rank_num}"
+                if ' in ' in summary:
+                    parts = summary.split(' in ') # ['3rd', 'Pacific Division']
+                    rank_val = parts[0] # "3rd"
+                    division = parts[1].split(' ')[0] # "Pacific"
+                    team_rank = f"#{rank_val} {division}"
+                else:
+                    team_rank = f"#{summary}"
         except: pass
 
         events = res.get('events', [])
@@ -147,7 +148,7 @@ def get_nba_gsw_espn():
         print(f"❌ NBA 에러: {e}")
 
 # ---------------------------------------------------------
-# 3. F1: Jolpica API (기존 로직)
+# 3. F1: Jolpica API
 # ---------------------------------------------------------
 def get_f1_schedule():
     print("🏎️ F1 데이터 수집...")
