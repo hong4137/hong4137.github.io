@@ -336,9 +336,9 @@
             if(window.innerWidth <= 768) toggleSidebar();
         }
 
-        // [브리핑 메뉴] hong4137/briefing 저장소에서 불러오기
-        async function loadBriefingMenu() {
+async function loadBriefingMenu() {
             const menuContainer = document.getElementById('briefing-menu');
+            // 주소는 그대로 유지
             const DATA_URL = 'https://hong4137.github.io/briefing/list.json'; 
 
             try {
@@ -349,9 +349,25 @@
                 let html = '';
                 data.slice(0, 10).forEach(item => {
                     const dateShort = item.date.substring(5).replace('-', '.');
+                    
+                    // [수정된 부분] 불필요한 말머리 제거하기
+                    // "외신 브리핑 | ", "외신 브리핑 - " 등을 빈칸으로 치환
+                    let cleanTitle = item.title
+                        .replace('외신 브리핑 | ', '')
+                        .replace('외신 브리핑 - ', '')
+                        .replace('Jae\'s Briefing - ', '') // 혹시 몰라 이것도 추가
+                        .trim();
+
+                    // 만약 제목이 날짜랑 똑같다면(제목이 없는 경우), 그냥 "주요 뉴스"라고 표시하거나 그대로 둠
+                    if (cleanTitle === item.date) {
+                         // cleanTitle = "News Briefing"; // 원하시면 주석 해제
+                    }
+
                     html += `
                     <div class="submenu-item" onclick="openBriefing('${item.link}')">
-                        <span style="color:#ccc; font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:140px;">${item.title}</span>
+                        <span style="color:#ccc; font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:140px;">
+                            ${cleanTitle}
+                        </span>
                         <span style="color:#666; font-size:11px;">${dateShort}</span>
                     </div>`;
                 });
@@ -361,7 +377,6 @@
                 menuContainer.innerHTML = '<span style="color:#555; padding:10px; font-size:12px;">목록 로딩 실패</span>';
             }
         }
-
         // [스포츠 데이터]
         async function loadSportsData() {
             try {
