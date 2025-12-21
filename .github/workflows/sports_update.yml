@@ -29,7 +29,6 @@ jobs:
     - name: Run update script
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python scripts/update_sports.py
       run: |
         python scripts/update_sports.py
 
