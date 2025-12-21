@@ -34,10 +34,11 @@ def get_tennis_gemini(client):
         Output JSON: {{ "status": "Scheduled/Off", "info": "Tournament Name", "detail": "vs Opponent", "time": "Time" }}
         """
         response = client.models.generate_content(
-            model="gemini-flash-latest",  # [확정] 사용자 리스트에 있는 모델명
+            model="gemini-flash-latest",
             contents=prompt,
             config=types.GenerateContentConfig(
-                tools=[types.Tool(google_search_retrieval=types.GoogleSearchRetrieval())],
+                # [수정] google_search_retrieval -> google_search
+                tools=[types.Tool(google_search=types.GoogleSearch())],
                 response_mime_type="application/json"
             )
         )
@@ -88,10 +89,11 @@ def get_epl_data(client):
         """
         
         response = client.models.generate_content(
-            model="gemini-flash-latest", # [확정] 사용자 리스트에 있는 모델명
+            model="gemini-flash-latest",
             contents=prompt,
             config=types.GenerateContentConfig(
-                tools=[types.Tool(google_search_retrieval=types.GoogleSearchRetrieval())],
+                # [수정] google_search_retrieval -> google_search
+                tools=[types.Tool(google_search=types.GoogleSearch())],
                 response_mime_type="application/json"
             )
         )
@@ -187,7 +189,7 @@ if __name__ == "__main__":
         if api_key:
             client = genai.Client(api_key=api_key)
             get_tennis_gemini(client)
-            # 1.5 Flash(Latest)는 쿨타임 불필요
+            # Flash Latest는 쿨타임 불필요 (1.5 Pro와 달리 제한이 넉넉함)
             get_epl_data(client)
         else:
             print("⚠️ API Key 없음")
