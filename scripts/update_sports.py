@@ -9,46 +9,47 @@ import pytz
 KST = pytz.timezone('Asia/Seoul')
 UTC = pytz.timezone('UTC')
 
-# 데이터 그릇
+# 데이터 그릇 (기본 구조)
 dashboard_data = {
     "updated": datetime.now(KST).strftime("%m/%d %H:%M"),
     "nba": {"status": "Loading...", "record": "-", "rank": "-", "last": {}, "schedule": []},
-    "epl": [], # 3개의 경기 리스트로 저장
+    "epl": [], # EPL 데이터는 리스트(배열) 형태입니다.
     "tennis": {"status": "Off", "info": "Data Loading...", "detail": "-"} 
 }
 
 # ---------------------------------------------------------
-# 1. EPL: 6-Tier Logic & 2-State Display
+# 1. EPL: 6-Tier Logic & 2-State System (Gemini)
 # ---------------------------------------------------------
 def get_epl_data(client):
     print("⚽ EPL 데이터 수집 (6-Tier Logic)...")
     try:
         today_str = datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
         
-        # [프롬프트] 우리가 합의한 6단계 로직과 디스플레이 룰을 제미나이에게 주입
+        # [프롬프트] 우리가 합의한 6단계 로직 완벽 적용
         prompt = f"""
         Current Time: {today_str}
         
         Task 1: Search for the CURRENT English Premier League (EPL) Standings. Identify the Top 4 teams.
         Task 2: Search for the fixtures/results for the current (or upcoming) matchweek.
         
-        Task 3: Select exactly 3 "Matches of the Week" based on this strict priority logic (Tier 1 to 6):
-        
+        Task 3: Select exactly 3 "Matches of the Week" based on this strict priority logic (Tier 1 to 6).
+        You must fill 3 slots. If Tier 1 matches are fewer than 3, move to Tier 2, and so on.
+
         [Pre-defined Lists]
         - Big 6: Man City, Arsenal, Liverpool, Chelsea, Man Utd, Tottenham.
         - Top 4: (Teams you found in Task 1)
 
-        [Selection Logic] - Fill 3 slots (Avoid duplicates)
+        [Selection Logic] - Priority Order
         Tier 1: Big 6 vs Big 6.
         Tier 2: Top 4 vs Top 4.
         Tier 3: Top 4 vs Big 6.
         Tier 4: Sky Sports 'Super Sunday' match (Sunday 16:30 UK time).
         Tier 5: TNT Sports 'Early Kick-off' match (Saturday 12:30 UK time).
-        Tier 6: If slots are still empty, pick matches involving 1st, then 2nd, then 3rd place teams.
+        Tier 6: If slots are still empty, pick matches involving 1st place, then 2nd, then 3rd.
 
         Task 4: For each selected match, identify the status:
         - If the match is FINISHED: Provide Final Score.
-        - If the match is SCHEDULED (or Live): Provide KST Time, Local UK Time, and UK TV Channel (Sky/TNT/Amazon).
+        - If the match is SCHEDULED (or Live): Provide KST Time, Local UK Time, and UK TV Channel.
 
         Return a JSON List of 3 objects (No markdown):
         [
@@ -58,8 +59,8 @@ def get_epl_data(client):
                 "status": "Finished" or "Scheduled",
                 "score": "3 - 1" (Only if Finished, else "-"),
                 "kst_time": "MM.DD (Day) HH:MM",
-                "local_time": "Sat 12:30" (Only needed if Scheduled),
-                "channel": "TNT Sports" (Only needed if Scheduled)
+                "local_time": "Sat 12:30",
+                "channel": "Sky Sports"
             }},
             ...
         ]
@@ -73,8 +74,7 @@ def get_epl_data(client):
         text = response.text.replace("```json", "").replace("```", "").strip()
         epl_list = json.loads(text)
         
-        # [정렬 로직] 경기 전(Scheduled)인 것을 위로, 경기 후(Finished)인 것을 아래로
-        # 파이썬에서 sort key: Scheduled=0, Finished=1
+        # [정렬] 경기 전(0)인 것을 위로, 경기 후(1)인 것을 아래로
         epl_list.sort(key=lambda x: 1 if x['status'] == 'Finished' else 0)
         
         dashboard_data['epl'] = epl_list
@@ -108,9 +108,10 @@ def get_nba_gsw_espn():
         res = requests.get(schedule_url, timeout=10).json()
         res_team = requests.get(team_url, timeout=10).json()
         
-        team_record = res_team['team']['record']['items'][0]['summary']
+        team_record = "0-0"
         team_rank = "-"
         try:
+            team_record = res_team['team']['record']['items'][0]['summary']
             summary = res_team['team'].get('standingSummary', '')
             if ' in ' in summary:
                 parts = summary.split(' in ')
@@ -154,11 +155,15 @@ if __name__ == "__main__":
     api_key = os.environ.get("GEMINI_API_KEY")
     if api_key:
         client = genai.Client(api_key=api_key)
+        # 1. 테니스 실행
         get_tennis_gemini(client)
+        # 2. EPL 실행 (6-Tier Logic)
         get_epl_data(client)
-    else: print("⚠️ API Key 없음. AI 기능 건너뜀.")
-    
-    get_nba_gsw_espn()
+    else:
+        print("⚠️ API Key 없음. AI 기능 건너뜀.")
+
+    # 3. NBA 실행
+    get_nba_gsw_espn() 
     
     with open('sports.json', 'w', encoding='utf-8') as f:
         json.dump(dashboard_data, f, ensure_ascii=False, indent=4)
