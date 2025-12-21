@@ -1,176 +1,179 @@
 import json
 import requests
+from google import genai
+import os
 from datetime import datetime
 import pytz
-import sys
 
 # 타임존 설정
 KST = pytz.timezone('Asia/Seoul')
 UTC = pytz.timezone('UTC')
 
-# 기본 데이터 골격
+# 데이터 그릇 (기본값)
 dashboard_data = {
     "updated": datetime.now(KST).strftime("%m/%d %H:%M"),
     "nba": {"status": "Loading...", "record": "-", "rank": "-", "last": {}, "schedule": []},
-    "f1": {"status": "Loading...", "name": "-", "date": "-"}
+    "f1": {"status": "Loading...", "name": "-", "date": "-"},
+    "tennis": {"status": "Off", "info": "Data Loading...", "detail": "-"} 
 }
 
-def get_nba_gsw_espn():
-    print("🏀 NBA 데이터 수집 (ESPN Simple Ver)...")
+# ---------------------------------------------------------
+# 1. Tennis: Gemini AI (Verified Model: gemini-2.5-flash)
+# ---------------------------------------------------------
+def get_tennis_gemini():
+    print("🎾 Tennis 데이터 수집 (Gemini 2.5)...")
+    api_key = os.environ.get("GEMINI_API_KEY")
+    
+    if not api_key:
+        print("⚠️ GEMINI_API_KEY 없음. 건너뜀.")
+        return
+
     try:
-        # 1. 일정 데이터
+        # [NEW] 검증된 최신 SDK 클라이언트
+        client = genai.Client(api_key=api_key)
+        
+        today_str = datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
+        
+        # [프롬프트] 3가지 상태 판단 로직 주입
+        prompt = f"""
+        Current Time: {today_str}
+        Search for the latest schedule of tennis player 'Carlos Alcaraz'.
+        
+        Based on the search, determine his status into one of these 3 scenarios:
+
+        [Scenario 1: Scheduled] (Match is confirmed with opponent & time)
+        - status: "Scheduled"
+        - info: Tournament Name + Round (e.g. "Aus Open (QF)")
+        - detail: "vs [Opponent Name]"
+        - time: Match time in KST (Format: "MM.DD HH:MM")
+
+        [Scenario 2: Waiting] (Tournament active, but opponent/time NOT set yet)
+        - status: "Waiting"
+        - info: Tournament Name + Current Result (e.g. "Aus Open (Into SF)")
+        - detail: "Opponent TBD"
+        - time: "Time TBD"
+
+        [Scenario 3: Off] (No active tournament right now)
+        - status: "Off"
+        - info: "Next: [Upcoming Tournament Name]"
+        - detail: "Starts [Date]"
+        - time: "-"
+
+        Output must be ONLY valid JSON string. No markdown formatting.
+        {{
+            "status": "...",
+            "info": "...",
+            "detail": "...",
+            "time": "..."
+        }}
+        """
+        
+        # [NEW] 검증된 모델명 사용
+        response = client.models.generate_content(
+            model="gemini-2.5-flash", 
+            contents=prompt
+        )
+        
+        # JSON 파싱 (혹시 모를 마크다운 기호 제거)
+        clean_text = response.text.replace("```json", "").replace("```", "").strip()
+        tennis_data = json.loads(clean_text)
+        
+        dashboard_data['tennis'] = tennis_data
+        print(f"✅ Tennis 완료: {tennis_data['status']}")
+
+    except Exception as e:
+        print(f"❌ Tennis AI 에러: {e}")
+        # 에러 발생 시 기본값("Off") 유지
+
+# ---------------------------------------------------------
+# 2. NBA: ESPN API (기존 로직)
+# ---------------------------------------------------------
+def get_nba_gsw_espn():
+    print("🏀 NBA 데이터 수집 (ESPN)...")
+    try:
         schedule_url = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/gs/schedule"
-        res = requests.get(schedule_url, timeout=10)
-        data = res.json()
-        
-        # 2. 팀 기본 정보 (여기서 전적과 순위 요약을 한 번에 가져옴)
         team_url = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/gs"
-        res_team = requests.get(team_url, timeout=10)
-        data_team = res_team.json()
         
-        # --- 데이터 가공 ---
-
-        # (1) 전적 (예: "13-15")
+        res = requests.get(schedule_url, timeout=10).json()
+        res_team = requests.get(team_url, timeout=10).json()
+        
         team_record = "0-0"
-        try:
-            record_items = data_team['team']['record']['items']
-            total_record = next((item for item in record_items if item['type'] == 'total'), None)
-            if total_record:
-                team_record = total_record['summary']
-        except:
-            pass
-
-        # (2) [타협안] 순위 파싱 (Standing Summary 활용)
-        # API가 주는 텍스트 예시: "3rd in Pacific Division"
         team_rank = "-"
         try:
-            summary = data_team['team'].get('standingSummary', '')
+            team_record = res_team['team']['record']['items'][0]['summary']
+            summary = res_team['team'].get('standingSummary', '')
             if summary:
-                # 공백으로 쪼개서 첫 번째 단어("3rd")만 가져옴
-                rank_num = summary.split(' ')[0] 
-                
-                # "Pacific" 이라는 단어가 있으면 Pacific을 붙여줌
-                if "Pacific" in summary:
-                    team_rank = f"#{rank_num} Pacific"
-                elif "West" in summary:
-                    team_rank = f"#{rank_num} West"
-                else:
-                    team_rank = f"#{rank_num}"
-        except:
-            pass
+                rank_num = summary.split(' ')[0]
+                team_rank = f"#{rank_num}"
+        except: pass
 
-        # (3) 일정 파싱 (기존 로직 유지)
-        events = data.get('events', [])
-        completed_games = []
-        future_games = []
-
+        events = res.get('events', [])
+        completed = []
+        future = []
+        
         for event in events:
-            game_date_str = event['date'] 
-            game_date = datetime.strptime(game_date_str, "%Y-%m-%dT%H:%MZ").replace(tzinfo=UTC)
-            
+            date_obj = datetime.strptime(event['date'], "%Y-%m-%dT%H:%MZ").replace(tzinfo=UTC)
             competition = event['competitions'][0]
-            competitors = competition['competitors']
-            
-            gsw = next((t for t in competitors if t['team']['abbreviation'] == 'GS'), None)
-            opp = next((t for t in competitors if t['team']['abbreviation'] != 'GS'), None)
-            
+            gsw = next((t for t in competition['competitors'] if t['team']['abbreviation'] == 'GS'), None)
+            opp = next((t for t in competition['competitors'] if t['team']['abbreviation'] != 'GS'), None)
             if not gsw or not opp: continue
-
-            game_info = {
-                "date_obj": game_date,  
-                "date": game_date.astimezone(KST).strftime("%m.%d(%a)"),
-                "time": game_date.astimezone(KST).strftime("%H:%M"),
+            
+            game_data = {
+                "dt": date_obj,
+                "date": date_obj.astimezone(KST).strftime("%m.%d(%a)"),
+                "time": date_obj.astimezone(KST).strftime("%H:%M"),
                 "opp": opp['team']['abbreviation'],
                 "is_home": gsw['homeAway'] == 'home'
             }
-
-            status_type = competition['status']['type']['name']
             
-            if status_type == 'STATUS_FINAL':
-                my_score = int(gsw.get('score', {}).get('value', 0))
-                opp_score = int(opp.get('score', {}).get('value', 0))
-                result = 'W' if my_score > opp_score else 'L'
-                
-                game_info['result'] = result
-                game_info['score'] = f"{my_score}-{opp_score}"
-                completed_games.append(game_info)
+            if competition['status']['type']['name'] == 'STATUS_FINAL':
+                ms, os = int(gsw['score']['value']), int(opp['score']['value'])
+                game_data.update({"result": 'W' if ms > os else 'L', "score": f"{ms}-{os}"})
+                completed.append(game_data)
             else:
-                future_games.append(game_info)
+                future.append(game_data)
 
-        # 지난 경기
-        last_game_data = {}
-        if completed_games:
-            completed_games.sort(key=lambda x: x['date_obj'])
-            last = completed_games[-1]
-            last_game_data = {
-                "date": last['date'],
-                "opp": last['opp'],
-                "result": last['result'],
-                "score": last['score']
-            }
+        last = sorted(completed, key=lambda x: x['dt'])[-1] if completed else {}
+        if last: del last['dt']
+        
+        sched = []
+        for g in sorted(future, key=lambda x: x['dt'])[:2]:
+            del g['dt']
+            sched.append(g)
 
-        # 향후 일정
-        schedule_list = []
-        if future_games:
-            future_games.sort(key=lambda x: x['date_obj'])
-            for game in future_games[:2]:
-                game_clean = game.copy()
-                del game_clean['date_obj'] 
-                schedule_list.append(game_clean)
-
-        # 데이터 저장
-        dashboard_data['nba'] = {
-            "status": "Active",
-            "record": team_record,
-            "rank": team_rank,
-            "last": last_game_data,
-            "schedule": schedule_list
-        }
-        print(f"✅ NBA 완료: {team_record}, {team_rank}")
-
+        dashboard_data['nba'] = {"status": "Active", "record": team_record, "rank": team_rank, "last": last, "schedule": sched}
+        print("✅ NBA 완료")
     except Exception as e:
         print(f"❌ NBA 에러: {e}")
-        dashboard_data['nba'] = {"status": "Error", "msg": "데이터 처리 실패"}
 
+# ---------------------------------------------------------
+# 3. F1: Jolpica API (기존 로직)
+# ---------------------------------------------------------
 def get_f1_schedule():
-    print("🏎️ F1 데이터 수집 시작...")
+    print("🏎️ F1 데이터 수집...")
     try:
-        res = requests.get("http://api.jolpi.ca/ergast/f1/current/next.json", timeout=10)
-        data = res.json()
-        race_table = data.get('MRData', {}).get('RaceTable', {})
-        
+        res = requests.get("http://api.jolpi.ca/ergast/f1/current/next.json", timeout=10).json()
+        race_table = res.get('MRData', {}).get('RaceTable', {})
         if not race_table.get('Races'):
             dashboard_data['f1'] = {"status": "Off Season", "name": "2026 Season", "date": "Waiting...", "circuit": "-"}
         else:
             race = race_table['Races'][0]
-            race_time_utc = f"{race['date']} {race.get('time', '00:00:00Z')}"
-            utc_dt = datetime.strptime(race_time_utc, "%Y-%m-%d %H:%M:%SZ").replace(tzinfo=pytz.utc)
-            kst_dt = utc_dt.astimezone(KST)
-
+            dt = datetime.strptime(f"{race['date']} {race['time']}", "%Y-%m-%d %H:%M:%SZ").replace(tzinfo=UTC)
             dashboard_data['f1'] = {
                 "status": "Next GP",
                 "name": race['raceName'].replace(" Grand Prix", " GP"),
-                "date": kst_dt.strftime("%m.%d(%a) %H:%M"),
+                "date": dt.astimezone(KST).strftime("%m.%d(%a) %H:%M"),
                 "circuit": race['Circuit']['circuitName']
             }
         print("✅ F1 완료")
     except Exception as e:
         print(f"❌ F1 에러: {e}")
-        dashboard_data['f1'] = {"status": "Error", "name": "Check Data"}
 
 if __name__ == "__main__":
-    try:
-        get_nba_gsw_espn()
-        get_f1_schedule()
-    except Exception as e:
-        print(f"🔥 치명적 오류: {e}")
+    get_tennis_gemini()
+    get_nba_gsw_espn()
+    get_f1_schedule()
     
-    try:
-        with open('sports.json', 'w', encoding='utf-8') as f:
-            json.dump(dashboard_data, f, ensure_ascii=False, indent=4)
-            print("💾 sports.json 저장 완료")
-    except Exception as e:
-        print(f"파일 저장 실패: {e}")
-        sys.exit(0)
-
-    sys.exit(0)
+    with open('sports.json', 'w', encoding='utf-8') as f:
+        json.dump(dashboard_data, f, ensure_ascii=False, indent=4)
+        print("💾 sports.json 저장 완료")
