@@ -1,5 +1,5 @@
 {
-    "updated": "12/22 02:20",
+    "updated": "12/22 03:27",
     "nba": {
         "status": "Active",
         "record": "14-15",
@@ -41,16 +41,16 @@
             "home": "Aston Villa",
             "away": "Manchester United",
             "status": "Finished",
-            "score": "1-0",
+            "score": "1-1",
             "kst_time": "12.22 (Mon) 01:30",
             "local_time": "Sun 16:30",
             "channel": "Sky Sports"
         },
         {
-            "home": "Everton",
-            "away": "Arsenal",
+            "home": "Newcastle United",
+            "away": "Chelsea",
             "status": "Finished",
-            "score": "0-1",
+            "score": "2-2",
             "kst_time": "12.20 (Sat) 21:30",
             "local_time": "Sat 12:30",
             "channel": "TNT Sports"
@@ -58,9 +58,9 @@
     ],
     "tennis": {
         "status": "Off",
-        "info": "Off-Season",
-        "detail": "Next major tournament is the Australian Open (January 2026)",
-        "time": "TBD"
+        "info": "Off-Season. Next Official Tournament: Australian Open 2026",
+        "detail": "TBD (Main Draw Start)",
+        "time": "Jan 18, 2026"
     },
     "f1": {
         "status": "Next GP",
