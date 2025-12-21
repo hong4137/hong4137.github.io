@@ -1,5 +1,5 @@
 {
-    "updated": "12/22 00:18",
+    "updated": "12/22 00:36",
     "nba": {
         "status": "Active",
         "record": "14-15",
@@ -27,15 +27,16 @@
             }
         ]
     },
+    "epl": [],
+    "tennis": {
+        "status": "Off",
+        "info": "Data Loading...",
+        "detail": "-"
+    },
     "f1": {
         "status": "Next GP",
         "name": "Australian GP",
         "date": "03.08(Sun) 13:00",
         "circuit": "Albert Park Grand Prix Circuit"
-    },
-    "tennis": {
-        "status": "Off",
-        "info": "Data Loading...",
-        "detail": "-"
     }
 }
