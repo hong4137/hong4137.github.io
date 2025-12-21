@@ -1,0 +1,23 @@
+name: Test Gemini API
+
+on: workflow_dispatch  # 버튼 눌러서 수동 실행
+
+jobs:
+  test-connection:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install libraries
+        run: pip install google-generativeai
+
+      - name: Run Test Script
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/test_gemini.py
