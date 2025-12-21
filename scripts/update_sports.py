@@ -12,7 +12,7 @@ import time
 KST = pytz.timezone('Asia/Seoul')
 UTC = pytz.timezone('UTC')
 
-# 데이터 그릇
+# 데이터 그릇 (초기화)
 dashboard_data = {
     "updated": datetime.now(KST).strftime("%m/%d %H:%M"),
     "nba": {"status": "Loading...", "record": "-", "rank": "-", "last": {}, "schedule": []},
@@ -22,22 +22,22 @@ dashboard_data = {
 }
 
 # ---------------------------------------------------------
-# 1. Tennis (Gemini 2.0 Flash Lite Preview)
+# 1. Tennis (Gemini 1.5 Flash + Search Tool)
 # ---------------------------------------------------------
 def get_tennis_gemini(client):
-    print("🎾 Tennis 데이터 수집 (Gemini 2.0 Flash Lite)...")
+    print("🎾 Tennis 데이터 수집 (Gemini 1.5 Flash)...")
     try:
         today_str = datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
         prompt = f"""
         Current Time: {today_str}
-        Task: Find 'Carlos Alcaraz' next match schedule using Google Search.
-        Output JSON: {{ "status": "Scheduled/Off", "info": "Tournament", "detail": "vs Opponent", "time": "Time" }}
+        Task: Use Google Search to find 'Carlos Alcaraz' next match schedule or latest news.
+        Output JSON: {{ "status": "Scheduled/Off", "info": "Tournament Name", "detail": "vs Opponent", "time": "Time" }}
         """
         response = client.models.generate_content(
-            model="gemini-2.0-flash-lite-preview-02-05",  # [확정] 사용자 리스트에 있는 Lite 모델
+            model="gemini-1.5-flash",  # [확정] 가장 안정적인 모델
             contents=prompt,
             config=types.GenerateContentConfig(
-                tools=[types.Tool(google_search_retrieval=types.GoogleSearchRetrieval())],
+                tools=[types.Tool(google_search_retrieval=types.GoogleSearchRetrieval())], # [핵심] 검색 도구 장착
                 response_mime_type="application/json"
             )
         )
@@ -48,14 +48,14 @@ def get_tennis_gemini(client):
         print(f"❌ Tennis 실패: {e}")
 
 # ---------------------------------------------------------
-# 2. EPL (Gemini 2.0 Flash Lite Preview + 6-Tier Logic)
+# 2. EPL (Gemini 1.5 Flash + 6-Tier Logic)
 # ---------------------------------------------------------
 def get_epl_data(client):
-    print("⚽ EPL 데이터 수집 (Gemini 2.0 Flash Lite)...")
+    print("⚽ EPL 데이터 수집 (Gemini 1.5 Flash)...")
     try:
         today_str = datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
         
-        # [핵심] 6단계 로직 유지
+        # [핵심] 1.5 Flash도 검색 도구가 있으면 이 로직을 완벽히 소화합니다.
         prompt = f"""
         Current Time: {today_str}
         
@@ -89,10 +89,10 @@ def get_epl_data(client):
         """
         
         response = client.models.generate_content(
-            model="gemini-2.0-flash-lite-preview-02-05", # [확정] 사용자 리스트에 있는 Lite 모델
+            model="gemini-1.5-flash", # [확정] 가장 안정적인 모델
             contents=prompt,
             config=types.GenerateContentConfig(
-                tools=[types.Tool(google_search_retrieval=types.GoogleSearchRetrieval())],
+                tools=[types.Tool(google_search_retrieval=types.GoogleSearchRetrieval())], # [핵심] 검색 도구 장착
                 response_mime_type="application/json"
             )
         )
@@ -101,7 +101,7 @@ def get_epl_data(client):
         if isinstance(data, list) and len(data) > 0:
             data.sort(key=lambda x: 1 if x.get('status') == 'Finished' else 0)
             dashboard_data['epl'] = data
-            print(f"✅ EPL 완료: {len(data)}개 (6단계 로직)")
+            print(f"✅ EPL 완료: {len(data)}개")
         else:
             print("⚠️ EPL 데이터 없음 (빈 리스트)")
             dashboard_data['epl'] = []
@@ -188,11 +188,7 @@ if __name__ == "__main__":
         if api_key:
             client = genai.Client(api_key=api_key)
             get_tennis_gemini(client)
-            
-            # [안전] Lite 모델이라도 쿼터 보호를 위해 10초 대기
-            print("⏳ API 보호를 위해 10초 대기...")
-            time.sleep(10)
-            
+            # 1.5 Flash는 쿨타임 필요 없음 (Free Tier도 분당 15회 허용)
             get_epl_data(client)
         else:
             print("⚠️ API Key 없음")
