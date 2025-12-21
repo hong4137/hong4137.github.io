@@ -253,58 +253,60 @@
                 <span style="font-size:11px; color:#666;" id="update-time">업데이트: --:--</span>
             </div>
 
-<div class="sports-grid">
-            
-            <div class="sport-card">
-                <div class="sport-header">
-                    <div style="display:flex; align-items:center; gap:8px;">
-                        <i class="fas fa-futbol" style="color:#a000ff; font-size: 1.2rem;"></i> 
-                        <span style="font-weight:bold; color:#ccc;">Premier League Picks</span>
+            <div class="sports-grid">
+                
+                <div class="sport-card">
+                    <div class="sport-header">
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <i class="fas fa-futbol" style="color:#a000ff; font-size: 1.2rem;"></i> 
+                            <span style="font-weight:bold; color:#ccc;">Premier League Picks</span>
+                        </div>
+                        <span style="font-size:10px; background:#333; padding:2px 6px; border-radius:4px; color:#aaa;">R17</span>
                     </div>
-                    <span style="font-size:10px; background:#333; padding:2px 6px; border-radius:4px; color:#aaa;">R17</span>
+                    <div id="epl-content" style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
+                        <div class="loading-text">Analyzing...</div>
+                    </div>
                 </div>
-                <div id="epl-content" style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
-                    <div class="loading-text">Analyzing...</div>
-                </div>
-            </div>
 
-            <div class="sport-card">
-                <div class="sport-header">
-                    <div style="display:flex; align-items:center; gap:8px;">
-                        <i class="fas fa-basketball-ball" style="color:#ffae00; font-size: 1.2rem;"></i> 
-                        <span style="font-weight:bold; color:#ccc;">GS Warriors</span>
+                <div class="sport-card">
+                    <div class="sport-header">
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <i class="fas fa-basketball-ball" style="color:#ffae00; font-size: 1.2rem;"></i> 
+                            <span style="font-weight:bold; color:#ccc;">GS Warriors</span>
+                        </div>
+                        <div id="nba-record" style="font-size:14px; font-weight:bold; color:white;">-</div> 
                     </div>
-                    <div id="nba-record" style="font-size:14px; font-weight:bold; color:white;">-</div> 
+                    <div id="nba-content" style="margin-top: 15px;">
+                        <div class="loading-text">Loading...</div>
+                    </div>
                 </div>
-                <div id="nba-content" style="margin-top: 15px;">
-                    <div class="loading-text">Loading...</div>
-                </div>
-            </div>
 
-            <div class="sport-card">
-                <div class="sport-header">
-                    <div style="display:flex; align-items:center; gap:8px;">
-                        <i class="fas fa-table-tennis" style="color:#ccff00; font-size: 1.2rem;"></i> 
-                        <span style="font-weight:bold; color:#ccc;">Carlos Alcaraz</span>
+                <div class="sport-card">
+                    <div class="sport-header">
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <i class="fas fa-table-tennis" style="color:#ccff00; font-size: 1.2rem;"></i> 
+                            <span style="font-weight:bold; color:#ccc;">Carlos Alcaraz</span>
+                        </div>
+                        <span id="tennis-status" style="font-size:10px; background:#333; padding:2px 6px; border-radius:4px; color:#aaa;">-</span>
                     </div>
-                    <span id="tennis-status" style="font-size:10px; background:#333; padding:2px 6px; border-radius:4px; color:#aaa;">-</span>
+                    <div id="tennis-content" style="text-align: center; margin-top: 15px;">
+                        <div class="loading-text">Loading...</div>
+                    </div>
                 </div>
-                <div id="tennis-content" style="text-align: center; margin-top: 15px;">
-                    <div class="loading-text">Loading...</div>
-                </div>
-            </div>
 
-            <div class="sport-card">
-                <div class="sport-header">
-                    <div style="display:flex; align-items:center; gap:8px;">
-                        <i class="fas fa-flag-checkered" style="color:#e10600; font-size: 1.2rem;"></i>
-                        <span style="font-weight:bold; color:#ccc;">Formula 1</span>
+                <div class="sport-card">
+                    <div class="sport-header">
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <i class="fas fa-flag-checkered" style="color:#e10600; font-size: 1.2rem;"></i>
+                            <span style="font-weight:bold; color:#ccc;">Formula 1</span>
+                        </div>
+                        <span id="f1-badge" style="font-size:10px; background:#333; padding:2px 6px; border-radius:4px; color:#aaa;">Next GP</span>
                     </div>
-                    <span id="f1-badge" style="font-size:10px; background:#333; padding:2px 6px; border-radius:4px; color:#aaa;">Next GP</span>
+                    <div id="f1-content" style="text-align: center; margin-top: 10px;">
+                        <div class="loading-text">Loading...</div>
+                    </div>
                 </div>
-                <div id="f1-content" style="text-align: center; margin-top: 10px;">
-                    <div class="loading-text">Loading...</div>
-                </div>
+
             </div>
 
         </div>
@@ -350,9 +352,8 @@
             if(window.innerWidth <= 768) toggleSidebar();
         }
 
-async function loadBriefingMenu() {
+        async function loadBriefingMenu() {
             const menuContainer = document.getElementById('briefing-menu');
-            // 주소는 그대로 유지
             const DATA_URL = 'https://hong4137.github.io/briefing/list.json'; 
 
             try {
@@ -364,17 +365,14 @@ async function loadBriefingMenu() {
                 data.slice(0, 10).forEach(item => {
                     const dateShort = item.date.substring(5).replace('-', '.');
                     
-                    // [수정된 부분] 불필요한 말머리 제거하기
-                    // "외신 브리핑 | ", "외신 브리핑 - " 등을 빈칸으로 치환
                     let cleanTitle = item.title
                         .replace('외신 브리핑 | ', '')
                         .replace('외신 브리핑 - ', '')
-                        .replace('Jae\'s Briefing - ', '') // 혹시 몰라 이것도 추가
+                        .replace('Jae\'s Briefing - ', '')
                         .trim();
 
-                    // 만약 제목이 날짜랑 똑같다면(제목이 없는 경우), 그냥 "주요 뉴스"라고 표시하거나 그대로 둠
                     if (cleanTitle === item.date) {
-                         // cleanTitle = "News Briefing"; // 원하시면 주석 해제
+                         // cleanTitle = "News Briefing"; 
                     }
 
                     html += `
@@ -391,120 +389,118 @@ async function loadBriefingMenu() {
                 menuContainer.innerHTML = '<span style="color:#555; padding:10px; font-size:12px;">목록 로딩 실패</span>';
             }
         }
-        // [스포츠 데이터]
+
+        // [스포츠 데이터 로드 함수 - 방어 로직 적용]
         async function loadSportsData() {
             try {
+                // 캐시 방지
                 const response = await fetch('./sports.json?v=' + new Date().getTime());
                 if (!response.ok) throw new Error("로드 실패");
                 const data = await response.json();
 
-                document.getElementById('update-time').innerText = `Update: ${data.updated}`;
+                if(data.updated) document.getElementById('update-time').innerText = `Update: ${data.updated}`;
 
-                // 1. NBA
-                const nba = data.nba;
-                const nbaContainer = document.getElementById('nba-content');
-                if (nba.record && nba.rank) {
-                    document.getElementById('nba-header-info').innerHTML = 
-                        `<span style="color:#fff; font-weight:bold;">${nba.record}</span> <span style="color:#666; margin:0 4px;">|</span> <span style="color:var(--accent-color);">${nba.rank}</span>`;
-                }
-                
-                let nbaHtml = '';
-                if (nba.last && nba.last.result) {
-                    const resColor = nba.last.result === 'W' ? '#ff4400' : '#0088ff';
-                    nbaHtml += `<div style="display:flex; justify-content:space-between; margin-bottom:12px; font-size:13px;">
-                        <span style="color:#888;">Recent</span>
-                        <div>vs <b>${nba.last.opp}</b> <span style="color:${resColor}; font-weight:bold;">${nba.last.result}</span> <span style="color:#aaa; font-size:11px;">(${nba.last.score})</span></div>
-                    </div>`;
-                }
-                if (nba.schedule) {
-                    nbaHtml += `<div style="border-top:1px dashed #444; margin-bottom:5px;"></div>`;
-                    nba.schedule.forEach(g => {
-                        nbaHtml += `<div style="display:flex; justify-content:space-between; margin-top:6px; font-size:12px;">
-                            <div><span style="color:#e0e0e0;">vs ${g.opp}</span> <span style="background:#333; padding:1px 3px; border-radius:3px; font-size:10px;">${g.time}</span></div>
-                            <span style="color:#666;">${g.date}</span>
-                        </div>`;
-                    });
-                }
-                nbaContainer.innerHTML = nbaHtml || '<div class="loading-text">No Data</div>';
+                // 1. EPL (여기가 터져도 나머지는 실행됨)
+                try {
+                    const eplList = data.epl;
+                    const eplContainer = document.getElementById('epl-content');
+                    if (eplContainer) {
+                        if (eplList && Array.isArray(eplList) && eplList.length > 0) {
+                            let html = '';
+                            eplList.forEach((match, index) => {
+                                const bgStyle = index === 0 
+                                    ? 'background: rgba(160, 0, 255, 0.1); border-left: 3px solid #a000ff;' 
+                                    : 'background: rgba(255, 255, 255, 0.05); border-left: 3px solid #666;';
+                                
+                                html += `<div style="${bgStyle} padding: 8px; border-radius: 6px; margin-bottom: 6px;">`;
+                                
+                                if (match.status === 'Finished') {
+                                    html += `
+                                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                                            <span style="font-size:13px; font-weight:bold; color:white;">${match.home} vs ${match.away}</span>
+                                            <span style="font-size:10px; background:#444; color:#ccc; padding:2px 4px; border-radius:3px;">FT</span>
+                                        </div>
+                                        <div style="font-size:15px; font-weight:bold; color:#fff; text-align:right;">${match.score}</div>
+                                    `;
+                                } else {
+                                    html += `
+                                        <div style="font-size:13px; font-weight:bold; color:white; margin-bottom:6px;">${match.home} vs ${match.away}</div>
+                                        <div style="display:flex; justify-content:space-between; align-items:end;">
+                                            <div>
+                                                <div style="font-size:12px; font-weight:bold; color:#ddd;">${match.kst_time || '-'}</div>
+                                                <div style="font-size:10px; color:#666; margin-top:1px;">Local: ${match.local_time || '-'}</div>
+                                            </div>
+                                            <div style="font-size:9px; color:#a000ff; font-weight:bold; background:rgba(0,0,0,0.3); padding:2px 5px; border-radius:4px;">
+                                                ${match.channel || 'UK TV'}
+                                            </div>
+                                        </div>
+                                    `;
+                                }
+                                html += `</div>`;
+                            });
+                            eplContainer.innerHTML = html;
+                        } else {
+                            eplContainer.innerHTML = '<div class="loading-text">No Match Data</div>';
+                        }
+                    }
+                } catch (e) { console.error("EPL Error:", e); }
 
-                // 2. Tennis (Gemini) - 아까 로직 반영
-                const tennis = data.tennis;
-                const tennisContainer = document.getElementById('tennis-content');
-                const tennisBadge = document.getElementById('tennis-status-badge');
+                // 2. NBA
+                try {
+                    const nba = data.nba;
+                    if (nba && document.getElementById('nba-content')) {
+                        document.getElementById('nba-record').innerText = `${nba.record} | ${nba.rank}`;
+                        let html = '';
+                        if (nba.last && nba.last.opp) {
+                            // 승패 색상
+                            const resColor = (nba.last.result === 'W') ? '#ff4400' : '#0088ff'; 
+                            html += `<div style="display:flex; justify-content:space-between; margin-bottom:8px; border-bottom:1px solid #333; padding-bottom:5px;">
+                                <span style="font-size:11px; color:#888;">Recent</span>
+                                <span style="font-size:12px; font-weight:bold; color:#fff;">vs ${nba.last.opp} <span style="color:${resColor}">${nba.last.result}</span> <span style="font-size:10px; color:#888;">(${nba.last.score})</span></span>
+                            </div>`;
+                        }
+                        if (nba.schedule) {
+                            nba.schedule.forEach(g => {
+                                html += `<div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                                    <span style="font-size:12px; color:#ccc;">vs ${g.opp}</span>
+                                    <span style="font-size:11px; color:#666;">${g.date} ${g.time}</span>
+                                </div>`;
+                            });
+                        }
+                        document.getElementById('nba-content').innerHTML = html || '<div class="loading-text">No Data</div>';
+                    }
+                } catch (e) { console.error("NBA Error:", e); }
 
-                if (tennis && tennis.info) {
-                    tennisBadge.innerText = tennis.status;
-                    tennisBadge.style.color = tennis.status === 'Scheduled' ? '#eaff00' : '#aaa';
-                    tennisContainer.innerHTML = `
-                        <div style="font-size:14px; font-weight:bold; color:white; margin-bottom:5px;">${tennis.info}</div>
-                        <div style="font-size:12px; color:#ccc;">${tennis.detail}</div>
-                        <div style="font-size:15px; font-weight:bold; color:var(--accent-color); margin-top:6px;">${tennis.time || '-'}</div>
-                    `;
-                } else {
-                    tennisContainer.innerHTML = '<div class="loading-text">정보 없음</div>';
-                }
-
-                // ... (NBA, Tennis 코드 바로 아래에 붙여넣으세요)
-
-            // ---------------------------------------------------------
-            // [새로 추가] 3. EPL Data Rendering
-            // ---------------------------------------------------------
-            const eplList = data.epl;
-            const eplContainer = document.getElementById('epl-content');
-
-            if (eplList && eplList.length > 0) {
-                let html = '';
-                
-                eplList.forEach((match, index) => {
-                    // [디자인] 1번 카드(메인)는 보라색 강조, 2~3번은 회색
-                    const bgStyle = index === 0 
-                        ? 'background: rgba(160, 0, 255, 0.1); border-left: 3px solid #a000ff;' 
-                        : 'background: rgba(255, 255, 255, 0.05); border-left: 3px solid #666;';
-                    
-                    html += `<div style="${bgStyle} padding: 8px; border-radius: 6px; margin-bottom: 6px;">`;
-                    
-                    // [상태 A] 경기 종료 (Finished) -> 스코어 메인
-                    if (match.status === 'Finished') {
-                        html += `
-                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                                <span style="font-size:13px; font-weight:bold; color:white;">${match.home} vs ${match.away}</span>
-                                <span style="font-size:10px; background:#444; color:#ccc; padding:2px 4px; border-radius:3px;">FT</span>
-                            </div>
-                            <div style="font-size:15px; font-weight:bold; color:#fff; text-align:right;">${match.score}</div>
-                        `;
-                    } 
-                    // [상태 B] 경기 전 (Scheduled) -> 한국 시간 메인 + 현지 시간/채널 서브
-                    else {
-                        html += `
-                            <div style="font-size:13px; font-weight:bold; color:white; margin-bottom:6px;">${match.home} vs ${match.away}</div>
-                            <div style="display:flex; justify-content:space-between; align-items:end;">
-                                <div>
-                                    <div style="font-size:12px; font-weight:bold; color:#ddd;">${match.kst_time}</div>
-                                    <div style="font-size:10px; color:#666; margin-top:1px;">Local: ${match.local_time}</div>
-                                </div>
-                                <div style="font-size:9px; color:#a000ff; font-weight:bold; background:rgba(0,0,0,0.3); padding:2px 5px; border-radius:4px;">
-                                    ${match.channel || 'UK TV'}
-                                </div>
-                            </div>
+                // 3. Tennis
+                try {
+                    const tennis = data.tennis;
+                    if (tennis && document.getElementById('tennis-content')) {
+                        document.getElementById('tennis-status').innerText = tennis.status || '-';
+                        document.getElementById('tennis-content').innerHTML = `
+                            <div style="font-size:13px; font-weight:bold; color:white; margin-bottom:4px;">${tennis.info || '-'}</div>
+                            <div style="font-size:11px; color:#888;">${tennis.detail || '-'}</div>
+                            <div style="font-size:11px; color:#ccff00; margin-top:4px;">${tennis.time || '-'}</div>
                         `;
                     }
-                    html += `</div>`;
-                });
-                eplContainer.innerHTML = html;
-            } else {
-                // 데이터가 아직 없거나 로딩 중일 때
-                if (eplContainer) eplContainer.innerHTML = '<div class="loading-text">No Match Data</div>';
-            }
-                
-                // 4. F1
-                const f1 = data.f1;
-                document.getElementById('f1-status-badge').innerText = f1.status;
-                document.getElementById('f1-race').innerText = f1.name || "-";
-                document.getElementById('f1-date').innerText = f1.date || "-";
-                document.getElementById('f1-circuit').innerText = f1.circuit || "";
-                if(f1.status === "Off Season") document.getElementById('f1-date').style.color = "#555";
+                } catch (e) { console.error("Tennis Error:", e); }
 
-            } catch (e) { console.error(e); }
+                // 4. F1
+                try {
+                    const f1 = data.f1;
+                    if (f1 && document.getElementById('f1-content')) {
+                        document.getElementById('f1-badge').innerText = f1.status || 'Next GP';
+                        document.getElementById('f1-content').innerHTML = `
+                            <div style="font-size:13px; font-weight:bold; color:white; margin-bottom:4px;">${f1.name || '-'}</div>
+                            <div style="font-size:14px; color:#e10600; font-weight:bold;">${f1.date || '-'}</div>
+                            <div style="font-size:10px; color:#666; margin-top:4px;">${f1.circuit || '-'}</div>
+                        `;
+                    }
+                } catch (e) { console.error("F1 Error:", e); }
+
+            } catch (error) {
+                console.error('Error loading sports data:', error);
+                // 스포츠 전체 실패해도 외신 브리핑 등은 영향 없도록 여기서 catch
+            }
         }
 
         // [날씨]
