@@ -254,59 +254,60 @@
             </div>
 
             <div class="sports-grid">
-                <div class="sport-card">
-                    <div class="sport-header">
-                        <div style="display:flex; align-items:center; gap:8px;">
-                            <i class="fas fa-basketball-ball" style="color:#fdb927; font-size: 1.2rem;"></i> 
-                            <span style="font-weight:bold; color:#ccc;">GS Warriors</span>
-                        </div>
-                        <span id="nba-header-info" style="font-size:11px; color:#aaa; font-family: monospace;">NBA</span>
+            
+            <div class="sport-card">
+                <div class="sport-header">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <i class="fas fa-futbol" style="color:#a000ff; font-size: 1.2rem;"></i> 
+                        <span style="font-weight:bold; color:#ccc;">Premier League Picks</span>
                     </div>
-                    <div id="nba-content" style="flex:1;"><div class="loading-text">Loading...</div></div>
+                    <span style="font-size:10px; background:#333; padding:2px 6px; border-radius:4px; color:#aaa;">R17</span>
                 </div>
-
-                <div class="sport-card">
-                    <div class="sport-header">
-                        <div style="display:flex; align-items:center; gap:8px;">
-                            <i class="fas fa-table-tennis" style="color:#eaff00; font-size: 1.2rem;"></i> 
-                            <span style="font-weight:bold; color:#ccc;">Carlos Alcaraz</span>
-                        </div>
-                        <span id="tennis-status-badge" style="font-size:10px; background:#333; padding:2px 6px; border-radius:4px; color:#aaa;">ATP</span>
-                    </div>
-                    <div id="tennis-content" style="text-align: center; margin-top: 10px;">
-                        <div class="loading-text">Waiting...</div>
-                    </div>
+                <div id="epl-content" style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
+                    <div class="loading-text">Analyzing Fixtures...</div>
                 </div>
+            </div>
 
-                <div class="sport-card">
-                    <div class="sport-header">
-                        <div style="display:flex; align-items:center; gap:8px;">
-                            <i class="fas fa-flag-checkered" style="color:#ff1801; font-size: 1.2rem;"></i> 
-                            <span style="font-weight:bold; color:#ccc;">Formula 1</span>
-                        </div>
-                        <span id="f1-status-badge" style="font-size:10px; background:#333; padding:2px 6px; border-radius:4px; color:#aaa;">Check</span>
+            <div class="sport-card">
+                <div class="sport-header">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <i class="fas fa-basketball-ball" style="color:#ffae00; font-size: 1.2rem;"></i> 
+                        <span style="font-weight:bold; color:#ccc;">GS Warriors</span>
                     </div>
-                    <div id="f1-content" style="text-align: center; margin-top: 10px;">
-                        <div id="f1-race" style="font-size: 16px; font-weight: bold; color: white; margin-bottom: 8px;">Loading...</div>
-                        <div id="f1-date" style="font-size: 18px; color: var(--accent-color); font-weight: bold;">--.--</div>
-                        <div id="f1-circuit" style="font-size: 11px; color: #666; margin-top: 5px;">--</div>
-                    </div>
+                    <div id="nba-record" style="font-size:14px; font-weight:bold; color:white;">-</div> 
                 </div>
                 
-                <div class="sport-card">
-    <div class="sport-header">
-        <div style="display:flex; align-items:center; gap:8px;">
-            <i class="fas fa-futbol" style="color:#a000ff; font-size: 1.2rem;"></i> 
-            <span style="font-weight:bold; color:#ccc;">Premier League Picks</span>
-        </div>
-        <span style="font-size:10px; background:#333; padding:2px 6px; border-radius:4px; color:#aaa;">R17</span>
-    </div>
-    
-    <div id="epl-content" style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
-        <div class="loading-text">Analyzing Fixtures...</div>
-    </div>
-</div>
+                <div id="nba-content" style="margin-top: 15px;">
+                    <div class="loading-text">Loading...</div>
+                </div>
             </div>
+
+            <div class="sport-card">
+                <div class="sport-header">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <i class="fas fa-table-tennis" style="color:#ccff00; font-size: 1.2rem;"></i> 
+                        <span style="font-weight:bold; color:#ccc;">Carlos Alcaraz</span>
+                    </div>
+                    <span id="tennis-status" style="font-size:10px; background:#333; padding:2px 6px; border-radius:4px; color:#aaa;">Off</span>
+                </div>
+                <div id="tennis-content" style="text-align: center; margin-top: 15px;">
+                    <div class="loading-text">Loading...</div>
+                </div>
+            </div>
+
+            <div class="sport-card">
+                <div class="sport-header">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <i class="fas fa-flag-checkered" style="color:#e10600; font-size: 1.2rem;"></i>
+                        <span style="font-weight:bold; color:#ccc;">Formula 1</span>
+                    </div>
+                    <span id="f1-badge" style="font-size:10px; background:#333; padding:2px 6px; border-radius:4px; color:#aaa;">Next GP</span>
+                </div>
+                <div id="f1-content" style="text-align: center; margin-top: 10px;">
+                    <div class="loading-text">Loading...</div>
+                </div>
+            </div>
+
         </div>
 
         <div id="briefing-view">
