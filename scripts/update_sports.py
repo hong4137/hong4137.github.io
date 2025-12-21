@@ -10,7 +10,7 @@ import pytz
 KST = pytz.timezone('Asia/Seoul')
 UTC = pytz.timezone('UTC')
 
-# 데이터 그릇 (기본 구조)
+# 데이터 그릇
 dashboard_data = {
     "updated": datetime.now(KST).strftime("%m/%d %H:%M"),
     "nba": {"status": "Loading...", "record": "-", "rank": "-", "last": {}, "schedule": []},
@@ -28,88 +28,110 @@ def get_tennis_gemini(client):
         today_str = datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
         prompt = f"""
         Current Time: {today_str}
-        Use Google Search to find the latest schedule or next match for tennis player 'Carlos Alcaraz'.
-        
-        Scenarios:
-        1. [Scheduled] Confirmed match (Exhibition or Tournament).
-        2. [Waiting] Tournament active but opponent TBD.
-        3. [Off] No active tournament. (In this case, find the name of the NEXT upcoming major tournament, e.g., Australian Open).
-
-        Return JSON object:
-        {{
-            "status": "Scheduled" or "Waiting" or "Off",
-            "info": "Tournament Name" or "Next: Australian Open",
-            "detail": "vs Opponent" or "Starts Jan 2025",
-            "time": "Match Time" or "-"
-        }}
+        Search for 'Carlos Alcaraz' latest schedule.
+        Return JSON object with keys: status, info, detail, time.
         """
-        
         response = client.models.generate_content(
-            model="gemini-2.0-flash-exp",  # ✅ 우리가 검증한 모델
+            model="gemini-2.0-flash-exp",
             contents=prompt,
             config=types.GenerateContentConfig(
-                tools=[types.Tool(google_search_retrieval=types.GoogleSearchRetrieval())], # 검색 장착
+                tools=[types.Tool(google_search_retrieval=types.GoogleSearchRetrieval())],
                 response_mime_type="application/json"
             )
         )
-        
         dashboard_data['tennis'] = json.loads(response.text)
         print("✅ Tennis 완료")
     except Exception as e:
         print(f"❌ Tennis 에러: {e}")
 
 # ---------------------------------------------------------
-# 2. EPL: 6-Tier Logic (Gemini 2.0 Flash Exp + Search)
+# 2. EPL: 2-Pass System (Sequential Chain)
 # ---------------------------------------------------------
 def get_epl_data(client):
-    print("⚽ EPL 데이터 수집 (6-Tier Logic)...")
+    print("⚽ EPL 데이터 수집 (Step 1: Raw Data Collection)...")
     try:
         today_str = datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
         
-        prompt = f"""
+        # [Phase 1] 조사관: 검색만 수행 (판단 X)
+        # 구글 검색 도구를 사용하여 현재 상황을 텍스트로 확보합니다.
+        search_prompt = f"""
         Current Time: {today_str}
         
-        STEP 1: Use Google Search to find the CURRENT English Premier League (EPL) Standings and the fixtures/results for the current matchweek (Round 17 or recent).
+        Action: Use Google Search to find the following two sets of information:
+        1. The CURRENT English Premier League (EPL) Table/Standings (Identify who is 1st, 2nd, 3rd, 4th).
+        2. The FULL list of EPL fixtures/results for the CURRENT matchweek (or the very next upcoming matchweek).
         
-        STEP 2: Select exactly 3 matches based on this priority:
-        1. Big 6 Clash (Man City, Arsenal, Liverpool, Chelsea, Man Utd, Spurs)
-        2. Top 4 Clash (Current 1st-4th place teams)
-        3. Top 4 vs Big 6
-        4. Any match involving League Leaders (1st, 2nd, 3rd)
+        Output: Just list the facts clearly. Do not select "best matches" yet. Just list all matches and the top 4 teams.
+        """
+        
+        # 1차 호출 (검색 활성화)
+        response_raw = client.models.generate_content(
+            model="gemini-2.0-flash-exp",
+            contents=search_prompt,
+            config=types.GenerateContentConfig(
+                tools=[types.Tool(google_search_retrieval=types.GoogleSearchRetrieval())]
+            )
+        )
+        
+        raw_context = response_raw.text
+        print("📋 EPL 원본 데이터 확보 완료. (Step 2: Logic Application 진입)")
 
-        STEP 3: For each match, provide status/score.
-        - If LIVE or FINISHED: Provide Score (e.g., "TOT 1-2 LIV").
-        - If UPCOMING: Provide KST Time and UK TV Channel.
+        # [Phase 2] 편집장: 확보된 데이터에 로직 적용 (검색 X, 순수 추론)
+        # 1차 결과(raw_context)를 문맥으로 던져주고, 6단계 로직을 수행시킵니다.
+        logic_prompt = f"""
+        Current Time: {today_str}
+        
+        CONTEXT (Facts found in Step 1):
+        {raw_context}
+        
+        TASK: Based ONLY on the context above, select exactly 3 matches applying the following Strict Logic Priority (Tier 1 to 6).
+        Do not skip tiers. Check them sequentially.
 
-        Return JSON List of 3 objects:
+        [DEFINITIONS]
+        - Big 6: Man City, Arsenal, Liverpool, Chelsea, Man Utd, Tottenham.
+        - Top 4: (Use the standings from Context)
+
+        [LOGIC TIERS]
+        1. Big 6 vs Big 6.
+        2. Top 4 vs Top 4.
+        3. Top 4 vs Big 6.
+        4. Sky Sports 'Super Sunday' (Sunday 16:30 UK).
+        5. TNT Sports 'Early Kick-off' (Saturday 12:30 UK).
+        6. League Leaders (Matches involving 1st, then 2nd, then 3rd place).
+
+        OUTPUT: Return a JSON List of 3 objects.
         [
             {{
-                "home": "Team A",
-                "away": "Team B",
+                "home": "HomeTeam",
+                "away": "AwayTeam",
                 "status": "Finished" or "Scheduled",
-                "score": "1 - 1" (or "-"),
-                "kst_time": "12.22 (Sun) 01:30",
+                "score": "3 - 1" (if Finished) or "-",
+                "kst_time": "MM.DD (Day) HH:MM",
                 "local_time": "Sat 16:30",
-                "channel": "Sky Sports"
+                "channel": "Sky Sports" (or TNT/Amazon)
             }}
         ]
         """
         
-        response = client.models.generate_content(
-            model="gemini-2.0-flash-exp", # ✅ 우리가 검증한 모델
-            contents=prompt,
+        # 2차 호출 (검색 끄기 - 이미 데이터가 있으므로 추론만 집중)
+        response_final = client.models.generate_content(
+            model="gemini-2.0-flash-exp",
+            contents=logic_prompt,
             config=types.GenerateContentConfig(
-                tools=[types.Tool(google_search_retrieval=types.GoogleSearchRetrieval())], # 검색 장착
                 response_mime_type="application/json"
             )
         )
         
-        epl_list = json.loads(response.text)
-        # 경기 종료된 것을 아래로 내리기 정렬
-        epl_list.sort(key=lambda x: 1 if x.get('status') == 'Finished' else 0)
+        epl_list = json.loads(response_final.text)
         
-        dashboard_data['epl'] = epl_list
-        print(f"✅ EPL 완료: {len(epl_list)}개 경기")
+        # 리스트 검증 및 정렬
+        if isinstance(epl_list, list) and len(epl_list) > 0:
+            epl_list.sort(key=lambda x: 1 if x.get('status') == 'Finished' else 0)
+            dashboard_data['epl'] = epl_list
+            print(f"✅ EPL 최종 완료: {len(epl_list)}개 경기 선정 (로직 적용됨)")
+        else:
+            print("⚠️ EPL 데이터 형식이 올바르지 않음 (Step 2 실패)")
+            dashboard_data['epl'] = []
 
     except Exception as e:
         print(f"❌ EPL 에러: {e}")
