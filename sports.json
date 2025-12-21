@@ -1,12 +1,14 @@
 {
-    "updated": "12/21 15:39",
+    "updated": "12/21 18:11",
     "nba": {
         "status": "Active",
         "record": "14-15",
-        "rank": "#3rd Pacific",
+        "rank": "#3rd",
         "last": {
             "date": "12.21(Sun)",
+            "time": "10:30",
             "opp": "PHX",
+            "is_home": true,
             "result": "W",
             "score": "119-116"
         },
@@ -30,5 +32,10 @@
         "name": "Australian GP",
         "date": "03.08(Sun) 13:00",
         "circuit": "Albert Park Grand Prix Circuit"
+    },
+    "tennis": {
+        "status": "Off",
+        "info": "Data Loading...",
+        "detail": "-"
     }
 }
