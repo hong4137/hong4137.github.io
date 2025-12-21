@@ -1,5 +1,5 @@
 {
-    "updated": "12/22 00:36",
+    "updated": "12/22 00:43",
     "nba": {
         "status": "Active",
         "record": "14-15",
@@ -30,8 +30,8 @@
     "epl": [],
     "tennis": {
         "status": "Off",
-        "info": "Data Loading...",
-        "detail": "-"
+        "info": "Off Season",
+        "detail": "Waiting for 2025"
     },
     "f1": {
         "status": "Next GP",
