@@ -12,7 +12,7 @@ import time
 KST = pytz.timezone('Asia/Seoul')
 UTC = pytz.timezone('UTC')
 
-# 데이터 그릇 (초기화)
+# 데이터 그릇
 dashboard_data = {
     "updated": datetime.now(KST).strftime("%m/%d %H:%M"),
     "nba": {"status": "Loading...", "record": "-", "rank": "-", "last": {}, "schedule": []},
@@ -22,10 +22,10 @@ dashboard_data = {
 }
 
 # ---------------------------------------------------------
-# 1. Tennis (Gemini 1.5 Flash + Search Tool)
+# 1. Tennis (Gemini Flash Latest)
 # ---------------------------------------------------------
 def get_tennis_gemini(client):
-    print("🎾 Tennis 데이터 수집 (Gemini 1.5 Flash)...")
+    print("🎾 Tennis 데이터 수집 (Gemini Flash Latest)...")
     try:
         today_str = datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
         prompt = f"""
@@ -34,10 +34,10 @@ def get_tennis_gemini(client):
         Output JSON: {{ "status": "Scheduled/Off", "info": "Tournament Name", "detail": "vs Opponent", "time": "Time" }}
         """
         response = client.models.generate_content(
-            model="gemini-1.5-flash",  # [확정] 가장 안정적인 모델
+            model="gemini-flash-latest",  # [확정] 사용자 리스트에 있는 모델명
             contents=prompt,
             config=types.GenerateContentConfig(
-                tools=[types.Tool(google_search_retrieval=types.GoogleSearchRetrieval())], # [핵심] 검색 도구 장착
+                tools=[types.Tool(google_search_retrieval=types.GoogleSearchRetrieval())],
                 response_mime_type="application/json"
             )
         )
@@ -48,14 +48,13 @@ def get_tennis_gemini(client):
         print(f"❌ Tennis 실패: {e}")
 
 # ---------------------------------------------------------
-# 2. EPL (Gemini 1.5 Flash + 6-Tier Logic)
+# 2. EPL (Gemini Flash Latest + 6-Tier Logic)
 # ---------------------------------------------------------
 def get_epl_data(client):
-    print("⚽ EPL 데이터 수집 (Gemini 1.5 Flash)...")
+    print("⚽ EPL 데이터 수집 (Gemini Flash Latest)...")
     try:
         today_str = datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
         
-        # [핵심] 1.5 Flash도 검색 도구가 있으면 이 로직을 완벽히 소화합니다.
         prompt = f"""
         Current Time: {today_str}
         
@@ -89,10 +88,10 @@ def get_epl_data(client):
         """
         
         response = client.models.generate_content(
-            model="gemini-1.5-flash", # [확정] 가장 안정적인 모델
+            model="gemini-flash-latest", # [확정] 사용자 리스트에 있는 모델명
             contents=prompt,
             config=types.GenerateContentConfig(
-                tools=[types.Tool(google_search_retrieval=types.GoogleSearchRetrieval())], # [핵심] 검색 도구 장착
+                tools=[types.Tool(google_search_retrieval=types.GoogleSearchRetrieval())],
                 response_mime_type="application/json"
             )
         )
@@ -188,7 +187,7 @@ if __name__ == "__main__":
         if api_key:
             client = genai.Client(api_key=api_key)
             get_tennis_gemini(client)
-            # 1.5 Flash는 쿨타임 필요 없음 (Free Tier도 분당 15회 허용)
+            # 1.5 Flash(Latest)는 쿨타임 불필요
             get_epl_data(client)
         else:
             print("⚠️ API Key 없음")
