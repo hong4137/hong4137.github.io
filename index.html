@@ -25,10 +25,27 @@
             color: var(--text-main);
             height: 100vh;
             display: flex;
-            overflow: hidden;
+            overflow: hidden; /* 전체 스크롤 방지 */
         }
 
-        /* 사이드바 스타일 */
+        /* --- [모바일 헤더] (기본 숨김) --- */
+        .mobile-header {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background-color: var(--sidebar-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            height: 60px;
+            box-sizing: border-box;
+        }
+        .mobile-brand { font-weight: bold; font-size: 18px; color: white; display:flex; align-items:center; gap:10px;}
+        .hamburger-btn { font-size: 24px; cursor: pointer; color: var(--text-main); background:none; border:none;}
+
+        /* --- [사이드바] --- */
         .sidebar {
             width: var(--sidebar-width);
             background-color: var(--sidebar-bg);
@@ -38,50 +55,47 @@
             padding: 20px;
             box-sizing: border-box;
             flex-shrink: 0;
+            z-index: 1000;
+            transition: left 0.3s ease-in-out;
         }
 
+        /* 모바일용 사이드바 닫기 버튼 */
+        .sidebar-close-btn { display: none; position: absolute; top: 15px; right: 15px; font-size: 24px; cursor: pointer; color: #666; }
+
         .logo-area {
-            font-size: 20px;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
+            font-size: 20px; font-weight: bold; color: white; margin-bottom: 40px;
+            display: flex; align-items: center; gap: 12px; cursor: pointer;
         }
-        
         .logo-icon { color: var(--accent-color); font-size: 1.2em; }
         .brand-text { font-family: 'Consolas', 'Monaco', 'Courier New', monospace; letter-spacing: -0.5px; }
 
         .menu-label { font-size: 12px; color: var(--text-sub); text-transform: uppercase; margin-bottom: 10px; font-weight: 600; }
-
         .nav-item {
             display: flex; align-items: center; padding: 12px; color: var(--text-main);
             text-decoration: none; border-radius: 8px; transition: background 0.2s; cursor: pointer; font-size: 14px;
         }
         .nav-item:hover { background-color: rgba(255, 255, 255, 0.05); color: white; }
         .nav-item i { width: 24px; color: var(--text-sub); }
-        
         .nav-item.active { background-color: rgba(255, 68, 0, 0.1); color: var(--accent-color); }
         .nav-item.active i { color: var(--accent-color); }
 
         .submenu { margin-left: 10px; padding-left: 10px; border-left: 1px solid #333; margin-top: 5px; margin-bottom: 15px; }
-        .submenu-item { display: block; padding: 8px 12px; font-size: 13px; color: var(--text-sub); text-decoration: none; transition: 0.2s; cursor: pointer; }
-        .submenu-item:hover { color: var(--accent-color); }
-
-        /* 메인 컨텐츠 영역 */
+        .submenu-item { cursor: pointer; padding: 8px 10px; display:flex; justify-content:space-between; align-items:center; }
+        .submenu-item:hover { background: rgba(255,255,255,0.05); border-radius: 4px; }
+        
+        /* --- [메인 컨텐츠] --- */
         .main-content {
             flex: 1;
-            padding: 0;
             position: relative;
             background-color: var(--bg-color);
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         #dashboard-view {
             padding: 40px;
-            height: 100%;
+            flex: 1;
             overflow-y: auto;
             box-sizing: border-box;
         }
@@ -92,10 +106,42 @@
             height: 100%;
             background-color: #fff;
         }
-
         iframe { width: 100%; height: 100%; border: none; display: block; }
 
-        /* 위젯 스타일들 */
+        /* --- [배경 오버레이 (모바일용)] --- */
+        .overlay {
+            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5); z-index: 999;
+            backdrop-filter: blur(2px);
+        }
+
+        /* --- [반응형 미디어 쿼리] --- */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            
+            /* 모바일 헤더 보이기 */
+            .mobile-header { display: flex; }
+            
+            /* 사이드바 숨기기 (Off-Canvas) */
+            .sidebar {
+                position: fixed; top: 0; left: -100%; height: 100%; width: 280px;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+                padding-top: 60px; /* 헤더 높이만큼 띄우거나, 혹은 닫기 버튼 공간 */
+            }
+            .sidebar.active { left: 0; }
+            .sidebar-close-btn { display: block; }
+            .logo-area { display: none; } /* 모바일 사이드바 안에선 로고 숨김 (헤더에 있으니) */
+            
+            /* 메인 영역 조정 */
+            .main-content { margin-top: 60px; /* 헤더 높이만큼 */ }
+            #dashboard-view { padding: 20px; }
+
+            /* 카드 그리드 1열로 */
+            .dashboard-grid { grid-template-columns: 1fr; }
+            .sports-grid { grid-template-columns: 1fr; }
+        }
+
+        /* 위젯 스타일 */
         .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
         .welcome-msg h1 { margin: 0; font-size: 28px; }
         .welcome-msg p { margin: 5px 0 0; color: var(--text-sub); }
@@ -109,49 +155,32 @@
         .temp-big { font-size: 42px; font-weight: bold; color: white; }
         .weather-desc { font-size: 14px; color: var(--text-sub); }
         
-        .hourly-forecast {
-            display: flex; justify-content: space-between; align-items: center;
-            margin: 25px 0; padding: 0 5px;
-        }
+        .hourly-forecast { display: flex; justify-content: space-between; align-items: center; margin: 25px 0; padding: 0 5px; }
         .hourly-item { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 13px; color: #ccc; }
-        .hourly-time { font-size: 11px; color: var(--text-sub); }
-        .hourly-icon { font-size: 16px; margin: 2px 0; }
-
-        .sports-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-
-        .sport-card {
-            background-color: #2a2a2a;
-            border-radius: 8px;
-            padding: 15px;
-            border: 1px solid #333;
-            min-height: 140px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .sport-header {
-            font-size: 13px;
-            font-weight: bold;
-            color: #ccc;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between; /* 양끝 정렬 */
-            gap: 8px;
-            border-bottom: 1px solid #444;
-            padding-bottom: 8px;
-        }
-
+        
+        .sports-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        .sport-card { background-color: #2a2a2a; border-radius: 12px; padding: 20px; border: 1px solid #333; min-height: 140px; display: flex; flex-direction: column; }
+        .sport-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #444; padding-bottom: 10px; }
         .loading-text { color: #555; font-style: italic; font-size: 12px; text-align: center; margin-top: 20px;}
     </style>
 </head>
 <body>
 
-    <nav class="sidebar">
+    <div class="mobile-header">
+        <div class="mobile-brand">
+            <i class="fas fa-earth-americas" style="color:var(--accent-color);"></i>
+            <span>Hello, World!</span>
+        </div>
+        <button class="hamburger-btn" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <div class="overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <nav class="sidebar" id="mySidebar">
+        <div class="sidebar-close-btn" onclick="toggleSidebar()">&times;</div>
+
         <div class="logo-area" onclick="showHome()">
             <i class="fas fa-earth-americas logo-icon"></i>
             <span class="brand-text">Hello, World!</span>
@@ -194,25 +223,15 @@
             <div class="dashboard-grid">
                 <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
                     <div>
-                        <div class="card-header">
-                            <span class="card-title">🌥️ 서울 날씨</span>
-                        </div>
-                        
+                        <div class="card-header"><span class="card-title">🌥️ 서울 날씨</span></div>
                         <div class="weather-info" id="weather-widget">
                             <div class="temp-big">--°</div>
                             <div class="weather-desc">데이터 불러오는 중...</div>
                         </div>
-
-                        <div id="hourly-forecast-container" class="hourly-forecast">
-                            <span style="font-size:12px; color:#555;">단기 예보 로딩중...</span>
-                        </div>
+                        <div id="hourly-forecast-container" class="hourly-forecast"></div>
                     </div>
-
                     <div style="border-top: 1px solid #333; margin: 10px 0 15px 0;"></div>
-
-                    <div id="weekly-forecast-container" style="display: flex; justify-content: space-between; text-align: center;">
-                        <span style="color:#555; font-size:12px;">주간 날씨 로딩중...</span>
-                    </div>
+                    <div id="weekly-forecast-container" style="display: flex; justify-content: space-between; text-align: center;"></div>
                 </div>
 
                 <div class="card" style="padding: 0; overflow: hidden;">
@@ -220,36 +239,9 @@
                         <div class="tradingview-widget-container__widget"></div>
                         <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
                         {
-                        "colorTheme": "dark",
-                        "dateRange": "12M",
-                        "showChart": true,
-                        "locale": "kr",
-                        "largeChartUrl": "",
-                        "isTransparent": true,
-                        "showSymbolLogo": true,
-                        "showFloatingTooltip": false,
-                        "width": "100%",
-                        "height": "400",
-                        "plotLineColorGrowing": "rgba(255, 68, 0, 1)",
-                        "plotLineColorFalling": "rgba(41, 98, 255, 1)",
-                        "gridLineColor": "rgba(240, 243, 250, 0)",
-                        "scaleFontColor": "rgba(160, 160, 160, 1)",
-                        "belowLineFillColorGrowing": "rgba(255, 68, 0, 0.12)",
-                        "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
-                        "belowLineFillColorGrowingBottom": "rgba(255, 68, 0, 0)",
-                        "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
-                        "symbolActiveColor": "rgba(255, 68, 0, 0.12)",
-                        "tabs": [
-                            {
-                            "title": "관심 종목",
-                            "symbols": [
-                                { "s": "NASDAQ:NVDA", "d": "엔비디아" },
-                                { "s": "NASDAQ:MU", "d": "마이크론" },
-                                { "s": "NASDAQ:TSLA", "d": "테슬라" },
-                                { "s": "FX_IDC:USDKRW", "d": "원달러 환율" }
-                            ]
-                            }
-                        ]
+                        "colorTheme": "dark", "dateRange": "12M", "showChart": true, "locale": "kr", 
+                        "largeChartUrl": "", "isTransparent": true, "showSymbolLogo": true, "width": "100%", "height": "400",
+                        "tabs": [ { "title": "관심 종목", "symbols": [ { "s": "NASDAQ:NVDA", "d": "엔비디아" }, { "s": "NASDAQ:MU", "d": "마이크론" }, { "s": "NASDAQ:TSLA", "d": "테슬라" }, { "s": "FX_IDC:USDKRW", "d": "원달러 환율" } ] } ]
                         }
                         </script>
                     </div>
@@ -262,7 +254,6 @@
             </div>
 
             <div class="sports-grid">
-                
                 <div class="sport-card">
                     <div class="sport-header">
                         <div style="display:flex; align-items:center; gap:8px;">
@@ -271,9 +262,19 @@
                         </div>
                         <span id="nba-header-info" style="font-size:11px; color:#aaa; font-family: monospace;">NBA</span>
                     </div>
-                    
-                    <div id="nba-content" style="flex:1;">
-                        <div class="loading-text">데이터 로딩중...</div>
+                    <div id="nba-content" style="flex:1;"><div class="loading-text">Loading...</div></div>
+                </div>
+
+                <div class="sport-card">
+                    <div class="sport-header">
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <i class="fas fa-table-tennis" style="color:#eaff00; font-size: 1.2rem;"></i> 
+                            <span style="font-weight:bold; color:#ccc;">Carlos Alcaraz</span>
+                        </div>
+                        <span id="tennis-status-badge" style="font-size:10px; background:#333; padding:2px 6px; border-radius:4px; color:#aaa;">ATP</span>
+                    </div>
+                    <div id="tennis-content" style="text-align: center; margin-top: 10px;">
+                        <div class="loading-text">Waiting...</div>
                     </div>
                 </div>
 
@@ -285,7 +286,6 @@
                         </div>
                         <span id="f1-status-badge" style="font-size:10px; background:#333; padding:2px 6px; border-radius:4px; color:#aaa;">Check</span>
                     </div>
-                    
                     <div id="f1-content" style="text-align: center; margin-top: 10px;">
                         <div id="f1-race" style="font-size: 16px; font-weight: bold; color: white; margin-bottom: 8px;">Loading...</div>
                         <div id="f1-date" style="font-size: 18px; color: var(--accent-color); font-weight: bold;">--.--</div>
@@ -302,7 +302,131 @@
     </main>
 
     <script>
-        // 공통 유틸리티: 날씨 코드 -> 아이콘 변환
+        // [반응형 UI] 사이드바 토글 함수
+        function toggleSidebar() {
+            const sidebar = document.getElementById('mySidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            sidebar.classList.toggle('active');
+            
+            if (sidebar.classList.contains('active')) {
+                overlay.style.display = 'block';
+            } else {
+                overlay.style.display = 'none';
+            }
+        }
+
+        // [화면 전환] 모바일에서 메뉴 클릭 시 사이드바 닫기 추가
+        function showHome() {
+            document.getElementById('dashboard-view').style.display = 'block';
+            document.getElementById('briefing-view').style.display = 'none';
+            document.getElementById('nav-home').classList.add('active');
+            document.getElementById('content-frame').src = "";
+            
+            // 모바일이면 닫기
+            if(window.innerWidth <= 768) toggleSidebar();
+        }
+
+        function openBriefing(url) {
+            document.getElementById('dashboard-view').style.display = 'none';
+            document.getElementById('briefing-view').style.display = 'block';
+            document.getElementById('content-frame').src = url;
+            document.getElementById('nav-home').classList.remove('active');
+            
+            // 모바일이면 닫기
+            if(window.innerWidth <= 768) toggleSidebar();
+        }
+
+        // [브리핑 메뉴] hong4137/briefing 저장소에서 불러오기
+        async function loadBriefingMenu() {
+            const menuContainer = document.getElementById('briefing-menu');
+            const DATA_URL = 'https://hong4137.github.io/briefing/list.json'; 
+
+            try {
+                const response = await fetch(DATA_URL);
+                if (!response.ok) throw new Error("목록 로드 실패");
+                const data = await response.json();
+                
+                let html = '';
+                data.slice(0, 10).forEach(item => {
+                    const dateShort = item.date.substring(5).replace('-', '.');
+                    html += `
+                    <div class="submenu-item" onclick="openBriefing('${item.link}')">
+                        <span style="color:#ccc; font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:140px;">${item.title}</span>
+                        <span style="color:#666; font-size:11px;">${dateShort}</span>
+                    </div>`;
+                });
+                menuContainer.innerHTML = html;
+            } catch (error) {
+                console.error(error);
+                menuContainer.innerHTML = '<span style="color:#555; padding:10px; font-size:12px;">목록 로딩 실패</span>';
+            }
+        }
+
+        // [스포츠 데이터]
+        async function loadSportsData() {
+            try {
+                const response = await fetch('./sports.json?v=' + new Date().getTime());
+                if (!response.ok) throw new Error("로드 실패");
+                const data = await response.json();
+
+                document.getElementById('update-time').innerText = `Update: ${data.updated}`;
+
+                // 1. NBA
+                const nba = data.nba;
+                const nbaContainer = document.getElementById('nba-content');
+                if (nba.record && nba.rank) {
+                    document.getElementById('nba-header-info').innerHTML = 
+                        `<span style="color:#fff; font-weight:bold;">${nba.record}</span> <span style="color:#666; margin:0 4px;">|</span> <span style="color:var(--accent-color);">${nba.rank}</span>`;
+                }
+                
+                let nbaHtml = '';
+                if (nba.last && nba.last.result) {
+                    const resColor = nba.last.result === 'W' ? '#ff4400' : '#0088ff';
+                    nbaHtml += `<div style="display:flex; justify-content:space-between; margin-bottom:12px; font-size:13px;">
+                        <span style="color:#888;">Recent</span>
+                        <div>vs <b>${nba.last.opp}</b> <span style="color:${resColor}; font-weight:bold;">${nba.last.result}</span> <span style="color:#aaa; font-size:11px;">(${nba.last.score})</span></div>
+                    </div>`;
+                }
+                if (nba.schedule) {
+                    nbaHtml += `<div style="border-top:1px dashed #444; margin-bottom:5px;"></div>`;
+                    nba.schedule.forEach(g => {
+                        nbaHtml += `<div style="display:flex; justify-content:space-between; margin-top:6px; font-size:12px;">
+                            <div><span style="color:#e0e0e0;">vs ${g.opp}</span> <span style="background:#333; padding:1px 3px; border-radius:3px; font-size:10px;">${g.time}</span></div>
+                            <span style="color:#666;">${g.date}</span>
+                        </div>`;
+                    });
+                }
+                nbaContainer.innerHTML = nbaHtml || '<div class="loading-text">No Data</div>';
+
+                // 2. Tennis (Gemini) - 아까 로직 반영
+                const tennis = data.tennis;
+                const tennisContainer = document.getElementById('tennis-content');
+                const tennisBadge = document.getElementById('tennis-status-badge');
+
+                if (tennis && tennis.info) {
+                    tennisBadge.innerText = tennis.status;
+                    tennisBadge.style.color = tennis.status === 'Scheduled' ? '#eaff00' : '#aaa';
+                    tennisContainer.innerHTML = `
+                        <div style="font-size:14px; font-weight:bold; color:white; margin-bottom:5px;">${tennis.info}</div>
+                        <div style="font-size:12px; color:#ccc;">${tennis.detail}</div>
+                        <div style="font-size:15px; font-weight:bold; color:var(--accent-color); margin-top:6px;">${tennis.time || '-'}</div>
+                    `;
+                } else {
+                    tennisContainer.innerHTML = '<div class="loading-text">정보 없음</div>';
+                }
+
+                // 3. F1
+                const f1 = data.f1;
+                document.getElementById('f1-status-badge').innerText = f1.status;
+                document.getElementById('f1-race').innerText = f1.name || "-";
+                document.getElementById('f1-date').innerText = f1.date || "-";
+                document.getElementById('f1-circuit').innerText = f1.circuit || "";
+                if(f1.status === "Off Season") document.getElementById('f1-date').style.color = "#555";
+
+            } catch (e) { console.error(e); }
+        }
+
+        // [날씨]
         function getWeatherIcon(code) {
             if (code === 0) return 'fa-sun';
             if (code >= 1 && code <= 3) return 'fa-cloud-sun';
@@ -313,233 +437,52 @@
             return 'fa-cloud';
         }
 
-        // 1. 날짜 표시
-        const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
-        document.getElementById('current-date').innerText = new Date().toLocaleDateString('ko-KR', options);
-
-        // 2. 화면 전환 함수들
-        function showHome() {
-            document.getElementById('dashboard-view').style.display = 'block';
-            document.getElementById('briefing-view').style.display = 'none';
-            document.getElementById('nav-home').classList.add('active');
-            document.getElementById('content-frame').src = ""; 
-        }
-
-        function openBriefing(url) {
-            document.getElementById('dashboard-view').style.display = 'none';
-            document.getElementById('briefing-view').style.display = 'block';
-            document.getElementById('content-frame').src = url;
-            document.getElementById('nav-home').classList.remove('active');
-        }
-
-        // 3. 브리핑 메뉴 불러오기
-        async function loadBriefingMenu() {
-            const menuContainer = document.getElementById('briefing-menu');
-            const DATA_URL = 'https://hong4137.github.io/briefing/list.json'; 
-
+        async function loadWeather() {
             try {
-                const response = await fetch(DATA_URL);
-                if (!response.ok) throw new Error("데이터 로드 실패");
-                
-                const data = await response.json();
-                
-                let html = '';
-                data.slice(0, 10).forEach(item => {
-                    html += `<div class="submenu-item" onclick="openBriefing('${item.link}')">
-                                ${item.date} 브리핑
-                             </div>`;
-                });
-                menuContainer.innerHTML = html;
-
-            } catch (error) {
-                console.error(error);
-                menuContainer.innerHTML = '<span style="color:#555; padding:10px;">데이터 연결 대기중...</span>';
-            }
-        }
-
-        // 4. 날씨 위젯 (현재 날씨)
-        async function loadCurrentWeather() {
-            try {
+                // 현재 날씨
                 const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current_weather=true');
                 const data = await res.json();
-                const temp = Math.round(data.current_weather.temperature);
                 document.getElementById('weather-widget').innerHTML = `
-                    <div class="temp-big">${temp}°C</div>
+                    <div class="temp-big">${Math.round(data.current_weather.temperature)}°C</div>
                     <div class="weather-desc">서울, 대한민국<br>풍속: ${data.current_weather.windspeed} km/h</div>
                 `;
-            } catch (e) { console.log("Current Weather Error"); }
-        }
 
-        // 5. 시간별 예보
-        async function loadHourlyWeather() {
-            try {
-                const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&hourly=temperature_2m,weathercode&timezone=auto&forecast_days=2');
-                const data = await res.json();
+                // 시간별/주간 예보 (간략화)
+                const res2 = await fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&hourly=temperature_2m,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto');
+                const data2 = await res2.json();
                 
-                const container = document.getElementById('hourly-forecast-container');
-                const currentHour = new Date().getHours();
-                
-                let html = '';
-                let count = 0;
-
-                for (let i = currentHour + 2; i < data.hourly.time.length; i += 4) {
-                    if (count >= 5) break;
-
-                    const timeStr = data.hourly.time[i];
-                    const timeObj = new Date(timeStr);
-                    const hourLabel = timeObj.getHours() + ':00';
-                    const temp = Math.round(data.hourly.temperature_2m[i]);
-                    const code = data.hourly.weathercode[i];
-                    const iconClass = getWeatherIcon(code);
-
-                    html += `
-                        <div class="hourly-item">
-                            <span class="hourly-time">${hourLabel}</span>
-                            <i class="fas ${iconClass} hourly-icon"></i>
-                            <span style="font-weight:bold;">${temp}°</span>
-                        </div>
-                    `;
-                    count++;
+                // 시간별 (3개만)
+                let hourlyHtml = '';
+                const curHour = new Date().getHours();
+                for(let i=curHour+1; i<curHour+10; i+=3) {
+                    if(!data2.hourly.time[i]) break;
+                    const t = Math.round(data2.hourly.temperature_2m[i]);
+                    const icon = getWeatherIcon(data2.hourly.weathercode[i]);
+                    const h = new Date(data2.hourly.time[i]).getHours();
+                    hourlyHtml += `<div class="hourly-item"><span style="font-size:11px; color:#888;">${h}:00</span><i class="fas ${icon}" style="font-size:16px;"></i><span style="font-weight:bold;">${t}°</span></div>`;
                 }
-                container.innerHTML = html;
-            } catch (e) {
-                console.log("Hourly Weather Error", e);
-                document.getElementById('hourly-forecast-container').innerText = '예보 로딩 실패';
-            }
-        }
+                document.getElementById('hourly-forecast-container').innerHTML = hourlyHtml;
 
-        // 6. 주간 예보
-        async function loadWeeklyWeather() {
-            try {
-                const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto');
-                const data = await res.json();
-                
-                const container = document.getElementById('weekly-forecast-container');
-                let html = '';
-                const days = ['일', '월', '화', '수', '목', '금', '토'];
-
-                for(let i = 0; i < 5; i++) {
-                    const dateStr = data.daily.time[i];
-                    const dateObj = new Date(dateStr);
-                    const dayName = days[dateObj.getDay()];
-                    
-                    const code = data.daily.weathercode[i];
-                    const min = Math.round(data.daily.temperature_2m_min[i]);
-                    const max = Math.round(data.daily.temperature_2m_max[i]);
-                    const iconClass = getWeatherIcon(code);
-
-                    const dayStyle = (i === 0) ? 'color: var(--accent-color); font-weight:bold;' : 'color: var(--text-sub);';
-
-                    html += `
-                        <div style="flex: 1;">
-                            <div style="font-size:12px; margin-bottom:5px; ${dayStyle}">${dayName}</div>
-                            <div style="font-size:18px; margin-bottom:5px; color:#e0e0e0;">
-                                <i class="fas ${iconClass}"></i>
-                            </div>
-                            <div style="font-size:11px; color:#888;">
-                                <span style="color:#4fc3f7">${min}°</span> / <span style="color:#ff8a65">${max}°</span>
-                            </div>
-                        </div>
-                    `;
+                // 주간 (5일)
+                let weeklyHtml = '';
+                const days = ['일','월','화','수','목','금','토'];
+                for(let i=0; i<5; i++) {
+                    const d = new Date(data2.daily.time[i]);
+                    const icon = getWeatherIcon(data2.daily.weathercode[i]);
+                    weeklyHtml += `<div style="flex:1;"><div style="font-size:11px; color:#888; margin-bottom:5px;">${days[d.getDay()]}</div><div style="font-size:16px; margin-bottom:5px;"><i class="fas ${icon}"></i></div><div style="font-size:11px; color:#666;">${Math.round(data2.daily.temperature_2m_min[i])}°/${Math.round(data2.daily.temperature_2m_max[i])}°</div></div>`;
                 }
-                container.innerHTML = html;
-            } catch (e) {
-                console.error(e);
-                container.innerHTML = 'Load Fail';
-            }
-        }
+                document.getElementById('weekly-forecast-container').innerHTML = weeklyHtml;
 
-        // 7. 스포츠 데이터 로드 (JSON 연동)
-        async function loadSportsData() {
-            try {
-                // 캐시 방지 (최신 데이터 로드 보장)
-                const response = await fetch('./sports.json?v=' + new Date().getTime());
-                
-                let data;
-                if (!response.ok) {
-                    throw new Error("파일 로드 실패");
-                } else {
-                    data = await response.json();
-                }
-
-                document.getElementById('update-time').innerText = `Update: ${data.updated}`;
-
-                // --- 1. NBA 렌더링 ---
-                const nba = data.nba;
-                const nbaContainer = document.getElementById('nba-content');
-                
-                // [NEW] 전적 및 순위 표시 (상단 헤더)
-                if (nba.record && nba.rank) {
-                    document.getElementById('nba-header-info').innerHTML = 
-                        `<span style="color:#fff; font-weight:bold;">${nba.record}</span> <span style="color:#666; margin:0 4px;">|</span> <span style="color:var(--accent-color);">${nba.rank}</span>`;
-                }
-                
-                if (nba.status === "Error") {
-                    nbaContainer.innerHTML = `<div style="text-align:center; color:#555;">${nba.msg}</div>`;
-                } else {
-                    let html = '';
-                    
-                    // 지난 경기 결과
-                    if (nba.last && nba.last.result) {
-                        const resultColor = nba.last.result === 'W' ? '#ff4400' : '#0088ff';
-                        html += `
-                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                                <span style="font-size:11px; color:#888;">Recent</span>
-                                <div style="font-size:13px;">
-                                    vs <b>${nba.last.opp}</b> 
-                                    <span style="color:${resultColor}; font-weight:bold; margin-left:5px;">${nba.last.result}</span>
-                                    <span style="font-size:11px; color:#aaa; margin-left:3px;">(${nba.last.score})</span>
-                                </div>
-                            </div>
-                        `;
-                    }
-
-                    // 다음 경기 일정
-                    if (nba.schedule && nba.schedule.length > 0) {
-                        html += `<div style="font-size:11px; color:#888; margin-bottom:5px; border-top:1px dashed #444; padding-top:10px;">Upcoming</div>`;
-                        nba.schedule.forEach(game => {
-                            const timeDisplay = game.time ? 
-                                `<span style="background:#333; padding:2px 4px; border-radius:3px; font-size:10px; margin-left:5px;">${game.time}</span>` : "";
-
-                            html += `
-                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; font-size:12px;">
-                                    <div style="display:flex; align-items:center;">
-                                        <span style="color:#e0e0e0;">vs ${game.opp}</span>
-                                        ${timeDisplay}
-                                    </div>
-                                    <span style="color:#666;">${game.date}</span>
-                                </div>
-                            `;
-                        });
-                    } else {
-                        html += `<div style="font-size:11px; color:#555; margin-top:10px;">예정된 경기 없음</div>`;
-                    }
-                    nbaContainer.innerHTML = html;
-                }
-
-                // --- 2. F1 렌더링 ---
-                const f1 = data.f1;
-                document.getElementById('f1-status-badge').innerText = f1.status;
-                document.getElementById('f1-race').innerText = f1.name || "정보 없음";
-                document.getElementById('f1-date').innerText = f1.date || "-";
-                document.getElementById('f1-circuit').innerText = f1.circuit || "";
-
-                if(f1.status === "Off Season") {
-                    document.getElementById('f1-date').style.color = "#555";
-                }
-
-            } catch (e) {
-                console.error("데이터 로딩 중 에러 발생:", e);
-                document.getElementById('nba-content').innerHTML = `<div style="color:red; text-align:center; font-size:12px;">JS Error</div>`;
-            }
+            } catch (e) { console.log("Weather Error"); }
         }
 
         // 실행
+        const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
+        document.getElementById('current-date').innerText = new Date().toLocaleDateString('ko-KR', options);
+        
         loadBriefingMenu();
-        loadCurrentWeather();
-        loadHourlyWeather();
-        loadWeeklyWeather();
         loadSportsData();
+        loadWeather();
     </script>
 </body>
 </html>
