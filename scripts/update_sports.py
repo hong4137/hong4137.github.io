@@ -22,10 +22,10 @@ dashboard_data = {
 }
 
 # ---------------------------------------------------------
-# 1. Tennis (Gemini 2.0 Flash)
+# 1. Tennis (Gemini 2.0 Flash Lite Preview)
 # ---------------------------------------------------------
 def get_tennis_gemini(client):
-    print("🎾 Tennis 데이터 수집 (Gemini 2.0 Flash)...")
+    print("🎾 Tennis 데이터 수집 (Gemini 2.0 Flash Lite)...")
     try:
         today_str = datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
         prompt = f"""
@@ -34,27 +34,28 @@ def get_tennis_gemini(client):
         Output JSON: {{ "status": "Scheduled/Off", "info": "Tournament", "detail": "vs Opponent", "time": "Time" }}
         """
         response = client.models.generate_content(
-            model="gemini-2.0-flash", 
+            model="gemini-2.0-flash-lite-preview-02-05",  # [확정] 사용자 리스트에 있는 Lite 모델
             contents=prompt,
             config=types.GenerateContentConfig(
                 tools=[types.Tool(google_search_retrieval=types.GoogleSearchRetrieval())],
                 response_mime_type="application/json"
             )
         )
-        dashboard_data['tennis'] = json.loads(response.text)
+        data = json.loads(response.text)
+        dashboard_data['tennis'] = data
         print("✅ Tennis 완료")
     except Exception as e:
         print(f"❌ Tennis 실패: {e}")
 
 # ---------------------------------------------------------
-# 2. EPL (Gemini 2.0 Flash + 6-Tier Logic Restore)
+# 2. EPL (Gemini 2.0 Flash Lite Preview + 6-Tier Logic)
 # ---------------------------------------------------------
 def get_epl_data(client):
-    print("⚽ EPL 데이터 수집 (6-Tier Logic 복구)...")
+    print("⚽ EPL 데이터 수집 (Gemini 2.0 Flash Lite)...")
     try:
         today_str = datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
         
-        # [핵심] 6단계 로직 부활
+        # [핵심] 6단계 로직 유지
         prompt = f"""
         Current Time: {today_str}
         
@@ -69,8 +70,8 @@ def get_epl_data(client):
         - Tier 1 (The Titans): Big 6 vs Big 6 (Man City, Arsenal, Liverpool, Chelsea, Man Utd, Spurs).
         - Tier 2 (Title Race): Top 4 vs Top 4 (Based on current standings).
         - Tier 3 (The Challenge): Top 4 vs Big 6.
-        - Tier 4 (Super Sunday): Match scheduled for Sunday 16:30 UK time (Sky Sports Main Event).
-        - Tier 5 (Early Kick-off): Match scheduled for Saturday 12:30 UK time (TNT Sports).
+        - Tier 4 (Super Sunday): Match scheduled for Sunday 16:30 UK time.
+        - Tier 5 (Early Kick-off): Match scheduled for Saturday 12:30 UK time.
         - Tier 6 (League Leaders): If slots are empty, pick matches involving 1st, then 2nd, then 3rd place.
 
         [PHASE 3: OUTPUT]
@@ -88,7 +89,7 @@ def get_epl_data(client):
         """
         
         response = client.models.generate_content(
-            model="gemini-2.0-flash", # [확정] 검증된 모델
+            model="gemini-2.0-flash-lite-preview-02-05", # [확정] 사용자 리스트에 있는 Lite 모델
             contents=prompt,
             config=types.GenerateContentConfig(
                 tools=[types.Tool(google_search_retrieval=types.GoogleSearchRetrieval())],
@@ -100,9 +101,9 @@ def get_epl_data(client):
         if isinstance(data, list) and len(data) > 0:
             data.sort(key=lambda x: 1 if x.get('status') == 'Finished' else 0)
             dashboard_data['epl'] = data
-            print(f"✅ EPL 완료: {len(data)}개 (6단계 로직 적용됨)")
+            print(f"✅ EPL 완료: {len(data)}개 (6단계 로직)")
         else:
-            print("⚠️ EPL 데이터 없음")
+            print("⚠️ EPL 데이터 없음 (빈 리스트)")
             dashboard_data['epl'] = []
             
     except Exception as e:
@@ -187,8 +188,11 @@ if __name__ == "__main__":
         if api_key:
             client = genai.Client(api_key=api_key)
             get_tennis_gemini(client)
-            print("⏳ 2초 대기...")
-            time.sleep(2)
+            
+            # [안전] Lite 모델이라도 쿼터 보호를 위해 10초 대기
+            print("⏳ API 보호를 위해 10초 대기...")
+            time.sleep(10)
+            
             get_epl_data(client)
         else:
             print("⚠️ API Key 없음")
