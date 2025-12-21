@@ -1,5 +1,5 @@
 {
-    "updated": "12/22 05:20",
+    "updated": "12/22 06:17",
     "nba": {
         "status": "Active",
         "record": "14-15",
@@ -29,21 +29,21 @@
     },
     "epl": [
         {
+            "home": "Aston Villa",
+            "away": "Manchester United",
+            "status": "Scheduled",
+            "score": "-",
+            "kst_time": "12.22 (Mon) 01:30",
+            "local_time": "Sun 16:30",
+            "channel": "Sky Sports"
+        },
+        {
             "home": "Tottenham Hotspur",
             "away": "Liverpool",
             "status": "Finished",
             "score": "1-2",
-            "kst_time": "12.21 (Sun) 02:30",
+            "kst_time": "12.22 (Sun) 02:30",
             "local_time": "Sat 17:30",
-            "channel": "Sky Sports"
-        },
-        {
-            "home": "Aston Villa",
-            "away": "Manchester United",
-            "status": "Finished",
-            "score": "2-1",
-            "kst_time": "12.22 (Mon) 01:30",
-            "local_time": "Sun 16:30",
             "channel": "Sky Sports"
         },
         {
@@ -51,16 +51,16 @@
             "away": "Chelsea",
             "status": "Finished",
             "score": "2-2",
-            "kst_time": "12.20 (Sat) 21:30",
+            "kst_time": "12.21 (Sat) 21:30",
             "local_time": "Sat 12:30",
-            "channel": "TNT Sports 1"
+            "channel": "TNT Sports"
         }
     ],
     "tennis": {
-        "status": "Off",
-        "info": "Off-Season",
-        "detail": "Carlos Alcaraz's 2025 official season is concluded. His next expected tournament is the Australian Open in January 2026.",
-        "time": "N/A"
+        "status": "Scheduled",
+        "info": "Hyundai Card Super Match (Exhibition)",
+        "detail": "vs Jannik Sinner",
+        "time": "January 10, 2026"
     },
     "f1": {
         "status": "Next GP",
