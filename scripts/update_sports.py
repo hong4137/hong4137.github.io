@@ -7,6 +7,7 @@ from datetime import datetime
 import pytz
 import traceback
 import time
+import re # [추가] 정규표현식 사용
 
 # 타임존 설정
 KST = pytz.timezone('Asia/Seoul')
@@ -21,6 +22,17 @@ dashboard_data = {
     "f1": {"status": "Loading...", "name": "-", "date": "-"}
 }
 
+# [핵심] AI 응답에서 순수 JSON 문자열만 추출하는 함수
+def clean_json_text(text):
+    try:
+        # 1. ```json ... ``` 패턴 제거
+        text = re.sub(r'```json\s*', '', text)
+        text = re.sub(r'```\s*$', '', text)
+        # 2. 앞뒤 공백 제거
+        return text.strip()
+    except:
+        return text
+
 # ---------------------------------------------------------
 # 1. Tennis (Gemini Flash Latest)
 # ---------------------------------------------------------
@@ -31,22 +43,29 @@ def get_tennis_gemini(client):
         prompt = f"""
         Current Time: {today_str}
         Task: Use Google Search to find 'Carlos Alcaraz' next match schedule or latest news.
-        Output JSON: {{ "status": "Scheduled/Off", "info": "Tournament Name", "detail": "vs Opponent", "time": "Time" }}
+        
+        Output format: Provide ONLY a raw JSON object. Do not use Markdown.
+        JSON Structure: {{ "status": "Scheduled/Off", "info": "Tournament Name", "detail": "vs Opponent", "time": "Time" }}
         """
         response = client.models.generate_content(
             model="gemini-flash-latest",
             contents=prompt,
             config=types.GenerateContentConfig(
-                # [수정] google_search_retrieval -> google_search
-                tools=[types.Tool(google_search=types.GoogleSearch())],
-                response_mime_type="application/json"
+                tools=[types.Tool(google_search=types.GoogleSearch())], # 검색 도구 유지
+                # response_mime_type 제거 (충돌 방지)
             )
         )
-        data = json.loads(response.text)
+        
+        # 텍스트 정제 후 파싱
+        json_str = clean_json_text(response.text)
+        data = json.loads(json_str)
         dashboard_data['tennis'] = data
         print("✅ Tennis 완료")
     except Exception as e:
         print(f"❌ Tennis 실패: {e}")
+        # 디버깅용: 실패 시 원본 텍스트가 있다면 출력
+        # try: print(f"DEBUG: {response.text}")
+        # except: pass
 
 # ---------------------------------------------------------
 # 2. EPL (Gemini Flash Latest + 6-Tier Logic)
@@ -75,7 +94,8 @@ def get_epl_data(client):
         - Tier 6 (League Leaders): If slots are empty, pick matches involving 1st, then 2nd, then 3rd place.
 
         [PHASE 3: OUTPUT]
-        Return a JSON List of 3 matches:
+        Provide ONLY a raw JSON List of 3 matches. Do not use Markdown.
+        Example:
         [
             {{
                 "home": "HomeTeam", "away": "AwayTeam",
@@ -92,13 +112,15 @@ def get_epl_data(client):
             model="gemini-flash-latest",
             contents=prompt,
             config=types.GenerateContentConfig(
-                # [수정] google_search_retrieval -> google_search
-                tools=[types.Tool(google_search=types.GoogleSearch())],
-                response_mime_type="application/json"
+                tools=[types.Tool(google_search=types.GoogleSearch())], # 검색 도구 유지
+                # response_mime_type 제거 (충돌 방지)
             )
         )
         
-        data = json.loads(response.text)
+        # 텍스트 정제 후 파싱
+        json_str = clean_json_text(response.text)
+        data = json.loads(json_str)
+        
         if isinstance(data, list) and len(data) > 0:
             data.sort(key=lambda x: 1 if x.get('status') == 'Finished' else 0)
             dashboard_data['epl'] = data
@@ -189,7 +211,6 @@ if __name__ == "__main__":
         if api_key:
             client = genai.Client(api_key=api_key)
             get_tennis_gemini(client)
-            # Flash Latest는 쿨타임 불필요 (1.5 Pro와 달리 제한이 넉넉함)
             get_epl_data(client)
         else:
             print("⚠️ API Key 없음")
