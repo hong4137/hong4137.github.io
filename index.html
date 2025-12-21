@@ -292,6 +292,20 @@
                         <div id="f1-circuit" style="font-size: 11px; color: #666; margin-top: 5px;">--</div>
                     </div>
                 </div>
+                
+                <div class="sport-card">
+    <div class="sport-header">
+        <div style="display:flex; align-items:center; gap:8px;">
+            <i class="fas fa-futbol" style="color:#a000ff; font-size: 1.2rem;"></i> 
+            <span style="font-weight:bold; color:#ccc;">Premier League Picks</span>
+        </div>
+        <span style="font-size:10px; background:#333; padding:2px 6px; border-radius:4px; color:#aaa;">R17</span>
+    </div>
+    
+    <div id="epl-content" style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
+        <div class="loading-text">Analyzing Fixtures...</div>
+    </div>
+</div>
             </div>
         </div>
 
@@ -430,7 +444,59 @@ async function loadBriefingMenu() {
                     tennisContainer.innerHTML = '<div class="loading-text">정보 없음</div>';
                 }
 
-                // 3. F1
+                // ... (NBA, Tennis 코드 바로 아래에 붙여넣으세요)
+
+            // ---------------------------------------------------------
+            // [새로 추가] 3. EPL Data Rendering
+            // ---------------------------------------------------------
+            const eplList = data.epl;
+            const eplContainer = document.getElementById('epl-content');
+
+            if (eplList && eplList.length > 0) {
+                let html = '';
+                
+                eplList.forEach((match, index) => {
+                    // [디자인] 1번 카드(메인)는 보라색 강조, 2~3번은 회색
+                    const bgStyle = index === 0 
+                        ? 'background: rgba(160, 0, 255, 0.1); border-left: 3px solid #a000ff;' 
+                        : 'background: rgba(255, 255, 255, 0.05); border-left: 3px solid #666;';
+                    
+                    html += `<div style="${bgStyle} padding: 8px; border-radius: 6px; margin-bottom: 6px;">`;
+                    
+                    // [상태 A] 경기 종료 (Finished) -> 스코어 메인
+                    if (match.status === 'Finished') {
+                        html += `
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                                <span style="font-size:13px; font-weight:bold; color:white;">${match.home} vs ${match.away}</span>
+                                <span style="font-size:10px; background:#444; color:#ccc; padding:2px 4px; border-radius:3px;">FT</span>
+                            </div>
+                            <div style="font-size:15px; font-weight:bold; color:#fff; text-align:right;">${match.score}</div>
+                        `;
+                    } 
+                    // [상태 B] 경기 전 (Scheduled) -> 한국 시간 메인 + 현지 시간/채널 서브
+                    else {
+                        html += `
+                            <div style="font-size:13px; font-weight:bold; color:white; margin-bottom:6px;">${match.home} vs ${match.away}</div>
+                            <div style="display:flex; justify-content:space-between; align-items:end;">
+                                <div>
+                                    <div style="font-size:12px; font-weight:bold; color:#ddd;">${match.kst_time}</div>
+                                    <div style="font-size:10px; color:#666; margin-top:1px;">Local: ${match.local_time}</div>
+                                </div>
+                                <div style="font-size:9px; color:#a000ff; font-weight:bold; background:rgba(0,0,0,0.3); padding:2px 5px; border-radius:4px;">
+                                    ${match.channel || 'UK TV'}
+                                </div>
+                            </div>
+                        `;
+                    }
+                    html += `</div>`;
+                });
+                eplContainer.innerHTML = html;
+            } else {
+                // 데이터가 아직 없거나 로딩 중일 때
+                if (eplContainer) eplContainer.innerHTML = '<div class="loading-text">No Match Data</div>';
+            }
+                
+                // 4. F1
                 const f1 = data.f1;
                 document.getElementById('f1-status-badge').innerText = f1.status;
                 document.getElementById('f1-race').innerText = f1.name || "-";
