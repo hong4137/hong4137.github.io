@@ -514,9 +514,9 @@
             return 'fa-cloud';
         }
 
-        async function loadWeather() {
+async function loadWeather() {
             try {
-                // 현재 날씨
+                // 1. 현재 날씨
                 const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current_weather=true');
                 const data = await res.json();
                 document.getElementById('weather-widget').innerHTML = `
@@ -524,35 +524,67 @@
                     <div class="weather-desc">서울, 대한민국<br>풍속: ${data.current_weather.windspeed} km/h</div>
                 `;
 
-                // 시간별/주간 예보 (간략화)
+                // 2. 상세 예보 (시간별/주간)
                 const res2 = await fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&hourly=temperature_2m,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto');
                 const data2 = await res2.json();
                 
-                // 시간별 (3개만)
+                // [수정 1] 시간별 예보: 3개 -> 6개로 복구 (3시간 간격으로 표시)
                 let hourlyHtml = '';
                 const curHour = new Date().getHours();
-                for(let i=curHour+1; i<curHour+10; i+=3) {
-                    if(!data2.hourly.time[i]) break;
-                    const t = Math.round(data2.hourly.temperature_2m[i]);
-                    const icon = getWeatherIcon(data2.hourly.weathercode[i]);
-                    const h = new Date(data2.hourly.time[i]).getHours();
-                    hourlyHtml += `<div class="hourly-item"><span style="font-size:11px; color:#888;">${h}:00</span><i class="fas ${icon}" style="font-size:16px;"></i><span style="font-weight:bold;">${t}°</span></div>`;
+                
+                // 총 6개를 보여줍니다.
+                for(let i=0; i<6; i++) {
+                    // 현재 시간보다 1시간 뒤부터 시작해서, 3시간씩 건너뛰며 가져옴 (+1, +4, +7...)
+                    const targetIndex = curHour + 1 + (i * 3);
+                    
+                    // 데이터가 없으면 중단
+                    if(!data2.hourly.time[targetIndex]) break;
+
+                    const t = Math.round(data2.hourly.temperature_2m[targetIndex]);
+                    const icon = getWeatherIcon(data2.hourly.weathercode[targetIndex]);
+                    const timeObj = new Date(data2.hourly.time[targetIndex]);
+                    const h = timeObj.getHours(); // 시간만 추출
+
+                    hourlyHtml += `
+                        <div class="hourly-item">
+                            <span style="font-size:11px; color:#888;">${h}:00</span>
+                            <i class="fas ${icon}" style="font-size:16px;"></i>
+                            <span style="font-weight:bold;">${t}°</span>
+                        </div>
+                    `;
                 }
                 document.getElementById('hourly-forecast-container').innerHTML = hourlyHtml;
 
-                // 주간 (5일)
+                // [수정 2] 주간 예보: 요일만 -> 날짜+요일 (예: 12.23 월)
                 let weeklyHtml = '';
                 const days = ['일','월','화','수','목','금','토'];
+                
                 for(let i=0; i<5; i++) {
                     const d = new Date(data2.daily.time[i]);
                     const icon = getWeatherIcon(data2.daily.weathercode[i]);
-                    weeklyHtml += `<div style="flex:1;"><div style="font-size:11px; color:#888; margin-bottom:5px;">${days[d.getDay()]}</div><div style="font-size:16px; margin-bottom:5px;"><i class="fas ${icon}"></i></div><div style="font-size:11px; color:#666;">${Math.round(data2.daily.temperature_2m_min[i])}°/${Math.round(data2.daily.temperature_2m_max[i])}°</div></div>`;
+                    
+                    // 날짜 포맷팅 (월.일)
+                    const dateStr = `${d.getMonth() + 1}.${d.getDate()}`;
+                    const dayStr = days[d.getDay()];
+
+                    weeklyHtml += `
+                        <div style="flex:1;">
+                            <div style="font-size:11px; color:#888; margin-bottom:5px;">
+                                ${dateStr} <span style="color:#aaa;">(${dayStr})</span>
+                            </div>
+                            <div style="font-size:16px; margin-bottom:5px;">
+                                <i class="fas ${icon}"></i>
+                            </div>
+                            <div style="font-size:11px; color:#666;">
+                                ${Math.round(data2.daily.temperature_2m_min[i])}° / ${Math.round(data2.daily.temperature_2m_max[i])}°
+                            </div>
+                        </div>
+                    `;
                 }
                 document.getElementById('weekly-forecast-container').innerHTML = weeklyHtml;
 
-            } catch (e) { console.log("Weather Error"); }
+            } catch (e) { console.log("Weather Error", e); }
         }
-
         // 실행
         const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
         document.getElementById('current-date').innerText = new Date().toLocaleDateString('ko-KR', options);
