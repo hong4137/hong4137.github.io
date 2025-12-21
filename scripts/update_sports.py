@@ -12,7 +12,7 @@ import time
 KST = pytz.timezone('Asia/Seoul')
 UTC = pytz.timezone('UTC')
 
-# [핵심] 데이터 초기값 (파일이 없어서 웹이 깨지는 것을 방지)
+# 데이터 그릇
 dashboard_data = {
     "updated": datetime.now(KST).strftime("%m/%d %H:%M"),
     "nba": {"status": "Loading...", "record": "-", "rank": "-", "last": {}, "schedule": []},
@@ -21,6 +21,9 @@ dashboard_data = {
     "f1": {"status": "Loading...", "name": "-", "date": "-"}
 }
 
+# ---------------------------------------------------------
+# 1. Tennis (Gemini 2.0 Flash)
+# ---------------------------------------------------------
 def get_tennis_gemini(client):
     print("🎾 Tennis 데이터 수집 (Gemini 2.0 Flash)...")
     try:
@@ -31,31 +34,47 @@ def get_tennis_gemini(client):
         Output JSON: {{ "status": "Scheduled/Off", "info": "Tournament", "detail": "vs Opponent", "time": "Time" }}
         """
         response = client.models.generate_content(
-            model="gemini-2.0-flash",  # [확정] 사용자 목록에 있는 모델
+            model="gemini-2.0-flash", 
             contents=prompt,
             config=types.GenerateContentConfig(
                 tools=[types.Tool(google_search_retrieval=types.GoogleSearchRetrieval())],
                 response_mime_type="application/json"
             )
         )
-        data = json.loads(response.text)
-        dashboard_data['tennis'] = data
+        dashboard_data['tennis'] = json.loads(response.text)
         print("✅ Tennis 완료")
     except Exception as e:
         print(f"❌ Tennis 실패: {e}")
 
+# ---------------------------------------------------------
+# 2. EPL (Gemini 2.0 Flash + 6-Tier Logic Restore)
+# ---------------------------------------------------------
 def get_epl_data(client):
-    print("⚽ EPL 데이터 수집 (Gemini 2.0 Flash)...")
+    print("⚽ EPL 데이터 수집 (6-Tier Logic 복구)...")
     try:
         today_str = datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
         
+        # [핵심] 6단계 로직 부활
         prompt = f"""
         Current Time: {today_str}
-        Task: Google Search for English Premier League (EPL) fixtures results for the CURRENT round (Round 17).
         
-        Goal: Pick 3 major matches (Big 6 or Top 4).
+        [PHASE 1: RESEARCH]
+        Use Google Search to find:
+        1. The CURRENT English Premier League (EPL) Table (Identify Top 4 teams).
+        2. The full fixtures list for the CURRENT matchweek (Round 17).
+
+        [PHASE 2: SELECTION LOGIC]
+        Select exactly 3 matches based on this strict priority (Tier 1 is highest):
         
-        Output JSON List (3 items):
+        - Tier 1 (The Titans): Big 6 vs Big 6 (Man City, Arsenal, Liverpool, Chelsea, Man Utd, Spurs).
+        - Tier 2 (Title Race): Top 4 vs Top 4 (Based on current standings).
+        - Tier 3 (The Challenge): Top 4 vs Big 6.
+        - Tier 4 (Super Sunday): Match scheduled for Sunday 16:30 UK time (Sky Sports Main Event).
+        - Tier 5 (Early Kick-off): Match scheduled for Saturday 12:30 UK time (TNT Sports).
+        - Tier 6 (League Leaders): If slots are empty, pick matches involving 1st, then 2nd, then 3rd place.
+
+        [PHASE 3: OUTPUT]
+        Return a JSON List of 3 matches:
         [
             {{
                 "home": "HomeTeam", "away": "AwayTeam",
@@ -69,7 +88,7 @@ def get_epl_data(client):
         """
         
         response = client.models.generate_content(
-            model="gemini-2.0-flash", # [확정] 사용자 목록에 있는 모델
+            model="gemini-2.0-flash", # [확정] 검증된 모델
             contents=prompt,
             config=types.GenerateContentConfig(
                 tools=[types.Tool(google_search_retrieval=types.GoogleSearchRetrieval())],
@@ -78,18 +97,21 @@ def get_epl_data(client):
         )
         
         data = json.loads(response.text)
-        if isinstance(data, list):
+        if isinstance(data, list) and len(data) > 0:
             data.sort(key=lambda x: 1 if x.get('status') == 'Finished' else 0)
             dashboard_data['epl'] = data
-            print(f"✅ EPL 완료: {len(data)}개")
+            print(f"✅ EPL 완료: {len(data)}개 (6단계 로직 적용됨)")
         else:
-            print("⚠️ EPL 데이터 형식 오류 (빈 리스트 할당)")
+            print("⚠️ EPL 데이터 없음")
             dashboard_data['epl'] = []
             
     except Exception as e:
         print(f"❌ EPL 실패: {e}")
         dashboard_data['epl'] = []
 
+# ---------------------------------------------------------
+# 3. NBA & F1 (APIs)
+# ---------------------------------------------------------
 def get_nba_gsw_espn():
     print("🏀 NBA 데이터 수집...")
     try:
@@ -179,7 +201,6 @@ if __name__ == "__main__":
         traceback.print_exc()
         
     finally:
-        # [절대규칙] 에러가 나든 말든 파일은 무조건 저장해서 웹이 멈추는걸 막는다.
         with open('sports.json', 'w', encoding='utf-8') as f:
             json.dump(dashboard_data, f, ensure_ascii=False, indent=4)
             print("💾 sports.json 저장 완료 (Final)")
