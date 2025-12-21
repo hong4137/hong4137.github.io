@@ -6,13 +6,13 @@ import os
 from datetime import datetime
 import pytz
 import traceback
-import time  # 쿨타임을 위해 필수
+import time
 
 # 타임존 설정
 KST = pytz.timezone('Asia/Seoul')
 UTC = pytz.timezone('UTC')
 
-# 데이터 그릇 (초기화)
+# 데이터 그릇
 dashboard_data = {
     "updated": datetime.now(KST).strftime("%m/%d %H:%M"),
     "nba": {"status": "Loading...", "record": "-", "rank": "-", "last": {}, "schedule": []},
@@ -22,23 +22,23 @@ dashboard_data = {
 }
 
 # ---------------------------------------------------------
-# 1. Tennis (Gemini 1.5 Pro + Search)
+# 1. Tennis (Gemini 1.5 Flash + Search)
 # ---------------------------------------------------------
 def get_tennis_gemini(client):
-    print("🎾 Tennis 데이터 수집 (Gemini 1.5 Pro)...")
+    print("🎾 Tennis 데이터 수집 (Gemini 1.5 Flash)...")
     try:
         today_str = datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
         prompt = f"""
         Current Time: {today_str}
-        Task: Search for 'Carlos Alcaraz' next match schedule.
-        Output: JSON only {{ "status": "Scheduled/Off", "info": "Tournament Name", "detail": "vs Opponent", "time": "Time" }}
+        Task: Search for 'Carlos Alcaraz' next match schedule or latest news using Google Search.
+        Output: JSON object only {{ "status": "Scheduled/Off", "info": "Tournament Name", "detail": "vs Opponent", "time": "Time" }}
         """
         response = client.models.generate_content(
-            model="gemini-1.5-pro",  # [핵심] 똑똑한 Pro 모델 사용
+            model="gemini-1.5-flash",  # [변경] 가장 안정적인 모델
             contents=prompt,
             config=types.GenerateContentConfig(
-                tools=[types.Tool(google_search_retrieval=types.GoogleSearchRetrieval())],
-                response_mime_type="application/json"
+                tools=[types.Tool(google_search_retrieval=types.GoogleSearchRetrieval())], # [핵심] 검색 도구 장착
+                response_mime_type="application/json" # [핵심] JSON 강제 (루프 방지)
             )
         )
         dashboard_data['tennis'] = json.loads(response.text)
@@ -47,25 +47,25 @@ def get_tennis_gemini(client):
         print(f"❌ Tennis 실패: {e}")
 
 # ---------------------------------------------------------
-# 2. EPL (Gemini 1.5 Pro + Search)
+# 2. EPL (Gemini 1.5 Flash + Search)
 # ---------------------------------------------------------
 def get_epl_data(client):
-    print("⚽ EPL 데이터 수집 (Gemini 1.5 Pro)...")
+    print("⚽ EPL 데이터 수집 (Gemini 1.5 Flash)...")
     try:
         today_str = datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
         
-        # Pro 모델은 복잡한 지시도 잘 알아듣습니다.
+        # 1.5 Flash가 이해하기 쉽게 명확하고 단순한 지시
         prompt = f"""
         Current Time: {today_str}
         
-        Task: Search for EPL fixtures/results for the CURRENT matchweek (Round 17).
+        Task: Use Google Search to find EPL fixtures/results for the CURRENT matchweek (Round 17).
         
-        Selection Priorities (Pick 3 matches):
-        1. Big 6 Clash (Man City, Arsenal, Liverpool, Chelsea, Man Utd, Spurs).
-        2. Top 4 Clash.
-        3. If not enough, any match involving Top 4 teams.
+        Goal: Select 3 matches.
+        Priority: 
+        1. Big 6 teams (Man City, Arsenal, Liverpool, Chelsea, Man Utd, Spurs).
+        2. If not enough Big 6 matches, pick Top 4 teams matches.
         
-        Output: JSON List of 3 items.
+        Output: JSON List of 3 items strictly.
         [
             {{
                 "home": "HomeTeam", "away": "AwayTeam",
@@ -79,11 +79,11 @@ def get_epl_data(client):
         """
         
         response = client.models.generate_content(
-            model="gemini-1.5-pro", # [핵심] 똑똑한 Pro 모델 사용
+            model="gemini-1.5-flash", # [변경] 가장 안정적인 모델
             contents=prompt,
             config=types.GenerateContentConfig(
-                tools=[types.Tool(google_search_retrieval=types.GoogleSearchRetrieval())],
-                response_mime_type="application/json"
+                tools=[types.Tool(google_search_retrieval=types.GoogleSearchRetrieval())], # [핵심] 검색 도구 장착
+                response_mime_type="application/json" # [핵심] JSON 강제 (루프 방지)
             )
         )
         
@@ -93,7 +93,7 @@ def get_epl_data(client):
             dashboard_data['epl'] = data
             print(f"✅ EPL 완료: {len(data)}개")
         else:
-            print("⚠️ EPL 데이터 형식 오류")
+            print("⚠️ EPL 데이터 없음 (빈 리스트)")
             
     except Exception as e:
         print(f"❌ EPL 실패: {e}")
@@ -183,16 +183,8 @@ if __name__ == "__main__":
         if api_key:
             client = genai.Client(api_key=api_key)
             
-            # 1. 테니스 (Gemini Pro)
             get_tennis_gemini(client)
-            
-            # [중요] Gemini 1.5 Pro 무료 티어는 1분에 2회 요청 제한이 있습니다.
-            # 테니스 직후 EPL을 바로 부르면 429 에러가 뜹니다.
-            # 안전하게 35초 대기합니다.
-            print("⏳ API 쿨타임 준수 (35초 대기 중)...")
-            time.sleep(35)
-            
-            # 2. EPL (Gemini Pro)
+            # 1.5-flash는 쿨타임이 필요 없습니다. 바로 실행 가능.
             get_epl_data(client)
         else:
             print("⚠️ API Key 없음. AI 기능 건너뜀.")
@@ -205,7 +197,6 @@ if __name__ == "__main__":
         traceback.print_exc()
         
     finally:
-        # 죽어도 파일은 남긴다
         with open('sports.json', 'w', encoding='utf-8') as f:
             json.dump(dashboard_data, f, ensure_ascii=False, indent=4)
             print("💾 sports.json 저장 완료 (Final Save)")
