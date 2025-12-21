@@ -1,9 +1,9 @@
 {
-    "updated": "12/21 18:11",
+    "updated": "12/21 18:33",
     "nba": {
         "status": "Active",
         "record": "14-15",
-        "rank": "#3rd",
+        "rank": "#3rd Pacific",
         "last": {
             "date": "12.21(Sun)",
             "time": "10:30",
@@ -35,7 +35,8 @@
     },
     "tennis": {
         "status": "Off",
-        "info": "Data Loading...",
-        "detail": "-"
+        "info": "Next: Australian Open",
+        "detail": "Starts January 19, 2026",
+        "time": "-"
     }
 }
