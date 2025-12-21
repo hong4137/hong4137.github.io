@@ -1,5 +1,5 @@
 {
-    "updated": "12/21 19:19",
+    "updated": "12/21 20:15",
     "nba": {
         "status": "Active",
         "record": "14-15",
@@ -35,8 +35,8 @@
     },
     "tennis": {
         "status": "Off",
-        "info": "Next: United Cup",
-        "detail": "Starts 12.29",
+        "info": "Next: United Cup 2026",
+        "detail": "Starts December 29, 2025",
         "time": "-"
     }
 }
