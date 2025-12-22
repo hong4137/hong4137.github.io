@@ -1,5 +1,5 @@
 {
-    "updated": "12/22 15:33",
+    "updated": "12/22 16:23",
     "nba": {
         "status": "Active",
         "record": "14-15",
@@ -30,9 +30,8 @@
     "epl": [],
     "tennis": {
         "status": "Off",
-        "info": "End of 2025 Season (Off-Season)",
-        "detail": "Latest News: Carlos Alcaraz split with coach Juan Carlos Ferrero on December 17, 2025. His 2026 season is expected to begin with an exhibition match against Jannik Sinner in South Korea, followed by the Australian Open.",
-        "time": "Next Tournament: Australian Open 2026 (January)"
+        "info": "Data Loading...",
+        "detail": "-"
     },
     "f1": {
         "status": "Next GP",
