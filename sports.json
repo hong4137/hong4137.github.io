@@ -1,5 +1,5 @@
 {
-    "updated": "12/22 22:33",
+    "updated": "12/22 23:20",
     "nba": {
         "status": "Active",
         "record": "14-15",
@@ -29,7 +29,7 @@
     },
     "epl": [
         {
-            "home": "Tottenham Hotspur",
+            "home": "Tottenham",
             "away": "Liverpool",
             "status": "Finished",
             "score": "1-2",
@@ -39,7 +39,7 @@
         },
         {
             "home": "Aston Villa",
-            "away": "Manchester United",
+            "away": "Manchester Utd",
             "status": "Finished",
             "score": "2-1",
             "kst_time": "12.22 (Mon) 01:30",
@@ -47,20 +47,20 @@
             "channel": "Sky Sports"
         },
         {
-            "home": "Newcastle United",
-            "away": "Chelsea",
+            "home": "Everton",
+            "away": "Arsenal",
             "status": "Finished",
-            "score": "2-2",
+            "score": "0-1",
             "kst_time": "12.20 (Sat) 21:30",
             "local_time": "Sat 12:30",
             "channel": "TNT Sports"
         }
     ],
     "tennis": {
-        "status": "Off",
-        "info": "Off-season",
-        "detail": "2025 season concluded (Last match was a loss to Jannik Sinner in Turin). Expected return for the Australian Open 2026 (starts January 12).",
-        "time": "N/A"
+        "status": "Scheduled",
+        "info": "Hyundai Card Super Match (Exhibition)",
+        "detail": "vs Jannik Sinner",
+        "time": "January 10, 2026"
     },
     "f1": {
         "status": "Next GP",
