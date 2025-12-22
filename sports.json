@@ -1,5 +1,5 @@
 {
-    "updated": "12/22 20:17",
+    "updated": "12/22 21:40",
     "nba": {
         "status": "Active",
         "record": "14-15",
@@ -29,7 +29,7 @@
     },
     "epl": [
         {
-            "home": "Tottenham",
+            "home": "Tottenham Hotspur",
             "away": "Liverpool",
             "status": "Finished",
             "score": "1-2",
@@ -39,7 +39,7 @@
         },
         {
             "home": "Aston Villa",
-            "away": "Man Utd",
+            "away": "Manchester United",
             "status": "Finished",
             "score": "2-1",
             "kst_time": "12.22 (Mon) 01:30",
@@ -47,20 +47,20 @@
             "channel": "Sky Sports"
         },
         {
-            "home": "Newcastle",
+            "home": "Newcastle United",
             "away": "Chelsea",
             "status": "Finished",
             "score": "2-2",
-            "kst_time": "12.20 (Sat) 21:30",
+            "kst_time": "12.21 (Sat) 21:30",
             "local_time": "Sat 12:30",
             "channel": "TNT Sports"
         }
     ],
     "tennis": {
         "status": "Off",
-        "info": "Off-Season (Pre-Season Training)",
-        "detail": "Expected to start the 2026 season at the Australian Open Main Draw (Opponent TBD)",
-        "time": "January 18, 2026, 11:00 AM AEDT"
+        "info": "Off-Season / Preparing for 2026 Season",
+        "detail": "Next likely tournament: Australian Open 2026",
+        "time": "Starts January 12, 2026"
     },
     "f1": {
         "status": "Next GP",
