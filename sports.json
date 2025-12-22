@@ -1,5 +1,5 @@
 {
-    "updated": "12/22 10:43",
+    "updated": "12/22 12:41",
     "nba": {
         "status": "Active",
         "record": "14-15",
@@ -29,10 +29,10 @@
     },
     "epl": [],
     "tennis": {
-        "status": "Off",
-        "info": "Pre-Season Break (Next major tournament: Australian Open 2026)",
-        "detail": "The 2025 season has concluded, and Carlos Alcaraz is preparing for the next season. Latest news includes his split with long-time coach Juan Carlos Ferrero in December 2025.",
-        "time": "Mid-January 2026 (Australian Open start)"
+        "status": "Scheduled",
+        "info": "Hyundai Card Super Match (Exhibition)",
+        "detail": "vs Jannik Sinner",
+        "time": "January 10, 2026"
     },
     "f1": {
         "status": "Next GP",
