@@ -1,5 +1,5 @@
 {
-    "updated": "12/22 18:27",
+    "updated": "12/22 19:21",
     "nba": {
         "status": "Active",
         "record": "14-15",
@@ -29,21 +29,21 @@
     },
     "epl": [
         {
-            "home": "Tottenham",
+            "home": "Everton",
+            "away": "Arsenal",
+            "status": "Scheduled",
+            "score": "-",
+            "kst_time": "12.21 (Sun) 05:00",
+            "local_time": "Sat 20:00",
+            "channel": "TNT Sports"
+        },
+        {
+            "home": "Tottenham Hotspur",
             "away": "Liverpool",
             "status": "Finished",
             "score": "1-2",
             "kst_time": "12.21 (Sun) 02:30",
             "local_time": "Sat 17:30",
-            "channel": "Sky Sports"
-        },
-        {
-            "home": "Aston Villa",
-            "away": "Manchester Utd",
-            "status": "Finished",
-            "score": "2-1",
-            "kst_time": "12.22 (Mon) 01:30",
-            "local_time": "Sun 16:30",
             "channel": "Sky Sports"
         },
         {
