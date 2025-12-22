@@ -1,5 +1,5 @@
 {
-    "updated": "12/22 21:40",
+    "updated": "12/22 22:33",
     "nba": {
         "status": "Active",
         "record": "14-15",
@@ -51,16 +51,16 @@
             "away": "Chelsea",
             "status": "Finished",
             "score": "2-2",
-            "kst_time": "12.21 (Sat) 21:30",
+            "kst_time": "12.20 (Sat) 21:30",
             "local_time": "Sat 12:30",
             "channel": "TNT Sports"
         }
     ],
     "tennis": {
         "status": "Off",
-        "info": "Off-Season / Preparing for 2026 Season",
-        "detail": "Next likely tournament: Australian Open 2026",
-        "time": "Starts January 12, 2026"
+        "info": "Off-season",
+        "detail": "2025 season concluded (Last match was a loss to Jannik Sinner in Turin). Expected return for the Australian Open 2026 (starts January 12).",
+        "time": "N/A"
     },
     "f1": {
         "status": "Next GP",
