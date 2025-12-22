@@ -354,7 +354,8 @@
 
         async function loadBriefingMenu() {
             const menuContainer = document.getElementById('briefing-menu');
-            const DATA_URL = 'https://hong4137.github.io/briefing/list.json'; 
+            // 뒤에 현재 시간을 붙여서 매번 새 파일을 읽어오게 함
+            const DATA_URL = 'https://hong4137.github.io/briefing/list.json?v=' + new Date().getTime(); 
 
             try {
                 const response = await fetch(DATA_URL);
