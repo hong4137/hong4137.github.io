@@ -1,5 +1,5 @@
 {
-    "updated": "12/23 05:22",
+    "updated": "12/23 06:17",
     "nba": {
         "status": "Active",
         "record": "14-15",
@@ -30,8 +30,9 @@
     "epl": [],
     "tennis": {
         "status": "Off",
-        "info": "Data Loading...",
-        "detail": "-"
+        "info": "Off-season/Pre-season Training",
+        "detail": "Training for the 2026 Australian Open (Starts in January)",
+        "time": "TBD"
     },
     "f1": {
         "status": "Next GP",
