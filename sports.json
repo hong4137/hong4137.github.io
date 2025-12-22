@@ -1,5 +1,5 @@
 {
-    "updated": "12/23 03:29",
+    "updated": "12/23 04:16",
     "nba": {
         "status": "Active",
         "record": "14-15",
@@ -30,9 +30,9 @@
     "epl": [],
     "tennis": {
         "status": "Scheduled",
-        "info": "Australian Open 2026 - First Round",
-        "detail": "vs TBD (Draw not yet made)",
-        "time": "Sunday, January 18, 2026, 11:00 AM AEDT"
+        "info": "Exhibition Match (Seoul)",
+        "detail": "vs Jannik Sinner",
+        "time": "January 10, 2026"
     },
     "f1": {
         "status": "Next GP",
