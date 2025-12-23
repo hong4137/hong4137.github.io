@@ -1,37 +1,38 @@
 {
-    "updated": "12/23 14:23",
+    "updated": "12/23 15:32",
     "nba": {
         "status": "Active",
-        "record": "14-15",
+        "record": "15-15",
         "rank": "#3rd Pacific",
         "last": {
-            "date": "12.21(Sun)",
-            "time": "10:30",
-            "opp": "PHX",
+            "date": "12.23(Tue)",
+            "time": "12:00",
+            "opp": "ORL",
             "is_home": true,
             "result": "W",
-            "score": "119-116"
+            "score": "120-97"
         },
         "schedule": [
-            {
-                "date": "12.23(Tue)",
-                "time": "12:00",
-                "opp": "ORL",
-                "is_home": true
-            },
             {
                 "date": "12.26(Fri)",
                 "time": "07:00",
                 "opp": "DAL",
                 "is_home": true
+            },
+            {
+                "date": "12.29(Mon)",
+                "time": "05:30",
+                "opp": "TOR",
+                "is_home": false
             }
         ]
     },
     "epl": [],
     "tennis": {
         "status": "Off",
-        "info": "Data Loading...",
-        "detail": "-"
+        "info": "Off-Season. Training for 2026 Australian Open.",
+        "detail": "N/A",
+        "time": "N/A"
     },
     "f1": {
         "status": "Next GP",
