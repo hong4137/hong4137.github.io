@@ -1,5 +1,5 @@
 {
-    "updated": "12/23 12:25",
+    "updated": "12/23 13:36",
     "nba": {
         "status": "Active",
         "record": "14-15",
@@ -30,7 +30,7 @@
     "epl": [],
     "tennis": {
         "status": "Scheduled",
-        "info": "Exhibition Match (Hyundai Card Super Match)",
+        "info": "Hyundai Card Super Match (Exhibition)",
         "detail": "vs Jannik Sinner",
         "time": "January 10, 2026"
     },
