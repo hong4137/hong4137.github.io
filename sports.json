@@ -1,5 +1,5 @@
 {
-    "updated": "12/23 17:28",
+    "updated": "12/23 18:24",
     "nba": {
         "status": "Active",
         "record": "15-15",
@@ -29,7 +29,7 @@
     },
     "epl": [
         {
-            "home": "Spurs",
+            "home": "Tottenham",
             "away": "Liverpool",
             "status": "Finished",
             "score": "1-2",
@@ -47,20 +47,20 @@
             "channel": "Sky Sports"
         },
         {
-            "home": "Newcastle",
-            "away": "Chelsea",
+            "home": "Everton",
+            "away": "Arsenal",
             "status": "Finished",
-            "score": "2-2",
-            "kst_time": "12.20 (Sat) 21:30",
-            "local_time": "Sat 12:30",
+            "score": "0-1",
+            "kst_time": "12.21 (Sun) 05:00",
+            "local_time": "Sat 20:00",
             "channel": "TNT Sports"
         }
     ],
     "tennis": {
         "status": "Off",
-        "info": "Off-Season (Next Major: Australian Open 2026)",
-        "detail": "No immediate match scheduled",
-        "time": "Main Draw begins Jan 18, 2026"
+        "info": "Pre-Season Training/Next: Australian Open (2026)",
+        "detail": "Currently in off-season, training with Samuel López after splitting with coach Juan Carlos Ferrero.",
+        "time": "Mid-January 2026 (Expected Start)"
     },
     "f1": {
         "status": "Next GP",
