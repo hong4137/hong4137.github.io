@@ -1,5 +1,5 @@
 {
-    "updated": "12/23 15:32",
+    "updated": "12/23 16:23",
     "nba": {
         "status": "Active",
         "record": "15-15",
@@ -30,8 +30,8 @@
     "epl": [],
     "tennis": {
         "status": "Off",
-        "info": "Off-Season. Training for 2026 Australian Open.",
-        "detail": "N/A",
+        "info": "Offseason",
+        "detail": "Preparing for the start of the 2026 ATP Tour season (e.g., Australian Open)",
         "time": "N/A"
     },
     "f1": {
