@@ -1,5 +1,5 @@
 {
-    "updated": "12/24 07:18",
+    "updated": "12/24 08:18",
     "nba": {
         "status": "Active",
         "record": "15-15",
@@ -30,8 +30,9 @@
     "epl": [],
     "tennis": {
         "status": "Off",
-        "info": "Data Loading...",
-        "detail": "-"
+        "info": "Off-Season. Next official tournament: Australian Open (2026)",
+        "detail": "First match will be confirmed after the draw",
+        "time": "Main Draw starts January 18, 2026"
     },
     "f1": {
         "status": "Next GP",
