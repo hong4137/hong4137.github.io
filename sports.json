@@ -1,5 +1,5 @@
 {
-    "updated": "12/23 19:22",
+    "updated": "12/23 20:18",
     "nba": {
         "status": "Active",
         "record": "15-15",
@@ -58,7 +58,7 @@
     ],
     "tennis": {
         "status": "Scheduled",
-        "info": "Hyundai Card Super Match (Exhibition) in Incheon, South Korea",
+        "info": "Hyundai Card Super Match (Exhibition)",
         "detail": "vs Jannik Sinner",
         "time": "January 10, 2026"
     },
