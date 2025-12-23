@@ -1,5 +1,5 @@
 {
-    "updated": "12/24 01:26",
+    "updated": "12/24 02:19",
     "nba": {
         "status": "Active",
         "record": "15-15",
@@ -57,10 +57,10 @@
         }
     ],
     "tennis": {
-        "status": "Off",
-        "info": "Off-Season / Preparing for 2026 Season",
-        "detail": "Carlos Alcaraz's 2025 season is concluded. His next major tournament is the Australian Open (January 18 - February 1, 2026).",
-        "time": "N/A"
+        "status": "Scheduled",
+        "info": "Hyundai Card Super Match (Exhibition)",
+        "detail": "vs Jannik Sinner",
+        "time": "January 10, 2026"
     },
     "f1": {
         "status": "Next GP",
