@@ -1,5 +1,5 @@
 {
-    "updated": "12/23 20:18",
+    "updated": "12/23 21:41",
     "nba": {
         "status": "Active",
         "record": "15-15",
@@ -47,12 +47,12 @@
             "channel": "Sky Sports"
         },
         {
-            "home": "Newcastle United",
-            "away": "Chelsea",
+            "home": "Everton",
+            "away": "Arsenal",
             "status": "Finished",
-            "score": "2-2",
-            "kst_time": "12.20 (Sat) 21:30",
-            "local_time": "Sat 12:30",
+            "score": "0-1",
+            "kst_time": "12.21 (Sun) 05:00",
+            "local_time": "Sat 20:00",
             "channel": "TNT Sports"
         }
     ],
