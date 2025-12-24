@@ -1,5 +1,5 @@
 {
-    "updated": "12/25 00:20",
+    "updated": "12/25 01:24",
     "nba": {
         "status": "Active",
         "record": "15-15",
@@ -29,13 +29,13 @@
     },
     "epl": [
         {
-            "home": "Chelsea",
-            "away": "Aston Villa",
+            "home": "Nottingham Forest",
+            "away": "Manchester City",
             "status": "Scheduled",
             "score": "-",
-            "kst_time": "12.28 (Sun) 02:30",
-            "local_time": "Sat 17:30",
-            "channel": "Sky Sports"
+            "kst_time": "12.27 (Sat) 21:30",
+            "local_time": "Sat 12:30",
+            "channel": "-"
         },
         {
             "home": "Crystal Palace",
@@ -44,23 +44,23 @@
             "score": "-",
             "kst_time": "12.29 (Mon) 01:30",
             "local_time": "Sun 16:30",
-            "channel": "Sky Sports"
+            "channel": "-"
         },
         {
-            "home": "Nottingham Forest",
-            "away": "Manchester City",
+            "home": "Liverpool",
+            "away": "Wolverhampton Wanderers",
             "status": "Scheduled",
             "score": "-",
-            "kst_time": "12.27 (Sat) 21:30",
-            "local_time": "Sat 12:30",
-            "channel": "TNT Sports"
+            "kst_time": "12.28 (Sun) 00:00",
+            "local_time": "Sat 15:00",
+            "channel": "-"
         }
     ],
     "tennis": {
         "status": "Off",
-        "info": "Off-Season Break",
-        "detail": "Next expected tournament is the Australian Open main draw, starting January 18, 2026.",
-        "time": "N/A"
+        "info": "Off-Season / Pre-Season Training",
+        "detail": "Last reported match/exhibition was in early December 2025. Next major tournament is the Australian Open in January 2026.",
+        "time": "TBD"
     },
     "f1": {
         "status": "Next GP",
