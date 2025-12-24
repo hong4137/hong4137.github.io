@@ -1,5 +1,5 @@
 {
-    "updated": "12/24 19:21",
+    "updated": "12/24 20:18",
     "nba": {
         "status": "Active",
         "record": "15-15",
@@ -47,20 +47,20 @@
             "channel": "Sky Sports"
         },
         {
-            "home": "Newcastle",
-            "away": "Chelsea",
+            "home": "Everton",
+            "away": "Arsenal",
             "status": "Finished",
-            "score": "2-2",
-            "kst_time": "12.20 (Sat) 21:30",
-            "local_time": "Sat 12:30",
+            "score": "0-1",
+            "kst_time": "12.21 (Sun) 05:00",
+            "local_time": "Sat 20:00",
             "channel": "TNT Sports"
         }
     ],
     "tennis": {
-        "status": "Off",
-        "info": "Off-Season / Injury Recovery",
-        "detail": "2025 season concluded due to hamstring injury; expected return for the 2026 Australian Open",
-        "time": "TBD (Jan 2026)"
+        "status": "Scheduled",
+        "info": "Hyundai Card Super Match (Exhibition in South Korea)",
+        "detail": "vs Jannik Sinner",
+        "time": "January 10, 2026"
     },
     "f1": {
         "status": "Next GP",
