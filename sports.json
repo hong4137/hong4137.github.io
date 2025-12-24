@@ -1,5 +1,5 @@
 {
-    "updated": "12/24 22:30",
+    "updated": "12/24 23:19",
     "nba": {
         "status": "Active",
         "record": "15-15",
@@ -29,7 +29,7 @@
     },
     "epl": [
         {
-            "home": "Tottenham Hotspur",
+            "home": "Tottenham",
             "away": "Liverpool",
             "status": "Finished",
             "score": "1-2",
@@ -39,7 +39,7 @@
         },
         {
             "home": "Aston Villa",
-            "away": "Manchester United",
+            "away": "Man Utd",
             "status": "Finished",
             "score": "2-1",
             "kst_time": "12.22 (Mon) 01:30",
@@ -47,20 +47,20 @@
             "channel": "Sky Sports"
         },
         {
-            "home": "Everton",
-            "away": "Arsenal",
+            "home": "Newcastle",
+            "away": "Chelsea",
             "status": "Finished",
-            "score": "0-1",
-            "kst_time": "12.21 (Sun) 23:00",
-            "local_time": "Sun 14:00",
-            "channel": "Sky Sports"
+            "score": "2-2",
+            "kst_time": "12.20 (Sat) 21:30",
+            "local_time": "Sat 12:30",
+            "channel": "TNT Sports 1"
         }
     ],
     "tennis": {
-        "status": "Scheduled",
-        "info": "Hyundai Card Super Match (Exhibition)",
-        "detail": "vs Jannik Sinner",
-        "time": "January 10, 2026, 4 p.m. KST"
+        "status": "Off",
+        "info": "Off-Season (Next Official Tournament: Australian Open 2026)",
+        "detail": "Tournament Begins",
+        "time": "January 12, 2026"
     },
     "f1": {
         "status": "Next GP",
