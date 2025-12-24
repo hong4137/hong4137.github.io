@@ -1,5 +1,5 @@
 {
-    "updated": "12/24 15:32",
+    "updated": "12/24 16:22",
     "nba": {
         "status": "Active",
         "record": "15-15",
@@ -30,9 +30,8 @@
     "epl": [],
     "tennis": {
         "status": "Off",
-        "info": "Off-Season Break (Next Tournament: Australian Open 2026)",
-        "detail": "No match until tournament draw",
-        "time": "Starts January 12, 2026"
+        "info": "Data Loading...",
+        "detail": "-"
     },
     "f1": {
         "status": "Next GP",
