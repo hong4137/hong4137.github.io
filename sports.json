@@ -1,5 +1,5 @@
 {
-    "updated": "12/24 18:24",
+    "updated": "12/24 19:21",
     "nba": {
         "status": "Active",
         "record": "15-15",
@@ -29,7 +29,7 @@
     },
     "epl": [
         {
-            "home": "Tottenham",
+            "home": "Tottenham Hotspur",
             "away": "Liverpool",
             "status": "Finished",
             "score": "1-2",
@@ -39,7 +39,7 @@
         },
         {
             "home": "Aston Villa",
-            "away": "Man Utd",
+            "away": "Manchester United",
             "status": "Finished",
             "score": "2-1",
             "kst_time": "12.22 (Mon) 01:30",
@@ -57,10 +57,10 @@
         }
     ],
     "tennis": {
-        "status": "Scheduled",
-        "info": "Hyundai Card Super Match (Exhibition)",
-        "detail": "vs Jannik Sinner",
-        "time": "January 10, 2026, in Incheon, South Korea"
+        "status": "Off",
+        "info": "Off-Season / Injury Recovery",
+        "detail": "2025 season concluded due to hamstring injury; expected return for the 2026 Australian Open",
+        "time": "TBD (Jan 2026)"
     },
     "f1": {
         "status": "Next GP",
