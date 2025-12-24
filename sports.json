@@ -1,5 +1,5 @@
 {
-    "updated": "12/24 17:28",
+    "updated": "12/24 18:24",
     "nba": {
         "status": "Active",
         "record": "15-15",
@@ -29,7 +29,7 @@
     },
     "epl": [
         {
-            "home": "Tottenham Hotspur",
+            "home": "Tottenham",
             "away": "Liverpool",
             "status": "Finished",
             "score": "1-2",
@@ -39,7 +39,7 @@
         },
         {
             "home": "Aston Villa",
-            "away": "Manchester United",
+            "away": "Man Utd",
             "status": "Finished",
             "score": "2-1",
             "kst_time": "12.22 (Mon) 01:30",
@@ -53,14 +53,14 @@
             "score": "2-2",
             "kst_time": "12.20 (Sat) 21:30",
             "local_time": "Sat 12:30",
-            "channel": "TNT Sports 1"
+            "channel": "TNT Sports"
         }
     ],
     "tennis": {
         "status": "Scheduled",
         "info": "Hyundai Card Super Match (Exhibition)",
         "detail": "vs Jannik Sinner",
-        "time": "January 10, 2026"
+        "time": "January 10, 2026, in Incheon, South Korea"
     },
     "f1": {
         "status": "Next GP",
