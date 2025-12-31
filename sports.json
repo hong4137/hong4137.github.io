@@ -1,76 +1,72 @@
 {
   "epl": [
     {
-      "teams": "Burnley vs Newcastle United",
-      "time": "12.30 19:30",
-      "match": "Burnley vs Newcastle United",
-      "home": "Burnley",
-      "away": "Newcastle United"
+      "teams": "Crystal Palace vs Fulham",
+      "kst_time": "01.02 02:30 (KST)",
+      "local_time": "01.01 17:30 (Local)",
+      "status": "Scheduled",
+      "home": "Crystal Palace",
+      "away": "Fulham"
     },
     {
-      "teams": "Chelsea vs AFC Bournemouth",
-      "time": "12.30 19:30",
-      "match": "Chelsea vs AFC Bournemouth",
-      "home": "Chelsea",
-      "away": "AFC Bournemouth"
+      "teams": "Liverpool vs Leeds United",
+      "kst_time": "01.02 02:30 (KST)",
+      "local_time": "01.01 17:30 (Local)",
+      "status": "Scheduled",
+      "home": "Liverpool",
+      "away": "Leeds United"
     },
     {
-      "teams": "Nottingham Forest vs Everton",
-      "time": "12.30 19:30",
-      "match": "Nottingham Forest vs Everton",
-      "home": "Nottingham Forest",
-      "away": "Everton"
-    },
-    {
-      "teams": "West Ham United vs Brighton & Hove Albion",
-      "time": "12.30 19:30",
-      "match": "West Ham United vs Brighton & Hove Albion",
-      "home": "West Ham United",
-      "away": "Brighton & Hove Albion"
-    },
-    {
-      "teams": "Arsenal vs Aston Villa",
-      "time": "12.30 20:15",
-      "match": "Arsenal vs Aston Villa",
-      "home": "Arsenal",
-      "away": "Aston Villa"
+      "teams": "Brentford vs Tottenham Hotspur",
+      "kst_time": "01.02 05:00 (KST)",
+      "local_time": "01.01 20:00 (Local)",
+      "status": "Scheduled",
+      "home": "Brentford",
+      "away": "Tottenham Hotspur"
     }
   ],
   "nba": {
-    "team": "GS Warriors",
     "record": "17-16",
-    "ranking": "8th in NBA Western Conference",
+    "rank": "8th in West",
+    "last": {
+      "opp": "BRK",
+      "result": "W",
+      "score": "120-107"
+    },
     "schedule": [
       {
-        "teams": "vs at Charlotte Hornets",
-        "time": "12.31 10:00 (PST)",
-        "match": "vs at Charlotte Hornets"
+        "opp": "Oklahoma City Thunder",
+        "date": "01.02",
+        "time": "7:00 PM (PST)"
       },
       {
-        "teams": "vs Oklahoma City Thunder",
-        "time": "01.02 19:00 (PST)",
-        "match": "vs Oklahoma City Thunder"
+        "opp": "Utah Jazz",
+        "date": "01.03",
+        "time": "7:00 PM (PST)"
       },
       {
-        "teams": "vs Utah Jazz",
-        "time": "01.03 19:00 (PST)",
-        "match": "vs Utah Jazz"
+        "opp": "LA Clippers",
+        "date": "01.05",
+        "time": "7:00 PM (PST)"
       },
       {
-        "teams": "vs at L.A. Clippers",
-        "time": "01.05 19:00 (PST)",
-        "match": "vs at L.A. Clippers"
+        "opp": "Milwaukee Bucks",
+        "date": "01.07",
+        "time": "7:00 PM (PST)"
       }
     ]
   },
   "tennis": {
-    "player": "Carlos Alcaraz",
-    "match": "Next official event is Australian Open",
-    "time": "01.12 N/A"
+    "status": "Upcoming",
+    "info": "Australian Open",
+    "detail": "R128 (First Round)",
+    "time": "01.18 TBD"
   },
   "f1": {
-    "grand_prix": "Australian Grand Prix 2026",
-    "time": "03.08 20:00 (AEDT)",
-    "circuit": "Melbourne, Australia"
-  }
+    "status": "Season 2026",
+    "name": "Australian Grand Prix",
+    "circuit": "Albert Park Circuit",
+    "date": "03.06 - 03.08"
+  },
+  "updated": "2025-12-31 17:29:31"
 }
