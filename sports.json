@@ -2,72 +2,84 @@
   "epl_round": "R20",
   "epl": [
     {
-      "teams": "Aston Villa vs Nott'm Forest",
-      "kst_time": "01.03 21:30 (KST)",
-      "local_time": "01.03 12:30 (Local/GMT)",
+      "teams": "Crystal Palace vs Fulham",
+      "kst_time": "01.02 02:30 (KST)",
+      "local_time": "01.01 17:30 (Local)",
+      "channel": "Sky Sports",
       "status": "Scheduled",
-      "home": "Aston Villa",
-      "away": "Nott'm Forest"
+      "home": "Crystal Palace",
+      "away": "Fulham"
     },
     {
-      "teams": "Brighton vs Burnley",
-      "kst_time": "01.04 00:00 (KST)",
-      "local_time": "01.03 15:00 (Local/GMT)",
+      "teams": "Liverpool vs Leeds United",
+      "kst_time": "01.02 02:30 (KST)",
+      "local_time": "01.01 17:30 (Local)",
+      "channel": "Sky Sports",
       "status": "Scheduled",
-      "home": "Brighton",
-      "away": "Burnley"
+      "home": "Liverpool",
+      "away": "Leeds United"
     },
     {
-      "teams": "Wolves vs West Ham",
-      "kst_time": "01.04 00:00 (KST)",
-      "local_time": "01.03 15:00 (Local/GMT)",
+      "teams": "Brentford vs Tottenham Hotspur",
+      "kst_time": "01.02 05:00 (KST)",
+      "local_time": "01.01 20:00 (Local)",
+      "channel": "Sky Sports",
       "status": "Scheduled",
-      "home": "Wolves",
-      "away": "West Ham"
+      "home": "Brentford",
+      "away": "Tottenham Hotspur"
+    },
+    {
+      "teams": "Sunderland vs Manchester City",
+      "kst_time": "01.02 05:00 (KST)",
+      "local_time": "01.01 20:00 (Local)",
+      "channel": "Sky Sports",
+      "status": "Scheduled",
+      "home": "Sunderland",
+      "away": "Manchester City"
     }
   ],
   "nba": {
-    "record": "17-16",
-    "rank": "8th (Western Conference)",
+    "record": "20-12",
+    "rank": "3rd in Eastern Conference",
     "last": {
-      "opp": "BRK",
+      "opp": "UTA",
       "result": "W",
-      "score": "120-107"
+      "score": "129-119"
     },
     "schedule": [
       {
-        "opp": "Charlotte Hornets",
-        "date": "12.31",
-        "time": "10:00 (PST)"
-      },
-      {
-        "opp": "Oklahoma City Thunder",
-        "date": "01.02",
-        "time": "19:00 (PST)"
-      },
-      {
-        "opp": "Utah Jazz",
-        "date": "01.03",
-        "time": "19:00 (PST)"
+        "opp": "Sacramento Kings",
+        "date": "01.01",
+        "time": "07:00 PM (PST)"
       },
       {
         "opp": "Los Angeles Clippers",
+        "date": "01.03",
+        "time": "07:30 PM (PST)"
+      },
+      {
+        "opp": "Chicago Bulls",
         "date": "01.05",
-        "time": "19:00 (PST)"
+        "time": "04:30 PM (PST)"
+      },
+      {
+        "opp": "Denver Nuggets",
+        "date": "01.07",
+        "time": "04:00 PM (PST)"
       }
     ]
   },
   "tennis": {
-    "status": "Upcoming",
-    "info": "Australian Open (Grand Slam)",
-    "detail": "Start of Tournament",
-    "time": "01.18 10:00 (Melbourne Local Time)"
+    "status": "Exhibition",
+    "info": "Hyundai Card Super Match",
+    "detail": "Carlos Alcaraz vs Jannik Sinner",
+    "time": "01.10 TBD (KST)"
   },
   "f1": {
     "status": "Season 2026",
     "name": "Australian Grand Prix",
-    "circuit": "Albert Park Circuit, Melbourne",
+    "circuit": "Albert Park",
     "date": "03.06 - 03.08"
   },
-  "updated": "2025-12-31 17:38:38"
+  "updated": "2025-12-31 17:43:11"
 }
