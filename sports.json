@@ -1,33 +1,34 @@
 {
+  "epl_round": "R20",
   "epl": [
     {
-      "teams": "Crystal Palace vs Fulham",
-      "kst_time": "01.02 02:30 (KST)",
-      "local_time": "01.01 17:30 (Local)",
+      "teams": "Aston Villa vs Nott'm Forest",
+      "kst_time": "01.03 21:30 (KST)",
+      "local_time": "01.03 12:30 (Local/GMT)",
       "status": "Scheduled",
-      "home": "Crystal Palace",
-      "away": "Fulham"
+      "home": "Aston Villa",
+      "away": "Nott'm Forest"
     },
     {
-      "teams": "Liverpool vs Leeds United",
-      "kst_time": "01.02 02:30 (KST)",
-      "local_time": "01.01 17:30 (Local)",
+      "teams": "Brighton vs Burnley",
+      "kst_time": "01.04 00:00 (KST)",
+      "local_time": "01.03 15:00 (Local/GMT)",
       "status": "Scheduled",
-      "home": "Liverpool",
-      "away": "Leeds United"
+      "home": "Brighton",
+      "away": "Burnley"
     },
     {
-      "teams": "Brentford vs Tottenham Hotspur",
-      "kst_time": "01.02 05:00 (KST)",
-      "local_time": "01.01 20:00 (Local)",
+      "teams": "Wolves vs West Ham",
+      "kst_time": "01.04 00:00 (KST)",
+      "local_time": "01.03 15:00 (Local/GMT)",
       "status": "Scheduled",
-      "home": "Brentford",
-      "away": "Tottenham Hotspur"
+      "home": "Wolves",
+      "away": "West Ham"
     }
   ],
   "nba": {
     "record": "17-16",
-    "rank": "8th in West",
+    "rank": "8th (Western Conference)",
     "last": {
       "opp": "BRK",
       "result": "W",
@@ -35,38 +36,38 @@
     },
     "schedule": [
       {
+        "opp": "Charlotte Hornets",
+        "date": "12.31",
+        "time": "10:00 (PST)"
+      },
+      {
         "opp": "Oklahoma City Thunder",
         "date": "01.02",
-        "time": "7:00 PM (PST)"
+        "time": "19:00 (PST)"
       },
       {
         "opp": "Utah Jazz",
         "date": "01.03",
-        "time": "7:00 PM (PST)"
+        "time": "19:00 (PST)"
       },
       {
-        "opp": "LA Clippers",
+        "opp": "Los Angeles Clippers",
         "date": "01.05",
-        "time": "7:00 PM (PST)"
-      },
-      {
-        "opp": "Milwaukee Bucks",
-        "date": "01.07",
-        "time": "7:00 PM (PST)"
+        "time": "19:00 (PST)"
       }
     ]
   },
   "tennis": {
     "status": "Upcoming",
-    "info": "Australian Open",
-    "detail": "R128 (First Round)",
-    "time": "01.18 TBD"
+    "info": "Australian Open (Grand Slam)",
+    "detail": "Start of Tournament",
+    "time": "01.18 10:00 (Melbourne Local Time)"
   },
   "f1": {
     "status": "Season 2026",
     "name": "Australian Grand Prix",
-    "circuit": "Albert Park Circuit",
+    "circuit": "Albert Park Circuit, Melbourne",
     "date": "03.06 - 03.08"
   },
-  "updated": "2025-12-31 17:29:31"
+  "updated": "2025-12-31 17:38:38"
 }
