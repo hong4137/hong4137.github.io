@@ -17,21 +17,17 @@ def normalize_data(data):
 
     # [1] EPL 데이터 정리
     if 'epl' in data and isinstance(data['epl'], list):
-        # ★ 핵심: 최대 5개까지만 보여주기 (칸 늘어남 방지)
+        # 최대 5개까지만
         data['epl'] = data['epl'][:5]
 
         for item in data['epl']:
-            # 이름표 통일 (match, teams, title 등 뭐가 와도 teams로 만듦)
             main_text = item.get('match') or item.get('teams') or item.get('game') or "Unknown Match"
             item['teams'] = main_text
             item['match'] = main_text
             
-            # 시간/점수 통일
-            # 점수가 없으면 시간이라도, 시간도 없으면 "Scheduled"
             time_text = item.get('time') or item.get('score') or "Scheduled"
             item['time'] = time_text
             
-            # Home/Away가 없으면 텍스트에서 쪼개서라도 만듦 (로고 표시용)
             if 'vs' in main_text and (not item.get('home') or not item.get('away')):
                 try:
                     parts = main_text.split('vs')
@@ -43,18 +39,14 @@ def normalize_data(data):
     # [2] NBA 데이터 정리
     if 'nba' in data:
         nba = data['nba']
-        
-        # 기본 정보 채우기
         nba['ranking'] = nba.get('ranking') or nba.get('rank') or "-"
         nba['record'] = nba.get('record') or "-"
         
-        # 스케줄 정리
         if 'schedule' in nba:
-            # 리스트가 아니면 리스트로 변환
             if isinstance(nba['schedule'], str):
                 nba['schedule'] = [{"match": nba['schedule'], "time": ""}]
             
-            # ★ 핵심: 스케줄도 최대 4개까지만 (칸 늘어남 방지)
+            # 최대 4개까지만
             if isinstance(nba['schedule'], list):
                 nba['schedule'] = nba['schedule'][:4]
 
@@ -62,12 +54,9 @@ def normalize_data(data):
                     if isinstance(item, str):
                         item = {"match": item, "time": ""}
                     
-                    # 'undefined' 원인 제거: match와 teams 양쪽에 다 값을 넣음
                     match_name = item.get('match') or item.get('teams') or "vs Upcoming"
                     item['match'] = match_name
                     item['teams'] = match_name
-                    
-                    # 시간이 없으면 날짜라도, 없으면 TBD
                     item['time'] = item.get('time') or item.get('date') or "TBD"
 
     # [3] 테니스/F1 정리
@@ -93,20 +82,20 @@ def update_sports_data():
     print(f"🚀 [Start] Gemini API({MODEL_NAME})를 호출합니다...")
 
     today = datetime.date.today()
-    # 검색 범위: 어제 ~ 6일 뒤 (너무 길게 잡지 않음)
     start_date = today - datetime.timedelta(days=1)
     end_date = today + datetime.timedelta(days=6)
     date_range_str = f"from {start_date} to {end_date}"
     
     print(f"📅 검색 기간: {date_range_str}")
 
+    # [수정됨] 중괄호를 {{ }} 두 번 써서 파이썬 에러를 막았습니다.
     prompt = f"""
     You are a sports data assistant. Retrieve match schedules: {date_range_str}.
     Current Date: {today}
 
     Structure Requirements:
     1. **EPL**: List of matches. Key 'teams' ("Home vs Away"), Key 'time' ("Score" or "MM.DD HH:MM").
-    2. **NBA**: 'team': "GS Warriors", 'record': "Win-Loss", 'ranking': "Conf Rank", 'schedule': List of objects [{'teams': 'vs LAL', 'time': '12.30 09:00'}].
+    2. **NBA**: 'team': "GS Warriors", 'record': "Win-Loss", 'ranking': "Conf Rank", 'schedule': List of objects [{{'teams': 'vs LAL', 'time': '12.30 09:00'}}].
     3. **Tennis**: 'player': "Carlos Alcaraz", 'match': "vs Opponent", 'time': "MM.DD HH:MM".
     4. **F1**: 'grand_prix': "Race Name", 'time': "MM.DD HH:MM", 'circuit': "Place".
 
@@ -135,15 +124,13 @@ def update_sports_data():
     
     try:
         data = json.loads(raw_text)
-        
-        # 데이터 다듬기 (개수 자르기 + 빈칸 채우기)
         data = normalize_data(data)
         
         with open(SPORTS_FILE, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
             
         print(f"✅ [Success] {SPORTS_FILE} 업데이트 완료!")
-        print("EPL(5개 제한):", len(data.get('epl', [])))
+        print("EPL Count:", len(data.get('epl', [])))
 
     except json.JSONDecodeError as e:
         print("❌ JSON 파싱 실패!")
