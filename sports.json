@@ -1,60 +1,60 @@
 {
   "epl": [
     {
-      "match": "Arsenal vs Brighton",
-      "time": "3-1",
-      "teams": "Arsenal vs Brighton"
+      "match": "Man City vs Everton",
+      "time": "3-0",
+      "teams": "Man City vs Everton"
+    },
+    {
+      "match": "Arsenal vs West Ham",
+      "time": "1-1",
+      "teams": "Arsenal vs West Ham"
+    },
+    {
+      "match": "Spurs vs Brighton",
+      "time": "01.01 15:00",
+      "teams": "Spurs vs Brighton"
     },
     {
       "match": "Chelsea vs Fulham",
-      "time": "1-1",
+      "time": "03.01 12:30",
       "teams": "Chelsea vs Fulham"
     },
     {
-      "match": "Man City vs West Ham",
-      "time": "01.01 15:00",
-      "teams": "Man City vs West Ham"
-    },
-    {
-      "match": "Liverpool vs Man Utd",
-      "time": "01.02 20:00",
-      "teams": "Liverpool vs Man Utd"
-    },
-    {
-      "match": "Tottenham vs Bournemouth",
-      "time": "01.04 14:00",
-      "teams": "Tottenham vs Bournemouth"
+      "match": "Liverpool vs Brentford",
+      "time": "05.01 20:00",
+      "teams": "Liverpool vs Brentford"
     }
   ],
   "nba": {
-    "team": "Boston Celtics",
-    "record": "27-8",
-    "ranking": "#1 Atlantic",
-    "recent": "vs OKC W (118-105)",
+    "team": "Milwaukee Bucks",
+    "record": "23-9",
+    "ranking": "#1 Central",
+    "recent": "vs CHI W (130-112)",
     "schedule": [
       {
+        "match": "vs MIN",
+        "time": "01.01 02:00",
+        "teams": "vs MIN"
+      },
+      {
         "match": "vs PHI",
-        "time": "01.01 19:30",
+        "time": "01.03 00:30",
         "teams": "vs PHI"
       },
       {
-        "match": "vs CLE",
-        "time": "01.03 20:00",
-        "teams": "vs CLE"
-      },
-      {
-        "match": "vs IND",
+        "match": "vs NYK",
         "time": "01.05 18:00",
-        "teams": "vs IND"
+        "teams": "vs NYK"
       }
     ],
-    "rank": "#1 Atlantic"
+    "rank": "#1 Central"
   },
   "tennis": {
-    "player": "Novak Djokovic",
-    "status": "Brisbane International (QF)",
-    "match": "vs Holger Rune",
-    "time": "01.04 10:00"
+    "player": "Aryna Sabalenka",
+    "status": "United Cup / Australian Tour Prep",
+    "match": "United Cup: vs Italy",
+    "time": "01.02 09:00"
   },
   "f1": {
     "grand_prix": "Bahrain GP",
