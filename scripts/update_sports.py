@@ -10,49 +10,44 @@ MODEL_NAME = 'gemini-flash-latest'
 
 def extract_json_content(text):
     """
-    AI 응답에서 순수한 JSON 부분만 정밀하게 추출하는 함수
-    (앞뒤에 붙은 마크다운, 공백, 사족 텍스트를 모두 제거)
+    [복원된 기능 1] AI 응답에서 순수 JSON 데이터만 추출
     """
+    text = text.strip()
+    # 마크다운 문법 제거
+    text = re.sub(r'```(?:json)?', '', text).replace('```', '').strip()
+    
     try:
-        # 1. 가장 먼저 나오는 '{' 찾기
         start_idx = text.find('{')
-        # 2. 가장 마지막에 나오는 '}' 찾기
         end_idx = text.rfind('}')
-
         if start_idx != -1 and end_idx != -1 and start_idx < end_idx:
-            # 순수 JSON 영역만 슬라이싱
-            json_str = text[start_idx : end_idx + 1]
-            return json.loads(json_str)
-        else:
-            # 괄호를 못 찾으면 그냥 파싱 시도 (운 좋으면 될 수도)
-            return json.loads(text)
+            text = text[start_idx : end_idx + 1]
+        return json.loads(text)
     except json.JSONDecodeError:
-        # 1차 실패 시, 마크다운 문법 제거 후 재시도
-        clean_text = re.sub(r'```(?:json)?', '', text).replace('```', '').strip()
-        start_idx = clean_text.find('{')
-        end_idx = clean_text.rfind('}')
-        if start_idx != -1 and end_idx != -1:
-            return json.loads(clean_text[start_idx : end_idx + 1])
-        raise
+        return json.loads(text)
 
 def normalize_data(data):
     """
-    데이터 개수 제한 및 'undefined' 방지용 기본값 채우기
+    [복원된 기능 2] 데이터 정규화 (undefined 방지)
+    - AI가 준 키 값을 대시보드가 원하는 키 값으로 강제 복사
     """
-    print("🔧 [Processing] 데이터 규격화 및 빈칸 채우기...")
+    print("🔧 [Processing] 데이터 규격화(Normalization) 수행 중...")
 
-    # [1] EPL 데이터 정리
+    # 1. EPL 데이터 보정
     if 'epl' in data and isinstance(data['epl'], list):
-        data['epl'] = data['epl'][:5] # 최대 5개
+        data['epl'] = data['epl'][:5] # 5개 제한
 
         for item in data['epl']:
-            main_text = item.get('match') or item.get('teams') or item.get('game') or "Unknown Match"
+            # 호환성 확보: match, teams, game 중 하나만 있어도 OK
+            main_text = item.get('match') or item.get('teams') or item.get('game') or "Match Info"
+            
+            # 대시보드가 뭘 찾을지 모르니 다 넣어줌 (양다리 전략)
             item['teams'] = main_text
             item['match'] = main_text
             
-            time_text = item.get('time') or item.get('score') or "Scheduled"
-            item['time'] = time_text
+            # 시간 정보 확보
+            item['time'] = item.get('time') or item.get('score') or ""
             
+            # 로고 매핑을 위한 home/away 분리
             if 'vs' in main_text and (not item.get('home') or not item.get('away')):
                 try:
                     parts = main_text.split('vs')
@@ -61,40 +56,41 @@ def normalize_data(data):
                 except:
                     pass
 
-    # [2] NBA 데이터 정리
-    if 'nba' in data:
-        nba = data['nba']
-        nba['ranking'] = nba.get('ranking') or nba.get('rank') or "-"
-        nba['record'] = nba.get('record') or "-"
+    # 2. NBA 데이터 보정
+    if 'nba' not in data:
+        data['nba'] = {}
+    
+    nba = data['nba']
+    nba['ranking'] = nba.get('ranking') or nba.get('rank') or ""
+    nba['record'] = nba.get('record') or ""
+    
+    # 스케줄 리스트 보정
+    if 'schedule' in nba:
+        if isinstance(nba['schedule'], str):
+            nba['schedule'] = [{"match": nba['schedule'], "time": ""}]
         
-        if 'schedule' in nba:
-            if isinstance(nba['schedule'], str):
-                nba['schedule'] = [{"match": nba['schedule'], "time": ""}]
-            
-            if isinstance(nba['schedule'], list):
-                nba['schedule'] = nba['schedule'][:4] # 최대 4개
+        if isinstance(nba['schedule'], list):
+            nba['schedule'] = nba['schedule'][:4] # 4개 제한
 
-                for item in nba['schedule']:
-                    if isinstance(item, str):
-                        item = {"match": item, "time": ""}
-                    
-                    match_name = item.get('match') or item.get('teams') or "vs Upcoming"
-                    item['match'] = match_name
-                    item['teams'] = match_name
-                    item['time'] = item.get('time') or item.get('date') or "TBD"
+            for item in nba['schedule']:
+                if isinstance(item, str): 
+                    item = {"match": item, "time": ""}
+                
+                m_text = item.get('match') or item.get('teams') or "vs Opponent"
+                item['match'] = m_text
+                item['teams'] = m_text
+                item['time'] = item.get('time') or ""
 
-    # [3] 테니스/F1 정리
+    # 3. 테니스/F1 보정
     if 'tennis' in data:
         t = data['tennis']
-        t['match'] = t.get('match') or t.get('tournament') or "No Match"
+        t['match'] = t.get('match') or t.get('tournament') or ""
         t['time'] = t.get('time') or ""
-        t['status'] = t.get('status') or ""
 
     if 'f1' in data:
         f = data['f1']
-        f['grand_prix'] = f.get('grand_prix') or f.get('name') or "Next GP"
+        f['grand_prix'] = f.get('grand_prix') or "Next GP"
         f['time'] = f.get('time') or ""
-        f['circuit'] = f.get('circuit') or ""
 
     return data
 
@@ -107,12 +103,12 @@ def update_sports_data():
 
     today = datetime.date.today()
     start_date = today - datetime.timedelta(days=1)
-    end_date = today + datetime.timedelta(days=6)
+    end_date = today + datetime.timedelta(days=7)
     date_range_str = f"from {start_date} to {end_date}"
     
     print(f"📅 검색 기간: {date_range_str}")
 
-    # (주의) f-string 안에서 중괄호는 {{ }} 두 번 써야 함
+    # [복원된 기능 3] 문법 오류 수정 ({{ }})
     prompt = f"""
     You are a sports data assistant. Retrieve match schedules: {date_range_str}.
     Current Date: {today}
@@ -123,7 +119,7 @@ def update_sports_data():
     3. **Tennis**: 'player': "Carlos Alcaraz", 'match': "vs Opponent", 'time': "MM.DD HH:MM".
     4. **F1**: 'grand_prix': "Race Name", 'time': "MM.DD HH:MM", 'circuit': "Place".
 
-    Return ONLY raw JSON. No markdown, no commentary.
+    Return ONLY raw JSON. Do not include markdown formatting.
     """
 
     client = genai.Client(api_key=api_key)
@@ -141,20 +137,22 @@ def update_sports_data():
         raise ValueError("❌ API 응답이 비어있습니다!")
 
     try:
-        # [수정됨] 단순 로드가 아니라, '{' 와 '}' 사이만 추출해서 로드
+        # 1. 안전하게 JSON 추출
         data = extract_json_content(response.text)
         
-        # 데이터 규격화 (undefined 방지 + 개수 제한)
+        # 2. 데이터 정규화 (undefined 방지)
         data = normalize_data(data)
         
+        # 3. 저장
         with open(SPORTS_FILE, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
             
         print(f"✅ [Success] {SPORTS_FILE} 업데이트 완료!")
-        print("EPL Items:", len(data.get('epl', [])))
+        print(f"EPL Items: {len(data.get('epl', []))}")
+        print(f"NBA Schedule: {len(data.get('nba', {}).get('schedule', []))}")
 
     except json.JSONDecodeError as e:
-        print("❌ JSON 파싱 실패! AI 응답을 확인하세요.")
+        print("❌ JSON 파싱 실패!")
         print(f"Raw Response: {response.text}")
         raise e
 
