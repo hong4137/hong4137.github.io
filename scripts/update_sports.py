@@ -12,7 +12,6 @@ SPORTS_FILE = 'sports.json'
 MODEL_NAME = 'gemini-flash-latest' 
 
 def log(message):
-    """GitHub Actions 로그 누락 방지"""
     print(message, flush=True)
 
 try:
@@ -23,7 +22,6 @@ except ImportError:
     sys.exit(1)
 
 def extract_json_content(text):
-    """AI 응답(Thinking 포함)에서 순수 JSON 추출"""
     text = text.strip()
     text = re.sub(r'```(?:json)?', '', text).replace('```', '').strip()
     try:
@@ -37,18 +35,12 @@ def extract_json_content(text):
         return {}
 
 def normalize_data(data):
-    """
-    [핵심] 프론트엔드(index.html)와 1:1 매핑을 위한 데이터 정제
-    """
-    log("🔧 [Processing] Mapping data to Frontend requirements...")
+    log("🔧 [Processing] Advanced Normalization (UK TV & Events)...")
 
-    # 1. EPL (Keys: epl_round, home, away, kst_time, local_time, status)
-    
-    # [NEW] 라운드 정보 정규화 (Matchweek 20 -> R20)
+    # 1. EPL (Round, Channel logic)
     if 'epl_round' not in data:
         data['epl_round'] = "R--"
     else:
-        # 숫자만 추출해서 R 붙이기
         raw_round = str(data['epl_round'])
         nums = re.findall(r'\d+', raw_round)
         if nums:
@@ -59,7 +51,6 @@ def normalize_data(data):
     if 'epl' in data and isinstance(data['epl'], list):
         data['epl'] = data['epl'][:5]
         for item in data['epl']:
-            # Home/Away 분리 보장
             if 'teams' in item and 'vs' in item['teams']:
                 try:
                     h, a = item['teams'].split('vs')
@@ -67,17 +58,24 @@ def normalize_data(data):
                     item['away'] = item.get('away') or a.strip()
                 except: pass
             
-            # 시간 데이터 보정
+            # [Task 1] UK TV 채널 데이터 보정
+            # AI가 못 찾아서 비어있으면 기본값 'UK TV' 대신 빈칸을 두거나 'Local'로 표시될 수 있음.
+            # 하지만 프론트엔드가 || 'UK TV'를 쓰고 있으므로, 
+            # 확실한 정보("Sky", "TNT")가 있을 때만 channel 키를 채워줍니다.
+            if not item.get('channel') or item.get('channel') == "TBD":
+                 # 굳이 'UK TV'라고 적지 않아도 프론트엔드가 처리하지만, 
+                 # 명시적으로 'Check Local' 등으로 둘 수도 있음. 여기선 AI 결과를 신뢰.
+                 pass
+
             if not item.get('kst_time'): item['kst_time'] = item.get('time', 'TBD')
             if not item.get('local_time'): item['local_time'] = ""
             if not item.get('status'): item['status'] = "Scheduled"
 
-    # 2. NBA (Keys: record, rank, schedule[{opp, date, time}])
+    # 2. NBA
     if 'nba' not in data: data['nba'] = {}
     nba = data['nba']
     nba['record'] = nba.get('record') or "-"
     nba['rank'] = nba.get('ranking') or nba.get('rank') or "-"
-    
     if 'last' not in nba: nba['last'] = {"opp": "-", "result": "-", "score": "-"}
 
     if 'schedule' in nba and isinstance(nba['schedule'], list):
@@ -100,26 +98,25 @@ def normalize_data(data):
                 else:
                     item['date'] = item['time']
 
-    # 3. Tennis (Keys: status, info, detail, time)
+    # 3. Tennis (Exhibition check)
     if 'tennis' not in data: data['tennis'] = {}
     t = data['tennis']
     
-    if not t.get('info'): t['info'] = t.get('match') or t.get('tournament') or "No Match"
-    if not t.get('detail'): t['detail'] = t.get('round') or "Check Schedule"
+    # [Task 2] 이벤트 매치일 경우 status에 표시
+    if not t.get('info'): t['info'] = "No Match"
+    if not t.get('detail'): t['detail'] = "Check Schedule"
     if not t.get('status'): t['status'] = "Season 2026"
     if not t.get('time'): t['time'] = ""
 
-    # 4. F1 (Keys: status, name, date, circuit)
+    # 4. F1
     if 'f1' not in data: data['f1'] = {}
     f = data['f1']
-    
-    if not f.get('name'): f['name'] = f.get('grand_prix') or "Next GP"
+    if not f.get('name'): f['name'] = "Next GP"
     if not f.get('circuit'): f['circuit'] = "Circuit TBD"
     if not f.get('status'): f['status'] = "Upcoming"
     if not f.get('date'): f['date'] = f.get('time', '')
 
     data['updated'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    
     return data
 
 def update_sports_data():
@@ -133,16 +130,14 @@ def update_sports_data():
     )
 
     log(f"🚀 [Start] Gemini API({MODEL_NAME}) initialized.")
-    
     today = datetime.date.today()
-    log(f"📅 Base Date: {today}")
-
-    # [Prompt] epl_round 키 추가 요청
+    
+    # [Prompt] 고도화된 검색 지시
     prompt = f"""
     Current Date: {today}
-    TASK: Search for OFFICIAL 2026 schedules (EPL, NBA, Tennis, F1).
+    TASK: Search for OFFICIAL 2026 schedules with DETAILED BROADCAST & EVENT INFO.
     
-    TARGET JSON STRUCTURE (Strictly follow this keys):
+    TARGET JSON STRUCTURE:
     {{
         "epl_round": "Current Matchweek Number (e.g. 20)",
         "epl": [
@@ -150,6 +145,7 @@ def update_sports_data():
               "teams": "Home vs Away", 
               "kst_time": "MM.DD HH:MM (KST)", 
               "local_time": "MM.DD HH:MM (Local)",
+              "channel": "UK TV Channel Name (e.g. Sky Sports, TNT Sports, Amazon Prime)", 
               "status": "Scheduled"
             }}
         ],
@@ -157,29 +153,27 @@ def update_sports_data():
             "record": "W-L",
             "rank": "Conf. Rank",
             "last": {{ "opp": "Name", "result": "W/L", "score": "100-90" }},
-            "schedule": [
-                {{ "opp": "Opponent Name", "date": "MM.DD", "time": "HH:MM (PST)" }}
-            ]
+            "schedule": [ {{ "opp": "Name", "date": "MM.DD", "time": "HH:MM (PST)" }} ]
         }},
         "tennis": {{
-            "status": "In Progress/Upcoming",
-            "info": "Tournament Name",
-            "detail": "Round (e.g. R16, QF)",
+            "status": "Exhibition / Tournament Name",
+            "info": "Event Name (e.g. Kooyong Classic, Australian Open)",
+            "detail": "Round or Match Info",
             "time": "MM.DD HH:MM"
         }},
         "f1": {{
             "status": "Season 2026",
             "name": "Grand Prix Name",
-            "circuit": "Circuit Name (Specific)",
+            "circuit": "Circuit Name",
             "date": "MM.DD - MM.DD"
         }}
     }}
 
-    SEARCH INSTRUCTIONS:
-    1. **EPL**: Find upcoming fixtures. **IDENTIFY the specific Matchweek number.**
-    2. **NBA (GS Warriors)**: Find the next 4 games. MUST extract 'opp' (Opponent Name).
-    3. **Tennis (Carlos Alcaraz)**: Find current tournament & round.
-    4. **F1**: Find next 2026 GP & Circuit Name.
+    CRITICAL SEARCH INSTRUCTIONS:
+    1. **EPL (UK TV)**: For each match, FIND the specific **UK Broadcaster** (Sky Sports Main Event, TNT Sports 1, Amazon Prime). If unknown, leave channel empty.
+    2. **Tennis (Alcaraz)**: Check for **Exhibition Matches** or **Warm-up events** (e.g., Kooyong Classic, Charity matches) happening BEFORE the Australian Open. If he plays an exhibition, prioritize that.
+    3. **NBA**: Next 4 games with Opponent names.
+    4. **F1**: Next 2026 GP.
 
     Return ONLY the JSON object.
     """
@@ -205,9 +199,10 @@ def update_sports_data():
         with open(SPORTS_FILE, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
             
-        log(f"✅ [Success] Data updated in {SPORTS_FILE}")
-        log(f"   - EPL Round: {data.get('epl_round', 'Unknown')}")
-        log(f"   - EPL Matches: {len(data.get('epl', []))}")
+        log(f"✅ [Success] Data updated.")
+        log(f"   - EPL Round: {data.get('epl_round')}")
+        log(f"   - EPL TV Channels found: {[m.get('channel') for m in data.get('epl', [])]}")
+        log(f"   - Tennis Event: {data.get('tennis', {}).get('info')}")
 
     except Exception as e:
         log(f"❌ API Call Failed: {e}")
