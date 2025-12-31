@@ -10,9 +10,9 @@ from google import genai
 # ---------------------------------------------------------
 SPORTS_FILE = 'sports.json'
 
-# [긴급 수정] 2.0-flash는 꽉 찼습니다(429).
-# 리스트에 있는 'Lite(경량화)' 모델로 우회하여 트래픽 제한을 피합니다.
-MODEL_NAME = 'gemini-2.0-flash-lite-preview-02-05'
+# [최종 수정] 사용자님 리스트에 있는 'gemini-flash-latest' 사용
+# 실험버전(2.0)이나 프리뷰가 아닌, 현재 가장 안정적인 정식 버전을 호출합니다.
+MODEL_NAME = 'gemini-flash-latest'
 
 def update_sports_data():
     # 1. API 키 확인
@@ -39,7 +39,7 @@ def update_sports_data():
     Please find information for these 4 categories:
     1. **English Premier League (EPL)**:
        - Focus on matches between {start_date} and {end_date}.
-       - Look for recent match results (Dec 25-Jan 1) and upcoming matches.
+       - Look for recent match results and upcoming matches.
        - Include match score if finished, or time if scheduled.
     2. **Golden State Warriors (NBA)**:
        - Find upcoming or recent games within the period.
