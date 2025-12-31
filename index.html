@@ -6,6 +6,7 @@
     <title>Hello, World! Dashboard</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        /* (스타일은 그대로 유지) */
         :root {
             --sidebar-width: 260px;
             --bg-color: #121212;
@@ -261,7 +262,7 @@
                             <i class="fas fa-futbol" style="color:#a000ff; font-size: 1.2rem;"></i> 
                             <span style="font-weight:bold; color:#ccc;">Premier League Picks</span>
                         </div>
-                        <span style="font-size:10px; background:#333; padding:2px 6px; border-radius:4px; color:#aaa;">R17</span>
+                        <span id="epl-badge" style="font-size:10px; background:#333; padding:2px 6px; border-radius:4px; color:#aaa;">R20</span>
                     </div>
                     <div id="epl-content" style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
                         <div class="loading-text">Analyzing...</div>
@@ -405,6 +406,13 @@
                 try {
                     const eplList = data.epl;
                     const eplContainer = document.getElementById('epl-content');
+
+                    // [추가] 라운드 정보 업데이트
+                    // 파이썬이 epl_round 키를 주면 업데이트, 아니면 그냥 둠
+                    if (data.epl_round) {
+                        document.getElementById('epl-badge').innerText = data.epl_round;
+                    }
+
                     if (eplContainer) {
                         if (eplList && Array.isArray(eplList) && eplList.length > 0) {
                             let html = '';
@@ -417,25 +425,25 @@
                                 
                                 if (match.status === 'Finished') {
                                     html += `
-                                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                                            <span style="font-size:13px; font-weight:bold; color:white;">${match.home} vs ${match.away}</span>
-                                            <span style="font-size:10px; background:#444; color:#ccc; padding:2px 4px; border-radius:3px;">FT</span>
-                                        </div>
-                                        <div style="font-size:15px; font-weight:bold; color:#fff; text-align:right;">${match.score}</div>
-                                    `;
+                                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                                                <span style="font-size:13px; font-weight:bold; color:white;">${match.home} vs ${match.away}</span>
+                                                <span style="font-size:10px; background:#444; color:#ccc; padding:2px 4px; border-radius:3px;">FT</span>
+                                            </div>
+                                            <div style="font-size:15px; font-weight:bold; color:#fff; text-align:right;">${match.score}</div>
+                                        `;
                                 } else {
                                     html += `
-                                        <div style="font-size:13px; font-weight:bold; color:white; margin-bottom:6px;">${match.home} vs ${match.away}</div>
-                                        <div style="display:flex; justify-content:space-between; align-items:end;">
-                                            <div>
-                                                <div style="font-size:12px; font-weight:bold; color:#ddd;">${match.kst_time || '-'}</div>
-                                                <div style="font-size:10px; color:#666; margin-top:1px;">Local: ${match.local_time || '-'}</div>
+                                            <div style="font-size:13px; font-weight:bold; color:white; margin-bottom:6px;">${match.home} vs ${match.away}</div>
+                                            <div style="display:flex; justify-content:space-between; align-items:end;">
+                                                <div>
+                                                    <div style="font-size:12px; font-weight:bold; color:#ddd;">${match.kst_time || '-'}</div>
+                                                    <div style="font-size:10px; color:#666; margin-top:1px;">Local: ${match.local_time || '-'}</div>
+                                                </div>
+                                                <div style="font-size:9px; color:#a000ff; font-weight:bold; background:rgba(0,0,0,0.3); padding:2px 5px; border-radius:4px;">
+                                                    ${match.channel || 'UK TV'}
+                                                </div>
                                             </div>
-                                            <div style="font-size:9px; color:#a000ff; font-weight:bold; background:rgba(0,0,0,0.3); padding:2px 5px; border-radius:4px;">
-                                                ${match.channel || 'UK TV'}
-                                            </div>
-                                        </div>
-                                    `;
+                                        `;
                                 }
                                 html += `</div>`;
                             });
