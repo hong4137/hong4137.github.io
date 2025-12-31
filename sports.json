@@ -1,94 +1,64 @@
 {
   "epl": [
     {
-      "teams": "Wolves vs Brighton",
-      "time": "1-0",
-      "match": "Wolves vs Brighton"
+      "match": "Arsenal vs Brighton",
+      "time": "3-1",
+      "teams": "Arsenal vs Brighton"
     },
     {
-      "teams": "Fulham vs Bournemouth",
+      "match": "Chelsea vs Fulham",
       "time": "1-1",
-      "match": "Fulham vs Bournemouth"
+      "teams": "Chelsea vs Fulham"
     },
     {
-      "teams": "West Ham vs Arsenal",
-      "time": "0-2",
-      "match": "West Ham vs Arsenal"
+      "match": "Man City vs West Ham",
+      "time": "01.01 15:00",
+      "teams": "Man City vs West Ham"
     },
     {
-      "teams": "Man City vs Brentford",
-      "time": "3-0",
-      "match": "Man City vs Brentford"
+      "match": "Liverpool vs Man Utd",
+      "time": "01.02 20:00",
+      "teams": "Liverpool vs Man Utd"
     },
     {
-      "teams": "Liverpool vs Chelsea",
-      "time": "01.01 20:00",
-      "match": "Liverpool vs Chelsea"
-    },
-    {
-      "teams": "Newcastle vs Spurs",
-      "time": "02.01 15:00",
-      "match": "Newcastle vs Spurs"
-    },
-    {
-      "teams": "Man Utd vs Aston Villa",
-      "time": "02.01 17:30",
-      "match": "Man Utd vs Aston Villa"
-    },
-    {
-      "teams": "Crystal Palace vs Everton",
-      "time": "03.01 15:00",
-      "match": "Crystal Palace vs Everton"
-    },
-    {
-      "teams": "Arsenal vs Fulham",
-      "time": "07.01 19:30",
-      "match": "Arsenal vs Fulham"
-    },
-    {
-      "teams": "Brighton vs West Ham",
-      "time": "08.01 20:15",
-      "match": "Brighton vs West Ham"
+      "match": "Tottenham vs Bournemouth",
+      "time": "01.04 14:00",
+      "teams": "Tottenham vs Bournemouth"
     }
   ],
   "nba": {
-    "team": "LA Lakers",
-    "record": "23-11",
-    "ranking": "#1 Pacific",
-    "recent": "vs SAS W (125-110)",
+    "team": "Boston Celtics",
+    "record": "27-8",
+    "ranking": "#1 Atlantic",
+    "recent": "vs OKC W (118-105)",
     "schedule": [
       {
-        "teams": "vs MIA",
-        "time": "01.01 03:30",
-        "match": "vs MIA"
+        "match": "vs PHI",
+        "time": "01.01 19:30",
+        "teams": "vs PHI"
       },
       {
-        "teams": "@ GSW",
-        "time": "01.03 11:00",
-        "match": "@ GSW"
+        "match": "vs CLE",
+        "time": "01.03 20:00",
+        "teams": "vs CLE"
       },
       {
-        "teams": "vs TOR",
-        "time": "01.05 09:30",
-        "match": "vs TOR"
-      },
-      {
-        "teams": "@ PHX",
-        "time": "01.07 11:00",
-        "match": "@ PHX"
+        "match": "vs IND",
+        "time": "01.05 18:00",
+        "teams": "vs IND"
       }
     ],
-    "rank": "#1 Pacific"
+    "rank": "#1 Atlantic"
   },
   "tennis": {
-    "player": "Carlos Alcaraz",
-    "status": "Competing in United Cup (Group Stage)",
-    "match": "vs Alex de Minaur (Australia)",
+    "player": "Novak Djokovic",
+    "status": "Brisbane International (QF)",
+    "match": "vs Holger Rune",
     "time": "01.04 10:00"
   },
   "f1": {
     "grand_prix": "Bahrain GP",
-    "time": "03.01 15:00",
-    "circuit": "Sakhir International Circuit"
+    "time": "03.01 18:00",
+    "circuit": "Sakhir"
   }
 }
