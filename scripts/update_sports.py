@@ -35,13 +35,12 @@ def extract_json_content(text):
         return {}
 
 def normalize_data(data):
-    log("🔧 [Processing] Applying logic & normalization...")
+    log("🔧 [Processing] strict normalization (No limit, No filler)...")
 
     # 1. EPL
     if 'epl_round' not in data:
         data['epl_round'] = "R--"
     else:
-        # 라운드 포맷팅 (Matchweek 20 -> R20)
         raw_round = str(data['epl_round'])
         nums = re.findall(r'\d+', raw_round)
         if nums:
@@ -50,12 +49,11 @@ def normalize_data(data):
              data['epl_round'] = f"R{raw_round}"
 
     if 'epl' in data and isinstance(data['epl'], list):
-        # [중요] AI가 큐레이션 해온 순서(중요도순)를 유지하기 위해, 
-        # 파이썬에서는 별도의 정렬을 하지 않고 그대로 상위 5개를 자릅니다.
-        data['epl'] = data['epl'][:5]
+        # [변경점] 개수 제한(slicing) 삭제. 
+        # AI가 6대 로직에 맞춰서 가져온 것은 전부 다 보여줍니다.
+        # data['epl'] = data['epl'][:5]  <-- 삭제됨
         
         for item in data['epl']:
-            # Home/Away 분리
             if 'teams' in item and 'vs' in item['teams']:
                 try:
                     h, a = item['teams'].split('vs')
@@ -63,7 +61,7 @@ def normalize_data(data):
                     item['away'] = item.get('away') or a.strip()
                 except: pass
             
-            # UK TV / 시간 / 상태 보정
+            # UK TV 등 부가 정보 보정
             if not item.get('channel') or item.get('channel') == "TBD": pass
             if not item.get('kst_time'): item['kst_time'] = item.get('time', 'TBD')
             if not item.get('local_time'): item['local_time'] = ""
@@ -77,9 +75,8 @@ def normalize_data(data):
     if 'last' not in nba: nba['last'] = {"opp": "-", "result": "-", "score": "-"}
 
     if 'schedule' in nba and isinstance(nba['schedule'], list):
-        nba['schedule'] = nba['schedule'][:4]
+        nba['schedule'] = nba['schedule'][:4] # NBA는 공간상 4개 유지 권장 (필요시 삭제 가능)
         for item in nba['schedule']:
-            # 상대팀 추출
             if 'opp' not in item:
                 raw = item.get('teams') or item.get('match') or ""
                 if 'vs' in raw:
@@ -89,7 +86,6 @@ def normalize_data(data):
                 else:
                     item['opp'] = raw.replace("GS Warriors", "").strip() or "TBD"
             
-            # 시간/날짜 분리
             if 'time' in item and not item.get('date'):
                 parts = item['time'].split(' ')
                 if len(parts) >= 2:
@@ -130,28 +126,32 @@ def update_sports_data():
     log(f"🚀 [Start] Gemini API({MODEL_NAME}) initialized.")
     today = datetime.date.today()
     
-    # [Prompt] The 6-Phase Logic Injection
+    # [Prompt] STRICT MODE 적용
     prompt = f"""
     Current Date: {today}
     TASK: Search for OFFICIAL 2026 schedules.
     
-    *** IMPORTANT: EPL MATCH SELECTION LOGIC ***
-    Do NOT just list matches chronologically. You MUST curate the Top 4 matches based on this PRIORITY (Phase 1 to 6):
+    *** STRICT EPL MATCH SELECTION (NO FILLERS) ***
+    Filter the upcoming fixtures and return matches that meet AT LEAST ONE of the following 6 Criteria.
     
-    [Context] Big 6 Teams: Man City, Man Utd, Liverpool, Arsenal, Chelsea, Tottenham.
-    
-    1. **Phase 1 (Big Match):** Big 6 vs Big 6.
-    2. **Phase 2 (Top Tier):** Current Top 4 vs Current Top 4 (Search 'EPL Table' to verify).
-    3. **Phase 3 (Challenger):** Current Top 4 vs Big 6.
-    4. **Phase 4 (Prime Time):** Sunday 16:30 (UK Time) matches.
-    5. **Phase 5 (Early KO):** Saturday 12:30 (UK Time) matches.
-    6. **Fallback:** Match featuring the current League Leader.
-    
-    *INSTRUCTION:* Search for the full fixture list AND the current EPL table. Then apply the logic above to select the best 4-5 matches.
+    [Rules]
+    1. If 10 matches meet the criteria, return ALL 10. (Do not cut)
+    2. If 0 matches meet the criteria, return an EMPTY LIST []. (Do not add random matches)
+    3. Do NOT include any match that does not fit the criteria below.
 
+    [Context] Big 6: Man City, Man Utd, Liverpool, Arsenal, Chelsea, Tottenham.
+    
+    [Selection Criteria]
+    1. **Big Match:** Big 6 vs Big 6.
+    2. **Top Tier:** Current Top 4 vs Current Top 4.
+    3. **Challenger:** Current Top 4 vs Big 6.
+    4. **Prime Time:** Sunday 16:30 (UK Time) matches.
+    5. **Early KO:** Saturday 12:30 (UK Time) matches.
+    6. **Leader:** Match featuring the current League Leader.
+    
     *** OTHER TASKS ***
-    1. **EPL**: Find specific UK Broadcaster (Sky/TNT/Amazon).
-    2. **Tennis (Alcaraz)**: Check for EXHIBITION matches (e.g. Kooyong) before Australian Open.
+    1. **EPL Info**: Find specific UK Broadcaster (Sky/TNT/Amazon). If none, leave blank.
+    2. **Tennis (Alcaraz)**: Check for EXHIBITION matches (e.g. Kooyong) or Tournaments.
     3. **NBA**: Next 4 games (Find Opponent Name).
     4. **F1**: Next 2026 GP.
 
@@ -211,7 +211,7 @@ def update_sports_data():
         with open(SPORTS_FILE, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
             
-        log(f"✅ [Success] Data updated with 6-Phase Logic.")
+        log(f"✅ [Success] Data updated (Strict Mode).")
         log(f"   - EPL Matches Selected: {len(data.get('epl', []))}")
         log(f"   - EPL Round: {data.get('epl_round')}")
 
