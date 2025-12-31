@@ -5,95 +5,83 @@ import traceback
 import re
 from google import genai
 
-# ---------------------------------------------------------
-# 설정값
-# ---------------------------------------------------------
 SPORTS_FILE = 'sports.json'
-# [확정] 현재 가장 안정적인 모델
 MODEL_NAME = 'gemini-flash-latest'
 
-# ---------------------------------------------------------
-# [핵심] 데이터 안전장치 (과거에 있던 그 '긴 코드' 복원)
-# ---------------------------------------------------------
 def normalize_data(data):
     """
-    AI가 준 데이터가 대시보드(HTML)와 키 값이 안 맞을 경우를 대비해
-    가능한 모든 변수명을 다 만들어주는 '호환성 끝판왕' 함수
+    1. 데이터 개수를 잘라서 레이아웃이 길어지는 것을 방지
+    2. 'undefined'가 뜨지 않도록 빈 값을 기본값으로 채움
     """
-    print("🔧 [Processing] 데이터 규격화 작업을 수행합니다...")
+    print("🔧 [Processing] 데이터 개수 제한 및 빈칸 채우기...")
 
-    # 1. EPL 데이터 정밀 가공
+    # [1] EPL 데이터 정리
     if 'epl' in data and isinstance(data['epl'], list):
-        for item in data['epl']:
-            # (1) 팀 이름 확보
-            # match, teams, game 중 하나라도 있으면 가져옴
-            raw_match = item.get('match') or item.get('teams') or item.get('game')
-            
-            # 만약 match 문구가 없는데 home/away가 있다면 합쳐서라도 만듦
-            if not raw_match and item.get('home') and item.get('away'):
-                raw_match = f"{item['home']} vs {item['away']}"
-            
-            if not raw_match: 
-                raw_match = "Match Info Unavailable"
+        # ★ 핵심: 최대 5개까지만 보여주기 (칸 늘어남 방지)
+        data['epl'] = data['epl'][:5]
 
-            # (2) 모든 키에 다 때려박기 (대시보드가 뭘 찾든 걸리게 함)
-            item['teams'] = raw_match
-            item['match'] = raw_match
+        for item in data['epl']:
+            # 이름표 통일 (match, teams, title 등 뭐가 와도 teams로 만듦)
+            main_text = item.get('match') or item.get('teams') or item.get('game') or "Unknown Match"
+            item['teams'] = main_text
+            item['match'] = main_text
             
-            # (3) Home / Away 분리 (vs 기준으로 쪼개기)
-            if 'vs' in raw_match:
+            # 시간/점수 통일
+            # 점수가 없으면 시간이라도, 시간도 없으면 "Scheduled"
+            time_text = item.get('time') or item.get('score') or "Scheduled"
+            item['time'] = time_text
+            
+            # Home/Away가 없으면 텍스트에서 쪼개서라도 만듦 (로고 표시용)
+            if 'vs' in main_text and (not item.get('home') or not item.get('away')):
                 try:
-                    parts = raw_match.split('vs')
+                    parts = main_text.split('vs')
                     item['home'] = parts[0].strip()
                     item['away'] = parts[1].strip()
                 except:
-                    item['home'] = raw_match
-                    item['away'] = ""
-            
-            # (4) 시간/점수 확보
-            raw_time = item.get('time') or item.get('score') or "Scheduled"
-            item['time'] = raw_time
-            item['score'] = raw_time # 호환성
+                    pass
 
-    # 2. NBA 데이터 정밀 가공
+    # [2] NBA 데이터 정리
     if 'nba' in data:
         nba = data['nba']
         
-        # (1) 랭킹/전적 호환성
-        rank = nba.get('ranking') or nba.get('rank') or ""
-        record = nba.get('record') or ""
+        # 기본 정보 채우기
+        nba['ranking'] = nba.get('ranking') or nba.get('rank') or "-"
+        nba['record'] = nba.get('record') or "-"
         
-        nba['ranking'] = rank
-        nba['rank'] = rank
-        nba['record'] = record
-        
-        # (2) 스케줄 리스트 가공
-        # 가끔 AI가 리스트가 아니라 그냥 글자(string)로 줄 때가 있음 -> 리스트로 변환
-        if 'schedule' in nba and isinstance(nba['schedule'], str):
-             nba['schedule'] = [{"match": nba['schedule'], "time": ""}]
+        # 스케줄 정리
+        if 'schedule' in nba:
+            # 리스트가 아니면 리스트로 변환
+            if isinstance(nba['schedule'], str):
+                nba['schedule'] = [{"match": nba['schedule'], "time": ""}]
+            
+            # ★ 핵심: 스케줄도 최대 4개까지만 (칸 늘어남 방지)
+            if isinstance(nba['schedule'], list):
+                nba['schedule'] = nba['schedule'][:4]
 
-        if 'schedule' in nba and isinstance(nba['schedule'], list):
-            for item in nba['schedule']:
-                # 리스트 안에 글자만 덜렁 있는 경우 방지 (예: ["vs LAL", "vs BOS"])
-                if isinstance(item, str):
-                    item = {"match": item, "time": ""}
-                
-                # match, teams 키 통일
-                sch_match = item.get('match') or item.get('teams') or "vs Unknown"
-                item['match'] = sch_match
-                item['teams'] = sch_match # 대시보드가 teams를 찾을 수도 있음
-                
-                if not item.get('time'):
-                    item['time'] = "TBD"
+                for item in nba['schedule']:
+                    if isinstance(item, str):
+                        item = {"match": item, "time": ""}
+                    
+                    # 'undefined' 원인 제거: match와 teams 양쪽에 다 값을 넣음
+                    match_name = item.get('match') or item.get('teams') or "vs Upcoming"
+                    item['match'] = match_name
+                    item['teams'] = match_name
+                    
+                    # 시간이 없으면 날짜라도, 없으면 TBD
+                    item['time'] = item.get('time') or item.get('date') or "TBD"
 
-    # 3. 테니스/F1 데이터 보정
+    # [3] 테니스/F1 정리
     if 'tennis' in data:
         t = data['tennis']
-        # match 키가 없으면 만들어줌
-        if not t.get('match'):
-             t['match'] = t.get('tournament') or "No Match"
-        if not t.get('time'):
-             t['time'] = ""
+        t['match'] = t.get('match') or t.get('tournament') or "No Match"
+        t['time'] = t.get('time') or ""
+        t['status'] = t.get('status') or ""
+
+    if 'f1' in data:
+        f = data['f1']
+        f['grand_prix'] = f.get('grand_prix') or f.get('name') or "Next GP"
+        f['time'] = f.get('time') or ""
+        f['circuit'] = f.get('circuit') or ""
 
     return data
 
@@ -105,60 +93,24 @@ def update_sports_data():
     print(f"🚀 [Start] Gemini API({MODEL_NAME})를 호출합니다...")
 
     today = datetime.date.today()
-    start_date = today - datetime.timedelta(days=2)
-    end_date = today + datetime.timedelta(days=8)
+    # 검색 범위: 어제 ~ 6일 뒤 (너무 길게 잡지 않음)
+    start_date = today - datetime.timedelta(days=1)
+    end_date = today + datetime.timedelta(days=6)
     date_range_str = f"from {start_date} to {end_date}"
     
     print(f"📅 검색 기간: {date_range_str}")
 
-    # 프롬프트: AI에게 최대한 정확하게 달라고 요청하지만, 틀려도 위 함수가 고쳐줄 것임
     prompt = f"""
-    You are a sports data assistant. Retrieve match schedules and results: {date_range_str}.
+    You are a sports data assistant. Retrieve match schedules: {date_range_str}.
     Current Date: {today}
 
-    IMPORTANT: Return ONLY raw JSON. No Markdown.
-    
     Structure Requirements:
-    
-    1. **EPL**:
-       - Array of objects.
-       - Key 'teams': "HomeTeam vs AwayTeam" (String).
-       - Key 'time': Score (if finished) or Time (e.g. "01.05 20:30").
-    
-    2. **NBA**:
-       - 'team': "GS Warriors"
-       - 'record': "Win-Loss"
-       - 'ranking': "Conference Rank"
-       - 'schedule': Array of objects. Each has 'teams' (e.g. "vs LAL") and 'time'.
-       
-    Target JSON Format:
-    {{
-        "epl": [
-            {{ "teams": "Chelsea vs Newcastle", "time": "2-1" }},
-            {{ "teams": "Man Utd vs Liverpool", "time": "01.05 20:30" }}
-        ],
-        "nba": {{
-            "team": "GS Warriors",
-            "record": "18-16",
-            "ranking": "#3 Pacific", 
-            "recent": "vs ORL W (120-97)",
-            "schedule": [
-                {{ "teams": "vs DAL", "time": "12.30 09:00" }},
-                {{ "teams": "vs PHX", "time": "01.02 11:00" }}
-            ]
-        }},
-        "tennis": {{
-            "player": "Carlos Alcaraz",
-            "status": "Off-Season / Training",
-            "match": "vs Opponent",
-            "time": "Date Time"
-        }},
-        "f1": {{
-            "grand_prix": "Australian GP",
-            "time": "03.08 13:00",
-            "circuit": "Albert Park"
-        }}
-    }}
+    1. **EPL**: List of matches. Key 'teams' ("Home vs Away"), Key 'time' ("Score" or "MM.DD HH:MM").
+    2. **NBA**: 'team': "GS Warriors", 'record': "Win-Loss", 'ranking': "Conf Rank", 'schedule': List of objects [{'teams': 'vs LAL', 'time': '12.30 09:00'}].
+    3. **Tennis**: 'player': "Carlos Alcaraz", 'match': "vs Opponent", 'time': "MM.DD HH:MM".
+    4. **F1**: 'grand_prix': "Race Name", 'time': "MM.DD HH:MM", 'circuit': "Place".
+
+    Return ONLY raw JSON.
     """
 
     client = genai.Client(api_key=api_key)
@@ -175,7 +127,6 @@ def update_sports_data():
     if not response.text:
         raise ValueError("❌ API 응답이 비어있습니다!")
 
-    # 마크다운 제거
     raw_text = response.text.strip()
     if "```" in raw_text:
         match = re.search(r'```(?:json)?\s*(.*?)\s*```', raw_text, re.DOTALL)
@@ -183,35 +134,25 @@ def update_sports_data():
             raw_text = match.group(1)
     
     try:
-        # 1. JSON 파싱
         data = json.loads(raw_text)
         
-        # 2. [중요] 데이터 정규화 함수 실행
-        # 여기서 'undefined' 문제를 원천 차단합니다.
+        # 데이터 다듬기 (개수 자르기 + 빈칸 채우기)
         data = normalize_data(data)
         
-        # 3. 파일 저장
         with open(SPORTS_FILE, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
             
         print(f"✅ [Success] {SPORTS_FILE} 업데이트 완료!")
-        
-        # 로그로 데이터 확인
-        print("EPL Sample Check:", json.dumps(data.get('epl', [])[:1], ensure_ascii=False))
+        print("EPL(5개 제한):", len(data.get('epl', [])))
 
     except json.JSONDecodeError as e:
-        print("❌ JSON 파싱 실패! AI가 이상한 데이터를 보냈습니다.")
-        print(f"받은 데이터: {raw_text}")
+        print("❌ JSON 파싱 실패!")
         raise e
 
 if __name__ == "__main__":
     try:
-        print("🚀 Script Start: update_sports.py is running...")
         update_sports_data()
-        
     except Exception as e:
-        print("\n\n")
-        print("❌ [FATAL ERROR] 스크립트 실행 중 치명적인 오류 발생!")
-        print(f"에러 메시지: {e}")
+        print(f"❌ Error: {e}")
         traceback.print_exc() 
         raise e
