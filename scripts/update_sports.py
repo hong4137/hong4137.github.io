@@ -1,28 +1,135 @@
-import datetime  # (파일 맨 위에 import datetime이 없다면 추가)
+import os
+import json
+import datetime
+import traceback
+import re
+from google import genai  # google-genai 라이브러리 사용
 
-# ... (기존 코드들) ...
+# ---------------------------------------------------------
+# 설정값
+# ---------------------------------------------------------
+SPORTS_FILE = 'sports.json'
+MODEL_NAME = 'gemini-1.5-flash'  # 최신 모델 사용
 
 def update_sports_data():
-    # 1. 날짜 범위 계산 (오늘 ~ 7일 뒤)
+    # 1. API 키 확인
+    api_key = os.environ.get("GEMINI_API_KEY")
+    if not api_key:
+        raise ValueError("❌ Error: GEMINI_API_KEY 환경 변수가 없습니다!")
+
+    print(f"🚀 [Start] Gemini API({MODEL_NAME})를 호출합니다...")
+
+    # 2. 날짜 범위 설정 (시차 문제 해결을 위해 앞뒤로 넉넉하게 잡음)
     today = datetime.date.today()
-    next_week = today + datetime.timedelta(days=7)
+    start_date = today - datetime.timedelta(days=2)  # 어제 경기 결과도 확인
+    end_date = today + datetime.timedelta(days=8)    # 일주일 뒤까지
+    date_range_str = f"from {start_date} to {end_date}"
     
-    # 날짜를 문자열로 변환 (예: "2025-12-25", "2026-01-01")
-    date_range_str = f"from {today} to {next_week}"
+    print(f"📅 검색 기간: {date_range_str}")
 
-    # 2. 프롬프트에 날짜를 명시적으로 박아넣기
-    # "현재"가 아니라 "이 기간 동안의" 경기를 찾으라고 지시함
+    # 3. 프롬프트 작성
     prompt = f"""
-    Search for the match schedules for the following sports {date_range_str}:
+    You are a sports data assistant. Retrieve the match schedules and results for the following period: {date_range_str}.
     
-    1. **English Premier League (EPL)**: Find matches scheduled {date_range_str}. Focus on Round 18 or upcoming Boxing Day matches.
-    2. **Golden State Warriors (NBA)**: Find upcoming games {date_range_str}.
-    3. **Carlos Alcaraz (Tennis)**: Find upcoming matches {date_range_str}.
-    4. **Formula 1**: Find the next Grand Prix schedule.
+    Current Date for reference: {today}
 
-    (아래는 기존의 JSON 포맷 요청 부분 그대로 유지...)
-    Return the result ONLY in the following JSON format:
-    ...
+    Please find information for these 4 categories:
+    1. **English Premier League (EPL)**:
+       - Focus on matches between {start_date} and {end_date}.
+       - If there are matches on Boxing Day (Dec 26), include them.
+       - Include match score if finished, or time if scheduled.
+    2. **Golden State Warriors (NBA)**:
+       - Find upcoming or recent games within the period.
+    3. **Carlos Alcaraz (Tennis)**:
+       - Find upcoming matches or recent results.
+    4. **Formula 1**:
+       - Find the next Grand Prix schedule (even if it is far in the future).
+
+    IMPORTANT: Return the result ONLY as a raw JSON object. Do not use Markdown formatting (```json ... ```).
+    The JSON structure must be exactly like this:
+    {{
+        "epl": [
+            {{ "teams": "Home vs Away", "time": "MM.DD(Day) HH:MM" or "Score" }}
+        ],
+        "nba": {{
+            "team": "GS Warriors",
+            "record": "Win-Loss record (e.g. 15-15)",
+            "ranking": "Conference Ranking (e.g. 3rd Pacific)",
+            "recent": "vs Opponent Result (e.g. vs ORL W 120-97)",
+            "schedule": [
+                "vs TEAM MM.DD(Day) HH:MM",
+                "vs TEAM MM.DD(Day) HH:MM"
+            ]
+        }},
+        "tennis": {{
+            "player": "Carlos Alcaraz",
+            "status": "Tournament Name or 'Off-Season'",
+            "match": "vs Opponent",
+            "time": "MM.DD HH:MM"
+        }},
+        "f1": {{
+            "grand_prix": "Grand Prix Name",
+            "time": "MM.DD(Day) HH:MM",
+            "circuit": "Circuit Name"
+        }}
+    }}
     """
+
+    # 4. Gemini 클라이언트 초기화 및 호출
+    client = genai.Client(api_key=api_key)
     
-    # ... (이후 Gemini 호출 로직) ...
+    try:
+        response = client.models.generate_content(
+            model=MODEL_NAME,
+            contents=prompt
+        )
+    except Exception as api_error:
+        print(f"❌ API 호출 중 에러 발생: {api_error}")
+        raise api_error
+
+    if not response.text:
+        raise ValueError("❌ API 응답이 비어있습니다!")
+
+    # 5. 응답 데이터 전처리 (Markdown 제거)
+    raw_text = response.text.strip()
+    # ```json 과 ``` 사이의 내용만 추출하거나, 그대로 사용
+    if "```" in raw_text:
+        match = re.search(r'```(?:json)?\s*(.*?)\s*```', raw_text, re.DOTALL)
+        if match:
+            raw_text = match.group(1)
+    
+    # 6. JSON 파싱 및 저장
+    try:
+        data = json.loads(raw_text)
+        
+        # 파일 저장
+        with open(SPORTS_FILE, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+            
+        print(f"✅ [Success] {SPORTS_FILE} 업데이트 완료!")
+        print("내용 미리보기:", json.dumps(data, ensure_ascii=False)[:200], "...")
+
+    except json.JSONDecodeError as e:
+        print("❌ JSON 파싱 실패! AI가 이상한 데이터를 보냈습니다.")
+        print(f"받은 데이터: {raw_text}")
+        raise e
+
+
+# ---------------------------------------------------------
+# 메인 실행 블록 (에러 캐치용)
+# ---------------------------------------------------------
+if __name__ == "__main__":
+    try:
+        print("🚀 Script Start: update_sports.py is running...")
+        update_sports_data()
+        
+    except Exception as e:
+        print("\n\n")
+        print("❌ [FATAL ERROR] 스크립트 실행 중 치명적인 오류 발생!")
+        print(f"에러 메시지: {e}")
+        print("-" * 30)
+        traceback.print_exc() # 에러 위치를 정확히 출력
+        print("-" * 30)
+        
+        # 깃허브 액션을 실패(Red)로 처리하기 위해 에러를 다시 던짐
+        raise e
