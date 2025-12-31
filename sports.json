@@ -2,84 +2,84 @@
   "epl_round": "R20",
   "epl": [
     {
-      "teams": "Crystal Palace vs Fulham",
-      "kst_time": "01.02 02:30 (KST)",
-      "local_time": "01.01 17:30 (Local)",
+      "teams": "Man City vs Chelsea",
+      "kst_time": "01.05 01:30 (KST)",
+      "local_time": "01.04 16:30 (Local)",
       "channel": "Sky Sports",
       "status": "Scheduled",
-      "home": "Crystal Palace",
-      "away": "Fulham"
+      "home": "Man City",
+      "away": "Chelsea"
     },
     {
-      "teams": "Liverpool vs Leeds United",
+      "teams": "Liverpool vs Leeds",
       "kst_time": "01.02 02:30 (KST)",
       "local_time": "01.01 17:30 (Local)",
       "channel": "Sky Sports",
       "status": "Scheduled",
       "home": "Liverpool",
-      "away": "Leeds United"
+      "away": "Leeds"
     },
     {
-      "teams": "Brentford vs Tottenham Hotspur",
+      "teams": "Aston Villa vs Nott'm Forest",
+      "kst_time": "01.03 21:30 (KST)",
+      "local_time": "01.03 12:30 (Local)",
+      "channel": "Sky Sports",
+      "status": "Scheduled",
+      "home": "Aston Villa",
+      "away": "Nott'm Forest"
+    },
+    {
+      "teams": "Brentford vs Tottenham",
       "kst_time": "01.02 05:00 (KST)",
       "local_time": "01.01 20:00 (Local)",
       "channel": "Sky Sports",
       "status": "Scheduled",
       "home": "Brentford",
-      "away": "Tottenham Hotspur"
-    },
-    {
-      "teams": "Sunderland vs Manchester City",
-      "kst_time": "01.02 05:00 (KST)",
-      "local_time": "01.01 20:00 (Local)",
-      "channel": "Sky Sports",
-      "status": "Scheduled",
-      "home": "Sunderland",
-      "away": "Manchester City"
+      "away": "Tottenham"
     }
   ],
   "nba": {
-    "record": "20-12",
-    "rank": "3rd in Eastern Conference",
+    "record": "19-12",
+    "rank": "3rd East",
     "last": {
-      "opp": "UTA",
-      "result": "W",
-      "score": "129-119"
+      "opp": "POR",
+      "result": "L",
+      "score": "108-114"
     },
     "schedule": [
       {
         "opp": "Sacramento Kings",
         "date": "01.01",
-        "time": "07:00 PM (PST)"
+        "time": "16:00 (PST)"
       },
       {
-        "opp": "Los Angeles Clippers",
+        "opp": "LA Clippers",
         "date": "01.03",
-        "time": "07:30 PM (PST)"
+        "time": "16:30 (PST)"
       },
       {
         "opp": "Chicago Bulls",
         "date": "01.05",
-        "time": "04:30 PM (PST)"
+        "time": "16:30 (PST)"
       },
       {
         "opp": "Denver Nuggets",
         "date": "01.07",
-        "time": "04:00 PM (PST)"
+        "time": "16:30 (PST)"
       }
     ]
   },
   "tennis": {
-    "status": "Exhibition",
+    "status": "Exhibition Match",
     "info": "Hyundai Card Super Match",
-    "detail": "Carlos Alcaraz vs Jannik Sinner",
-    "time": "01.10 TBD (KST)"
+    "detail": "vs Jannik Sinner",
+    "time": "01.10 TBD"
   },
   "f1": {
     "status": "Season 2026",
     "name": "Australian Grand Prix",
-    "circuit": "Albert Park",
+    "circuit": "Albert Park Circuit",
     "date": "03.06 - 03.08"
   },
-  "updated": "2025-12-31 17:43:11"
+  "updated": "2025-12-31 17:52:20"
 }
