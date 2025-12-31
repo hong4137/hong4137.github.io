@@ -1,64 +1,92 @@
 {
   "epl": [
     {
-      "match": "Man City vs Everton",
+      "teams": "Liverpool vs Leicester",
       "time": "3-0",
-      "teams": "Man City vs Everton"
+      "match": "Liverpool vs Leicester",
+      "home": "Liverpool",
+      "away": "Leicester",
+      "score": "3-0"
     },
     {
-      "match": "Arsenal vs West Ham",
+      "teams": "Arsenal vs West Ham",
       "time": "1-1",
-      "teams": "Arsenal vs West Ham"
+      "match": "Arsenal vs West Ham",
+      "home": "Arsenal",
+      "away": "West Ham",
+      "score": "1-1"
     },
     {
-      "match": "Spurs vs Brighton",
-      "time": "01.01 15:00",
-      "teams": "Spurs vs Brighton"
+      "teams": "Man City vs Man Utd",
+      "time": "01.01 12:30",
+      "match": "Man City vs Man Utd",
+      "home": "Man City",
+      "away": "Man Utd",
+      "score": "01.01 12:30"
     },
     {
-      "match": "Chelsea vs Fulham",
-      "time": "03.01 12:30",
-      "teams": "Chelsea vs Fulham"
+      "teams": "Chelsea vs Tottenham",
+      "time": "01.01 17:30",
+      "match": "Chelsea vs Tottenham",
+      "home": "Chelsea",
+      "away": "Tottenham",
+      "score": "01.01 17:30"
     },
     {
-      "match": "Liverpool vs Brentford",
-      "time": "05.01 20:00",
-      "teams": "Liverpool vs Brentford"
+      "teams": "Newcastle vs Everton",
+      "time": "03.01 15:00",
+      "match": "Newcastle vs Everton",
+      "home": "Newcastle",
+      "away": "Everton",
+      "score": "03.01 15:00"
+    },
+    {
+      "teams": "Liverpool vs Arsenal",
+      "time": "04.01 16:30",
+      "match": "Liverpool vs Arsenal",
+      "home": "Liverpool",
+      "away": "Arsenal",
+      "score": "04.01 16:30"
     }
   ],
   "nba": {
-    "team": "Milwaukee Bucks",
-    "record": "23-9",
-    "ranking": "#1 Central",
-    "recent": "vs CHI W (130-112)",
+    "team": "GS Warriors",
+    "record": "20-14",
+    "ranking": "#3 Pacific",
+    "recent": "vs BOS W (115-110)",
     "schedule": [
       {
-        "match": "vs MIN",
-        "time": "01.01 02:00",
-        "teams": "vs MIN"
+        "teams": "vs POR",
+        "time": "12.31 19:30",
+        "match": "vs POR"
       },
       {
-        "match": "vs PHI",
-        "time": "01.03 00:30",
-        "teams": "vs PHI"
+        "teams": "at DAL",
+        "time": "01.02 07:00",
+        "match": "at DAL"
       },
       {
-        "match": "vs NYK",
-        "time": "01.05 18:00",
-        "teams": "vs NYK"
+        "teams": "vs MEM",
+        "time": "01.04 18:00",
+        "match": "vs MEM"
+      },
+      {
+        "teams": "at DEN",
+        "time": "01.07 09:00",
+        "match": "at DEN"
       }
     ],
-    "rank": "#1 Central"
+    "rank": "#3 Pacific"
   },
   "tennis": {
-    "player": "Aryna Sabalenka",
-    "status": "United Cup / Australian Tour Prep",
-    "match": "United Cup: vs Italy",
-    "time": "01.02 09:00"
+    "player": "Carlos Alcaraz",
+    "status": "ATP 250 Brisbane International - Semifinal",
+    "match": "vs Daniil Medvedev",
+    "time": "01.05 10:30"
   },
   "f1": {
     "grand_prix": "Bahrain GP",
     "time": "03.01 18:00",
-    "circuit": "Sakhir"
+    "circuit": "Sakhir International Circuit"
   }
 }
