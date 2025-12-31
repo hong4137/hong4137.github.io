@@ -1,59 +1,69 @@
 {
   "epl": [
     {
-      "teams": "Chelsea vs Newcastle Utd",
-      "time": "2-1"
+      "match": "Arsenal vs Brighton",
+      "home": "Arsenal",
+      "away": "Brighton",
+      "time": "4-2"
     },
     {
-      "teams": "Liverpool vs Arsenal",
-      "time": "1-1"
+      "match": "West Ham vs Tottenham",
+      "home": "West Ham",
+      "away": "Tottenham",
+      "time": "1-0"
     },
     {
-      "teams": "Tottenham vs Southampton",
-      "time": "12.31(Wed) 19:30"
+      "match": "Chelsea vs Man City",
+      "home": "Chelsea",
+      "away": "Man City",
+      "time": "01.01 15:00"
     },
     {
-      "teams": "Man Utd vs West Ham",
-      "time": "01.01(Thu) 12:30"
+      "match": "Liverpool vs Leicester",
+      "home": "Liverpool",
+      "away": "Leicester",
+      "time": "01.02 20:30"
     },
     {
-      "teams": "Man City vs Wolves",
-      "time": "01.01(Thu) 15:00"
-    },
-    {
-      "teams": "Arsenal vs Everton",
-      "time": "01.03(Sat) 17:30"
-    },
-    {
-      "teams": "Newcastle Utd vs Liverpool",
-      "time": "01.04(Sun) 16:30"
-    },
-    {
-      "teams": "Brighton vs Chelsea",
-      "time": "01.07(Wed) 19:45"
+      "match": "Newcastle vs Aston Villa",
+      "home": "Newcastle",
+      "away": "Aston Villa",
+      "time": "01.07 19:30"
     }
   ],
   "nba": {
-    "team": "GS Warriors",
-    "record": "18-16",
-    "ranking": "3rd Pacific / 7th West",
-    "recent": "vs ORL W 120-97",
+    "team": "Boston Celtics",
+    "record": "28-7",
+    "rank": "#1 Atlantic",
+    "recent": "vs TOR W (115-100)",
     "schedule": [
-      "vs LAL 01.01(Thu) 19:00",
-      "@ DEN 01.03(Sat) 18:30",
-      "vs MIA 01.06(Tue) 19:30",
-      "@ POR 01.08(Thu) 19:00"
+      {
+        "match": "vs OKC Thunder",
+        "time": "12.31 19:30"
+      },
+      {
+        "match": "@ Indiana Pacers",
+        "time": "01.02 00:00"
+      },
+      {
+        "match": "vs PHI 76ers",
+        "time": "01.04 19:30"
+      },
+      {
+        "match": "@ Orlando Magic",
+        "time": "01.07 20:00"
+      }
     ]
   },
   "tennis": {
-    "player": "Carlos Alcaraz",
-    "status": "Brisbane International (QF)",
-    "match": "vs Grigor Dimitrov",
+    "player": "Jannik Sinner",
+    "status": "United Cup / ATP Warmup",
+    "match": "vs Team Poland (United Cup Semi)",
     "time": "01.03 08:00"
   },
   "f1": {
-    "grand_prix": "Bahrain Grand Prix",
-    "time": "03.15(Sun) 16:00",
-    "circuit": "Bahrain International Circuit"
+    "grand_prix": "Australian GP",
+    "time": "03.08 13:00",
+    "circuit": "Albert Park"
   }
 }
