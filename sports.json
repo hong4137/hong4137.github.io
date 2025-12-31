@@ -2,84 +2,97 @@
   "epl_round": "R20",
   "epl": [
     {
-      "teams": "Man City vs Chelsea",
-      "kst_time": "01.05 01:30 (KST)",
-      "local_time": "01.04 16:30 (Local)",
-      "channel": "Sky Sports",
-      "status": "Scheduled",
-      "home": "Man City",
-      "away": "Chelsea"
-    },
-    {
-      "teams": "Liverpool vs Leeds",
+      "teams": "Liverpool v Leeds United",
       "kst_time": "01.02 02:30 (KST)",
       "local_time": "01.01 17:30 (Local)",
       "channel": "Sky Sports",
-      "status": "Scheduled",
-      "home": "Liverpool",
-      "away": "Leeds"
+      "status": "Scheduled"
     },
     {
-      "teams": "Aston Villa vs Nott'm Forest",
-      "kst_time": "01.03 21:30 (KST)",
-      "local_time": "01.03 12:30 (Local)",
-      "channel": "Sky Sports",
-      "status": "Scheduled",
-      "home": "Aston Villa",
-      "away": "Nott'm Forest"
-    },
-    {
-      "teams": "Brentford vs Tottenham",
+      "teams": "Sunderland v Manchester City",
       "kst_time": "01.02 05:00 (KST)",
       "local_time": "01.01 20:00 (Local)",
       "channel": "Sky Sports",
-      "status": "Scheduled",
-      "home": "Brentford",
-      "away": "Tottenham"
+      "status": "Scheduled"
+    },
+    {
+      "teams": "Aston Villa v Nott'm Forest",
+      "kst_time": "01.03 21:30 (KST)",
+      "local_time": "01.03 12:30 (Local)",
+      "channel": "Sky Sports",
+      "status": "Scheduled"
+    },
+    {
+      "teams": "Bournemouth v Arsenal",
+      "kst_time": "01.04 02:30 (KST)",
+      "local_time": "01.03 17:30 (Local)",
+      "channel": "Sky Sports",
+      "status": "Scheduled"
+    },
+    {
+      "teams": "Leeds United v Manchester United",
+      "kst_time": "01.04 21:30 (KST)",
+      "local_time": "01.04 12:30 (Local)",
+      "channel": "TNT Sports",
+      "status": "Scheduled"
+    },
+    {
+      "teams": "Fulham v Liverpool",
+      "kst_time": "01.05 00:00 (KST)",
+      "local_time": "01.04 15:00 (Local)",
+      "channel": "Sky Sports",
+      "status": "Scheduled"
+    },
+    {
+      "teams": "Manchester City v Chelsea",
+      "kst_time": "01.05 02:30 (KST)",
+      "local_time": "01.04 17:30 (Local)",
+      "channel": "Sky Sports",
+      "status": "Scheduled"
     }
   ],
   "nba": {
-    "record": "19-12",
-    "rank": "3rd East",
+    "record": "17-16",
+    "rank": "8th West",
     "last": {
-      "opp": "POR",
-      "result": "L",
-      "score": "108-114"
+      "opp": "BKN",
+      "result": "W",
+      "score": "120-107"
     },
     "schedule": [
       {
-        "opp": "Sacramento Kings",
-        "date": "01.01",
-        "time": "16:00 (PST)"
+        "opp": "CHA",
+        "date": "12.31",
+        "time": "10:00 (PST)"
       },
       {
-        "opp": "LA Clippers",
+        "opp": "OKC",
+        "date": "01.02",
+        "time": "19:00 (PST)"
+      },
+      {
+        "opp": "UTA",
         "date": "01.03",
-        "time": "16:30 (PST)"
+        "time": "19:00 (PST)"
       },
       {
-        "opp": "Chicago Bulls",
+        "opp": "LAC",
         "date": "01.05",
-        "time": "16:30 (PST)"
-      },
-      {
-        "opp": "Denver Nuggets",
-        "date": "01.07",
-        "time": "16:30 (PST)"
+        "time": "19:00 (PST)"
       }
     ]
   },
   "tennis": {
-    "status": "Exhibition Match",
+    "status": "Exhibition",
     "info": "Hyundai Card Super Match",
-    "detail": "vs Jannik Sinner",
-    "time": "01.10 TBD"
+    "detail": "Carlos Alcaraz vs Jannik Sinner",
+    "time": "01.10 16:00 (KST)"
   },
   "f1": {
     "status": "Season 2026",
     "name": "Australian Grand Prix",
-    "circuit": "Albert Park Circuit",
+    "circuit": "Albert Park",
     "date": "03.06 - 03.08"
   },
-  "updated": "2025-12-31 17:52:20"
+  "updated": "2025-12-31 18:00:29"
 }
