@@ -3,103 +3,111 @@
   "epl": [
     {
       "home": "Liverpool",
-      "away": "Leeds United",
+      "away": "Leeds",
       "kst_time": "01.02 02:30 (KST)",
-      "local_time": "01.01 17:30 (UK)",
-      "channel": "Sky Sports",
+      "local_time": "01.01 17:30 (Local)",
+      "channel": "Sky",
       "status": "Scheduled"
     },
     {
       "home": "Sunderland",
-      "away": "Manchester City",
+      "away": "Man City",
       "kst_time": "01.02 05:00 (KST)",
-      "local_time": "01.01 20:00 (UK)",
-      "channel": "Sky Sports",
+      "local_time": "01.01 20:00 (Local)",
+      "channel": "Sky",
       "status": "Scheduled"
     },
     {
       "home": "Aston Villa",
-      "away": "Nottingham Forest",
+      "away": "Nott'm Forest",
       "kst_time": "01.03 21:30 (KST)",
-      "local_time": "01.03 12:30 (UK)",
-      "channel": "Sky Sports",
+      "local_time": "01.03 12:30 (Local)",
+      "channel": "Sky",
       "status": "Scheduled"
     },
     {
-      "home": "AFC Bournemouth",
+      "home": "Bournemouth",
       "away": "Arsenal",
       "kst_time": "01.04 02:30 (KST)",
-      "local_time": "01.03 17:30 (UK)",
-      "channel": "Sky Sports",
+      "local_time": "01.03 17:30 (Local)",
+      "channel": "Sky",
       "status": "Scheduled"
     },
     {
-      "home": "Leeds United",
-      "away": "Manchester United",
-      "kst_time": "01.04 21:30 (KST)",
-      "local_time": "01.04 12:30 (UK)",
-      "channel": "TNT Sports",
-      "status": "Scheduled"
-    },
-    {
-      "home": "Fulham",
-      "away": "Liverpool",
-      "kst_time": "01.05 00:00 (KST)",
-      "local_time": "01.04 15:00 (UK)",
-      "channel": "Sky Sports",
-      "status": "Scheduled"
-    },
-    {
-      "home": "Manchester City",
+      "home": "Man City",
       "away": "Chelsea",
       "kst_time": "01.05 02:30 (KST)",
-      "local_time": "01.04 17:30 (UK)",
-      "channel": "Sky Sports",
+      "local_time": "01.04 17:30 (Local)",
+      "channel": "Sky",
+      "status": "Scheduled"
+    },
+    {
+      "home": "Man Utd",
+      "away": "Man City",
+      "kst_time": "01.17 21:30 (KST)",
+      "local_time": "01.17 12:30 (Local)",
+      "channel": "Sky",
+      "status": "Scheduled"
+    },
+    {
+      "home": "Nott'm Forest",
+      "away": "Arsenal",
+      "kst_time": "01.18 02:30 (KST)",
+      "local_time": "01.17 17:30 (Local)",
+      "channel": "TNT",
+      "status": "Scheduled"
+    },
+    {
+      "home": "Arsenal",
+      "away": "Man Utd",
+      "kst_time": "01.26 01:30 (KST)",
+      "local_time": "01.25 16:30 (Local)",
+      "channel": "Sky",
       "status": "Scheduled"
     }
   ],
   "nba": {
-    "record": "19-12",
-    "rank": "3rd in NBA Eastern Conference",
+    "record": "20-12",
+    "rank": "3rd in Eastern Conf.",
     "last": {
-      "opp": "POR",
-      "result": "L",
-      "score": "108-114"
+      "opp": "Utah Jazz",
+      "result": "W",
+      "score": "129-119"
     },
     "schedule": [
       {
         "opp": "Sacramento Kings (Away)",
         "date": "01.01",
-        "time": "19:00 (PST)"
+        "time": "7:00 PM (PST)"
       },
       {
         "opp": "LA Clippers (Away)",
         "date": "01.03",
-        "time": "19:30 (PST)"
+        "time": "7:30 PM (PST)"
       },
       {
         "opp": "Chicago Bulls (Home)",
         "date": "01.05",
-        "time": "16:30 (PST)"
+        "time": "4:30 PM (PST)"
       },
       {
         "opp": "Denver Nuggets (Home)",
         "date": "01.07",
-        "time": "16:30 (PST)"
+        "time": "4:30 PM (PST)"
       }
     ]
   },
   "tennis": {
     "status": "Exhibition",
-    "info": "Hyundai Card Super Match 14 (vs. Jannik Sinner)",
-    "detail": "Match",
+    "info": "Hyundai Card Super Match 14",
+    "detail": "vs Jannik Sinner",
     "time": "01.10 16:00 (KST)"
   },
   "f1": {
     "status": "Season 2026",
     "name": "Australian Grand Prix",
-    "circuit": "Melbourne Grand Prix Circuit",
+    "circuit": "Albert Park Circuit, Melbourne",
     "date": "03.06 - 03.08"
   },
-  "updated": "2025-12-31 18:05:45"
+  "updated": "2025-12-31 18:29:39"
 }
