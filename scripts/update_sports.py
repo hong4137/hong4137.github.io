@@ -9,9 +9,6 @@ from google import genai
 # 설정값
 # ---------------------------------------------------------
 SPORTS_FILE = 'sports.json'
-
-# [최종 수정] 사용자님 리스트에 있는 'gemini-flash-latest' 사용
-# 실험버전(2.0)이나 프리뷰가 아닌, 현재 가장 안정적인 정식 버전을 호출합니다.
 MODEL_NAME = 'gemini-flash-latest'
 
 def update_sports_data():
@@ -22,63 +19,73 @@ def update_sports_data():
 
     print(f"🚀 [Start] Gemini API({MODEL_NAME})를 호출합니다...")
 
-    # 2. 날짜 범위 설정 (시차 문제 해결을 위해 앞뒤로 넉넉하게 잡음)
+    # 2. 날짜 범위 설정
     today = datetime.date.today()
-    start_date = today - datetime.timedelta(days=2)  # 어제 경기 결과도 확인
-    end_date = today + datetime.timedelta(days=8)    # 일주일 뒤까지
+    start_date = today - datetime.timedelta(days=2)
+    end_date = today + datetime.timedelta(days=8)
     date_range_str = f"from {start_date} to {end_date}"
     
     print(f"📅 검색 기간: {date_range_str}")
 
-    # 3. 프롬프트 작성
+    # 3. 프롬프트 작성 (JSON 키 이름을 대시보드 호환형으로 대폭 수정)
     prompt = f"""
-    You are a sports data assistant. Retrieve the match schedules and results for the following period: {date_range_str}.
+    You are a sports data assistant. Retrieve match schedules and results: {date_range_str}.
+    Current Date: {today}
+
+    IMPORTANT: Return ONLY raw JSON. No Markdown.
     
-    Current Date for reference: {today}
-
-    Please find information for these 4 categories:
-    1. **English Premier League (EPL)**:
-       - Focus on matches between {start_date} and {end_date}.
-       - Look for recent match results and upcoming matches.
-       - Include match score if finished, or time if scheduled.
-    2. **Golden State Warriors (NBA)**:
-       - Find upcoming or recent games within the period.
-    3. **Carlos Alcaraz (Tennis)**:
-       - Find upcoming matches or recent results.
-    4. **Formula 1**:
-       - Find the next Grand Prix schedule (even if it is far in the future).
-
-    IMPORTANT: Return the result ONLY as a raw JSON object. Do not use Markdown formatting (```json ... ```).
-    The JSON structure must be exactly like this:
+    Structure Requirements (Must match exactly to avoid 'undefined' errors):
+    
+    1. **EPL**:
+       - Provide 'match' (Full string), 'home' (Home Team), 'away' (Away Team), and 'time' (Score or Time).
+       - This ensures compatibility with any dashboard format.
+    
+    2. **NBA**:
+       - 'rank': Conference rank (e.g. "#3 Pacific").
+       - 'record': Win-Loss (e.g. "18-16").
+       - 'schedule': Must be an ARRAY of OBJECTS, not strings. Each object needs 'match' and 'time'.
+       
+    Target JSON Format:
     {{
         "epl": [
-            {{ "teams": "Home vs Away", "time": "MM.DD(Day) HH:MM" or "Score" }}
+            {{ 
+                "match": "Chelsea vs Newcastle", 
+                "home": "Chelsea", 
+                "away": "Newcastle", 
+                "time": "2-1" 
+            }},
+            {{ 
+                "match": "Man Utd vs Liverpool", 
+                "home": "Man Utd", 
+                "away": "Liverpool", 
+                "time": "01.05 20:30" 
+            }}
         ],
         "nba": {{
             "team": "GS Warriors",
-            "record": "Win-Loss record (e.g. 15-15)",
-            "ranking": "Conference Ranking (e.g. 3rd Pacific)",
-            "recent": "vs Opponent Result (e.g. vs ORL W 120-97)",
+            "record": "18-16",
+            "rank": "#3 Pacific", 
+            "recent": "vs ORL W (120-97)",
             "schedule": [
-                "vs TEAM MM.DD(Day) HH:MM",
-                "vs TEAM MM.DD(Day) HH:MM"
+                {{ "match": "vs DAL", "time": "12.30 09:00" }},
+                {{ "match": "vs PHX", "time": "01.02 11:00" }}
             ]
         }},
         "tennis": {{
             "player": "Carlos Alcaraz",
-            "status": "Tournament Name or 'Off-Season'",
-            "match": "vs Opponent",
-            "time": "MM.DD HH:MM"
+            "status": "Off-Season / Training",
+            "match": "vs Opponent (if any)",
+            "time": "Date Time"
         }},
         "f1": {{
-            "grand_prix": "Grand Prix Name",
-            "time": "MM.DD(Day) HH:MM",
-            "circuit": "Circuit Name"
+            "grand_prix": "Australian GP",
+            "time": "03.08 13:00",
+            "circuit": "Albert Park"
         }}
     }}
     """
 
-    # 4. Gemini 클라이언트 초기화 및 호출
+    # 4. API 호출
     client = genai.Client(api_key=api_key)
     
     try:
@@ -93,14 +100,14 @@ def update_sports_data():
     if not response.text:
         raise ValueError("❌ API 응답이 비어있습니다!")
 
-    # 5. 응답 데이터 전처리
+    # 5. 전처리
     raw_text = response.text.strip()
     if "```" in raw_text:
         match = re.search(r'```(?:json)?\s*(.*?)\s*```', raw_text, re.DOTALL)
         if match:
             raw_text = match.group(1)
     
-    # 6. JSON 파싱 및 저장
+    # 6. 저장
     try:
         data = json.loads(raw_text)
         
@@ -108,16 +115,15 @@ def update_sports_data():
             json.dump(data, f, ensure_ascii=False, indent=2)
             
         print(f"✅ [Success] {SPORTS_FILE} 업데이트 완료!")
-        print("내용 미리보기:", json.dumps(data, ensure_ascii=False)[:200], "...")
+        # 디버깅을 위해 결과 일부 출력
+        print("EPL Data Check:", json.dumps(data.get('epl', [])[:1], ensure_ascii=False))
+        print("NBA Data Check:", json.dumps(data.get('nba', {}), ensure_ascii=False))
 
     except json.JSONDecodeError as e:
         print("❌ JSON 파싱 실패! AI가 이상한 데이터를 보냈습니다.")
         print(f"받은 데이터: {raw_text}")
         raise e
 
-# ---------------------------------------------------------
-# 메인 실행 블록
-# ---------------------------------------------------------
 if __name__ == "__main__":
     try:
         print("🚀 Script Start: update_sports.py is running...")
@@ -127,7 +133,5 @@ if __name__ == "__main__":
         print("\n\n")
         print("❌ [FATAL ERROR] 스크립트 실행 중 치명적인 오류 발생!")
         print(f"에러 메시지: {e}")
-        print("-" * 30)
         traceback.print_exc() 
-        print("-" * 30)
         raise e
