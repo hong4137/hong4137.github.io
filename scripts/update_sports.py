@@ -6,13 +6,13 @@ import re
 from google import genai
 
 # ---------------------------------------------------------
-# 설정값 (사용자님이 공유해주신 리스트 기반 확정)
+# 설정값
 # ---------------------------------------------------------
 SPORTS_FILE = 'sports.json'
 
-# [확정] 리스트에 있는 'gemini-2.0-flash' 사용
-# (혹시 나중에 2.5를 쓰고 싶으시면 'gemini-2.5-flash'로 바꾸셔도 됩니다)
-MODEL_NAME = 'gemini-2.0-flash'
+# [긴급 수정] 2.0-flash는 꽉 찼습니다(429).
+# 리스트에 있는 'Lite(경량화)' 모델로 우회하여 트래픽 제한을 피합니다.
+MODEL_NAME = 'gemini-2.0-flash-lite-preview-02-05'
 
 def update_sports_data():
     # 1. API 키 확인
