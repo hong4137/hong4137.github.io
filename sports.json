@@ -1,98 +1,75 @@
 {
   "EPL": [
     {
-      "teams": "Man City vs Aston Villa",
-      "time": "4-1"
+      "teams": "Aston Villa vs Newcastle",
+      "time": "2-1"
     },
     {
-      "teams": "Chelsea vs Brighton",
-      "time": "0-0"
+      "teams": "Tottenham vs Brighton",
+      "time": "12.31 19:30"
     },
     {
-      "teams": "Arsenal vs West Ham",
-      "time": "12.31 16:30"
-    },
-    {
-      "teams": "Liverpool vs Newcastle",
+      "teams": "Liverpool vs Man City",
       "time": "01.01 12:30"
     },
     {
-      "teams": "Tottenham vs Bournemouth",
+      "teams": "Arsenal vs Chelsea",
       "time": "01.01 15:00"
     },
     {
-      "teams": "Manchester United vs Wolves",
-      "time": "01.02 19:30"
+      "teams": "Crystal Palace vs Everton",
+      "time": "01.03 15:00"
     },
     {
-      "teams": "Man City vs Chelsea",
-      "time": "01.04 19:45"
-    },
-    {
-      "teams": "West Ham vs Arsenal",
-      "time": "01.07 14:00"
+      "teams": "West Ham vs Leicester",
+      "time": "01.06 20:00"
     }
   ],
   "NBA": {
     "team": "GS Warriors",
-    "record": "21-12",
-    "ranking": "4th West",
+    "record": "20-13",
+    "ranking": "5th West",
     "schedule": [
       {
         "teams": "vs LAL",
         "time": "12.30 09:00"
       },
       {
-        "teams": "@ DAL",
-        "time": "01.01 07:30"
+        "teams": "@ Portland Trail Blazers",
+        "time": "01.01 22:00"
       },
       {
-        "teams": "vs PHX",
-        "time": "01.03 10:00"
+        "teams": "vs Phoenix Suns",
+        "time": "01.04 19:30"
       },
       {
-        "teams": "@ DEN",
-        "time": "01.06 08:00"
+        "teams": "@ Denver Nuggets",
+        "time": "01.06 21:00"
       }
     ]
   },
   "Tennis": [
     {
       "player": "Carlos Alcaraz",
-      "match": "vs Ugo Humbert (Brisbane Open)",
-      "time": "01.01 11:00"
-    },
-    {
-      "player": "Aryna Sabalenka",
-      "match": "vs Naomi Osaka (United Cup)",
-      "time": "01.02 08:30"
-    },
-    {
-      "player": "Novak Djokovic",
-      "match": "vs Casper Ruud (Adelaide International)",
-      "time": "01.04 19:00"
+      "match": "vs Jannik Sinner",
+      "time": "01.02 05:00"
     },
     {
       "player": "Carlos Alcaraz",
-      "match": "vs Grigor Dimitrov (Brisbane Open)",
-      "time": "01.05 13:00"
+      "match": "vs Grigor Dimitrov",
+      "time": "01.04 07:30"
     },
     {
       "player": "Iga Swiatek",
-      "match": "vs Elena Rybakina (Adelaide International)",
-      "time": "01.07 10:00"
+      "match": "vs Coco Gauff",
+      "time": "01.05 06:00"
     }
   ],
   "F1": [
     {
-      "grand_prix": "Team Livery Unveil (Mercedes)",
-      "time": "01.06 14:00",
-      "circuit": "Virtual Presentation"
-    },
-    {
-      "grand_prix": "Team Livery Unveil (Ferrari)",
-      "time": "01.07 10:00",
-      "circuit": "Maranello HQ"
+      "grand_prix": "Bahrain Grand Prix (2026 Season Start)",
+      "time": "03.01 10:00",
+      "circuit": "Sakhir"
     }
   ],
   "nba": {
