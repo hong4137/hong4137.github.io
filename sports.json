@@ -1,79 +1,76 @@
 {
-  "EPL": [
+  "epl": [
     {
-      "teams": "Aston Villa vs Newcastle",
-      "time": "2-1"
+      "teams": "Burnley vs Newcastle United",
+      "time": "12.30 19:30",
+      "match": "Burnley vs Newcastle United",
+      "home": "Burnley",
+      "away": "Newcastle United"
     },
     {
-      "teams": "Tottenham vs Brighton",
-      "time": "12.31 19:30"
+      "teams": "Chelsea vs AFC Bournemouth",
+      "time": "12.30 19:30",
+      "match": "Chelsea vs AFC Bournemouth",
+      "home": "Chelsea",
+      "away": "AFC Bournemouth"
     },
     {
-      "teams": "Liverpool vs Man City",
-      "time": "01.01 12:30"
+      "teams": "Nottingham Forest vs Everton",
+      "time": "12.30 19:30",
+      "match": "Nottingham Forest vs Everton",
+      "home": "Nottingham Forest",
+      "away": "Everton"
     },
     {
-      "teams": "Arsenal vs Chelsea",
-      "time": "01.01 15:00"
+      "teams": "West Ham United vs Brighton & Hove Albion",
+      "time": "12.30 19:30",
+      "match": "West Ham United vs Brighton & Hove Albion",
+      "home": "West Ham United",
+      "away": "Brighton & Hove Albion"
     },
     {
-      "teams": "Crystal Palace vs Everton",
-      "time": "01.03 15:00"
-    },
-    {
-      "teams": "West Ham vs Leicester",
-      "time": "01.06 20:00"
-    }
-  ],
-  "NBA": {
-    "team": "GS Warriors",
-    "record": "20-13",
-    "ranking": "5th West",
-    "schedule": [
-      {
-        "teams": "vs LAL",
-        "time": "12.30 09:00"
-      },
-      {
-        "teams": "@ Portland Trail Blazers",
-        "time": "01.01 22:00"
-      },
-      {
-        "teams": "vs Phoenix Suns",
-        "time": "01.04 19:30"
-      },
-      {
-        "teams": "@ Denver Nuggets",
-        "time": "01.06 21:00"
-      }
-    ]
-  },
-  "Tennis": [
-    {
-      "player": "Carlos Alcaraz",
-      "match": "vs Jannik Sinner",
-      "time": "01.02 05:00"
-    },
-    {
-      "player": "Carlos Alcaraz",
-      "match": "vs Grigor Dimitrov",
-      "time": "01.04 07:30"
-    },
-    {
-      "player": "Iga Swiatek",
-      "match": "vs Coco Gauff",
-      "time": "01.05 06:00"
-    }
-  ],
-  "F1": [
-    {
-      "grand_prix": "Bahrain Grand Prix (2026 Season Start)",
-      "time": "03.01 10:00",
-      "circuit": "Sakhir"
+      "teams": "Arsenal vs Aston Villa",
+      "time": "12.30 20:15",
+      "match": "Arsenal vs Aston Villa",
+      "home": "Arsenal",
+      "away": "Aston Villa"
     }
   ],
   "nba": {
-    "ranking": "",
-    "record": ""
+    "team": "GS Warriors",
+    "record": "17-16",
+    "ranking": "8th in NBA Western Conference",
+    "schedule": [
+      {
+        "teams": "vs at Charlotte Hornets",
+        "time": "12.31 10:00 (PST)",
+        "match": "vs at Charlotte Hornets"
+      },
+      {
+        "teams": "vs Oklahoma City Thunder",
+        "time": "01.02 19:00 (PST)",
+        "match": "vs Oklahoma City Thunder"
+      },
+      {
+        "teams": "vs Utah Jazz",
+        "time": "01.03 19:00 (PST)",
+        "match": "vs Utah Jazz"
+      },
+      {
+        "teams": "vs at L.A. Clippers",
+        "time": "01.05 19:00 (PST)",
+        "match": "vs at L.A. Clippers"
+      }
+    ]
+  },
+  "tennis": {
+    "player": "Carlos Alcaraz",
+    "match": "Next official event is Australian Open",
+    "time": "01.12 N/A"
+  },
+  "f1": {
+    "grand_prix": "Australian Grand Prix 2026",
+    "time": "03.08 20:00 (AEDT)",
+    "circuit": "Melbourne, Australia"
   }
 }
