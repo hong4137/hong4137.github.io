@@ -1,69 +1,94 @@
 {
   "epl": [
     {
-      "match": "Arsenal vs Brighton",
-      "home": "Arsenal",
-      "away": "Brighton",
-      "time": "4-2"
+      "teams": "Wolves vs Brighton",
+      "time": "1-0",
+      "match": "Wolves vs Brighton"
     },
     {
-      "match": "West Ham vs Tottenham",
-      "home": "West Ham",
-      "away": "Tottenham",
-      "time": "1-0"
+      "teams": "Fulham vs Bournemouth",
+      "time": "1-1",
+      "match": "Fulham vs Bournemouth"
     },
     {
-      "match": "Chelsea vs Man City",
-      "home": "Chelsea",
-      "away": "Man City",
-      "time": "01.01 15:00"
+      "teams": "West Ham vs Arsenal",
+      "time": "0-2",
+      "match": "West Ham vs Arsenal"
     },
     {
-      "match": "Liverpool vs Leicester",
-      "home": "Liverpool",
-      "away": "Leicester",
-      "time": "01.02 20:30"
+      "teams": "Man City vs Brentford",
+      "time": "3-0",
+      "match": "Man City vs Brentford"
     },
     {
-      "match": "Newcastle vs Aston Villa",
-      "home": "Newcastle",
-      "away": "Aston Villa",
-      "time": "01.07 19:30"
+      "teams": "Liverpool vs Chelsea",
+      "time": "01.01 20:00",
+      "match": "Liverpool vs Chelsea"
+    },
+    {
+      "teams": "Newcastle vs Spurs",
+      "time": "02.01 15:00",
+      "match": "Newcastle vs Spurs"
+    },
+    {
+      "teams": "Man Utd vs Aston Villa",
+      "time": "02.01 17:30",
+      "match": "Man Utd vs Aston Villa"
+    },
+    {
+      "teams": "Crystal Palace vs Everton",
+      "time": "03.01 15:00",
+      "match": "Crystal Palace vs Everton"
+    },
+    {
+      "teams": "Arsenal vs Fulham",
+      "time": "07.01 19:30",
+      "match": "Arsenal vs Fulham"
+    },
+    {
+      "teams": "Brighton vs West Ham",
+      "time": "08.01 20:15",
+      "match": "Brighton vs West Ham"
     }
   ],
   "nba": {
-    "team": "Boston Celtics",
-    "record": "28-7",
-    "rank": "#1 Atlantic",
-    "recent": "vs TOR W (115-100)",
+    "team": "LA Lakers",
+    "record": "23-11",
+    "ranking": "#1 Pacific",
+    "recent": "vs SAS W (125-110)",
     "schedule": [
       {
-        "match": "vs OKC Thunder",
-        "time": "12.31 19:30"
+        "teams": "vs MIA",
+        "time": "01.01 03:30",
+        "match": "vs MIA"
       },
       {
-        "match": "@ Indiana Pacers",
-        "time": "01.02 00:00"
+        "teams": "@ GSW",
+        "time": "01.03 11:00",
+        "match": "@ GSW"
       },
       {
-        "match": "vs PHI 76ers",
-        "time": "01.04 19:30"
+        "teams": "vs TOR",
+        "time": "01.05 09:30",
+        "match": "vs TOR"
       },
       {
-        "match": "@ Orlando Magic",
-        "time": "01.07 20:00"
+        "teams": "@ PHX",
+        "time": "01.07 11:00",
+        "match": "@ PHX"
       }
-    ]
+    ],
+    "rank": "#1 Pacific"
   },
   "tennis": {
-    "player": "Jannik Sinner",
-    "status": "United Cup / ATP Warmup",
-    "match": "vs Team Poland (United Cup Semi)",
-    "time": "01.03 08:00"
+    "player": "Carlos Alcaraz",
+    "status": "Competing in United Cup (Group Stage)",
+    "match": "vs Alex de Minaur (Australia)",
+    "time": "01.04 10:00"
   },
   "f1": {
-    "grand_prix": "Australian GP",
-    "time": "03.08 13:00",
-    "circuit": "Albert Park"
+    "grand_prix": "Bahrain GP",
+    "time": "03.01 15:00",
+    "circuit": "Sakhir International Circuit"
   }
 }
