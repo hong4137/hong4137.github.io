@@ -8,17 +8,42 @@ from google import genai
 SPORTS_FILE = 'sports.json'
 MODEL_NAME = 'gemini-flash-latest'
 
+def extract_json_content(text):
+    """
+    AI 응답에서 순수한 JSON 부분만 정밀하게 추출하는 함수
+    (앞뒤에 붙은 마크다운, 공백, 사족 텍스트를 모두 제거)
+    """
+    try:
+        # 1. 가장 먼저 나오는 '{' 찾기
+        start_idx = text.find('{')
+        # 2. 가장 마지막에 나오는 '}' 찾기
+        end_idx = text.rfind('}')
+
+        if start_idx != -1 and end_idx != -1 and start_idx < end_idx:
+            # 순수 JSON 영역만 슬라이싱
+            json_str = text[start_idx : end_idx + 1]
+            return json.loads(json_str)
+        else:
+            # 괄호를 못 찾으면 그냥 파싱 시도 (운 좋으면 될 수도)
+            return json.loads(text)
+    except json.JSONDecodeError:
+        # 1차 실패 시, 마크다운 문법 제거 후 재시도
+        clean_text = re.sub(r'```(?:json)?', '', text).replace('```', '').strip()
+        start_idx = clean_text.find('{')
+        end_idx = clean_text.rfind('}')
+        if start_idx != -1 and end_idx != -1:
+            return json.loads(clean_text[start_idx : end_idx + 1])
+        raise
+
 def normalize_data(data):
     """
-    1. 데이터 개수를 잘라서 레이아웃이 길어지는 것을 방지
-    2. 'undefined'가 뜨지 않도록 빈 값을 기본값으로 채움
+    데이터 개수 제한 및 'undefined' 방지용 기본값 채우기
     """
-    print("🔧 [Processing] 데이터 개수 제한 및 빈칸 채우기...")
+    print("🔧 [Processing] 데이터 규격화 및 빈칸 채우기...")
 
     # [1] EPL 데이터 정리
     if 'epl' in data and isinstance(data['epl'], list):
-        # 최대 5개까지만
-        data['epl'] = data['epl'][:5]
+        data['epl'] = data['epl'][:5] # 최대 5개
 
         for item in data['epl']:
             main_text = item.get('match') or item.get('teams') or item.get('game') or "Unknown Match"
@@ -46,9 +71,8 @@ def normalize_data(data):
             if isinstance(nba['schedule'], str):
                 nba['schedule'] = [{"match": nba['schedule'], "time": ""}]
             
-            # 최대 4개까지만
             if isinstance(nba['schedule'], list):
-                nba['schedule'] = nba['schedule'][:4]
+                nba['schedule'] = nba['schedule'][:4] # 최대 4개
 
                 for item in nba['schedule']:
                     if isinstance(item, str):
@@ -88,7 +112,7 @@ def update_sports_data():
     
     print(f"📅 검색 기간: {date_range_str}")
 
-    # [수정됨] 중괄호를 {{ }} 두 번 써서 파이썬 에러를 막았습니다.
+    # (주의) f-string 안에서 중괄호는 {{ }} 두 번 써야 함
     prompt = f"""
     You are a sports data assistant. Retrieve match schedules: {date_range_str}.
     Current Date: {today}
@@ -99,7 +123,7 @@ def update_sports_data():
     3. **Tennis**: 'player': "Carlos Alcaraz", 'match': "vs Opponent", 'time': "MM.DD HH:MM".
     4. **F1**: 'grand_prix': "Race Name", 'time': "MM.DD HH:MM", 'circuit': "Place".
 
-    Return ONLY raw JSON.
+    Return ONLY raw JSON. No markdown, no commentary.
     """
 
     client = genai.Client(api_key=api_key)
@@ -116,24 +140,22 @@ def update_sports_data():
     if not response.text:
         raise ValueError("❌ API 응답이 비어있습니다!")
 
-    raw_text = response.text.strip()
-    if "```" in raw_text:
-        match = re.search(r'```(?:json)?\s*(.*?)\s*```', raw_text, re.DOTALL)
-        if match:
-            raw_text = match.group(1)
-    
     try:
-        data = json.loads(raw_text)
+        # [수정됨] 단순 로드가 아니라, '{' 와 '}' 사이만 추출해서 로드
+        data = extract_json_content(response.text)
+        
+        # 데이터 규격화 (undefined 방지 + 개수 제한)
         data = normalize_data(data)
         
         with open(SPORTS_FILE, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
             
         print(f"✅ [Success] {SPORTS_FILE} 업데이트 완료!")
-        print("EPL Count:", len(data.get('epl', [])))
+        print("EPL Items:", len(data.get('epl', [])))
 
     except json.JSONDecodeError as e:
-        print("❌ JSON 파싱 실패!")
+        print("❌ JSON 파싱 실패! AI 응답을 확인하세요.")
+        print(f"Raw Response: {response.text}")
         raise e
 
 if __name__ == "__main__":
