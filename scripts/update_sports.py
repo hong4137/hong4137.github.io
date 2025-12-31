@@ -35,7 +35,7 @@ def extract_json_content(text):
         return {}
 
 def normalize_data(data):
-    log("🔧 [Processing] strict normalization (No limit, No filler)...")
+    log("🔧 [Processing] Robust Normalization...")
 
     # 1. EPL
     if 'epl_round' not in data:
@@ -49,20 +49,30 @@ def normalize_data(data):
              data['epl_round'] = f"R{raw_round}"
 
     if 'epl' in data and isinstance(data['epl'], list):
-        # [변경점] 개수 제한(slicing) 삭제. 
-        # AI가 6대 로직에 맞춰서 가져온 것은 전부 다 보여줍니다.
-        # data['epl'] = data['epl'][:5]  <-- 삭제됨
-        
         for item in data['epl']:
-            if 'teams' in item and 'vs' in item['teams']:
-                try:
-                    h, a = item['teams'].split('vs')
-                    item['home'] = item.get('home') or h.strip()
-                    item['away'] = item.get('away') or a.strip()
-                except: pass
+            # [핵심 수정] 파이썬 분기 로직 강화
+            # AI가 home/away를 안 줬을 경우를 대비해 'v', 'vs', '-' 모두 체크
+            if not item.get('home') or not item.get('away'):
+                raw_teams = item.get('teams') or item.get('match') or ""
+                
+                # 영국식(v), 일반(vs), 하이픈(-) 순차 체크
+                if ' vs ' in raw_teams:
+                    h, a = raw_teams.split(' vs ')
+                elif ' v ' in raw_teams:
+                    h, a = raw_teams.split(' v ')
+                elif ' - ' in raw_teams:
+                    h, a = raw_teams.split(' - ')
+                else:
+                    # 분리 실패 시 통째로라도 넣어서 undefined 방지
+                    h, a = raw_teams, ""
+                
+                item['home'] = h.strip()
+                item['away'] = a.strip()
+
+            # 부가 정보 보정
+            if not item.get('channel') or item.get('channel') == "TBD": 
+                pass # 프론트엔드가 처리하게 둠
             
-            # UK TV 등 부가 정보 보정
-            if not item.get('channel') or item.get('channel') == "TBD": pass
             if not item.get('kst_time'): item['kst_time'] = item.get('time', 'TBD')
             if not item.get('local_time'): item['local_time'] = ""
             if not item.get('status'): item['status'] = "Scheduled"
@@ -75,7 +85,7 @@ def normalize_data(data):
     if 'last' not in nba: nba['last'] = {"opp": "-", "result": "-", "score": "-"}
 
     if 'schedule' in nba and isinstance(nba['schedule'], list):
-        nba['schedule'] = nba['schedule'][:4] # NBA는 공간상 4개 유지 권장 (필요시 삭제 가능)
+        nba['schedule'] = nba['schedule'][:4] 
         for item in nba['schedule']:
             if 'opp' not in item:
                 raw = item.get('teams') or item.get('match') or ""
@@ -126,18 +136,14 @@ def update_sports_data():
     log(f"🚀 [Start] Gemini API({MODEL_NAME}) initialized.")
     today = datetime.date.today()
     
-    # [Prompt] STRICT MODE 적용
+    # [Prompt] home, away 분리 요청 + v/vs 이슈 원천 차단
     prompt = f"""
     Current Date: {today}
     TASK: Search for OFFICIAL 2026 schedules.
     
     *** STRICT EPL MATCH SELECTION (NO FILLERS) ***
     Filter the upcoming fixtures and return matches that meet AT LEAST ONE of the following 6 Criteria.
-    
-    [Rules]
-    1. If 10 matches meet the criteria, return ALL 10. (Do not cut)
-    2. If 0 matches meet the criteria, return an EMPTY LIST []. (Do not add random matches)
-    3. Do NOT include any match that does not fit the criteria below.
+    If 0 matches meet criteria, return []. If 10 matches meet criteria, return all 10.
 
     [Context] Big 6: Man City, Man Utd, Liverpool, Arsenal, Chelsea, Tottenham.
     
@@ -145,22 +151,23 @@ def update_sports_data():
     1. **Big Match:** Big 6 vs Big 6.
     2. **Top Tier:** Current Top 4 vs Current Top 4.
     3. **Challenger:** Current Top 4 vs Big 6.
-    4. **Prime Time:** Sunday 16:30 (UK Time) matches.
-    5. **Early KO:** Saturday 12:30 (UK Time) matches.
-    6. **Leader:** Match featuring the current League Leader.
+    4. **Prime Time:** Sunday 16:30 (UK Time).
+    5. **Early KO:** Saturday 12:30 (UK Time).
+    6. **Leader:** Match featuring League Leader.
     
     *** OTHER TASKS ***
-    1. **EPL Info**: Find specific UK Broadcaster (Sky/TNT/Amazon). If none, leave blank.
+    1. **EPL Info**: Find specific UK Broadcaster (Sky/TNT/Amazon).
     2. **Tennis (Alcaraz)**: Check for EXHIBITION matches (e.g. Kooyong) or Tournaments.
     3. **NBA**: Next 4 games (Find Opponent Name).
     4. **F1**: Next 2026 GP.
 
-    TARGET JSON STRUCTURE:
+    TARGET JSON STRUCTURE (Must separate Home/Away):
     {{
         "epl_round": "Current Matchweek Number (e.g. 20)",
         "epl": [
             {{ 
-              "teams": "Home vs Away", 
+              "home": "Home Team Name",
+              "away": "Away Team Name",
               "kst_time": "MM.DD HH:MM (KST)", 
               "local_time": "MM.DD HH:MM (Local)",
               "channel": "UK TV Channel", 
@@ -211,9 +218,12 @@ def update_sports_data():
         with open(SPORTS_FILE, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
             
-        log(f"✅ [Success] Data updated (Strict Mode).")
+        log(f"✅ [Success] Data updated (v/vs Safe Mode).")
         log(f"   - EPL Matches Selected: {len(data.get('epl', []))}")
-        log(f"   - EPL Round: {data.get('epl_round')}")
+        
+        # 로그 확인용 (첫 번째 경기의 홈팀이 잘 들어갔는지)
+        if data.get('epl'):
+            log(f"   - Sample: {data['epl'][0].get('home')} vs {data['epl'][0].get('away')}")
 
     except Exception as e:
         log(f"❌ API Call Failed: {e}")
