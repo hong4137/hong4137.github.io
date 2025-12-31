@@ -3,13 +3,16 @@ import json
 import datetime
 import traceback
 import re
-from google import genai  # google-genai 라이브러리 사용
+from google import genai
 
 # ---------------------------------------------------------
-# 설정값
+# 설정값 (사용자님이 공유해주신 리스트 기반 확정)
 # ---------------------------------------------------------
 SPORTS_FILE = 'sports.json'
-MODEL_NAME = 'gemini-1.5-flash'  # 최신 모델 사용
+
+# [확정] 리스트에 있는 'gemini-2.0-flash' 사용
+# (혹시 나중에 2.5를 쓰고 싶으시면 'gemini-2.5-flash'로 바꾸셔도 됩니다)
+MODEL_NAME = 'gemini-2.0-flash'
 
 def update_sports_data():
     # 1. API 키 확인
@@ -36,7 +39,7 @@ def update_sports_data():
     Please find information for these 4 categories:
     1. **English Premier League (EPL)**:
        - Focus on matches between {start_date} and {end_date}.
-       - If there are matches on Boxing Day (Dec 26), include them.
+       - Look for recent match results (Dec 25-Jan 1) and upcoming matches.
        - Include match score if finished, or time if scheduled.
     2. **Golden State Warriors (NBA)**:
        - Find upcoming or recent games within the period.
@@ -90,9 +93,8 @@ def update_sports_data():
     if not response.text:
         raise ValueError("❌ API 응답이 비어있습니다!")
 
-    # 5. 응답 데이터 전처리 (Markdown 제거)
+    # 5. 응답 데이터 전처리
     raw_text = response.text.strip()
-    # ```json 과 ``` 사이의 내용만 추출하거나, 그대로 사용
     if "```" in raw_text:
         match = re.search(r'```(?:json)?\s*(.*?)\s*```', raw_text, re.DOTALL)
         if match:
@@ -102,7 +104,6 @@ def update_sports_data():
     try:
         data = json.loads(raw_text)
         
-        # 파일 저장
         with open(SPORTS_FILE, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
             
@@ -114,9 +115,8 @@ def update_sports_data():
         print(f"받은 데이터: {raw_text}")
         raise e
 
-
 # ---------------------------------------------------------
-# 메인 실행 블록 (에러 캐치용)
+# 메인 실행 블록
 # ---------------------------------------------------------
 if __name__ == "__main__":
     try:
@@ -128,8 +128,6 @@ if __name__ == "__main__":
         print("❌ [FATAL ERROR] 스크립트 실행 중 치명적인 오류 발생!")
         print(f"에러 메시지: {e}")
         print("-" * 30)
-        traceback.print_exc() # 에러 위치를 정확히 출력
+        traceback.print_exc() 
         print("-" * 30)
-        
-        # 깃허브 액션을 실패(Red)로 처리하기 위해 에러를 다시 던짐
         raise e
