@@ -8,8 +8,8 @@ import sys
 # ---------------------------------------------------------
 # [Configuration]
 # ---------------------------------------------------------
-SPORTS_FILE = 'sports.json' # 루트 경로에 위치 (분석서 기반)
-MODEL_NAME = 'gemini-flash-latest' # [중요] 1.5 버전 사용 금지 (404 방지)
+SPORTS_FILE = 'sports.json' 
+MODEL_NAME = 'gemini-flash-latest' 
 
 def log(message):
     """GitHub Actions 로그 누락 방지"""
@@ -42,7 +42,20 @@ def normalize_data(data):
     """
     log("🔧 [Processing] Mapping data to Frontend requirements...")
 
-    # 1. EPL (Keys: home, away, kst_time, local_time, status)
+    # 1. EPL (Keys: epl_round, home, away, kst_time, local_time, status)
+    
+    # [NEW] 라운드 정보 정규화 (Matchweek 20 -> R20)
+    if 'epl_round' not in data:
+        data['epl_round'] = "R--"
+    else:
+        # 숫자만 추출해서 R 붙이기
+        raw_round = str(data['epl_round'])
+        nums = re.findall(r'\d+', raw_round)
+        if nums:
+            data['epl_round'] = f"R{nums[0]}"
+        elif not raw_round.startswith('R'):
+             data['epl_round'] = f"R{raw_round}"
+
     if 'epl' in data and isinstance(data['epl'], list):
         data['epl'] = data['epl'][:5]
         for item in data['epl']:
@@ -54,7 +67,7 @@ def normalize_data(data):
                     item['away'] = item.get('away') or a.strip()
                 except: pass
             
-            # 시간 데이터 보정 (없으면 - 표시 방지)
+            # 시간 데이터 보정
             if not item.get('kst_time'): item['kst_time'] = item.get('time', 'TBD')
             if not item.get('local_time'): item['local_time'] = ""
             if not item.get('status'): item['status'] = "Scheduled"
@@ -65,15 +78,12 @@ def normalize_data(data):
     nba['record'] = nba.get('record') or "-"
     nba['rank'] = nba.get('ranking') or nba.get('rank') or "-"
     
-    # 지난 경기 정보 (Optional)
     if 'last' not in nba: nba['last'] = {"opp": "-", "result": "-", "score": "-"}
 
     if 'schedule' in nba and isinstance(nba['schedule'], list):
         nba['schedule'] = nba['schedule'][:4]
         for item in nba['schedule']:
-            # [중요] 'opp' 키 생성 로직 (vs undefined 해결)
             if 'opp' not in item:
-                # teams나 match에서 상대팀 추출 시도
                 raw = item.get('teams') or item.get('match') or ""
                 if 'vs' in raw:
                     item['opp'] = raw.split('vs')[-1].strip()
@@ -82,9 +92,7 @@ def normalize_data(data):
                 else:
                     item['opp'] = raw.replace("GS Warriors", "").strip() or "TBD"
             
-            # 날짜/시간 분리 (프론트엔드가 date, time을 따로 씀)
             if 'time' in item and not item.get('date'):
-                # 포맷이 "12.31 10:00" 형태라면 분리 시도
                 parts = item['time'].split(' ')
                 if len(parts) >= 2:
                     item['date'] = parts[0]
@@ -96,7 +104,6 @@ def normalize_data(data):
     if 'tennis' not in data: data['tennis'] = {}
     t = data['tennis']
     
-    # 프론트엔드 매핑
     if not t.get('info'): t['info'] = t.get('match') or t.get('tournament') or "No Match"
     if not t.get('detail'): t['detail'] = t.get('round') or "Check Schedule"
     if not t.get('status'): t['status'] = "Season 2026"
@@ -106,13 +113,11 @@ def normalize_data(data):
     if 'f1' not in data: data['f1'] = {}
     f = data['f1']
     
-    # 프론트엔드 매핑
     if not f.get('name'): f['name'] = f.get('grand_prix') or "Next GP"
     if not f.get('circuit'): f['circuit'] = "Circuit TBD"
     if not f.get('status'): f['status'] = "Upcoming"
     if not f.get('date'): f['date'] = f.get('time', '')
 
-    # 메타데이터 업데이트
     data['updated'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
     return data
@@ -132,13 +137,14 @@ def update_sports_data():
     today = datetime.date.today()
     log(f"📅 Base Date: {today}")
 
-    # [Prompt] 프론트엔드 스키마에 맞춘 정밀 지시
+    # [Prompt] epl_round 키 추가 요청
     prompt = f"""
     Current Date: {today}
     TASK: Search for OFFICIAL 2026 schedules (EPL, NBA, Tennis, F1).
     
     TARGET JSON STRUCTURE (Strictly follow this keys):
     {{
+        "epl_round": "Current Matchweek Number (e.g. 20)",
         "epl": [
             {{ 
               "teams": "Home vs Away", 
@@ -170,10 +176,10 @@ def update_sports_data():
     }}
 
     SEARCH INSTRUCTIONS:
-    1. **NBA (GS Warriors)**: Find the next 4 games. MUST extract 'opp' (Opponent Name).
-    2. **Tennis (Carlos Alcaraz)**: Find current tournament & round.
-    3. **F1**: Find next 2026 GP & Circuit Name.
-    4. **EPL**: Next matchweek fixtures.
+    1. **EPL**: Find upcoming fixtures. **IDENTIFY the specific Matchweek number.**
+    2. **NBA (GS Warriors)**: Find the next 4 games. MUST extract 'opp' (Opponent Name).
+    3. **Tennis (Carlos Alcaraz)**: Find current tournament & round.
+    4. **F1**: Find next 2026 GP & Circuit Name.
 
     Return ONLY the JSON object.
     """
@@ -181,7 +187,6 @@ def update_sports_data():
     client = genai.Client(api_key=api_key)
     
     try:
-        # JSON 모드 해제 -> 검색(Thinking) 유도
         response = client.models.generate_content(
             model=MODEL_NAME,
             contents=prompt,
@@ -201,8 +206,8 @@ def update_sports_data():
             json.dump(data, f, ensure_ascii=False, indent=2)
             
         log(f"✅ [Success] Data updated in {SPORTS_FILE}")
-        log(f"   - EPL: {len(data.get('epl', []))} matches")
-        log(f"   - NBA Opponent: {data.get('nba', {}).get('schedule', [{}])[0].get('opp')}")
+        log(f"   - EPL Round: {data.get('epl_round', 'Unknown')}")
+        log(f"   - EPL Matches: {len(data.get('epl', []))}")
 
     except Exception as e:
         log(f"❌ API Call Failed: {e}")
