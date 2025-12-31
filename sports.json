@@ -1,92 +1,71 @@
 {
-  "epl": [
+  "EPL": [
     {
-      "teams": "Liverpool vs Leicester",
-      "time": "3-0",
-      "match": "Liverpool vs Leicester",
-      "home": "Liverpool",
-      "away": "Leicester",
-      "score": "3-0"
+      "teams": "Chelsea vs Fulham",
+      "time": "3-0"
     },
     {
-      "teams": "Arsenal vs West Ham",
-      "time": "1-1",
-      "match": "Arsenal vs West Ham",
-      "home": "Arsenal",
-      "away": "West Ham",
-      "score": "1-1"
+      "teams": "Liverpool vs Brighton",
+      "time": "12.31 16:30"
     },
     {
-      "teams": "Man City vs Man Utd",
-      "time": "01.01 12:30",
-      "match": "Man City vs Man Utd",
-      "home": "Man City",
-      "away": "Man Utd",
-      "score": "01.01 12:30"
+      "teams": "Arsenal vs Man City",
+      "time": "01.01 19:30"
     },
     {
-      "teams": "Chelsea vs Tottenham",
-      "time": "01.01 17:30",
-      "match": "Chelsea vs Tottenham",
-      "home": "Chelsea",
-      "away": "Tottenham",
-      "score": "01.01 17:30"
+      "teams": "West Ham vs Brentford",
+      "time": "01.04 15:00"
     },
     {
-      "teams": "Newcastle vs Everton",
-      "time": "03.01 15:00",
-      "match": "Newcastle vs Everton",
-      "home": "Newcastle",
-      "away": "Everton",
-      "score": "03.01 15:00"
-    },
-    {
-      "teams": "Liverpool vs Arsenal",
-      "time": "04.01 16:30",
-      "match": "Liverpool vs Arsenal",
-      "home": "Liverpool",
-      "away": "Arsenal",
-      "score": "04.01 16:30"
+      "teams": "Aston Villa vs Wolves",
+      "time": "01.06 20:00"
     }
   ],
-  "nba": {
+  "NBA": {
     "team": "GS Warriors",
-    "record": "20-14",
-    "ranking": "#3 Pacific",
-    "recent": "vs BOS W (115-110)",
+    "record": "20-13",
+    "ranking": "5th West",
     "schedule": [
       {
-        "teams": "vs POR",
-        "time": "12.31 19:30",
-        "match": "vs POR"
+        "teams": "vs LAL",
+        "time": "12.30 09:00"
       },
       {
-        "teams": "at DAL",
-        "time": "01.02 07:00",
-        "match": "at DAL"
+        "teams": "@ Utah Jazz",
+        "time": "12.31 19:00"
       },
       {
-        "teams": "vs MEM",
-        "time": "01.04 18:00",
-        "match": "vs MEM"
+        "teams": "vs Phoenix Suns",
+        "time": "01.02 07:30"
       },
       {
-        "teams": "at DEN",
-        "time": "01.07 09:00",
-        "match": "at DEN"
+        "teams": "@ Dallas Mavericks",
+        "time": "01.04 18:00"
       }
-    ],
-    "rank": "#3 Pacific"
+    ]
   },
-  "tennis": {
-    "player": "Carlos Alcaraz",
-    "status": "ATP 250 Brisbane International - Semifinal",
-    "match": "vs Daniil Medvedev",
-    "time": "01.05 10:30"
-  },
-  "f1": {
-    "grand_prix": "Bahrain GP",
-    "time": "03.01 18:00",
-    "circuit": "Sakhir International Circuit"
-  }
+  "Tennis": [
+    {
+      "player": "Carlos Alcaraz",
+      "match": "vs Grigor Dimitrov",
+      "time": "01.01 04:30"
+    },
+    {
+      "player": "Carlos Alcaraz",
+      "match": "vs Lorenzo Musetti",
+      "time": "01.03 08:00"
+    },
+    {
+      "player": "Daniil Medvedev",
+      "match": "vs Alex De Minaur",
+      "time": "01.05 06:30"
+    }
+  ],
+  "F1": [
+    {
+      "grand_prix": "Pre-Season Testing Session 1",
+      "time": "01.06 08:00",
+      "circuit": "Jeddah Corniche Circuit"
+    }
+  ]
 }
