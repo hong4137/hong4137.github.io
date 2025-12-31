@@ -1,43 +1,59 @@
 {
-    "updated": "12/25 10:39",
-    "nba": {
-        "status": "Active",
-        "record": "15-15",
-        "rank": "#3rd Pacific",
-        "last": {
-            "date": "12.23(Tue)",
-            "time": "12:00",
-            "opp": "ORL",
-            "is_home": true,
-            "result": "W",
-            "score": "120-97"
-        },
-        "schedule": [
-            {
-                "date": "12.26(Fri)",
-                "time": "07:00",
-                "opp": "DAL",
-                "is_home": true
-            },
-            {
-                "date": "12.29(Mon)",
-                "time": "05:30",
-                "opp": "TOR",
-                "is_home": false
-            }
-        ]
+  "epl": [
+    {
+      "teams": "Chelsea vs Newcastle Utd",
+      "time": "2-1"
     },
-    "epl": [],
-    "tennis": {
-        "status": "Scheduled",
-        "info": "Hyundai Card Super Match (Exhibition)",
-        "detail": "vs Jannik Sinner",
-        "time": "January 10, 2026"
+    {
+      "teams": "Liverpool vs Arsenal",
+      "time": "1-1"
     },
-    "f1": {
-        "status": "Next GP",
-        "name": "Australian GP",
-        "date": "03.08(Sun) 13:00",
-        "circuit": "Albert Park Grand Prix Circuit"
+    {
+      "teams": "Tottenham vs Southampton",
+      "time": "12.31(Wed) 19:30"
+    },
+    {
+      "teams": "Man Utd vs West Ham",
+      "time": "01.01(Thu) 12:30"
+    },
+    {
+      "teams": "Man City vs Wolves",
+      "time": "01.01(Thu) 15:00"
+    },
+    {
+      "teams": "Arsenal vs Everton",
+      "time": "01.03(Sat) 17:30"
+    },
+    {
+      "teams": "Newcastle Utd vs Liverpool",
+      "time": "01.04(Sun) 16:30"
+    },
+    {
+      "teams": "Brighton vs Chelsea",
+      "time": "01.07(Wed) 19:45"
     }
+  ],
+  "nba": {
+    "team": "GS Warriors",
+    "record": "18-16",
+    "ranking": "3rd Pacific / 7th West",
+    "recent": "vs ORL W 120-97",
+    "schedule": [
+      "vs LAL 01.01(Thu) 19:00",
+      "@ DEN 01.03(Sat) 18:30",
+      "vs MIA 01.06(Tue) 19:30",
+      "@ POR 01.08(Thu) 19:00"
+    ]
+  },
+  "tennis": {
+    "player": "Carlos Alcaraz",
+    "status": "Brisbane International (QF)",
+    "match": "vs Grigor Dimitrov",
+    "time": "01.03 08:00"
+  },
+  "f1": {
+    "grand_prix": "Bahrain Grand Prix",
+    "time": "03.15(Sun) 16:00",
+    "circuit": "Bahrain International Circuit"
+  }
 }
