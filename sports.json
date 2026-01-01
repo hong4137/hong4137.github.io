@@ -5,7 +5,7 @@
       "home": "Aston Villa",
       "away": "Nott'm Forest",
       "kst_time": "01.03 21:30 (KST)",
-      "local_time": "01.03 12:30 (UK Time)",
+      "local_time": "01.03 12:30 (Local)",
       "channel": "Sky Sports",
       "status": "Scheduled"
     },
@@ -13,77 +13,61 @@
       "home": "Bournemouth",
       "away": "Arsenal",
       "kst_time": "01.04 02:30 (KST)",
-      "local_time": "01.03 17:30 (UK Time)",
+      "local_time": "01.03 17:30 (Local)",
       "channel": "Sky Sports",
-      "status": "Scheduled"
-    },
-    {
-      "home": "Leeds United",
-      "away": "Man Utd",
-      "kst_time": "01.04 21:30 (KST)",
-      "local_time": "01.04 12:30 (UK Time)",
-      "channel": "TNT Sports 1",
       "status": "Scheduled"
     },
     {
       "home": "Man City",
       "away": "Chelsea",
       "kst_time": "01.05 02:30 (KST)",
-      "local_time": "01.04 17:30 (UK Time)",
-      "channel": "Sky Sports",
-      "status": "Scheduled"
-    },
-    {
-      "home": "Arsenal",
-      "away": "Man Utd",
-      "kst_time": "01.26 01:30 (KST)",
-      "local_time": "01.25 16:30 (UK Time)",
+      "local_time": "01.04 17:30 (Local)",
       "channel": "Sky Sports",
       "status": "Scheduled"
     }
   ],
   "nba": {
     "record": "20-12",
-    "rank": "3rd East Conf.",
+    "rank": "3rd in NBA Eastern Conference",
     "last": {
-      "opp": "Utah Jazz",
+      "opp": "UTA",
       "result": "W",
       "score": "129-119"
     },
     "schedule": [
       {
-        "opp": "Sacramento Kings (A)",
+        "opp": "SAC",
         "date": "01.01",
-        "time": "7:00 PM (PST)"
+        "time": "19:00 (PST)"
       },
       {
-        "opp": "LA Clippers (A)",
+        "opp": "LAC",
         "date": "01.03",
-        "time": "7:30 PM (PST)"
+        "time": "19:30 (PST)"
       },
       {
-        "opp": "Chicago Bulls (H)",
+        "opp": "CHI",
         "date": "01.05",
-        "time": "7:30 PM (EST)"
+        "time": "16:30 (PST)"
       },
       {
-        "opp": "Denver Nuggets (H)",
+        "opp": "DEN",
         "date": "01.07",
-        "time": "7:00 PM (EST)"
+        "time": "16:00 (PST)"
       }
     ]
   },
   "tennis": {
     "status": "Exhibition",
     "info": "Hyundai Card Super Match",
-    "detail": "Carlos Alcaraz vs Jannik Sinner",
+    "detail": "vs Jannik Sinner",
     "time": "01.10 16:00 (KST)"
   },
   "f1": {
     "status": "Season 2026",
     "name": "Australian Grand Prix",
-    "circuit": "Albert Park",
+    "circuit": "Albert Park, Melbourne",
     "date": "03.06 - 03.08"
   },
-  "updated": "2026-01-01 13:32:49"
+  "updated": "2026-01-01 14:19:21"
 }
