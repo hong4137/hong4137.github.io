@@ -6,7 +6,7 @@
       "away": "Nottingham Forest",
       "kst_time": "01.03 21:30 (KST)",
       "local_time": "01.03 12:30 (Local)",
-      "channel": "Sky Sports Premier League",
+      "channel": "Sky Sports",
       "status": "Scheduled"
     },
     {
@@ -14,29 +14,29 @@
       "away": "Arsenal",
       "kst_time": "01.04 02:30 (KST)",
       "local_time": "01.03 17:30 (Local)",
-      "channel": "Sky Sports Premier League",
+      "channel": "Sky Sports",
       "status": "Scheduled"
     },
     {
-      "home": "Fulham",
-      "away": "Liverpool",
-      "kst_time": "01.05 00:00 (KST)",
-      "local_time": "01.04 15:00 (Local)",
-      "channel": "Sky Sports Main Event",
+      "home": "Leeds United",
+      "away": "Man United",
+      "kst_time": "01.04 21:30 (KST)",
+      "local_time": "01.04 12:30 (Local)",
+      "channel": "TNT Sports",
       "status": "Scheduled"
     },
     {
-      "home": "Manchester City",
+      "home": "Man City",
       "away": "Chelsea",
       "kst_time": "01.05 02:30 (KST)",
       "local_time": "01.04 17:30 (Local)",
-      "channel": "Sky Sports Main Event",
+      "channel": "Sky Sports",
       "status": "Scheduled"
     }
   ],
   "nba": {
     "record": "20-11",
-    "rank": "5th (Western Conf.)",
+    "rank": "5th in Western Conference",
     "last": {
       "opp": "Detroit Pistons",
       "result": "L",
@@ -44,24 +44,24 @@
     },
     "schedule": [
       {
-        "opp": "Memphis Grizzlies (Home)",
+        "opp": "Memphis Grizzlies",
         "date": "01.02",
-        "time": "7:30 PM (PST)"
+        "time": "07:30 PM (PST)"
       },
       {
-        "opp": "Memphis Grizzlies (Home)",
+        "opp": "Memphis Grizzlies",
         "date": "01.04",
-        "time": "6:30 PM (PST)"
+        "time": "06:30 PM (PST)"
       },
       {
-        "opp": "New Orleans Pelicans (Away)",
+        "opp": "New Orleans Pelicans",
         "date": "01.06",
-        "time": "5:00 PM (PST)"
+        "time": "05:00 PM (PST)"
       },
       {
-        "opp": "San Antonio Spurs (Away)",
+        "opp": "San Antonio Spurs",
         "date": "01.07",
-        "time": "8:30 PM (PST)"
+        "time": "06:30 PM (PST)"
       }
     ]
   },
@@ -69,13 +69,13 @@
     "status": "Exhibition",
     "info": "Hyundai Card Super Match",
     "detail": "vs Jannik Sinner",
-    "time": "01.10 16:00 (KST)"
+    "time": "01.10 00:00 (KST)"
   },
   "f1": {
     "status": "Season 2026",
     "name": "Australian Grand Prix",
-    "circuit": "Melbourne",
+    "circuit": "Melbourne Grand Prix Circuit (Albert Park)",
     "date": "03.06 - 03.08"
   },
-  "updated": "2026-01-01 09:25:10"
+  "updated": "2026-01-01 10:22:12"
 }
