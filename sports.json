@@ -2,72 +2,88 @@
   "epl_round": "R20",
   "epl": [
     {
-      "home": "Aston Villa",
-      "away": "Nott'm Forest",
-      "kst_time": "01.03 21:30 (KST)",
-      "local_time": "01.03 12:30 (Local)",
-      "channel": "Sky/TNT",
+      "home": "Liverpool",
+      "away": "Leeds United",
+      "kst_time": "01.02 02:30 (KST)",
+      "local_time": "01.01 17:30 (Local)",
+      "channel": "Sky Sports",
       "status": "Scheduled"
     },
     {
-      "home": "Man City",
+      "home": "Aston Villa",
+      "away": "Nottingham Forest",
+      "kst_time": "01.03 21:30 (KST)",
+      "local_time": "01.03 12:30 (Local)",
+      "channel": "Sky Sports",
+      "status": "Scheduled"
+    },
+    {
+      "home": "AFC Bournemouth",
+      "away": "Arsenal",
+      "kst_time": "01.04 02:30 (KST)",
+      "local_time": "01.03 17:30 (Local)",
+      "channel": "Sky Sports",
+      "status": "Scheduled"
+    },
+    {
+      "home": "Leeds United",
+      "away": "Manchester United",
+      "kst_time": "01.04 21:30 (KST)",
+      "local_time": "01.04 12:30 (Local)",
+      "channel": "TNT Sports",
+      "status": "Scheduled"
+    },
+    {
+      "home": "Manchester City",
       "away": "Chelsea",
       "kst_time": "01.05 02:30 (KST)",
       "local_time": "01.04 17:30 (Local)",
-      "channel": "Sky/TNT",
-      "status": "Scheduled"
-    },
-    {
-      "home": "Man Utd",
-      "away": "Man City",
-      "kst_time": "01.17 21:30 (KST)",
-      "local_time": "01.17 12:30 (Local)",
-      "channel": "Sky/TNT",
+      "channel": "Sky Sports",
       "status": "Scheduled"
     }
   ],
   "nba": {
-    "record": "20-12",
-    "rank": "3rd in Eastern Conference",
+    "record": "20-11",
+    "rank": "5th (West)",
     "last": {
-      "opp": "Utah Jazz",
-      "result": "W",
-      "score": "129-119"
+      "opp": "Detroit Pistons",
+      "result": "L",
+      "score": "106-128"
     },
     "schedule": [
       {
-        "opp": "@ Sacramento Kings",
-        "date": "01.01",
-        "time": "19:00 (PST)"
-      },
-      {
-        "opp": "@ LA Clippers",
-        "date": "01.03",
+        "opp": "Memphis Grizzlies",
+        "date": "01.02",
         "time": "19:30 (PST)"
       },
       {
-        "opp": "vs Chicago Bulls",
-        "date": "01.05",
-        "time": "16:30 (PST)"
+        "opp": "Memphis Grizzlies",
+        "date": "01.04",
+        "time": "18:30 (PST)"
       },
       {
-        "opp": "vs Denver Nuggets",
+        "opp": "New Orleans Pelicans",
+        "date": "01.06",
+        "time": "17:00 (PST)"
+      },
+      {
+        "opp": "San Antonio Spurs",
         "date": "01.07",
-        "time": "16:30 (PST)"
+        "time": "18:30 (PST)"
       }
     ]
   },
   "tennis": {
     "status": "Exhibition",
-    "info": "Hyundai Card Super Match",
-    "detail": "vs Jannik Sinner (South Korea)",
-    "time": "01.10 TBD"
+    "info": "Hyundai Card Super Match 14",
+    "detail": "vs Jannik Sinner",
+    "time": "01.10 16:00 (KST)"
   },
   "f1": {
     "status": "Season 2026",
-    "name": "FORMULA 1 AUSTRALIAN GRAND PRIX 2026",
-    "circuit": "Albert Park Circuit",
+    "name": "Australian Grand Prix",
+    "circuit": "Albert Park",
     "date": "03.06 - 03.08"
   },
-  "updated": "2026-01-01 16:26:07"
+  "updated": "2026-01-01 17:18:50"
 }
