@@ -369,8 +369,51 @@ def normalize_epl_data(epl_list, top_4_teams, leader_team):
 # =============================================================================
 # NBA 데이터 정규화
 # =============================================================================
-def normalize_nba_data(nba_data):
-    """NBA 데이터 정규화 - undefined 방지, PST→KST 변환"""
+
+# OTT/스트리밍 서비스 (제외 대상)
+NBA_OTT_CHANNELS = [
+    'prime video', 'amazon prime', 'peacock', 'nba tv', 'nbatv', 
+    'nba league pass', 'league pass', 'espn+', 'paramount+'
+]
+
+# 전국 TV 중계 (표시 대상)
+NBA_NATIONAL_TV = ['espn', 'abc', 'nbc', 'tnt']
+
+def is_national_tv_broadcast(channel):
+    """전국 TV 중계인지 확인 (OTT 제외)"""
+    if not channel:
+        return False, None
+    
+    channel_lower = channel.lower()
+    
+    # OTT/스트리밍은 제외
+    for ott in NBA_OTT_CHANNELS:
+        if ott in channel_lower:
+            return False, None
+    
+    # 전국 TV 중계 확인
+    for tv in NBA_NATIONAL_TV:
+        if tv in channel_lower:
+            # 정규화된 채널명 반환
+            if 'espn' in channel_lower and 'espn+' not in channel_lower:
+                return True, 'ESPN'
+            elif 'abc' in channel_lower:
+                return True, 'ABC'
+            elif 'nbc' in channel_lower and 'peacock' not in channel_lower:
+                return True, 'NBC'
+            elif 'tnt' in channel_lower:
+                return True, 'TNT'
+    
+    return False, None
+
+def normalize_nba_data(nba_data, schedule_with_tv=None):
+    """
+    NBA 데이터 정규화 - EPL 스타일
+    
+    - OTT (Prime Video, Peacock, NBA TV, League Pass) 제외
+    - 전국 TV (ESPN, ABC, NBC, TNT) 만 표시
+    - PT/KST 시간 모두 제공
+    """
     if not nba_data:
         nba_data = {}
     
@@ -386,23 +429,34 @@ def normalize_nba_data(nba_data):
         last['result'] = last.get('result') or '-'
         last['score'] = last.get('score') or '-'
     
-    # schedule 정규화 + PST→KST 변환
+    # schedule_with_tv가 제공되면 사용 (TV 정보 포함)
+    if schedule_with_tv and isinstance(schedule_with_tv, list):
+        nba_data['schedule'] = schedule_with_tv
+    
+    # schedule 정규화 + PT→KST 변환
     if 'schedule' in nba_data and isinstance(nba_data['schedule'], list):
-        nba_data['schedule'] = nba_data['schedule'][:4]
+        normalized_schedule = []
+        
         for game in nba_data['schedule']:
             # opp 필드 확보
-            if 'opp' not in game or not game['opp']:
-                raw = game.get('teams') or game.get('match') or game.get('opponent') or ''
+            opp = game.get('opp') or game.get('opponent') or ''
+            if not opp:
+                raw = game.get('teams') or game.get('match') or ''
                 if 'vs' in raw.lower():
-                    game['opp'] = raw.lower().split('vs')[-1].strip().title()
+                    opp = raw.lower().split('vs')[-1].strip().title()
                 elif '@' in raw:
-                    game['opp'] = raw.split('@')[-1].strip()
+                    opp = raw.split('@')[-1].strip()
                 else:
-                    game['opp'] = raw.replace('Warriors', '').replace('Golden State', '').strip() or 'TBD'
+                    opp = raw.replace('Warriors', '').replace('Golden State', '').strip() or 'TBD'
             
-            # 시간 추출 및 PST→KST 변환
+            # 홈/어웨이 구분
+            location = game.get('location', 'home')  # home or away
+            if '@' in str(game.get('opp', '')) or '@' in str(game.get('teams', '')):
+                location = 'away'
+            
+            # 시간 추출
             date_str = game.get('date', '')
-            time_str = game.get('time', '')
+            time_str = game.get('time_pt', '') or game.get('time', '')
             
             # time 필드에 날짜+시간이 합쳐져 있는 경우 분리
             if not date_str and time_str:
@@ -412,15 +466,31 @@ def normalize_nba_data(nba_data):
                 if len(parts) >= 2:
                     time_str = parts[1]
             
-            # PST → KST 변환
+            # PT → KST 변환
             if date_str and time_str:
                 kst_date, kst_time, kst_full = convert_pst_to_kst(date_str, time_str)
-                game['date'] = kst_date
-                game['time'] = kst_time
-                game['time_kst'] = kst_full
-                game['time_pst'] = f"{date_str} {time_str} (PST)"
-            elif date_str:
-                game['date'] = date_str
+                local_time = f"{date_str} {time_str} (PT)"
+            else:
+                kst_full = 'TBD'
+                local_time = date_str or 'TBD'
+            
+            # TV 채널 확인 (OTT 제외)
+            raw_channel = game.get('channel', '') or game.get('tv', '') or game.get('broadcast', '')
+            is_national, normalized_channel = is_national_tv_broadcast(raw_channel)
+            
+            normalized_game = {
+                'opp': opp.replace('@', '').strip(),
+                'location': location,
+                'kst_time': kst_full,
+                'local_time': local_time,
+                'channel': normalized_channel if is_national else None,  # 전국 TV만
+                'raw_channel': raw_channel,  # 원본 (디버깅용)
+                'is_national_tv': is_national
+            }
+            
+            normalized_schedule.append(normalized_game)
+        
+        nba_data['schedule'] = normalized_schedule[:6]  # 최대 6경기
     else:
         nba_data['schedule'] = []
     
@@ -583,51 +653,135 @@ def update_sports_data():
     log(f"   선별된 경기 수: {len(validated_epl)}")
     
     # =========================================================================
-    # STEP 4: NBA 데이터 검색 (PST 시간으로 요청, Python에서 KST 변환)
+    # STEP 4: NBA 데이터 검색 (TV 중계 정보 포함)
     # =========================================================================
-    log("\n🏀 [Step 4] NBA Warriors 일정 검색 (PST)...")
+    log("\n🏀 [Step 4] NBA Warriors 일정 및 TV 중계 검색...")
     
-    nba_prompt = f"""
+    # 4-1: 기본 정보 (전적, 순위, 최근 경기)
+    nba_basic_prompt = f"""
     Current Date: {today}
     
-    Search for Golden State Warriors:
+    Search for Golden State Warriors current status:
     1. Current season record (W-L)
     2. Current Western Conference ranking
-    3. Last game result (opponent, W/L, score)
-    4. Next 4 scheduled games
-    
-    IMPORTANT: Provide game times in PST (Pacific Standard Time) only.
+    3. Last game result (opponent, W/L, final score)
     
     Return JSON only:
     {{
-        "nba": {{
-            "record": "17-16",
-            "rank": "8th West",
-            "last": {{
-                "opp": "Opponent Name",
-                "result": "W",
-                "score": "107-104"
-            }},
-            "schedule": [
-                {{ "opp": "Hornets", "date": "01.02", "time": "19:00" }}
-            ]
+        "record": "18-16",
+        "rank": "8th West",
+        "last": {{
+            "opp": "Hornets",
+            "result": "W",
+            "score": "132-125"
         }}
     }}
     """
     
     try:
-        nba_response = client.models.generate_content(
+        nba_basic_response = client.models.generate_content(
             model=MODEL_NAME,
-            contents=nba_prompt,
+            contents=nba_basic_prompt,
             config=types.GenerateContentConfig(tools=[google_search_tool])
         )
-        nba_data = extract_json_content(nba_response.text).get('nba', {})
-        log(f"   ✅ Record: {nba_data.get('record', 'N/A')}")
+        nba_data = extract_json_content(nba_basic_response.text)
+        log(f"   ✅ Record: {nba_data.get('record', 'N/A')}, Rank: {nba_data.get('rank', 'N/A')}")
     except Exception as e:
-        log(f"   ⚠️ NBA 검색 실패: {e}")
+        log(f"   ⚠️ NBA 기본 정보 검색 실패: {e}")
         nba_data = {}
     
-    nba_data = normalize_nba_data(nba_data)
+    # 4-2: 경기 일정 + TV 중계 정보
+    nba_schedule_prompt = f"""
+    Current Date: {today}
+    
+    Search for Golden State Warriors upcoming game schedule with TV broadcast information.
+    
+    For each game, I need:
+    - Opponent team name
+    - Game date (MM.DD format)
+    - Game time in PT (Pacific Time), 24-hour format
+    - Location: "home" or "away"
+    - TV channel: National broadcast channel (ESPN, ABC, NBC, TNT) or streaming service (Prime Video, Peacock, NBA TV, League Pass)
+    
+    IMPORTANT: 
+    - Search sportsmediawatch.com or nba.com for accurate TV schedule
+    - Include ALL broadcast options for each game
+    - Times should be in PT (Pacific Time)
+    
+    Return JSON only:
+    {{
+        "schedule": [
+            {{
+                "opp": "Thunder",
+                "date": "01.02",
+                "time_pt": "22:00",
+                "location": "home",
+                "channel": "Prime Video"
+            }},
+            {{
+                "opp": "Jazz",
+                "date": "01.03",
+                "time_pt": "22:00",
+                "location": "home",
+                "channel": "League Pass"
+            }},
+            {{
+                "opp": "Clippers",
+                "date": "01.05",
+                "time_pt": "22:00",
+                "location": "away",
+                "channel": "Peacock"
+            }},
+            {{
+                "opp": "Bucks",
+                "date": "01.07",
+                "time_pt": "22:00",
+                "location": "home",
+                "channel": "League Pass"
+            }},
+            {{
+                "opp": "Kings",
+                "date": "01.09",
+                "time_pt": "22:00",
+                "location": "home",
+                "channel": "League Pass"
+            }},
+            {{
+                "opp": "Blazers",
+                "date": "01.13",
+                "time_pt": "23:00",
+                "location": "home",
+                "channel": "NBC"
+            }}
+        ]
+    }}
+    
+    Return next 6 upcoming games.
+    """
+    
+    try:
+        nba_schedule_response = client.models.generate_content(
+            model=MODEL_NAME,
+            contents=nba_schedule_prompt,
+            config=types.GenerateContentConfig(tools=[google_search_tool])
+        )
+        schedule_data = extract_json_content(nba_schedule_response.text)
+        nba_schedule = schedule_data.get('schedule', [])
+        log(f"   ✅ 검색된 경기 수: {len(nba_schedule)}")
+    except Exception as e:
+        log(f"   ⚠️ NBA 일정 검색 실패: {e}")
+        nba_schedule = []
+    
+    # 정규화 (OTT 제외, 전국 TV만 표시)
+    nba_data = normalize_nba_data(nba_data, nba_schedule)
+    
+    # TV 중계 로그
+    log("\n   📺 TV 중계 필터링 결과:")
+    for game in nba_data.get('schedule', []):
+        channel_display = game.get('channel') or '(No National TV)'
+        raw = game.get('raw_channel', '')
+        is_national = '✅' if game.get('is_national_tv') else '❌'
+        log(f"      {is_national} vs {game['opp']}: {channel_display} (원본: {raw})")
     
     # =========================================================================
     # STEP 5: Tennis 데이터 검색
