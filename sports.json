@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-02 05:30:40 KST",
+  "updated": "2026-01-02 06:24:22 KST",
   "epl_round": "R--",
   "standings": {
     "leader": "Arsenal",
@@ -22,15 +22,15 @@
     "schedule": []
   },
   "tennis": {
-    "status": "Off-Season",
-    "info": "Next Tournament TBD",
-    "detail": "Check Schedule",
-    "time": ""
+    "status": "Exhibition",
+    "info": "Exhibition Match vs Jannik Sinner",
+    "detail": "Incheon, South Korea",
+    "time": "01.10"
   },
   "f1": {
-    "status": "Season 2026",
-    "name": "Next GP",
-    "circuit": "Circuit TBD",
-    "date": ""
+    "status": "Off-Season",
+    "name": "Australian Grand Prix",
+    "circuit": "Albert Park, Melbourne",
+    "date": "03.06-03.08"
   }
 }
