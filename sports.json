@@ -1,41 +1,23 @@
 {
-  "updated": "2026-01-02 03:29:29 KST",
-  "epl_round": "R21",
+  "updated": "2026-01-02 03:56:41 KST",
+  "epl_round": "R--",
   "standings": {
     "leader": "Arsenal",
     "top_4": [
       "Arsenal",
       "Manchester City",
-      "Aston Villa",
-      "Liverpool"
+      "Liverpool",
+      "Chelsea"
     ]
   },
-  "epl": [
-    {
-      "home": "Arsenal",
-      "away": "Liverpool",
-      "kickoff_day": "Thursday",
-      "kickoff_time_uk": "20:00",
-      "date": "01.08",
-      "broadcaster": "Sky Sports",
-      "matched_rules": [
-        "Rule1:Big6vsBig6",
-        "Rule2:Top4vsTop4",
-        "Rule6:Leader"
-      ],
-      "kst_time": "01.09 05:00 (KST)",
-      "local_time": "01.08 20:00 (UK)",
-      "channel": "Sky Sports",
-      "status": "Scheduled"
-    }
-  ],
+  "epl": [],
   "nba": {
-    "record": "18-16",
-    "rank": "8th West",
+    "record": "-",
+    "rank": "-",
     "last": {
-      "opp": "Hornets",
-      "result": "W",
-      "score": "132-125"
+      "opp": "-",
+      "result": "-",
+      "score": "-"
     },
     "schedule": []
   },
