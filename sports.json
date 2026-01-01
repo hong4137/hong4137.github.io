@@ -5,7 +5,7 @@
       "home": "Aston Villa",
       "away": "Nott'm Forest",
       "kst_time": "01.03 21:30 (KST)",
-      "local_time": "01.03 12:30 (Local)",
+      "local_time": "01.03 12:30 (UK Time)",
       "channel": "Sky Sports",
       "status": "Scheduled"
     },
@@ -13,15 +13,23 @@
       "home": "Bournemouth",
       "away": "Arsenal",
       "kst_time": "01.04 02:30 (KST)",
-      "local_time": "01.03 17:30 (Local)",
+      "local_time": "01.03 17:30 (UK Time)",
       "channel": "Sky Sports",
+      "status": "Scheduled"
+    },
+    {
+      "home": "Leeds United",
+      "away": "Man Utd",
+      "kst_time": "01.04 21:30 (KST)",
+      "local_time": "01.04 12:30 (UK Time)",
+      "channel": "TNT Sports 1",
       "status": "Scheduled"
     },
     {
       "home": "Man City",
       "away": "Chelsea",
       "kst_time": "01.05 02:30 (KST)",
-      "local_time": "01.04 17:30 (Local)",
+      "local_time": "01.04 17:30 (UK Time)",
       "channel": "Sky Sports",
       "status": "Scheduled"
     },
@@ -29,53 +37,53 @@
       "home": "Arsenal",
       "away": "Man Utd",
       "kst_time": "01.26 01:30 (KST)",
-      "local_time": "01.25 16:30 (Local)",
+      "local_time": "01.25 16:30 (UK Time)",
       "channel": "Sky Sports",
       "status": "Scheduled"
     }
   ],
   "nba": {
-    "record": "20-11",
-    "rank": "5th (Western Conference)",
+    "record": "20-12",
+    "rank": "3rd East Conf.",
     "last": {
-      "opp": "Detroit Pistons",
-      "result": "L",
-      "score": "106-128"
+      "opp": "Utah Jazz",
+      "result": "W",
+      "score": "129-119"
     },
     "schedule": [
       {
-        "opp": "Memphis Grizzlies",
-        "date": "01.04",
-        "time": "21:30 (PST)"
+        "opp": "Sacramento Kings (A)",
+        "date": "01.01",
+        "time": "7:00 PM (PST)"
       },
       {
-        "opp": "New Orleans Pelicans (A)",
-        "date": "01.06",
-        "time": "20:00 (PST)"
+        "opp": "LA Clippers (A)",
+        "date": "01.03",
+        "time": "7:30 PM (PST)"
       },
       {
-        "opp": "San Antonio Spurs (A)",
+        "opp": "Chicago Bulls (H)",
+        "date": "01.05",
+        "time": "7:30 PM (EST)"
+      },
+      {
+        "opp": "Denver Nuggets (H)",
         "date": "01.07",
-        "time": "21:30 (PST)"
-      },
-      {
-        "opp": "Milwaukee Bucks",
-        "date": "01.09",
-        "time": "19:30 (PST)"
+        "time": "7:00 PM (EST)"
       }
     ]
   },
   "tennis": {
     "status": "Exhibition",
     "info": "Hyundai Card Super Match",
-    "detail": "Carlos Alcaraz vs. Jannik Sinner",
+    "detail": "Carlos Alcaraz vs Jannik Sinner",
     "time": "01.10 16:00 (KST)"
   },
   "f1": {
     "status": "Season 2026",
     "name": "Australian Grand Prix",
-    "circuit": "Melbourne",
+    "circuit": "Albert Park",
     "date": "03.06 - 03.08"
   },
-  "updated": "2026-01-01 12:41:02"
+  "updated": "2026-01-01 13:32:49"
 }
