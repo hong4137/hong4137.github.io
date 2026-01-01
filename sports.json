@@ -1,100 +1,25 @@
 {
-  "updated": "2026-01-02 04:09:49 KST",
-  "epl_round": "R20",
+  "updated": "2026-01-02 04:20:50 KST",
+  "epl_round": "R--",
   "standings": {
     "leader": "Arsenal",
     "top_4": [
       "Arsenal",
       "Manchester City",
-      "Aston Villa",
-      "Liverpool"
+      "Liverpool",
+      "Chelsea"
     ]
   },
-  "epl": [
-    {
-      "home": "Aston Villa",
-      "away": "Nottingham Forest",
-      "kickoff_day": "Saturday",
-      "kickoff_time_uk": "12:30",
-      "date": "01.03",
-      "broadcaster": "Sky Sports",
-      "matched_rules": [
-        "Rule5:Saturday12:30"
-      ],
-      "kst_time": "01.03 21:30 (KST)",
-      "local_time": "01.03 12:30 (UK)",
-      "channel": "Sky Sports",
-      "status": "Scheduled"
-    },
-    {
-      "home": "AFC Bournemouth",
-      "away": "Arsenal",
-      "kickoff_day": "Saturday",
-      "kickoff_time_uk": "17:30",
-      "date": "01.03",
-      "broadcaster": "Sky Sports",
-      "matched_rules": [
-        "Rule6:Leader"
-      ],
-      "kst_time": "01.04 02:30 (KST)",
-      "local_time": "01.03 17:30 (UK)",
-      "channel": "Sky Sports",
-      "status": "Scheduled"
-    },
-    {
-      "home": "Manchester City",
-      "away": "Chelsea",
-      "kickoff_day": "Sunday",
-      "kickoff_time_uk": "17:30",
-      "date": "01.04",
-      "broadcaster": "Sky Sports",
-      "matched_rules": [
-        "Rule1:Big6vsBig6"
-      ],
-      "kst_time": "01.05 02:30 (KST)",
-      "local_time": "01.04 17:30 (UK)",
-      "channel": "Sky Sports",
-      "status": "Scheduled"
-    }
-  ],
+  "epl": [],
   "nba": {
-    "record": "18-16",
-    "rank": "8th West",
+    "record": "-",
+    "rank": "-",
     "last": {
-      "opp": "Hornets",
-      "result": "W",
-      "score": "132-125"
+      "opp": "-",
+      "result": "-",
+      "score": "-"
     },
-    "schedule": [
-      {
-        "opp": "Thunder",
-        "date": "01.03",
-        "time": "12:00",
-        "time_kst": "01.03 12:00 (KST)",
-        "time_pst": "01.02 19:00 (PST)"
-      },
-      {
-        "opp": "Jazz",
-        "date": "01.04",
-        "time": "12:00",
-        "time_kst": "01.04 12:00 (KST)",
-        "time_pst": "01.03 19:00 (PST)"
-      },
-      {
-        "opp": "Clippers",
-        "date": "01.06",
-        "time": "12:00",
-        "time_kst": "01.06 12:00 (KST)",
-        "time_pst": "01.05 19:00 (PST)"
-      },
-      {
-        "opp": "Bucks",
-        "date": "01.08",
-        "time": "12:00",
-        "time_kst": "01.08 12:00 (KST)",
-        "time_pst": "01.07 19:00 (PST)"
-      }
-    ]
+    "schedule": []
   },
   "tennis": {
     "status": "Off-Season",
