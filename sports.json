@@ -1,16 +1,62 @@
 {
-  "updated": "2026-01-02 06:24:22 KST",
-  "epl_round": "R--",
+  "updated": "2026-01-02 07:26:20 KST",
+  "epl_round": "R20",
   "standings": {
     "leader": "Arsenal",
     "top_4": [
       "Arsenal",
       "Manchester City",
-      "Liverpool",
-      "Chelsea"
+      "Aston Villa",
+      "Liverpool"
     ]
   },
-  "epl": [],
+  "epl": [
+    {
+      "home": "Aston Villa",
+      "away": "Nottingham Forest",
+      "kickoff_day": "Saturday",
+      "kickoff_time_uk": "12:30",
+      "date": "03.01",
+      "broadcaster": "Sky Sports",
+      "matched_rules": [
+        "Rule5:Saturday12:30"
+      ],
+      "kst_time": "03.01 21:30 (KST)",
+      "local_time": "03.01 12:30 (UK)",
+      "channel": "Sky Sports",
+      "status": "Scheduled"
+    },
+    {
+      "home": "AFC Bournemouth",
+      "away": "Arsenal",
+      "kickoff_day": "Saturday",
+      "kickoff_time_uk": "17:30",
+      "date": "03.01",
+      "broadcaster": "Sky Sports",
+      "matched_rules": [
+        "Rule6:Leader"
+      ],
+      "kst_time": "03.02 02:30 (KST)",
+      "local_time": "03.01 17:30 (UK)",
+      "channel": "Sky Sports",
+      "status": "Scheduled"
+    },
+    {
+      "home": "Manchester City",
+      "away": "Chelsea",
+      "kickoff_day": "Sunday",
+      "kickoff_time_uk": "17:30",
+      "date": "04.01",
+      "broadcaster": "Sky Sports",
+      "matched_rules": [
+        "Rule1:Big6vsBig6"
+      ],
+      "kst_time": "04.02 01:30 (KST)",
+      "local_time": "04.01 17:30 (UK)",
+      "channel": "Sky Sports",
+      "status": "Scheduled"
+    }
+  ],
   "nba": {
     "record": "-",
     "rank": "-",
@@ -22,15 +68,15 @@
     "schedule": []
   },
   "tennis": {
-    "status": "Exhibition",
-    "info": "Exhibition Match vs Jannik Sinner",
-    "detail": "Incheon, South Korea",
-    "time": "01.10"
+    "status": "Off-Season",
+    "info": "Next Tournament TBD",
+    "detail": "Check Schedule",
+    "time": ""
   },
   "f1": {
-    "status": "Off-Season",
-    "name": "Australian Grand Prix",
-    "circuit": "Albert Park, Melbourne",
-    "date": "03.06-03.08"
+    "status": "Season 2026",
+    "name": "Next GP",
+    "circuit": "Circuit TBD",
+    "date": ""
   }
 }
