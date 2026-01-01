@@ -277,7 +277,7 @@
                         </div>
                         <div id="nba-record" style="font-size:14px; font-weight:bold; color:white;">-</div> 
                     </div>
-                    <div id="nba-content" style="margin-top: 15px;">
+                    <div id="nba-content" style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
                         <div class="loading-text">Loading...</div>
                     </div>
                 </div>
@@ -285,7 +285,8 @@
                 <div class="sport-card">
                     <div class="sport-header">
                         <div style="display:flex; align-items:center; gap:8px;">
-                            <i class="fas fa-table-tennis" style="color:#ccff00; font-size: 1.2rem;"></i> 
+                            <!-- 테니스 라켓 이모지로 변경 (탁구 아이콘에서) -->
+                            <span style="color:#ccff00; font-size: 1.2rem;">🎾</span>
                             <span style="font-weight:bold; color:#ccc;">Carlos Alcaraz</span>
                         </div>
                         <span id="tennis-status" style="font-size:10px; background:#333; padding:2px 6px; border-radius:4px; color:#aaa;">-</span>
@@ -454,28 +455,48 @@
                     }
                 } catch (e) { console.error("EPL Error:", e); }
 
-                // 2. NBA
+                // 2. NBA - EPL 스타일로 변경
                 try {
                     const nba = data.nba;
                     if (nba && document.getElementById('nba-content')) {
-                        document.getElementById('nba-record').innerText = `${nba.record} | ${nba.rank}`;
+                        document.getElementById('nba-record').innerText = `${nba.record || '-'} | ${nba.rank || '-'}`;
+                        
                         let html = '';
-                        if (nba.last && nba.last.opp) {
-                            // 승패 색상
+                        
+                        // 최근 경기 결과
+                        if (nba.last && nba.last.opp && nba.last.opp !== '-') {
                             const resColor = (nba.last.result === 'W') ? '#ff4400' : '#0088ff'; 
-                            html += `<div style="display:flex; justify-content:space-between; margin-bottom:8px; border-bottom:1px solid #333; padding-bottom:5px;">
+                            html += `<div style="display:flex; justify-content:space-between; margin-bottom:8px; border-bottom:1px solid #333; padding-bottom:8px;">
                                 <span style="font-size:11px; color:#888;">Recent</span>
                                 <span style="font-size:12px; font-weight:bold; color:#fff;">vs ${nba.last.opp} <span style="color:${resColor}">${nba.last.result}</span> <span style="font-size:10px; color:#888;">(${nba.last.score})</span></span>
                             </div>`;
                         }
-                        if (nba.schedule) {
-                            nba.schedule.forEach(g => {
-                                html += `<div style="display:flex; justify-content:space-between; margin-bottom:4px;">
-                                    <span style="font-size:12px; color:#ccc;">vs ${g.opp}</span>
-                                    <span style="font-size:11px; color:#666;">${g.date} ${g.time}</span>
+                        
+                        // 경기 일정 - EPL 스타일 카드
+                        if (nba.schedule && Array.isArray(nba.schedule)) {
+                            nba.schedule.forEach((game, index) => {
+                                // 전국 TV 중계가 있으면 하이라이트
+                                const hasNationalTV = game.channel && game.is_national_tv;
+                                const bgStyle = hasNationalTV
+                                    ? 'background: rgba(255, 174, 0, 0.1); border-left: 3px solid #ffae00;' 
+                                    : 'background: rgba(255, 255, 255, 0.05); border-left: 3px solid #666;';
+                                
+                                // 홈/어웨이 표시
+                                const locationPrefix = game.location === 'away' ? '@ ' : 'vs ';
+                                
+                                html += `<div style="${bgStyle} padding: 8px; border-radius: 6px; margin-bottom: 6px;">
+                                    <div style="font-size:13px; font-weight:bold; color:white; margin-bottom:6px;">${locationPrefix}${game.opp || 'TBD'}</div>
+                                    <div style="display:flex; justify-content:space-between; align-items:end;">
+                                        <div>
+                                            <div style="font-size:12px; font-weight:bold; color:#ddd;">${game.kst_time || '-'}</div>
+                                            <div style="font-size:10px; color:#666; margin-top:1px;">Local: ${game.local_time || '-'}</div>
+                                        </div>
+                                        ${hasNationalTV ? `<div style="font-size:9px; color:#ffae00; font-weight:bold; background:rgba(0,0,0,0.3); padding:2px 5px; border-radius:4px;">${game.channel}</div>` : ''}
+                                    </div>
                                 </div>`;
                             });
                         }
+                        
                         document.getElementById('nba-content').innerHTML = html || '<div class="loading-text">No Data</div>';
                     }
                 } catch (e) { console.error("NBA Error:", e); }
