@@ -1,6 +1,6 @@
 {
-  "updated": "2026-01-02 02:42:39 KST",
-  "epl_round": "R20",
+  "updated": "2026-01-02 03:29:29 KST",
+  "epl_round": "R21",
   "standings": {
     "leader": "Arsenal",
     "top_4": [
@@ -12,47 +12,19 @@
   },
   "epl": [
     {
-      "home": "Aston Villa",
-      "away": "Nottingham Forest",
-      "kickoff_day": "Saturday",
-      "kickoff_time_uk": "12:30",
-      "date": "01.03",
+      "home": "Arsenal",
+      "away": "Liverpool",
+      "kickoff_day": "Thursday",
+      "kickoff_time_uk": "20:00",
+      "date": "01.08",
       "broadcaster": "Sky Sports",
       "matched_rules": [
-        "Rule5:Saturday12:30"
-      ],
-      "kst_time": "01.03 21:30 (KST)",
-      "local_time": "01.03 12:30 (UK)",
-      "channel": "Sky Sports",
-      "status": "Scheduled"
-    },
-    {
-      "home": "AFC Bournemouth",
-      "away": "Arsenal",
-      "kickoff_day": "Saturday",
-      "kickoff_time_uk": "17:30",
-      "date": "01.03",
-      "broadcaster": "Sky Sports",
-      "matched_rules": [
+        "Rule1:Big6vsBig6",
+        "Rule2:Top4vsTop4",
         "Rule6:Leader"
       ],
-      "kst_time": "01.04 02:30 (KST)",
-      "local_time": "01.03 17:30 (UK)",
-      "channel": "Sky Sports",
-      "status": "Scheduled"
-    },
-    {
-      "home": "Manchester City",
-      "away": "Chelsea",
-      "kickoff_day": "Sunday",
-      "kickoff_time_uk": "17:30",
-      "date": "01.04",
-      "broadcaster": "Sky Sports",
-      "matched_rules": [
-        "Rule1:Big6vsBig6"
-      ],
-      "kst_time": "01.05 02:30 (KST)",
-      "local_time": "01.04 17:30 (UK)",
+      "kst_time": "01.09 05:00 (KST)",
+      "local_time": "01.08 20:00 (UK)",
       "channel": "Sky Sports",
       "status": "Scheduled"
     }
@@ -65,47 +37,18 @@
       "result": "W",
       "score": "132-125"
     },
-    "schedule": [
-      {
-        "opp": "Thunder",
-        "date": "01.03",
-        "time": "12:00",
-        "time_kst": "01.03 12:00 (KST)",
-        "time_pst": "01.02 19:00 (PST)"
-      },
-      {
-        "opp": "Jazz",
-        "date": "01.04",
-        "time": "12:00",
-        "time_kst": "01.04 12:00 (KST)",
-        "time_pst": "01.03 19:00 (PST)"
-      },
-      {
-        "opp": "Clippers",
-        "date": "01.06",
-        "time": "12:00",
-        "time_kst": "01.06 12:00 (KST)",
-        "time_pst": "01.05 19:00 (PST)"
-      },
-      {
-        "opp": "Bucks",
-        "date": "01.08",
-        "time": "12:00",
-        "time_kst": "01.08 12:00 (KST)",
-        "time_pst": "01.07 19:00 (PST)"
-      }
-    ]
+    "schedule": []
   },
   "tennis": {
-    "status": "Exhibition",
-    "info": "Exhibition Match (vs. Jannik Sinner)",
-    "detail": "Incheon, South Korea (prior to Australian Open)",
-    "time": "01.10"
+    "status": "Off-Season",
+    "info": "Next Tournament TBD",
+    "detail": "Check Schedule",
+    "time": ""
   },
   "f1": {
-    "status": "Off-Season",
-    "name": "Australian Grand Prix",
-    "circuit": "Albert Park Circuit, Melbourne",
-    "date": "03.06-03.08"
+    "status": "Season 2026",
+    "name": "Next GP",
+    "circuit": "Circuit TBD",
+    "date": ""
   }
 }
