@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-02 21:40:52 KST",
+  "updated": "2026-01-02 22:32:54 KST",
   "epl_round": "R20",
   "standings": {
     "leader": "Arsenal",
@@ -72,7 +72,7 @@
         "kst_time": "01.03 12:00 (KST)",
         "local_time": "01.02 19:00 (PT)",
         "channel": null,
-        "raw_channel": "Prime Video",
+        "raw_channel": "AMZN",
         "is_national_tv": false
       },
       {
@@ -80,9 +80,9 @@
         "location": "home",
         "kst_time": "01.04 12:00 (KST)",
         "local_time": "01.03 19:00 (PT)",
-        "channel": null,
-        "raw_channel": "NBA League Pass",
-        "is_national_tv": false
+        "channel": "NBC",
+        "raw_channel": "NBCSBA",
+        "is_national_tv": true
       },
       {
         "opp": "Clippers",
@@ -98,18 +98,18 @@
         "location": "home",
         "kst_time": "01.08 12:00 (KST)",
         "local_time": "01.07 19:00 (PT)",
-        "channel": null,
-        "raw_channel": "NBA League Pass",
-        "is_national_tv": false
+        "channel": "NBC",
+        "raw_channel": "NBCSBA",
+        "is_national_tv": true
       },
       {
         "opp": "Kings",
         "location": "home",
         "kst_time": "01.10 12:00 (KST)",
         "local_time": "01.09 19:00 (PT)",
-        "channel": null,
-        "raw_channel": "NBA League Pass",
-        "is_national_tv": false
+        "channel": "NBC",
+        "raw_channel": "NBCSBA",
+        "is_national_tv": true
       },
       {
         "opp": "Hawks",
@@ -117,16 +117,16 @@
         "kst_time": "01.12 10:30 (KST)",
         "local_time": "01.11 17:30 (PT)",
         "channel": null,
-        "raw_channel": "NBA League Pass",
+        "raw_channel": "FDSN-SE",
         "is_national_tv": false
       }
     ]
   },
   "tennis": {
-    "status": "Off-Season",
-    "info": "Australian Open (Start of 2026 Season)",
+    "status": "Off-Season (Next: Tournament)",
+    "info": "Australian Open (First Round)",
     "detail": "Melbourne, Australia",
-    "time": "01.18"
+    "time": "01.12"
   },
   "f1": {
     "status": "Off-Season",
