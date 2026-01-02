@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-02 22:32:54 KST",
+  "updated": "2026-01-02 23:20:51 KST",
   "epl_round": "R20",
   "standings": {
     "leader": "Arsenal",
@@ -72,7 +72,7 @@
         "kst_time": "01.03 12:00 (KST)",
         "local_time": "01.02 19:00 (PT)",
         "channel": null,
-        "raw_channel": "AMZN",
+        "raw_channel": "Prime Video",
         "is_national_tv": false
       },
       {
@@ -116,17 +116,17 @@
         "location": "home",
         "kst_time": "01.12 10:30 (KST)",
         "local_time": "01.11 17:30 (PT)",
-        "channel": null,
-        "raw_channel": "FDSN-SE",
-        "is_national_tv": false
+        "channel": "NBC",
+        "raw_channel": "NBCSBA",
+        "is_national_tv": true
       }
     ]
   },
   "tennis": {
-    "status": "Off-Season (Next: Tournament)",
-    "info": "Australian Open (First Round)",
-    "detail": "Melbourne, Australia",
-    "time": "01.12"
+    "status": "Exhibition",
+    "info": "Exhibition Match vs Sinner",
+    "detail": "Incheon, South Korea",
+    "time": "01.10"
   },
   "f1": {
     "status": "Off-Season",
