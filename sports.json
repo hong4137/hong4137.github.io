@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-02 12:45:01 KST",
+  "updated": "2026-01-02 13:43:40 KST",
   "epl_round": "R20",
   "standings": {
     "leader": "Arsenal",
@@ -58,14 +58,69 @@
     }
   ],
   "nba": {
-    "record": "-",
-    "rank": "-",
+    "record": "18-16",
+    "rank": "8th West",
     "last": {
-      "opp": "-",
-      "result": "-",
-      "score": "-"
+      "opp": "Hornets",
+      "result": "W",
+      "score": "132-125"
     },
-    "schedule": []
+    "schedule": [
+      {
+        "opp": "Thunder",
+        "location": "home",
+        "kst_time": "01.03 12:00 (KST)",
+        "local_time": "01.02 19:00 (PT)",
+        "channel": null,
+        "raw_channel": "Prime Video",
+        "is_national_tv": false
+      },
+      {
+        "opp": "Jazz",
+        "location": "home",
+        "kst_time": "01.04 12:00 (KST)",
+        "local_time": "01.03 19:00 (PT)",
+        "channel": "NBC",
+        "raw_channel": "NBALP/NBCSBA",
+        "is_national_tv": true
+      },
+      {
+        "opp": "Clippers",
+        "location": "away",
+        "kst_time": "01.06 12:00 (KST)",
+        "local_time": "01.05 19:00 (PT)",
+        "channel": null,
+        "raw_channel": "Peacock",
+        "is_national_tv": false
+      },
+      {
+        "opp": "Bucks",
+        "location": "home",
+        "kst_time": "01.08 12:00 (KST)",
+        "local_time": "01.07 19:00 (PT)",
+        "channel": "NBC",
+        "raw_channel": "NBALP/NBCSBA",
+        "is_national_tv": true
+      },
+      {
+        "opp": "Kings",
+        "location": "home",
+        "kst_time": "01.10 12:00 (KST)",
+        "local_time": "01.09 19:00 (PT)",
+        "channel": "NBC",
+        "raw_channel": "NBALP/NBCSBA",
+        "is_national_tv": true
+      },
+      {
+        "opp": "Hawks",
+        "location": "home",
+        "kst_time": "01.12 10:30 (KST)",
+        "local_time": "01.11 17:30 (PT)",
+        "channel": "NBC",
+        "raw_channel": "NBALP/NBCSBA",
+        "is_national_tv": true
+      }
+    ]
   },
   "tennis": {
     "status": "Off-Season",
