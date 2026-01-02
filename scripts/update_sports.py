@@ -51,10 +51,11 @@ TZ_EST = ZoneInfo("America/New_York")
 # 설정
 # =============================================================================
 SPORTS_FILE = 'sports.json'
-MODEL_NAME = 'gemini-flash-latest'
+MODEL_NAME = 'gemini-2.0-flash'  # Free Tier: 10 RPM, 1500 RPD (2.5-flash보다 훨씬 여유)
 
 # Gemini Free Tier Rate Limit 대응
-API_CALL_DELAY = 15  # 각 API 호출 사이 15초 대기
+# gemini-2.0-flash: 10 RPM = 6초마다 1회 가능, 여유있게 8초
+API_CALL_DELAY = 8
 
 # Big 6는 고정값
 BIG_6 = ["Manchester City", "Manchester United", "Liverpool", "Arsenal", "Chelsea", "Tottenham"]
@@ -98,7 +99,7 @@ def call_gemini_with_retry(client, prompt, tools, max_retries=3):
         except Exception as e:
             error_str = str(e)
             if '429' in error_str or 'RESOURCE_EXHAUSTED' in error_str:
-                wait_time = 35 + (attempt * 15)  # 35초, 50초, 65초
+                wait_time = 15 + (attempt * 10)  # 15초, 25초, 35초
                 log(f"   ⏳ Rate Limit. {wait_time}초 대기 후 재시도... ({attempt + 1}/{max_retries})")
                 time.sleep(wait_time)
             else:
