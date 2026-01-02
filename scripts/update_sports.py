@@ -83,29 +83,29 @@ except ImportError:
 # =============================================================================
 # Rate Limit 대응 API 호출 래퍼
 # =============================================================================
-def call_gemini_with_retry(client, prompt, tools, max_retries=3):
+class RateLimitExceeded(Exception):
+    """Rate Limit 초과 시 발생하는 예외 - 조용히 종료용"""
+    pass
+
+def call_gemini_api(client, prompt, tools):
     """
-    Gemini API 호출 with 재시도 로직
-    - Rate Limit (429) 발생 시 대기 후 재시도
+    Gemini API 호출 - Rate Limit 시 재시도 없이 바로 예외 발생
+    (할당량 소진 시 다음 실행까지 기다림)
     """
-    for attempt in range(max_retries):
-        try:
-            response = client.models.generate_content(
-                model=MODEL_NAME,
-                contents=prompt,
-                config=types.GenerateContentConfig(tools=tools)
-            )
-            return response
-        except Exception as e:
-            error_str = str(e)
-            if '429' in error_str or 'RESOURCE_EXHAUSTED' in error_str:
-                wait_time = 15 + (attempt * 10)  # 15초, 25초, 35초
-                log(f"   ⏳ Rate Limit. {wait_time}초 대기 후 재시도... ({attempt + 1}/{max_retries})")
-                time.sleep(wait_time)
-            else:
-                raise e
-    
-    raise Exception(f"Max retries ({max_retries}) exceeded")
+    try:
+        response = client.models.generate_content(
+            model=MODEL_NAME,
+            contents=prompt,
+            config=types.GenerateContentConfig(tools=tools)
+        )
+        return response
+    except Exception as e:
+        error_str = str(e)
+        if '429' in error_str or 'RESOURCE_EXHAUSTED' in error_str:
+            log(f"   ⚠️ Rate Limit 도달 - 다음 실행까지 대기합니다.")
+            raise RateLimitExceeded("API 할당량 소진")
+        else:
+            raise e
 
 # =============================================================================
 # 타임존 변환 함수
@@ -441,8 +441,7 @@ def update_sports_data():
     
     log(f"🚀 [Start] {kst_now.strftime('%Y-%m-%d %H:%M:%S')} (KST)")
     log(f"   Model: {MODEL_NAME}")
-    log(f"   API Delay: {API_CALL_DELAY}s (Rate Limit 대응)")
-    log(f"   API 호출: 3회 (통합 검색)")
+    log(f"   API Delay: {API_CALL_DELAY}s")
     
     # =========================================================================
     # STEP 1: EPL 순위 + 경기 일정 통합 검색
@@ -476,7 +475,7 @@ def update_sports_data():
     """
     
     try:
-        epl_response = call_gemini_with_retry(client, epl_prompt, [google_search_tool])
+        epl_response = call_gemini_api(client, epl_prompt, [google_search_tool])
         epl_data = extract_json_content(epl_response.text)
         
         leader_team = epl_data.get('leader', 'Arsenal')
@@ -486,6 +485,9 @@ def update_sports_data():
         
         log(f"   ✅ Leader: {leader_team}, Top 4: {top_4_teams}")
         log(f"   ✅ Round: {epl_round}, 경기: {len(epl_matches)}개")
+    except RateLimitExceeded:
+        log("\n⏸️ [중단] Rate Limit - 기존 데이터 유지, 다음 실행 대기")
+        return  # 조용히 종료
     except Exception as e:
         log(f"   ⚠️ EPL 검색 실패: {e}")
         leader_team = 'Arsenal'
@@ -499,7 +501,7 @@ def update_sports_data():
     log(f"   ✅ 선별 경기: {len(validated_epl)}개")
     
     # Rate Limit 대기
-    log(f"\n   ⏳ Rate Limit 대기 ({API_CALL_DELAY}초)...")
+    log(f"\n   ⏳ API 대기 ({API_CALL_DELAY}초)...")
     time.sleep(API_CALL_DELAY)
     
     # =========================================================================
@@ -527,10 +529,13 @@ def update_sports_data():
     """
     
     try:
-        nba_response = call_gemini_with_retry(client, nba_prompt, [google_search_tool])
+        nba_response = call_gemini_api(client, nba_prompt, [google_search_tool])
         nba_data = extract_json_content(nba_response.text)
         log(f"   ✅ {nba_data.get('record', '-')} | {nba_data.get('rank', '-')}")
         log(f"   ✅ 일정: {len(nba_data.get('schedule', []))}경기")
+    except RateLimitExceeded:
+        log("\n⏸️ [중단] Rate Limit - 기존 데이터 유지, 다음 실행 대기")
+        return  # 조용히 종료
     except Exception as e:
         log(f"   ⚠️ NBA 검색 실패: {e}")
         nba_data = {}
@@ -546,7 +551,7 @@ def update_sports_data():
             log(f"      {icon} vs {g['opp']}: {ch} (원본: {g.get('raw_channel', '-')})")
     
     # Rate Limit 대기
-    log(f"\n   ⏳ Rate Limit 대기 ({API_CALL_DELAY}초)...")
+    log(f"\n   ⏳ API 대기 ({API_CALL_DELAY}초)...")
     time.sleep(API_CALL_DELAY)
     
     # =========================================================================
@@ -579,7 +584,7 @@ def update_sports_data():
     """
     
     try:
-        other_response = call_gemini_with_retry(client, other_prompt, [google_search_tool])
+        other_response = call_gemini_api(client, other_prompt, [google_search_tool])
         other_data = extract_json_content(other_response.text)
         
         tennis_data = other_data.get('tennis', {})
@@ -587,6 +592,9 @@ def update_sports_data():
         
         log(f"   ✅ Tennis: {tennis_data.get('status', '-')} - {tennis_data.get('info', '-')}")
         log(f"   ✅ F1: {f1_data.get('name', '-')}")
+    except RateLimitExceeded:
+        log("\n⏸️ [중단] Rate Limit - 기존 데이터 유지, 다음 실행 대기")
+        return  # 조용히 종료
     except Exception as e:
         log(f"   ⚠️ Tennis/F1 검색 실패: {e}")
         tennis_data = {}
