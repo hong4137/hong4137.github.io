@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-02 10:46:03 KST",
+  "updated": "2026-01-02 12:45:01 KST",
   "epl_round": "R20",
   "standings": {
     "leader": "Arsenal",
@@ -16,13 +16,13 @@
       "away": "Nottingham Forest",
       "kickoff_day": "Saturday",
       "kickoff_time_uk": "12:30",
-      "date": "03.01",
+      "date": "01.03",
       "broadcaster": "Sky Sports",
       "matched_rules": [
         "Rule5:Saturday12:30"
       ],
-      "kst_time": "03.01 21:30 (KST)",
-      "local_time": "03.01 12:30 (UK)",
+      "kst_time": "01.03 21:30 (KST)",
+      "local_time": "01.03 12:30 (UK)",
       "channel": "Sky Sports",
       "status": "Scheduled"
     },
@@ -31,13 +31,13 @@
       "away": "Arsenal",
       "kickoff_day": "Saturday",
       "kickoff_time_uk": "17:30",
-      "date": "03.01",
+      "date": "01.03",
       "broadcaster": "Sky Sports",
       "matched_rules": [
         "Rule6:Leader"
       ],
-      "kst_time": "03.02 02:30 (KST)",
-      "local_time": "03.01 17:30 (UK)",
+      "kst_time": "01.04 02:30 (KST)",
+      "local_time": "01.03 17:30 (UK)",
       "channel": "Sky Sports",
       "status": "Scheduled"
     },
@@ -46,81 +46,26 @@
       "away": "Chelsea",
       "kickoff_day": "Sunday",
       "kickoff_time_uk": "17:30",
-      "date": "04.01",
+      "date": "01.04",
       "broadcaster": "Sky Sports",
       "matched_rules": [
         "Rule1:Big6vsBig6"
       ],
-      "kst_time": "04.02 01:30 (KST)",
-      "local_time": "04.01 17:30 (UK)",
+      "kst_time": "01.05 02:30 (KST)",
+      "local_time": "01.04 17:30 (UK)",
       "channel": "Sky Sports",
       "status": "Scheduled"
     }
   ],
   "nba": {
-    "record": "18-16",
-    "rank": "8th West",
+    "record": "-",
+    "rank": "-",
     "last": {
-      "opp": "Hornets",
-      "result": "W",
-      "score": "132-125"
+      "opp": "-",
+      "result": "-",
+      "score": "-"
     },
-    "schedule": [
-      {
-        "opp": "Thunder",
-        "location": "home",
-        "kst_time": "01.03 12:00 (KST)",
-        "local_time": "01.02 19:00 (PT)",
-        "channel": null,
-        "raw_channel": "Prime Video / NBCSBA",
-        "is_national_tv": false
-      },
-      {
-        "opp": "Jazz",
-        "location": "home",
-        "kst_time": "01.04 12:00 (KST)",
-        "local_time": "01.03 19:00 (PT)",
-        "channel": null,
-        "raw_channel": "NBA League Pass / NBCSBA",
-        "is_national_tv": false
-      },
-      {
-        "opp": "Clippers",
-        "location": "away",
-        "kst_time": "01.06 12:00 (KST)",
-        "local_time": "01.05 19:00 (PT)",
-        "channel": null,
-        "raw_channel": "Peacock / NBCSBA",
-        "is_national_tv": false
-      },
-      {
-        "opp": "Bucks",
-        "location": "home",
-        "kst_time": "01.08 12:00 (KST)",
-        "local_time": "01.07 19:00 (PT)",
-        "channel": null,
-        "raw_channel": "NBA League Pass / NBCSBA",
-        "is_national_tv": false
-      },
-      {
-        "opp": "Kings",
-        "location": "home",
-        "kst_time": "01.10 12:00 (KST)",
-        "local_time": "01.09 19:00 (PT)",
-        "channel": null,
-        "raw_channel": "NBA League Pass / NBCSBA",
-        "is_national_tv": false
-      },
-      {
-        "opp": "Hawks",
-        "location": "home",
-        "kst_time": "01.12 10:30 (KST)",
-        "local_time": "01.11 17:30 (PT)",
-        "channel": null,
-        "raw_channel": "NBA League Pass / NBCSBA",
-        "is_national_tv": false
-      }
-    ]
+    "schedule": []
   },
   "tennis": {
     "status": "Off-Season",
