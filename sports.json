@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-02 19:21:45 KST",
+  "updated": "2026-01-02 20:19:03 KST",
   "epl_round": "R20",
   "standings": {
     "leader": "Arsenal",
@@ -124,8 +124,8 @@
   },
   "tennis": {
     "status": "Exhibition",
-    "info": "Exhibition Match vs Sinner (Hyundai Card Super Match)",
-    "detail": "Incheon, South Korea (Inspire Arena)",
+    "info": "Exhibition Match vs Sinner",
+    "detail": "Incheon, South Korea",
     "time": "01.10"
   },
   "f1": {
