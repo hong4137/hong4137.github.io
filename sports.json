@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-02 20:19:03 KST",
+  "updated": "2026-01-02 21:40:52 KST",
   "epl_round": "R20",
   "standings": {
     "leader": "Arsenal",
@@ -16,13 +16,13 @@
       "away": "Nottingham Forest",
       "kickoff_day": "Saturday",
       "kickoff_time_uk": "12:30",
-      "date": "01.03",
+      "date": "03.01",
       "broadcaster": "Sky Sports",
       "matched_rules": [
         "Rule5:Saturday12:30"
       ],
-      "kst_time": "01.03 21:30 (KST)",
-      "local_time": "01.03 12:30 (UK)",
+      "kst_time": "03.01 21:30 (KST)",
+      "local_time": "03.01 12:30 (UK)",
       "channel": "Sky Sports",
       "status": "Scheduled"
     },
@@ -31,13 +31,13 @@
       "away": "Arsenal",
       "kickoff_day": "Saturday",
       "kickoff_time_uk": "17:30",
-      "date": "01.03",
+      "date": "03.01",
       "broadcaster": "Sky Sports",
       "matched_rules": [
         "Rule6:Leader"
       ],
-      "kst_time": "01.04 02:30 (KST)",
-      "local_time": "01.03 17:30 (UK)",
+      "kst_time": "03.02 02:30 (KST)",
+      "local_time": "03.01 17:30 (UK)",
       "channel": "Sky Sports",
       "status": "Scheduled"
     },
@@ -46,13 +46,13 @@
       "away": "Chelsea",
       "kickoff_day": "Sunday",
       "kickoff_time_uk": "17:30",
-      "date": "01.04",
+      "date": "04.01",
       "broadcaster": "Sky Sports",
       "matched_rules": [
         "Rule1:Big6vsBig6"
       ],
-      "kst_time": "01.05 02:30 (KST)",
-      "local_time": "01.04 17:30 (UK)",
+      "kst_time": "04.02 01:30 (KST)",
+      "local_time": "04.01 17:30 (UK)",
       "channel": "Sky Sports",
       "status": "Scheduled"
     }
@@ -123,10 +123,10 @@
     ]
   },
   "tennis": {
-    "status": "Exhibition",
-    "info": "Exhibition Match vs Sinner",
-    "detail": "Incheon, South Korea",
-    "time": "01.10"
+    "status": "Off-Season",
+    "info": "Australian Open (Start of 2026 Season)",
+    "detail": "Melbourne, Australia",
+    "time": "01.18"
   },
   "f1": {
     "status": "Off-Season",
