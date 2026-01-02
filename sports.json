@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-02 17:29:51 KST",
+  "updated": "2026-01-02 18:24:57 KST",
   "epl_round": "R20",
   "standings": {
     "leader": "Arsenal",
@@ -80,9 +80,9 @@
         "location": "home",
         "kst_time": "01.04 12:00 (KST)",
         "local_time": "01.03 19:00 (PT)",
-        "channel": "NBC",
-        "raw_channel": "NBCSBA",
-        "is_national_tv": true
+        "channel": null,
+        "raw_channel": "NBA League Pass",
+        "is_national_tv": false
       },
       {
         "opp": "Clippers",
@@ -98,35 +98,35 @@
         "location": "home",
         "kst_time": "01.08 12:00 (KST)",
         "local_time": "01.07 19:00 (PT)",
-        "channel": "NBC",
-        "raw_channel": "NBCSBA",
-        "is_national_tv": true
+        "channel": null,
+        "raw_channel": "NBA League Pass",
+        "is_national_tv": false
       },
       {
         "opp": "Kings",
         "location": "home",
         "kst_time": "01.10 12:00 (KST)",
         "local_time": "01.09 19:00 (PT)",
-        "channel": "NBC",
-        "raw_channel": "NBCSBA",
-        "is_national_tv": true
+        "channel": null,
+        "raw_channel": "NBA League Pass",
+        "is_national_tv": false
       },
       {
         "opp": "Hawks",
         "location": "home",
         "kst_time": "01.12 10:30 (KST)",
         "local_time": "01.11 17:30 (PT)",
-        "channel": "NBC",
-        "raw_channel": "NBCSBA",
-        "is_national_tv": true
+        "channel": null,
+        "raw_channel": "NBA League Pass",
+        "is_national_tv": false
       }
     ]
   },
   "tennis": {
-    "status": "Exhibition",
-    "info": "Hyundai Card Super Match vs Jannik Sinner",
-    "detail": "Incheon Inspire Arena, Seoul, South Korea",
-    "time": "01.10"
+    "status": "Pre-Season",
+    "info": "Australian Open (Main Draw Start)",
+    "detail": "Melbourne, Australia",
+    "time": "01.18"
   },
   "f1": {
     "status": "Off-Season",
