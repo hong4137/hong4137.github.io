@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-02 18:24:57 KST",
+  "updated": "2026-01-02 19:21:45 KST",
   "epl_round": "R20",
   "standings": {
     "leader": "Arsenal",
@@ -123,10 +123,10 @@
     ]
   },
   "tennis": {
-    "status": "Pre-Season",
-    "info": "Australian Open (Main Draw Start)",
-    "detail": "Melbourne, Australia",
-    "time": "01.18"
+    "status": "Exhibition",
+    "info": "Exhibition Match vs Sinner (Hyundai Card Super Match)",
+    "detail": "Incheon, South Korea (Inspire Arena)",
+    "time": "01.10"
   },
   "f1": {
     "status": "Off-Season",
