@@ -2,13 +2,11 @@ name: Update Sports Data
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 * * * *'  # 매시간 실행
   workflow_dispatch:
 
-# ▼▼▼ [이 부분이 추가되었습니다] 봇에게 쓰기 권한 부여 ▼▼▼
 permissions:
   contents: write
-# ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 
 jobs:
   update:
@@ -25,11 +23,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests pytz google-genai
+          pip install requests pytz
 
       - name: Run update script
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
         run: python scripts/update_sports.py
 
       - name: Commit and push changes
@@ -37,6 +35,5 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
           git add sports.json
-          # 변경사항이 있을 때만 커밋 (에러 방지)
           git diff --staged --quiet || git commit -m "Update sports data [skip ci]"
           git push
