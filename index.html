@@ -26,10 +26,9 @@
             color: var(--text-main);
             height: 100vh;
             display: flex;
-            overflow: hidden; /* 전체 스크롤 방지 */
+            overflow: hidden;
         }
 
-        /* --- [모바일 헤더] (기본 숨김) --- */
         .mobile-header {
             display: none;
             align-items: center;
@@ -46,7 +45,6 @@
         .mobile-brand { font-weight: bold; font-size: 18px; color: white; display:flex; align-items:center; gap:10px;}
         .hamburger-btn { font-size: 24px; cursor: pointer; color: var(--text-main); background:none; border:none;}
 
-        /* --- [사이드바] --- */
         .sidebar {
             width: var(--sidebar-width);
             background-color: var(--sidebar-bg);
@@ -60,7 +58,6 @@
             transition: left 0.3s ease-in-out;
         }
 
-        /* 모바일용 사이드바 닫기 버튼 */
         .sidebar-close-btn { display: none; position: absolute; top: 15px; right: 15px; font-size: 24px; cursor: pointer; color: #666; }
 
         .logo-area {
@@ -84,7 +81,6 @@
         .submenu-item { cursor: pointer; padding: 8px 10px; display:flex; justify-content:space-between; align-items:center; }
         .submenu-item:hover { background: rgba(255,255,255,0.05); border-radius: 4px; }
         
-        /* --- [메인 컨텐츠] --- */
         .main-content {
             flex: 1;
             position: relative;
@@ -109,40 +105,29 @@
         }
         iframe { width: 100%; height: 100%; border: none; display: block; }
 
-        /* --- [배경 오버레이 (모바일용)] --- */
         .overlay {
             display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0,0,0,0.5); z-index: 999;
             backdrop-filter: blur(2px);
         }
 
-        /* --- [반응형 미디어 쿼리] --- */
         @media (max-width: 768px) {
             body { flex-direction: column; }
-            
-            /* 모바일 헤더 보이기 */
             .mobile-header { display: flex; }
-            
-            /* 사이드바 숨기기 (Off-Canvas) */
             .sidebar {
                 position: fixed; top: 0; left: -100%; height: 100%; width: 280px;
                 box-shadow: 2px 0 10px rgba(0,0,0,0.5);
-                padding-top: 60px; /* 헤더 높이만큼 띄우거나, 혹은 닫기 버튼 공간 */
+                padding-top: 60px;
             }
             .sidebar.active { left: 0; }
             .sidebar-close-btn { display: block; }
-            .logo-area { display: none; } /* 모바일 사이드바 안에선 로고 숨김 (헤더에 있으니) */
-            
-            /* 메인 영역 조정 */
-            .main-content { margin-top: 60px; /* 헤더 높이만큼 */ }
+            .logo-area { display: none; }
+            .main-content { margin-top: 60px; }
             #dashboard-view { padding: 20px; }
-
-            /* 카드 그리드 1열로 */
             .dashboard-grid { grid-template-columns: 1fr; }
             .sports-grid { grid-template-columns: 1fr; }
         }
 
-        /* 위젯 스타일 */
         .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
         .welcome-msg h1 { margin: 0; font-size: 28px; }
         .welcome-msg p { margin: 5px 0 0; color: var(--text-sub); }
@@ -285,7 +270,6 @@
                 <div class="sport-card">
                     <div class="sport-header">
                         <div style="display:flex; align-items:center; gap:8px;">
-                            <!-- 테니스 라켓 이모지로 변경 (탁구 아이콘에서) -->
                             <span style="color:#ccff00; font-size: 1.2rem;">🎾</span>
                             <span style="font-weight:bold; color:#ccc;">Carlos Alcaraz</span>
                         </div>
@@ -320,7 +304,6 @@
     </main>
 
     <script>
-        // [반응형 UI] 사이드바 토글 함수
         function toggleSidebar() {
             const sidebar = document.getElementById('mySidebar');
             const overlay = document.getElementById('sidebar-overlay');
@@ -333,14 +316,11 @@
             }
         }
 
-        // [화면 전환] 모바일에서 메뉴 클릭 시 사이드바 닫기 추가
         function showHome() {
             document.getElementById('dashboard-view').style.display = 'block';
             document.getElementById('briefing-view').style.display = 'none';
             document.getElementById('nav-home').classList.add('active');
             document.getElementById('content-frame').src = "";
-            
-            // 모바일이면 닫기
             if(window.innerWidth <= 768) toggleSidebar();
         }
 
@@ -349,14 +329,11 @@
             document.getElementById('briefing-view').style.display = 'block';
             document.getElementById('content-frame').src = url;
             document.getElementById('nav-home').classList.remove('active');
-            
-            // 모바일이면 닫기
             if(window.innerWidth <= 768) toggleSidebar();
         }
 
         async function loadBriefingMenu() {
             const menuContainer = document.getElementById('briefing-menu');
-            // 뒤에 현재 시간을 붙여서 매번 새 파일을 읽어오게 함
             const DATA_URL = 'https://hong4137.github.io/briefing/list.json?v=' + new Date().getTime(); 
 
             try {
@@ -367,16 +344,11 @@
                 let html = '';
                 data.slice(0, 10).forEach(item => {
                     const dateShort = item.date.substring(5).replace('-', '.');
-                    
                     let cleanTitle = item.title
                         .replace('외신 브리핑 | ', '')
                         .replace('외신 브리핑 - ', '')
                         .replace('Jae\'s Briefing - ', '')
                         .trim();
-
-                    if (cleanTitle === item.date) {
-                         // cleanTitle = "News Briefing"; 
-                    }
 
                     html += `
                     <div class="submenu-item" onclick="openBriefing('${item.link}')">
@@ -393,26 +365,25 @@
             }
         }
 
-        // [스포츠 데이터 로드 함수 - 방어 로직 적용]
+        // [스포츠 데이터 로드 - 새 JSON 구조 지원]
         async function loadSportsData() {
             try {
-                // 캐시 방지
                 const response = await fetch('./sports.json?v=' + new Date().getTime());
                 if (!response.ok) throw new Error("로드 실패");
                 const data = await response.json();
 
                 if(data.updated) document.getElementById('update-time').innerText = `Update: ${data.updated}`;
 
-                // 1. EPL (여기가 터져도 나머지는 실행됨)
+                // 1. EPL - 새 구조: data.epl.matches
                 try {
-                    const eplList = data.epl;
+                    const eplData = data.epl;
                     const eplContainer = document.getElementById('epl-content');
 
-                    // [추가] 라운드 정보 업데이트
-                    // 파이썬이 epl_round 키를 주면 업데이트, 아니면 그냥 둠
-                    if (data.epl_round) {
-                        document.getElementById('epl-badge').innerText = data.epl_round;
+                    if (eplData && eplData.matchday) {
+                        document.getElementById('epl-badge').innerText = `R${eplData.matchday}`;
                     }
+
+                    const eplList = eplData && eplData.matches ? eplData.matches : [];
 
                     if (eplContainer) {
                         if (eplList && Array.isArray(eplList) && eplList.length > 0) {
@@ -422,31 +393,18 @@
                                     ? 'background: rgba(160, 0, 255, 0.1); border-left: 3px solid #a000ff;' 
                                     : 'background: rgba(255, 255, 255, 0.05); border-left: 3px solid #666;';
                                 
-                                html += `<div style="${bgStyle} padding: 8px; border-radius: 6px; margin-bottom: 6px;">`;
-                                
-                                if (match.status === 'Finished') {
-                                    html += `
-                                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                                                <span style="font-size:13px; font-weight:bold; color:white;">${match.home} vs ${match.away}</span>
-                                                <span style="font-size:10px; background:#444; color:#ccc; padding:2px 4px; border-radius:3px;">FT</span>
-                                            </div>
-                                            <div style="font-size:15px; font-weight:bold; color:#fff; text-align:right;">${match.score}</div>
-                                        `;
-                                } else {
-                                    html += `
-                                            <div style="font-size:13px; font-weight:bold; color:white; margin-bottom:6px;">${match.home} vs ${match.away}</div>
-                                            <div style="display:flex; justify-content:space-between; align-items:end;">
-                                                <div>
-                                                    <div style="font-size:12px; font-weight:bold; color:#ddd;">${match.kst_time || '-'}</div>
-                                                    <div style="font-size:10px; color:#666; margin-top:1px;">Local: ${match.local_time || '-'}</div>
-                                                </div>
-                                                <div style="font-size:9px; color:#a000ff; font-weight:bold; background:rgba(0,0,0,0.3); padding:2px 5px; border-radius:4px;">
-                                                    ${match.channel || 'UK TV'}
-                                                </div>
-                                            </div>
-                                        `;
-                                }
-                                html += `</div>`;
+                                html += `<div style="${bgStyle} padding: 8px; border-radius: 6px; margin-bottom: 6px;">
+                                    <div style="font-size:13px; font-weight:bold; color:white; margin-bottom:6px;">${match.home} vs ${match.away}</div>
+                                    <div style="display:flex; justify-content:space-between; align-items:end;">
+                                        <div>
+                                            <div style="font-size:12px; font-weight:bold; color:#ddd;">${match.kst_time || '-'}</div>
+                                            <div style="font-size:10px; color:#666; margin-top:1px;">Local: ${match.local || '-'}</div>
+                                        </div>
+                                        <div style="font-size:9px; color:#a000ff; font-weight:bold; background:rgba(0,0,0,0.3); padding:2px 5px; border-radius:4px;">
+                                            ${match.rule_str || 'Match'}
+                                        </div>
+                                    </div>
+                                </div>`;
                             });
                             eplContainer.innerHTML = html;
                         } else {
@@ -455,7 +413,7 @@
                     }
                 } catch (e) { console.error("EPL Error:", e); }
 
-                // 2. NBA - EPL 스타일로 변경
+                // 2. NBA - 새 구조: date 필드 포함
                 try {
                     const nba = data.nba;
                     if (nba && document.getElementById('nba-content')) {
@@ -463,7 +421,6 @@
                         
                         let html = '';
                         
-                        // 최근 경기 결과
                         if (nba.last && nba.last.opp && nba.last.opp !== '-') {
                             const resColor = (nba.last.result === 'W') ? '#ff4400' : '#0088ff'; 
                             html += `<div style="display:flex; justify-content:space-between; margin-bottom:8px; border-bottom:1px solid #333; padding-bottom:8px;">
@@ -472,26 +429,25 @@
                             </div>`;
                         }
                         
-                        // 경기 일정 - EPL 스타일 카드
                         if (nba.schedule && Array.isArray(nba.schedule)) {
                             nba.schedule.forEach((game, index) => {
-                                // 전국 TV 중계가 있으면 하이라이트
-                                const hasNationalTV = game.channel && game.is_national_tv;
-                                const bgStyle = hasNationalTV
+                                const isHome = game.location === 'home';
+                                const bgStyle = isHome
                                     ? 'background: rgba(255, 174, 0, 0.1); border-left: 3px solid #ffae00;' 
                                     : 'background: rgba(255, 255, 255, 0.05); border-left: 3px solid #666;';
                                 
-                                // 홈/어웨이 표시
                                 const locationPrefix = game.location === 'away' ? '@ ' : 'vs ';
                                 
                                 html += `<div style="${bgStyle} padding: 8px; border-radius: 6px; margin-bottom: 6px;">
-                                    <div style="font-size:13px; font-weight:bold; color:white; margin-bottom:6px;">${locationPrefix}${game.opp || 'TBD'}</div>
+                                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                                        <span style="font-size:13px; font-weight:bold; color:white;">${locationPrefix}${game.opp || 'TBD'}</span>
+                                        <span style="font-size:10px; color:#888;">${game.date || ''}</span>
+                                    </div>
                                     <div style="display:flex; justify-content:space-between; align-items:end;">
                                         <div>
                                             <div style="font-size:12px; font-weight:bold; color:#ddd;">${game.kst_time || '-'}</div>
                                             <div style="font-size:10px; color:#666; margin-top:1px;">Local: ${game.local_time || '-'}</div>
                                         </div>
-                                        ${hasNationalTV ? `<div style="font-size:9px; color:#ffae00; font-weight:bold; background:rgba(0,0,0,0.3); padding:2px 5px; border-radius:4px;">${game.channel}</div>` : ''}
                                     </div>
                                 </div>`;
                             });
@@ -529,11 +485,9 @@
 
             } catch (error) {
                 console.error('Error loading sports data:', error);
-                // 스포츠 전체 실패해도 외신 브리핑 등은 영향 없도록 여기서 catch
             }
         }
 
-        // [날씨]
         function getWeatherIcon(code) {
             if (code === 0) return 'fa-sun';
             if (code >= 1 && code <= 3) return 'fa-cloud-sun';
@@ -544,9 +498,8 @@
             return 'fa-cloud';
         }
 
-async function loadWeather() {
+        async function loadWeather() {
             try {
-                // 1. 현재 날씨
                 const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current_weather=true');
                 const data = await res.json();
                 document.getElementById('weather-widget').innerHTML = `
@@ -554,26 +507,20 @@ async function loadWeather() {
                     <div class="weather-desc">서울, 대한민국<br>풍속: ${data.current_weather.windspeed} km/h</div>
                 `;
 
-                // 2. 상세 예보 (시간별/주간)
                 const res2 = await fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&hourly=temperature_2m,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto');
                 const data2 = await res2.json();
                 
-                // [수정 1] 시간별 예보: 3개 -> 6개로 복구 (3시간 간격으로 표시)
                 let hourlyHtml = '';
                 const curHour = new Date().getHours();
                 
-                // 총 6개를 보여줍니다.
                 for(let i=0; i<6; i++) {
-                    // 현재 시간보다 1시간 뒤부터 시작해서, 3시간씩 건너뛰며 가져옴 (+1, +4, +7...)
                     const targetIndex = curHour + 1 + (i * 3);
-                    
-                    // 데이터가 없으면 중단
                     if(!data2.hourly.time[targetIndex]) break;
 
                     const t = Math.round(data2.hourly.temperature_2m[targetIndex]);
                     const icon = getWeatherIcon(data2.hourly.weathercode[targetIndex]);
                     const timeObj = new Date(data2.hourly.time[targetIndex]);
-                    const h = timeObj.getHours(); // 시간만 추출
+                    const h = timeObj.getHours();
 
                     hourlyHtml += `
                         <div class="hourly-item">
@@ -585,15 +532,12 @@ async function loadWeather() {
                 }
                 document.getElementById('hourly-forecast-container').innerHTML = hourlyHtml;
 
-                // [수정 2] 주간 예보: 요일만 -> 날짜+요일 (예: 12.23 월)
                 let weeklyHtml = '';
                 const days = ['일','월','화','수','목','금','토'];
                 
                 for(let i=0; i<5; i++) {
                     const d = new Date(data2.daily.time[i]);
                     const icon = getWeatherIcon(data2.daily.weathercode[i]);
-                    
-                    // 날짜 포맷팅 (월.일)
                     const dateStr = `${d.getMonth() + 1}.${d.getDate()}`;
                     const dayStr = days[d.getDay()];
 
@@ -615,7 +559,7 @@ async function loadWeather() {
 
             } catch (e) { console.log("Weather Error", e); }
         }
-        // 실행
+
         const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
         document.getElementById('current-date').innerText = new Date().toLocaleDateString('ko-KR', options);
         
