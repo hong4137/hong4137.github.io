@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-04 18:38:11 KST",
+  "updated": "2026-01-04 21:45:27 KST",
   "epl_round": "R20",
   "standings": {
     "leader": "Arsenal",
@@ -16,7 +16,7 @@
       "away": "Nottingham Forest FC",
       "kst_time": "01.03 21:30 (KST)",
       "uk_time": "Saturday 12:30 (UK)",
-      "local": "Sky Sports",
+      "local": "TNT Sports",
       "rules": [
         "Early KO"
       ],
@@ -47,13 +47,40 @@
   ],
   "nba": {
     "record": "25-26",
-    "rank": "#8 West",
+    "rank": "-",
     "last": {
       "opp": "Jazz",
       "result": "W",
       "score": "123-114"
     },
     "schedule": [
+      {
+        "opp": "Clippers",
+        "date": "01.05",
+        "time": "",
+        "location": "home",
+        "channel": "",
+        "kst_time": "12:00 (KST+1d)",
+        "local_time": "7:00 PM (PT)"
+      },
+      {
+        "opp": "Bucks",
+        "date": "01.05",
+        "time": "",
+        "location": "home",
+        "channel": "",
+        "kst_time": "12:00 (KST+1d)",
+        "local_time": "7:00 PM (PT)"
+      },
+      {
+        "opp": "Kings",
+        "date": "01.07",
+        "time": "",
+        "location": "home",
+        "channel": "",
+        "kst_time": "12:00 (KST+1d)",
+        "local_time": "7:00 PM (PT)"
+      },
       {
         "opp": "Suns",
         "date": "01.20",
