@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-04 18:08:26 KST",
+  "updated": "2026-01-04 18:20:21 KST",
   "epl_round": "R20",
   "standings": {
     "leader": "Arsenal",
@@ -46,25 +46,50 @@
     }
   ],
   "nba": {
-    "record": "-",
-    "rank": "-",
+    "record": "25-26",
+    "rank": "#7 West",
     "last": {
-      "opp": "-",
-      "result": "-",
-      "score": "-"
+      "opp": "Jazz",
+      "result": "W",
+      "score": "123-114"
     },
-    "schedule": []
+    "schedule": [
+      {
+        "opp": "Clippers",
+        "date": "01.05",
+        "time": "TBD",
+        "location": "home",
+        "kst_time": "TBD",
+        "local_time": "TBD"
+      },
+      {
+        "opp": "Jazz",
+        "date": "01.03",
+        "time": "TBD",
+        "location": "home",
+        "kst_time": "TBD",
+        "local_time": "TBD"
+      },
+      {
+        "opp": "Hawks",
+        "date": "01.11",
+        "time": "TBD",
+        "location": "home",
+        "kst_time": "TBD",
+        "local_time": "TBD"
+      }
+    ]
   },
   "tennis": {
-    "status": "Tournament",
-    "info": "Australian Open",
-    "detail": "",
-    "time": "Jan 12-26"
+    "status": "Exhibition",
+    "info": "Exhibition Match",
+    "detail": "vs Sinner (Seoul)",
+    "time": "Jan 10"
   },
   "f1": {
     "status": "Off-Season",
     "name": "AUSTRALIAN Grand Prix",
-    "circuit": "Albert Park",
-    "date": "Feb 11-13"
+    "circuit": "Las Vegas",
+    "date": "Nov 19-21"
   }
 }
