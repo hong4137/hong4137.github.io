@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-04 12:50:18 KST",
+  "updated": "2026-01-04 13:58:43 KST",
   "epl_round": "R20",
   "standings": {
     "leader": "Arsenal",
@@ -16,6 +16,7 @@
       "away": "Nottingham Forest FC",
       "kst_time": "01.03 21:30 (KST)",
       "uk_time": "Saturday 12:30 (UK)",
+      "local": "",
       "rules": [
         "Early KO"
       ],
@@ -26,6 +27,7 @@
       "away": "Arsenal",
       "kst_time": "01.04 02:30 (KST)",
       "uk_time": "Saturday 17:30 (UK)",
+      "local": "",
       "rules": [
         "Leader"
       ],
@@ -36,11 +38,11 @@
       "away": "Chelsea",
       "kst_time": "01.05 02:30 (KST)",
       "uk_time": "Sunday 17:30 (UK)",
+      "local": "",
       "rules": [
-        "Big Match",
-        "Challenger"
+        "Big Match"
       ],
-      "rule_str": "Big Match, Challenger"
+      "rule_str": "Big Match"
     }
   ],
   "nba": {
@@ -57,12 +59,12 @@
     "status": "Off-Season",
     "info": "Australian Open",
     "detail": "Melbourne, Australia",
-    "time": "01.12-01.26"
+    "time": "Jan 12-26"
   },
   "f1": {
     "status": "Off-Season",
     "name": "Australian Grand Prix",
     "circuit": "Albert Park, Melbourne",
-    "date": "03.14-03.16"
+    "date": "Mar 14-16"
   }
 }
