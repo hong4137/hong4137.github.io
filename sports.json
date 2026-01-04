@@ -1,16 +1,48 @@
 {
-  "updated": "2026-01-04 00:07:29 KST",
-  "epl_round": "R--",
+  "updated": "2026-01-04 12:10:46 KST",
+  "epl_round": "R20",
   "standings": {
     "leader": "Arsenal",
     "top_4": [
       "Arsenal",
+      "Aston Villa FC",
       "Manchester City",
-      "Liverpool",
-      "Chelsea"
+      "Liverpool"
     ]
   },
-  "epl": [],
+  "epl": [
+    {
+      "home": "Aston Villa FC",
+      "away": "Nottingham Forest FC",
+      "kst_time": "01.03 21:30 (KST)",
+      "uk_time": "Saturday 12:30 (UK)",
+      "rules": [
+        "Early KO"
+      ],
+      "rule_str": "Early KO"
+    },
+    {
+      "home": "AFC Bournemouth",
+      "away": "Arsenal",
+      "kst_time": "01.04 02:30 (KST)",
+      "uk_time": "Saturday 17:30 (UK)",
+      "rules": [
+        "Leader"
+      ],
+      "rule_str": "Leader"
+    },
+    {
+      "home": "Manchester City",
+      "away": "Chelsea",
+      "kst_time": "01.05 02:30 (KST)",
+      "uk_time": "Sunday 17:30 (UK)",
+      "rules": [
+        "Big Match",
+        "Challenger"
+      ],
+      "rule_str": "Big Match, Challenger"
+    }
+  ],
   "nba": {
     "record": "-",
     "rank": "-",
@@ -23,14 +55,14 @@
   },
   "tennis": {
     "status": "Off-Season",
-    "info": "Next Tournament TBD",
-    "detail": "Check Schedule",
-    "time": ""
+    "info": "Australian Open",
+    "detail": "Melbourne, Australia",
+    "time": "01.12-01.26"
   },
   "f1": {
-    "status": "Season 2026",
-    "name": "Next GP",
-    "circuit": "Circuit TBD",
-    "date": ""
+    "status": "Off-Season",
+    "name": "Australian Grand Prix",
+    "circuit": "Albert Park, Melbourne",
+    "date": "03.14-03.16"
   }
 }
