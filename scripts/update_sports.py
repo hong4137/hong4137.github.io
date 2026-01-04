@@ -578,10 +578,213 @@ def process_epl_matches(matches, top_4, leader, serper_key=None):
     return validated_matches
 
 # =============================================================================
-# NBA 데이터 (임시 - 추후 API 연동)
+# NBA 데이터 (Serper 검색)
 # =============================================================================
-def get_nba_data():
-    """NBA 데이터 - 임시 placeholder"""
+def search_nba_warriors(serper_key):
+    """
+    Golden State Warriors 정보 검색
+    
+    [검색 항목]
+    1. 시즌 전적 (W-L)
+    2. 컨퍼런스 순위
+    3. 최근 경기 결과
+    4. 다음 일정 (상대, 날짜, 시간)
+    """
+    if not serper_key:
+        return get_nba_default_data()
+    
+    nba_data = {
+        "record": "-",
+        "rank": "-",
+        "last": {"opp": "-", "result": "-", "score": "-"},
+        "schedule": []
+    }
+    
+    # =========================================================================
+    # 1. 전적 + 순위 + 최근 경기 검색
+    # =========================================================================
+    status_query = "Golden State Warriors record standings 2025-26 season"
+    status_result = call_serper_api(status_query, serper_key)
+    
+    if status_result:
+        status_text = ""
+        
+        if 'answerBox' in status_result:
+            status_text += status_result['answerBox'].get('snippet', '') + " "
+            status_text += status_result['answerBox'].get('answer', '') + " "
+        
+        # Knowledge Graph에서 정보 추출
+        if 'knowledgeGraph' in status_result:
+            kg = status_result['knowledgeGraph']
+            status_text += kg.get('description', '') + " "
+            for attr in kg.get('attributes', {}).values():
+                status_text += str(attr) + " "
+        
+        for item in status_result.get('organic', [])[:5]:
+            status_text += item.get('snippet', '') + " "
+        
+        # 전적 추출 (예: 18-16, 20-15 등)
+        record_pattern = r'(\d{1,2})-(\d{1,2})'
+        record_matches = re.findall(record_pattern, status_text)
+        for wins, losses in record_matches:
+            wins, losses = int(wins), int(losses)
+            # 합리적인 범위의 전적만 (총 경기 10~82 사이)
+            if 10 <= wins + losses <= 82:
+                nba_data['record'] = f"{wins}-{losses}"
+                break
+        
+        # 순위 추출
+        rank_patterns = [
+            r'(\d{1,2})(?:st|nd|rd|th)\s+(?:in\s+)?(?:the\s+)?(?:Western|West)',
+            r'(?:Western|West)(?:ern)?\s+(?:Conference\s+)?(?:rank(?:ing)?|place|seed)[:\s]+(\d{1,2})',
+            r'#(\d{1,2})\s+(?:in\s+)?(?:Western|West)',
+        ]
+        
+        for pattern in rank_patterns:
+            rank_match = re.search(pattern, status_text, re.IGNORECASE)
+            if rank_match:
+                rank_num = rank_match.group(1)
+                nba_data['rank'] = f"#{rank_num} West"
+                break
+    
+    # =========================================================================
+    # 2. 최근 경기 결과 검색
+    # =========================================================================
+    last_game_query = "Golden State Warriors last game result score"
+    last_result = call_serper_api(last_game_query, serper_key)
+    
+    if last_result:
+        last_text = ""
+        
+        if 'answerBox' in last_result:
+            last_text += last_result['answerBox'].get('snippet', '') + " "
+            last_text += last_result['answerBox'].get('answer', '') + " "
+        
+        if 'sportsResults' in last_result:
+            sports = last_result['sportsResults']
+            last_text += str(sports) + " "
+        
+        for item in last_result.get('organic', [])[:3]:
+            last_text += item.get('snippet', '') + " "
+        
+        # NBA 팀 목록
+        nba_teams = [
+            'Lakers', 'Clippers', 'Suns', 'Kings', 'Nuggets', 'Thunder', 'Mavericks',
+            'Rockets', 'Spurs', 'Grizzlies', 'Pelicans', 'Timberwolves', 'Jazz', 'Trail Blazers',
+            'Celtics', 'Nets', 'Knicks', '76ers', 'Raptors', 'Bulls', 'Cavaliers', 'Pistons',
+            'Pacers', 'Bucks', 'Hawks', 'Heat', 'Hornets', 'Magic', 'Wizards'
+        ]
+        
+        # 상대팀 추출
+        for team in nba_teams:
+            if team.lower() in last_text.lower():
+                nba_data['last']['opp'] = team
+                break
+        
+        # 승패 추출
+        if 'warriors' in last_text.lower():
+            if re.search(r'warriors?\s+(?:beat|defeated|won|victory)', last_text, re.IGNORECASE):
+                nba_data['last']['result'] = 'W'
+            elif re.search(r'warriors?\s+(?:lost?|fell|defeat)', last_text, re.IGNORECASE):
+                nba_data['last']['result'] = 'L'
+            elif re.search(r'(?:beat|defeated|over)\s+(?:the\s+)?warriors', last_text, re.IGNORECASE):
+                nba_data['last']['result'] = 'L'
+        
+        # 스코어 추출 (예: 120-115, 108-102)
+        score_pattern = r'(\d{2,3})-(\d{2,3})'
+        score_matches = re.findall(score_pattern, last_text)
+        for score1, score2 in score_matches:
+            s1, s2 = int(score1), int(score2)
+            # NBA 스코어 범위 (80-150)
+            if 80 <= s1 <= 160 and 80 <= s2 <= 160:
+                nba_data['last']['score'] = f"{score1}-{score2}"
+                break
+    
+    # =========================================================================
+    # 3. 다음 일정 검색
+    # =========================================================================
+    schedule_query = "Golden State Warriors next games schedule January 2026"
+    schedule_result = call_serper_api(schedule_query, serper_key)
+    
+    if schedule_result:
+        schedule_text = ""
+        
+        if 'answerBox' in schedule_result:
+            schedule_text += schedule_result['answerBox'].get('snippet', '') + " "
+        
+        for item in schedule_result.get('organic', [])[:5]:
+            schedule_text += item.get('snippet', '') + " "
+            schedule_text += item.get('title', '') + " "
+        
+        # NBA 팀 목록 (위에서 정의)
+        nba_teams = [
+            'Lakers', 'Clippers', 'Suns', 'Kings', 'Nuggets', 'Thunder', 'Mavericks',
+            'Rockets', 'Spurs', 'Grizzlies', 'Pelicans', 'Timberwolves', 'Jazz', 'Trail Blazers',
+            'Celtics', 'Nets', 'Knicks', '76ers', 'Raptors', 'Bulls', 'Cavaliers', 'Pistons',
+            'Pacers', 'Bucks', 'Hawks', 'Heat', 'Hornets', 'Magic', 'Wizards', 'Warriors'
+        ]
+        
+        # 일정에서 팀과 날짜 추출 시도
+        # 패턴: "Jan 5 vs Lakers" 또는 "@ Suns Jan 7"
+        games_found = []
+        
+        # 날짜 패턴들
+        date_patterns = [
+            r'(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?)\s*\.?\s*(\d{1,2})',
+            r'(\d{1,2})/(\d{1,2})',  # 1/5 형식
+        ]
+        
+        for team in nba_teams:
+            if team.lower() == 'warriors':
+                continue
+            if team.lower() in schedule_text.lower():
+                # 해당 팀 주변에서 날짜 찾기
+                team_idx = schedule_text.lower().find(team.lower())
+                context = schedule_text[max(0, team_idx-50):team_idx+50]
+                
+                for date_pattern in date_patterns:
+                    date_match = re.search(date_pattern, context, re.IGNORECASE)
+                    if date_match:
+                        if '/' in date_pattern:
+                            month, day = date_match.groups()
+                            date_str = f"{int(month):02d}.{int(day):02d}"
+                        else:
+                            month_str, day = date_match.groups()
+                            month_map = {'jan': '01', 'feb': '02', 'mar': '03', 'apr': '04',
+                                        'may': '05', 'jun': '06', 'jul': '07', 'aug': '08',
+                                        'sep': '09', 'oct': '10', 'nov': '11', 'dec': '12'}
+                            month_num = month_map.get(month_str[:3].lower(), '01')
+                            date_str = f"{month_num}.{int(day):02d}"
+                        
+                        # 홈/어웨이 판단
+                        location = 'home'
+                        if '@' in context or 'at ' + team.lower() in context.lower():
+                            location = 'away'
+                        
+                        games_found.append({
+                            'opp': team,
+                            'date': date_str,
+                            'time': 'TBD',
+                            'location': location,
+                            'kst_time': 'TBD',
+                            'local_time': 'TBD'
+                        })
+                        break
+        
+        # 중복 제거 및 정렬
+        seen_teams = set()
+        unique_games = []
+        for game in games_found:
+            if game['opp'] not in seen_teams:
+                seen_teams.add(game['opp'])
+                unique_games.append(game)
+        
+        nba_data['schedule'] = unique_games[:6]  # 최대 6경기
+    
+    return nba_data
+
+def get_nba_default_data():
+    """NBA 기본 데이터 (API 키 없을 때)"""
     return {
         "record": "-",
         "rank": "-",
@@ -664,9 +867,27 @@ def update_sports_data():
         log(f"      • {match['home']} vs {match['away']} [{match['rule_str']}]{channel_info}")
     
     # =========================================================================
-    # STEP 3: F1 일정 검색 (Serper)
+    # STEP 3: NBA Warriors 검색 (Serper)
     # =========================================================================
-    log("\n🏎️ [Step 3/4] F1 일정 검색...")
+    log("\n🏀 [Step 3/5] NBA Warriors 정보 검색...")
+    
+    if serper_api_key:
+        nba_data = search_nba_warriors(serper_api_key)
+        log(f"   ✅ 전적: {nba_data['record']} | 순위: {nba_data['rank']}")
+        if nba_data['last']['opp'] != '-':
+            log(f"   ✅ 최근 경기: vs {nba_data['last']['opp']} {nba_data['last']['result']} ({nba_data['last']['score']})")
+        log(f"   ✅ 다음 일정: {len(nba_data['schedule'])}경기")
+        for game in nba_data['schedule'][:3]:
+            loc_icon = '🏠' if game.get('location') == 'home' else '✈️'
+            log(f"      {loc_icon} {game['date']} vs {game['opp']}")
+    else:
+        nba_data = get_nba_default_data()
+        log("   ⏭️ Serper API 키 없음, 기본값 사용")
+    
+    # =========================================================================
+    # STEP 4: F1 일정 검색 (Serper)
+    # =========================================================================
+    log("\n🏎️ [Step 4/5] F1 일정 검색...")
     
     if serper_api_key:
         f1_data = search_f1_schedule(serper_api_key)
@@ -690,9 +911,9 @@ def update_sports_data():
         log("   ⏭️ Serper API 키 없음, 기본값 사용")
     
     # =========================================================================
-    # STEP 4: Tennis 일정 검색 (Serper)
+    # STEP 5: Tennis 일정 검색 (Serper)
     # =========================================================================
-    log("\n🎾 [Step 4/4] Tennis (Alcaraz) 일정 검색...")
+    log("\n🎾 [Step 5/5] Tennis (Alcaraz) 일정 검색...")
     
     if serper_api_key:
         tennis_data = search_tennis_schedule(serper_api_key)
@@ -714,11 +935,6 @@ def update_sports_data():
             "time": "Jan 12-26"
         }
         log("   ⏭️ Serper API 키 없음, 기본값 사용")
-    
-    # =========================================================================
-    # NBA (임시)
-    # =========================================================================
-    nba_data = get_nba_data()
     
     # =========================================================================
     # 최종 데이터 저장
