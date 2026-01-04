@@ -1,12 +1,12 @@
 {
-  "updated": "2026-01-04 23:30:13 KST",
+  "updated": "2026-01-05 03:32:48 KST",
   "epl": {
     "matchday": 20,
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
-      "Aston Villa",
       "Manchester City",
+      "Aston Villa",
       "Liverpool"
     ],
     "matches": [
