@@ -283,8 +283,16 @@ def search_epl_broadcaster(home, away, match_date, serper_key):
     return None
 
 def search_f1_schedule(serper_key):
-    """F1 다음 그랑프리 검색"""
-    query = "F1 2026 next Grand Prix schedule date circuit"
+    """F1 다음 그랑프리 검색 - 2026 시즌 첫 GP"""
+    
+    kst_now = get_kst_now()
+    current_month = kst_now.month
+    
+    # 1-2월이면 시즌 첫 GP (보통 3월 호주/바레인)
+    if current_month <= 2:
+        query = "F1 2026 season first race Australian Grand Prix March schedule"
+    else:
+        query = "F1 2026 next Grand Prix race schedule"
     
     result = call_serper_api(query, serper_key)
     if not result:
@@ -303,43 +311,68 @@ def search_f1_schedule(serper_key):
         text_to_search += result['answerBox'].get('snippet', '') + " "
         text_to_search += result['answerBox'].get('answer', '') + " "
     
-    for item in result.get('organic', [])[:3]:
+    for item in result.get('organic', [])[:5]:
         text_to_search += item.get('snippet', '') + " "
+        text_to_search += item.get('title', '') + " "
     
-    # 그랑프리 이름 추출
-    gp_patterns = [
-        r'(Australian|Bahrain|Saudi Arabian|Japanese|Chinese|Miami|Monaco|Canadian|Spanish|Austrian|British|Hungarian|Belgian|Dutch|Italian|Singapore|United States|Mexico|Brazilian|Las Vegas|Abu Dhabi)\s*(?:Grand Prix|GP)',
-    ]
+    # 그랑프리와 서킷 매핑
+    gp_circuit_map = {
+        'Australian': 'Albert Park, Melbourne',
+        'Bahrain': 'Sakhir',
+        'Saudi Arabian': 'Jeddah',
+        'Japanese': 'Suzuka',
+        'Chinese': 'Shanghai',
+        'Miami': 'Miami',
+        'Monaco': 'Monaco',
+        'Canadian': 'Montreal',
+        'Spanish': 'Barcelona',
+        'Austrian': 'Red Bull Ring',
+        'British': 'Silverstone',
+        'Hungarian': 'Hungaroring',
+        'Belgian': 'Spa',
+        'Dutch': 'Zandvoort',
+        'Italian': 'Monza',
+        'Singapore': 'Marina Bay',
+        'United States': 'COTA, Austin',
+        'Mexico': 'Mexico City',
+        'Brazilian': 'Interlagos',
+        'Las Vegas': 'Las Vegas',
+        'Abu Dhabi': 'Yas Marina'
+    }
     
-    for pattern in gp_patterns:
-        match = re.search(pattern, text_to_search, re.IGNORECASE)
-        if match:
-            f1_data['name'] = f"{match.group(1)} Grand Prix"
+    # 그랑프리 이름 추출 (2026년 정보 우선)
+    for gp_name, circuit in gp_circuit_map.items():
+        if gp_name.lower() in text_to_search.lower():
+            # 2026년과 함께 언급되었는지 확인
+            if '2026' in text_to_search:
+                f1_data['name'] = f"{gp_name.upper()} Grand Prix"
+                f1_data['circuit'] = circuit
+                break
+    
+    # 2026 언급 없으면 첫 번째 매칭 사용 (1-2월은 호주 GP 기본값)
+    if f1_data['name'] == 'TBD' and current_month <= 2:
+        f1_data['name'] = 'AUSTRALIAN Grand Prix'
+        f1_data['circuit'] = 'Albert Park, Melbourne'
+    
+    # 날짜 패턴 추출 - March, April 등 시즌 초반 날짜 우선
+    season_months = ['March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November']
+    
+    for month_name in season_months:
+        date_pattern = rf'{month_name}\s+(\d{{1,2}})(?:-(\d{{1,2}}))?'
+        date_match = re.search(date_pattern, text_to_search, re.IGNORECASE)
+        if date_match:
+            month = month_name[:3]
+            day_start = date_match.group(1)
+            day_end = date_match.group(2) or str(int(day_start) + 2)  # GP는 보통 3일
+            f1_data['date'] = f"{month} {day_start}-{day_end}"
             break
     
-    # 날짜 패턴 추출 (March 14-16, 2026 등)
-    date_pattern = r'(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2})(?:-(\d{1,2}))?,?\s*(\d{4})?'
-    date_match = re.search(date_pattern, text_to_search, re.IGNORECASE)
-    if date_match:
-        month = date_match.group(1)[:3]
-        day_start = date_match.group(2)
-        day_end = date_match.group(3) or day_start
-        f1_data['date'] = f"{month} {day_start}-{day_end}"
-    
-    # 서킷 추출
-    circuit_patterns = [
-        r'(Albert Park|Sakhir|Jeddah|Suzuka|Shanghai|Miami|Monaco|Montreal|Barcelona|Red Bull Ring|Silverstone|Hungaroring|Spa|Zandvoort|Monza|Marina Bay|COTA|Austin|Hermanos|Interlagos|Las Vegas|Yas Marina)',
-    ]
-    
-    for pattern in circuit_patterns:
-        match = re.search(pattern, text_to_search, re.IGNORECASE)
-        if match:
-            f1_data['circuit'] = match.group(1)
-            break
+    # 기본값 (1-2월, 날짜 못찾음)
+    if not f1_data['date'] and current_month <= 2:
+        f1_data['date'] = 'Mar 14-16'  # 2026 시즌 예상 시작
     
     # 시즌 상태 판단
-    kst_now = get_kst_now()
-    if kst_now.month >= 3 and kst_now.month <= 12:
+    if current_month >= 3 and current_month <= 12:
         f1_data['status'] = 'Season 2026'
     else:
         f1_data['status'] = 'Off-Season'
@@ -355,7 +388,7 @@ def search_tennis_schedule(serper_key):
     2. 친선경기가 없으면 다음 공식 대회 표시
     """
     # 먼저 친선경기 검색
-    exhibition_query = "Carlos Alcaraz exhibition match 2026 January"
+    exhibition_query = "Carlos Alcaraz exhibition match January 2026"
     exhibition_result = call_serper_api(exhibition_query, serper_key)
     
     exhibition_text = ""
@@ -363,38 +396,77 @@ def search_tennis_schedule(serper_key):
         if 'answerBox' in exhibition_result:
             exhibition_text += exhibition_result['answerBox'].get('snippet', '') + " "
             exhibition_text += exhibition_result['answerBox'].get('answer', '') + " "
-        for item in exhibition_result.get('organic', [])[:3]:
+        for item in exhibition_result.get('organic', [])[:5]:
             exhibition_text += item.get('snippet', '') + " "
             exhibition_text += item.get('title', '') + " "
     
     # 친선경기 감지
-    exhibition_keywords = ['exhibition', 'showdown', 'friendly', 'charity', 'invitational']
+    exhibition_keywords = ['exhibition', 'showdown', 'friendly', 'charity', 'invitational', 'slam', 'challenge']
     is_exhibition = any(kw in exhibition_text.lower() for kw in exhibition_keywords)
     
     if is_exhibition:
         tennis_data = {
             'status': 'Exhibition',
-            'info': 'Exhibition Match',
+            'info': '',
             'detail': '',
             'time': ''
         }
         
+        # 이벤트 이름 추출 (우선순위 순)
+        event_names = [
+            ('Netflix Slam', 'Netflix Slam'),
+            ('Riyadh Season', 'Riyadh Season'),
+            ('Six Kings Slam', 'Six Kings Slam'),
+            ('World Tennis League', 'World Tennis League'),
+            ('Ultimate Tennis Showdown', 'UTS'),
+            ('UTS', 'UTS'),
+            ('Tie Break Tens', 'Tie Break Tens'),
+            ('Laver Cup', 'Laver Cup'),
+            ('Diriyah', 'Diriyah Cup'),
+            ('Mubadala', 'Mubadala WTC'),
+            ('Korea Open', 'Korea Open'),
+            ('Seoul', 'Seoul Exhibition'),
+            ('Hong Kong', 'HK Exhibition'),
+            ('Showdown', 'Tennis Showdown'),
+        ]
+        
+        for search_term, display_name in event_names:
+            if search_term.lower() in exhibition_text.lower():
+                tennis_data['info'] = display_name
+                break
+        
+        # 이벤트 이름 못 찾으면 기본값
+        if not tennis_data['info']:
+            tennis_data['info'] = 'Exhibition Match'
+        
         # 상대 선수 추출 (Sinner, Djokovic 등)
-        top_players = ['Sinner', 'Djokovic', 'Nadal', 'Federer', 'Medvedev', 'Zverev', 'Ruud', 'Tsitsipas']
+        top_players = ['Sinner', 'Djokovic', 'Nadal', 'Federer', 'Medvedev', 'Zverev', 'Ruud', 'Tsitsipas', 'Rune']
+        opponent = None
         for player in top_players:
             if player.lower() in exhibition_text.lower():
-                tennis_data['detail'] = f"vs {player}"
+                opponent = player
                 break
         
         # 장소 추출
-        locations = ['Seoul', 'Incheon', 'Hong Kong', 'Abu Dhabi', 'Riyadh', 'Melbourne', 'Sydney']
-        for loc in locations:
-            if loc.lower() in exhibition_text.lower():
-                if tennis_data['detail']:
-                    tennis_data['detail'] += f" ({loc})"
-                else:
-                    tennis_data['detail'] = loc
+        locations = [
+            ('Seoul', 'Seoul'), ('Incheon', 'Incheon'), ('Hong Kong', 'Hong Kong'),
+            ('Abu Dhabi', 'Abu Dhabi'), ('Riyadh', 'Riyadh'), ('Dubai', 'Dubai'),
+            ('Melbourne', 'Melbourne'), ('Sydney', 'Sydney'), ('Las Vegas', 'Las Vegas'),
+            ('New York', 'New York'), ('Los Angeles', 'LA')
+        ]
+        location = None
+        for search_loc, display_loc in locations:
+            if search_loc.lower() in exhibition_text.lower():
+                location = display_loc
                 break
+        
+        # detail 구성: "vs Sinner (Seoul)" 형식
+        if opponent and location:
+            tennis_data['detail'] = f"vs {opponent} ({location})"
+        elif opponent:
+            tennis_data['detail'] = f"vs {opponent}"
+        elif location:
+            tennis_data['detail'] = location
         
         # 날짜 추출
         date_pattern = r'(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2})(?:-(\d{1,2}))?'
@@ -588,7 +660,7 @@ def search_nba_warriors(serper_key):
     1. 시즌 전적 (W-L)
     2. 컨퍼런스 순위
     3. 최근 경기 결과
-    4. 다음 일정 (상대, 날짜, 시간)
+    4. 다음 일정 (상대, 날짜, 시간, 중계)
     """
     if not serper_key:
         return get_nba_default_data()
@@ -600,8 +672,19 @@ def search_nba_warriors(serper_key):
         "schedule": []
     }
     
+    # NBA 팀 목록
+    nba_teams = [
+        'Lakers', 'Clippers', 'Suns', 'Kings', 'Nuggets', 'Thunder', 'Mavericks',
+        'Rockets', 'Spurs', 'Grizzlies', 'Pelicans', 'Timberwolves', 'Jazz', 'Trail Blazers',
+        'Celtics', 'Nets', 'Knicks', '76ers', 'Raptors', 'Bulls', 'Cavaliers', 'Pistons',
+        'Pacers', 'Bucks', 'Hawks', 'Heat', 'Hornets', 'Magic', 'Wizards'
+    ]
+    
+    # NBA 중계사 목록 (미국)
+    nba_broadcasters = ['ESPN', 'TNT', 'ABC', 'NBA TV', 'NBATV', 'League Pass']
+    
     # =========================================================================
-    # 1. 전적 + 순위 + 최근 경기 검색
+    # 1. 전적 + 순위 검색
     # =========================================================================
     status_query = "Golden State Warriors record standings 2025-26 season"
     status_result = call_serper_api(status_query, serper_key)
@@ -667,14 +750,6 @@ def search_nba_warriors(serper_key):
         for item in last_result.get('organic', [])[:3]:
             last_text += item.get('snippet', '') + " "
         
-        # NBA 팀 목록
-        nba_teams = [
-            'Lakers', 'Clippers', 'Suns', 'Kings', 'Nuggets', 'Thunder', 'Mavericks',
-            'Rockets', 'Spurs', 'Grizzlies', 'Pelicans', 'Timberwolves', 'Jazz', 'Trail Blazers',
-            'Celtics', 'Nets', 'Knicks', '76ers', 'Raptors', 'Bulls', 'Cavaliers', 'Pistons',
-            'Pacers', 'Bucks', 'Hawks', 'Heat', 'Hornets', 'Magic', 'Wizards'
-        ]
-        
         # 상대팀 추출
         for team in nba_teams:
             if team.lower() in last_text.lower():
@@ -695,16 +770,18 @@ def search_nba_warriors(serper_key):
         score_matches = re.findall(score_pattern, last_text)
         for score1, score2 in score_matches:
             s1, s2 = int(score1), int(score2)
-            # NBA 스코어 범위 (80-150)
+            # NBA 스코어 범위 (80-160)
             if 80 <= s1 <= 160 and 80 <= s2 <= 160:
                 nba_data['last']['score'] = f"{score1}-{score2}"
                 break
     
     # =========================================================================
-    # 3. 다음 일정 검색
+    # 3. 다음 일정 검색 (상세 - 시간, 중계 포함)
     # =========================================================================
-    schedule_query = "Golden State Warriors next games schedule January 2026"
+    schedule_query = "Golden State Warriors schedule January 2026 TV channel time"
     schedule_result = call_serper_api(schedule_query, serper_key)
+    
+    games_found = []
     
     if schedule_result:
         schedule_text = ""
@@ -716,70 +793,106 @@ def search_nba_warriors(serper_key):
             schedule_text += item.get('snippet', '') + " "
             schedule_text += item.get('title', '') + " "
         
-        # NBA 팀 목록 (위에서 정의)
-        nba_teams = [
-            'Lakers', 'Clippers', 'Suns', 'Kings', 'Nuggets', 'Thunder', 'Mavericks',
-            'Rockets', 'Spurs', 'Grizzlies', 'Pelicans', 'Timberwolves', 'Jazz', 'Trail Blazers',
-            'Celtics', 'Nets', 'Knicks', '76ers', 'Raptors', 'Bulls', 'Cavaliers', 'Pistons',
-            'Pacers', 'Bucks', 'Hawks', 'Heat', 'Hornets', 'Magic', 'Wizards', 'Warriors'
-        ]
-        
-        # 일정에서 팀과 날짜 추출 시도
-        # 패턴: "Jan 5 vs Lakers" 또는 "@ Suns Jan 7"
-        games_found = []
-        
-        # 날짜 패턴들
-        date_patterns = [
-            r'(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?)\s*\.?\s*(\d{1,2})',
-            r'(\d{1,2})/(\d{1,2})',  # 1/5 형식
-        ]
-        
+        # 각 팀별로 일정 찾기
         for team in nba_teams:
-            if team.lower() == 'warriors':
-                continue
             if team.lower() in schedule_text.lower():
-                # 해당 팀 주변에서 날짜 찾기
                 team_idx = schedule_text.lower().find(team.lower())
-                context = schedule_text[max(0, team_idx-50):team_idx+50]
+                # 팀 이름 주변 컨텍스트 (앞뒤 100자)
+                context = schedule_text[max(0, team_idx-100):team_idx+100]
                 
-                for date_pattern in date_patterns:
-                    date_match = re.search(date_pattern, context, re.IGNORECASE)
+                game_info = {
+                    'opp': team,
+                    'date': '',
+                    'time': '',
+                    'location': 'home',
+                    'channel': '',
+                    'kst_time': '',
+                    'local_time': ''
+                }
+                
+                # 날짜 추출
+                date_patterns = [
+                    (r'(Jan(?:uary)?|Feb(?:ruary)?)\s*\.?\s*(\d{1,2})', 'month'),
+                    (r'(\d{1,2})/(\d{1,2})', 'slash'),
+                ]
+                
+                for pattern, pattern_type in date_patterns:
+                    date_match = re.search(pattern, context, re.IGNORECASE)
                     if date_match:
-                        if '/' in date_pattern:
+                        if pattern_type == 'slash':
                             month, day = date_match.groups()
-                            date_str = f"{int(month):02d}.{int(day):02d}"
+                            game_info['date'] = f"{int(month):02d}.{int(day):02d}"
                         else:
                             month_str, day = date_match.groups()
-                            month_map = {'jan': '01', 'feb': '02', 'mar': '03', 'apr': '04',
-                                        'may': '05', 'jun': '06', 'jul': '07', 'aug': '08',
-                                        'sep': '09', 'oct': '10', 'nov': '11', 'dec': '12'}
+                            month_map = {'jan': '01', 'feb': '02', 'mar': '03'}
                             month_num = month_map.get(month_str[:3].lower(), '01')
-                            date_str = f"{month_num}.{int(day):02d}"
-                        
-                        # 홈/어웨이 판단
-                        location = 'home'
-                        if '@' in context or 'at ' + team.lower() in context.lower():
-                            location = 'away'
-                        
-                        games_found.append({
-                            'opp': team,
-                            'date': date_str,
-                            'time': 'TBD',
-                            'location': location,
-                            'kst_time': 'TBD',
-                            'local_time': 'TBD'
-                        })
+                            game_info['date'] = f"{month_num}.{int(day):02d}"
                         break
-        
-        # 중복 제거 및 정렬
-        seen_teams = set()
-        unique_games = []
-        for game in games_found:
-            if game['opp'] not in seen_teams:
-                seen_teams.add(game['opp'])
-                unique_games.append(game)
-        
-        nba_data['schedule'] = unique_games[:6]  # 최대 6경기
+                
+                # 시간 추출 (예: 7:30 PM PT, 10:00 PM ET)
+                time_patterns = [
+                    r'(\d{1,2}):(\d{2})\s*(PM|AM|pm|am)\s*(PT|ET|PST|EST|CT)?',
+                    r'(\d{1,2})\s*(PM|AM|pm|am)\s*(PT|ET|PST|EST|CT)?',
+                ]
+                
+                for time_pattern in time_patterns:
+                    time_match = re.search(time_pattern, context, re.IGNORECASE)
+                    if time_match:
+                        groups = time_match.groups()
+                        if len(groups) >= 3 and groups[1]:  # HH:MM format
+                            hour = int(groups[0])
+                            minute = groups[1]
+                            ampm = groups[2].upper() if groups[2] else 'PM'
+                            tz = groups[3].upper() if len(groups) > 3 and groups[3] else 'PT'
+                        else:  # HH format
+                            hour = int(groups[0])
+                            minute = '00'
+                            ampm = groups[1].upper() if groups[1] else 'PM'
+                            tz = groups[2].upper() if len(groups) > 2 and groups[2] else 'PT'
+                        
+                        game_info['local_time'] = f"{hour}:{minute} {ampm} ({tz})"
+                        
+                        # PT → KST 변환 (PT + 17시간)
+                        if 'PT' in tz or 'PST' in tz:
+                            kst_hour = hour + 17
+                            if ampm == 'PM' and hour != 12:
+                                kst_hour += 12
+                            elif ampm == 'AM' and hour == 12:
+                                kst_hour -= 12
+                            
+                            kst_day_offset = 0
+                            if kst_hour >= 24:
+                                kst_hour -= 24
+                                kst_day_offset = 1
+                            
+                            game_info['kst_time'] = f"{kst_hour:02d}:{minute} (KST+{kst_day_offset}d)"
+                        break
+                
+                # 홈/어웨이 판단
+                if '@' in context or f'at {team.lower()}' in context.lower() or f'at the' in context.lower():
+                    game_info['location'] = 'away'
+                
+                # 중계 채널 추출
+                for broadcaster in nba_broadcasters:
+                    if broadcaster.lower() in context.lower():
+                        game_info['channel'] = broadcaster
+                        break
+                
+                if game_info['date']:  # 날짜가 있는 경기만 추가
+                    games_found.append(game_info)
+    
+    # 중복 제거 및 날짜순 정렬
+    seen_teams = set()
+    unique_games = []
+    for game in games_found:
+        if game['opp'] not in seen_teams:
+            seen_teams.add(game['opp'])
+            unique_games.append(game)
+    
+    # 날짜순 정렬
+    unique_games.sort(key=lambda x: x['date'] if x['date'] else '99.99')
+    
+    nba_data['schedule'] = unique_games[:6]  # 최대 6경기
     
     return nba_data
 
@@ -879,7 +992,9 @@ def update_sports_data():
         log(f"   ✅ 다음 일정: {len(nba_data['schedule'])}경기")
         for game in nba_data['schedule'][:3]:
             loc_icon = '🏠' if game.get('location') == 'home' else '✈️'
-            log(f"      {loc_icon} {game['date']} vs {game['opp']}")
+            time_info = game.get('local_time', '') or game.get('kst_time', '') or 'TBD'
+            channel_info = f" | {game.get('channel')}" if game.get('channel') else ""
+            log(f"      {loc_icon} {game['date']} vs {game['opp']} ({time_info}){channel_info}")
     else:
         nba_data = get_nba_default_data()
         log("   ⏭️ Serper API 키 없음, 기본값 사용")
