@@ -3,19 +3,28 @@
 """
 update_sports.py - Sports Dashboard Data Updater
 =================================================
-EPL: Football-Data.org 무료 API 사용 (10 req/min, 무료 영구)
-NBA/Tennis/F1: 추후 추가 예정
+EPL: Football-Data.org 무료 API (순위, 일정)
+EPL 중계/F1/Tennis: Serper API 검색 (월 2,500회 무료)
+NBA: 추후 API 연동 예정
 
-[EPL 6가지 룰]
+[EPL 6가지 룰] - 순서 중요!
 1. Big Match: Big 6 vs Big 6 (양쪽 모두 Big 6)
 2. Top Tier: Top 4 vs Top 4 (양쪽 모두 Top 4)
-3. Challenger: Top 4 vs Big 6 (한쪽 Top 4, 한쪽 Big 6)
+3. Challenger: Top 4 vs Big 6 (한쪽 Top 4, 한쪽 Big 6 - 서로 다른 조건)
 4. Prime Time: 일요일 16:30 UK
 5. Early KO: 토요일 12:30 UK
 6. Leader: 리그 1위 팀 포함 경기
 
+[데이터 흐름]
+1. Football-Data.org → EPL 순위 (1위, Top 4) 확인
+2. Football-Data.org → EPL 경기 일정 조회
+3. Python에서 6가지 룰 적용하여 경기 필터링
+4. Serper API → 선별된 경기의 중계 정보 검색
+5. Serper API → F1 다음 그랑프리 검색
+6. Serper API → Tennis (Alcaraz) 일정 검색
+
 [타임존]
-- UK (GMT/BST) → KST: 자동 변환
+- UK (GMT/BST) → KST: 자동 변환 (zoneinfo 사용)
 """
 
 import os
@@ -43,6 +52,7 @@ TZ_PST = ZoneInfo("America/Los_Angeles")
 # =============================================================================
 SPORTS_FILE = 'sports.json'
 FOOTBALL_DATA_API_URL = "https://api.football-data.org/v4"
+SERPER_API_URL = "https://google.serper.dev/search"
 
 # Big 6는 고정값
 BIG_6 = ["Manchester City", "Manchester United", "Liverpool", "Arsenal", "Chelsea", "Tottenham"]
@@ -84,6 +94,7 @@ def convert_utc_to_kst(utc_datetime_str):
             'kst_full': kst_dt.strftime("%m.%d %H:%M (KST)"),
             'uk_time': uk_dt.strftime("%H:%M"),
             'uk_day': uk_dt.strftime("%A"),  # Saturday, Sunday 등
+            'uk_date': uk_dt.strftime("%m.%d"),
             'datetime_kst': kst_dt,
             'datetime_uk': uk_dt
         }
@@ -214,10 +225,205 @@ def get_epl_matches(api_key, matchday=None):
     return data['matches']
 
 # =============================================================================
-# EPL 6가지 룰 검증
+# Serper API 호출
+# =============================================================================
+def call_serper_api(query, api_key):
+    """Serper API로 Google 검색"""
+    headers = {
+        'X-API-KEY': api_key,
+        'Content-Type': 'application/json'
+    }
+    
+    payload = {
+        'q': query,
+        'gl': 'uk',  # UK 결과 우선
+        'hl': 'en',
+        'num': 5
+    }
+    
+    try:
+        response = requests.post(SERPER_API_URL, headers=headers, json=payload, timeout=15)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        log(f"   ⚠️ Serper API 에러: {e}")
+        return None
+
+def search_epl_broadcaster(home, away, match_date, serper_key):
+    """EPL 경기 중계 정보 검색"""
+    query = f"Premier League {home} vs {away} {match_date} TV channel UK"
+    
+    result = call_serper_api(query, serper_key)
+    if not result:
+        return None
+    
+    # 검색 결과에서 중계사 추출
+    broadcasters = ['Sky Sports', 'TNT Sports', 'BBC', 'Amazon Prime']
+    
+    # organic 결과와 answerBox 확인
+    text_to_search = ""
+    
+    if 'answerBox' in result:
+        text_to_search += result['answerBox'].get('snippet', '') + " "
+        text_to_search += result['answerBox'].get('answer', '') + " "
+    
+    for item in result.get('organic', [])[:3]:
+        text_to_search += item.get('snippet', '') + " "
+        text_to_search += item.get('title', '') + " "
+    
+    # 중계사 찾기
+    for broadcaster in broadcasters:
+        if broadcaster.lower() in text_to_search.lower():
+            return broadcaster
+    
+    # BT Sport은 TNT Sports로 리브랜딩됨
+    if 'bt sport' in text_to_search.lower():
+        return 'TNT Sports'
+    
+    return None
+
+def search_f1_schedule(serper_key):
+    """F1 다음 그랑프리 검색"""
+    query = "F1 2026 next Grand Prix schedule date circuit"
+    
+    result = call_serper_api(query, serper_key)
+    if not result:
+        return None
+    
+    f1_data = {
+        'status': 'Off-Season',
+        'name': 'TBD',
+        'circuit': 'TBD',
+        'date': ''
+    }
+    
+    text_to_search = ""
+    
+    if 'answerBox' in result:
+        text_to_search += result['answerBox'].get('snippet', '') + " "
+        text_to_search += result['answerBox'].get('answer', '') + " "
+    
+    for item in result.get('organic', [])[:3]:
+        text_to_search += item.get('snippet', '') + " "
+    
+    # 그랑프리 이름 추출
+    gp_patterns = [
+        r'(Australian|Bahrain|Saudi Arabian|Japanese|Chinese|Miami|Monaco|Canadian|Spanish|Austrian|British|Hungarian|Belgian|Dutch|Italian|Singapore|United States|Mexico|Brazilian|Las Vegas|Abu Dhabi)\s*(?:Grand Prix|GP)',
+    ]
+    
+    for pattern in gp_patterns:
+        match = re.search(pattern, text_to_search, re.IGNORECASE)
+        if match:
+            f1_data['name'] = f"{match.group(1)} Grand Prix"
+            break
+    
+    # 날짜 패턴 추출 (March 14-16, 2026 등)
+    date_pattern = r'(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2})(?:-(\d{1,2}))?,?\s*(\d{4})?'
+    date_match = re.search(date_pattern, text_to_search, re.IGNORECASE)
+    if date_match:
+        month = date_match.group(1)[:3]
+        day_start = date_match.group(2)
+        day_end = date_match.group(3) or day_start
+        f1_data['date'] = f"{month} {day_start}-{day_end}"
+    
+    # 서킷 추출
+    circuit_patterns = [
+        r'(Albert Park|Sakhir|Jeddah|Suzuka|Shanghai|Miami|Monaco|Montreal|Barcelona|Red Bull Ring|Silverstone|Hungaroring|Spa|Zandvoort|Monza|Marina Bay|COTA|Austin|Hermanos|Interlagos|Las Vegas|Yas Marina)',
+    ]
+    
+    for pattern in circuit_patterns:
+        match = re.search(pattern, text_to_search, re.IGNORECASE)
+        if match:
+            f1_data['circuit'] = match.group(1)
+            break
+    
+    # 시즌 상태 판단
+    kst_now = get_kst_now()
+    if kst_now.month >= 3 and kst_now.month <= 12:
+        f1_data['status'] = 'Season 2026'
+    else:
+        f1_data['status'] = 'Off-Season'
+    
+    return f1_data
+
+def search_tennis_schedule(serper_key):
+    """Tennis (Alcaraz) 일정 검색"""
+    query = "Carlos Alcaraz next tournament match 2026 schedule"
+    
+    result = call_serper_api(query, serper_key)
+    if not result:
+        return None
+    
+    tennis_data = {
+        'status': 'Off-Season',
+        'info': 'TBD',
+        'detail': '',
+        'time': ''
+    }
+    
+    text_to_search = ""
+    
+    if 'answerBox' in result:
+        text_to_search += result['answerBox'].get('snippet', '') + " "
+        text_to_search += result['answerBox'].get('answer', '') + " "
+    
+    for item in result.get('organic', [])[:3]:
+        text_to_search += item.get('snippet', '') + " "
+    
+    # 대회 이름 추출
+    tournament_patterns = [
+        r'(Australian Open|French Open|Roland Garros|Wimbledon|US Open|ATP Finals|Indian Wells|Miami Open|Monte Carlo|Madrid Open|Italian Open|Cincinnati)',
+        r'(Exhibition|exhibition)'
+    ]
+    
+    for pattern in tournament_patterns:
+        match = re.search(pattern, text_to_search, re.IGNORECASE)
+        if match:
+            tennis_data['info'] = match.group(1)
+            break
+    
+    # 상대 선수 추출
+    opponent_pattern = r'vs\.?\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)|against\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)'
+    opponent_match = re.search(opponent_pattern, text_to_search)
+    if opponent_match:
+        opponent = opponent_match.group(1) or opponent_match.group(2)
+        tennis_data['detail'] = f"vs {opponent}"
+    
+    # 날짜 패턴
+    date_pattern = r'(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2})(?:-(\d{1,2}))?'
+    date_match = re.search(date_pattern, text_to_search, re.IGNORECASE)
+    if date_match:
+        month = date_match.group(1)[:3]
+        day_start = date_match.group(2)
+        day_end = date_match.group(3)
+        if day_end:
+            tennis_data['time'] = f"{month} {day_start}-{day_end}"
+        else:
+            tennis_data['time'] = f"{month} {day_start}"
+    
+    # 상태 판단
+    if 'exhibition' in text_to_search.lower():
+        tennis_data['status'] = 'Exhibition'
+    elif tennis_data['info'] != 'TBD':
+        tennis_data['status'] = 'Tournament'
+    
+    return tennis_data
+
+# =============================================================================
+# EPL 6가지 룰 검증 (순서 중요!)
 # =============================================================================
 def check_epl_rules(home, away, uk_day, uk_time, top_4, leader):
-    """EPL 6가지 룰 검증하여 해당하는 룰 반환"""
+    """
+    EPL 6가지 룰 검증하여 해당하는 룰 반환
+    
+    [룰 순서]
+    1. Big Match: Big 6 vs Big 6 (양쪽 모두 Big 6)
+    2. Top Tier: Top 4 vs Top 4 (양쪽 모두 Top 4)
+    3. Challenger: Top 4 vs Big 6 (한쪽 Top 4, 한쪽 Big 6 - 서로 다른 조건)
+    4. Prime Time: 일요일 16:30 UK
+    5. Early KO: 토요일 12:30 UK
+    6. Leader: 리그 1위 팀 포함
+    """
     rules = []
     
     home_norm = normalize_team_name(home)
@@ -229,17 +435,18 @@ def check_epl_rules(home, away, uk_day, uk_time, top_4, leader):
     away_is_top4 = away_norm in top_4
     leader_norm = normalize_team_name(leader) if leader else ""
     
-    # 1. Big Match: Big 6 vs Big 6
+    # 1. Big Match: Big 6 vs Big 6 (양쪽 모두 Big 6)
     if home_is_big6 and away_is_big6:
         rules.append("Big Match")
     
-    # 2. Top Tier: Top 4 vs Top 4
+    # 2. Top Tier: Top 4 vs Top 4 (양쪽 모두 Top 4)
     if home_is_top4 and away_is_top4:
         rules.append("Top Tier")
     
-    # 3. Challenger: Top 4 vs Big 6 (한쪽만)
-    if (home_is_top4 and away_is_big6 and not away_is_top4) or \
-       (away_is_top4 and home_is_big6 and not home_is_top4):
+    # 3. Challenger: Top 4 vs Big 6 (한쪽 Top 4이면서 Big 6 아님, 다른쪽 Big 6)
+    # 조건: (홈이 Top4 & Big6 아님) AND (원정이 Big6) OR 그 반대
+    if (home_is_top4 and not home_is_big6 and away_is_big6) or \
+       (away_is_top4 and not away_is_big6 and home_is_big6):
         rules.append("Challenger")
     
     # 4. Prime Time: 일요일 16:30 UK
@@ -251,12 +458,14 @@ def check_epl_rules(home, away, uk_day, uk_time, top_4, leader):
         rules.append("Early KO")
     
     # 6. Leader: 1위 팀 포함
-    if leader_norm and (leader_norm in home_norm or leader_norm in away_norm):
-        rules.append("Leader")
+    if leader_norm:
+        if leader_norm in home_norm or home_norm in leader_norm or \
+           leader_norm in away_norm or away_norm in leader_norm:
+            rules.append("Leader")
     
     return rules
 
-def process_epl_matches(matches, top_4, leader):
+def process_epl_matches(matches, top_4, leader, serper_key=None):
     """EPL 경기 데이터를 처리하고 6가지 룰로 필터링"""
     validated_matches = []
     
@@ -285,11 +494,25 @@ def process_epl_matches(matches, top_4, leader):
         
         # 룰에 해당하는 경기만 포함
         if rules:
+            home_norm = normalize_team_name(home_team)
+            away_norm = normalize_team_name(away_team)
+            
+            # 중계 정보 검색 (Serper API 사용 시)
+            channel = None
+            if serper_key:
+                channel = search_epl_broadcaster(
+                    home_norm, 
+                    away_norm, 
+                    time_info['uk_date'],
+                    serper_key
+                )
+            
             validated_matches.append({
-                'home': normalize_team_name(home_team),
-                'away': normalize_team_name(away_team),
+                'home': home_norm,
+                'away': away_norm,
                 'kst_time': time_info['kst_full'],
                 'uk_time': f"{time_info['uk_day']} {time_info['uk_time']} (UK)",
+                'local': channel or '',  # 중계 정보
                 'rules': rules,
                 'rule_str': ', '.join(rules)
             })
@@ -309,47 +532,35 @@ def get_nba_data():
     }
 
 # =============================================================================
-# Tennis/F1 데이터 (임시)
-# =============================================================================
-def get_tennis_data():
-    """Tennis 데이터 - 임시"""
-    return {
-        "status": "Off-Season",
-        "info": "Australian Open",
-        "detail": "Melbourne, Australia",
-        "time": "01.12-01.26"
-    }
-
-def get_f1_data():
-    """F1 데이터 - 임시"""
-    return {
-        "status": "Off-Season",
-        "name": "Australian Grand Prix",
-        "circuit": "Albert Park, Melbourne",
-        "date": "03.14-03.16"
-    }
-
-# =============================================================================
 # 메인 업데이트 함수
 # =============================================================================
 def update_sports_data():
-    # Football-Data.org API 키 확인
+    # API 키 확인
     football_api_key = os.environ.get("FOOTBALL_DATA_API_KEY")
+    serper_api_key = os.environ.get("SERPER_API_KEY")
+    
     if not football_api_key:
         log("❌ Error: FOOTBALL_DATA_API_KEY Missing")
         log("   Football-Data.org에서 무료 API 키를 발급받으세요:")
         log("   https://www.football-data.org/client/register")
-        raise ValueError("API Key Missing")
+        raise ValueError("FOOTBALL_DATA_API_KEY Missing")
+    
+    if not serper_api_key:
+        log("⚠️ Warning: SERPER_API_KEY Missing")
+        log("   중계/F1/Tennis 정보는 검색하지 않습니다.")
+        log("   Serper API 키: https://serper.dev")
     
     kst_now = get_kst_now()
     
     log(f"🚀 [Start] {kst_now.strftime('%Y-%m-%d %H:%M:%S')} (KST)")
-    log(f"   Data Source: Football-Data.org (Free Tier)")
+    log(f"   Data Sources:")
+    log(f"   - EPL: Football-Data.org (Free Tier)")
+    log(f"   - Search: Serper API {'✅' if serper_api_key else '❌'}")
     
     # =========================================================================
     # STEP 1: EPL 순위 가져오기
     # =========================================================================
-    log("\n⚽ [Step 1/3] Premier League 순위...")
+    log("\n⚽ [Step 1/4] Premier League 순위...")
     
     leader_team, top_4_teams, current_matchday = get_epl_standings(football_api_key)
     
@@ -366,7 +577,14 @@ def update_sports_data():
     # =========================================================================
     # STEP 2: EPL 경기 일정 가져오기 + 6가지 룰 적용
     # =========================================================================
-    log("\n⚽ [Step 2/3] Premier League 경기 일정 + 6가지 룰 적용...")
+    log("\n⚽ [Step 2/4] Premier League 경기 일정 + 6가지 룰 적용...")
+    log("   [룰 순서]")
+    log("   1. Big Match: Big 6 vs Big 6")
+    log("   2. Top Tier: Top 4 vs Top 4")
+    log("   3. Challenger: Top 4 vs Big 6 (서로 다른 조건)")
+    log("   4. Prime Time: 일요일 16:30 UK")
+    log("   5. Early KO: 토요일 12:30 UK")
+    log("   6. Leader: 1위 팀 포함")
     
     # 다음 매치데이 경기 가져오기
     if current_matchday:
@@ -377,25 +595,72 @@ def update_sports_data():
     else:
         matches = get_epl_matches(football_api_key)
     
-    log(f"   📋 총 {len(matches)}경기 조회됨")
+    log(f"\n   📋 총 {len(matches)}경기 조회됨")
     
-    # 6가지 룰 적용
-    validated_epl = process_epl_matches(matches, top_4_teams, leader_team)
+    # 6가지 룰 적용 + 중계 정보 검색
+    validated_epl = process_epl_matches(matches, top_4_teams, leader_team, serper_api_key)
     log(f"   ✅ 6가지 룰 적용 후: {len(validated_epl)}경기 선별")
     
     for match in validated_epl:
-        log(f"      • {match['home']} vs {match['away']} [{match['rule_str']}]")
+        channel_info = f" | {match['local']}" if match['local'] else ""
+        log(f"      • {match['home']} vs {match['away']} [{match['rule_str']}]{channel_info}")
     
     # =========================================================================
-    # STEP 3: NBA / Tennis / F1 (임시)
+    # STEP 3: F1 일정 검색 (Serper)
     # =========================================================================
-    log("\n🏀🎾🏎️ [Step 3/3] NBA / Tennis / F1 (임시 데이터)...")
+    log("\n🏎️ [Step 3/4] F1 일정 검색...")
     
+    if serper_api_key:
+        f1_data = search_f1_schedule(serper_api_key)
+        if f1_data:
+            log(f"   ✅ {f1_data['name']} | {f1_data['circuit']} | {f1_data['date']}")
+        else:
+            f1_data = {
+                "status": "Off-Season",
+                "name": "Australian Grand Prix",
+                "circuit": "Albert Park, Melbourne",
+                "date": "Mar 14-16"
+            }
+            log("   ⚠️ 검색 실패, 기본값 사용")
+    else:
+        f1_data = {
+            "status": "Off-Season",
+            "name": "Australian Grand Prix",
+            "circuit": "Albert Park, Melbourne",
+            "date": "Mar 14-16"
+        }
+        log("   ⏭️ Serper API 키 없음, 기본값 사용")
+    
+    # =========================================================================
+    # STEP 4: Tennis 일정 검색 (Serper)
+    # =========================================================================
+    log("\n🎾 [Step 4/4] Tennis (Alcaraz) 일정 검색...")
+    
+    if serper_api_key:
+        tennis_data = search_tennis_schedule(serper_api_key)
+        if tennis_data:
+            log(f"   ✅ {tennis_data['status']} | {tennis_data['info']} | {tennis_data['detail']}")
+        else:
+            tennis_data = {
+                "status": "Off-Season",
+                "info": "Australian Open",
+                "detail": "Melbourne, Australia",
+                "time": "Jan 12-26"
+            }
+            log("   ⚠️ 검색 실패, 기본값 사용")
+    else:
+        tennis_data = {
+            "status": "Off-Season",
+            "info": "Australian Open",
+            "detail": "Melbourne, Australia",
+            "time": "Jan 12-26"
+        }
+        log("   ⏭️ Serper API 키 없음, 기본값 사용")
+    
+    # =========================================================================
+    # NBA (임시)
+    # =========================================================================
     nba_data = get_nba_data()
-    tennis_data = get_tennis_data()
-    f1_data = get_f1_data()
-    
-    log("   ✅ 임시 데이터 설정 완료 (추후 API 연동 예정)")
     
     # =========================================================================
     # 최종 데이터 저장
