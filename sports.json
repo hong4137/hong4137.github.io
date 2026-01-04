@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-04 22:21:17 KST",
+  "updated": "2026-01-04 23:30:13 KST",
   "epl": {
     "matchday": 20,
     "leader": "Arsenal",
@@ -24,7 +24,7 @@
     ]
   },
   "nba": {
-    "record": "25-26",
+    "record": "30-5",
     "rank": "-",
     "last": {
       "opp": "Jazz",
@@ -67,24 +67,6 @@
         "location": "home",
         "venue": "Chase Center",
         "channel": ""
-      },
-      {
-        "opp": "Trail Blazers",
-        "date": "01.14",
-        "kst_time": "13:00",
-        "local_time": "8:00 PM PT",
-        "location": "home",
-        "venue": "Chase Center",
-        "channel": ""
-      },
-      {
-        "opp": "Knicks",
-        "date": "01.16",
-        "kst_time": "12:00",
-        "local_time": "7:00 PM PT",
-        "location": "home",
-        "venue": "Chase Center",
-        "channel": ""
       }
     ]
   },
@@ -95,9 +77,9 @@
     "date": "Mar 06-8"
   },
   "tennis": {
-    "status": "Exhibition",
-    "info": "Hyundai Card Super Match",
-    "detail": "vs Sinner (Incheon)",
-    "time": "Jan 10"
+    "status": "Grand Slam",
+    "info": "Australian Open",
+    "detail": "Melbourne",
+    "time": "Feb 3"
   }
 }
