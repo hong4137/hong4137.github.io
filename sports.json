@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-04 18:20:21 KST",
+  "updated": "2026-01-04 18:38:11 KST",
   "epl_round": "R20",
   "standings": {
     "leader": "Arsenal",
@@ -47,7 +47,7 @@
   ],
   "nba": {
     "record": "25-26",
-    "rank": "#7 West",
+    "rank": "#8 West",
     "last": {
       "opp": "Jazz",
       "result": "W",
@@ -55,41 +55,35 @@
     },
     "schedule": [
       {
-        "opp": "Clippers",
-        "date": "01.05",
-        "time": "TBD",
+        "opp": "Suns",
+        "date": "01.20",
+        "time": "",
         "location": "home",
-        "kst_time": "TBD",
-        "local_time": "TBD"
+        "channel": "League Pass",
+        "kst_time": "14:00 (KST+1d)",
+        "local_time": "9:00 PM (PT)"
       },
       {
-        "opp": "Jazz",
-        "date": "01.03",
-        "time": "TBD",
+        "opp": "Knicks",
+        "date": "01.20",
+        "time": "",
         "location": "home",
-        "kst_time": "TBD",
-        "local_time": "TBD"
-      },
-      {
-        "opp": "Hawks",
-        "date": "01.11",
-        "time": "TBD",
-        "location": "home",
-        "kst_time": "TBD",
-        "local_time": "TBD"
+        "channel": "League Pass",
+        "kst_time": "14:00 (KST+1d)",
+        "local_time": "9:00 PM (PT)"
       }
     ]
   },
   "tennis": {
     "status": "Exhibition",
-    "info": "Exhibition Match",
+    "info": "Seoul Exhibition",
     "detail": "vs Sinner (Seoul)",
     "time": "Jan 10"
   },
   "f1": {
     "status": "Off-Season",
     "name": "AUSTRALIAN Grand Prix",
-    "circuit": "Las Vegas",
-    "date": "Nov 19-21"
+    "circuit": "Albert Park, Melbourne",
+    "date": "Mar 06-8"
   }
 }
