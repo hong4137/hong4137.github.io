@@ -347,10 +347,73 @@ def search_f1_schedule(serper_key):
     return f1_data
 
 def search_tennis_schedule(serper_key):
-    """Tennis (Alcaraz) 일정 검색"""
-    query = "Carlos Alcaraz next tournament match 2026 schedule"
+    """
+    Tennis (Alcaraz) 일정 검색
     
-    result = call_serper_api(query, serper_key)
+    [규칙]
+    1. 친선경기(Exhibition)가 있으면 친선경기 우선 표시
+    2. 친선경기가 없으면 다음 공식 대회 표시
+    """
+    # 먼저 친선경기 검색
+    exhibition_query = "Carlos Alcaraz exhibition match 2026 January"
+    exhibition_result = call_serper_api(exhibition_query, serper_key)
+    
+    exhibition_text = ""
+    if exhibition_result:
+        if 'answerBox' in exhibition_result:
+            exhibition_text += exhibition_result['answerBox'].get('snippet', '') + " "
+            exhibition_text += exhibition_result['answerBox'].get('answer', '') + " "
+        for item in exhibition_result.get('organic', [])[:3]:
+            exhibition_text += item.get('snippet', '') + " "
+            exhibition_text += item.get('title', '') + " "
+    
+    # 친선경기 감지
+    exhibition_keywords = ['exhibition', 'showdown', 'friendly', 'charity', 'invitational']
+    is_exhibition = any(kw in exhibition_text.lower() for kw in exhibition_keywords)
+    
+    if is_exhibition:
+        tennis_data = {
+            'status': 'Exhibition',
+            'info': 'Exhibition Match',
+            'detail': '',
+            'time': ''
+        }
+        
+        # 상대 선수 추출 (Sinner, Djokovic 등)
+        top_players = ['Sinner', 'Djokovic', 'Nadal', 'Federer', 'Medvedev', 'Zverev', 'Ruud', 'Tsitsipas']
+        for player in top_players:
+            if player.lower() in exhibition_text.lower():
+                tennis_data['detail'] = f"vs {player}"
+                break
+        
+        # 장소 추출
+        locations = ['Seoul', 'Incheon', 'Hong Kong', 'Abu Dhabi', 'Riyadh', 'Melbourne', 'Sydney']
+        for loc in locations:
+            if loc.lower() in exhibition_text.lower():
+                if tennis_data['detail']:
+                    tennis_data['detail'] += f" ({loc})"
+                else:
+                    tennis_data['detail'] = loc
+                break
+        
+        # 날짜 추출
+        date_pattern = r'(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2})(?:-(\d{1,2}))?'
+        date_match = re.search(date_pattern, exhibition_text, re.IGNORECASE)
+        if date_match:
+            month = date_match.group(1)[:3]
+            day_start = date_match.group(2)
+            day_end = date_match.group(3)
+            if day_end:
+                tennis_data['time'] = f"{month} {day_start}-{day_end}"
+            else:
+                tennis_data['time'] = f"{month} {day_start}"
+        
+        return tennis_data
+    
+    # 친선경기가 없으면 다음 공식 대회 검색
+    tournament_query = "Carlos Alcaraz next tournament 2026 schedule"
+    result = call_serper_api(tournament_query, serper_key)
+    
     if not result:
         return None
     
@@ -371,23 +434,17 @@ def search_tennis_schedule(serper_key):
         text_to_search += item.get('snippet', '') + " "
     
     # 대회 이름 추출
-    tournament_patterns = [
-        r'(Australian Open|French Open|Roland Garros|Wimbledon|US Open|ATP Finals|Indian Wells|Miami Open|Monte Carlo|Madrid Open|Italian Open|Cincinnati)',
-        r'(Exhibition|exhibition)'
+    tournaments = [
+        'Australian Open', 'French Open', 'Roland Garros', 'Wimbledon', 'US Open',
+        'ATP Finals', 'Indian Wells', 'Miami Open', 'Monte Carlo', 'Madrid Open',
+        'Italian Open', 'Cincinnati', 'Shanghai Masters', 'Canada Masters'
     ]
     
-    for pattern in tournament_patterns:
-        match = re.search(pattern, text_to_search, re.IGNORECASE)
-        if match:
-            tennis_data['info'] = match.group(1)
+    for tournament in tournaments:
+        if tournament.lower() in text_to_search.lower():
+            tennis_data['info'] = tournament
+            tennis_data['status'] = 'Tournament'
             break
-    
-    # 상대 선수 추출
-    opponent_pattern = r'vs\.?\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)|against\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)'
-    opponent_match = re.search(opponent_pattern, text_to_search)
-    if opponent_match:
-        opponent = opponent_match.group(1) or opponent_match.group(2)
-        tennis_data['detail'] = f"vs {opponent}"
     
     # 날짜 패턴
     date_pattern = r'(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2})(?:-(\d{1,2}))?'
@@ -401,11 +458,12 @@ def search_tennis_schedule(serper_key):
         else:
             tennis_data['time'] = f"{month} {day_start}"
     
-    # 상태 판단
-    if 'exhibition' in text_to_search.lower():
-        tennis_data['status'] = 'Exhibition'
-    elif tennis_data['info'] != 'TBD':
-        tennis_data['status'] = 'Tournament'
+    # 장소 추출
+    locations = ['Melbourne', 'Paris', 'London', 'New York', 'Indian Wells', 'Miami', 'Madrid', 'Rome']
+    for loc in locations:
+        if loc.lower() in text_to_search.lower():
+            tennis_data['detail'] = loc
+            break
     
     return tennis_data
 
