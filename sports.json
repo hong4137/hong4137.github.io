@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-05 03:32:48 KST",
+  "updated": "2026-01-05 11:05:31 KST",
   "epl": {
     "matchday": 20,
     "leader": "Arsenal",
@@ -9,19 +9,7 @@
       "Aston Villa",
       "Liverpool"
     ],
-    "matches": [
-      {
-        "home": "Manchester City",
-        "away": "Chelsea",
-        "kst_time": "01.05 02:30 (KST)",
-        "uk_time": "Sunday 17:30 (UK)",
-        "local": "Sky Sports",
-        "rules": [
-          "Big Match"
-        ],
-        "rule_str": "Big Match"
-      }
-    ]
+    "matches": []
   },
   "nba": {
     "record": "30-5",
