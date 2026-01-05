@@ -1,7 +1,7 @@
 {
-  "updated": "2026-01-05 15:42:45 KST",
+  "updated": "2026-01-05 21:53:01 KST",
   "epl": {
-    "matchday": 20,
+    "matchday": 21,
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
@@ -9,7 +9,21 @@
       "Aston Villa",
       "Liverpool"
     ],
-    "matches": []
+    "matches": [
+      {
+        "home": "Arsenal",
+        "away": "Liverpool",
+        "kst_time": "01.09 05:00 (KST)",
+        "uk_time": "Thursday 20:00 (UK)",
+        "local": "Sky Sports",
+        "rules": [
+          "Big Match",
+          "Top Tier",
+          "Leader"
+        ],
+        "rule_str": "Big Match, Top Tier, Leader"
+      }
+    ]
   },
   "nba": {
     "record": "25-26",
