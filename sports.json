@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-08 15:38:34 KST",
+  "updated": "2026-01-08 21:52:31 KST",
   "epl": {
     "matchday": 21,
     "leader": "Arsenal",
@@ -76,12 +76,12 @@
     "status": "Off-Season",
     "name": "AUSTRALIAN Grand Prix",
     "circuit": "Albert Park, Melbourne",
-    "date": "Mar 06-8"
+    "date": "Mar 6-8"
   },
   "tennis": {
     "status": "Grand Slam",
     "info": "Australian Open",
     "detail": "Melbourne",
-    "time": "Feb 3"
+    "time": "Jan 12-26"
   }
 }
