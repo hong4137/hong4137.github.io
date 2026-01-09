@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-09 03:32:55 KST",
+  "updated": "2026-01-09 10:56:56 KST",
   "epl": {
     "matchday": 21,
     "leader": "Arsenal",
@@ -9,21 +9,7 @@
       "Aston Villa",
       "Liverpool"
     ],
-    "matches": [
-      {
-        "home": "Arsenal",
-        "away": "Liverpool",
-        "kst_time": "01.09 05:00 (KST)",
-        "uk_time": "Thursday 20:00 (UK)",
-        "local": "Sky Sports",
-        "rules": [
-          "Big Match",
-          "Top Tier",
-          "Leader"
-        ],
-        "rule_str": "Big Match, Top Tier, Leader"
-      }
-    ]
+    "matches": []
   },
   "nba": {
     "record": "25-26",
@@ -76,7 +62,7 @@
     "status": "Off-Season",
     "name": "AUSTRALIAN Grand Prix",
     "circuit": "Albert Park, Melbourne",
-    "date": "Mar 06-8"
+    "date": "Mar 6-8"
   },
   "tennis": {
     "status": "Grand Slam",
