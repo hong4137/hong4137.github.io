@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-09 21:51:20 KST",
+  "updated": "2026-01-10 03:36:26 KST",
   "epl": {
     "matchday": 21,
     "leader": "Arsenal",
@@ -20,15 +20,6 @@
       "score": "120-113"
     },
     "schedule": [
-      {
-        "opp": "Kings",
-        "date": "01.10",
-        "kst_time": "12:00",
-        "local_time": "7:00 PM PT",
-        "location": "home",
-        "venue": "Chase Center",
-        "channel": ""
-      },
       {
         "opp": "Hawks",
         "date": "01.12",
@@ -55,6 +46,15 @@
         "location": "home",
         "venue": "Chase Center",
         "channel": ""
+      },
+      {
+        "opp": "Hornets",
+        "date": "01.18",
+        "kst_time": "10:30",
+        "local_time": "5:30 PM PT",
+        "location": "home",
+        "venue": "Chase Center",
+        "channel": ""
       }
     ]
   },
@@ -65,9 +65,9 @@
     "date": "Mar 6-8"
   },
   "tennis": {
-    "status": "Grand Slam",
-    "info": "Australian Open",
-    "detail": "Melbourne",
-    "time": "Feb 3"
+    "status": "Exhibition",
+    "info": "Exhibition Match",
+    "detail": "vs Sinner (Incheon)",
+    "time": "Feb 10"
   }
 }
