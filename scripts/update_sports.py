@@ -614,197 +614,118 @@ def search_f1_schedule(serper_key):
     return f1_data
 
 # =============================================================================
-# 테니스 함수 - 실시간 검색 기반 (친선경기 우선)
+# 테니스 함수 - Recent + Next 구조
 # =============================================================================
 def search_tennis_schedule(serper_key):
     """
-    Tennis (Alcaraz) 일정 - 실시간 검색
+    Tennis (Alcaraz) - Recent 경기 결과 + Next 일정
     
-    [우선순위] - 수정됨
-    1. 친선경기 먼저 검색 (Hyundai Card, Six Kings 등)
-    2. 대회 진행 중 감지
-    3. 다음 대회 일정
+    반환 구조:
+    {
+        'recent': {'event': '', 'opponent': '', 'result': '', 'score': '', 'date': ''},
+        'next': {'event': '', 'detail': '', 'date': '', 'status': ''}
+    }
     """
     
+    default_data = {
+        'recent': {'event': '-', 'opponent': '-', 'result': '-', 'score': '-', 'date': '-'},
+        'next': {'event': '-', 'detail': '-', 'date': '-', 'status': '-'}
+    }
+    
     if not serper_key:
-        return {
-            'status': '-',
-            'info': 'No API Key',
-            'detail': '-',
-            'time': '-'
-        }
+        return default_data
     
     kst_now = get_kst_now()
-    current_month = kst_now.strftime("%B")  # January, February 등
     
-    # =========================================================================
-    # 1. 친선경기 먼저 검색 (가장 우선)
-    # =========================================================================
-    exhibition_query = f"Carlos Alcaraz exhibition match {current_month} 2026"
-    exh_result = call_serper_api(exhibition_query, serper_key)
-    
-    exh_text = ""
-    if exh_result:
-        if 'answerBox' in exh_result:
-            exh_text += exh_result['answerBox'].get('snippet', '') + " "
-        for item in exh_result.get('organic', [])[:5]:
-            exh_text += item.get('snippet', '') + " "
-            exh_text += item.get('title', '') + " "
-    
-    exh_lower = exh_text.lower()
-    
-    # 친선경기 키워드 매칭
-    exhibition_events = [
-        ('hyundai card super match', 'Hyundai Card Super Match'),
-        ('hyundai card', 'Hyundai Card Super Match'),
-        ('super match', 'Hyundai Card Super Match'),
-        ('six kings slam', 'Six Kings Slam'),
-        ('netflix slam', 'Netflix Slam'),
-        ('riyadh season', 'Riyadh Season'),
-        ('world tennis league', 'World Tennis League'),
-        ('laver cup', 'Laver Cup'),
-        ('mubadala', 'Mubadala WTC'),
+    top_players = [
+        'Sinner', 'Djokovic', 'Zverev', 'Medvedev', 'Rune', 'Fritz',
+        'Tsitsipas', 'Ruud', 'Nadal', 'Federer', 'Murray', 'Draper', 'Fonseca'
     ]
     
-    detected_exhibition = None
-    for keyword, event_name in exhibition_events:
-        if keyword in exh_lower:
-            detected_exhibition = event_name
-            break
-    
-    if detected_exhibition:
-        # 상대 선수 추출
-        top_players = [
-            'Sinner', 'Djokovic', 'Zverev', 'Medvedev', 'Rune', 'Fritz',
-            'Tsitsipas', 'Ruud', 'Nadal', 'Federer', 'Murray'
-        ]
-        opponent = None
-        for player in top_players:
-            if player.lower() in exh_lower:
-                opponent = player
-                break
-        
-        # 장소 추출
-        locations = [
-            ('incheon', 'Incheon'), ('inspire arena', 'Incheon'), ('korea', 'Korea'),
-            ('seoul', 'Seoul'), ('riyadh', 'Riyadh'), ('saudi', 'Saudi Arabia'),
-            ('dubai', 'Dubai'), ('abu dhabi', 'Abu Dhabi'),
-        ]
-        location = None
-        for loc_key, loc_name in locations:
-            if loc_key in exh_lower:
-                location = loc_name
-                break
-        
-        # 날짜 추출
-        date_pattern = r'(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Dec(?:ember)?)\s+(\d{1,2})'
-        date_match = re.search(date_pattern, exh_text, re.IGNORECASE)
-        exh_date = ""
-        if date_match:
-            month = date_match.group(1)[:3]
-            day = date_match.group(2)
-            exh_date = f"{month} {day}"
-        
-        # detail 구성
-        detail_parts = []
-        if opponent:
-            detail_parts.append(f"vs {opponent}")
-        if location:
-            detail_parts.append(f"({location})")
-        
-        return {
-            'status': 'Exhibition',
-            'info': detected_exhibition,
-            'detail': ' '.join(detail_parts) if detail_parts else '',
-            'time': exh_date
-        }
-    
-    # =========================================================================
-    # 2. 대회 진행 중 감지
-    # =========================================================================
-    latest_query = "Carlos Alcaraz current tournament round 2026"
-    latest_result = call_serper_api(latest_query, serper_key)
-    
-    latest_text = ""
-    if latest_result:
-        if 'answerBox' in latest_result:
-            latest_text += latest_result['answerBox'].get('snippet', '') + " "
-        if 'sportsResults' in latest_result:
-            latest_text += str(latest_result['sportsResults']) + " "
-        for item in latest_result.get('organic', [])[:5]:
-            latest_text += item.get('snippet', '') + " "
-    
-    latest_lower = latest_text.lower()
-    
-    tournaments = {
-        'australian open': ('Australian Open', 'Grand Slam'),
-        'french open': ('Roland Garros', 'Grand Slam'),
-        'roland garros': ('Roland Garros', 'Grand Slam'),
-        'wimbledon': ('Wimbledon', 'Grand Slam'),
-        'us open': ('US Open', 'Grand Slam'),
-        'indian wells': ('Indian Wells', 'Masters'),
-        'miami open': ('Miami Open', 'Masters'),
-        'monte carlo': ('Monte Carlo', 'Masters'),
-        'madrid open': ('Madrid Open', 'Masters'),
-        'italian open': ('Italian Open', 'Masters'),
-        'cincinnati': ('Cincinnati', 'Masters'),
-        'shanghai': ('Shanghai', 'Masters'),
-        'paris masters': ('Paris Masters', 'Masters'),
-        'atp finals': ('ATP Finals', 'Finals'),
-        'rotterdam': ('Rotterdam', 'ATP 500'),
-        'barcelona': ('Barcelona Open', 'ATP 500'),
+    tennis_data = {
+        'recent': {'event': '-', 'opponent': '-', 'result': '-', 'score': '-', 'date': '-'},
+        'next': {'event': '-', 'detail': '-', 'date': '-', 'status': '-'}
     }
     
-    round_patterns = {
-        'final': 'Final', 'semifinal': 'SF', 'semi-final': 'SF',
-        'quarterfinal': 'QF', 'quarter-final': 'QF',
-        'round of 16': 'R16', '4th round': 'R16', 'fourth round': 'R16',
-        '3rd round': '3R', 'third round': '3R',
-        '2nd round': '2R', 'second round': '2R',
-        '1st round': '1R', 'first round': '1R',
+    # =========================================================================
+    # 1. 최근 경기 결과 검색
+    # =========================================================================
+    recent_query = "Carlos Alcaraz latest match result score 2026"
+    recent_result = call_serper_api(recent_query, serper_key)
+    
+    recent_text = ""
+    if recent_result:
+        if 'answerBox' in recent_result:
+            recent_text += recent_result['answerBox'].get('snippet', '') + " "
+            recent_text += recent_result['answerBox'].get('answer', '') + " "
+        if 'sportsResults' in recent_result:
+            recent_text += str(recent_result['sportsResults']) + " "
+        for item in recent_result.get('organic', [])[:5]:
+            recent_text += item.get('snippet', '') + " "
+            recent_text += item.get('title', '') + " "
+    
+    recent_lower = recent_text.lower()
+    
+    # 최근 경기 이벤트명 감지
+    events = {
+        'hyundai card': 'Hyundai Card',
+        'super match': 'Hyundai Card',
+        'australian open': 'Australian Open',
+        'six kings slam': 'Six Kings Slam',
+        'atp finals': 'ATP Finals',
     }
     
-    # 라운드 감지 (대회 진행 중인지 확인)
-    detected_round = None
-    for pattern, round_name in round_patterns.items():
-        if pattern in latest_lower:
-            detected_round = round_name
+    recent_event = '-'
+    for keyword, name in events.items():
+        if keyword in recent_lower:
+            recent_event = name
             break
     
-    # 대회 감지
-    detected_tournament = None
-    detected_status = None
-    for keyword, (name, status) in tournaments.items():
-        if keyword in latest_lower:
-            detected_tournament = name
-            detected_status = status
+    # 상대 선수
+    recent_opponent = '-'
+    for player in top_players:
+        if player.lower() in recent_lower:
+            recent_opponent = player
             break
     
-    # 대회 + 라운드가 있으면 진행 중
-    if detected_tournament and detected_round:
-        # 상대 선수
-        top_players = ['Sinner', 'Djokovic', 'Zverev', 'Medvedev', 'Rune', 'Fritz', 'Draper', 'Fonseca']
-        opponent = None
-        for player in top_players:
-            if player.lower() in latest_lower:
-                opponent = player
+    # 승패 결과
+    recent_result_str = '-'
+    if 'alcaraz' in recent_lower:
+        win_patterns = ['alcaraz won', 'alcaraz beat', 'alcaraz defeated', 'alcaraz advances', 'alcaraz wins', 'victory for alcaraz']
+        lose_patterns = ['alcaraz lost', 'alcaraz fell', 'alcaraz eliminated', 'alcaraz out', 'defeat for alcaraz']
+        
+        for wp in win_patterns:
+            if wp in recent_lower:
+                recent_result_str = 'W'
                 break
-        
-        detail = detected_round
-        if opponent:
-            detail = f"{detected_round} vs {opponent}"
-        
-        return {
-            'status': detected_status or 'Tournament',
-            'info': detected_tournament,
-            'detail': detail,
-            'time': ''
-        }
+        if recent_result_str == '-':
+            for lp in lose_patterns:
+                if lp in recent_lower:
+                    recent_result_str = 'L'
+                    break
+    
+    # 스코어 추출 (예: 6-4, 7-5 또는 6-4 6-3)
+    score_pattern = r'\b([0-7]-[0-7](?:\s*,?\s*[0-7]-[0-7])*)\b'
+    score_match = re.search(score_pattern, recent_text)
+    recent_score = score_match.group(1) if score_match else '-'
+    
+    # 날짜 추출
+    date_pattern = r'(Jan(?:uary)?|Feb(?:ruary)?|Dec(?:ember)?)\s+(\d{1,2})'
+    date_match = re.search(date_pattern, recent_text, re.IGNORECASE)
+    recent_date = f"{date_match.group(1)[:3]} {date_match.group(2)}" if date_match else '-'
+    
+    tennis_data['recent'] = {
+        'event': recent_event,
+        'opponent': recent_opponent,
+        'result': recent_result_str,
+        'score': recent_score,
+        'date': recent_date
+    }
     
     # =========================================================================
-    # 3. 다음 대회 검색
+    # 2. 다음 경기 일정 검색
     # =========================================================================
-    next_query = "Carlos Alcaraz next tournament 2026 schedule"
+    next_query = "Carlos Alcaraz next match schedule 2026"
     next_result = call_serper_api(next_query, serper_key)
     
     next_text = ""
@@ -813,55 +734,90 @@ def search_tennis_schedule(serper_key):
             next_text += next_result['answerBox'].get('snippet', '') + " "
         for item in next_result.get('organic', [])[:5]:
             next_text += item.get('snippet', '') + " "
+            next_text += item.get('title', '') + " "
     
     next_lower = next_text.lower()
     
-    # 다음 대회 감지
-    next_tournament = None
-    next_status = None
+    # 다음 이벤트 감지
+    tournaments = {
+        'australian open': ('Australian Open', 'Grand Slam'),
+        'french open': ('Roland Garros', 'Grand Slam'),
+        'roland garros': ('Roland Garros', 'Grand Slam'),
+        'wimbledon': ('Wimbledon', 'Grand Slam'),
+        'us open': ('US Open', 'Grand Slam'),
+        'indian wells': ('Indian Wells', 'Masters'),
+        'miami open': ('Miami Open', 'Masters'),
+        'rotterdam': ('Rotterdam', 'ATP 500'),
+        'hyundai card': ('Hyundai Card', 'Exhibition'),
+        'six kings': ('Six Kings Slam', 'Exhibition'),
+    }
+    
+    next_event = '-'
+    next_status = '-'
     for keyword, (name, status) in tournaments.items():
         if keyword in next_lower:
-            next_tournament = name
+            next_event = name
             next_status = status
             break
     
+    # 라운드 또는 상대
+    round_patterns = {
+        'final': 'Final', 'semifinal': 'SF', 'semi-final': 'SF',
+        'quarterfinal': 'QF', 'quarter-final': 'QF',
+        'round of 16': 'R16', '4th round': 'R16',
+        '3rd round': '3R', 'third round': '3R',
+        '2nd round': '2R', 'second round': '2R',
+        '1st round': '1R', 'first round': '1R',
+    }
+    
+    next_detail = '-'
+    for pattern, round_name in round_patterns.items():
+        if pattern in next_lower:
+            next_detail = round_name
+            break
+    
+    # 상대 선수 있으면 추가
+    for player in top_players:
+        if player.lower() in next_lower:
+            if next_detail != '-':
+                next_detail = f"{next_detail} vs {player}"
+            else:
+                next_detail = f"vs {player}"
+            break
+    
+    # 장소 (detail이 없으면)
+    if next_detail == '-':
+        locations = {
+            'Australian Open': 'Melbourne',
+            'Roland Garros': 'Paris',
+            'Wimbledon': 'London',
+            'US Open': 'New York',
+            'Rotterdam': 'Netherlands',
+        }
+        next_detail = locations.get(next_event, '-')
+    
     # 날짜 추출
-    date_pattern = r'(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?)\s+(\d{1,2})(?:\s*[-–]\s*(\d{1,2}))?'
-    date_match = re.search(date_pattern, next_text, re.IGNORECASE)
-    next_date = ""
-    if date_match:
-        month = date_match.group(1)[:3]
-        day_start = date_match.group(2)
-        day_end = date_match.group(3)
+    next_date_pattern = r'(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?)\s+(\d{1,2})(?:\s*[-–]\s*(\d{1,2}))?'
+    next_date_match = re.search(next_date_pattern, next_text, re.IGNORECASE)
+    if next_date_match:
+        month = next_date_match.group(1)[:3]
+        day_start = next_date_match.group(2)
+        day_end = next_date_match.group(3)
         if day_end:
             next_date = f"{month} {day_start}-{day_end}"
         else:
             next_date = f"{month} {day_start}"
+    else:
+        next_date = '-'
     
-    # 장소
-    tournament_locations = {
-        'Australian Open': 'Melbourne', 'Roland Garros': 'Paris',
-        'Wimbledon': 'London', 'US Open': 'New York',
-        'Indian Wells': 'California', 'Miami Open': 'Miami',
-        'Rotterdam': 'Netherlands', 'Barcelona Open': 'Barcelona',
+    tennis_data['next'] = {
+        'event': next_event,
+        'detail': next_detail,
+        'date': next_date,
+        'status': next_status
     }
-    location = tournament_locations.get(next_tournament, '')
     
-    if next_tournament:
-        return {
-            'status': next_status or 'Tournament',
-            'info': next_tournament,
-            'detail': location,
-            'time': next_date
-        }
-    
-    # 기본값
-    return {
-        'status': 'Tournament',
-        'info': 'Next Event',
-        'detail': 'TBD',
-        'time': '-'
-    }
+    return tennis_data
 
 # =============================================================================
 # 메인 업데이트 함수
@@ -964,7 +920,10 @@ def update_sports_data():
     log("\n🎾 [Step 5/5] Tennis (Alcaraz)...")
     
     tennis_data = search_tennis_schedule(serper_api_key)
-    log(f"   ✅ {tennis_data['status']} | {tennis_data['info']} | {tennis_data['detail']} | {tennis_data['time']}")
+    recent = tennis_data.get('recent', {})
+    next_match = tennis_data.get('next', {})
+    log(f"   ✅ Recent: {recent.get('event', '-')} vs {recent.get('opponent', '-')} {recent.get('result', '-')} ({recent.get('score', '-')}) | {recent.get('date', '-')}")
+    log(f"   ✅ Next: {next_match.get('event', '-')} | {next_match.get('detail', '-')} | {next_match.get('date', '-')} [{next_match.get('status', '-')}]")
     
     # =========================================================================
     # 데이터 저장
