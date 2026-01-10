@@ -502,15 +502,41 @@
                     }
                 } catch (e) { console.error("NBA Error:", e); }
 
-                // 3. Tennis
+                // 3. Tennis (Recent + Next 구조)
                 try {
                     const tennis = data.tennis;
                     if (tennis && document.getElementById('tennis-content')) {
-                        document.getElementById('tennis-status').innerText = tennis.status || '-';
+                        const recent = tennis.recent || {};
+                        const next = tennis.next || {};
+                        
+                        // status badge - next의 status 사용
+                        document.getElementById('tennis-status').innerText = next.status || '-';
+                        
+                        // 승패 색상
+                        const resultColor = recent.result === 'W' ? '#4CAF50' : recent.result === 'L' ? '#f44336' : '#888';
+                        const resultText = recent.result === 'W' ? 'Win' : recent.result === 'L' ? 'Loss' : '-';
+                        
                         document.getElementById('tennis-content').innerHTML = `
-                            <div style="font-size:13px; font-weight:bold; color:white; margin-bottom:4px;">${tennis.info || '-'}</div>
-                            <div style="font-size:11px; color:#888;">${tennis.detail || '-'}</div>
-                            <div style="font-size:11px; color:#ccff00; margin-top:4px;">${tennis.time || '-'}</div>
+                            <div style="display:flex; gap:15px;">
+                                <!-- Recent (Left) -->
+                                <div style="flex:1; padding:8px; background:rgba(255,255,255,0.03); border-radius:6px;">
+                                    <div style="font-size:10px; color:#666; margin-bottom:6px; text-transform:uppercase;">Recent</div>
+                                    <div style="font-size:11px; color:#aaa; margin-bottom:2px;">${recent.event || '-'}</div>
+                                    <div style="font-size:12px; font-weight:bold; color:white;">vs ${recent.opponent || '-'}</div>
+                                    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:4px;">
+                                        <span style="font-size:13px; font-weight:bold; color:${resultColor};">${resultText}</span>
+                                        <span style="font-size:10px; color:#888;">${recent.score || '-'}</span>
+                                    </div>
+                                    <div style="font-size:9px; color:#555; margin-top:4px;">${recent.date || '-'}</div>
+                                </div>
+                                <!-- Next (Right) -->
+                                <div style="flex:1; padding:8px; background:rgba(255,255,255,0.03); border-radius:6px;">
+                                    <div style="font-size:10px; color:#666; margin-bottom:6px; text-transform:uppercase;">Next</div>
+                                    <div style="font-size:12px; font-weight:bold; color:white; margin-bottom:2px;">${next.event || '-'}</div>
+                                    <div style="font-size:11px; color:#aaa;">${next.detail || '-'}</div>
+                                    <div style="font-size:11px; color:#ccff00; margin-top:6px;">${next.date || '-'}</div>
+                                </div>
+                            </div>
                         `;
                     }
                 } catch (e) { console.error("Tennis Error:", e); }
