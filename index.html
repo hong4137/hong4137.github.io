@@ -77,9 +77,11 @@
         .nav-item.active { background-color: rgba(255, 68, 0, 0.1); color: var(--accent-color); }
         .nav-item.active i { color: var(--accent-color); }
 
-        .submenu { margin-left: 10px; padding-left: 10px; border-left: 1px solid #333; margin-top: 5px; margin-bottom: 15px; }
-        .submenu-item { cursor: pointer; padding: 8px 10px; display:flex; justify-content:space-between; align-items:center; }
+        .submenu { margin-left: 10px; padding-left: 10px; border-left: 1px solid #333; margin-top: 5px; margin-bottom: 15px; max-height: 400px; overflow-y: auto; }
+        .submenu-item { cursor: pointer; padding: 6px 8px; display:flex; justify-content:space-between; align-items:center; }
         .submenu-item:hover { background: rgba(255,255,255,0.05); border-radius: 4px; }
+        .month-folder { margin-bottom: 4px; }
+        .month-header:hover { background: rgba(255,255,255,0.08) !important; }
         
         .main-content {
             flex: 1;
@@ -341,27 +343,70 @@
                 if (!response.ok) throw new Error("목록 로드 실패");
                 const data = await response.json();
                 
-                let html = '';
-                data.slice(0, 10).forEach(item => {
-                    const dateShort = item.date.substring(5).replace('-', '.');
-                    let cleanTitle = item.title
-                        .replace('외신 브리핑 | ', '')
-                        .replace('외신 브리핑 - ', '')
-                        .replace('Jae\'s Briefing - ', '')
-                        .trim();
-
-                    html += `
-                    <div class="submenu-item" onclick="openBriefing('${item.link}')">
-                        <span style="color:#ccc; font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:140px;">
-                            ${cleanTitle}
-                        </span>
-                        <span style="color:#666; font-size:11px;">${dateShort}</span>
-                    </div>`;
+                // 월별로 그룹화
+                const grouped = {};
+                data.forEach(item => {
+                    // date format: "2026-01-10" -> "2026-01"
+                    const yearMonth = item.date.substring(0, 7);
+                    if (!grouped[yearMonth]) {
+                        grouped[yearMonth] = [];
+                    }
+                    grouped[yearMonth].push(item);
                 });
+                
+                // 월 정렬 (최신순)
+                const sortedMonths = Object.keys(grouped).sort().reverse();
+                
+                let html = '';
+                sortedMonths.forEach((yearMonth, monthIndex) => {
+                    const items = grouped[yearMonth];
+                    const [year, month] = yearMonth.split('-');
+                    const monthNames = ['', '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
+                    const displayMonth = `${year}년 ${monthNames[parseInt(month)]}`;
+                    const isExpanded = monthIndex === 0; // 첫 번째 월만 펼침
+                    
+                    html += `
+                    <div class="month-folder">
+                        <div class="month-header" onclick="toggleMonth(this)" style="display:flex; justify-content:space-between; align-items:center; padding:8px 10px; cursor:pointer; background:rgba(255,255,255,0.03); border-radius:4px; margin-bottom:2px;">
+                            <span style="color:#aaa; font-size:12px; font-weight:bold;">📁 ${displayMonth}</span>
+                            <span style="color:#666; font-size:10px;">${items.length}개</span>
+                        </div>
+                        <div class="month-items" style="display:${isExpanded ? 'block' : 'none'}; padding-left:8px;">`;
+                    
+                    items.forEach(item => {
+                        const dateShort = item.date.substring(5).replace('-', '.');
+                        let cleanTitle = item.title
+                            .replace('외신 브리핑 | ', '')
+                            .replace('외신 브리핑 - ', '')
+                            .replace('Jae\'s Briefing - ', '')
+                            .trim();
+
+                        html += `
+                        <div class="submenu-item" onclick="openBriefing('${item.link}')">
+                            <span style="color:#ccc; font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:130px;">
+                                ${cleanTitle}
+                            </span>
+                            <span style="color:#666; font-size:10px;">${dateShort}</span>
+                        </div>`;
+                    });
+                    
+                    html += `</div></div>`;
+                });
+                
                 menuContainer.innerHTML = html;
             } catch (error) {
                 console.error(error);
                 menuContainer.innerHTML = '<span style="color:#555; padding:10px; font-size:12px;">목록 로딩 실패</span>';
+            }
+        }
+        
+        // 월별 폴더 토글
+        function toggleMonth(header) {
+            const items = header.nextElementSibling;
+            if (items.style.display === 'none') {
+                items.style.display = 'block';
+            } else {
+                items.style.display = 'none';
             }
         }
 
