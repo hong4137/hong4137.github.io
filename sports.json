@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-10 18:04:12 KST",
+  "updated": "2026-01-10 18:19:56 KST",
   "epl": {
     "matchday": 21,
     "leader": "Arsenal",
@@ -9,7 +9,42 @@
       "Aston Villa",
       "Liverpool"
     ],
-    "matches": []
+    "matches": [
+      {
+        "home": "Manchester United",
+        "away": "Manchester City",
+        "kst_time": "01.17 21:30 (KST)",
+        "uk_time": "Saturday 12:30 (UK)",
+        "local": "Sky Sports",
+        "rules": [
+          "Big Match",
+          "Early KO"
+        ],
+        "rule_str": "Big Match, Early KO"
+      },
+      {
+        "home": "Nottingham Forest",
+        "away": "Arsenal",
+        "kst_time": "01.18 02:30 (KST)",
+        "uk_time": "Saturday 17:30 (UK)",
+        "local": "Sky Sports",
+        "rules": [
+          "Leader"
+        ],
+        "rule_str": "Leader"
+      },
+      {
+        "home": "Aston Villa",
+        "away": "Everton",
+        "kst_time": "01.19 01:30 (KST)",
+        "uk_time": "Sunday 16:30 (UK)",
+        "local": "Sky Sports",
+        "rules": [
+          "Prime Time"
+        ],
+        "rule_str": "Prime Time"
+      }
+    ]
   },
   "nba": {
     "record": "25-26",
@@ -67,7 +102,7 @@
   "tennis": {
     "status": "Exhibition",
     "info": "Hyundai Card Super Match",
-    "detail": "vs Sinner (Incheon)",
+    "detail": "vs Sinner (Korea)",
     "time": "Jan 10"
   }
 }
