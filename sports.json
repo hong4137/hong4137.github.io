@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-10 03:36:26 KST",
+  "updated": "2026-01-10 10:53:17 KST",
   "epl": {
     "matchday": 21,
     "leader": "Arsenal",
@@ -65,9 +65,9 @@
     "date": "Mar 6-8"
   },
   "tennis": {
-    "status": "Exhibition",
-    "info": "Exhibition Match",
-    "detail": "vs Sinner (Incheon)",
-    "time": "Feb 10"
+    "status": "Grand Slam",
+    "info": "Australian Open",
+    "detail": "Melbourne",
+    "time": "Feb 3"
   }
 }
