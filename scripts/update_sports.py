@@ -169,21 +169,54 @@ def get_epl_standings(api_key):
     return None, None, None
 
 def get_epl_matches(api_key, matchday=None):
-    """Football-Data.org에서 EPL 경기 일정 가져오기"""
+    """Football-Data.org에서 EPL 경기 일정 가져오기 (현재 + 다음 라운드)"""
     url = f"{FOOTBALL_DATA_API_URL}/competitions/PL/matches"
     headers = {"X-Auth-Token": api_key}
-    params = {"status": "SCHEDULED"}
-    if matchday:
-        params["matchday"] = matchday
     
-    try:
-        response = requests.get(url, headers=headers, params=params, timeout=10)
-        if response.status_code == 200:
-            data = response.json()
-            return data.get('matches', [])
-    except:
-        pass
-    return []
+    all_matches = []
+    
+    # 방법 1: matchday 지정 시 해당 라운드 + 다음 라운드 조회
+    if matchday:
+        for md in [matchday, matchday + 1]:
+            try:
+                params = {"status": "SCHEDULED", "matchday": md}
+                response = requests.get(url, headers=headers, params=params, timeout=10)
+                if response.status_code == 200:
+                    data = response.json()
+                    matches = data.get('matches', [])
+                    all_matches.extend(matches)
+            except:
+                pass
+    
+    # 방법 2: matchday 없으면 앞으로 14일간 SCHEDULED 경기 조회
+    if not all_matches:
+        try:
+            kst_now = get_kst_now()
+            date_from = kst_now.strftime("%Y-%m-%d")
+            date_to = (kst_now + timedelta(days=14)).strftime("%Y-%m-%d")
+            
+            params = {
+                "status": "SCHEDULED",
+                "dateFrom": date_from,
+                "dateTo": date_to
+            }
+            response = requests.get(url, headers=headers, params=params, timeout=10)
+            if response.status_code == 200:
+                data = response.json()
+                all_matches = data.get('matches', [])
+        except:
+            pass
+    
+    # 중복 제거 (경기 ID 기준)
+    seen_ids = set()
+    unique_matches = []
+    for m in all_matches:
+        match_id = m.get('id')
+        if match_id and match_id not in seen_ids:
+            seen_ids.add(match_id)
+            unique_matches.append(m)
+    
+    return unique_matches
 
 def check_epl_rules(home, away, uk_day, uk_time, top_4, leader):
     """EPL 6가지 룰 검증"""
@@ -849,7 +882,7 @@ def update_sports_data():
     log("   6. Leader: 1위 팀 포함")
     
     matches = get_epl_matches(football_api_key, current_matchday)
-    log(f"   📋 총 {len(matches)}경기 조회됨")
+    log(f"   📋 총 {len(matches)}경기 조회됨 (R{current_matchday} + R{current_matchday + 1 if current_matchday else '?'})")
     
     validated_epl = process_epl_matches(matches, top_4_teams, leader_team, serper_api_key)
     log(f"   ✅ 6가지 룰 적용 후: {len(validated_epl)}경기 선별")
