@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-10 23:09:26 KST",
+  "updated": "2026-01-11 00:19:14 KST",
   "epl": {
     "matchday": 21,
     "leader": "Arsenal",
@@ -100,9 +100,18 @@
     "date": "Mar 06-8"
   },
   "tennis": {
-    "status": "Exhibition",
-    "info": "Hyundai Card Super Match",
-    "detail": "vs Sinner (Incheon)",
-    "time": ""
+    "recent": {
+      "event": "Hyundai Card",
+      "opponent": "Sinner",
+      "result": "W",
+      "score": "7-5 7-6",
+      "date": "-"
+    },
+    "next": {
+      "event": "Australian Open",
+      "detail": "vs Sinner",
+      "date": "Feb 3",
+      "status": "Grand Slam"
+    }
   }
 }
