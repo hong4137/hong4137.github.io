@@ -362,6 +362,8 @@ def get_nba_warriors_data(balldontlie_key, serper_key=None):
     )
     
     last_game = None
+    wins = 0
+    losses = 0
     
     if past_games and 'data' in past_games:
         completed_games = [g for g in past_games['data'] if g.get('status') == 'Final']
@@ -370,35 +372,65 @@ def get_nba_warriors_data(balldontlie_key, serper_key=None):
             completed_games.sort(key=lambda x: x.get('date', ''), reverse=True)
             last_game = completed_games[0]
     
-    # 전적 + 순위는 Serper로 검색 (무료 API에서 standings 미지원)
+    # =========================================================================
+    # 1-1. 시즌 전체 경기로 전적 계산 (balldontlie API)
+    # =========================================================================
+    # 2025-26 시즌은 2025년 10월부터 시작
+    season_start = "2025-10-01"
+    
+    season_games = call_balldontlie_api(
+        "games",
+        params={
+            "team_ids[]": WARRIORS_TEAM_ID,
+            "start_date": season_start,
+            "end_date": today_str,
+            "per_page": 100
+        },
+        api_key=balldontlie_key
+    )
+    
+    if season_games and 'data' in season_games:
+        for game in season_games['data']:
+            if game.get('status') != 'Final':
+                continue
+            
+            home_team = game.get('home_team', {})
+            visitor_team = game.get('visitor_team', {})
+            home_score = game.get('home_team_score', 0)
+            visitor_score = game.get('visitor_team_score', 0)
+            
+            if home_team.get('id') == WARRIORS_TEAM_ID:
+                if home_score > visitor_score:
+                    wins += 1
+                else:
+                    losses += 1
+            elif visitor_team.get('id') == WARRIORS_TEAM_ID:
+                if visitor_score > home_score:
+                    wins += 1
+                else:
+                    losses += 1
+        
+        if wins + losses > 0:
+            nba_data['record'] = f"{wins}-{losses}"
+    
+    # 순위는 Serper로 검색 (무료 API에서 standings 미지원)
     if serper_key:
-        # 더 직접적인 검색어 사용
-        record_query = "Warriors NBA standings West rank 2026"
-        record_result = call_serper_api(record_query, serper_key)
-        if record_result:
-            record_text = ""
-            if 'answerBox' in record_result:
-                record_text += record_result['answerBox'].get('snippet', '') + " "
-                record_text += record_result['answerBox'].get('answer', '') + " "
-            if 'knowledgeGraph' in record_result:
-                kg = record_result['knowledgeGraph']
-                record_text += str(kg.get('attributes', {})) + " "
-            if 'sportsResults' in record_result:
-                record_text += str(record_result['sportsResults']) + " "
-            for item in record_result.get('organic', [])[:5]:
-                record_text += item.get('snippet', '') + " "
-                record_text += item.get('title', '') + " "
+        rank_query = "Golden State Warriors Western Conference rank standings 2026"
+        rank_result = call_serper_api(rank_query, serper_key)
+        if rank_result:
+            rank_text = ""
+            if 'answerBox' in rank_result:
+                rank_text += rank_result['answerBox'].get('snippet', '') + " "
+                rank_text += rank_result['answerBox'].get('answer', '') + " "
+            if 'knowledgeGraph' in rank_result:
+                kg = rank_result['knowledgeGraph']
+                rank_text += str(kg.get('attributes', {})) + " "
+            if 'sportsResults' in rank_result:
+                rank_text += str(rank_result['sportsResults']) + " "
+            for item in rank_result.get('organic', [])[:5]:
+                rank_text += item.get('snippet', '') + " "
             
-            log(f"   [DEBUG] NBA Search Text: {record_text[:200]}...")
-            
-            # 전적 패턴
-            record_match = re.search(r'(\d{1,2})-(\d{1,2})', record_text)
-            if record_match:
-                w, l = int(record_match.group(1)), int(record_match.group(2))
-                if 10 <= w + l <= 82:
-                    nba_data['record'] = f"{w}-{l}"
-            
-            # 순위 패턴 - 더 다양한 패턴
+            # 순위 패턴
             rank_patterns = [
                 r'#(\d{1,2})\s+(?:in\s+)?(?:the\s+)?(?:Western|West)',
                 r'(\d{1,2})(?:st|nd|rd|th)\s+(?:in\s+)?(?:the\s+)?(?:Western|West)',
@@ -408,12 +440,11 @@ def get_nba_warriors_data(balldontlie_key, serper_key=None):
                 r'West(?:ern)?\s+#?(\d{1,2})(?:st|nd|rd|th)?',
             ]
             for pattern in rank_patterns:
-                rank_match = re.search(pattern, record_text, re.IGNORECASE)
+                rank_match = re.search(pattern, rank_text, re.IGNORECASE)
                 if rank_match:
                     rank_num = int(rank_match.group(1))
                     if 1 <= rank_num <= 15:
                         nba_data['rank'] = f"#{rank_num} West"
-                        log(f"   [DEBUG] Found rank: #{rank_num} with pattern: {pattern}")
                         break
     
     # 최근 경기 결과
