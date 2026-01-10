@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-10 21:45:17 KST",
+  "updated": "2026-01-10 23:09:26 KST",
   "epl": {
     "matchday": 21,
     "leader": "Arsenal",
@@ -47,7 +47,7 @@
     ]
   },
   "nba": {
-    "record": "25-26",
+    "record": "21-18",
     "rank": "#8 West",
     "last": {
       "opp": "Kings",
@@ -103,6 +103,6 @@
     "status": "Exhibition",
     "info": "Hyundai Card Super Match",
     "detail": "vs Sinner (Incheon)",
-    "time": "Jan 10"
+    "time": ""
   }
 }
