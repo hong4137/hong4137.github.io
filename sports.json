@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-11 21:46:41 KST",
+  "updated": "2026-01-12 03:32:50 KST",
   "epl": {
     "matchday": 22,
     "leader": "Arsenal",
@@ -80,15 +80,6 @@
     },
     "schedule": [
       {
-        "opp": "Hawks",
-        "date": "01.12",
-        "kst_time": "10:30",
-        "local_time": "5:30 PM PT",
-        "location": "home",
-        "venue": "Chase Center",
-        "channel": ""
-      },
-      {
         "opp": "Trail Blazers",
         "date": "01.14",
         "kst_time": "13:00",
@@ -114,6 +105,15 @@
         "location": "home",
         "venue": "Chase Center",
         "channel": ""
+      },
+      {
+        "opp": "Heat",
+        "date": "01.20",
+        "kst_time": "12:00",
+        "local_time": "7:00 PM PT",
+        "location": "home",
+        "venue": "Chase Center",
+        "channel": ""
       }
     ]
   },
@@ -133,7 +133,7 @@
     },
     "next": {
       "event": "Australian Open",
-      "detail": "vs Sinner",
+      "detail": "vs Zverev",
       "date": "Feb 3",
       "status": "Grand Slam"
     }
