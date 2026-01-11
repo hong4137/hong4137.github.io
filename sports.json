@@ -1,7 +1,7 @@
 {
-  "updated": "2026-01-11 15:36:03 KST",
+  "updated": "2026-01-11 21:46:41 KST",
   "epl": {
-    "matchday": 21,
+    "matchday": 22,
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
@@ -43,6 +43,30 @@
           "Prime Time"
         ],
         "rule_str": "Prime Time"
+      },
+      {
+        "home": "West Ham United",
+        "away": "Sunderland AFC",
+        "kst_time": "01.24 21:30 (KST)",
+        "uk_time": "Saturday 12:30 (UK)",
+        "local": "Sky Sports",
+        "rules": [
+          "Early KO"
+        ],
+        "rule_str": "Early KO"
+      },
+      {
+        "home": "Arsenal",
+        "away": "Manchester United",
+        "kst_time": "01.26 01:30 (KST)",
+        "uk_time": "Sunday 16:30 (UK)",
+        "local": "Sky Sports",
+        "rules": [
+          "Big Match",
+          "Prime Time",
+          "Leader"
+        ],
+        "rule_str": "Big Match, Prime Time, Leader"
       }
     ]
   },
@@ -97,7 +121,7 @@
     "status": "Off-Season",
     "name": "AUSTRALIAN Grand Prix",
     "circuit": "Albert Park, Melbourne",
-    "date": "Mar 6-8"
+    "date": "Mar 06-8"
   },
   "tennis": {
     "recent": {
