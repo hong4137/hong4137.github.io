@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-12 11:01:53 KST",
+  "updated": "2026-01-12 15:41:08 KST",
   "epl": {
     "matchday": 22,
     "leader": "Arsenal",
@@ -71,12 +71,12 @@
     ]
   },
   "nba": {
-    "record": "21-18",
+    "record": "21-19",
     "rank": "#8 West",
     "last": {
-      "opp": "Kings",
-      "result": "W",
-      "score": "137-103"
+      "opp": "Hawks",
+      "result": "L",
+      "score": "111-124"
     },
     "schedule": [
       {
@@ -121,14 +121,14 @@
     "status": "Off-Season",
     "name": "AUSTRALIAN Grand Prix",
     "circuit": "Albert Park, Melbourne",
-    "date": "Mar 06-8"
+    "date": "Mar 20-22"
   },
   "tennis": {
     "recent": {
       "event": "Hyundai Card",
       "opponent": "Sinner",
       "result": "W",
-      "score": "7-5 7-6",
+      "score": "6-4, 7-5, 6-4",
       "date": "-"
     },
     "next": {
