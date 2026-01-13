@@ -347,34 +347,60 @@
                 const grouped = {};
                 data.forEach(item => {
                     // date format: "2026-01-10" -> "2026-01"
-                    const yearMonth = item.date.substring(0, 7);
+                    // 날짜 형식이 다르거나 파싱 실패 시 "special" 그룹
+                    let yearMonth;
+                    if (item.date && /^\d{4}-\d{2}/.test(item.date)) {
+                        yearMonth = item.date.substring(0, 7);
+                    } else {
+                        yearMonth = 'special';
+                    }
                     if (!grouped[yearMonth]) {
                         grouped[yearMonth] = [];
                     }
                     grouped[yearMonth].push(item);
                 });
                 
-                // 월 정렬 (최신순)
-                const sortedMonths = Object.keys(grouped).sort().reverse();
+                // 월 정렬 (최신순, special은 맨 위)
+                const sortedMonths = Object.keys(grouped).sort((a, b) => {
+                    if (a === 'special') return -1;
+                    if (b === 'special') return 1;
+                    return b.localeCompare(a);
+                });
                 
                 let html = '';
                 sortedMonths.forEach((yearMonth, monthIndex) => {
                     const items = grouped[yearMonth];
-                    const [year, month] = yearMonth.split('-');
-                    const monthNames = ['', '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
-                    const displayMonth = `${year}년 ${monthNames[parseInt(month)]}`;
-                    const isExpanded = monthIndex === 0; // 첫 번째 월만 펼침
+                    let displayMonth;
+                    
+                    if (yearMonth === 'special') {
+                        displayMonth = '특별판';
+                    } else {
+                        const [year, month] = yearMonth.split('-');
+                        const monthNames = ['', '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
+                        const monthNum = parseInt(month);
+                        displayMonth = `${year}년 ${monthNames[monthNum] || month + '월'}`;
+                    }
+                    
+                    const isExpanded = monthIndex === 0; // 첫 번째 폴더만 펼침
+                    const folderIcon = yearMonth === 'special' ? '⭐' : '📁';
                     
                     html += `
                     <div class="month-folder">
                         <div class="month-header" onclick="toggleMonth(this)" style="display:flex; justify-content:space-between; align-items:center; padding:8px 10px; cursor:pointer; background:rgba(255,255,255,0.03); border-radius:4px; margin-bottom:2px;">
-                            <span style="color:#aaa; font-size:12px; font-weight:bold;">📁 ${displayMonth}</span>
+                            <span style="color:#aaa; font-size:12px; font-weight:bold;">${folderIcon} ${displayMonth}</span>
                             <span style="color:#666; font-size:10px;">${items.length}개</span>
                         </div>
                         <div class="month-items" style="display:${isExpanded ? 'block' : 'none'}; padding-left:8px;">`;
                     
                     items.forEach(item => {
-                        const dateShort = item.date.substring(5).replace('-', '.');
+                        // 날짜 표시: 정상 날짜면 MM.DD, 아니면 원본 또는 빈값
+                        let dateShort = '';
+                        if (item.date && /^\d{4}-\d{2}-\d{2}/.test(item.date)) {
+                            dateShort = item.date.substring(5).replace('-', '.');
+                        } else if (item.date) {
+                            dateShort = item.date; // 원본 그대로
+                        }
+                        
                         let cleanTitle = item.title
                             .replace('외신 브리핑 | ', '')
                             .replace('외신 브리핑 - ', '')
@@ -424,8 +450,10 @@
                     const eplData = data.epl;
                     const eplContainer = document.getElementById('epl-content');
 
-                    if (eplData && eplData.matchday) {
-                        document.getElementById('epl-badge').innerText = `R${eplData.matchday}`;
+                    // display_matchday 우선 사용 (R22-23 형태), 없으면 matchday
+                    if (eplData) {
+                        const badge = eplData.display_matchday || (eplData.matchday ? `R${eplData.matchday}` : 'EPL');
+                        document.getElementById('epl-badge').innerText = badge;
                     }
 
                     const eplList = eplData && eplData.matches ? eplData.matches : [];
