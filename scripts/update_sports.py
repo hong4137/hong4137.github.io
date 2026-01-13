@@ -295,6 +295,7 @@ def process_epl_matches(matches, top_4, leader, serper_key=None):
         home_team = match.get('homeTeam', {}).get('name', '')
         away_team = match.get('awayTeam', {}).get('name', '')
         utc_date = match.get('utcDate', '')
+        matchday = match.get('matchday', 0)
         
         if not home_team or not away_team or not utc_date:
             continue
@@ -322,7 +323,8 @@ def process_epl_matches(matches, top_4, leader, serper_key=None):
                 'uk_time': f"{time_info['uk_day']} {time_info['uk_time']} (UK)",
                 'local': channel or '',
                 'rules': rules,
-                'rule_str': ', '.join(rules)
+                'rule_str': ', '.join(rules),
+                'matchday': matchday
             })
     
     return validated_matches
@@ -930,10 +932,26 @@ def update_sports_data():
     # =========================================================================
     log("\n💾 [Save] 데이터 저장...")
     
+    # EPL 실제 라운드 범위 계산
+    if validated_epl:
+        matchdays = [m.get('matchday', 0) for m in validated_epl if m.get('matchday')]
+        if matchdays:
+            min_md = min(matchdays)
+            max_md = max(matchdays)
+            if min_md == max_md:
+                display_matchday = f"R{min_md}"
+            else:
+                display_matchday = f"R{min_md}-{max_md}"
+        else:
+            display_matchday = f"R{current_matchday}" if current_matchday else "R?"
+    else:
+        display_matchday = f"R{current_matchday}" if current_matchday else "R?"
+    
     sports_data = {
         "updated": kst_now.strftime("%Y-%m-%d %H:%M:%S KST"),
         "epl": {
             "matchday": current_matchday,
+            "display_matchday": display_matchday,
             "leader": leader_team,
             "top4": top_4_teams,
             "matches": validated_epl
@@ -947,7 +965,7 @@ def update_sports_data():
         json.dump(sports_data, f, ensure_ascii=False, indent=2)
     
     log(f"✅ [Complete]")
-    log(f"   EPL: {len(validated_epl)}경기")
+    log(f"   EPL: {len(validated_epl)}경기 ({display_matchday})")
     log(f"   NBA: {len(nba_data['schedule'])}경기")
     log(f"   파일: {SPORTS_FILE}")
     
