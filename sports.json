@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-14 15:38:10 KST",
+  "updated": "2026-01-14 21:53:42 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R22-23",
@@ -53,7 +53,7 @@
         "away": "Sunderland AFC",
         "kst_time": "01.24 21:30 (KST)",
         "uk_time": "Saturday 12:30 (UK)",
-        "local": "TNT Sports",
+        "local": "Sky Sports",
         "rules": [
           "Early KO"
         ],
@@ -140,7 +140,7 @@
     "next": {
       "event": "Australian Open",
       "detail": "Melbourne",
-      "date": "Jan 12-26",
+      "date": "Feb 3",
       "status": "Grand Slam"
     }
   }
