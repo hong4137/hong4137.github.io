@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-14 03:35:25 KST",
+  "updated": "2026-01-14 11:00:34 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R22-23",
@@ -131,7 +131,7 @@
   },
   "tennis": {
     "recent": {
-      "event": "Australian Open",
+      "event": "-",
       "opponent": "Sinner",
       "result": "-",
       "score": "6-4, 7-5, 6-4",
@@ -139,8 +139,8 @@
     },
     "next": {
       "event": "Australian Open",
-      "detail": "vs Zverev",
-      "date": "Mar 20",
+      "detail": "Melbourne",
+      "date": "Feb 3",
       "status": "Grand Slam"
     }
   }
