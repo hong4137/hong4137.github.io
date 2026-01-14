@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-14 21:53:42 KST",
+  "updated": "2026-01-15 03:37:25 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R22-23",
@@ -78,7 +78,7 @@
   },
   "nba": {
     "record": "22-19",
-    "rank": "#8 West",
+    "rank": "-",
     "last": {
       "opp": "Trail Blazers",
       "result": "W",
@@ -127,19 +127,19 @@
     "status": "Off-Season",
     "name": "AUSTRALIAN Grand Prix",
     "circuit": "Albert Park, Melbourne",
-    "date": "Mar 06-8"
+    "date": "Mar 6-8"
   },
   "tennis": {
     "recent": {
-      "event": "-",
+      "event": "Australian Open",
       "opponent": "Sinner",
-      "result": "-",
+      "result": "W",
       "score": "6-4, 7-5, 6-4",
       "date": "-"
     },
     "next": {
       "event": "Australian Open",
-      "detail": "Melbourne",
+      "detail": "vs Zverev",
       "date": "Feb 3",
       "status": "Grand Slam"
     }
