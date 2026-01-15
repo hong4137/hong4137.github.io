@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-15 21:52:06 KST",
+  "updated": "2026-01-16 03:40:29 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R22-23",
@@ -86,15 +86,6 @@
     },
     "schedule": [
       {
-        "opp": "Knicks",
-        "date": "01.16",
-        "kst_time": "12:00",
-        "local_time": "7:00 PM PT",
-        "location": "home",
-        "venue": "Chase Center",
-        "channel": ""
-      },
-      {
         "opp": "Hornets",
         "date": "01.18",
         "kst_time": "10:30",
@@ -120,6 +111,15 @@
         "location": "home",
         "venue": "Chase Center",
         "channel": ""
+      },
+      {
+        "opp": "Mavericks",
+        "date": "01.23",
+        "kst_time": "09:30",
+        "local_time": "4:30 PM PT",
+        "location": "away",
+        "venue": "@ Dallas",
+        "channel": ""
       }
     ]
   },
@@ -127,15 +127,15 @@
     "status": "Off-Season",
     "name": "AUSTRALIAN Grand Prix",
     "circuit": "Albert Park, Melbourne",
-    "date": "Mar 06-8"
+    "date": "Mar 20-22"
   },
   "tennis": {
     "recent": {
       "event": "Australian Open",
       "opponent": "Sinner",
       "result": "W",
-      "score": "6-4, 7-5, 6-4",
-      "date": "-"
+      "score": "6-4, 4-6, 3-6, 4-6",
+      "date": "Jan 11"
     },
     "next": {
       "event": "Australian Open",
