@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-15 03:37:25 KST",
+  "updated": "2026-01-15 10:55:43 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R22-23",
@@ -78,7 +78,7 @@
   },
   "nba": {
     "record": "22-19",
-    "rank": "-",
+    "rank": "#8 West",
     "last": {
       "opp": "Trail Blazers",
       "result": "W",
@@ -127,7 +127,7 @@
     "status": "Off-Season",
     "name": "AUSTRALIAN Grand Prix",
     "circuit": "Albert Park, Melbourne",
-    "date": "Mar 6-8"
+    "date": "Mar 06-8"
   },
   "tennis": {
     "recent": {
