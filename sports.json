@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-16 21:51:28 KST",
+  "updated": "2026-01-17 03:37:02 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R22-23",
@@ -29,7 +29,7 @@
         "away": "Arsenal",
         "kst_time": "01.18 02:30 (KST)",
         "uk_time": "Saturday 17:30 (UK)",
-        "local": "Sky Sports",
+        "local": "TNT Sports",
         "rules": [
           "Leader"
         ],
@@ -78,7 +78,7 @@
   },
   "nba": {
     "record": "23-19",
-    "rank": "#8 West",
+    "rank": "-",
     "last": {
       "opp": "Knicks",
       "result": "W",
