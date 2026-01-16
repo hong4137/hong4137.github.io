@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-16 10:57:13 KST",
+  "updated": "2026-01-16 15:38:23 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R22-23",
@@ -77,12 +77,12 @@
     ]
   },
   "nba": {
-    "record": "22-19",
+    "record": "23-19",
     "rank": "-",
     "last": {
-      "opp": "Trail Blazers",
+      "opp": "Knicks",
       "result": "W",
-      "score": "119-97"
+      "score": "126-113"
     },
     "schedule": [
       {
@@ -134,13 +134,13 @@
       "event": "Australian Open",
       "opponent": "Sinner",
       "result": "W",
-      "score": "6-3, 4-3",
-      "date": "-"
+      "score": "6-4, 4-6, 3-6, 4-6",
+      "date": "Jan 11"
     },
     "next": {
       "event": "Australian Open",
       "detail": "vs Zverev",
-      "date": "Feb 3",
+      "date": "Jan 12-26",
       "status": "Grand Slam"
     }
   }
