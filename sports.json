@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-16 15:38:23 KST",
+  "updated": "2026-01-16 21:51:28 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R22-23",
@@ -78,7 +78,7 @@
   },
   "nba": {
     "record": "23-19",
-    "rank": "-",
+    "rank": "#8 West",
     "last": {
       "opp": "Knicks",
       "result": "W",
@@ -140,7 +140,7 @@
     "next": {
       "event": "Australian Open",
       "detail": "vs Zverev",
-      "date": "Jan 12-26",
+      "date": "Feb 3",
       "status": "Grand Slam"
     }
   }
