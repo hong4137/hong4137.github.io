@@ -547,22 +547,8 @@ def get_nba_default_data():
 # F1 함수
 # =============================================================================
 def search_f1_schedule(serper_key):
-    """F1 다음 그랑프리 검색"""
+    """F1 다음 그랑프리 또는 프리시즌 테스트 검색"""
     kst_now = get_kst_now()
-    
-    if kst_now.month <= 2:
-        query = "F1 2026 season first race Australian Grand Prix March"
-    else:
-        query = "F1 2026 next Grand Prix race schedule"
-    
-    result = call_serper_api(query, serper_key)
-    if not result:
-        return {
-            "status": "Off-Season",
-            "name": "Australian Grand Prix",
-            "circuit": "Albert Park, Melbourne",
-            "date": "Mar 2026"
-        }
     
     f1_data = {
         'status': 'Off-Season',
@@ -570,6 +556,102 @@ def search_f1_schedule(serper_key):
         'circuit': 'TBD',
         'date': ''
     }
+    
+    # =========================================================================
+    # 시즌 전 (1~2월): 프리시즌 테스트 일정 표시
+    # =========================================================================
+    if kst_now.month <= 2:
+        # 2026 프리시즌 테스트 일정 (고정값)
+        # Test 1: Jan 26-30 Barcelona (Private)
+        # Test 2: Feb 11-13 Bahrain
+        # Test 3: Feb 18-20 Bahrain
+        # Season Start: Mar 6-8 Australia
+        
+        today = kst_now.date()
+        
+        # 날짜 기준으로 다음 이벤트 결정
+        from datetime import date
+        
+        test1_start = date(2026, 1, 26)
+        test1_end = date(2026, 1, 30)
+        test2_start = date(2026, 2, 11)
+        test2_end = date(2026, 2, 13)
+        test3_start = date(2026, 2, 18)
+        test3_end = date(2026, 2, 20)
+        season_start = date(2026, 3, 6)
+        
+        if today < test1_start:
+            # Test 1 전
+            f1_data = {
+                'status': 'Pre-Season',
+                'name': 'Test 1 (Private)',
+                'circuit': 'Barcelona-Catalunya',
+                'date': 'Jan 26-30'
+            }
+        elif today <= test1_end:
+            # Test 1 진행 중
+            f1_data = {
+                'status': 'Testing',
+                'name': 'Test 1 (Private)',
+                'circuit': 'Barcelona-Catalunya',
+                'date': 'Jan 26-30'
+            }
+        elif today < test2_start:
+            # Test 1 끝, Test 2 전
+            f1_data = {
+                'status': 'Pre-Season',
+                'name': 'Test 2',
+                'circuit': 'Bahrain International',
+                'date': 'Feb 11-13'
+            }
+        elif today <= test2_end:
+            # Test 2 진행 중
+            f1_data = {
+                'status': 'Testing',
+                'name': 'Test 2',
+                'circuit': 'Bahrain International',
+                'date': 'Feb 11-13'
+            }
+        elif today < test3_start:
+            # Test 2 끝, Test 3 전
+            f1_data = {
+                'status': 'Pre-Season',
+                'name': 'Test 3',
+                'circuit': 'Bahrain International',
+                'date': 'Feb 18-20'
+            }
+        elif today <= test3_end:
+            # Test 3 진행 중
+            f1_data = {
+                'status': 'Testing',
+                'name': 'Test 3',
+                'circuit': 'Bahrain International',
+                'date': 'Feb 18-20'
+            }
+        else:
+            # 모든 테스트 끝, 시즌 개막 전
+            f1_data = {
+                'status': 'Off-Season',
+                'name': 'AUSTRALIAN Grand Prix',
+                'circuit': 'Albert Park, Melbourne',
+                'date': 'Mar 06-08'
+            }
+        
+        return f1_data
+    
+    # =========================================================================
+    # 시즌 중 (3월~): 다음 GP 검색
+    # =========================================================================
+    query = "F1 2026 next Grand Prix race schedule"
+    result = call_serper_api(query, serper_key)
+    
+    if not result:
+        return {
+            "status": "Off-Season",
+            "name": "Australian Grand Prix",
+            "circuit": "Albert Park, Melbourne",
+            "date": "Mar 2026"
+        }
     
     text = ""
     if 'answerBox' in result:
@@ -596,22 +678,17 @@ def search_f1_schedule(serper_key):
         if gp_name.lower() in text.lower():
             f1_data['name'] = f"{gp_name.upper()} Grand Prix"
             f1_data['circuit'] = circuit
+            f1_data['status'] = 'Next GP'
             break
     
-    if f1_data['name'] == 'TBD' and kst_now.month <= 2:
-        f1_data['name'] = 'AUSTRALIAN Grand Prix'
-        f1_data['circuit'] = 'Albert Park, Melbourne'
-    
     # 날짜 추출
-    date_pattern = r'(March|April|May|June)\s+(\d{1,2})(?:-(\d{1,2}))?'
+    date_pattern = r'(March|April|May|June|July|August|September|October|November)\s+(\d{1,2})(?:-(\d{1,2}))?'
     date_match = re.search(date_pattern, text, re.IGNORECASE)
     if date_match:
         month = date_match.group(1)[:3]
         day_start = date_match.group(2)
         day_end = date_match.group(3) or str(int(day_start) + 2)
         f1_data['date'] = f"{month} {day_start}-{day_end}"
-    elif kst_now.month <= 2:
-        f1_data['date'] = 'Mar 2026'
     
     return f1_data
 
@@ -725,9 +802,10 @@ def search_tennis_schedule(serper_key):
     }
     
     # =========================================================================
-    # 2. 다음 경기 일정 검색
+    # 2. 다음 경기 일정 검색 (1R 상대 우선)
     # =========================================================================
-    next_query = "Carlos Alcaraz next match schedule 2026"
+    # 더 정확한 쿼리: "first round opponent" 또는 "next opponent"
+    next_query = "Carlos Alcaraz Australian Open 2026 first round opponent draw"
     next_result = call_serper_api(next_query, serper_key)
     
     next_text = ""
@@ -762,30 +840,59 @@ def search_tennis_schedule(serper_key):
             next_status = status
             break
     
-    # 라운드 또는 상대
-    round_patterns = {
-        'final': 'Final', 'semifinal': 'SF', 'semi-final': 'SF',
-        'quarterfinal': 'QF', 'quarter-final': 'QF',
-        'round of 16': 'R16', '4th round': 'R16',
-        '3rd round': '3R', 'third round': '3R',
-        '2nd round': '2R', 'second round': '2R',
-        '1st round': '1R', 'first round': '1R',
-    }
-    
+    # 1R 상대 추출 - "begins against", "opens against", "faces", "will play" 패턴
     next_detail = '-'
-    for pattern, round_name in round_patterns.items():
-        if pattern in next_lower:
-            next_detail = round_name
+    
+    # 1라운드 상대 패턴 (더 구체적인 패턴 우선)
+    first_round_patterns = [
+        r'(?:begins|opens|starts|kicks off).*?(?:against|versus|vs\.?)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)',
+        r'first[- ]?round.*?(?:against|versus|vs\.?)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)',
+        r'(?:will|to)\s+(?:play|face|meet)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s+in\s+(?:the\s+)?(?:first|opening)',
+        r'(?:against|versus|vs\.?)\s+([A-Z][a-z]+\s+[A-Z][a-z]+)\s+in\s+(?:the\s+)?first',
+    ]
+    
+    first_round_opponent = None
+    for pattern in first_round_patterns:
+        match = re.search(pattern, next_text, re.IGNORECASE)
+        if match:
+            first_round_opponent = match.group(1).strip()
+            # "Adam Walton" 같은 이름 추출
             break
     
-    # 상대 선수 있으면 추가
-    for player in top_players:
-        if player.lower() in next_lower:
-            if next_detail != '-':
-                next_detail = f"{next_detail} vs {player}"
-            else:
-                next_detail = f"vs {player}"
-            break
+    # "projected" 또는 "could meet" 같은 예상 경로는 제외
+    projected_keywords = ['projected', 'could meet', 'could face', 'potential', 'hypothetical', 'semi-final', 'semifinal', 'quarter-final', 'quarterfinal']
+    
+    if first_round_opponent:
+        # 예상 경로가 아닌 실제 1R 상대만 사용
+        next_detail = f"R1 vs {first_round_opponent}"
+    else:
+        # 1R 상대를 못 찾으면 라운드 패턴 검색
+        round_patterns = {
+            'final': 'Final', 'semifinal': 'SF', 'semi-final': 'SF',
+            'quarterfinal': 'QF', 'quarter-final': 'QF',
+            'round of 16': 'R16', '4th round': 'R16',
+            '3rd round': '3R', 'third round': '3R',
+            '2nd round': '2R', 'second round': '2R',
+            '1st round': '1R', 'first round': '1R',
+        }
+        
+        for pattern, round_name in round_patterns.items():
+            if pattern in next_lower:
+                # 예상 경로 키워드가 있으면 스킵
+                is_projected = any(pk in next_lower for pk in projected_keywords)
+                if not is_projected or round_name == '1R':
+                    next_detail = round_name
+                    break
+        
+        # 상대 선수 추가 (top players에서만, projected가 아닌 경우)
+        if not any(pk in next_lower for pk in projected_keywords):
+            for player in top_players:
+                if player.lower() in next_lower:
+                    if next_detail != '-':
+                        next_detail = f"{next_detail} vs {player}"
+                    else:
+                        next_detail = f"vs {player}"
+                    break
     
     # 장소 (detail이 없으면)
     if next_detail == '-':
@@ -982,4 +1089,4 @@ if __name__ == "__main__":
         log(f"❌ Error: {e}")
         import traceback
         traceback.print_exc()
-        sys.exit(1)
+        sys.exit(1)ㄴ
