@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-18 01:52:02 KST",
+  "updated": "2026-01-18 03:32:05 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R22-23",
@@ -11,18 +11,6 @@
       "Liverpool"
     ],
     "matches": [
-      {
-        "home": "Nottingham Forest",
-        "away": "Arsenal",
-        "kst_time": "01.18 02:30 (KST)",
-        "uk_time": "Saturday 17:30 (UK)",
-        "local": "TNT Sports",
-        "rules": [
-          "Leader"
-        ],
-        "rule_str": "Leader",
-        "matchday": 22
-      },
       {
         "home": "Aston Villa",
         "away": "Everton",
@@ -121,12 +109,12 @@
       "event": "Australian Open",
       "opponent": "Sinner",
       "result": "W",
-      "score": "6-4, 4-6, 3-6, 4-6",
+      "score": "-",
       "date": "Jan 11"
     },
     "next": {
       "event": "Australian Open",
-      "detail": "R1 vs the World",
+      "detail": "R1 vs Adam Walton",
       "date": "-",
       "status": "Grand Slam"
     }
