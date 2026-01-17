@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-17 15:34:33 KST",
+  "updated": "2026-01-17 21:45:05 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R22-23",
@@ -11,19 +11,6 @@
       "Liverpool"
     ],
     "matches": [
-      {
-        "home": "Manchester United",
-        "away": "Manchester City",
-        "kst_time": "01.17 21:30 (KST)",
-        "uk_time": "Saturday 12:30 (UK)",
-        "local": "Sky Sports",
-        "rules": [
-          "Big Match",
-          "Early KO"
-        ],
-        "rule_str": "Big Match, Early KO",
-        "matchday": 22
-      },
       {
         "home": "Nottingham Forest",
         "away": "Arsenal",
@@ -78,7 +65,7 @@
   },
   "nba": {
     "record": "23-19",
-    "rank": "-",
+    "rank": "#8 West",
     "last": {
       "opp": "Knicks",
       "result": "W",
