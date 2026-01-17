@@ -22,7 +22,7 @@ import datetime
 import re
 import sys
 import requests
-from datetime import timedelta
+from datetime import timedelta, date
 
 # =============================================================================
 # 타임존 설정
@@ -570,8 +570,6 @@ def search_f1_schedule(serper_key):
         today = kst_now.date()
         
         # 날짜 기준으로 다음 이벤트 결정
-        from datetime import date
-        
         test1_start = date(2026, 1, 26)
         test1_end = date(2026, 1, 30)
         test2_start = date(2026, 2, 11)
@@ -1089,4 +1087,4 @@ if __name__ == "__main__":
         log(f"❌ Error: {e}")
         import traceback
         traceback.print_exc()
-        sys.exit(1)ㄴ
+        sys.exit(1)
