@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-17 03:37:02 KST",
+  "updated": "2026-01-17 10:51:27 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R22-23",
@@ -127,7 +127,7 @@
     "status": "Off-Season",
     "name": "AUSTRALIAN Grand Prix",
     "circuit": "Albert Park, Melbourne",
-    "date": "Mar 6-8"
+    "date": "Mar 06-8"
   },
   "tennis": {
     "recent": {
