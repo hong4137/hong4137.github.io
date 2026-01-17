@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-17 21:45:05 KST",
+  "updated": "2026-01-18 01:52:02 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R22-23",
@@ -73,15 +73,6 @@
     },
     "schedule": [
       {
-        "opp": "Hornets",
-        "date": "01.18",
-        "kst_time": "10:30",
-        "local_time": "5:30 PM PT",
-        "location": "home",
-        "venue": "Chase Center",
-        "channel": ""
-      },
-      {
         "opp": "Heat",
         "date": "01.20",
         "kst_time": "12:00",
@@ -107,14 +98,23 @@
         "location": "away",
         "venue": "@ Dallas",
         "channel": ""
+      },
+      {
+        "opp": "Timberwolves",
+        "date": "01.25",
+        "kst_time": "07:30",
+        "local_time": "2:30 PM PT",
+        "location": "away",
+        "venue": "@ Minnesota",
+        "channel": ""
       }
     ]
   },
   "f1": {
-    "status": "Off-Season",
-    "name": "AUSTRALIAN Grand Prix",
-    "circuit": "Albert Park, Melbourne",
-    "date": "Mar 06-8"
+    "status": "Pre-Season",
+    "name": "Test 1 (Private)",
+    "circuit": "Barcelona-Catalunya",
+    "date": "Jan 26-30"
   },
   "tennis": {
     "recent": {
@@ -126,8 +126,8 @@
     },
     "next": {
       "event": "Australian Open",
-      "detail": "vs Zverev",
-      "date": "Feb 3",
+      "detail": "R1 vs the World",
+      "date": "-",
       "status": "Grand Slam"
     }
   }
