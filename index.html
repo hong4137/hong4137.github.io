@@ -245,7 +245,7 @@
                 let html = '';
                 sorted.forEach((ym, mi) => {
                     const items = g[ym]; let dm; if (ym === 'special') { dm = '특별판'; } else { const [y, m] = ym.split('-'); const mn = ['', '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']; dm = `${y}년 ${mn[parseInt(m)] || m + '월'}`; }
-                    const exp = mi === 0; const icon = ym === 'special' ? '⭐' : '📁';
+                    const exp = (ym !== 'special' && mi <= 1); const icon = ym === 'special' ? '⭐' : '📁';
                     html += `<div class="month-folder"><div class="month-header" onclick="toggleMonth(this)" style="display:flex; justify-content:space-between; align-items:center; padding:8px 10px; cursor:pointer; background:rgba(255,255,255,0.03); border-radius:4px; margin-bottom:2px;"><span style="color:#aaa; font-size:12px; font-weight:bold;">${icon} ${dm}</span><span style="color:#666; font-size:10px;">${items.length}개</span></div><div class="month-items" style="display:${exp ? 'block' : 'none'}; padding-left:8px;">`;
                     items.forEach(item => { let ds = (item.date && /^\d{4}-\d{2}-\d{2}/.test(item.date)) ? item.date.substring(5).replace('-', '.') : (item.date || ''); let ct = item.title.replace('외신 브리핑 | ', '').replace('외신 브리핑 - ', '').replace("Jae's Briefing - ", '').trim(); html += `<div class="submenu-item" onclick="openBriefing('${item.link}')"><span style="color:#ccc; font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:130px;">${ct}</span><span style="color:#666; font-size:10px;">${ds}</span></div>`; });
                     html += `</div></div>`;
