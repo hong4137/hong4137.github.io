@@ -139,7 +139,6 @@
                 <div class="card" style="display: flex; flex-direction: column;">
                     <div class="world-clock" id="world-clock">
                         <div class="clock-item"><div class="clock-city">🇰🇷 서울</div><div class="clock-time" id="clock-seoul">--:--</div></div>
-                        <div class="clock-item"><div class="clock-city">🇦🇪 두바이</div><div class="clock-time" id="clock-dubai">--:--</div></div>
                         <div class="clock-item"><div class="clock-city">🇬🇧 런던</div><div class="clock-time" id="clock-london">--:--</div></div>
                         <div class="clock-item"><div class="clock-city">🇺🇸 뉴욕</div><div class="clock-time" id="clock-newyork">--:--</div></div>
                         <div class="clock-item"><div class="clock-city">🇺🇸 LA</div><div class="clock-time" id="clock-la">--:--</div></div>
@@ -218,7 +217,7 @@
         function openBriefing(url) { document.getElementById('dashboard-view').style.display = 'none'; document.getElementById('briefing-view').style.display = 'block'; document.getElementById('content-frame').src = url; document.getElementById('nav-home').classList.remove('active'); if(window.innerWidth <= 768) toggleSidebar(); }
 
         function updateWorldClock() {
-            const tz = { 'clock-seoul': 'Asia/Seoul', 'clock-dubai': 'Asia/Dubai', 'clock-london': 'Europe/London', 'clock-newyork': 'America/New_York', 'clock-la': 'America/Los_Angeles' };
+            const tz = { 'clock-seoul': 'Asia/Seoul', 'clock-london': 'Europe/London', 'clock-newyork': 'America/New_York', 'clock-la': 'America/Los_Angeles' };
             const now = new Date();
             for (const [id, zone] of Object.entries(tz)) { document.getElementById(id).textContent = now.toLocaleTimeString('ko-KR', { timeZone: zone, hour: '2-digit', minute: '2-digit', hour12: false }); }
         }
