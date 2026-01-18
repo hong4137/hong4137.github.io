@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-18 11:04:08 KST",
+  "updated": "2026-01-18 15:25:44 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R22-23",
@@ -28,7 +28,7 @@
         "away": "Sunderland AFC",
         "kst_time": "01.24 21:30 (KST)",
         "uk_time": "Saturday 12:30 (UK)",
-        "local": "Sky Sports",
+        "local": "TNT Sports",
         "rules": [
           "Early KO"
         ],
@@ -52,12 +52,12 @@
     ]
   },
   "nba": {
-    "record": "23-19",
+    "record": "24-19",
     "rank": "-",
     "last": {
-      "opp": "Knicks",
+      "opp": "Hornets",
       "result": "W",
-      "score": "126-113"
+      "score": "136-116"
     },
     "schedule": [
       {
@@ -106,7 +106,7 @@
   },
   "tennis": {
     "recent": {
-      "event": "Australian Open",
+      "event": "-",
       "opponent": "Sinner",
       "result": "W",
       "score": "5-3",
@@ -114,8 +114,9 @@
     },
     "next": {
       "event": "Australian Open",
-      "detail": "R1 vs Alex de",
-      "date": "-",
+      "detail": "R1 vs Adam Walton",
+      "match_time": "TBD",
+      "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
     }
   }
