@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-18 15:35:08 KST",
+  "updated": "2026-01-18 21:45:00 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R22-23",
@@ -109,13 +109,13 @@
       "event": "Australian Open",
       "opponent": "Sinner",
       "result": "W",
-      "score": "-",
+      "score": "1-3",
       "date": "Jan 11"
     },
     "next": {
       "event": "Australian Open",
       "detail": "R1 vs Adam Walton",
-      "match_time": "TBD",
+      "match_time": "Jan 18, 09:55 AM",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
     }
