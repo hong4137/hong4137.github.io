@@ -700,13 +700,13 @@ def search_tennis_schedule(serper_key):
     반환 구조:
     {
         'recent': {'event': '', 'opponent': '', 'result': '', 'score': '', 'date': ''},
-        'next': {'event': '', 'detail': '', 'date': '', 'status': ''}
+        'next': {'event': '', 'detail': '', 'match_time': '', 'tournament_dates': '', 'status': ''}
     }
     """
     
     default_data = {
         'recent': {'event': '-', 'opponent': '-', 'result': '-', 'score': '-', 'date': '-'},
-        'next': {'event': '-', 'detail': '-', 'date': '-', 'status': '-'}
+        'next': {'event': '-', 'detail': '-', 'match_time': 'TBD', 'tournament_dates': '', 'status': '-'}
     }
     
     if not serper_key:
@@ -716,12 +716,48 @@ def search_tennis_schedule(serper_key):
     
     top_players = [
         'Sinner', 'Djokovic', 'Zverev', 'Medvedev', 'Rune', 'Fritz',
-        'Tsitsipas', 'Ruud', 'Nadal', 'Federer', 'Murray', 'Draper', 'Fonseca'
+        'Tsitsipas', 'Ruud', 'Nadal', 'Federer', 'Murray', 'Draper', 'Fonseca',
+        'De Minaur', 'Rublev', 'Hurkacz', 'Dimitrov', 'Paul', 'Shelton'
     ]
+    
+    # 대회 일정 (하드코딩) - 2026년 기준
+    tournament_schedule = {
+        # 그랜드슬램
+        'australian open': 'Jan 12 - Feb 2',
+        'roland garros': 'May 25 - Jun 8',
+        'french open': 'May 25 - Jun 8',
+        'wimbledon': 'Jun 30 - Jul 13',
+        'us open': 'Aug 25 - Sep 7',
+        # 마스터스 1000
+        'indian wells': 'Mar 5 - 16',
+        'miami open': 'Mar 19 - 30',
+        'monte carlo': 'Apr 6 - 13',
+        'madrid open': 'Apr 27 - May 4',
+        'italian open': 'May 11 - 18',
+        'canadian open': 'Aug 4 - 10',
+        'cincinnati': 'Aug 11 - 17',
+        'shanghai': 'Oct 5 - 12',
+        'paris masters': 'Oct 27 - Nov 2',
+        # ATP 500
+        'rotterdam': 'Feb 3 - 9',
+        'barcelona': 'Apr 14 - 20',
+        'queens': 'Jun 16 - 22',
+        'halle': 'Jun 16 - 22',
+        'hamburg': 'Jul 21 - 27',
+        'washington': 'Jul 28 - Aug 3',
+        'tokyo': 'Sep 29 - Oct 5',
+        'basel': 'Oct 20 - 26',
+        'vienna': 'Oct 20 - 26',
+        # ATP Finals
+        'atp finals': 'Nov 9 - 16',
+        # 엑시비션
+        'hyundai card': '',
+        'six kings': '',
+    }
     
     tennis_data = {
         'recent': {'event': '-', 'opponent': '-', 'result': '-', 'score': '-', 'date': '-'},
-        'next': {'event': '-', 'detail': '-', 'date': '-', 'status': '-'}
+        'next': {'event': '-', 'detail': '-', 'match_time': 'TBD', 'tournament_dates': '', 'status': '-'}
     }
     
     # =========================================================================
@@ -802,8 +838,7 @@ def search_tennis_schedule(serper_key):
     # =========================================================================
     # 2. 다음 경기 일정 검색 (1R 상대 우선)
     # =========================================================================
-    # 더 정확한 쿼리: "first round opponent" 또는 "next opponent"
-    next_query = "Carlos Alcaraz Australian Open 2026 first round opponent draw"
+    next_query = "Carlos Alcaraz next match 2026 opponent date time"
     next_result = call_serper_api(next_query, serper_key)
     
     next_text = ""
@@ -825,9 +860,19 @@ def search_tennis_schedule(serper_key):
         'us open': ('US Open', 'Grand Slam'),
         'indian wells': ('Indian Wells', 'Masters'),
         'miami open': ('Miami Open', 'Masters'),
+        'monte carlo': ('Monte Carlo', 'Masters'),
+        'madrid open': ('Madrid Open', 'Masters'),
+        'italian open': ('Italian Open', 'Masters'),
+        'cincinnati': ('Cincinnati', 'Masters'),
+        'shanghai': ('Shanghai', 'Masters'),
+        'paris masters': ('Paris Masters', 'Masters'),
         'rotterdam': ('Rotterdam', 'ATP 500'),
+        'barcelona': ('Barcelona', 'ATP 500'),
+        'queens': ("Queen's Club", 'ATP 500'),
+        'halle': ('Halle', 'ATP 500'),
         'hyundai card': ('Hyundai Card', 'Exhibition'),
         'six kings': ('Six Kings Slam', 'Exhibition'),
+        'atp finals': ('ATP Finals', 'Finals'),
     }
     
     next_event = '-'
@@ -854,17 +899,14 @@ def search_tennis_schedule(serper_key):
         match = re.search(pattern, next_text, re.IGNORECASE)
         if match:
             first_round_opponent = match.group(1).strip()
-            # "Adam Walton" 같은 이름 추출
             break
     
     # "projected" 또는 "could meet" 같은 예상 경로는 제외
     projected_keywords = ['projected', 'could meet', 'could face', 'potential', 'hypothetical', 'semi-final', 'semifinal', 'quarter-final', 'quarterfinal']
     
     if first_round_opponent:
-        # 예상 경로가 아닌 실제 1R 상대만 사용
         next_detail = f"R1 vs {first_round_opponent}"
     else:
-        # 1R 상대를 못 찾으면 라운드 패턴 검색
         round_patterns = {
             'final': 'Final', 'semifinal': 'SF', 'semi-final': 'SF',
             'quarterfinal': 'QF', 'quarter-final': 'QF',
@@ -876,13 +918,11 @@ def search_tennis_schedule(serper_key):
         
         for pattern, round_name in round_patterns.items():
             if pattern in next_lower:
-                # 예상 경로 키워드가 있으면 스킵
                 is_projected = any(pk in next_lower for pk in projected_keywords)
                 if not is_projected or round_name == '1R':
                     next_detail = round_name
                     break
         
-        # 상대 선수 추가 (top players에서만, projected가 아닌 경우)
         if not any(pk in next_lower for pk in projected_keywords):
             for player in top_players:
                 if player.lower() in next_lower:
@@ -903,24 +943,41 @@ def search_tennis_schedule(serper_key):
         }
         next_detail = locations.get(next_event, '-')
     
-    # 날짜 추출
-    next_date_pattern = r'(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?)\s+(\d{1,2})(?:\s*[-–]\s*(\d{1,2}))?'
-    next_date_match = re.search(next_date_pattern, next_text, re.IGNORECASE)
-    if next_date_match:
-        month = next_date_match.group(1)[:3]
-        day_start = next_date_match.group(2)
-        day_end = next_date_match.group(3)
-        if day_end:
-            next_date = f"{month} {day_start}-{day_end}"
-        else:
-            next_date = f"{month} {day_start}"
-    else:
-        next_date = '-'
+    # 경기 시간 검색 (구체적인 날짜+시간)
+    match_time = 'TBD'
+    
+    # 패턴 1: "Jan 19, 4:00 AM" 또는 "January 19 at 4:00"
+    time_patterns = [
+        r'(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(?:at\s+)?(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm|a\.m\.|p\.m\.)?)',
+        r'(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+(\d{1,2})(?:st|nd|rd|th)?\s+(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?)',
+        r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))\s+(?:on\s+)?(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+(\d{1,2})',
+    ]
+    
+    for pattern in time_patterns:
+        time_match = re.search(pattern, next_text, re.IGNORECASE)
+        if time_match:
+            groups = time_match.groups()
+            if len(groups) == 3:
+                if groups[0].isdigit() or ':' in groups[0]:
+                    # 패턴 3: 시간이 먼저
+                    match_time = f"{groups[1][:3]} {groups[2]}, {groups[0]}"
+                else:
+                    # 패턴 1, 2: 날짜가 먼저
+                    match_time = f"{groups[0][:3]} {groups[1]}, {groups[2]}"
+            break
+    
+    # 대회 기간 가져오기
+    tournament_dates = ''
+    for keyword, dates in tournament_schedule.items():
+        if keyword in next_lower:
+            tournament_dates = dates
+            break
     
     tennis_data['next'] = {
         'event': next_event,
         'detail': next_detail,
-        'date': next_date,
+        'match_time': match_time,
+        'tournament_dates': tournament_dates,
         'status': next_status
     }
     
