@@ -1,8 +1,8 @@
 {
-  "updated": "2026-01-18 21:45:00 KST",
+  "updated": "2026-01-19 03:31:28 KST",
   "epl": {
     "matchday": 22,
-    "display_matchday": "R22-23",
+    "display_matchday": "R23",
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
@@ -11,18 +11,6 @@
       "Liverpool"
     ],
     "matches": [
-      {
-        "home": "Aston Villa",
-        "away": "Everton",
-        "kst_time": "01.19 01:30 (KST)",
-        "uk_time": "Sunday 16:30 (UK)",
-        "local": "Sky Sports",
-        "rules": [
-          "Prime Time"
-        ],
-        "rule_str": "Prime Time",
-        "matchday": 22
-      },
       {
         "home": "West Ham United",
         "away": "Sunderland AFC",
@@ -107,15 +95,15 @@
   "tennis": {
     "recent": {
       "event": "Australian Open",
-      "opponent": "Sinner",
+      "opponent": "-",
       "result": "W",
-      "score": "1-3",
+      "score": "6-3, 7-6, 6-2",
       "date": "Jan 11"
     },
     "next": {
       "event": "Australian Open",
       "detail": "R1 vs Adam Walton",
-      "match_time": "Jan 18, 09:55 AM",
+      "match_time": "TBD",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
     }
