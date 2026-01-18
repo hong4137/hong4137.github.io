@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-18 15:25:44 KST",
+  "updated": "2026-01-18 15:35:08 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R22-23",
@@ -106,10 +106,10 @@
   },
   "tennis": {
     "recent": {
-      "event": "-",
+      "event": "Australian Open",
       "opponent": "Sinner",
       "result": "W",
-      "score": "5-3",
+      "score": "-",
       "date": "Jan 11"
     },
     "next": {
