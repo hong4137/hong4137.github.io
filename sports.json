@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-18 03:32:05 KST",
+  "updated": "2026-01-18 11:04:08 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R22-23",
@@ -53,7 +53,7 @@
   },
   "nba": {
     "record": "23-19",
-    "rank": "#8 West",
+    "rank": "-",
     "last": {
       "opp": "Knicks",
       "result": "W",
@@ -109,12 +109,12 @@
       "event": "Australian Open",
       "opponent": "Sinner",
       "result": "W",
-      "score": "-",
+      "score": "5-3",
       "date": "Jan 11"
     },
     "next": {
       "event": "Australian Open",
-      "detail": "R1 vs Adam Walton",
+      "detail": "R1 vs Alex de",
       "date": "-",
       "status": "Grand Slam"
     }
