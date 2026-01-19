@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-19 03:31:28 KST",
+  "updated": "2026-01-19 11:02:12 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R23",
@@ -16,7 +16,7 @@
         "away": "Sunderland AFC",
         "kst_time": "01.24 21:30 (KST)",
         "uk_time": "Saturday 12:30 (UK)",
-        "local": "TNT Sports",
+        "local": "Sky Sports",
         "rules": [
           "Early KO"
         ],
