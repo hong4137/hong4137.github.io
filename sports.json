@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-19 21:56:08 KST",
+  "updated": "2026-01-20 03:36:16 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R23",
@@ -16,7 +16,7 @@
         "away": "Sunderland AFC",
         "kst_time": "01.24 21:30 (KST)",
         "uk_time": "Saturday 12:30 (UK)",
-        "local": "Sky Sports",
+        "local": "TNT Sports",
         "rules": [
           "Early KO"
         ],
@@ -49,15 +49,6 @@
     },
     "schedule": [
       {
-        "opp": "Heat",
-        "date": "01.20",
-        "kst_time": "12:00",
-        "local_time": "7:00 PM PT",
-        "location": "home",
-        "venue": "Chase Center",
-        "channel": ""
-      },
-      {
         "opp": "Raptors",
         "date": "01.21",
         "kst_time": "12:00",
@@ -83,6 +74,15 @@
         "location": "away",
         "venue": "@ Minnesota",
         "channel": ""
+      },
+      {
+        "opp": "Timberwolves",
+        "date": "01.27",
+        "kst_time": "11:30",
+        "local_time": "6:30 PM PT",
+        "location": "away",
+        "venue": "@ Minnesota",
+        "channel": ""
       }
     ]
   },
@@ -95,10 +95,10 @@
   "tennis": {
     "recent": {
       "event": "Australian Open",
-      "opponent": "Sinner",
+      "opponent": "-",
       "result": "W",
-      "score": "-",
-      "date": "Jan 11"
+      "score": "6-3, 7-6",
+      "date": "-"
     },
     "next": {
       "event": "Australian Open",
