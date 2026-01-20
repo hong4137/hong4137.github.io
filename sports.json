@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-20 21:56:28 KST",
+  "updated": "2026-01-21 03:41:04 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R23",
@@ -41,22 +41,13 @@
   },
   "nba": {
     "record": "25-19",
-    "rank": "#8 West",
+    "rank": "-",
     "last": {
       "opp": "Heat",
       "result": "W",
       "score": "135-112"
     },
     "schedule": [
-      {
-        "opp": "Raptors",
-        "date": "01.21",
-        "kst_time": "12:00",
-        "local_time": "7:00 PM PT",
-        "location": "home",
-        "venue": "Chase Center",
-        "channel": ""
-      },
       {
         "opp": "Mavericks",
         "date": "01.23",
@@ -82,6 +73,15 @@
         "local_time": "6:30 PM PT",
         "location": "away",
         "venue": "@ Minnesota",
+        "channel": ""
+      },
+      {
+        "opp": "Jazz",
+        "date": "01.29",
+        "kst_time": "11:00",
+        "local_time": "6:00 PM PT",
+        "location": "away",
+        "venue": "@ Utah",
         "channel": ""
       }
     ]
