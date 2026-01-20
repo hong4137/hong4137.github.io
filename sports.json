@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-20 10:57:17 KST",
+  "updated": "2026-01-20 15:40:16 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R23",
@@ -40,12 +40,12 @@
     ]
   },
   "nba": {
-    "record": "24-19",
+    "record": "25-19",
     "rank": "#8 West",
     "last": {
-      "opp": "Hornets",
+      "opp": "Heat",
       "result": "W",
-      "score": "136-116"
+      "score": "135-112"
     },
     "schedule": [
       {
@@ -102,7 +102,7 @@
     },
     "next": {
       "event": "Australian Open",
-      "detail": "2R",
+      "detail": "2R vs Zverev",
       "match_time": "TBD",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
