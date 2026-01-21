@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-21 15:40:33 KST",
+  "updated": "2026-01-21 21:55:58 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R23",
@@ -41,7 +41,7 @@
   },
   "nba": {
     "record": "25-20",
-    "rank": "-",
+    "rank": "#8 West",
     "last": {
       "opp": "Raptors",
       "result": "L",
@@ -95,14 +95,14 @@
   "tennis": {
     "recent": {
       "event": "Australian Open",
-      "opponent": "Hanfmann is",
+      "opponent": "-",
       "result": "W",
       "score": "7-6",
-      "date": "Jan 11"
+      "date": "-"
     },
     "next": {
       "event": "Australian Open",
-      "detail": "1R vs the next",
+      "detail": "3R vs the next",
       "match_time": "Jan 20",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
