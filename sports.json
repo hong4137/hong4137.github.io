@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-21 21:55:58 KST",
+  "updated": "2026-01-22 03:48:38 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R23",
@@ -96,13 +96,13 @@
     "recent": {
       "event": "Australian Open",
       "opponent": "-",
-      "result": "W",
+      "result": "-",
       "score": "7-6",
-      "date": "-"
+      "date": "Jan 11"
     },
     "next": {
       "event": "Australian Open",
-      "detail": "3R vs the next",
+      "detail": "3R vs Moutet in",
       "match_time": "Jan 20",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
