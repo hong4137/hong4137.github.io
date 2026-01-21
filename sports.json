@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-21 14:06:55 KST",
+  "updated": "2026-01-21 15:40:33 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R23",
@@ -40,12 +40,12 @@
     ]
   },
   "nba": {
-    "record": "25-19",
+    "record": "25-20",
     "rank": "-",
     "last": {
-      "opp": "Heat",
-      "result": "W",
-      "score": "135-112"
+      "opp": "Raptors",
+      "result": "L",
+      "score": "127-145"
     },
     "schedule": [
       {
@@ -102,8 +102,8 @@
     },
     "next": {
       "event": "Australian Open",
-      "detail": "2R vs German Yannick",
-      "match_time": "Jan 21",
+      "detail": "1R vs the next",
+      "match_time": "Jan 20",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
     }
