@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-22 03:48:38 KST",
+  "updated": "2026-01-22 11:00:49 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R23",
@@ -41,7 +41,7 @@
   },
   "nba": {
     "record": "25-20",
-    "rank": "#8 West",
+    "rank": "-",
     "last": {
       "opp": "Raptors",
       "result": "L",
@@ -96,13 +96,13 @@
     "recent": {
       "event": "Australian Open",
       "opponent": "-",
-      "result": "-",
+      "result": "W",
       "score": "7-6",
-      "date": "Jan 11"
+      "date": "-"
     },
     "next": {
       "event": "Australian Open",
-      "detail": "3R vs Moutet in",
+      "detail": "3R vs Frenchman Corentin",
       "match_time": "Jan 20",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
