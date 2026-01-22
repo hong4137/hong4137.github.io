@@ -1,8 +1,8 @@
 {
-  "updated": "2026-01-22 15:39:38 KST",
+  "updated": "2026-01-22 21:56:20 KST",
   "epl": {
-    "matchday": 22,
-    "display_matchday": "R23",
+    "matchday": 23,
+    "display_matchday": "R23-24",
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
@@ -36,6 +36,31 @@
         ],
         "rule_str": "Big Match, Prime Time, Leader",
         "matchday": 23
+      },
+      {
+        "home": "Leeds United",
+        "away": "Arsenal",
+        "kst_time": "02.01 00:00 (KST)",
+        "uk_time": "Saturday 15:00 (UK)",
+        "local": "Sky Sports",
+        "rules": [
+          "Leader"
+        ],
+        "rule_str": "Leader",
+        "matchday": 24
+      },
+      {
+        "home": "Tottenham",
+        "away": "Manchester City",
+        "kst_time": "02.02 01:30 (KST)",
+        "uk_time": "Sunday 16:30 (UK)",
+        "local": "Sky Sports",
+        "rules": [
+          "Big Match",
+          "Prime Time"
+        ],
+        "rule_str": "Big Match, Prime Time",
+        "matchday": 24
       }
     ]
   },
@@ -102,7 +127,7 @@
     },
     "next": {
       "event": "Australian Open",
-      "detail": "3R vs the next",
+      "detail": "3R vs Raphael Collignon",
       "match_time": "Jan 23",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
