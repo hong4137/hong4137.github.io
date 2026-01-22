@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-22 21:56:20 KST",
+  "updated": "2026-01-23 03:37:25 KST",
   "epl": {
     "matchday": 23,
     "display_matchday": "R23-24",
@@ -66,22 +66,13 @@
   },
   "nba": {
     "record": "25-20",
-    "rank": "-",
+    "rank": "#8 West",
     "last": {
       "opp": "Raptors",
       "result": "L",
       "score": "127-145"
     },
     "schedule": [
-      {
-        "opp": "Mavericks",
-        "date": "01.23",
-        "kst_time": "09:30",
-        "local_time": "4:30 PM PT",
-        "location": "away",
-        "venue": "@ Dallas",
-        "channel": ""
-      },
       {
         "opp": "Timberwolves",
         "date": "01.25",
@@ -108,6 +99,15 @@
         "location": "away",
         "venue": "@ Utah",
         "channel": ""
+      },
+      {
+        "opp": "Pistons",
+        "date": "01.31",
+        "kst_time": "12:00",
+        "local_time": "7:00 PM PT",
+        "location": "home",
+        "venue": "Chase Center",
+        "channel": ""
       }
     ]
   },
@@ -120,15 +120,15 @@
   "tennis": {
     "recent": {
       "event": "Australian Open",
-      "opponent": "Hanfmann is",
+      "opponent": "-",
       "result": "W",
       "score": "7-6",
       "date": "Jan 11"
     },
     "next": {
       "event": "Australian Open",
-      "detail": "3R vs Raphael Collignon",
-      "match_time": "Jan 23",
+      "detail": "3R vs warns world",
+      "match_time": "Oct 28",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
     }
