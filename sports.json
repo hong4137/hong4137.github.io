@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-22 11:00:49 KST",
+  "updated": "2026-01-22 15:39:38 KST",
   "epl": {
     "matchday": 22,
     "display_matchday": "R23",
@@ -95,15 +95,15 @@
   "tennis": {
     "recent": {
       "event": "Australian Open",
-      "opponent": "-",
+      "opponent": "Hanfmann is",
       "result": "W",
       "score": "7-6",
-      "date": "-"
+      "date": "Jan 11"
     },
     "next": {
       "event": "Australian Open",
-      "detail": "3R vs Frenchman Corentin",
-      "match_time": "Jan 20",
+      "detail": "3R vs the next",
+      "match_time": "Jan 23",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
     }
