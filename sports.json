@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-23 10:56:34 KST",
+  "updated": "2026-01-23 15:39:09 KST",
   "epl": {
     "matchday": 23,
     "display_matchday": "R23-24",
@@ -65,12 +65,12 @@
     ]
   },
   "nba": {
-    "record": "25-20",
-    "rank": "-",
+    "record": "25-21",
+    "rank": "#8 West",
     "last": {
-      "opp": "Raptors",
+      "opp": "Mavericks",
       "result": "L",
-      "score": "127-145"
+      "score": "115-123"
     },
     "schedule": [
       {
@@ -120,15 +120,15 @@
   "tennis": {
     "recent": {
       "event": "Australian Open",
-      "opponent": "-",
-      "result": "W",
-      "score": "7-6",
+      "opponent": "Moutet came",
+      "result": "-",
+      "score": "6-2, 6-4, 6-1",
       "date": "Jan 11"
     },
     "next": {
       "event": "Australian Open",
-      "detail": "3R vs says how",
-      "match_time": "Jan 23",
+      "detail": "R16 vs these kind",
+      "match_time": "Jan 20",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
     }
