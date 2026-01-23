@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-23 15:39:09 KST",
+  "updated": "2026-01-23 21:53:43 KST",
   "epl": {
     "matchday": 23,
     "display_matchday": "R23-24",
@@ -66,7 +66,7 @@
   },
   "nba": {
     "record": "25-21",
-    "rank": "#8 West",
+    "rank": "-",
     "last": {
       "opp": "Mavericks",
       "result": "L",
@@ -120,10 +120,10 @@
   "tennis": {
     "recent": {
       "event": "Australian Open",
-      "opponent": "Moutet came",
-      "result": "-",
+      "opponent": "Corentin Moutet",
+      "result": "W",
       "score": "6-2, 6-4, 6-1",
-      "date": "Jan 11"
+      "date": "-"
     },
     "next": {
       "event": "Australian Open",
