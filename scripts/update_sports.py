@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-update_sports.py - Sports Dashboard Data Updater v2.1
+update_sports.py - Sports Dashboard Data Updater v2.2
 ======================================================
 EPL: Football-Data.org 무료 API (순위, 일정)
 NBA: balldontlie.io 무료 API (일정, 결과)
 EPL 중계/F1/Tennis: Serper API 검색 (월 2,500회 무료)
 
-[EPL 6가지 룰] - 순서 중요!
+[EPL 6가지 룰] - 티어 우선순위!
 1. Big Match: Big 6 vs Big 6 (양쪽 모두 Big 6)
 2. Top Tier: Top 4 vs Top 4 (양쪽 모두 Top 4)
 3. Challenger: Top 4 vs Big 6 (한쪽 Top 4, 한쪽 Big 6 - 서로 다른 조건)
@@ -15,9 +15,9 @@ EPL 중계/F1/Tennis: Serper API 검색 (월 2,500회 무료)
 5. Early KO: 토요일 12:30 UK
 6. Leader: 리그 1위 팀 포함 경기
 
-[v2.1 변경사항]
-- 테니스: top_players 리스트 의존 제거 → 정규식으로 실제 상대 추출
-- 테니스: projected/pathway 기사 강력 필터링
+[v2.2 변경사항]
+- EPL: 티어 우선순위로 정렬 후 상위 3경기만 선정
+- EPL: 선정된 경기 ID 저장 → 상태 업데이트 시 재사용
 """
 
 import os
@@ -64,6 +64,19 @@ BIG_6_ALIASES = {
     "Tottenham Hotspur": "Tottenham",
     "Tottenham Hotspur FC": "Tottenham"
 }
+
+# =============================================================================
+# EPL 티어 우선순위 설정 (v2.2 추가)
+# =============================================================================
+TIER_PRIORITY = {
+    'Big Match': 1,      # 티어 1: Big 6 vs Big 6
+    'Top Tier': 2,       # 티어 2: Top 4 vs Top 4
+    'Challenger': 3,     # 티어 3: Top 4 vs Big 6
+    'Prime Time': 4,     # 티어 4: 일요일 16:30 UK
+    'Early KO': 5,       # 티어 5: 토요일 12:30 UK
+    'Leader': 6          # 티어 6: 1위 팀 포함
+}
+MAX_EPL_MATCHES = 3  # 최대 선정 경기 수
 
 def log(message):
     """버퍼링 없이 즉시 출력"""
@@ -134,7 +147,7 @@ def call_balldontlie_api(endpoint, params=None, api_key=None):
     return None
 
 # =============================================================================
-# EPL 함수들 (기존 유지)
+# EPL 함수들
 # =============================================================================
 def normalize_team_name(name):
     """팀 이름 정규화"""
@@ -173,34 +186,32 @@ def get_epl_standings(api_key):
     return None, None, None
 
 def get_epl_matches(api_key, matchday=None):
-    """Football-Data.org에서 EPL 경기 일정 가져오기 (현재 + 다음 라운드)"""
+    """Football-Data.org에서 EPL 경기 일정 가져오기 (현재 라운드만)"""
     url = f"{FOOTBALL_DATA_API_URL}/competitions/PL/matches"
     headers = {"X-Auth-Token": api_key}
 
     all_matches = []
 
-    # 방법 1: matchday 지정 시 해당 라운드 + 다음 라운드 조회
+    # 현재 라운드만 조회 (v2.2 변경: 다음 라운드 제거)
     if matchday:
-        for md in [matchday, matchday + 1]:
-            try:
-                params = {"status": "SCHEDULED", "matchday": md}
-                response = requests.get(url, headers=headers, params=params, timeout=10)
-                if response.status_code == 200:
-                    data = response.json()
-                    matches = data.get('matches', [])
-                    all_matches.extend(matches)
-            except:
-                pass
+        try:
+            params = {"matchday": matchday}  # status 필터 제거 - 모든 상태 포함
+            response = requests.get(url, headers=headers, params=params, timeout=10)
+            if response.status_code == 200:
+                data = response.json()
+                matches = data.get('matches', [])
+                all_matches.extend(matches)
+        except:
+            pass
 
-    # 방법 2: matchday 없으면 앞으로 14일간 SCHEDULED 경기 조회
+    # matchday 없으면 앞으로 7일간 경기 조회
     if not all_matches:
         try:
             kst_now = get_kst_now()
             date_from = kst_now.strftime("%Y-%m-%d")
-            date_to = (kst_now + timedelta(days=14)).strftime("%Y-%m-%d")
+            date_to = (kst_now + timedelta(days=7)).strftime("%Y-%m-%d")
 
             params = {
-                "status": "SCHEDULED",
                 "dateFrom": date_from,
                 "dateTo": date_to
             }
@@ -223,9 +234,7 @@ def get_epl_matches(api_key, matchday=None):
     return unique_matches
 
 def check_epl_rules(home, away, uk_day, uk_time, top_4, leader):
-    """EPL 6가지 룰 검증"""
-    rules = []
-
+    """EPL 6가지 룰 검증 - 최고 티어 반환"""
     home_norm = normalize_team_name(home)
     away_norm = normalize_team_name(away)
 
@@ -235,22 +244,41 @@ def check_epl_rules(home, away, uk_day, uk_time, top_4, leader):
     away_is_top4 = away_norm in top_4
     leader_norm = normalize_team_name(leader) if leader else ""
 
+    rules = []
+    
+    # 티어 1: Big Match
     if home_is_big6 and away_is_big6:
         rules.append("Big Match")
+    
+    # 티어 2: Top Tier
     if home_is_top4 and away_is_top4:
         rules.append("Top Tier")
+    
+    # 티어 3: Challenger
     if (home_is_top4 and not home_is_big6 and away_is_big6) or \
        (away_is_top4 and not away_is_big6 and home_is_big6):
         rules.append("Challenger")
+    
+    # 티어 4: Prime Time
     if uk_day == "Sunday" and uk_time == "16:30":
         rules.append("Prime Time")
+    
+    # 티어 5: Early KO
     if uk_day == "Saturday" and uk_time == "12:30":
         rules.append("Early KO")
+    
+    # 티어 6: Leader
     if leader_norm and (leader_norm in home_norm or home_norm in leader_norm or
                        leader_norm in away_norm or away_norm in leader_norm):
         rules.append("Leader")
 
     return rules
+
+def get_best_tier(rules):
+    """룰 목록에서 가장 높은 티어(낮은 숫자) 반환"""
+    if not rules:
+        return 99
+    return min(TIER_PRIORITY.get(r, 99) for r in rules)
 
 def search_epl_broadcaster(home, away, match_date, serper_key):
     """EPL 경기 중계 정보 검색"""
@@ -290,15 +318,111 @@ def search_epl_broadcaster(home, away, match_date, serper_key):
 
     return None
 
-def process_epl_matches(matches, top_4, leader, serper_key=None):
-    """EPL 경기 처리 및 필터링"""
+def load_existing_sports_data():
+    """기존 sports.json 로드"""
+    try:
+        if os.path.exists(SPORTS_FILE):
+            with open(SPORTS_FILE, 'r', encoding='utf-8') as f:
+                return json.load(f)
+    except:
+        pass
+    return None
+
+def process_epl_matches(matches, top_4, leader, serper_key=None, existing_data=None):
+    """
+    EPL 경기 처리 및 필터링 (v2.2 개선)
+    
+    1. 기존에 선정된 경기가 있고, 아직 모두 종료되지 않았으면 → 상태만 업데이트
+    2. 기존 선정 경기가 모두 종료되었거나 없으면 → 새로 선정
+    """
+    
+    # =========================================================================
+    # 기존 선정 경기 확인
+    # =========================================================================
+    existing_selected = []
+    existing_round = None
+    
+    if existing_data and 'epl' in existing_data:
+        existing_epl = existing_data['epl']
+        existing_selected = existing_epl.get('selected_matches', [])
+        existing_round = existing_epl.get('selected_round')
+    
+    # 기존 선정 경기의 ID 목록
+    existing_ids = {m.get('match_id') for m in existing_selected if m.get('match_id')}
+    
+    # =========================================================================
+    # 현재 라운드 경기 상태 확인
+    # =========================================================================
+    current_matches_by_id = {}
+    for match in matches:
+        match_id = match.get('id')
+        if match_id:
+            current_matches_by_id[match_id] = match
+    
+    # =========================================================================
+    # 기존 선정 경기 상태 업데이트 체크
+    # =========================================================================
+    if existing_selected and existing_ids:
+        # 기존 선정 경기들의 현재 상태 확인
+        all_finished = True
+        updated_matches = []
+        
+        for sel_match in existing_selected:
+            match_id = sel_match.get('match_id')
+            current = current_matches_by_id.get(match_id)
+            
+            if current:
+                status = current.get('status', 'SCHEDULED')
+                score = '-'
+                
+                if status == 'FINISHED':
+                    home_score = current.get('score', {}).get('fullTime', {}).get('home', 0)
+                    away_score = current.get('score', {}).get('fullTime', {}).get('away', 0)
+                    score = f"{home_score}-{away_score}"
+                elif status == 'IN_PLAY':
+                    home_score = current.get('score', {}).get('fullTime', {}).get('home', 0)
+                    away_score = current.get('score', {}).get('fullTime', {}).get('away', 0)
+                    score = f"{home_score}-{away_score}"
+                    all_finished = False
+                else:
+                    all_finished = False
+                
+                updated_matches.append({
+                    **sel_match,
+                    'status': status,
+                    'score': score
+                })
+            else:
+                # 현재 라운드에 없으면 (다른 라운드) 기존 데이터 유지
+                updated_matches.append(sel_match)
+                if sel_match.get('status') != 'FINISHED':
+                    all_finished = False
+        
+        # 모두 종료되지 않았으면 기존 선정 유지 + 상태만 업데이트
+        if not all_finished:
+            log(f"   📌 기존 선정 경기 유지 (R{existing_round})")
+            for m in updated_matches:
+                status_icon = '✅' if m.get('status') == 'FINISHED' else '⏳'
+                log(f"      {status_icon} {m['home']} vs {m['away']} [{m.get('status', 'SCHEDULED')}] {m.get('score', '-')}")
+            return updated_matches, existing_round, False  # 새 선정 아님
+        else:
+            log(f"   🔄 기존 선정 경기 모두 종료 → 새로 선정")
+    
+    # =========================================================================
+    # 새로운 경기 선정 (SCHEDULED 경기만)
+    # =========================================================================
     validated_matches = []
 
     for match in matches:
+        # SCHEDULED 경기만 선정 대상
+        if match.get('status') != 'SCHEDULED':
+            continue
+            
         home_team = match.get('homeTeam', {}).get('name', '')
         away_team = match.get('awayTeam', {}).get('name', '')
         utc_date = match.get('utcDate', '')
         matchday = match.get('matchday', 0)
+        match_id = match.get('id')
 
         if not home_team or not away_team or not utc_date:
             continue
@@ -320,6 +444,7 @@ def process_epl_matches(matches, top_4, leader, serper_key=None):
                                                 time_info['uk_date'], serper_key)
 
             validated_matches.append({
+                'match_id': match_id,
                 'home': home_norm,
                 'away': away_norm,
                 'kst_time': time_info['kst_full'],
@@ -327,10 +452,42 @@ def process_epl_matches(matches, top_4, leader, serper_key=None):
                 'local': channel or '',
                 'rules': rules,
                 'rule_str': ', '.join(rules),
-                'matchday': matchday
+                'matchday': matchday,
+                'status': 'SCHEDULED',
+                'score': '-',
+                'datetime_kst': time_info['datetime_kst']
             })
 
-    return validated_matches
+    # =========================================================================
+    # 티어 우선순위 정렬 + 상위 3개 선정 (v2.2 핵심 로직)
+    # =========================================================================
+    if validated_matches:
+        # 1차: 티어 우선순위 (낮을수록 높은 우선순위)
+        # 2차: 킥오프 시간 (빠른 순)
+        validated_matches.sort(key=lambda m: (
+            get_best_tier(m['rules']),
+            m['datetime_kst']
+        ))
+        
+        # 상위 N개만 선정
+        selected_matches = validated_matches[:MAX_EPL_MATCHES]
+        
+        # datetime 객체 제거 (JSON 직렬화 불가)
+        for m in selected_matches:
+            if 'datetime_kst' in m:
+                del m['datetime_kst']
+        
+        log(f"   🏆 티어 우선순위 정렬 후 상위 {MAX_EPL_MATCHES}개 선정:")
+        for m in selected_matches:
+            tier = get_best_tier(m['rules'])
+            log(f"      • [T{tier}] {m['home']} vs {m['away']} [{m['rule_str']}]")
+        
+        # 선정된 라운드
+        selected_round = selected_matches[0]['matchday'] if selected_matches else None
+        
+        return selected_matches, selected_round, True  # 새 선정됨
+    
+    return [], None, True
 
 # =============================================================================
 # NBA 함수 (balldontlie.io API)
@@ -997,6 +1154,9 @@ def update_sports_data():
     log(f"   - NBA: balldontlie.io {'✅' if balldontlie_api_key else '❌'}")
     log(f"   - Search: Serper API {'✅' if serper_api_key else '❌'}")
 
+    # 기존 데이터 로드 (v2.2 추가)
+    existing_data = load_existing_sports_data()
+
     # =========================================================================
     # STEP 1: EPL 순위
     # =========================================================================
@@ -1015,26 +1175,29 @@ def update_sports_data():
         current_matchday = None
 
     # =========================================================================
-    # STEP 2: EPL 경기 일정 + 6가지 룰
+    # STEP 2: EPL 경기 일정 + 6가지 룰 + 티어 우선순위
     # =========================================================================
-    log("\n⚽ [Step 2/5] Premier League 경기 일정 + 6가지 룰...")
-    log("   [룰 순서]")
-    log("   1. Big Match: Big 6 vs Big 6")
-    log("   2. Top Tier: Top 4 vs Top 4")
-    log("   3. Challenger: Top 4 vs Big 6 (서로 다른 조건)")
-    log("   4. Prime Time: 일요일 16:30 UK")
-    log("   5. Early KO: 토요일 12:30 UK")
-    log("   6. Leader: 1위 팀 포함")
+    log("\n⚽ [Step 2/5] Premier League 경기 선정 (v2.2)...")
+    log("   [티어 우선순위]")
+    log("   T1. Big Match: Big 6 vs Big 6")
+    log("   T2. Top Tier: Top 4 vs Top 4")
+    log("   T3. Challenger: Top 4 vs Big 6")
+    log("   T4. Prime Time: 일요일 16:30 UK")
+    log("   T5. Early KO: 토요일 12:30 UK")
+    log("   T6. Leader: 1위 팀 포함")
+    log(f"   [최대 선정: {MAX_EPL_MATCHES}경기]")
 
     matches = get_epl_matches(football_api_key, current_matchday)
-    log(f"   📋 총 {len(matches)}경기 조회됨 (R{current_matchday} + R{current_matchday + 1 if current_matchday else '?'})")
+    log(f"   📋 R{current_matchday} 전체: {len(matches)}경기")
 
-    validated_epl = process_epl_matches(matches, top_4_teams, leader_team, serper_api_key)
-    log(f"   ✅ 6가지 룰 적용 후: {len(validated_epl)}경기 선별")
-
-    for match in validated_epl:
-        channel_info = f" | {match['local']}" if match['local'] else ""
-        log(f"      • {match['home']} vs {match['away']} [{match['rule_str']}]{channel_info}")
+    validated_epl, selected_round, is_new_selection = process_epl_matches(
+        matches, top_4_teams, leader_team, serper_api_key, existing_data
+    )
+    
+    if is_new_selection:
+        log(f"   ✅ 새로 선정됨: {len(validated_epl)}경기 (R{selected_round})")
+    else:
+        log(f"   ✅ 기존 선정 유지: {len(validated_epl)}경기 (R{selected_round})")
 
     # =========================================================================
     # STEP 3: NBA Warriors
@@ -1088,29 +1251,19 @@ def update_sports_data():
     # =========================================================================
     log("\n💾 [Save] 데이터 저장...")
 
-    # EPL 실제 라운드 범위 계산
-    if validated_epl:
-        matchdays = [m.get('matchday', 0) for m in validated_epl if m.get('matchday')]
-        if matchdays:
-            min_md = min(matchdays)
-            max_md = max(matchdays)
-            if min_md == max_md:
-                display_matchday = f"R{min_md}"
-            else:
-                display_matchday = f"R{min_md}-{max_md}"
-        else:
-            display_matchday = f"R{current_matchday}" if current_matchday else "R?"
-    else:
-        display_matchday = f"R{current_matchday}" if current_matchday else "R?"
+    # EPL 표시용 라운드
+    display_matchday = f"R{selected_round}" if selected_round else f"R{current_matchday}"
 
     sports_data = {
         "updated": kst_now.strftime("%Y-%m-%d %H:%M:%S KST"),
         "epl": {
             "matchday": current_matchday,
+            "selected_round": selected_round,
             "display_matchday": display_matchday,
             "leader": leader_team,
             "top4": top_4_teams,
-            "matches": validated_epl
+            "matches": validated_epl,  # 기존 호환용
+            "selected_matches": validated_epl  # v2.2 신규
         },
         "nba": nba_data,
         "f1": f1_data,
