@@ -948,32 +948,40 @@ def search_tennis_schedule(serper_key):
             break
     
     # =========================================================================
-    # 상대 선수 추출 (정규식 - 리스트 의존 제거)
+    # 상대 선수 추출 (정규식 - 국적 제거)
     # =========================================================================
     recent_opponent = '-'
     
+    # 국적 목록 (정규식에서 선택적으로 매칭)
+    nationalities = r'(?:American|Australian|British|Spanish|French|German|Italian|Russian|Serbian|Greek|Polish|Norwegian|Canadian|Japanese|Chinese|Argentine|Swiss|Dutch|Belgian|Czech|Danish|Swedish|Brazilian|Croatian|Chilean|Kazakh|Korean)'
+    
     # 패턴: "Alcaraz beat/defeated [Name]" 또는 "[Name] beat/defeated Alcaraz"
     opponent_patterns = [
-        # Alcaraz가 이긴 경우
-        r'Alcaraz\s+(?:beat|defeated|beats|defeats|won\s+against|advances\s+past)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)',
-        r'Alcaraz\s+(?:beat|defeated|beats|defeats)\s+([A-Z][a-z]+)',
+        # Alcaraz가 이긴 경우 - 국적 선택적 매칭, 이름 3단어까지
+        rf'Alcaraz\s+(?:beat|defeated|beats|defeats|won\s+against|advances\s+past)\s+{nationalities}?\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+){{1,2}})',
         # Alcaraz가 진 경우
-        r'([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s+(?:beat|defeated|beats|defeats|won\s+against)\s+Alcaraz',
-        r'([A-Z][a-z]+)\s+(?:beat|defeated|beats|defeats)\s+Alcaraz',
+        rf'([A-Z][a-z]+(?:\s+[A-Z][a-z]+){{1,2}})\s+(?:beat|defeated|beats|defeats|won\s+against)\s+Alcaraz',
         # vs 패턴
-        r'Alcaraz\s+(?:vs\.?|versus|v\.?)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)',
-        r'([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s+(?:vs\.?|versus|v\.?)\s+Alcaraz',
+        rf'Alcaraz\s+(?:vs\.?|versus|v\.?)\s+{nationalities}?\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+){{1,2}})',
         # over/against 패턴
-        r'victory\s+over\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)',
-        r'win\s+(?:over|against)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)',
+        rf'victory\s+over\s+{nationalities}?\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+){{1,2}})',
+        rf'win\s+(?:over|against)\s+{nationalities}?\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+){{1,2}})',
     ]
+    
+    # 제외 목록
+    exclude_words = ['alcaraz', 'carlos', 'spain', 'spanish', 'the', 'world', 'no', 'top',
+                    'american', 'australian', 'british', 'french', 'german', 'italian',
+                    'russian', 'serbian', 'greek', 'polish', 'norwegian', 'round', 'match']
     
     for pattern in opponent_patterns:
         match = re.search(pattern, recent_text, re.IGNORECASE)
         if match:
             candidate = match.group(1).strip()
-            # 제외 목록
-            if candidate.lower() not in ['alcaraz', 'carlos', 'spain', 'spanish', 'the', 'world', 'no', 'top']:
+            # 첫 단어가 국적이면 제거
+            words = candidate.split()
+            if words and words[0].lower() in exclude_words:
+                candidate = ' '.join(words[1:])
+            if candidate and candidate.lower() not in exclude_words and len(candidate) > 2:
                 recent_opponent = candidate
                 break
     
@@ -1093,23 +1101,31 @@ def search_tennis_schedule(serper_key):
     
     # 상대 추출 패턴
     next_opponent_patterns = [
-        # "faces [Name]", "will play [Name]"
-        r'(?:faces|will\s+play|takes\s+on|meets|to\s+face|to\s+play)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)',
-        # "vs [Name]"
-        r'(?:vs\.?|versus|v\.?)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)',
+        # "faces [Name]", "will play [Name]" - 3단어까지 허용
+        r'(?:faces|will\s+play|takes\s+on|meets|to\s+face|to\s+play)\s+(?:American|Australian|British|Spanish|French|German|Italian|Russian|Serbian|Greek|Polish|Norwegian|Canadian|Japanese|Chinese|Argentine|Swiss)?\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,2})',
+        # "vs [Name]" - 3단어까지 허용
+        r'(?:vs\.?|versus|v\.?)\s+(?:American|Australian|British|Spanish|French|German|Italian|Russian|Serbian|Greek|Polish|Norwegian|Canadian|Japanese|Chinese|Argentine|Swiss)?\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,2})',
         # "against [Name]"
-        r'against\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)',
+        r'against\s+(?:American|Australian|British|Spanish|French|German|Italian|Russian|Serbian|Greek|Polish|Norwegian|Canadian|Japanese|Chinese|Argentine|Swiss)?\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,2})',
         # "opponent [Name]"
-        r'opponent\s+(?:is\s+)?([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)',
+        r'opponent\s+(?:is\s+)?([A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,2})',
     ]
     
     for pattern in next_opponent_patterns:
         match = re.search(pattern, next_text, re.IGNORECASE)
         if match:
             candidate = match.group(1).strip()
-            exclude_names = ['alcaraz', 'carlos', 'spain', 'spanish', 'the', 'world', 
-                           'no', 'number', 'top', 'seed', 'defending', 'home', 'australia']
-            if candidate.lower() not in exclude_names and len(candidate) > 2:
+            # 제외 목록 (국적, 일반 단어)
+            exclude_words = ['alcaraz', 'carlos', 'spain', 'spanish', 'the', 'world', 
+                           'no', 'number', 'top', 'seed', 'defending', 'home', 'australia',
+                           'american', 'australian', 'british', 'french', 'german', 
+                           'italian', 'russian', 'serbian', 'greek', 'polish', 'norwegian',
+                           'round', 'match', 'final', 'semifinal', 'quarterfinal']
+            # 첫 단어가 제외 목록이면 제거
+            words = candidate.split()
+            if words and words[0].lower() in exclude_words:
+                candidate = ' '.join(words[1:])
+            if candidate and candidate.lower() not in exclude_words and len(candidate) > 2:
                 next_opponent = candidate
                 break
     
@@ -1129,25 +1145,52 @@ def search_tennis_schedule(serper_key):
         }
         next_detail = locations.get(next_event, '-')
     
-    # 경기 시간 추출
+    # 경기 시간 추출 (더 다양한 패턴)
     match_time = 'TBD'
+    
     time_patterns = [
+        # "11:30 AM" 또는 "11:30AM" 형식
+        r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))',
+        # "Jan 25, 11:30 AM" 또는 "January 25 11:30AM"
         r'(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(?:at\s+)?(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?)',
+        # "Today 11:30 AM" 또는 "Saturday 11:30 AM"
+        r'(?:Today|Tomorrow|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s+(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))',
+        # 날짜만 있는 경우 "Jan 25" 또는 "January 25"
         r'(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+(\d{1,2})(?:st|nd|rd|th)?',
     ]
     
-    for pattern in time_patterns:
-        time_match = re.search(pattern, next_text, re.IGNORECASE)
-        if time_match:
-            groups = time_match.groups()
-            if len(groups) >= 2:
-                month = groups[0][:3]
-                day = groups[1]
-                if len(groups) == 3 and groups[2]:
-                    match_time = f"{month} {day}, {groups[2]}"
-                else:
-                    match_time = f"{month} {day}"
-            break
+    # 먼저 시간이 포함된 패턴 시도
+    time_only_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))', next_text, re.IGNORECASE)
+    date_time_match = re.search(r'(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(?:at\s+)?(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?)', next_text, re.IGNORECASE)
+    date_only_match = re.search(r'(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+(\d{1,2})(?:st|nd|rd|th)?', next_text, re.IGNORECASE)
+    
+    if date_time_match:
+        # 날짜 + 시간 모두 있는 경우
+        month = date_time_match.group(1)[:3]
+        day = date_time_match.group(2)
+        time_part = date_time_match.group(3) if date_time_match.group(3) else ''
+        if time_part:
+            match_time = f"{month} {day}, {time_part}"
+        else:
+            match_time = f"{month} {day}"
+    elif time_only_match and date_only_match:
+        # 시간과 날짜가 따로 있는 경우
+        month = date_only_match.group(1)[:3]
+        day = date_only_match.group(2)
+        time_part = time_only_match.group(1)
+        match_time = f"{month} {day}, {time_part}"
+    elif date_only_match:
+        # 날짜만 있는 경우
+        month = date_only_match.group(1)[:3]
+        day = date_only_match.group(2)
+        match_time = f"{month} {day}"
+    elif time_only_match:
+        # 시간만 있는 경우 (오늘 경기로 가정)
+        today = get_kst_now()
+        month = today.strftime("%b")
+        day = today.strftime("%d").lstrip('0')
+        time_part = time_only_match.group(1)
+        match_time = f"{month} {day}, {time_part}"
     
     # 대회 기간
     tournament_dates = ''
