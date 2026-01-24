@@ -151,8 +151,8 @@ def call_gemini_api(prompt, api_key):
     if not api_key:
         return None
     
-    # gemini-1.5-flash-latest 사용
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key={api_key}"
+    # gemini-2.5-flash 사용 (현재 안정 버전)
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={api_key}"
     
     payload = {
         "contents": [{
