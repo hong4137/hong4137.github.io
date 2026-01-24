@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-24 15:35:40 KST",
+  "updated": "2026-01-24 21:46:34 KST",
   "epl": {
     "matchday": 23,
     "display_matchday": "R23-24",
@@ -11,18 +11,6 @@
       "Liverpool"
     ],
     "matches": [
-      {
-        "home": "West Ham United",
-        "away": "Sunderland AFC",
-        "kst_time": "01.24 21:30 (KST)",
-        "uk_time": "Saturday 12:30 (UK)",
-        "local": "TNT Sports",
-        "rules": [
-          "Early KO"
-        ],
-        "rule_str": "Early KO",
-        "matchday": 23
-      },
       {
         "home": "Arsenal",
         "away": "Manchester United",
@@ -66,7 +54,7 @@
   },
   "nba": {
     "record": "25-21",
-    "rank": "-",
+    "rank": "#8 West",
     "last": {
       "opp": "Mavericks",
       "result": "L",
@@ -127,7 +115,7 @@
     },
     "next": {
       "event": "Australian Open",
-      "detail": "R16 vs Corentin Moutet",
+      "detail": "R16 vs the next",
       "match_time": "Jan 20",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
