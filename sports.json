@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-25 03:33:50 KST",
+  "updated": "2026-01-25 03:35:11 KST",
   "epl": {
     "matchday": 23,
     "selected_round": 23,
@@ -88,15 +88,15 @@
   "tennis": {
     "recent": {
       "event": "Australian Open",
-      "opponent": "Tommy Paul at",
+      "opponent": "Alexander Shevchenko",
       "result": "W",
       "score": "6-2, 6-4, 6-1",
-      "date": "Jan 25"
+      "date": "-"
     },
     "next": {
       "event": "Australian Open",
-      "detail": "R16 vs off in",
-      "match_time": "Jan 20",
+      "detail": "R16 vs Tommy Paul",
+      "match_time": "Jan 25",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
     }
