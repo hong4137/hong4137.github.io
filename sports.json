@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-24 03:37:52 KST",
+  "updated": "2026-01-24 10:53:20 KST",
   "epl": {
     "matchday": 23,
     "display_matchday": "R23-24",
@@ -127,7 +127,7 @@
     },
     "next": {
       "event": "Australian Open",
-      "detail": "R16 vs these kind",
+      "detail": "R16 vs the next",
       "match_time": "Jan 20",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
