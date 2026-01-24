@@ -1,8 +1,8 @@
 {
-  "updated": "2026-01-25 01:24:27 KST",
+  "updated": "2026-01-25 01:33:41 KST",
   "epl": {
     "matchday": 23,
-    "selected_round": null,
+    "selected_round": 23,
     "display_matchday": "R23",
     "leader": "Arsenal",
     "top4": [
@@ -11,8 +11,44 @@
       "Aston Villa",
       "Liverpool"
     ],
-    "matches": [],
-    "selected_matches": []
+    "matches": [
+      {
+        "match_id": 538007,
+        "home": "Arsenal",
+        "away": "Manchester United",
+        "kst_time": "01.26 01:30 (KST)",
+        "uk_time": "Sunday 16:30 (UK)",
+        "local": "Sky Sports",
+        "rules": [
+          "Big Match",
+          "Prime Time",
+          "Leader"
+        ],
+        "rule_str": "Big Match, Prime Time, Leader",
+        "matchday": 23,
+        "status": "SCHEDULED",
+        "score": "-"
+      }
+    ],
+    "selected_matches": [
+      {
+        "match_id": 538007,
+        "home": "Arsenal",
+        "away": "Manchester United",
+        "kst_time": "01.26 01:30 (KST)",
+        "uk_time": "Sunday 16:30 (UK)",
+        "local": "Sky Sports",
+        "rules": [
+          "Big Match",
+          "Prime Time",
+          "Leader"
+        ],
+        "rule_str": "Big Match, Prime Time, Leader",
+        "matchday": 23,
+        "status": "SCHEDULED",
+        "score": "-"
+      }
+    ]
   },
   "nba": {
     "record": "25-21",
