@@ -1022,9 +1022,9 @@ def search_tennis_schedule(serper_key):
     }
     
     # =========================================================================
-    # 2. 다음 경기 일정 검색 (날짜 포함, projected 필터 강화)
+    # 2. 다음 경기 일정 검색 (시간 정보 포함)
     # =========================================================================
-    next_query = f"Carlos Alcaraz next match opponent {today_str} 2026"
+    next_query = f"Carlos Alcaraz next match start time schedule Australian Open 2026"
     next_result = call_serper_api(next_query, serper_key)
     
     next_text = ""
