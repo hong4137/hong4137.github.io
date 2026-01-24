@@ -1,8 +1,9 @@
 {
-  "updated": "2026-01-24 21:46:34 KST",
+  "updated": "2026-01-25 01:24:27 KST",
   "epl": {
     "matchday": 23,
-    "display_matchday": "R23-24",
+    "selected_round": null,
+    "display_matchday": "R23",
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
@@ -10,47 +11,8 @@
       "Aston Villa",
       "Liverpool"
     ],
-    "matches": [
-      {
-        "home": "Arsenal",
-        "away": "Manchester United",
-        "kst_time": "01.26 01:30 (KST)",
-        "uk_time": "Sunday 16:30 (UK)",
-        "local": "Sky Sports",
-        "rules": [
-          "Big Match",
-          "Prime Time",
-          "Leader"
-        ],
-        "rule_str": "Big Match, Prime Time, Leader",
-        "matchday": 23
-      },
-      {
-        "home": "Leeds United",
-        "away": "Arsenal",
-        "kst_time": "02.01 00:00 (KST)",
-        "uk_time": "Saturday 15:00 (UK)",
-        "local": "Sky Sports",
-        "rules": [
-          "Leader"
-        ],
-        "rule_str": "Leader",
-        "matchday": 24
-      },
-      {
-        "home": "Tottenham",
-        "away": "Manchester City",
-        "kst_time": "02.02 01:30 (KST)",
-        "uk_time": "Sunday 16:30 (UK)",
-        "local": "Sky Sports",
-        "rules": [
-          "Big Match",
-          "Prime Time"
-        ],
-        "rule_str": "Big Match, Prime Time",
-        "matchday": 24
-      }
-    ]
+    "matches": [],
+    "selected_matches": []
   },
   "nba": {
     "record": "25-21",
@@ -61,15 +23,6 @@
       "score": "115-123"
     },
     "schedule": [
-      {
-        "opp": "Timberwolves",
-        "date": "01.25",
-        "kst_time": "07:30",
-        "local_time": "2:30 PM PT",
-        "location": "away",
-        "venue": "@ Minnesota",
-        "channel": ""
-      },
       {
         "opp": "Timberwolves",
         "date": "01.27",
@@ -91,6 +44,15 @@
       {
         "opp": "Pistons",
         "date": "01.31",
+        "kst_time": "12:00",
+        "local_time": "7:00 PM PT",
+        "location": "home",
+        "venue": "Chase Center",
+        "channel": ""
+      },
+      {
+        "opp": "76ers",
+        "date": "02.04",
         "kst_time": "12:00",
         "local_time": "7:00 PM PT",
         "location": "home",
