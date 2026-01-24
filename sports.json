@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-25 01:33:41 KST",
+  "updated": "2026-01-25 01:38:50 KST",
   "epl": {
     "matchday": 23,
     "selected_round": 23,
@@ -26,7 +26,7 @@
         ],
         "rule_str": "Big Match, Prime Time, Leader",
         "matchday": 23,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ],
@@ -45,7 +45,7 @@
         ],
         "rule_str": "Big Match, Prime Time, Leader",
         "matchday": 23,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ]
