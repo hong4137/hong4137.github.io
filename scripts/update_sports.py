@@ -409,14 +409,23 @@ def process_epl_matches(matches, top_4, leader, serper_key=None, existing_data=N
             log(f"   🔄 기존 선정 경기 모두 종료 → 새로 선정")
     
     # =========================================================================
-    # 새로운 경기 선정 (SCHEDULED 경기만)
+    # 새로운 경기 선정 (FINISHED 제외)
     # =========================================================================
     validated_matches = []
+    
+    # 선정 가능한 상태 (FINISHED만 제외)
+    SELECTABLE_STATUSES = ['SCHEDULED', 'TIMED', 'IN_PLAY', 'PAUSED', 'LIVE']
 
     for match in matches:
-        # SCHEDULED 경기만 선정 대상
-        if match.get('status') != 'SCHEDULED':
+        status = match.get('status', '')
+        
+        # FINISHED 경기는 새 선정에서 제외
+        if status == 'FINISHED':
             continue
+        
+        # 알 수 없는 상태도 일단 포함 (SCHEDULED가 아닌 다른 표현일 수 있음)
+        # if status not in SELECTABLE_STATUSES:
+        #     continue
             
         home_team = match.get('homeTeam', {}).get('name', '')
         away_team = match.get('awayTeam', {}).get('name', '')
@@ -1188,7 +1197,14 @@ def update_sports_data():
     log(f"   [최대 선정: {MAX_EPL_MATCHES}경기]")
 
     matches = get_epl_matches(football_api_key, current_matchday)
+    
+    # 상태별 경기 수 로그 (디버깅용)
+    status_count = {}
+    for m in matches:
+        s = m.get('status', 'UNKNOWN')
+        status_count[s] = status_count.get(s, 0) + 1
     log(f"   📋 R{current_matchday} 전체: {len(matches)}경기")
+    log(f"   📊 상태별: {status_count}")
 
     validated_epl, selected_round, is_new_selection = process_epl_matches(
         matches, top_4_teams, leader_team, serper_api_key, existing_data
