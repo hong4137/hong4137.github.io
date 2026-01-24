@@ -1159,38 +1159,108 @@ def search_tennis_schedule(serper_key):
         r'(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+(\d{1,2})(?:st|nd|rd|th)?',
     ]
     
+    # 대회별 시간대 매핑
+    tournament_timezones = {
+        'Australian Open': 'Australia/Melbourne',  # AEDT (UTC+11)
+        'Roland Garros': 'Europe/Paris',           # CET/CEST
+        'Wimbledon': 'Europe/London',              # BST
+        'US Open': 'America/New_York',             # EDT
+        'Indian Wells': 'America/Los_Angeles',     # PDT
+        'Miami Open': 'America/New_York',          # EDT
+        'Monte Carlo': 'Europe/Monaco',            # CET
+        'Madrid Open': 'Europe/Madrid',            # CET
+        'Italian Open': 'Europe/Rome',             # CET
+        'Shanghai': 'Asia/Shanghai',               # CST
+    }
+    
+    def convert_to_kst(time_str, timezone_name):
+        """현지 시간을 KST로 변환"""
+        try:
+            # 시간 파싱 (예: "11:30 AM")
+            time_str = time_str.strip().upper()
+            if 'AM' in time_str or 'PM' in time_str:
+                time_clean = time_str.replace(' ', '')
+                if 'AM' in time_clean:
+                    hour, minute = time_clean.replace('AM', '').split(':')
+                    hour = int(hour)
+                    if hour == 12:
+                        hour = 0
+                else:
+                    hour, minute = time_clean.replace('PM', '').split(':')
+                    hour = int(hour)
+                    if hour != 12:
+                        hour += 12
+                minute = int(minute)
+            else:
+                hour, minute = map(int, time_str.split(':'))
+            
+            # 오늘 날짜 기준으로 datetime 생성
+            today = get_kst_now()
+            local_tz = ZoneInfo(timezone_name)
+            local_dt = datetime.datetime(today.year, today.month, today.day, hour, minute, tzinfo=local_tz)
+            
+            # KST로 변환
+            kst_dt = local_dt.astimezone(TZ_KST)
+            kst_time = kst_dt.strftime("%H:%M")
+            
+            return kst_time
+        except:
+            return None
+    
     # 먼저 시간이 포함된 패턴 시도
     time_only_match = re.search(r'(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm))', next_text, re.IGNORECASE)
     date_time_match = re.search(r'(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(?:at\s+)?(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?)', next_text, re.IGNORECASE)
     date_only_match = re.search(r'(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+(\d{1,2})(?:st|nd|rd|th)?', next_text, re.IGNORECASE)
     
+    local_time_str = None
+    date_str = None
+    
     if date_time_match:
         # 날짜 + 시간 모두 있는 경우
         month = date_time_match.group(1)[:3]
         day = date_time_match.group(2)
-        time_part = date_time_match.group(3) if date_time_match.group(3) else ''
-        if time_part:
-            match_time = f"{month} {day}, {time_part}"
-        else:
-            match_time = f"{month} {day}"
+        date_str = f"{month} {day}"
+        local_time_str = date_time_match.group(3) if date_time_match.group(3) else None
     elif time_only_match and date_only_match:
         # 시간과 날짜가 따로 있는 경우
         month = date_only_match.group(1)[:3]
         day = date_only_match.group(2)
-        time_part = time_only_match.group(1)
-        match_time = f"{month} {day}, {time_part}"
+        date_str = f"{month} {day}"
+        local_time_str = time_only_match.group(1)
     elif date_only_match:
         # 날짜만 있는 경우
         month = date_only_match.group(1)[:3]
         day = date_only_match.group(2)
-        match_time = f"{month} {day}"
+        date_str = f"{month} {day}"
     elif time_only_match:
         # 시간만 있는 경우 (오늘 경기로 가정)
         today = get_kst_now()
-        month = today.strftime("%b")
-        day = today.strftime("%d").lstrip('0')
-        time_part = time_only_match.group(1)
-        match_time = f"{month} {day}, {time_part}"
+        date_str = today.strftime("%b %d")
+        local_time_str = time_only_match.group(1)
+    
+    # 시간 포맷팅 (현지 시간 + KST)
+    if date_str and local_time_str:
+        # 시간대 변환 시도
+        tz_name = tournament_timezones.get(next_event, None)
+        if tz_name:
+            kst_time = convert_to_kst(local_time_str, tz_name)
+            if kst_time:
+                # 시간대 약어
+                tz_abbr = {
+                    'Australia/Melbourne': 'AEDT',
+                    'Europe/Paris': 'CET',
+                    'Europe/London': 'BST',
+                    'America/New_York': 'ET',
+                    'America/Los_Angeles': 'PT',
+                    'Asia/Shanghai': 'CST',
+                }.get(tz_name, 'Local')
+                match_time = f"{date_str} {local_time_str} ({tz_abbr}) / {kst_time} KST"
+            else:
+                match_time = f"{date_str} {local_time_str}"
+        else:
+            match_time = f"{date_str} {local_time_str}"
+    elif date_str:
+        match_time = date_str
     
     # 대회 기간
     tournament_dates = ''
