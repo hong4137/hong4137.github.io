@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-25 01:45:17 KST",
+  "updated": "2026-01-25 01:53:06 KST",
   "epl": {
     "matchday": 23,
     "selected_round": 23,
@@ -95,8 +95,8 @@
     },
     "next": {
       "event": "Australian Open",
-      "detail": "R16 vs American Tommy",
-      "match_time": "Jan 25",
+      "detail": "R16 vs Tommy Paul in",
+      "match_time": "Jan 23, 12:52 PM",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
     }
