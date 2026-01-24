@@ -971,59 +971,39 @@ def search_tennis_schedule(serper_key, gemini_key=None):
     # =========================================================================
     if gemini_key and search_text:
         log(f"   🤖 Gemini API 호출 중...")
-        gemini_prompt = f"""Based on the following search results about Carlos Alcaraz tennis matches, extract the information.
-Today's date is {today_str}, {year_str}.
+        
+        # 검색 텍스트 축약 (토큰 절약)
+        search_snippet = search_text[:1500]
+        
+        gemini_prompt = f"""Extract Carlos Alcaraz tennis info from this text. Today is {today_str}, {year_str}.
 
-Search Results:
-{search_text[:3000]}
+Text: {search_snippet}
 
-Extract and return ONLY a valid JSON object (no markdown, no explanation):
-{{
-  "recent": {{
-    "event": "tournament name (e.g., Australian Open)",
-    "opponent": "opponent's full name only, no nationality (e.g., Tommy Paul, NOT American Tommy Paul)",
-    "result": "W or L",
-    "score": "set scores like 6-2, 6-4, 6-1",
-    "date": "match date like Jan 23"
-  }},
-  "next": {{
-    "event": "tournament name",
-    "round": "round like R16, QF, SF, F",
-    "opponent": "opponent's name only, no nationality",
-    "date": "match date"
-  }}
-}}
+Return JSON only:
+{{"recent":{{"event":"tournament","opponent":"name","result":"W/L","score":"6-2, 6-4","date":"Jan 23"}},"next":{{"event":"tournament","round":"R16","opponent":"name","date":"Jan 25"}}}}
 
-Important:
-- "recent" should be the MOST RECENT COMPLETED match (not upcoming)
-- "next" should be the NEXT SCHEDULED match (not completed)
-- Remove nationalities from opponent names (American, French, etc.)
-- If information is not available, use "-"
-"""
+Rules: Remove nationalities from names. Use "-" if unknown."""
         
         gemini_response = call_gemini_api(gemini_prompt, gemini_key)
         
         if gemini_response:
             try:
-                # JSON 추출 (마크다운 코드블록 제거)
+                # JSON 추출
                 json_text = gemini_response.strip()
                 
-                # 디버깅: 응답 일부 출력
-                log(f"   📝 Gemini 응답 (처음 200자): {json_text[:200]}...")
-                
+                # 코드블록 제거
                 if '```json' in json_text:
                     json_text = json_text.split('```json')[1].split('```')[0]
                 elif '```' in json_text:
-                    json_text = json_text.split('```')[1].split('```')[0]
+                    parts = json_text.split('```')
+                    if len(parts) >= 2:
+                        json_text = parts[1]
                 
-                # JSON 객체만 추출 (중괄호 사이)
+                # JSON 객체만 추출
                 start_idx = json_text.find('{')
                 end_idx = json_text.rfind('}')
-                if start_idx != -1 and end_idx != -1:
+                if start_idx != -1 and end_idx != -1 and end_idx > start_idx:
                     json_text = json_text[start_idx:end_idx+1]
-                
-                # 줄바꿈 문자 처리
-                json_text = json_text.replace('\n', ' ').replace('\r', '')
                 
                 parsed = json.loads(json_text.strip())
                 
