@@ -1007,10 +1007,23 @@ Important:
             try:
                 # JSON 추출 (마크다운 코드블록 제거)
                 json_text = gemini_response.strip()
+                
+                # 디버깅: 응답 일부 출력
+                log(f"   📝 Gemini 응답 (처음 200자): {json_text[:200]}...")
+                
                 if '```json' in json_text:
                     json_text = json_text.split('```json')[1].split('```')[0]
                 elif '```' in json_text:
                     json_text = json_text.split('```')[1].split('```')[0]
+                
+                # JSON 객체만 추출 (중괄호 사이)
+                start_idx = json_text.find('{')
+                end_idx = json_text.rfind('}')
+                if start_idx != -1 and end_idx != -1:
+                    json_text = json_text[start_idx:end_idx+1]
+                
+                # 줄바꿈 문자 처리
+                json_text = json_text.replace('\n', ' ').replace('\r', '')
                 
                 parsed = json.loads(json_text.strip())
                 
