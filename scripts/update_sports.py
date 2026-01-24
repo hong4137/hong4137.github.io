@@ -680,7 +680,7 @@ def get_nba_warriors_data(balldontlie_key, serper_key=None):
         upcoming = [g for g in future_games['data'] if g.get('status') != 'Final']
         upcoming.sort(key=lambda x: x.get('datetime', ''))
 
-        for game in upcoming[:4]:
+        for game in upcoming[:2]:
             home_team = game.get('home_team', {})
             visitor_team = game.get('visitor_team', {})
             game_datetime = game.get('datetime', '')
@@ -869,10 +869,8 @@ def search_tennis_schedule(serper_key):
     """
     Tennis (Alcaraz) - Recent 경기 결과 + Next 일정
     
-    [v2.1 개선 사항]
-    - top_players 리스트 의존 제거 → 정규식으로 실제 상대 추출
-    - projected/pathway 기사 강력 필터링
-    - 더 구체적인 검색 쿼리
+    [v2.2 개선 사항]
+    - 검색 쿼리에 현재 날짜 포함하여 최신 결과 확보
     """
     
     default_data = {
@@ -882,6 +880,10 @@ def search_tennis_schedule(serper_key):
     
     if not serper_key:
         return default_data
+    
+    # 현재 날짜 (검색 쿼리에 사용)
+    kst_now = get_kst_now()
+    today_str = kst_now.strftime("%B %d")  # e.g., "January 25"
     
     # 대회 일정 (하드코딩) - 2026년 기준
     tournament_schedule = {
@@ -912,9 +914,9 @@ def search_tennis_schedule(serper_key):
     }
     
     # =========================================================================
-    # 1. 최근 경기 결과 검색
+    # 1. 최근 경기 결과 검색 (날짜 포함)
     # =========================================================================
-    recent_query = "Carlos Alcaraz latest match result score opponent 2026"
+    recent_query = f"Carlos Alcaraz most recent match result score {today_str} 2026"
     recent_result = call_serper_api(recent_query, serper_key)
     
     recent_text = ""
@@ -1012,9 +1014,9 @@ def search_tennis_schedule(serper_key):
     }
     
     # =========================================================================
-    # 2. 다음 경기 일정 검색 (projected 필터 강화)
+    # 2. 다음 경기 일정 검색 (날짜 포함, projected 필터 강화)
     # =========================================================================
-    next_query = "Carlos Alcaraz next match opponent round 2026"
+    next_query = f"Carlos Alcaraz next match opponent {today_str} 2026"
     next_result = call_serper_api(next_query, serper_key)
     
     next_text = ""
