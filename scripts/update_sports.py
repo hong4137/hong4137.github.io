@@ -281,25 +281,43 @@ def get_best_tier(rules):
     return min(TIER_PRIORITY.get(r, 99) for r in rules)
 
 def search_epl_broadcaster(home, away, match_date, serper_key):
-    """EPL 경기 중계 정보 검색"""
+    """EPL 경기 중계 정보 검색 (구체적인 채널명)"""
     if not serper_key:
         return None
 
     queries = [
-        f"{home} vs {away} TV channel Sky TNT BBC",
-        f"Premier League {home} {away} live TV UK"
+        f"{home} vs {away} TV channel UK",
+        f"{home} {away} Sky Sports TNT Amazon live TV"
     ]
 
-    broadcasters = {
-        'sky sports': 'Sky Sports',
-        'sky': 'Sky Sports',
-        'tnt sports': 'TNT Sports',
-        'tnt': 'TNT Sports',
-        'bt sport': 'TNT Sports',
-        'bbc': 'BBC',
-        'amazon prime': 'Amazon Prime',
-        'amazon': 'Amazon Prime'
-    }
+    # 구체적인 채널명 먼저, 일반적인 것 나중에 (순서 중요!)
+    broadcasters = [
+        # Sky Sports (구체적)
+        ('sky sports main event', 'Sky Sports Main Event'),
+        ('sky sports premier league', 'Sky Sports Premier League'),
+        ('sky sports football', 'Sky Sports Football'),
+        ('sky sports ultra', 'Sky Sports Ultra HD'),
+        ('sky sports+', 'Sky Sports+'),
+        ('sky sports', 'Sky Sports'),  # fallback
+        
+        # TNT Sports (구체적)
+        ('tnt sports 1', 'TNT Sports 1'),
+        ('tnt sports 2', 'TNT Sports 2'),
+        ('tnt sports 3', 'TNT Sports 3'),
+        ('tnt sports 4', 'TNT Sports 4'),
+        ('tnt sports', 'TNT Sports'),  # fallback
+        ('bt sport', 'TNT Sports'),    # 구 명칭
+        
+        # Amazon
+        ('amazon prime video', 'Amazon Prime'),
+        ('amazon prime', 'Amazon Prime'),
+        ('prime video', 'Amazon Prime'),
+        
+        # BBC
+        ('bbc one', 'BBC One'),
+        ('bbc two', 'BBC Two'),
+        ('bbc', 'BBC'),
+    ]
 
     for query in queries:
         result = call_serper_api(query, serper_key)
@@ -307,12 +325,15 @@ def search_epl_broadcaster(home, away, match_date, serper_key):
             text = ""
             if 'answerBox' in result:
                 text += result['answerBox'].get('snippet', '') + " "
+                text += result['answerBox'].get('answer', '') + " "
             for item in result.get('organic', [])[:3]:
                 text += item.get('snippet', '') + " "
                 text += item.get('title', '') + " "
 
             text_lower = text.lower()
-            for keyword, channel in broadcasters.items():
+            
+            # 구체적인 채널명부터 순서대로 체크
+            for keyword, channel in broadcasters:
                 if keyword in text_lower:
                     return channel
 
