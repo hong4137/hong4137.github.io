@@ -146,6 +146,35 @@ def call_balldontlie_api(endpoint, params=None, api_key=None):
         log(f"   ⚠️ balldontlie API exception: {e}")
     return None
 
+def call_gemini_api(prompt, api_key):
+    """Gemini API 호출"""
+    if not api_key:
+        return None
+    
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={api_key}"
+    
+    payload = {
+        "contents": [{
+            "parts": [{"text": prompt}]
+        }],
+        "generationConfig": {
+            "temperature": 0.1,
+            "maxOutputTokens": 1024
+        }
+    }
+    
+    try:
+        response = requests.post(url, json=payload, timeout=30)
+        if response.status_code == 200:
+            data = response.json()
+            text = data.get('candidates', [{}])[0].get('content', {}).get('parts', [{}])[0].get('text', '')
+            return text
+        else:
+            log(f"   ⚠️ Gemini API error: {response.status_code}")
+    except Exception as e:
+        log(f"   ⚠️ Gemini API exception: {e}")
+    return None
+
 # =============================================================================
 # EPL 함수들
 # =============================================================================
@@ -863,14 +892,15 @@ def search_f1_schedule(serper_key):
     return f1_data
 
 # =============================================================================
-# 테니스 함수 - v2.1 (개선된 상대 추출)
+# 테니스 함수 - v2.3 (Gemini API 파싱)
 # =============================================================================
-def search_tennis_schedule(serper_key):
+def search_tennis_schedule(serper_key, gemini_key=None):
     """
     Tennis (Alcaraz) - Recent 경기 결과 + Next 일정
     
-    [v2.2 개선 사항]
-    - 검색 쿼리에 현재 날짜 포함하여 최신 결과 확보
+    [v2.3 개선 사항]
+    - Gemini API를 사용하여 검색 결과를 정확하게 파싱
+    - 정규식 대신 LLM 기반 정보 추출
     """
     
     default_data = {
@@ -884,6 +914,7 @@ def search_tennis_schedule(serper_key):
     # 현재 날짜 (검색 쿼리에 사용)
     kst_now = get_kst_now()
     today_str = kst_now.strftime("%B %d")  # e.g., "January 25"
+    year_str = kst_now.strftime("%Y")
     
     # 대회 일정 (하드코딩) - 2026년 기준
     tournament_schedule = {
@@ -914,21 +945,143 @@ def search_tennis_schedule(serper_key):
     }
     
     # =========================================================================
-    # 1. 최근 경기 결과 검색 (날짜 포함)
+    # 1. 통합 검색 (최근 경기 + 다음 경기)
     # =========================================================================
-    recent_query = f"Carlos Alcaraz most recent match result score {today_str} 2026"
-    recent_result = call_serper_api(recent_query, serper_key)
+    search_query = f"Carlos Alcaraz latest match result next opponent schedule {today_str} {year_str}"
+    search_result = call_serper_api(search_query, serper_key)
     
-    recent_text = ""
-    if recent_result:
-        if 'answerBox' in recent_result:
-            recent_text += recent_result['answerBox'].get('snippet', '') + " "
-            recent_text += recent_result['answerBox'].get('answer', '') + " "
-        if 'sportsResults' in recent_result:
-            recent_text += str(recent_result['sportsResults']) + " "
-        for item in recent_result.get('organic', [])[:5]:
-            recent_text += item.get('snippet', '') + " "
-            recent_text += item.get('title', '') + " "
+    search_text = ""
+    if search_result:
+        if 'answerBox' in search_result:
+            search_text += search_result['answerBox'].get('snippet', '') + " "
+            search_text += search_result['answerBox'].get('answer', '') + " "
+        if 'sportsResults' in search_result:
+            search_text += str(search_result['sportsResults']) + " "
+        for item in search_result.get('organic', [])[:7]:
+            search_text += item.get('snippet', '') + " "
+            search_text += item.get('title', '') + " "
+    
+    # =========================================================================
+    # 2. Gemini API로 파싱 (있는 경우)
+    # =========================================================================
+    if gemini_key and search_text:
+        gemini_prompt = f"""Based on the following search results about Carlos Alcaraz tennis matches, extract the information.
+Today's date is {today_str}, {year_str}.
+
+Search Results:
+{search_text[:3000]}
+
+Extract and return ONLY a valid JSON object (no markdown, no explanation):
+{{
+  "recent": {{
+    "event": "tournament name (e.g., Australian Open)",
+    "opponent": "opponent's full name only, no nationality (e.g., Tommy Paul, NOT American Tommy Paul)",
+    "result": "W or L",
+    "score": "set scores like 6-2, 6-4, 6-1",
+    "date": "match date like Jan 23"
+  }},
+  "next": {{
+    "event": "tournament name",
+    "round": "round like R16, QF, SF, F",
+    "opponent": "opponent's name only, no nationality",
+    "date": "match date"
+  }}
+}}
+
+Important:
+- "recent" should be the MOST RECENT COMPLETED match (not upcoming)
+- "next" should be the NEXT SCHEDULED match (not completed)
+- Remove nationalities from opponent names (American, French, etc.)
+- If information is not available, use "-"
+"""
+        
+        gemini_response = call_gemini_api(gemini_prompt, gemini_key)
+        
+        if gemini_response:
+            try:
+                # JSON 추출 (마크다운 코드블록 제거)
+                json_text = gemini_response.strip()
+                if '```json' in json_text:
+                    json_text = json_text.split('```json')[1].split('```')[0]
+                elif '```' in json_text:
+                    json_text = json_text.split('```')[1].split('```')[0]
+                
+                parsed = json.loads(json_text.strip())
+                
+                # Recent 경기 처리
+                if 'recent' in parsed:
+                    r = parsed['recent']
+                    tennis_data['recent'] = {
+                        'event': r.get('event', '-'),
+                        'opponent': r.get('opponent', '-'),
+                        'result': r.get('result', '-'),
+                        'score': r.get('score', '-'),
+                        'date': r.get('date', '-')
+                    }
+                
+                # Next 경기 처리
+                if 'next' in parsed:
+                    n = parsed['next']
+                    next_event = n.get('event', '-')
+                    next_round = n.get('round', '')
+                    next_opponent = n.get('opponent', '-')
+                    next_date = n.get('date', 'TBD')
+                    
+                    # Detail 구성
+                    if next_round and next_opponent and next_opponent != '-':
+                        next_detail = f"{next_round} vs {next_opponent}"
+                    elif next_round:
+                        next_detail = next_round
+                    elif next_opponent and next_opponent != '-':
+                        next_detail = f"vs {next_opponent}"
+                    else:
+                        next_detail = '-'
+                    
+                    # 대회 일정 찾기
+                    tournament_dates = ''
+                    for keyword, dates in tournament_schedule.items():
+                        if keyword in next_event.lower():
+                            tournament_dates = dates
+                            break
+                    
+                    # 대회 유형 결정
+                    next_status = '-'
+                    status_map = {
+                        'australian open': 'Grand Slam', 'french open': 'Grand Slam', 
+                        'roland garros': 'Grand Slam', 'wimbledon': 'Grand Slam', 
+                        'us open': 'Grand Slam', 'indian wells': 'Masters', 
+                        'miami': 'Masters', 'monte carlo': 'Masters', 
+                        'madrid': 'Masters', 'rome': 'Masters', 'italian': 'Masters',
+                        'cincinnati': 'Masters', 'shanghai': 'Masters', 
+                        'paris masters': 'Masters', 'atp finals': 'Finals'
+                    }
+                    for keyword, status in status_map.items():
+                        if keyword in next_event.lower():
+                            next_status = status
+                            break
+                    
+                    tennis_data['next'] = {
+                        'event': next_event,
+                        'detail': next_detail,
+                        'match_time': next_date,
+                        'tournament_dates': tournament_dates,
+                        'status': next_status
+                    }
+                
+                log(f"   ✅ Gemini 파싱 성공")
+                return tennis_data
+                
+            except json.JSONDecodeError as e:
+                log(f"   ⚠️ Gemini JSON 파싱 실패: {e}")
+            except Exception as e:
+                log(f"   ⚠️ Gemini 처리 오류: {e}")
+    
+    # =========================================================================
+    # 3. Gemini 실패 시 기존 정규식 방식으로 폴백
+    # =========================================================================
+    log(f"   ℹ️ 정규식 폴백 모드")
+    
+    recent_text = search_text
     
     recent_lower = recent_text.lower()
     
@@ -1198,6 +1351,7 @@ def update_sports_data():
     football_api_key = os.environ.get("FOOTBALL_DATA_API_KEY")
     serper_api_key = os.environ.get("SERPER_API_KEY")
     balldontlie_api_key = os.environ.get("BALLDONTLIE_API_KEY")
+    gemini_api_key = os.environ.get("GEMINI_API_KEY")
 
     if not football_api_key:
         log("❌ Error: FOOTBALL_DATA_API_KEY Missing")
@@ -1210,6 +1364,7 @@ def update_sports_data():
     log(f"   - EPL: Football-Data.org ✅")
     log(f"   - NBA: balldontlie.io {'✅' if balldontlie_api_key else '❌'}")
     log(f"   - Search: Serper API {'✅' if serper_api_key else '❌'}")
+    log(f"   - Gemini: {'✅' if gemini_api_key else '❌ (정규식 폴백)'}")
 
     # 기존 데이터 로드 (v2.2 추가)
     existing_data = load_existing_sports_data()
@@ -1302,9 +1457,9 @@ def update_sports_data():
     # =========================================================================
     # STEP 5: Tennis
     # =========================================================================
-    log("\n🎾 [Step 5/5] Tennis (Alcaraz)...")
+    log("\n🎾 [Step 5/5] Tennis (Alcaraz) - v2.3 Gemini 파싱...")
 
-    tennis_data = search_tennis_schedule(serper_api_key)
+    tennis_data = search_tennis_schedule(serper_api_key, gemini_api_key)
     recent = tennis_data.get('recent', {})
     next_match = tennis_data.get('next', {})
     log(f"   ✅ Recent: {recent.get('event', '-')} vs {recent.get('opponent', '-')} {recent.get('result', '-')} ({recent.get('score', '-')}) | {recent.get('date', '-')}")
