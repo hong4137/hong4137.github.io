@@ -151,8 +151,8 @@ def call_gemini_api(prompt, api_key):
     if not api_key:
         return None
     
-    # gemini-1.5-flash 사용 (할당량 더 넉넉)
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
+    # gemini-1.5-flash-latest 사용
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key={api_key}"
     
     payload = {
         "contents": [{
@@ -172,6 +172,8 @@ def call_gemini_api(prompt, api_key):
             return text
         elif response.status_code == 429:
             log(f"   ⚠️ Gemini API rate limit (429)")
+        elif response.status_code == 404:
+            log(f"   ⚠️ Gemini API model not found (404)")
         else:
             log(f"   ⚠️ Gemini API error: {response.status_code}")
     except Exception as e:
