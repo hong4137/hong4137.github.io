@@ -151,7 +151,8 @@ def call_gemini_api(prompt, api_key):
     if not api_key:
         return None
     
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={api_key}"
+    # gemini-1.5-flash 사용 (할당량 더 넉넉)
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
     
     payload = {
         "contents": [{
@@ -169,6 +170,8 @@ def call_gemini_api(prompt, api_key):
             data = response.json()
             text = data.get('candidates', [{}])[0].get('content', {}).get('parts', [{}])[0].get('text', '')
             return text
+        elif response.status_code == 429:
+            log(f"   ⚠️ Gemini API rate limit (429)")
         else:
             log(f"   ⚠️ Gemini API error: {response.status_code}")
     except Exception as e:
@@ -965,6 +968,7 @@ def search_tennis_schedule(serper_key, gemini_key=None):
     # 2. Gemini API로 파싱 (있는 경우)
     # =========================================================================
     if gemini_key and search_text:
+        log(f"   🤖 Gemini API 호출 중...")
         gemini_prompt = f"""Based on the following search results about Carlos Alcaraz tennis matches, extract the information.
 Today's date is {today_str}, {year_str}.
 
@@ -1079,7 +1083,10 @@ Important:
     # =========================================================================
     # 3. Gemini 실패 시 기존 정규식 방식으로 폴백
     # =========================================================================
-    log(f"   ℹ️ 정규식 폴백 모드")
+    if not gemini_key:
+        log(f"   ⚠️ GEMINI_API_KEY 없음 → 정규식 폴백")
+    else:
+        log(f"   ⚠️ Gemini 파싱 실패 → 정규식 폴백")
     
     recent_text = search_text
     
