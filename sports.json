@@ -1,54 +1,18 @@
 {
-  "updated": "2026-01-25 21:48:50 KST",
+  "updated": "2026-01-26 03:33:59 KST",
   "epl": {
     "matchday": 23,
-    "selected_round": 23,
+    "selected_round": null,
     "display_matchday": "R23",
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
       "Manchester City",
       "Aston Villa",
-      "Liverpool"
+      "Manchester United"
     ],
-    "matches": [
-      {
-        "match_id": 538007,
-        "home": "Arsenal",
-        "away": "Manchester United",
-        "kst_time": "01.26 01:30 (KST)",
-        "uk_time": "Sunday 16:30 (UK)",
-        "local": "Sky Sports",
-        "rules": [
-          "Big Match",
-          "Prime Time",
-          "Leader"
-        ],
-        "rule_str": "Big Match, Prime Time, Leader",
-        "matchday": 23,
-        "status": "TIMED",
-        "score": "-"
-      }
-    ],
-    "selected_matches": [
-      {
-        "match_id": 538007,
-        "home": "Arsenal",
-        "away": "Manchester United",
-        "kst_time": "01.26 01:30 (KST)",
-        "uk_time": "Sunday 16:30 (UK)",
-        "local": "Sky Sports",
-        "rules": [
-          "Big Match",
-          "Prime Time",
-          "Leader"
-        ],
-        "rule_str": "Big Match, Prime Time, Leader",
-        "matchday": 23,
-        "status": "TIMED",
-        "score": "-"
-      }
-    ]
+    "matches": [],
+    "selected_matches": []
   },
   "nba": {
     "record": "25-21",
@@ -61,26 +25,26 @@
     "schedule": [
       {
         "opp": "Timberwolves",
-        "date": "01.26",
-        "kst_time": "07:30",
-        "local_time": "2:30 PM PT",
-        "location": "away",
-        "venue": "@ Minnesota",
-        "channel": ""
-      },
-      {
-        "opp": "Timberwolves",
         "date": "01.27",
         "kst_time": "11:30",
         "local_time": "6:30 PM PT",
         "location": "away",
         "venue": "@ Minnesota",
         "channel": ""
+      },
+      {
+        "opp": "Jazz",
+        "date": "01.29",
+        "kst_time": "11:00",
+        "local_time": "6:00 PM PT",
+        "location": "away",
+        "venue": "@ Utah",
+        "channel": ""
       }
     ]
   },
   "f1": {
-    "status": "Pre-Season",
+    "status": "Testing",
     "name": "Test 1 (Private)",
     "circuit": "Barcelona-Catalunya",
     "date": "Jan 26-30"
@@ -88,15 +52,15 @@
   "tennis": {
     "recent": {
       "event": "Australian Open",
-      "opponent": "Corentin Moutet",
+      "opponent": "Taylor Paul",
       "result": "W",
-      "score": "6-2, 6-4, 6-1",
-      "date": "Jan 23"
+      "score": "7-6(6), 6-4, 7-5",
+      "date": "Jan 26"
     },
     "next": {
       "event": "Australian Open",
-      "detail": "QF vs Tommy Paul",
-      "match_time": "Jan 25 09:30 KST",
+      "detail": "QF vs Alex de Minaur or Alexander Bublik",
+      "match_time": "Jan 27",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
     }
