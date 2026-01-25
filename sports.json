@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-25 04:31:21 KST",
+  "updated": "2026-01-25 11:07:40 KST",
   "epl": {
     "matchday": 23,
     "selected_round": 23,
@@ -61,20 +61,20 @@
     "schedule": [
       {
         "opp": "Timberwolves",
-        "date": "01.27",
-        "kst_time": "11:30",
-        "local_time": "6:30 PM PT",
+        "date": "01.26",
+        "kst_time": "07:30",
+        "local_time": "2:30 PM PT",
         "location": "away",
         "venue": "@ Minnesota",
         "channel": ""
       },
       {
-        "opp": "Jazz",
-        "date": "01.29",
-        "kst_time": "11:00",
-        "local_time": "6:00 PM PT",
+        "opp": "Timberwolves",
+        "date": "01.27",
+        "kst_time": "11:30",
+        "local_time": "6:30 PM PT",
         "location": "away",
-        "venue": "@ Utah",
+        "venue": "@ Minnesota",
         "channel": ""
       }
     ]
@@ -96,7 +96,7 @@
     "next": {
       "event": "Australian Open",
       "detail": "R16 vs Tommy Paul",
-      "match_time": "Jan 25",
+      "match_time": "Jan 25 09:30 KST",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
     }
