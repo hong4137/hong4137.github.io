@@ -1,9 +1,9 @@
 {
-  "updated": "2026-01-26 11:06:50 KST",
+  "updated": "2026-01-26 14:02:30 KST",
   "epl": {
     "matchday": 23,
-    "selected_round": null,
-    "display_matchday": "R23",
+    "selected_round": 24,
+    "display_matchday": "R24",
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
@@ -11,8 +11,72 @@
       "Aston Villa",
       "Manchester United"
     ],
-    "matches": [],
-    "selected_matches": []
+    "matches": [
+      {
+        "match_id": 538023,
+        "home": "Tottenham",
+        "away": "Manchester City",
+        "kst_time": "02.02 01:30 (KST)",
+        "uk_time": "Sunday 16:30 (UK)",
+        "local": "Sky Sports Main Event",
+        "rules": [
+          "Big Match",
+          "Prime Time"
+        ],
+        "rule_str": "Big Match, Prime Time",
+        "matchday": 24,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 538020,
+        "home": "Leeds United",
+        "away": "Arsenal",
+        "kst_time": "02.01 00:00 (KST)",
+        "uk_time": "Saturday 15:00 (UK)",
+        "local": "Sky Sports",
+        "rules": [
+          "Leader"
+        ],
+        "rule_str": "Leader",
+        "matchday": 24,
+        "status": "SCHEDULED",
+        "score": "-"
+      }
+    ],
+    "selected_matches": [
+      {
+        "match_id": 538023,
+        "home": "Tottenham",
+        "away": "Manchester City",
+        "kst_time": "02.02 01:30 (KST)",
+        "uk_time": "Sunday 16:30 (UK)",
+        "local": "Sky Sports Main Event",
+        "rules": [
+          "Big Match",
+          "Prime Time"
+        ],
+        "rule_str": "Big Match, Prime Time",
+        "matchday": 24,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 538020,
+        "home": "Leeds United",
+        "away": "Arsenal",
+        "kst_time": "02.01 00:00 (KST)",
+        "uk_time": "Saturday 15:00 (UK)",
+        "local": "Sky Sports",
+        "rules": [
+          "Leader"
+        ],
+        "rule_str": "Leader",
+        "matchday": 24,
+        "status": "SCHEDULED",
+        "score": "-"
+      }
+    ]
   },
   "nba": {
     "record": "26-21",
@@ -55,12 +119,12 @@
       "opponent": "Tommy Paul",
       "result": "W",
       "score": "7-6(6), 6-4, 7-5",
-      "date": "Jan 26"
+      "date": "Jan 25"
     },
     "next": {
       "event": "Australian Open",
       "detail": "QF vs Alex de Minaur or Alexander Bublik",
-      "match_time": "-",
+      "match_time": "Jan 27",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
     }
