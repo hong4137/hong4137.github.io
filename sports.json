@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-26 14:02:30 KST",
+  "updated": "2026-01-26 15:41:19 KST",
   "epl": {
     "matchday": 23,
     "selected_round": 24,
@@ -118,12 +118,12 @@
       "event": "Australian Open",
       "opponent": "Tommy Paul",
       "result": "W",
-      "score": "7-6(6), 6-4, 7-5",
+      "score": "7-6 (8-6), 6-4, 7-5",
       "date": "Jan 25"
     },
     "next": {
       "event": "Australian Open",
-      "detail": "QF vs Alex de Minaur or Alexander Bublik",
+      "detail": "QF vs Álex de Miñaur",
       "match_time": "Jan 27",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
