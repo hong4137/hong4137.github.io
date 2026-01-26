@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-26 21:54:45 KST",
+  "updated": "2026-01-27 03:40:11 KST",
   "epl": {
     "matchday": 23,
     "selected_round": 24,
@@ -88,21 +88,21 @@
     },
     "schedule": [
       {
-        "opp": "Timberwolves",
-        "date": "01.27",
-        "kst_time": "11:30",
-        "local_time": "6:30 PM PT",
-        "location": "away",
-        "venue": "@ Minnesota",
-        "channel": ""
-      },
-      {
         "opp": "Jazz",
         "date": "01.29",
         "kst_time": "11:00",
         "local_time": "6:00 PM PT",
         "location": "away",
         "venue": "@ Utah",
+        "channel": ""
+      },
+      {
+        "opp": "Pistons",
+        "date": "01.31",
+        "kst_time": "12:00",
+        "local_time": "7:00 PM PT",
+        "location": "home",
+        "venue": "Chase Center",
         "channel": ""
       }
     ]
@@ -124,7 +124,7 @@
     "next": {
       "event": "Australian Open",
       "detail": "QF vs Alex de Minaur",
-      "match_time": "Jan 27",
+      "match_time": "Jan 27 17:00 KST",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
     }
