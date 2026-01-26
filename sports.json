@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-26 03:33:59 KST",
+  "updated": "2026-01-26 11:06:50 KST",
   "epl": {
     "matchday": 23,
     "selected_round": null,
@@ -15,12 +15,12 @@
     "selected_matches": []
   },
   "nba": {
-    "record": "25-21",
+    "record": "26-21",
     "rank": "#8 West",
     "last": {
-      "opp": "Mavericks",
-      "result": "L",
-      "score": "115-123"
+      "opp": "Timberwolves",
+      "result": "W",
+      "score": "111-85"
     },
     "schedule": [
       {
@@ -52,7 +52,7 @@
   "tennis": {
     "recent": {
       "event": "Australian Open",
-      "opponent": "Taylor Paul",
+      "opponent": "Tommy Paul",
       "result": "W",
       "score": "7-6(6), 6-4, 7-5",
       "date": "Jan 26"
@@ -60,7 +60,7 @@
     "next": {
       "event": "Australian Open",
       "detail": "QF vs Alex de Minaur or Alexander Bublik",
-      "match_time": "Jan 27",
+      "match_time": "-",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
     }
