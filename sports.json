@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-27 03:40:11 KST",
+  "updated": "2026-01-27 11:03:40 KST",
   "epl": {
     "matchday": 23,
     "selected_round": 24,
@@ -116,15 +116,15 @@
   "tennis": {
     "recent": {
       "event": "Australian Open",
-      "opponent": "Corentin Moutet",
+      "opponent": "Tommy Paul",
       "result": "W",
-      "score": "6-2, 6-4, 6-1",
-      "date": "Jan 23"
+      "score": "7-6 (8-6), 6-4, 7-5",
+      "date": "Jan 25"
     },
     "next": {
       "event": "Australian Open",
       "detail": "QF vs Alex de Minaur",
-      "match_time": "Jan 27 17:00 KST",
+      "match_time": "Jan 27",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
     }
