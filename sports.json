@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-27 11:03:40 KST",
+  "updated": "2026-01-27 15:39:46 KST",
   "epl": {
     "matchday": 23,
     "selected_round": 24,
@@ -79,12 +79,12 @@
     ]
   },
   "nba": {
-    "record": "26-21",
+    "record": "26-22",
     "rank": "#8 West",
     "last": {
       "opp": "Timberwolves",
-      "result": "W",
-      "score": "111-85"
+      "result": "L",
+      "score": "83-108"
     },
     "schedule": [
       {
