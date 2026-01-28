@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-28 03:42:29 KST",
+  "updated": "2026-01-28 10:59:25 KST",
   "epl": {
     "matchday": 23,
     "selected_round": 24,
@@ -80,7 +80,7 @@
   },
   "nba": {
     "record": "26-22",
-    "rank": "#8 West",
+    "rank": "-",
     "last": {
       "opp": "Timberwolves",
       "result": "L",
@@ -119,7 +119,7 @@
       "opponent": "Alex de Minaur",
       "result": "W",
       "score": "7-5, 6-2, 6-1",
-      "date": "Jan 27"
+      "date": "Jan 28"
     },
     "next": {
       "event": "Australian Open",
