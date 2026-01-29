@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-29 11:21:27 KST",
+  "updated": "2026-01-29 15:52:46 KST",
   "epl": {
     "matchday": 23,
     "selected_round": 24,
@@ -79,12 +79,12 @@
     ]
   },
   "nba": {
-    "record": "26-22",
-    "rank": "#8 West",
+    "record": "27-22",
+    "rank": "-",
     "last": {
-      "opp": "Timberwolves",
-      "result": "L",
-      "score": "83-108"
+      "opp": "Jazz",
+      "result": "W",
+      "score": "140-124"
     },
     "schedule": [
       {
@@ -118,13 +118,13 @@
       "event": "Australian Open",
       "opponent": "Alex de Minaur",
       "result": "W",
-      "score": "7-5, 6-2, 6-1",
+      "score": "3-0",
       "date": "Jan 29"
     },
     "next": {
       "event": "Australian Open",
       "detail": "SF vs Alexander Zverev",
-      "match_time": "Jan 30 12:00 KST",
+      "match_time": "Jan 30 12:30 KST",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
     }
