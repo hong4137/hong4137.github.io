@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-30 15:54:18 KST",
+  "updated": "2026-01-30 22:02:04 KST",
   "epl": {
     "matchday": 24,
     "selected_round": 24,
@@ -118,13 +118,13 @@
       "event": "Australian Open",
       "opponent": "Alexander Zverev",
       "result": "W",
-      "score": "6-4, 7-6(5), 4-3",
+      "score": "6-4, 7-6(5), 6-7(3), 6-7(4), 7-5",
       "date": "Jan 30"
     },
     "next": {
       "event": "Australian Open",
-      "detail": "SF vs Alexander Zverev",
-      "match_time": "Jan 30 12:30 KST",
+      "detail": "F",
+      "match_time": "Feb 1",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
     }
