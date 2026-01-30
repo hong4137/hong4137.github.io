@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-30 22:02:04 KST",
+  "updated": "2026-01-31 03:47:56 KST",
   "epl": {
     "matchday": 24,
     "selected_round": 24,
@@ -80,22 +80,13 @@
   },
   "nba": {
     "record": "27-22",
-    "rank": "-",
+    "rank": "#8 West",
     "last": {
       "opp": "Jazz",
       "result": "W",
       "score": "140-124"
     },
     "schedule": [
-      {
-        "opp": "Pistons",
-        "date": "01.31",
-        "kst_time": "12:00",
-        "local_time": "7:00 PM PT",
-        "location": "home",
-        "venue": "Chase Center",
-        "channel": ""
-      },
       {
         "opp": "76ers",
         "date": "02.04",
@@ -104,14 +95,23 @@
         "location": "home",
         "venue": "Chase Center",
         "channel": ""
+      },
+      {
+        "opp": "Suns",
+        "date": "02.06",
+        "kst_time": "12:00",
+        "local_time": "7:00 PM PT",
+        "location": "away",
+        "venue": "@ Phoenix",
+        "channel": ""
       }
     ]
   },
   "f1": {
-    "status": "Testing",
-    "name": "Test 1 (Private)",
-    "circuit": "Barcelona-Catalunya",
-    "date": "Jan 26-30"
+    "status": "Pre-Season",
+    "name": "Test 2",
+    "circuit": "Bahrain International",
+    "date": "Feb 11-13"
   },
   "tennis": {
     "recent": {
@@ -124,7 +124,7 @@
     "next": {
       "event": "Australian Open",
       "detail": "F",
-      "match_time": "Feb 1",
+      "match_time": "Jan 31",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
     }
