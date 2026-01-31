@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-31 03:47:56 KST",
+  "updated": "2026-01-31 11:09:53 KST",
   "epl": {
     "matchday": 24,
     "selected_round": 24,
@@ -80,7 +80,7 @@
   },
   "nba": {
     "record": "27-22",
-    "rank": "#8 West",
+    "rank": "-",
     "last": {
       "opp": "Jazz",
       "result": "W",
@@ -123,8 +123,8 @@
     },
     "next": {
       "event": "Australian Open",
-      "detail": "F",
-      "match_time": "Jan 31",
+      "detail": "F vs Novak Djokovic",
+      "match_time": "Feb 1 03:30 KST",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
     }
