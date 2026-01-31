@@ -1,5 +1,5 @@
 {
-  "updated": "2026-01-31 15:43:06 KST",
+  "updated": "2026-01-31 21:53:59 KST",
   "epl": {
     "matchday": 24,
     "selected_round": 24,
@@ -80,7 +80,7 @@
   },
   "nba": {
     "record": "27-23",
-    "rank": "-",
+    "rank": "#8 West",
     "last": {
       "opp": "Pistons",
       "result": "L",
@@ -118,13 +118,13 @@
       "event": "Australian Open",
       "opponent": "Alexander Zverev",
       "result": "W",
-      "score": "6-4, 7-6(5), 6-7(3), 6-7(4), 7-5",
+      "score": "6-4, 7-6 (5), 6-7 (3), 6-7 (4), 7-5",
       "date": "Jan 30"
     },
     "next": {
       "event": "Australian Open",
       "detail": "F vs Novak Djokovic",
-      "match_time": "Jan 31 07:30 KST",
+      "match_time": "Feb 1 07:30 KST",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
     }
