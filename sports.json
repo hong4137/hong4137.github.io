@@ -1,22 +1,38 @@
 {
-  "updated": "2026-02-01 21:56:05 KST",
+  "updated": "2026-02-02 03:38:54 KST",
   "epl": {
     "matchday": 24,
-    "selected_round": 24,
-    "display_matchday": "R24",
+    "selected_round": 25,
+    "display_matchday": "R25",
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
       "Manchester City",
       "Aston Villa",
-      "Chelsea"
+      "Manchester United"
     ],
     "matches": [
       {
-        "match_id": 538023,
-        "home": "Tottenham",
+        "match_id": 538032,
+        "home": "Manchester United",
+        "away": "Tottenham",
+        "kst_time": "02.07 21:30 (KST)",
+        "uk_time": "Saturday 12:30 (UK)",
+        "local": "Sky Sports",
+        "rules": [
+          "Big Match",
+          "Early KO"
+        ],
+        "rule_str": "Big Match, Early KO",
+        "matchday": 25,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 538030,
+        "home": "Liverpool",
         "away": "Manchester City",
-        "kst_time": "02.02 01:30 (KST)",
+        "kst_time": "02.09 01:30 (KST)",
         "uk_time": "Sunday 16:30 (UK)",
         "local": "Sky Sports Main Event",
         "rules": [
@@ -24,32 +40,48 @@
           "Prime Time"
         ],
         "rule_str": "Big Match, Prime Time",
-        "matchday": 24,
-        "status": "TIMED",
+        "matchday": 25,
+        "status": "SCHEDULED",
         "score": "-"
       },
       {
-        "match_id": 538020,
-        "home": "Leeds United",
-        "away": "Arsenal",
-        "kst_time": "02.01 00:00 (KST)",
+        "match_id": 538027,
+        "home": "Arsenal",
+        "away": "Sunderland AFC",
+        "kst_time": "02.08 00:00 (KST)",
         "uk_time": "Saturday 15:00 (UK)",
         "local": "Sky Sports",
         "rules": [
           "Leader"
         ],
         "rule_str": "Leader",
-        "matchday": 24,
-        "status": "FINISHED",
-        "score": "0-4"
+        "matchday": 25,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ],
     "selected_matches": [
       {
-        "match_id": 538023,
-        "home": "Tottenham",
+        "match_id": 538032,
+        "home": "Manchester United",
+        "away": "Tottenham",
+        "kst_time": "02.07 21:30 (KST)",
+        "uk_time": "Saturday 12:30 (UK)",
+        "local": "Sky Sports",
+        "rules": [
+          "Big Match",
+          "Early KO"
+        ],
+        "rule_str": "Big Match, Early KO",
+        "matchday": 25,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 538030,
+        "home": "Liverpool",
         "away": "Manchester City",
-        "kst_time": "02.02 01:30 (KST)",
+        "kst_time": "02.09 01:30 (KST)",
         "uk_time": "Sunday 16:30 (UK)",
         "local": "Sky Sports Main Event",
         "rules": [
@@ -57,24 +89,24 @@
           "Prime Time"
         ],
         "rule_str": "Big Match, Prime Time",
-        "matchday": 24,
-        "status": "TIMED",
+        "matchday": 25,
+        "status": "SCHEDULED",
         "score": "-"
       },
       {
-        "match_id": 538020,
-        "home": "Leeds United",
-        "away": "Arsenal",
-        "kst_time": "02.01 00:00 (KST)",
+        "match_id": 538027,
+        "home": "Arsenal",
+        "away": "Sunderland AFC",
+        "kst_time": "02.08 00:00 (KST)",
         "uk_time": "Saturday 15:00 (UK)",
         "local": "Sky Sports",
         "rules": [
           "Leader"
         ],
         "rule_str": "Leader",
-        "matchday": 24,
-        "status": "FINISHED",
-        "score": "0-4"
+        "matchday": 25,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ]
   },
