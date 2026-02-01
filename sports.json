@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-01 11:39:46 KST",
+  "updated": "2026-02-01 15:53:52 KST",
   "epl": {
     "matchday": 24,
     "selected_round": 24,
@@ -118,12 +118,12 @@
       "event": "Australian Open",
       "opponent": "Alexander Zverev",
       "result": "W",
-      "score": "6-4, 7-6 (5), 6-7 (3), 6-7 (4), 7-5",
-      "date": "Jan 31"
+      "score": "6-4, 7-6 (7-5), 6-7 (3-7), 6-7 (4-7), 7-5",
+      "date": "Jan 30"
     },
     "next": {
       "event": "Australian Open",
-      "detail": "F vs Novak Djokovic",
+      "detail": "Final vs Novak Djokovic",
       "match_time": "Feb 1 03:30 KST",
       "tournament_dates": "Jan 12 - Feb 2",
       "status": "Grand Slam"
