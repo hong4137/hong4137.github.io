@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-01 03:36:52 KST",
+  "updated": "2026-02-01 11:39:46 KST",
   "epl": {
     "matchday": 24,
     "selected_round": 24,
@@ -9,7 +9,7 @@
       "Arsenal",
       "Manchester City",
       "Aston Villa",
-      "Manchester United"
+      "Chelsea"
     ],
     "matches": [
       {
@@ -118,8 +118,8 @@
       "event": "Australian Open",
       "opponent": "Alexander Zverev",
       "result": "W",
-      "score": "6-4, 7-6(5), 6-7(3), 6-7(4), 7-5",
-      "date": "Feb 1"
+      "score": "6-4, 7-6 (5), 6-7 (3), 6-7 (4), 7-5",
+      "date": "Jan 31"
     },
     "next": {
       "event": "Australian Open",
