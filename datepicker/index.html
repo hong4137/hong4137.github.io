@@ -768,10 +768,13 @@
       const [createForm, setCreateForm] = useState({ creator: "", members: "", focusStart: "", focusEnd: "", mealType: "dinner" });
       const [createdLink, setCreatedLink] = useState(null);
       const [error, setError] = useState(null);
+      const [mealType, setMealType] = useState("dinner");
 
       useEffect(() => {
         const p = new URLSearchParams(window.location.search);
         const gId = p.get("g");
+        const m = p.get("m");
+        if (m === "lunch") setMealType("lunch");
         if (gId) { setGroupId(gId); setScreen("loadingGroup"); }
         else { setScreen("create"); }
       }, []);
@@ -782,7 +785,7 @@
         apiCall({ action: "getGroup", groupId })
           .then(data => {
             if (data.error) { setError("그룹을 찾을 수 없습니다"); setScreen("error"); }
-            else { setGroup(data.group); setScreen(data.group.status === "closed" ? "resultLoading" : "selectName"); }
+            else { setGroup({...data.group, mealType}); setScreen(data.group.status === "closed" ? "resultLoading" : "selectName"); }
           })
           .catch(() => { setError("서버 연결에 실패했습니다"); setScreen("error"); })
           .finally(() => setLoading(false));
@@ -817,10 +820,11 @@
             members: all.join(","),
             focusStart: createForm.focusStart,
             focusEnd: createForm.focusEnd,
-            mealType: createForm.mealType || "dinner",
           });
           if (data.success) {
-            const link = `${window.location.origin}${window.location.pathname}?g=${data.groupId}`;
+            const meal = createForm.mealType || "dinner";
+            const mParam = meal === "lunch" ? "&m=lunch" : "";
+            const link = `${window.location.origin}${window.location.pathname}?g=${data.groupId}${mParam}`;
             setCreatedLink(link); setScreen("created");
           }
         } catch { setError("그룹 생성에 실패했습니다"); setScreen("error"); }
