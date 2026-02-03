@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>날짜잡자 — 약속 날짜 조율</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body, #root { height: 100%; }
+    body {
+      font-family: 'Pretendard', 'Apple SD Gothic Neo', -apple-system, sans-serif;
+      background: linear-gradient(145deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      color: #e2e8f0;
+      -webkit-font-smoothing: antialiased;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    input:focus { border-color: #38bdf8 !important; outline: none; }
+    button { -webkit-appearance: none; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+
+  <script type="text/babel">
+    const { useState, useEffect, useCallback } = React;
+
+    const API_URL = "https://script.google.com/macros/s/AKfycbymt7l0HOJjSjdB4ElU67zkBVdHDLCadb-6ieG7uIT_PdlHOR1d0MMAf5S3AGrD0wx5/exec";
+
+    // ── 유틸리티 ──────────────────────────────
+
+    function parseDate(d) {
+      if (!d) return null;
+      if (typeof d === "string") {
+        if (d.includes("T") || d.includes("GMT")) return new Date(d);
+        const [y, m, day] = d.split("-").map(Number);
+        return new Date(y, m - 1, day);
+      }
+      return new Date(d);
+    }
+
+    function fmtDate(date) {
+      const y = date.getFullYear();
+      const m = String(date.getMonth() + 1).padStart(2, "0");
+      const d = String(date.getDate()).padStart(2, "0");
+      return `${y}-${m}-${d}`;
+    }
+
+    function fmtDisplay(date) {
+      const days = ["일","월","화","수","목","금","토"];
+      return `${date.getMonth()+1}/${date.getDate()}(${days[date.getDay()]})`;
+    }
+
+    function getDaysInMonth(y, m) { return new Date(y, m+1, 0).getDate(); }
+    function getFirstDayOfMonth(y, m) { return new Date(y, m, 1).getDay(); }
+
+    async function apiCall(params) {
+      const url = new URL(API_URL);
+      Object.entries(params).forEach(([k, v]) => url.searchParams.append(k, v));
+      const res = await fetch(url.toString());
+      return res.json();
+    }
+
+    const VOTE_COLORS = {
+      preferred: { bg: "#22c55e", text: "#fff", label: "선호", emoji: "○" },
+      less_preferred: { bg: "#f59e0b", text: "#fff", label: "비선호", emoji: "△" },
+      unavailable: { bg: "#ef4444", text: "#fff", label: "불가능", emoji: "✕" },
+    };
+    const VOTE_CYCLE = [null, "preferred", "less_preferred", "unavailable"];
+
+    const inputStyle = {
+      width: "100%", padding: "12px 14px", borderRadius: 10,
+      border: "1px solid #334155", background: "#0f172a",
+      color: "#e2e8f0", fontSize: 15, fontFamily: "inherit", outline: "none", boxSizing: "border-box",
+    };
+
+    // ── 공통 컴포넌트 ─────────────────────────
+
+    function Card({ children, style }) {
+      return (
+        <div style={{
+          background: "rgba(30,41,59,0.8)", border: "1px solid #334155",
+          borderRadius: 16, padding: 24, marginBottom: 16,
+          backdropFilter: "blur(8px)", animation: "fadeIn 0.3s ease", ...style,
+        }}>{children}</div>
+      );
+    }
+
+    function Button({ children, onClick, disabled, variant="primary", style }) {
+      const styles = {
+        primary: { background: "linear-gradient(135deg,#0ea5e9,#38bdf8)", color: "#fff" },
+        secondary: { background: "rgba(51,65,85,0.8)", color: "#cbd5e1", border: "1px solid #475569" },
+        danger: { background: "linear-gradient(135deg,#dc2626,#ef4444)", color: "#fff" },
+      };
+      return (
+        <button onClick={onClick} disabled={disabled} style={{
+          width: "100%", padding: "14px 20px", borderRadius: 12, border: "none",
+          fontSize: 15, fontWeight: 700, cursor: disabled ? "default" : "pointer",
+          opacity: disabled ? 0.5 : 1, transition: "all 0.2s", fontFamily: "inherit",
+          ...styles[variant], ...style,
+        }}>{children}</button>
+      );
+    }
+
+    function LoadingSpinner() {
+      return (
+        <div style={{ textAlign: "center", padding: 60 }}>
+          <div style={{
+            width: 36, height: 36, border: "3px solid #334155",
+            borderTop: "3px solid #38bdf8", borderRadius: "50%",
+            animation: "spin 0.8s linear infinite", margin: "0 auto",
+          }} />
+        </div>
+      );
+    }
+
+    function ErrorScreen({ message }) {
+      return <Card><div style={{ textAlign: "center", padding: 24 }}>
+        <div style={{ fontSize: 40, marginBottom: 12 }}>⚠️</div>
+        <div style={{ fontSize: 16, color: "#f87171" }}>{message}</div>
+      </div></Card>;
+    }
+
+    // ── 그룹 생성 화면 ────────────────────────
+
+    function CreateScreen({ form, setForm, onSubmit, loading }) {
+      return (
+        <Card>
+          <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 20 }}>새 약속 만들기</div>
+          <div style={{ marginBottom: 16 }}>
+            <label style={{ fontSize: 13, color: "#94a3b8", display: "block", marginBottom: 6 }}>내 이름 (발행자)</label>
+            <input type="text" value={form.creator} onChange={e => setForm({...form, creator: e.target.value})} placeholder="이름을 입력하세요" style={inputStyle} />
+          </div>
+          <div style={{ marginBottom: 24 }}>
+            <label style={{ fontSize: 13, color: "#94a3b8", display: "block", marginBottom: 6 }}>참여자 이름 (쉼표로 구분)</label>
+            <input type="text" value={form.members} onChange={e => setForm({...form, members: e.target.value})} placeholder="민수, 영희, 철수" style={inputStyle} />
+            <div style={{ fontSize: 12, color: "#64748b", marginTop: 6 }}>본인 이름은 자동으로 포함됩니다</div>
+          </div>
+          <Button onClick={onSubmit} disabled={loading || !form.creator.trim() || !form.members.trim()}>
+            {loading ? "생성 중..." : "약속 만들기"}
+          </Button>
+        </Card>
+      );
+    }
+
+    // ── 생성 완료 화면 ────────────────────────
+
+    function CreatedScreen({ link }) {
+      const [copied, setCopied] = useState(false);
+      const handleCopy = () => {
+        navigator.clipboard.writeText(link).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000); });
+      };
+      return (
+        <Card>
+          <div style={{ textAlign: "center" }}>
+            <div style={{ fontSize: 48, marginBottom: 12 }}>🎉</div>
+            <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 8 }}>약속이 만들어졌습니다!</div>
+            <div style={{ fontSize: 14, color: "#94a3b8", marginBottom: 20 }}>아래 링크를 참여자들에게 공유하세요</div>
+          </div>
+          <div style={{ background: "#0f172a", borderRadius: 10, padding: "12px 14px", fontSize: 13, color: "#38bdf8", wordBreak: "break-all", marginBottom: 16, border: "1px solid #1e3a5f" }}>{link}</div>
+          <Button onClick={handleCopy}>{copied ? "✓ 복사됨!" : "링크 복사하기"}</Button>
+          <div style={{ marginTop: 12 }}>
+            <Button variant="secondary" onClick={() => window.location.href = link}>투표하러 가기 →</Button>
+          </div>
+        </Card>
+      );
+    }
+
+    // ── 이름 선택 화면 ────────────────────────
+
+    function SelectNameScreen({ group, onSelect }) {
+      return (
+        <Card>
+          <div style={{ textAlign: "center", marginBottom: 24 }}>
+            <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 6 }}>누구세요?</div>
+            <div style={{ fontSize: 14, color: "#94a3b8" }}>본인의 이름을 선택해주세요</div>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {group.members.map(name => (
+              <button key={name} onClick={() => onSelect(name)} style={{
+                padding: "16px 20px", borderRadius: 12, border: "1px solid #334155",
+                background: "rgba(15,23,42,0.6)", color: "#e2e8f0", fontSize: 16,
+                fontWeight: 600, cursor: "pointer", transition: "all 0.2s",
+                textAlign: "left", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 12,
+              }}
+              onMouseOver={e => { e.currentTarget.style.borderColor = "#38bdf8"; e.currentTarget.style.background = "rgba(56,189,248,0.08)"; }}
+              onMouseOut={e => { e.currentTarget.style.borderColor = "#334155"; e.currentTarget.style.background = "rgba(15,23,42,0.6)"; }}
+              >
+                <div style={{
+                  width: 36, height: 36, borderRadius: "50%",
+                  background: "linear-gradient(135deg,#0ea5e9,#6366f1)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: 14, fontWeight: 700, color: "#fff", flexShrink: 0,
+                }}>{name[0]}</div>
+                {name}
+              </button>
+            ))}
+          </div>
+        </Card>
+      );
+    }
+
+    // ── 월별 캘린더 ───────────────────────────
+
+    function MonthCalendar({ year, month, startDate, endDate, votes, onDayClick }) {
+      const WEEKDAYS = ["일","월","화","수","목","금","토"];
+      const daysInMonth = getDaysInMonth(year, month);
+      const firstDay = getFirstDayOfMonth(year, month);
+      const monthNames = ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"];
+      const today = new Date(); today.setHours(0,0,0,0);
+
+      const cells = [];
+      for (let i = 0; i < firstDay; i++) cells.push(<div key={`e-${i}`} />);
+      for (let day = 1; day <= daysInMonth; day++) {
+        const date = new Date(year, month, day);
+        const dateStr = fmtDate(date);
+        const isInRange = date >= startDate && date <= endDate && date >= today;
+        const vote = votes[dateStr];
+        const vc = vote ? VOTE_COLORS[vote] : null;
+        const isWeekend = date.getDay() === 0 || date.getDay() === 6;
+        const isToday = fmtDate(date) === fmtDate(today);
+
+        cells.push(
+          <div key={day} onClick={() => isInRange && onDayClick(dateStr)} style={{
+            aspectRatio: "1", display: "flex", flexDirection: "column",
+            alignItems: "center", justifyContent: "center", borderRadius: 10,
+            cursor: isInRange ? "pointer" : "default", opacity: isInRange ? 1 : 0.25,
+            background: vc ? vc.bg : "transparent",
+            border: isToday ? "2px solid #38bdf8" : "1px solid transparent",
+            transition: "all 0.15s", userSelect: "none",
+          }}>
+            <span style={{
+              fontSize: 14, fontWeight: isToday ? 800 : 500,
+              color: vc ? vc.text : isWeekend ? (date.getDay()===0 ? "#f87171" : "#60a5fa") : "#cbd5e1",
+            }}>{day}</span>
+            {vc && <span style={{ fontSize: 9, color: vc.text, marginTop: 1, opacity: 0.9 }}>{vc.emoji}</span>}
+          </div>
+        );
+      }
+
+      return (
+        <Card>
+          <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 14, color: "#f1f5f9" }}>
+            {year}년 {monthNames[month]}
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", gap: 4, marginBottom: 6 }}>
+            {WEEKDAYS.map((d,i) => (
+              <div key={d} style={{ textAlign: "center", fontSize: 12, fontWeight: 600, color: i===0 ? "#f87171" : i===6 ? "#60a5fa" : "#64748b", padding: "4px 0" }}>{d}</div>
+            ))}
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", gap: 4 }}>{cells}</div>
+        </Card>
+      );
+    }
+
+    // ── 캘린더 투표 화면 ──────────────────────
+
+    function CalendarScreen({ group, userName, votes, setVotes, onSave, saving, loading, onManage, isCreator, onBack }) {
+      const startDate = parseDate(group.dateStart);
+      const endDate = parseDate(group.dateEnd);
+      const months = [];
+      const cur = new Date(startDate.getFullYear(), startDate.getMonth(), 1);
+      while (cur <= endDate) {
+        months.push({ year: cur.getFullYear(), month: cur.getMonth() });
+        cur.setMonth(cur.getMonth() + 1);
+      }
+
+      const handleDayClick = (dateStr) => {
+        const currentVote = votes[dateStr] || null;
+        const idx = VOTE_CYCLE.indexOf(currentVote);
+        const next = VOTE_CYCLE[(idx+1) % VOTE_CYCLE.length];
+        if (next === null) { const nv = {...votes}; delete nv[dateStr]; setVotes(nv); }
+        else { setVotes({...votes, [dateStr]: next}); }
+      };
+
+      const counts = Object.values(votes).reduce((a,v) => { a[v]=(a[v]||0)+1; return a; }, {});
+
+      return (
+        <div>
+          <Card style={{ padding: 16 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <button onClick={onBack} style={{ background: "none", border: "none", color: "#94a3b8", fontSize: 14, cursor: "pointer", fontFamily: "inherit" }}>← 뒤로</button>
+              <div style={{ fontSize: 15, fontWeight: 700 }}><span style={{ color: "#38bdf8" }}>{userName}</span>님의 투표</div>
+              <div style={{ width: 40 }} />
+            </div>
+          </Card>
+
+          <Card style={{ padding: 14 }}>
+            <div style={{ display: "flex", justifyContent: "center", gap: 16, fontSize: 13 }}>
+              {Object.entries(VOTE_COLORS).map(([k,v]) => (
+                <div key={k} style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                  <div style={{ width: 14, height: 14, borderRadius: 4, background: v.bg }} />
+                  <span style={{ color: "#94a3b8" }}>{v.label}</span>
+                  <span style={{ color: "#64748b" }}>({counts[k]||0})</span>
+                </div>
+              ))}
+            </div>
+            <div style={{ textAlign: "center", fontSize: 12, color: "#475569", marginTop: 8 }}>
+              날짜를 탭하면 선호 → 비선호 → 불가능 → 해제 순환
+            </div>
+          </Card>
+
+          {months.map(({year,month}) => (
+            <MonthCalendar key={`${year}-${month}`} year={year} month={month}
+              startDate={startDate} endDate={endDate} votes={votes} onDayClick={handleDayClick} />
+          ))}
+
+          <div style={{ position: "sticky", bottom: 0, padding: "16px 0 24px", background: "linear-gradient(transparent, #0f172a 20%)" }}>
+            <Button onClick={onSave} disabled={saving}>{saving ? "저장 중..." : "투표 저장하기"}</Button>
+            {isCreator && <div style={{ marginTop: 10 }}><Button variant="secondary" onClick={onManage}>투표 관리 (마감)</Button></div>}
+          </div>
+        </div>
+      );
+    }
+
+    // ── 관리 화면 ─────────────────────────────
+
+    function ManageScreen({ group, voteStatus, onClose, onBack, loading, onRefresh }) {
+      const [confirmClose, setConfirmClose] = useState(false);
+      if (!voteStatus) return <LoadingSpinner />;
+
+      const notVoted = voteStatus.members.filter(m => !m.voted);
+      const allVoted = notVoted.length === 0;
+
+      return (
+        <div>
+          <Card style={{ padding: 16 }}>
+            <button onClick={onBack} style={{ background: "none", border: "none", color: "#94a3b8", fontSize: 14, cursor: "pointer", fontFamily: "inherit" }}>← 캘린더로 돌아가기</button>
+          </Card>
+          <Card>
+            <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 20 }}>투표 현황</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 20 }}>
+              {voteStatus.members.map(m => (
+                <div key={m.name} style={{
+                  display: "flex", justifyContent: "space-between", alignItems: "center",
+                  padding: "12px 16px", borderRadius: 10,
+                  background: m.voted ? "rgba(34,197,94,0.1)" : "rgba(239,68,68,0.1)",
+                  border: `1px solid ${m.voted ? "rgba(34,197,94,0.2)" : "rgba(239,68,68,0.2)"}`,
+                }}>
+                  <span style={{ fontWeight: 600 }}>{m.name}</span>
+                  <span style={{ fontSize: 13, color: m.voted ? "#22c55e" : "#ef4444", fontWeight: 600 }}>
+                    {m.voted ? "투표 완료 ✓" : "미투표"}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div style={{ fontSize: 13, color: "#64748b", textAlign: "center", marginBottom: 16 }}>
+              {voteStatus.votedCount}/{voteStatus.totalMembers}명 투표 완료
+            </div>
+            <Button variant="secondary" onClick={onRefresh} style={{ marginBottom: 12 }}>새로고침</Button>
+
+            {!confirmClose ? (
+              <Button variant={allVoted ? "primary" : "danger"} onClick={() => setConfirmClose(true)}>
+                {allVoted ? "투표 마감하기" : "투표 마감하기 (미투표자 있음)"}
+              </Button>
+            ) : (
+              <Card style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.3)" }}>
+                {notVoted.length > 0 ? (
+                  <div style={{ marginBottom: 16 }}>
+                    <div style={{ fontSize: 15, fontWeight: 700, color: "#f87171", marginBottom: 8 }}>미투표자를 제외하고 마감할까요?</div>
+                    <div style={{ fontSize: 14, color: "#94a3b8" }}>제외 대상: {notVoted.map(m => m.name).join(", ")}</div>
+                  </div>
+                ) : (
+                  <div style={{ marginBottom: 16 }}>
+                    <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 8 }}>투표를 마감할까요?</div>
+                    <div style={{ fontSize: 14, color: "#94a3b8" }}>마감 후에는 수정할 수 없습니다.</div>
+                  </div>
+                )}
+                <div style={{ display: "flex", gap: 10 }}>
+                  <Button variant="secondary" onClick={() => setConfirmClose(false)} style={{ flex: 1 }}>취소</Button>
+                  <Button variant="danger" onClick={() => onClose(notVoted.map(m => m.name))} disabled={loading} style={{ flex: 1 }}>
+                    {loading ? "처리 중..." : "마감 확인"}
+                  </Button>
+                </div>
+              </Card>
+            )}
+          </Card>
+        </div>
+      );
+    }
+
+    // ── 결과 화면 ─────────────────────────────
+
+    function ResultScreen({ result, group }) {
+      if (!result || !result.success) return <Card><div style={{ textAlign: "center", padding: 24, color: "#94a3b8" }}>결과를 불러올 수 없습니다</div></Card>;
+
+      const cfg = {
+        1: { icon: "🎉", color: "#22c55e", bg: "rgba(34,197,94,0.08)", border: "rgba(34,197,94,0.3)" },
+        2: { icon: "📅", color: "#f59e0b", bg: "rgba(245,158,11,0.08)", border: "rgba(245,158,11,0.3)" },
+        3: { icon: "⚠️", color: "#ef4444", bg: "rgba(239,68,68,0.08)", border: "rgba(239,68,68,0.3)" },
+      }[result.tier] || { icon: "📅", color: "#f59e0b", bg: "rgba(245,158,11,0.08)", border: "rgba(245,158,11,0.3)" };
+
+      return (
+        <div>
+          <Card style={{ background: cfg.bg, border: `1px solid ${cfg.border}`, textAlign: "center" }}>
+            <div style={{ fontSize: 48, marginBottom: 12 }}>{cfg.icon}</div>
+            <div style={{ fontSize: 20, fontWeight: 800, marginBottom: 6, color: cfg.color }}>{result.message}</div>
+            <div style={{ fontSize: 13, color: "#64748b" }}>
+              참여 인원: {result.totalMembers}명
+              {group && group.excluded && group.excluded.length > 0 && <span> (제외: {group.excluded.join(", ")})</span>}
+            </div>
+          </Card>
+          <Card>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              {result.dates.map((d, i) => {
+                const date = parseDate(d.date);
+                return (
+                  <div key={i} style={{
+                    padding: "16px 20px", borderRadius: 12,
+                    background: "rgba(15,23,42,0.6)", border: `1px solid ${cfg.border}`,
+                  }}>
+                    <div style={{ fontSize: 18, fontWeight: 800, color: cfg.color, marginBottom: result.tier > 1 ? 8 : 0 }}>
+                      {date ? fmtDisplay(date) : d.date}
+                    </div>
+                    {result.tier === 2 && (
+                      <div style={{ fontSize: 13, color: "#94a3b8" }}>
+                        선호 {d.preferred}명, 비선호 {d.lessPreferred}명
+                        {d.lessPreferredUsers && d.lessPreferredUsers.length > 0 && <span style={{ color: "#f59e0b" }}> (비선호: {d.lessPreferredUsers.join(", ")})</span>}
+                      </div>
+                    )}
+                    {result.tier === 3 && (
+                      <div style={{ fontSize: 13 }}>
+                        <div style={{ color: "#f87171", marginBottom: 2 }}>불가능 {d.unavailable}명 ({d.unavailableUsers.join(", ")})</div>
+                        <div style={{ color: "#94a3b8" }}>
+                          선호 {d.preferred}명, 비선호 {d.lessPreferred}명
+                          {d.lessPreferredUsers && d.lessPreferredUsers.length > 0 && <span style={{ color: "#f59e0b" }}> (비선호: {d.lessPreferredUsers.join(", ")})</span>}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </Card>
+        </div>
+      );
+    }
+
+    // ── 메인 앱 ───────────────────────────────
+
+    function App() {
+      const [screen, setScreen] = useState("loading");
+      const [groupId, setGroupId] = useState(null);
+      const [group, setGroup] = useState(null);
+      const [userName, setUserName] = useState(null);
+      const [votes, setVotes] = useState({});
+      const [saving, setSaving] = useState(false);
+      const [loading, setLoading] = useState(false);
+      const [result, setResult] = useState(null);
+      const [voteStatus, setVoteStatus] = useState(null);
+      const [createForm, setCreateForm] = useState({ creator: "", members: "" });
+      const [createdLink, setCreatedLink] = useState(null);
+      const [error, setError] = useState(null);
+
+      useEffect(() => {
+        const p = new URLSearchParams(window.location.search);
+        const gId = p.get("g");
+        if (gId) { setGroupId(gId); setScreen("loadingGroup"); }
+        else { setScreen("create"); }
+      }, []);
+
+      useEffect(() => {
+        if (screen !== "loadingGroup" || !groupId) return;
+        setLoading(true);
+        apiCall({ action: "getGroup", groupId })
+          .then(data => {
+            if (data.error) { setError("그룹을 찾을 수 없습니다"); setScreen("error"); }
+            else { setGroup(data.group); setScreen(data.group.status === "closed" ? "resultLoading" : "selectName"); }
+          })
+          .catch(() => { setError("서버 연결에 실패했습니다"); setScreen("error"); })
+          .finally(() => setLoading(false));
+      }, [screen, groupId]);
+
+      useEffect(() => {
+        if (screen !== "resultLoading" || !groupId) return;
+        apiCall({ action: "getResult", groupId })
+          .then(data => { setResult(data); setScreen("result"); })
+          .catch(() => { setError("결과를 불러올 수 없습니다"); setScreen("error"); });
+      }, [screen, groupId]);
+
+      const loadMyVotes = useCallback(name => {
+        setLoading(true);
+        apiCall({ action: "getMyVotes", groupId, userName: name })
+          .then(data => {
+            const vm = {};
+            if (data.votes) data.votes.forEach(v => { const d = parseDate(v.date); if (d) vm[fmtDate(d)] = v.voteType; });
+            setVotes(vm);
+          }).finally(() => setLoading(false));
+      }, [groupId]);
+
+      const handleCreate = async () => {
+        if (!createForm.creator.trim() || !createForm.members.trim()) return;
+        setLoading(true);
+        try {
+          const all = createForm.members.split(",").map(s=>s.trim()).filter(Boolean);
+          if (!all.includes(createForm.creator.trim())) all.unshift(createForm.creator.trim());
+          const data = await apiCall({ action: "createGroup", creator: createForm.creator.trim(), members: all.join(",") });
+          if (data.success) {
+            const link = `${window.location.origin}${window.location.pathname}?g=${data.groupId}`;
+            setCreatedLink(link); setScreen("created");
+          }
+        } catch { setError("그룹 생성에 실패했습니다"); setScreen("error"); }
+        finally { setLoading(false); }
+      };
+
+      const handleSave = async () => {
+        setSaving(true);
+        try {
+          const arr = Object.entries(votes).map(([date,voteType]) => ({date,voteType}));
+          await apiCall({ action: "saveVotes", groupId, userName, votes: JSON.stringify(arr) });
+        } finally { setSaving(false); }
+      };
+
+      const loadVoteStatus = async () => {
+        const data = await apiCall({ action: "getVoteStatus", groupId });
+        setVoteStatus(data);
+      };
+
+      const handleClose = async (excluded) => {
+        setLoading(true);
+        try {
+          await apiCall({ action: "closeGroup", groupId, excluded: excluded.join(",") });
+          setScreen("resultLoading");
+        } finally { setLoading(false); }
+      };
+
+      return (
+        <div style={{ maxWidth: 480, margin: "0 auto", padding: "0 16px" }}>
+          <div style={{ textAlign: "center", padding: "32px 0 16px" }}>
+            <div style={{ fontSize: 28, fontWeight: 800, letterSpacing: "-0.5px" }}>
+              <span style={{ color: "#38bdf8" }}>날짜</span><span style={{ color: "#e2e8f0" }}>잡자</span>
+            </div>
+            <div style={{ fontSize: 13, color: "#64748b", marginTop: 4 }}>쉽고 빠른 약속 날짜 조율</div>
+          </div>
+
+          {(screen === "loading" || screen === "loadingGroup" || screen === "resultLoading") && <LoadingSpinner />}
+          {screen === "error" && <ErrorScreen message={error} />}
+          {screen === "create" && <CreateScreen form={createForm} setForm={setCreateForm} onSubmit={handleCreate} loading={loading} />}
+          {screen === "created" && <CreatedScreen link={createdLink} />}
+          {screen === "selectName" && group && <SelectNameScreen group={group} onSelect={name => { setUserName(name); loadMyVotes(name); setScreen("calendar"); }} />}
+          {screen === "calendar" && group && <CalendarScreen group={group} userName={userName} votes={votes} setVotes={setVotes} onSave={handleSave} saving={saving} loading={loading} onManage={() => { loadVoteStatus(); setScreen("manage"); }} isCreator={userName === group.creator} onBack={() => setScreen("selectName")} />}
+          {screen === "manage" && group && <ManageScreen group={group} voteStatus={voteStatus} onClose={handleClose} onBack={() => setScreen("calendar")} loading={loading} onRefresh={loadVoteStatus} />}
+          {screen === "result" && result && <ResultScreen result={result} group={group} />}
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
