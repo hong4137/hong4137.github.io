@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-03 22:07:01 KST",
+  "updated": "2026-02-04 04:00:04 KST",
   "epl": {
     "matchday": 24,
     "selected_round": 25,
@@ -120,21 +120,21 @@
     },
     "schedule": [
       {
-        "opp": "76ers",
-        "date": "02.04",
-        "kst_time": "12:00",
-        "local_time": "7:00 PM PT",
-        "location": "home",
-        "venue": "Chase Center",
-        "channel": ""
-      },
-      {
         "opp": "Suns",
         "date": "02.06",
         "kst_time": "12:00",
         "local_time": "7:00 PM PT",
         "location": "away",
         "venue": "@ Phoenix",
+        "channel": ""
+      },
+      {
+        "opp": "Lakers",
+        "date": "02.08",
+        "kst_time": "10:30",
+        "local_time": "5:30 PM PT",
+        "location": "away",
+        "venue": "@ Los Angeles",
         "channel": ""
       }
     ]
@@ -151,12 +151,12 @@
       "opponent": "Novak Djokovic",
       "result": "W",
       "score": "2-6, 6-2, 6-3, 7-5",
-      "date": "February 1"
+      "date": "Feb 1"
     },
     "next": {
       "event": "Rotterdam Open",
       "detail": "-",
-      "match_time": "February 9-15",
+      "match_time": "Feb 9-15",
       "tournament_dates": "",
       "status": "-"
     }
