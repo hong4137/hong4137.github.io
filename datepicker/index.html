@@ -50,6 +50,37 @@
     function getFirstDayOfMonth(y,m) { return new Date(y,m,1).getDay(); }
     function isWeekend(y,m,d) { const day = new Date(y,m,d).getDay(); return day===0||day===6; }
 
+    // 2026년 한국 공휴일 (대체공휴일 포함)
+    const KR_HOLIDAYS = {
+      "2026-01-01": "신정",
+      "2026-02-16": "설날 연휴",
+      "2026-02-17": "설날",
+      "2026-02-18": "설날 연휴",
+      "2026-03-01": "삼일절",
+      "2026-03-02": "삼일절 대체공휴일",
+      "2026-05-05": "어린이날",
+      "2026-05-24": "부처님오신날",
+      "2026-05-25": "부처님오신날 대체공휴일",
+      "2026-06-06": "현충일",
+      "2026-08-15": "광복절",
+      "2026-08-17": "광복절 대체공휴일",
+      "2026-09-24": "추석 연휴",
+      "2026-09-25": "추석",
+      "2026-09-26": "추석 연휴",
+      "2026-10-03": "개천절",
+      "2026-10-05": "개천절 대체공휴일",
+      "2026-10-09": "한글날",
+      "2026-12-25": "크리스마스",
+    };
+
+    function getHolidayName(dateStr) { return KR_HOLIDAYS[dateStr] || null; }
+    function isHoliday(dateStr) { return !!KR_HOLIDAYS[dateStr]; }
+    function isOff(y,m,d) {
+      // 주말이거나 공휴일이면 쉬는 날
+      const dateStr = fmtDate(new Date(y,m,d));
+      return isWeekend(y,m,d) || isHoliday(dateStr);
+    }
+
     async function apiCall(params) {
       const url = new URL(API_URL);
       Object.entries(params).forEach(([k,v]) => url.searchParams.append(k,v));
@@ -224,18 +255,20 @@
         const dateStr = fmtDate(date);
         const isInRange = date >= today && date <= maxDate;
         const weekend = isWeekend(year, month, day);
+        const holiday = getHolidayName(dateStr);
+        const off = weekend || !!holiday;
         const isInFocus = focusStart && focusEnd && dateStr >= focusStart && dateStr <= focusEnd;
         const isStart = dateStr === focusStart;
         const isEnd = dateStr === focusEnd;
 
         cells.push(
-          <div key={day} onClick={() => isInRange && !weekend && onDateClick(dateStr)} style={{
+          <div key={day} onClick={() => isInRange && !off && onDateClick(dateStr)} style={{
             aspectRatio: "1", display: "flex", alignItems: "center", justifyContent: "center",
-            borderRadius: 8, cursor: isInRange && !weekend ? "pointer" : "default",
-            opacity: isInRange && !weekend ? 1 : 0.25,
+            borderRadius: 8, cursor: isInRange && !off ? "pointer" : "default",
+            opacity: isInRange && !off ? 1 : 0.25,
             background: isStart || isEnd ? "#38bdf8" : isInFocus ? "rgba(56,189,248,0.2)" : "transparent",
             fontSize: 13, fontWeight: isStart || isEnd ? 700 : 400,
-            color: isStart || isEnd ? "#0f172a" : weekend ? (date.getDay()===0 ? "#f87171" : "#60a5fa") : "#cbd5e1",
+            color: isStart || isEnd ? "#0f172a" : (holiday || date.getDay()===0) ? "#f87171" : date.getDay()===6 ? "#60a5fa" : "#cbd5e1",
           }}>{day}</div>
         );
       }
@@ -314,26 +347,30 @@
         const dateStr = fmtDate(date);
         const isInRange = date >= startDate && date <= endDate && date >= today;
         const weekend = isWeekend(year, month, day);
+        const holiday = getHolidayName(dateStr);
+        const off = weekend || !!holiday;
         const vote = votes[dateStr];
         const vc = vote ? VOTE_COLORS[vote] : null;
         const isToday = fmtDate(date) === fmtDate(today);
         const isFocus = focusStart && focusEnd && dateStr >= focusStart && dateStr <= focusEnd;
 
         cells.push(
-          <div key={day} onClick={() => isInRange && !weekend && onDayClick(dateStr)} style={{
+          <div key={day} onClick={() => isInRange && !off && onDayClick(dateStr)} style={{
             aspectRatio: "1", display: "flex", flexDirection: "column",
             alignItems: "center", justifyContent: "center", borderRadius: 10,
-            cursor: isInRange && !weekend ? "pointer" : "default",
-            opacity: isInRange ? (weekend ? 0.3 : 1) : 0.2,
+            cursor: isInRange && !off ? "pointer" : "default",
+            opacity: isInRange ? (off ? 0.3 : 1) : 0.2,
             background: vc ? vc.bg : isFocus ? "rgba(56,189,248,0.1)" : "transparent",
             border: isToday ? "2px solid #38bdf8" : isFocus && !vc ? "1px solid rgba(56,189,248,0.25)" : "1px solid transparent",
             transition: "all 0.15s", userSelect: "none",
+            position: "relative",
           }}>
             <span style={{
               fontSize: 14, fontWeight: isToday ? 800 : 500,
-              color: vc ? vc.text : weekend ? (date.getDay()===0 ? "#f87171" : "#60a5fa") : "#cbd5e1",
+              color: vc ? vc.text : (holiday || date.getDay()===0) ? "#f87171" : date.getDay()===6 ? "#60a5fa" : "#cbd5e1",
             }}>{day}</span>
             {vc && <span style={{ fontSize: 9, color: vc.text, marginTop: 1, opacity: 0.9 }}>{vc.emoji}</span>}
+            {holiday && !vc && <span style={{ fontSize: 7, color: "#f87171", marginTop: 1, lineHeight: 1, textAlign: "center" }}>{holiday.length > 3 ? holiday.slice(0,3) : holiday}</span>}
           </div>
         );
       }
