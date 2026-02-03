@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>날짜잡자 — 약속 날짜 조율</title>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -23,56 +22,46 @@
 </head>
 <body>
   <div id="root"></div>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
-
   <script type="text/babel">
     const { useState, useEffect, useCallback } = React;
-
     const API_URL = "https://script.google.com/macros/s/AKfycbymt7l0HOJjSjdB4ElU67zkBVdHDLCadb-6ieG7uIT_PdlHOR1d0MMAf5S3AGrD0wx5/exec";
 
-    // ── 유틸리티 ──────────────────────────────
+    // ── 유틸 ──────────────────────────────────
 
     function parseDate(d) {
       if (!d) return null;
       if (typeof d === "string") {
-        if (d.includes("T") || d.includes("GMT")) return new Date(d);
-        const [y, m, day] = d.split("-").map(Number);
-        return new Date(y, m - 1, day);
+        if (d.match(/^\d{4}-\d{2}-\d{2}$/)) { const [y,m,day] = d.split("-").map(Number); return new Date(y,m-1,day); }
+        return new Date(d);
       }
       return new Date(d);
     }
-
     function fmtDate(date) {
-      const y = date.getFullYear();
-      const m = String(date.getMonth() + 1).padStart(2, "0");
-      const d = String(date.getDate()).padStart(2, "0");
-      return `${y}-${m}-${d}`;
+      return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`;
     }
-
     function fmtDisplay(date) {
       const days = ["일","월","화","수","목","금","토"];
       return `${date.getMonth()+1}/${date.getDate()}(${days[date.getDay()]})`;
     }
-
-    function getDaysInMonth(y, m) { return new Date(y, m+1, 0).getDate(); }
-    function getFirstDayOfMonth(y, m) { return new Date(y, m, 1).getDay(); }
+    function getDaysInMonth(y,m) { return new Date(y,m+1,0).getDate(); }
+    function getFirstDayOfMonth(y,m) { return new Date(y,m,1).getDay(); }
+    function isWeekend(y,m,d) { const day = new Date(y,m,d).getDay(); return day===0||day===6; }
 
     async function apiCall(params) {
       const url = new URL(API_URL);
-      Object.entries(params).forEach(([k, v]) => url.searchParams.append(k, v));
+      Object.entries(params).forEach(([k,v]) => url.searchParams.append(k,v));
       const res = await fetch(url.toString());
       return res.json();
     }
 
     const VOTE_COLORS = {
-      preferred: { bg: "#22c55e", text: "#fff", label: "선호", emoji: "○" },
-      less_preferred: { bg: "#f59e0b", text: "#fff", label: "비선호", emoji: "△" },
-      unavailable: { bg: "#ef4444", text: "#fff", label: "불가능", emoji: "✕" },
+      preferred: { bg: "#22c55e", text: "#fff", label: "선호하는 날", emoji: "♥" },
+      unavailable: { bg: "#ef4444", text: "#fff", label: "절대 안되는 날", emoji: "✕" },
     };
-    const VOTE_CYCLE = [null, "preferred", "less_preferred", "unavailable"];
+    const VOTE_CYCLE = [null, "preferred", "unavailable"];
 
     const inputStyle = {
       width: "100%", padding: "12px 14px", borderRadius: 10,
@@ -83,13 +72,11 @@
     // ── 공통 컴포넌트 ─────────────────────────
 
     function Card({ children, style }) {
-      return (
-        <div style={{
-          background: "rgba(30,41,59,0.8)", border: "1px solid #334155",
-          borderRadius: 16, padding: 24, marginBottom: 16,
-          backdropFilter: "blur(8px)", animation: "fadeIn 0.3s ease", ...style,
-        }}>{children}</div>
-      );
+      return <div style={{
+        background: "rgba(30,41,59,0.8)", border: "1px solid #334155",
+        borderRadius: 16, padding: 24, marginBottom: 16,
+        backdropFilter: "blur(8px)", animation: "fadeIn 0.3s ease", ...style,
+      }}>{children}</div>;
     }
 
     function Button({ children, onClick, disabled, variant="primary", style }) {
@@ -98,26 +85,18 @@
         secondary: { background: "rgba(51,65,85,0.8)", color: "#cbd5e1", border: "1px solid #475569" },
         danger: { background: "linear-gradient(135deg,#dc2626,#ef4444)", color: "#fff" },
       };
-      return (
-        <button onClick={onClick} disabled={disabled} style={{
-          width: "100%", padding: "14px 20px", borderRadius: 12, border: "none",
-          fontSize: 15, fontWeight: 700, cursor: disabled ? "default" : "pointer",
-          opacity: disabled ? 0.5 : 1, transition: "all 0.2s", fontFamily: "inherit",
-          ...styles[variant], ...style,
-        }}>{children}</button>
-      );
+      return <button onClick={onClick} disabled={disabled} style={{
+        width: "100%", padding: "14px 20px", borderRadius: 12, border: "none",
+        fontSize: 15, fontWeight: 700, cursor: disabled ? "default" : "pointer",
+        opacity: disabled ? 0.5 : 1, transition: "all 0.2s", fontFamily: "inherit",
+        ...styles[variant], ...style,
+      }}>{children}</button>;
     }
 
     function LoadingSpinner() {
-      return (
-        <div style={{ textAlign: "center", padding: 60 }}>
-          <div style={{
-            width: 36, height: 36, border: "3px solid #334155",
-            borderTop: "3px solid #38bdf8", borderRadius: "50%",
-            animation: "spin 0.8s linear infinite", margin: "0 auto",
-          }} />
-        </div>
-      );
+      return <div style={{ textAlign: "center", padding: 60 }}>
+        <div style={{ width: 36, height: 36, border: "3px solid #334155", borderTop: "3px solid #38bdf8", borderRadius: "50%", animation: "spin 0.8s linear infinite", margin: "0 auto" }} />
+      </div>;
     }
 
     function ErrorScreen({ message }) {
@@ -130,6 +109,46 @@
     // ── 그룹 생성 화면 ────────────────────────
 
     function CreateScreen({ form, setForm, onSubmit, loading }) {
+      // 핵심구간 선택용 미니 캘린더 상태
+      const [selectingFocus, setSelectingFocus] = useState(false);
+      const [focusStep, setFocusStep] = useState(0); // 0: 시작일 선택, 1: 종료일 선택
+
+      const today = new Date(); today.setHours(0,0,0,0);
+      const maxDate = new Date(today); maxDate.setDate(maxDate.getDate() + 90);
+
+      const handleFocusDateClick = (dateStr) => {
+        if (focusStep === 0) {
+          setForm({ ...form, focusStart: dateStr, focusEnd: "" });
+          setFocusStep(1);
+        } else {
+          if (dateStr < form.focusStart) {
+            setForm({ ...form, focusStart: dateStr, focusEnd: form.focusStart });
+          } else {
+            setForm({ ...form, focusEnd: dateStr });
+          }
+          setFocusStep(0);
+          setSelectingFocus(false);
+        }
+      };
+
+      const focusLabel = () => {
+        if (form.focusStart && form.focusEnd) {
+          const s = parseDate(form.focusStart);
+          const e = parseDate(form.focusEnd);
+          return `${fmtDisplay(s)} ~ ${fmtDisplay(e)}`;
+        }
+        if (form.focusStart) return `${fmtDisplay(parseDate(form.focusStart))} ~ (종료일 선택)`;
+        return "";
+      };
+
+      // 미니 캘린더 월 목록
+      const months = [];
+      const cur = new Date(today.getFullYear(), today.getMonth(), 1);
+      while (cur <= maxDate) {
+        months.push({ year: cur.getFullYear(), month: cur.getMonth() });
+        cur.setMonth(cur.getMonth() + 1);
+      }
+
       return (
         <Card>
           <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 20 }}>새 약속 만들기</div>
@@ -137,15 +156,98 @@
             <label style={{ fontSize: 13, color: "#94a3b8", display: "block", marginBottom: 6 }}>내 이름 (발행자)</label>
             <input type="text" value={form.creator} onChange={e => setForm({...form, creator: e.target.value})} placeholder="이름을 입력하세요" style={inputStyle} />
           </div>
-          <div style={{ marginBottom: 24 }}>
+          <div style={{ marginBottom: 16 }}>
             <label style={{ fontSize: 13, color: "#94a3b8", display: "block", marginBottom: 6 }}>참여자 이름 (쉼표로 구분)</label>
             <input type="text" value={form.members} onChange={e => setForm({...form, members: e.target.value})} placeholder="민수, 영희, 철수" style={inputStyle} />
             <div style={{ fontSize: 12, color: "#64748b", marginTop: 6 }}>본인 이름은 자동으로 포함됩니다</div>
           </div>
-          <Button onClick={onSubmit} disabled={loading || !form.creator.trim() || !form.members.trim()}>
+
+          {/* 핵심 구간 */}
+          <div style={{ marginBottom: 24 }}>
+            <label style={{ fontSize: 13, color: "#94a3b8", display: "block", marginBottom: 6 }}>핵심 구간</label>
+            {form.focusStart && form.focusEnd ? (
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+                <div style={{ flex: 1, padding: "10px 14px", borderRadius: 10, background: "rgba(56,189,248,0.1)", border: "1px solid rgba(56,189,248,0.3)", fontSize: 14, color: "#38bdf8", fontWeight: 600 }}>
+                  {focusLabel()}
+                </div>
+                <button onClick={() => { setForm({...form, focusStart: "", focusEnd: ""}); setSelectingFocus(false); setFocusStep(0); }} style={{ background: "none", border: "none", color: "#64748b", fontSize: 18, cursor: "pointer" }}>✕</button>
+              </div>
+            ) : null}
+            {!selectingFocus ? (
+              <button onClick={() => { setSelectingFocus(true); setFocusStep(0); }} style={{
+                width: "100%", padding: "12px 14px", borderRadius: 10, border: "1px dashed #475569",
+                background: "transparent", color: "#94a3b8", fontSize: 14, cursor: "pointer", fontFamily: "inherit",
+              }}>
+                {form.focusStart && form.focusEnd ? "구간 다시 선택" : "📅 캘린더에서 구간 선택하기"}
+              </button>
+            ) : (
+              <div>
+                <div style={{ fontSize: 13, color: "#38bdf8", marginBottom: 8, fontWeight: 600 }}>
+                  {focusStep === 0 ? "▸ 시작일을 선택하세요" : "▸ 종료일을 선택하세요"}
+                </div>
+                {months.map(({year, month}) => (
+                  <MiniMonthCalendar key={`${year}-${month}`} year={year} month={month}
+                    today={today} maxDate={maxDate}
+                    focusStart={form.focusStart} focusEnd={form.focusEnd} focusStep={focusStep}
+                    onDateClick={handleFocusDateClick} />
+                ))}
+                <button onClick={() => { setSelectingFocus(false); setFocusStep(0); }} style={{
+                  width: "100%", padding: "10px", borderRadius: 10, border: "1px solid #475569",
+                  background: "transparent", color: "#94a3b8", fontSize: 13, cursor: "pointer", fontFamily: "inherit", marginTop: 8,
+                }}>취소</button>
+              </div>
+            )}
+            <div style={{ fontSize: 12, color: "#64748b", marginTop: 6 }}>
+              "2월 3~4째주에 보자" 같은 대략적인 기간을 설정하세요
+            </div>
+          </div>
+
+          <Button onClick={onSubmit} disabled={loading || !form.creator.trim() || !form.members.trim() || !form.focusStart || !form.focusEnd}>
             {loading ? "생성 중..." : "약속 만들기"}
           </Button>
         </Card>
+      );
+    }
+
+    // ── 미니 캘린더 (구간 선택용) ──────────────
+
+    function MiniMonthCalendar({ year, month, today, maxDate, focusStart, focusEnd, focusStep, onDateClick }) {
+      const WEEKDAYS = ["일","월","화","수","목","금","토"];
+      const daysInMonth = getDaysInMonth(year, month);
+      const firstDay = getFirstDayOfMonth(year, month);
+      const monthNames = ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"];
+
+      const cells = [];
+      for (let i = 0; i < firstDay; i++) cells.push(<div key={`e-${i}`} />);
+      for (let day = 1; day <= daysInMonth; day++) {
+        const date = new Date(year, month, day);
+        const dateStr = fmtDate(date);
+        const isInRange = date >= today && date <= maxDate;
+        const weekend = isWeekend(year, month, day);
+        const isInFocus = focusStart && focusEnd && dateStr >= focusStart && dateStr <= focusEnd;
+        const isStart = dateStr === focusStart;
+        const isEnd = dateStr === focusEnd;
+
+        cells.push(
+          <div key={day} onClick={() => isInRange && !weekend && onDateClick(dateStr)} style={{
+            aspectRatio: "1", display: "flex", alignItems: "center", justifyContent: "center",
+            borderRadius: 8, cursor: isInRange && !weekend ? "pointer" : "default",
+            opacity: isInRange && !weekend ? 1 : 0.25,
+            background: isStart || isEnd ? "#38bdf8" : isInFocus ? "rgba(56,189,248,0.2)" : "transparent",
+            fontSize: 13, fontWeight: isStart || isEnd ? 700 : 400,
+            color: isStart || isEnd ? "#0f172a" : weekend ? (date.getDay()===0 ? "#f87171" : "#60a5fa") : "#cbd5e1",
+          }}>{day}</div>
+        );
+      }
+
+      return (
+        <div style={{ marginBottom: 12, background: "rgba(15,23,42,0.4)", borderRadius: 12, padding: 12 }}>
+          <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 8, color: "#94a3b8" }}>{year}년 {monthNames[month]}</div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", gap: 2, marginBottom: 4 }}>
+            {WEEKDAYS.map((d,i) => <div key={d} style={{ textAlign: "center", fontSize: 11, color: i===0?"#f87171":i===6?"#60a5fa":"#475569", padding: "2px 0" }}>{d}</div>)}
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", gap: 2 }}>{cells}</div>
+        </div>
       );
     }
 
@@ -153,9 +255,7 @@
 
     function CreatedScreen({ link }) {
       const [copied, setCopied] = useState(false);
-      const handleCopy = () => {
-        navigator.clipboard.writeText(link).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000); });
-      };
+      const handleCopy = () => { navigator.clipboard.writeText(link).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000); }); };
       return (
         <Card>
           <div style={{ textAlign: "center" }}>
@@ -165,9 +265,7 @@
           </div>
           <div style={{ background: "#0f172a", borderRadius: 10, padding: "12px 14px", fontSize: 13, color: "#38bdf8", wordBreak: "break-all", marginBottom: 16, border: "1px solid #1e3a5f" }}>{link}</div>
           <Button onClick={handleCopy}>{copied ? "✓ 복사됨!" : "링크 복사하기"}</Button>
-          <div style={{ marginTop: 12 }}>
-            <Button variant="secondary" onClick={() => window.location.href = link}>투표하러 가기 →</Button>
-          </div>
+          <div style={{ marginTop: 12 }}><Button variant="secondary" onClick={() => window.location.href = link}>투표하러 가기 →</Button></div>
         </Card>
       );
     }
@@ -189,15 +287,9 @@
                 fontWeight: 600, cursor: "pointer", transition: "all 0.2s",
                 textAlign: "left", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 12,
               }}
-              onMouseOver={e => { e.currentTarget.style.borderColor = "#38bdf8"; e.currentTarget.style.background = "rgba(56,189,248,0.08)"; }}
-              onMouseOut={e => { e.currentTarget.style.borderColor = "#334155"; e.currentTarget.style.background = "rgba(15,23,42,0.6)"; }}
-              >
-                <div style={{
-                  width: 36, height: 36, borderRadius: "50%",
-                  background: "linear-gradient(135deg,#0ea5e9,#6366f1)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  fontSize: 14, fontWeight: 700, color: "#fff", flexShrink: 0,
-                }}>{name[0]}</div>
+              onMouseOver={e => { e.currentTarget.style.borderColor="#38bdf8"; e.currentTarget.style.background="rgba(56,189,248,0.08)"; }}
+              onMouseOut={e => { e.currentTarget.style.borderColor="#334155"; e.currentTarget.style.background="rgba(15,23,42,0.6)"; }}>
+                <div style={{ width: 36, height: 36, borderRadius: "50%", background: "linear-gradient(135deg,#0ea5e9,#6366f1)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, fontWeight: 700, color: "#fff", flexShrink: 0 }}>{name[0]}</div>
                 {name}
               </button>
             ))}
@@ -206,9 +298,9 @@
       );
     }
 
-    // ── 월별 캘린더 ───────────────────────────
+    // ── 월별 캘린더 (투표용) ──────────────────
 
-    function MonthCalendar({ year, month, startDate, endDate, votes, onDayClick }) {
+    function MonthCalendar({ year, month, startDate, endDate, focusStart, focusEnd, votes, onDayClick }) {
       const WEEKDAYS = ["일","월","화","수","목","금","토"];
       const daysInMonth = getDaysInMonth(year, month);
       const firstDay = getFirstDayOfMonth(year, month);
@@ -221,23 +313,25 @@
         const date = new Date(year, month, day);
         const dateStr = fmtDate(date);
         const isInRange = date >= startDate && date <= endDate && date >= today;
+        const weekend = isWeekend(year, month, day);
         const vote = votes[dateStr];
         const vc = vote ? VOTE_COLORS[vote] : null;
-        const isWeekend = date.getDay() === 0 || date.getDay() === 6;
         const isToday = fmtDate(date) === fmtDate(today);
+        const isFocus = focusStart && focusEnd && dateStr >= focusStart && dateStr <= focusEnd;
 
         cells.push(
-          <div key={day} onClick={() => isInRange && onDayClick(dateStr)} style={{
+          <div key={day} onClick={() => isInRange && !weekend && onDayClick(dateStr)} style={{
             aspectRatio: "1", display: "flex", flexDirection: "column",
             alignItems: "center", justifyContent: "center", borderRadius: 10,
-            cursor: isInRange ? "pointer" : "default", opacity: isInRange ? 1 : 0.25,
-            background: vc ? vc.bg : "transparent",
-            border: isToday ? "2px solid #38bdf8" : "1px solid transparent",
+            cursor: isInRange && !weekend ? "pointer" : "default",
+            opacity: isInRange ? (weekend ? 0.3 : 1) : 0.2,
+            background: vc ? vc.bg : isFocus ? "rgba(56,189,248,0.1)" : "transparent",
+            border: isToday ? "2px solid #38bdf8" : isFocus && !vc ? "1px solid rgba(56,189,248,0.25)" : "1px solid transparent",
             transition: "all 0.15s", userSelect: "none",
           }}>
             <span style={{
               fontSize: 14, fontWeight: isToday ? 800 : 500,
-              color: vc ? vc.text : isWeekend ? (date.getDay()===0 ? "#f87171" : "#60a5fa") : "#cbd5e1",
+              color: vc ? vc.text : weekend ? (date.getDay()===0 ? "#f87171" : "#60a5fa") : "#cbd5e1",
             }}>{day}</span>
             {vc && <span style={{ fontSize: 9, color: vc.text, marginTop: 1, opacity: 0.9 }}>{vc.emoji}</span>}
           </div>
@@ -250,9 +344,7 @@
             {year}년 {monthNames[month]}
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", gap: 4, marginBottom: 6 }}>
-            {WEEKDAYS.map((d,i) => (
-              <div key={d} style={{ textAlign: "center", fontSize: 12, fontWeight: 600, color: i===0 ? "#f87171" : i===6 ? "#60a5fa" : "#64748b", padding: "4px 0" }}>{d}</div>
-            ))}
+            {WEEKDAYS.map((d,i) => <div key={d} style={{ textAlign: "center", fontSize: 12, fontWeight: 600, color: i===0?"#f87171":i===6?"#60a5fa":"#64748b", padding: "4px 0" }}>{d}</div>)}
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", gap: 4 }}>{cells}</div>
         </Card>
@@ -263,28 +355,30 @@
 
     function CalendarScreen({ group, userName, votes, setVotes, onSave, saving, loading, onManage, isCreator, onBack }) {
       const [linkCopied, setLinkCopied] = useState(false);
+      const [saveMsg, setSaveMsg] = useState("");
       const startDate = parseDate(group.dateStart);
       const endDate = parseDate(group.dateEnd);
       const months = [];
       const cur = new Date(startDate.getFullYear(), startDate.getMonth(), 1);
-      while (cur <= endDate) {
-        months.push({ year: cur.getFullYear(), month: cur.getMonth() });
-        cur.setMonth(cur.getMonth() + 1);
-      }
+      while (cur <= endDate) { months.push({ year: cur.getFullYear(), month: cur.getMonth() }); cur.setMonth(cur.getMonth() + 1); }
+
+      const focusStart = group.focusStart ? (typeof group.focusStart === "string" && group.focusStart.match(/^\d{4}-\d{2}-\d{2}$/) ? group.focusStart : fmtDate(parseDate(group.focusStart))) : "";
+      const focusEnd = group.focusEnd ? (typeof group.focusEnd === "string" && group.focusEnd.match(/^\d{4}-\d{2}-\d{2}$/) ? group.focusEnd : fmtDate(parseDate(group.focusEnd))) : "";
 
       const handleDayClick = (dateStr) => {
-        const currentVote = votes[dateStr] || null;
-        const idx = VOTE_CYCLE.indexOf(currentVote);
+        const cur = votes[dateStr] || null;
+        const idx = VOTE_CYCLE.indexOf(cur);
         const next = VOTE_CYCLE[(idx+1) % VOTE_CYCLE.length];
         if (next === null) { const nv = {...votes}; delete nv[dateStr]; setVotes(nv); }
         else { setVotes({...votes, [dateStr]: next}); }
       };
 
-      const handleCopyLink = () => {
-        navigator.clipboard.writeText(window.location.href).then(() => {
-          setLinkCopied(true);
-          setTimeout(() => setLinkCopied(false), 2000);
-        });
+      const handleCopyLink = () => { navigator.clipboard.writeText(window.location.href).then(() => { setLinkCopied(true); setTimeout(() => setLinkCopied(false), 2000); }); };
+
+      const handleSave = async () => {
+        await onSave();
+        setSaveMsg("저장 완료 ✓");
+        setTimeout(() => setSaveMsg(""), 2000);
       };
 
       const counts = Object.values(votes).reduce((a,v) => { a[v]=(a[v]||0)+1; return a; }, {});
@@ -301,8 +395,21 @@
             </div>
           </Card>
 
+          {/* 핵심구간 안내 */}
+          {focusStart && focusEnd && (
+            <Card style={{ padding: 14, background: "rgba(56,189,248,0.06)", border: "1px solid rgba(56,189,248,0.2)" }}>
+              <div style={{ textAlign: "center", fontSize: 13, color: "#38bdf8", fontWeight: 600 }}>
+                핵심 구간: {fmtDisplay(parseDate(focusStart))} ~ {fmtDisplay(parseDate(focusEnd))}
+              </div>
+              <div style={{ textAlign: "center", fontSize: 12, color: "#64748b", marginTop: 4 }}>
+                하늘색 영역 위주로 투표해주세요 · 영역 밖도 투표 가능
+              </div>
+            </Card>
+          )}
+
+          {/* 범례 */}
           <Card style={{ padding: 14 }}>
-            <div style={{ display: "flex", justifyContent: "center", gap: 16, fontSize: 13 }}>
+            <div style={{ display: "flex", justifyContent: "center", gap: 20, fontSize: 13 }}>
               {Object.entries(VOTE_COLORS).map(([k,v]) => (
                 <div key={k} style={{ display: "flex", alignItems: "center", gap: 6 }}>
                   <div style={{ width: 14, height: 14, borderRadius: 4, background: v.bg }} />
@@ -312,17 +419,21 @@
               ))}
             </div>
             <div style={{ textAlign: "center", fontSize: 12, color: "#475569", marginTop: 8 }}>
-              날짜를 탭하면 선호 → 비선호 → 불가능 → 해제 순환
+              빈 날짜 = 비선호 · 주말은 투표 대상 아님
             </div>
           </Card>
 
           {months.map(({year,month}) => (
             <MonthCalendar key={`${year}-${month}`} year={year} month={month}
-              startDate={startDate} endDate={endDate} votes={votes} onDayClick={handleDayClick} />
+              startDate={startDate} endDate={endDate}
+              focusStart={focusStart} focusEnd={focusEnd}
+              votes={votes} onDayClick={handleDayClick} />
           ))}
 
           <div style={{ position: "sticky", bottom: 0, padding: "16px 0 24px", background: "linear-gradient(transparent, #0f172a 20%)" }}>
-            <Button onClick={onSave} disabled={saving}>{saving ? "저장 중..." : "투표 저장하기"}</Button>
+            <Button onClick={handleSave} disabled={saving}>
+              {saving ? "저장 중..." : saveMsg || "투표 저장하기"}
+            </Button>
             {isCreator && <div style={{ marginTop: 10 }}><Button variant="secondary" onClick={onManage}>투표 관리 (마감)</Button></div>}
           </div>
         </div>
@@ -334,7 +445,6 @@
     function ManageScreen({ group, voteStatus, onClose, onBack, loading, onRefresh }) {
       const [confirmClose, setConfirmClose] = useState(false);
       if (!voteStatus) return <LoadingSpinner />;
-
       const notVoted = voteStatus.members.filter(m => !m.voted);
       const allVoted = notVoted.length === 0;
 
@@ -354,17 +464,12 @@
                   border: `1px solid ${m.voted ? "rgba(34,197,94,0.2)" : "rgba(239,68,68,0.2)"}`,
                 }}>
                   <span style={{ fontWeight: 600 }}>{m.name}</span>
-                  <span style={{ fontSize: 13, color: m.voted ? "#22c55e" : "#ef4444", fontWeight: 600 }}>
-                    {m.voted ? "투표 완료 ✓" : "미투표"}
-                  </span>
+                  <span style={{ fontSize: 13, color: m.voted ? "#22c55e" : "#ef4444", fontWeight: 600 }}>{m.voted ? "투표 완료 ✓" : "미투표"}</span>
                 </div>
               ))}
             </div>
-            <div style={{ fontSize: 13, color: "#64748b", textAlign: "center", marginBottom: 16 }}>
-              {voteStatus.votedCount}/{voteStatus.totalMembers}명 투표 완료
-            </div>
+            <div style={{ fontSize: 13, color: "#64748b", textAlign: "center", marginBottom: 16 }}>{voteStatus.votedCount}/{voteStatus.totalMembers}명 투표 완료</div>
             <Button variant="secondary" onClick={onRefresh} style={{ marginBottom: 12 }}>새로고침</Button>
-
             {!confirmClose ? (
               <Button variant={allVoted ? "primary" : "danger"} onClick={() => setConfirmClose(true)}>
                 {allVoted ? "투표 마감하기" : "투표 마감하기 (미투표자 있음)"}
@@ -384,9 +489,7 @@
                 )}
                 <div style={{ display: "flex", gap: 10 }}>
                   <Button variant="secondary" onClick={() => setConfirmClose(false)} style={{ flex: 1 }}>취소</Button>
-                  <Button variant="danger" onClick={() => onClose(notVoted.map(m => m.name))} disabled={loading} style={{ flex: 1 }}>
-                    {loading ? "처리 중..." : "마감 확인"}
-                  </Button>
+                  <Button variant="danger" onClick={() => onClose(notVoted.map(m => m.name))} disabled={loading} style={{ flex: 1 }}>{loading ? "처리 중..." : "마감 확인"}</Button>
                 </div>
               </Card>
             )}
@@ -404,7 +507,7 @@
         1: { icon: "🎉", color: "#22c55e", bg: "rgba(34,197,94,0.08)", border: "rgba(34,197,94,0.3)" },
         2: { icon: "📅", color: "#f59e0b", bg: "rgba(245,158,11,0.08)", border: "rgba(245,158,11,0.3)" },
         3: { icon: "⚠️", color: "#ef4444", bg: "rgba(239,68,68,0.08)", border: "rgba(239,68,68,0.3)" },
-      }[result.tier] || { icon: "📅", color: "#f59e0b", bg: "rgba(245,158,11,0.08)", border: "rgba(245,158,11,0.3)" };
+      }[result.tier] || { icon: "📅", color: "#94a3b8", bg: "rgba(148,163,184,0.08)", border: "rgba(148,163,184,0.3)" };
 
       return (
         <div>
@@ -415,31 +518,29 @@
               참여 인원: {result.totalMembers}명
               {group && group.excluded && group.excluded.length > 0 && <span> (제외: {group.excluded.join(", ")})</span>}
             </div>
+            {result.fromFocus === false && <div style={{ fontSize: 12, color: "#f59e0b", marginTop: 6 }}>핵심 구간에서 결과를 찾지 못해 전체 범위에서 산출했습니다</div>}
           </Card>
           <Card>
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {result.dates.map((d, i) => {
                 const date = parseDate(d.date);
                 return (
-                  <div key={i} style={{
-                    padding: "16px 20px", borderRadius: 12,
-                    background: "rgba(15,23,42,0.6)", border: `1px solid ${cfg.border}`,
-                  }}>
+                  <div key={i} style={{ padding: "16px 20px", borderRadius: 12, background: "rgba(15,23,42,0.6)", border: `1px solid ${cfg.border}` }}>
                     <div style={{ fontSize: 18, fontWeight: 800, color: cfg.color, marginBottom: result.tier > 1 ? 8 : 0 }}>
                       {date ? fmtDisplay(date) : d.date}
                     </div>
                     {result.tier === 2 && (
                       <div style={{ fontSize: 13, color: "#94a3b8" }}>
-                        선호 {d.preferred}명, 비선호 {d.lessPreferred}명
-                        {d.lessPreferredUsers && d.lessPreferredUsers.length > 0 && <span style={{ color: "#f59e0b" }}> (비선호: {d.lessPreferredUsers.join(", ")})</span>}
+                        선호 {d.preferred}명
+                        {d.neutralUsers && d.neutralUsers.length > 0 && <span style={{ color: "#f59e0b" }}> · 비선호: {d.neutralUsers.join(", ")}</span>}
                       </div>
                     )}
                     {result.tier === 3 && (
                       <div style={{ fontSize: 13 }}>
-                        <div style={{ color: "#f87171", marginBottom: 2 }}>불가능 {d.unavailable}명 ({d.unavailableUsers.join(", ")})</div>
+                        <div style={{ color: "#f87171", marginBottom: 2 }}>절대불가 {d.unavailable}명 ({d.unavailableUsers.join(", ")})</div>
                         <div style={{ color: "#94a3b8" }}>
-                          선호 {d.preferred}명, 비선호 {d.lessPreferred}명
-                          {d.lessPreferredUsers && d.lessPreferredUsers.length > 0 && <span style={{ color: "#f59e0b" }}> (비선호: {d.lessPreferredUsers.join(", ")})</span>}
+                          선호 {d.preferred}명
+                          {d.neutralUsers && d.neutralUsers.length > 0 && <span style={{ color: "#f59e0b" }}> · 비선호: {d.neutralUsers.join(", ")}</span>}
                         </div>
                       </div>
                     )}
@@ -464,7 +565,7 @@
       const [loading, setLoading] = useState(false);
       const [result, setResult] = useState(null);
       const [voteStatus, setVoteStatus] = useState(null);
-      const [createForm, setCreateForm] = useState({ creator: "", members: "" });
+      const [createForm, setCreateForm] = useState({ creator: "", members: "", focusStart: "", focusEnd: "" });
       const [createdLink, setCreatedLink] = useState(null);
       const [error, setError] = useState(null);
 
@@ -510,7 +611,13 @@
         try {
           const all = createForm.members.split(",").map(s=>s.trim()).filter(Boolean);
           if (!all.includes(createForm.creator.trim())) all.unshift(createForm.creator.trim());
-          const data = await apiCall({ action: "createGroup", creator: createForm.creator.trim(), members: all.join(",") });
+          const data = await apiCall({
+            action: "createGroup",
+            creator: createForm.creator.trim(),
+            members: all.join(","),
+            focusStart: createForm.focusStart,
+            focusEnd: createForm.focusEnd,
+          });
           if (data.success) {
             const link = `${window.location.origin}${window.location.pathname}?g=${data.groupId}`;
             setCreatedLink(link); setScreen("created");
@@ -527,17 +634,12 @@
         } finally { setSaving(false); }
       };
 
-      const loadVoteStatus = async () => {
-        const data = await apiCall({ action: "getVoteStatus", groupId });
-        setVoteStatus(data);
-      };
+      const loadVoteStatus = async () => { const data = await apiCall({ action: "getVoteStatus", groupId }); setVoteStatus(data); };
 
       const handleClose = async (excluded) => {
         setLoading(true);
-        try {
-          await apiCall({ action: "closeGroup", groupId, excluded: excluded.join(",") });
-          setScreen("resultLoading");
-        } finally { setLoading(false); }
+        try { await apiCall({ action: "closeGroup", groupId, excluded: excluded.join(",") }); setScreen("resultLoading"); }
+        finally { setLoading(false); }
       };
 
       return (
@@ -548,7 +650,6 @@
             </div>
             <div style={{ fontSize: 13, color: "#64748b", marginTop: 4 }}>쉽고 빠른 약속 날짜 조율</div>
           </div>
-
           {(screen === "loading" || screen === "loadingGroup" || screen === "resultLoading") && <LoadingSpinner />}
           {screen === "error" && <ErrorScreen message={error} />}
           {screen === "create" && <CreateScreen form={createForm} setForm={setCreateForm} onSubmit={handleCreate} loading={loading} />}
