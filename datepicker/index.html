@@ -262,6 +262,7 @@
     // ── 캘린더 투표 화면 ──────────────────────
 
     function CalendarScreen({ group, userName, votes, setVotes, onSave, saving, loading, onManage, isCreator, onBack }) {
+      const [linkCopied, setLinkCopied] = useState(false);
       const startDate = parseDate(group.dateStart);
       const endDate = parseDate(group.dateEnd);
       const months = [];
@@ -279,6 +280,13 @@
         else { setVotes({...votes, [dateStr]: next}); }
       };
 
+      const handleCopyLink = () => {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+          setLinkCopied(true);
+          setTimeout(() => setLinkCopied(false), 2000);
+        });
+      };
+
       const counts = Object.values(votes).reduce((a,v) => { a[v]=(a[v]||0)+1; return a; }, {});
 
       return (
@@ -287,7 +295,9 @@
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <button onClick={onBack} style={{ background: "none", border: "none", color: "#94a3b8", fontSize: 14, cursor: "pointer", fontFamily: "inherit" }}>← 뒤로</button>
               <div style={{ fontSize: 15, fontWeight: 700 }}><span style={{ color: "#38bdf8" }}>{userName}</span>님의 투표</div>
-              <div style={{ width: 40 }} />
+              <button onClick={handleCopyLink} style={{ background: "none", border: "none", color: linkCopied ? "#22c55e" : "#64748b", fontSize: 13, cursor: "pointer", fontFamily: "inherit", whiteSpace: "nowrap" }}>
+                {linkCopied ? "✓ 복사됨" : "🔗 링크"}
+              </button>
             </div>
           </Card>
 
