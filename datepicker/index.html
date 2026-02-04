@@ -532,6 +532,32 @@
               votes={votes} onDayClick={handleDayClick} />
           ))}
 
+          {/* 나머지 전부 불가 */}
+          {Object.values(votes).some(v => v === "preferred") && (
+            <div style={{ textAlign: "center", marginBottom: 8 }}>
+              <button onClick={() => {
+                const newVotes = {...votes};
+                const today = new Date(); today.setHours(0,0,0,0);
+                const d = new Date(startDate);
+                while (d <= endDate) {
+                  const ds = fmtDate(d);
+                  const y = d.getFullYear(), m = d.getMonth(), day = d.getDate();
+                  if (d >= today && !isOff(y,m,day) && !newVotes[ds]) {
+                    newVotes[ds] = "unavailable";
+                  }
+                  d.setDate(d.getDate()+1);
+                }
+                setVotes(newVotes);
+              }} style={{
+                background: "none", border: "none", color: "#64748b", fontSize: 12,
+                cursor: "pointer", fontFamily: "inherit", textDecoration: "underline",
+                padding: "6px 12px",
+              }}>
+                선호한 날 외 나머지 전부 불가 처리
+              </button>
+            </div>
+          )}
+
           <div style={{ position: "sticky", bottom: 0, padding: "16px 0 24px", background: "linear-gradient(transparent, #0f172a 20%)" }}>
             <Button onClick={handleSave} disabled={saving}>
               {saving ? "저장 중..." : saveMsg || "투표 저장하기"}
@@ -552,6 +578,7 @@
       const [newFocusEnd, setNewFocusEnd] = useState(group.focusEnd || "");
       const [focusSaving, setFocusSaving] = useState(false);
       const [focusMsg, setFocusMsg] = useState("");
+      const [vip, setVip] = useState("");
 
       if (!voteStatus) return <LoadingSpinner />;
       const notVoted = voteStatus.members.filter(m => !m.voted);
@@ -666,6 +693,35 @@
             </div>
             <div style={{ fontSize: 13, color: "#64748b", textAlign: "center", marginBottom: 16 }}>{voteStatus.votedCount}/{voteStatus.totalMembers}명 투표 완료</div>
             <Button variant="secondary" onClick={onRefresh} style={{ marginBottom: 12 }}>새로고침</Button>
+
+            {/* 주인공 모드 */}
+            <div style={{ padding: "14px 16px", borderRadius: 12, background: "rgba(168,85,247,0.06)", border: "1px solid rgba(168,85,247,0.2)", marginBottom: 12 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+                <span style={{ fontSize: 18 }}>👑</span>
+                <span style={{ fontSize: 14, fontWeight: 700, color: "#c084fc" }}>주인공 모드</span>
+                <span style={{ fontSize: 12, color: "#64748b" }}>선택사항</span>
+              </div>
+              <div style={{ fontSize: 12, color: "#94a3b8", marginBottom: 10 }}>특정 한 사람이 되는 날 중에서만 최적 날짜를 찾습니다</div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                <button onClick={() => setVip("")} style={{
+                  padding: "8px 14px", borderRadius: 8, fontSize: 13, fontFamily: "inherit", cursor: "pointer",
+                  border: !vip ? "2px solid #c084fc" : "1px solid #334155",
+                  background: !vip ? "rgba(168,85,247,0.15)" : "transparent",
+                  color: !vip ? "#e2e8f0" : "#64748b", fontWeight: !vip ? 700 : 400,
+                }}>없음</button>
+                {group.members.filter(m => !group.excluded || !group.excluded.includes(m)).map(name => (
+                  <button key={name} onClick={() => setVip(name)} style={{
+                    padding: "8px 14px", borderRadius: 8, fontSize: 13, fontFamily: "inherit", cursor: "pointer",
+                    border: vip === name ? "2px solid #c084fc" : "1px solid #334155",
+                    background: vip === name ? "rgba(168,85,247,0.15)" : "transparent",
+                    color: vip === name ? "#e2e8f0" : "#94a3b8", fontWeight: vip === name ? 700 : 400,
+                  }}>
+                    {vip === name && "👑 "}{name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {!confirmClose ? (
               <Button variant={allVoted ? "primary" : "danger"} onClick={() => setConfirmClose(true)}>
                 {allVoted ? "투표 마감하기" : "투표 마감하기 (미투표자 있음)"}
@@ -685,7 +741,7 @@
                 )}
                 <div style={{ display: "flex", gap: 10 }}>
                   <Button variant="secondary" onClick={() => setConfirmClose(false)} style={{ flex: 1 }}>취소</Button>
-                  <Button variant="danger" onClick={() => onClose(notVoted.map(m => m.name))} disabled={loading} style={{ flex: 1 }}>{loading ? "처리 중..." : "마감 확인"}</Button>
+                  <Button variant="danger" onClick={() => onClose(notVoted.map(m => m.name), vip)} disabled={loading} style={{ flex: 1 }}>{loading ? "처리 중..." : "마감 확인"}</Button>
                 </div>
               </Card>
             )}
@@ -697,10 +753,16 @@
     // ── 결과 화면 ─────────────────────────────
 
     function ResultScreen({ result, group }) {
+      const [selectedDate, setSelectedDate] = useState(null);
+      const [eventTitle, setEventTitle] = useState("");
+      const [eventTime, setEventTime] = useState(group && group.mealType === "lunch" ? "12:00" : "19:00");
+      const [eventDuration, setEventDuration] = useState("2");
+
       if (!result || !result.success) return <Card><div style={{ textAlign: "center", padding: 24, color: "#94a3b8" }}>결과를 불러올 수 없습니다</div></Card>;
 
       const mealLabel = group && group.mealType === "lunch" ? "점심" : "저녁";
       const mealEmoji = group && group.mealType === "lunch" ? "☀️" : "🌙";
+      const defaultTime = group && group.mealType === "lunch" ? "12:00" : "19:00";
 
       const cfg = {
         1: { icon: "🎉", color: "#22c55e", bg: "rgba(34,197,94,0.08)", border: "rgba(34,197,94,0.3)" },
@@ -708,10 +770,22 @@
         3: { icon: "⚠️", color: "#ef4444", bg: "rgba(239,68,68,0.08)", border: "rgba(239,68,68,0.3)" },
       }[result.tier] || { icon: "📅", color: "#94a3b8", bg: "rgba(148,163,184,0.08)", border: "rgba(148,163,184,0.3)" };
 
+      const buildGcalUrl = () => {
+        const d = parseDate(selectedDate);
+        const [h, m] = (eventTime || defaultTime).split(":").map(Number);
+        const start = new Date(d.getFullYear(), d.getMonth(), d.getDate(), h, m);
+        const dur = parseFloat(eventDuration) || 2;
+        const end = new Date(start.getTime() + dur * 60 * 60 * 1000);
+        const fmt = (dt) => dt.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+        const title = encodeURIComponent(eventTitle || `${mealLabel} 약속`);
+        return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${fmt(start)}/${fmt(end)}`;
+      };
+
       return (
         <div>
           <Card style={{ background: cfg.bg, border: `1px solid ${cfg.border}`, textAlign: "center" }}>
             <div style={{ fontSize: 13, color: "#94a3b8", marginBottom: 8 }}>{mealEmoji} {mealLabel} 약속</div>
+            {result.vip && <div style={{ fontSize: 13, color: "#c084fc", marginBottom: 4 }}>👑 {result.vip}님 중심으로 산출</div>}
             <div style={{ fontSize: 48, marginBottom: 12 }}>{cfg.icon}</div>
             <div style={{ fontSize: 20, fontWeight: 800, marginBottom: 6, color: cfg.color }}>{result.message}</div>
             <div style={{ fontSize: 13, color: "#64748b" }}>
@@ -720,23 +794,35 @@
             </div>
             {result.fromFocus === false && <div style={{ fontSize: 12, color: "#f59e0b", marginTop: 6 }}>핵심 구간에서 결과를 찾지 못해 전체 범위에서 산출했습니다</div>}
           </Card>
+
+          {/* 후보 날짜 리스트 — 선택 가능 */}
           <Card>
-            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            <div style={{ fontSize: 13, color: "#94a3b8", marginBottom: 12 }}>날짜를 선택하면 캘린더에 추가할 수 있어요</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {result.dates.map((d, i) => {
                 const date = parseDate(d.date);
+                const isSelected = selectedDate === d.date;
                 return (
-                  <div key={i} style={{ padding: "16px 20px", borderRadius: 12, background: "rgba(15,23,42,0.6)", border: `1px solid ${cfg.border}` }}>
-                    <div style={{ fontSize: 18, fontWeight: 800, color: cfg.color, marginBottom: result.tier > 1 ? 8 : 0 }}>
-                      {date ? fmtDisplay(date) : d.date}
+                  <button key={i} onClick={() => setSelectedDate(isSelected ? null : d.date)} style={{
+                    padding: "16px 20px", borderRadius: 12, textAlign: "left",
+                    background: isSelected ? "rgba(56,189,248,0.1)" : "rgba(15,23,42,0.6)",
+                    border: isSelected ? "2px solid #38bdf8" : `1px solid ${cfg.border}`,
+                    cursor: "pointer", fontFamily: "inherit", transition: "all 0.15s",
+                  }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <div style={{ fontSize: 18, fontWeight: 800, color: isSelected ? "#38bdf8" : cfg.color }}>
+                        {date ? fmtDisplay(date) : d.date}
+                      </div>
+                      {isSelected && <span style={{ fontSize: 13, color: "#38bdf8", fontWeight: 600 }}>선택됨 ✓</span>}
                     </div>
                     {result.tier === 2 && (
-                      <div style={{ fontSize: 13, color: "#94a3b8" }}>
+                      <div style={{ fontSize: 13, color: "#94a3b8", marginTop: 6 }}>
                         선호 {d.preferred}명
                         {d.neutralUsers && d.neutralUsers.length > 0 && <span style={{ color: "#f59e0b" }}> · 비선호: {d.neutralUsers.join(", ")}</span>}
                       </div>
                     )}
                     {result.tier === 3 && (
-                      <div style={{ fontSize: 13 }}>
+                      <div style={{ fontSize: 13, marginTop: 6 }}>
                         <div style={{ color: "#f87171", marginBottom: 2 }}>절대불가 {d.unavailable}명 ({d.unavailableUsers.join(", ")})</div>
                         <div style={{ color: "#94a3b8" }}>
                           선호 {d.preferred}명
@@ -744,11 +830,48 @@
                         </div>
                       </div>
                     )}
-                  </div>
+                  </button>
                 );
               })}
             </div>
           </Card>
+
+          {/* 구글 캘린더 추가 — 날짜 선택 시 표시 */}
+          {selectedDate && (
+            <Card style={{ background: "rgba(56,189,248,0.06)", border: "1px solid rgba(56,189,248,0.25)" }}>
+              <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 16 }}>📅 캘린더에 추가</div>
+              <div style={{ marginBottom: 12 }}>
+                <label style={{ fontSize: 13, color: "#94a3b8", display: "block", marginBottom: 6 }}>모임 제목</label>
+                <input type="text" value={eventTitle} onChange={e => setEventTitle(e.target.value)}
+                  placeholder={`${mealLabel} 약속`} style={inputStyle} />
+              </div>
+              <div style={{ display: "flex", gap: 10, marginBottom: 16 }}>
+                <div style={{ flex: 1 }}>
+                  <label style={{ fontSize: 13, color: "#94a3b8", display: "block", marginBottom: 6 }}>시작 시간</label>
+                  <input type="time" value={eventTime || defaultTime} onChange={e => setEventTime(e.target.value)} style={inputStyle} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <label style={{ fontSize: 13, color: "#94a3b8", display: "block", marginBottom: 6 }}>소요 시간</label>
+                  <select value={eventDuration} onChange={e => setEventDuration(e.target.value)} style={{...inputStyle, cursor: "pointer"}}>
+                    <option value="1">1시간</option>
+                    <option value="1.5">1시간 30분</option>
+                    <option value="2">2시간</option>
+                    <option value="2.5">2시간 30분</option>
+                    <option value="3">3시간</option>
+                    <option value="4">4시간</option>
+                  </select>
+                </div>
+              </div>
+              <a href={buildGcalUrl()} target="_blank" rel="noopener noreferrer" style={{
+                display: "block", width: "100%", padding: "14px 20px", borderRadius: 12,
+                background: "linear-gradient(135deg,#0ea5e9,#38bdf8)", color: "#fff",
+                fontSize: 15, fontWeight: 700, textAlign: "center", textDecoration: "none",
+                boxSizing: "border-box",
+              }}>
+                Google 캘린더에 추가하기
+              </a>
+            </Card>
+          )}
         </div>
       );
     }
@@ -769,6 +892,7 @@
       const [createdLink, setCreatedLink] = useState(null);
       const [error, setError] = useState(null);
       const [mealType, setMealType] = useState("dinner");
+      const [vipName, setVipName] = useState("");
 
       useEffect(() => {
         const p = new URLSearchParams(window.location.search);
@@ -793,10 +917,12 @@
 
       useEffect(() => {
         if (screen !== "resultLoading" || !groupId) return;
-        apiCall({ action: "getResult", groupId })
+        const params = { action: "getResult", groupId };
+        if (vipName) params.vip = vipName;
+        apiCall(params)
           .then(data => { setResult(data); setScreen("result"); })
           .catch(() => { setError("결과를 불러올 수 없습니다"); setScreen("error"); });
-      }, [screen, groupId]);
+      }, [screen, groupId, vipName]);
 
       const loadMyVotes = useCallback(name => {
         setLoading(true);
@@ -841,8 +967,9 @@
 
       const loadVoteStatus = async () => { const data = await apiCall({ action: "getVoteStatus", groupId }); setVoteStatus(data); };
 
-      const handleClose = async (excluded) => {
+      const handleClose = async (excluded, vip) => {
         setLoading(true);
+        setVipName(vip || "");
         try { await apiCall({ action: "closeGroup", groupId, excluded: excluded.join(",") }); setScreen("resultLoading"); }
         finally { setLoading(false); }
       };
