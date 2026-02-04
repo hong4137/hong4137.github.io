@@ -1001,7 +1001,7 @@
       const handleClose = async (excluded, vip) => {
         setLoading(true);
         setVipName(vip || "");
-        try { await apiCall({ action: "closeGroup", groupId, excluded: excluded.join(",") }); setScreen("resultLoading"); }
+        try { await apiCall({ action: "closeGroup", groupId, excluded: excluded.join(","), vip: vip || "" }); setScreen("resultLoading"); }
         finally { setLoading(false); }
       };
 
