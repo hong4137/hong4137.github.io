@@ -760,6 +760,8 @@
       const [eventTitle, setEventTitle] = useState("");
       const [eventTime, setEventTime] = useState(group && group.mealType === "lunch" ? "12:00" : "19:00");
       const [eventDuration, setEventDuration] = useState("2");
+      const [gcalLink, setGcalLink] = useState("");
+      const [linkCopied, setLinkCopied] = useState(false);
 
       if (!result || !result.success) return <Card><div style={{ textAlign: "center", padding: 24, color: "#94a3b8" }}>결과를 불러올 수 없습니다</div></Card>;
 
@@ -865,14 +867,40 @@
                   </select>
                 </div>
               </div>
-              <a href={buildGcalUrl()} target="_blank" rel="noopener noreferrer" style={{
+              <button onClick={() => { setGcalLink(buildGcalUrl()); setLinkCopied(false); }} style={{
                 display: "block", width: "100%", padding: "14px 20px", borderRadius: 12,
                 background: "linear-gradient(135deg,#0ea5e9,#38bdf8)", color: "#fff",
-                fontSize: 15, fontWeight: 700, textAlign: "center", textDecoration: "none",
-                boxSizing: "border-box",
+                fontSize: 15, fontWeight: 700, textAlign: "center", border: "none",
+                cursor: "pointer", fontFamily: "inherit",
               }}>
-                Google 캘린더에 추가하기
-              </a>
+                📅 캘린더 링크 생성하기
+              </button>
+
+              {gcalLink && (
+                <div style={{ marginTop: 12, padding: "14px 16px", borderRadius: 10, background: "rgba(15,23,42,0.6)", border: "1px solid rgba(56,189,248,0.3)" }}>
+                  <div style={{ fontSize: 12, color: "#64748b", marginBottom: 8 }}>아래 링크를 공유하면 누구나 자기 캘린더에 추가할 수 있어요</div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <a href={gcalLink} target="_blank" rel="noopener noreferrer" style={{
+                      flex: 1, fontSize: 13, color: "#38bdf8", wordBreak: "break-all",
+                      textDecoration: "underline", overflow: "hidden",
+                      display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical",
+                    }}>{gcalLink}</a>
+                    <button onClick={() => {
+                      navigator.clipboard.writeText(gcalLink).then(() => {
+                        setLinkCopied(true); setTimeout(() => setLinkCopied(false), 2000);
+                      });
+                    }} style={{
+                      flexShrink: 0, padding: "8px 14px", borderRadius: 8,
+                      background: linkCopied ? "rgba(34,197,94,0.15)" : "rgba(56,189,248,0.15)",
+                      border: linkCopied ? "1px solid rgba(34,197,94,0.3)" : "1px solid rgba(56,189,248,0.3)",
+                      color: linkCopied ? "#22c55e" : "#38bdf8",
+                      fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: "inherit",
+                    }}>
+                      {linkCopied ? "복사됨 ✓" : "복사"}
+                    </button>
+                  </div>
+                </div>
+              )}
             </Card>
           )}
         </div>
