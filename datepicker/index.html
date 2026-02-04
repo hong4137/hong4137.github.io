@@ -140,45 +140,41 @@
     // ── 그룹 생성 화면 ────────────────────────
 
     function CreateScreen({ form, setForm, onSubmit, loading }) {
-      // 핵심구간 선택용 미니 캘린더 상태
       const [selectingFocus, setSelectingFocus] = useState(false);
-      const [focusStep, setFocusStep] = useState(0); // 0: 시작일 선택, 1: 종료일 선택
+      const [focusStep, setFocusStep] = useState(0);
+      const [tempStart, setTempStart] = useState("");
 
       const today = new Date(); today.setHours(0,0,0,0);
       const maxDate = new Date(today); maxDate.setDate(maxDate.getDate() + 90);
 
       const handleFocusDateClick = (dateStr) => {
         if (focusStep === 0) {
-          setForm({ ...form, focusStart: dateStr, focusEnd: "" });
+          setTempStart(dateStr);
           setFocusStep(1);
         } else {
-          if (dateStr < form.focusStart) {
-            setForm({ ...form, focusStart: dateStr, focusEnd: form.focusStart });
-          } else {
-            setForm({ ...form, focusEnd: dateStr });
-          }
+          let s = tempStart, e = dateStr;
+          if (e < s) { const t = s; s = e; e = t; }
+          const newRanges = [...(form.focusRanges || []), { s, e }];
+          setForm({ ...form, focusRanges: newRanges });
+          setTempStart("");
           setFocusStep(0);
           setSelectingFocus(false);
         }
       };
 
-      const focusLabel = () => {
-        if (form.focusStart && form.focusEnd) {
-          const s = parseDate(form.focusStart);
-          const e = parseDate(form.focusEnd);
-          return `${fmtDisplay(s)} ~ ${fmtDisplay(e)}`;
-        }
-        if (form.focusStart) return `${fmtDisplay(parseDate(form.focusStart))} ~ (종료일 선택)`;
-        return "";
+      const removeRange = (idx) => {
+        const newRanges = form.focusRanges.filter((_, i) => i !== idx);
+        setForm({ ...form, focusRanges: newRanges });
       };
 
-      // 미니 캘린더 월 목록
       const months = [];
       const cur = new Date(today.getFullYear(), today.getMonth(), 1);
       while (cur <= maxDate) {
         months.push({ year: cur.getFullYear(), month: cur.getMonth() });
         cur.setMonth(cur.getMonth() + 1);
       }
+
+      const hasRanges = form.focusRanges && form.focusRanges.length > 0;
 
       return (
         <Card>
@@ -221,36 +217,50 @@
             <div style={{ fontSize: 12, color: "#64748b", marginTop: 6 }}>본인 이름은 자동으로 포함됩니다</div>
           </div>
 
-          {/* 핵심 구간 */}
+          {/* 핵심 구간 (복수) */}
           <div style={{ marginBottom: 24 }}>
             <label style={{ fontSize: 13, color: "#94a3b8", display: "block", marginBottom: 6 }}>핵심 구간</label>
-            {form.focusStart && form.focusEnd ? (
-              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-                <div style={{ flex: 1, padding: "10px 14px", borderRadius: 10, background: "rgba(56,189,248,0.1)", border: "1px solid rgba(56,189,248,0.3)", fontSize: 14, color: "#38bdf8", fontWeight: 600 }}>
-                  {focusLabel()}
-                </div>
-                <button onClick={() => { setForm({...form, focusStart: "", focusEnd: ""}); setSelectingFocus(false); setFocusStep(0); }} style={{ background: "none", border: "none", color: "#64748b", fontSize: 18, cursor: "pointer" }}>✕</button>
+
+            {/* 기존 구간 리스트 */}
+            {hasRanges && (
+              <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 8 }}>
+                {form.focusRanges.map((r, idx) => (
+                  <div key={idx} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <div style={{ flex: 1, padding: "10px 14px", borderRadius: 10, background: "rgba(56,189,248,0.1)", border: "1px solid rgba(56,189,248,0.3)", fontSize: 14, color: "#38bdf8", fontWeight: 600 }}>
+                      {fmtDisplay(parseDate(r.s))} ~ {fmtDisplay(parseDate(r.e))}
+                    </div>
+                    <button onClick={() => removeRange(idx)} style={{ background: "none", border: "none", color: "#64748b", fontSize: 18, cursor: "pointer", flexShrink: 0 }}>✕</button>
+                  </div>
+                ))}
               </div>
-            ) : null}
+            )}
+
+            {/* 구간 추가 버튼 / 선택 중 캘린더 */}
             {!selectingFocus ? (
-              <button onClick={() => { setSelectingFocus(true); setFocusStep(0); }} style={{
+              <button onClick={() => { setSelectingFocus(true); setFocusStep(0); setTempStart(""); }} style={{
                 width: "100%", padding: "12px 14px", borderRadius: 10, border: "1px dashed #475569",
                 background: "transparent", color: "#94a3b8", fontSize: 14, cursor: "pointer", fontFamily: "inherit",
               }}>
-                {form.focusStart && form.focusEnd ? "구간 다시 선택" : "📅 캘린더에서 구간 선택하기"}
+                {hasRanges ? "＋ 핵심 구간 추가" : "📅 캘린더에서 구간 선택하기"}
               </button>
             ) : (
               <div>
                 <div style={{ fontSize: 13, color: "#38bdf8", marginBottom: 8, fontWeight: 600 }}>
                   {focusStep === 0 ? "▸ 시작일을 선택하세요" : "▸ 종료일을 선택하세요"}
                 </div>
+                {tempStart && (
+                  <div style={{ fontSize: 13, color: "#94a3b8", marginBottom: 8 }}>
+                    선택: {fmtDisplay(parseDate(tempStart))} ~ ...
+                  </div>
+                )}
                 {months.map(({year, month}) => (
                   <MiniMonthCalendar key={`${year}-${month}`} year={year} month={month}
                     today={today} maxDate={maxDate}
-                    focusStart={form.focusStart} focusEnd={form.focusEnd} focusStep={focusStep}
+                    focusRanges={[...(form.focusRanges || []), ...(tempStart ? [{s: tempStart, e: tempStart}] : [])]}
+                    focusStep={focusStep}
                     onDateClick={handleFocusDateClick} />
                 ))}
-                <button onClick={() => { setSelectingFocus(false); setFocusStep(0); }} style={{
+                <button onClick={() => { setSelectingFocus(false); setFocusStep(0); setTempStart(""); }} style={{
                   width: "100%", padding: "10px", borderRadius: 10, border: "1px solid #475569",
                   background: "transparent", color: "#94a3b8", fontSize: 13, cursor: "pointer", fontFamily: "inherit", marginTop: 8,
                 }}>취소</button>
@@ -261,7 +271,7 @@
             </div>
           </div>
 
-          <Button onClick={onSubmit} disabled={loading || !form.creator.trim() || !form.members.trim() || !form.focusStart || !form.focusEnd}>
+          <Button onClick={onSubmit} disabled={loading || !form.creator.trim() || !form.members.trim() || !hasRanges}>
             {loading ? "생성 중..." : "약속 만들기"}
           </Button>
         </Card>
@@ -270,11 +280,12 @@
 
     // ── 미니 캘린더 (구간 선택용) ──────────────
 
-    function MiniMonthCalendar({ year, month, today, maxDate, focusStart, focusEnd, focusStep, onDateClick }) {
+    function MiniMonthCalendar({ year, month, today, maxDate, focusRanges, focusStep, onDateClick }) {
       const WEEKDAYS = ["일","월","화","수","목","금","토"];
       const daysInMonth = getDaysInMonth(year, month);
       const firstDay = getFirstDayOfMonth(year, month);
       const monthNames = ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"];
+      const ranges = focusRanges || [];
 
       const cells = [];
       for (let i = 0; i < firstDay; i++) cells.push(<div key={`e-${i}`} />);
@@ -285,21 +296,20 @@
         const weekend = isWeekend(year, month, day);
         const holiday = getHolidayName(dateStr);
         const off = weekend || !!holiday;
-        const isInFocus = focusStart && focusEnd && dateStr >= focusStart && dateStr <= focusEnd;
-        const isStart = dateStr === focusStart;
-        const isEnd = dateStr === focusEnd;
+        const isInFocus = ranges.some(r => dateStr >= r.s && dateStr <= r.e);
+        const isEndpoint = ranges.some(r => dateStr === r.s || dateStr === r.e);
 
         cells.push(
           <div key={day} onClick={() => isInRange && !off && onDateClick(dateStr)} style={{
             aspectRatio: "1", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
             borderRadius: 8, cursor: isInRange && !off ? "pointer" : "default",
             opacity: isInRange ? (off ? 0.35 : 1) : 0.2,
-            background: isStart || isEnd ? "#38bdf8" : (isInFocus && !off) ? "rgba(56,189,248,0.2)" : "transparent",
-            fontSize: 13, fontWeight: isStart || isEnd ? 700 : 400,
-            color: isStart || isEnd ? "#0f172a" : (holiday || date.getDay()===0) ? "#f87171" : date.getDay()===6 ? "#60a5fa" : "#cbd5e1",
+            background: isEndpoint ? "#38bdf8" : (isInFocus && !off) ? "rgba(56,189,248,0.2)" : "transparent",
+            fontSize: 13, fontWeight: isEndpoint ? 700 : 400,
+            color: isEndpoint ? "#0f172a" : (holiday || date.getDay()===0) ? "#f87171" : date.getDay()===6 ? "#60a5fa" : "#cbd5e1",
           }}>
             {day}
-            {holiday && !(isStart || isEnd) && <span style={{ fontSize: 6, color: "#f87171", lineHeight: 1, marginTop: 1 }}>{holiday.length > 2 ? holiday.slice(0,2) : holiday}</span>}
+            {holiday && !isEndpoint && <span style={{ fontSize: 6, color: "#f87171", lineHeight: 1, marginTop: 1 }}>{holiday.length > 2 ? holiday.slice(0,2) : holiday}</span>}
           </div>
         );
       }
@@ -367,12 +377,13 @@
 
     // ── 월별 캘린더 (투표용) ──────────────────
 
-    function MonthCalendar({ year, month, startDate, endDate, focusStart, focusEnd, votes, onDayClick }) {
+    function MonthCalendar({ year, month, startDate, endDate, focusRanges, votes, onDayClick }) {
       const WEEKDAYS = ["일","월","화","수","목","금","토"];
       const daysInMonth = getDaysInMonth(year, month);
       const firstDay = getFirstDayOfMonth(year, month);
       const monthNames = ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"];
       const today = new Date(); today.setHours(0,0,0,0);
+      const ranges = focusRanges || [];
 
       const cells = [];
       for (let i = 0; i < firstDay; i++) cells.push(<div key={`e-${i}`} />);
@@ -386,7 +397,7 @@
         const vote = votes[dateStr];
         const vc = vote ? VOTE_COLORS[vote] : null;
         const isToday = fmtDate(date) === fmtDate(today);
-        const isFocus = focusStart && focusEnd && dateStr >= focusStart && dateStr <= focusEnd;
+        const isFocus = ranges.some(r => dateStr >= r.s && dateStr <= r.e);
 
         cells.push(
           <div key={day} onClick={() => isInRange && !off && onDayClick(dateStr)} style={{
@@ -436,8 +447,8 @@
       const cur = new Date(startDate.getFullYear(), startDate.getMonth(), 1);
       while (cur <= endDate) { months.push({ year: cur.getFullYear(), month: cur.getMonth() }); cur.setMonth(cur.getMonth() + 1); }
 
-      const focusStart = group.focusStart ? (typeof group.focusStart === "string" && group.focusStart.match(/^\d{4}-\d{2}-\d{2}$/) ? group.focusStart : fmtDate(parseDate(group.focusStart))) : "";
-      const focusEnd = group.focusEnd ? (typeof group.focusEnd === "string" && group.focusEnd.match(/^\d{4}-\d{2}-\d{2}$/) ? group.focusEnd : fmtDate(parseDate(group.focusEnd))) : "";
+      const focusRanges = group.focusRanges || [];
+      const hasFocus = focusRanges.length > 0;
 
       const handleDayClick = (dateStr) => {
         setVotes(prev => {
@@ -480,14 +491,14 @@
           {/* 투표 가이드 */}
           <Card style={{ padding: 20 }}>
             {/* 메인 지침 */}
-            {focusStart && focusEnd && (
+            {hasFocus && (
               <div style={{ textAlign: "center", fontSize: 15, fontWeight: 700, color: "#e2e8f0", marginBottom: 6, lineHeight: 1.5 }}>
                 하늘색 영역 위주로 투표해주세요
               </div>
             )}
-            {focusStart && focusEnd && (
+            {hasFocus && (
               <div style={{ textAlign: "center", fontSize: 12, color: "#64748b", marginBottom: 16 }}>
-                {fmtDisplay(parseDate(focusStart))} ~ {fmtDisplay(parseDate(focusEnd))} · 영역 밖도 투표 가능
+                {focusRanges.map((r,i) => `${fmtDisplay(parseDate(r.s))}~${fmtDisplay(parseDate(r.e))}`).join(", ")} · 영역 밖도 투표 가능
               </div>
             )}
 
@@ -557,7 +568,7 @@
           {months.map(({year,month}) => (
             <MonthCalendar key={`${year}-${month}`} year={year} month={month}
               startDate={startDate} endDate={endDate}
-              focusStart={focusStart} focusEnd={focusEnd}
+              focusRanges={focusRanges}
               votes={votes} onDayClick={handleDayClick} />
           ))}
 
@@ -577,8 +588,8 @@
       const [confirmClose, setConfirmClose] = useState(false);
       const [editingFocus, setEditingFocus] = useState(false);
       const [focusStep, setFocusStep] = useState(0);
-      const [newFocusStart, setNewFocusStart] = useState(group.focusStart || "");
-      const [newFocusEnd, setNewFocusEnd] = useState(group.focusEnd || "");
+      const [tempStart, setTempStart] = useState("");
+      const [newRanges, setNewRanges] = useState(group.focusRanges || []);
       const [focusSaving, setFocusSaving] = useState(false);
       const [focusMsg, setFocusMsg] = useState("");
       const [vip, setVip] = useState("");
@@ -602,25 +613,22 @@
 
       const handleFocusDateClick = (dateStr) => {
         if (focusStep === 0) {
-          setNewFocusStart(dateStr);
-          setNewFocusEnd("");
+          setTempStart(dateStr);
           setFocusStep(1);
         } else {
-          if (dateStr < newFocusStart) {
-            setNewFocusEnd(newFocusStart);
-            setNewFocusStart(dateStr);
-          } else {
-            setNewFocusEnd(dateStr);
-          }
+          let s = tempStart, e = dateStr;
+          if (e < s) { const t = s; s = e; e = t; }
+          setNewRanges([...newRanges, { s, e }]);
+          setTempStart("");
           setFocusStep(0);
         }
       };
 
       const handleFocusSave = async () => {
-        if (!newFocusStart || !newFocusEnd) return;
+        if (newRanges.length === 0) return;
         setFocusSaving(true);
         try {
-          await onUpdateFocus(newFocusStart, newFocusEnd);
+          await onUpdateFocus(newRanges);
           setFocusMsg("변경 완료 ✓");
           setEditingFocus(false);
           setTimeout(() => setFocusMsg(""), 3000);
@@ -628,13 +636,9 @@
       };
 
       const currentFocusLabel = () => {
-        const fs = group.focusStart, fe = group.focusEnd;
-        if (fs && fe) {
-          const s = parseDate(typeof fs === "string" && fs.match(/^\d{4}-\d{2}-\d{2}$/) ? fs : fs);
-          const e = parseDate(typeof fe === "string" && fe.match(/^\d{4}-\d{2}-\d{2}$/) ? fe : fe);
-          return `${fmtDisplay(s)} ~ ${fmtDisplay(e)}`;
-        }
-        return "미설정";
+        const ranges = group.focusRanges || [];
+        if (ranges.length === 0) return "미설정";
+        return ranges.map(r => `${fmtDisplay(parseDate(r.s))}~${fmtDisplay(parseDate(r.e))}`).join(", ");
       };
 
       return (
@@ -651,26 +655,41 @@
               {focusMsg && <span style={{ fontSize: 13, color: "#22c55e", fontWeight: 600 }}>{focusMsg}</span>}
             </div>
             {!editingFocus ? (
-              <Button variant="secondary" onClick={() => { setEditingFocus(true); setFocusStep(0); setNewFocusStart(""); setNewFocusEnd(""); }}>구간 변경하기</Button>
+              <Button variant="secondary" onClick={() => { setEditingFocus(true); setFocusStep(0); setTempStart(""); setNewRanges([]); }}>구간 변경하기</Button>
             ) : (
               <div>
+                {/* 새로 추가된 구간 리스트 */}
+                {newRanges.length > 0 && (
+                  <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 10 }}>
+                    {newRanges.map((r, idx) => (
+                      <div key={idx} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                        <div style={{ flex: 1, padding: "8px 12px", borderRadius: 8, background: "rgba(56,189,248,0.1)", border: "1px solid rgba(56,189,248,0.3)", fontSize: 13, color: "#38bdf8", fontWeight: 600 }}>
+                          {fmtDisplay(parseDate(r.s))} ~ {fmtDisplay(parseDate(r.e))}
+                        </div>
+                        <button onClick={() => setNewRanges(newRanges.filter((_,i) => i !== idx))} style={{ background: "none", border: "none", color: "#64748b", fontSize: 16, cursor: "pointer" }}>✕</button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
                 <div style={{ fontSize: 13, color: "#38bdf8", marginBottom: 8, fontWeight: 600 }}>
-                  {focusStep === 0 ? "▸ 새 시작일을 선택하세요" : "▸ 새 종료일을 선택하세요"}
+                  {focusStep === 0 ? "▸ 시작일을 선택하세요" : "▸ 종료일을 선택하세요"}
                 </div>
-                {newFocusStart && (
+                {tempStart && (
                   <div style={{ fontSize: 13, color: "#94a3b8", marginBottom: 8 }}>
-                    선택: {fmtDisplay(parseDate(newFocusStart))}{newFocusEnd ? ` ~ ${fmtDisplay(parseDate(newFocusEnd))}` : " ~ ..."}
+                    선택: {fmtDisplay(parseDate(tempStart))} ~ ...
                   </div>
                 )}
                 {months.map(({year, month}) => (
                   <MiniMonthCalendar key={`mng-${year}-${month}`} year={year} month={month}
                     today={today} maxDate={endDate}
-                    focusStart={newFocusStart} focusEnd={newFocusEnd} focusStep={focusStep}
+                    focusRanges={[...newRanges, ...(tempStart ? [{s: tempStart, e: tempStart}] : [])]}
+                    focusStep={focusStep}
                     onDateClick={handleFocusDateClick} />
                 ))}
                 <div style={{ display: "flex", gap: 10, marginTop: 8 }}>
                   <Button variant="secondary" onClick={() => setEditingFocus(false)} style={{ flex: 1 }}>취소</Button>
-                  <Button onClick={handleFocusSave} disabled={!newFocusStart || !newFocusEnd || focusSaving} style={{ flex: 1 }}>
+                  <Button onClick={handleFocusSave} disabled={newRanges.length === 0 || focusSaving} style={{ flex: 1 }}>
                     {focusSaving ? "저장 중..." : "구간 변경 저장"}
                   </Button>
                 </div>
@@ -919,7 +938,7 @@
       const [loading, setLoading] = useState(false);
       const [result, setResult] = useState(null);
       const [voteStatus, setVoteStatus] = useState(null);
-      const [createForm, setCreateForm] = useState({ creator: "", members: "", focusStart: "", focusEnd: "", mealType: "dinner" });
+      const [createForm, setCreateForm] = useState({ creator: "", members: "", focusRanges: [], mealType: "dinner" });
       const [createdLink, setCreatedLink] = useState(null);
       const [error, setError] = useState(null);
       const [mealType, setMealType] = useState("dinner");
@@ -940,7 +959,18 @@
         apiCall({ action: "getGroup", groupId })
           .then(data => {
             if (data.error) { setError("그룹을 찾을 수 없습니다"); setScreen("error"); }
-            else { setGroup({...data.group, mealType}); setScreen(data.group.status === "closed" ? "resultLoading" : "selectName"); }
+            else {
+              const g = data.group;
+              // focusRanges 파싱 (하위 호환: 기존 focusStart/End도 인식)
+              let fr = [];
+              if (g.focusRanges) {
+                try { fr = typeof g.focusRanges === "string" ? JSON.parse(g.focusRanges) : g.focusRanges; } catch(e) { fr = []; }
+              } else if (g.focusStart && g.focusEnd) {
+                fr = [{ s: g.focusStart, e: g.focusEnd }];
+              }
+              setGroup({...g, focusRanges: fr, mealType});
+              setScreen(g.status === "closed" ? "resultLoading" : "selectName");
+            }
           })
           .catch(() => { setError("서버 연결에 실패했습니다"); setScreen("error"); })
           .finally(() => setLoading(false));
@@ -975,8 +1005,7 @@
             action: "createGroup",
             creator: createForm.creator.trim(),
             members: all.join(","),
-            focusStart: createForm.focusStart,
-            focusEnd: createForm.focusEnd,
+            focusRanges: JSON.stringify(createForm.focusRanges || []),
           });
           if (data.success) {
             const meal = createForm.mealType || "dinner";
@@ -1005,9 +1034,9 @@
         finally { setLoading(false); }
       };
 
-      const handleUpdateFocus = async (focusStart, focusEnd) => {
-        await apiCall({ action: "updateFocus", groupId, focusStart, focusEnd });
-        setGroup({ ...group, focusStart, focusEnd });
+      const handleUpdateFocus = async (focusRanges) => {
+        await apiCall({ action: "updateFocus", groupId, focusRanges: JSON.stringify(focusRanges) });
+        setGroup({ ...group, focusRanges });
       };
 
       return (
