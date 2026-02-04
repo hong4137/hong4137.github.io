@@ -969,6 +969,7 @@
       const [group, setGroup] = useState(null);
       const [userName, setUserName] = useState(null);
       const [votes, setVotes] = useState({});
+      const loadIdRef = React.useRef(0);
       const [saving, setSaving] = useState(false);
       const [loading, setLoading] = useState(false);
       const [result, setResult] = useState(null);
@@ -1020,14 +1021,19 @@
           .catch(() => { setError("결과를 불러올 수 없습니다"); setScreen("error"); });
       }, [screen, groupId, vipName]);
 
-      const loadMyVotes = useCallback(async (name) => {
-        setLoading(true);
-        try {
-          const data = await apiCall({ action: "getMyVotes", groupId, userName: name });
-          const vm = {};
-          if (data.votes) data.votes.forEach(v => { const d = parseDate(v.date); if (d) vm[fmtDate(d)] = v.voteType; });
-          setVotes(vm);
-        } finally { setLoading(false); }
+      const userModifiedRef = React.useRef(false);
+
+      const loadMyVotes = useCallback((name) => {
+        const thisId = ++loadIdRef.current;
+        userModifiedRef.current = false;
+        apiCall({ action: "getMyVotes", groupId, userName: name })
+          .then(data => {
+            // 이미 사용자가 수정했거나 더 새로운 요청이 있으면 무시
+            if (userModifiedRef.current || thisId !== loadIdRef.current) return;
+            const vm = {};
+            if (data.votes) data.votes.forEach(v => { const d = parseDate(v.date); if (d) vm[fmtDate(d)] = v.voteType; });
+            setVotes(vm);
+          });
       }, [groupId]);
 
       const handleCreate = async () => {
@@ -1091,8 +1097,8 @@
           {screen === "error" && <ErrorScreen message={error} />}
           {screen === "create" && <CreateScreen form={createForm} setForm={setCreateForm} onSubmit={handleCreate} loading={loading} />}
           {screen === "created" && <CreatedScreen link={createdLink} />}
-          {screen === "selectName" && group && <SelectNameScreen group={group} onSelect={async (name) => { setUserName(name); await loadMyVotes(name); setScreen("calendar"); }} />}
-          {screen === "calendar" && group && <CalendarScreen group={group} userName={userName} votes={votes} setVotes={setVotes} onSave={handleSave} saving={saving} loading={loading} onManage={() => { loadVoteStatus(); setScreen("manage"); }} isCreator={userName === group.creator} onBack={() => setScreen("selectName")} />}
+          {screen === "selectName" && group && <SelectNameScreen group={group} onSelect={name => { setUserName(name); loadMyVotes(name); setScreen("calendar"); }} />}
+          {screen === "calendar" && group && <CalendarScreen group={group} userName={userName} votes={votes} setVotes={(fn) => { userModifiedRef.current = true; setVotes(fn); }} onSave={handleSave} saving={saving} loading={loading} onManage={() => { loadVoteStatus(); setScreen("manage"); }} isCreator={userName === group.creator} onBack={() => setScreen("selectName")} />}
           {screen === "manage" && group && <ManageScreen group={group} voteStatus={voteStatus} onClose={handleClose} onBack={() => setScreen("calendar")} loading={loading} onRefresh={loadVoteStatus} onUpdateFocus={handleUpdateFocus} />}
           {screen === "result" && result && <ResultScreen result={result} group={group} onConfirmDate={handleConfirmDate} />}
         </div>
