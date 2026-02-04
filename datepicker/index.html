@@ -523,18 +523,9 @@
               <span style={{ fontSize: 13, color: "#94a3b8" }}>빈 날짜 = </span>
               <span style={{ fontSize: 13, color: "#f59e0b", fontWeight: 700 }}>가능하지만 비선호</span>
             </div>
-          </Card>
 
-          {months.map(({year,month}) => (
-            <MonthCalendar key={`${year}-${month}`} year={year} month={month}
-              startDate={startDate} endDate={endDate}
-              focusStart={focusStart} focusEnd={focusEnd}
-              votes={votes} onDayClick={handleDayClick} />
-          ))}
-
-          {/* 나머지 전부 불가 */}
-          {Object.values(votes).some(v => v === "preferred") && (
-            <div style={{ textAlign: "center", marginBottom: 8 }}>
+            {/* 나머지 전부 불가 */}
+            {Object.values(votes).some(v => v === "preferred") && (
               <button onClick={() => {
                 const newVotes = {...votes};
                 const today = new Date(); today.setHours(0,0,0,0);
@@ -549,14 +540,22 @@
                 }
                 setVotes(newVotes);
               }} style={{
-                background: "none", border: "none", color: "#64748b", fontSize: 12,
-                cursor: "pointer", fontFamily: "inherit", textDecoration: "underline",
-                padding: "6px 12px",
+                width: "100%", marginTop: 8, padding: "10px 12px", borderRadius: 8,
+                background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)",
+                color: "#94a3b8", fontSize: 13, cursor: "pointer", fontFamily: "inherit",
+                textAlign: "center",
               }}>
-                선호한 날 외 나머지 전부 불가 처리
+                🏃 난 너무 바빠 <span style={{ color: "#64748b", fontSize: 12 }}>(선호하는 날 외 전부 불가 처리)</span>
               </button>
-            </div>
-          )}
+            )}
+          </Card>
+
+          {months.map(({year,month}) => (
+            <MonthCalendar key={`${year}-${month}`} year={year} month={month}
+              startDate={startDate} endDate={endDate}
+              focusStart={focusStart} focusEnd={focusEnd}
+              votes={votes} onDayClick={handleDayClick} />
+          ))}
 
           <div style={{ position: "sticky", bottom: 0, padding: "16px 0 24px", background: "linear-gradient(transparent, #0f172a 20%)" }}>
             <Button onClick={handleSave} disabled={saving}>
