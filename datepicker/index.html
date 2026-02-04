@@ -461,6 +461,7 @@
           const cur = prev[dateStr] || null;
           const idx = VOTE_CYCLE.indexOf(cur);
           const next = VOTE_CYCLE[(idx+1) % VOTE_CYCLE.length];
+          console.log(`[VOTE] ${dateStr}: ${cur} → ${next}, prev keys: ${Object.keys(prev).length}`);
           if (next === null) { const nv = {...prev}; delete nv[dateStr]; return nv; }
           return {...prev, [dateStr]: next};
         });
