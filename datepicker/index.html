@@ -149,6 +149,8 @@
       const [selectingFocus, setSelectingFocus] = useState(false);
       const [focusStep, setFocusStep] = useState(0);
       const [tempStart, setTempStart] = useState("");
+      const [nameEnabled, setNameEnabled] = useState(false);
+      const [emailEnabled, setEmailEnabled] = useState(false);
 
       const today = new Date(); today.setHours(0,0,0,0);
       const maxDate = new Date(today); maxDate.setDate(maxDate.getDate() + 90);
@@ -280,6 +282,75 @@
           <Button onClick={onSubmit} disabled={loading || !form.creator.trim() || !form.members.trim() || !hasRanges}>
             {loading ? "생성 중..." : "약속 만들기"}
           </Button>
+
+          {/* 선택 옵션 */}
+          <div style={{ marginTop: 20, paddingTop: 20, borderTop: "1px solid rgba(71,85,105,0.3)" }}>
+            <div style={{ fontSize: 12, color: "#64748b", marginBottom: 12, letterSpacing: "0.5px" }}>선택 옵션</div>
+
+            {/* 모임 이름 */}
+            <div style={{ marginBottom: 8 }}>
+              <div onClick={() => { setNameEnabled(!nameEnabled); if (nameEnabled) setForm({...form, groupName: ""}); }}
+                style={{
+                  display: "flex", alignItems: "center", gap: 10, cursor: "pointer",
+                  padding: "12px 14px", borderRadius: 12,
+                  background: nameEnabled ? "rgba(56,189,248,0.06)" : "transparent",
+                  border: nameEnabled ? "1px solid rgba(56,189,248,0.2)" : "1px solid transparent",
+                  transition: "all 0.2s",
+                }}>
+                <div style={{
+                  width: 40, height: 22, borderRadius: 11, padding: 2, flexShrink: 0,
+                  background: nameEnabled ? "#0ea5e9" : "#334155",
+                  transition: "background 0.2s", display: "flex", alignItems: "center",
+                }}>
+                  <div style={{ width: 18, height: 18, borderRadius: "50%", background: "#fff",
+                    transform: nameEnabled ? "translateX(18px)" : "translateX(0)", transition: "transform 0.2s" }} />
+                </div>
+                <div>
+                  <div style={{ fontSize: 14, color: "#e2e8f0", fontWeight: 600 }}>✏️ 모임 이름 설정</div>
+                  <div style={{ fontSize: 12, color: "#64748b", marginTop: 2 }}>약속에 이름을 붙여 구분하기 쉽게</div>
+                </div>
+              </div>
+              {nameEnabled && (
+                <div style={{ marginTop: 10, paddingLeft: 4 }}>
+                  <input type="text" value={form.groupName} onChange={e => setForm({...form, groupName: e.target.value})}
+                    placeholder="예: 대학 동기 2월 모임" style={inputStyle} />
+                  <div style={{ fontSize: 12, color: "#64748b", marginTop: 6 }}>구글 캘린더 제목에 자동으로 입력됩니다</div>
+                </div>
+              )}
+            </div>
+
+            {/* 마감 알림 */}
+            <div>
+              <div onClick={() => { setEmailEnabled(!emailEnabled); if (emailEnabled) setForm({...form, email: ""}); }}
+                style={{
+                  display: "flex", alignItems: "center", gap: 10, cursor: "pointer",
+                  padding: "12px 14px", borderRadius: 12,
+                  background: emailEnabled ? "rgba(56,189,248,0.06)" : "transparent",
+                  border: emailEnabled ? "1px solid rgba(56,189,248,0.2)" : "1px solid transparent",
+                  transition: "all 0.2s",
+                }}>
+                <div style={{
+                  width: 40, height: 22, borderRadius: 11, padding: 2, flexShrink: 0,
+                  background: emailEnabled ? "#0ea5e9" : "#334155",
+                  transition: "background 0.2s", display: "flex", alignItems: "center",
+                }}>
+                  <div style={{ width: 18, height: 18, borderRadius: "50%", background: "#fff",
+                    transform: emailEnabled ? "translateX(18px)" : "translateX(0)", transition: "transform 0.2s" }} />
+                </div>
+                <div>
+                  <div style={{ fontSize: 14, color: "#e2e8f0", fontWeight: 600 }}>📩 마감 알림 받기</div>
+                  <div style={{ fontSize: 12, color: "#64748b", marginTop: 2 }}>모든 참여자가 투표하면 이메일로 알려드려요</div>
+                </div>
+              </div>
+              {emailEnabled && (
+                <div style={{ marginTop: 10, paddingLeft: 4 }}>
+                  <input type="email" value={form.email} onChange={e => setForm({...form, email: e.target.value})}
+                    placeholder="example@gmail.com" style={{...inputStyle, borderColor: form.email && !form.email.includes("@") ? "#f87171" : "#334155"}} />
+                  <div style={{ fontSize: 12, color: "#64748b", marginTop: 6 }}>전원 투표 완료 시 결과 요약이 발송됩니다</div>
+                </div>
+              )}
+            </div>
+          </div>
         </Card>
       );
     }
@@ -355,11 +426,13 @@
     function SelectNameScreen({ group, onSelect }) {
       const mealLabel = group.mealType === "lunch" ? "점심" : "저녁";
       const mealEmoji = group.mealType === "lunch" ? "☀️" : "🌙";
+      const title = group.groupName || `${mealLabel} 약속 잡자`;
       return (
         <Card>
           <div style={{ textAlign: "center", marginBottom: 24 }}>
             <div style={{ fontSize: 22, marginBottom: 8 }}>{mealEmoji}</div>
-            <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 6 }}>{mealLabel} 약속 잡자</div>
+            <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 6 }}>{title}</div>
+            {group.groupName && <div style={{ fontSize: 13, color: "#64748b", marginBottom: 4 }}>{mealLabel} 약속</div>}
             <div style={{ fontSize: 14, color: "#94a3b8" }}>본인의 이름을 선택해주세요</div>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
@@ -783,7 +856,7 @@
     function ResultScreen({ result, group, onConfirmDate }) {
       const confirmedDate = group && group.confirmedDate;
       const [selectedDate, setSelectedDate] = useState(confirmedDate || null);
-      const [eventTitle, setEventTitle] = useState("");
+      const [eventTitle, setEventTitle] = useState(group && group.groupName ? group.groupName : "");
       const [eventTime, setEventTime] = useState(group && group.mealType === "lunch" ? "12:00" : "19:00");
       const [eventDuration, setEventDuration] = useState("2");
       const [gcalLink, setGcalLink] = useState("");
@@ -816,6 +889,7 @@
       return (
         <div>
           <Card style={{ background: cfg.bg, border: `1px solid ${cfg.border}`, textAlign: "center" }}>
+            {group && group.groupName && <div style={{ fontSize: 16, fontWeight: 700, color: "#e2e8f0", marginBottom: 6 }}>{group.groupName}</div>}
             <div style={{ fontSize: 13, color: "#94a3b8", marginBottom: 8 }}>{mealEmoji} {mealLabel} 약속</div>
             {result.vip && <div style={{ fontSize: 13, color: "#c084fc", marginBottom: 4 }}>👑 {result.vip}님 중심으로 산출</div>}
             <div style={{ fontSize: 48, marginBottom: 12 }}>{cfg.icon}</div>
@@ -974,7 +1048,7 @@
       const [loading, setLoading] = useState(false);
       const [result, setResult] = useState(null);
       const [voteStatus, setVoteStatus] = useState(null);
-      const [createForm, setCreateForm] = useState({ creator: "", members: "", focusRanges: [], mealType: "dinner" });
+      const [createForm, setCreateForm] = useState({ creator: "", members: "", focusRanges: [], mealType: "dinner", groupName: "", email: "" });
       const [createdLink, setCreatedLink] = useState(null);
       const [error, setError] = useState(null);
       const [mealType, setMealType] = useState("dinner");
@@ -1047,6 +1121,8 @@
             creator: createForm.creator.trim(),
             members: all.join(","),
             focusRanges: JSON.stringify(createForm.focusRanges || []),
+            groupName: createForm.groupName.trim(),
+            email: createForm.email.trim(),
           });
           if (data.success) {
             const meal = createForm.mealType || "dinner";
