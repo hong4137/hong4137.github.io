@@ -440,11 +440,13 @@
       const focusEnd = group.focusEnd ? (typeof group.focusEnd === "string" && group.focusEnd.match(/^\d{4}-\d{2}-\d{2}$/) ? group.focusEnd : fmtDate(parseDate(group.focusEnd))) : "";
 
       const handleDayClick = (dateStr) => {
-        const cur = votes[dateStr] || null;
-        const idx = VOTE_CYCLE.indexOf(cur);
-        const next = VOTE_CYCLE[(idx+1) % VOTE_CYCLE.length];
-        if (next === null) { const nv = {...votes}; delete nv[dateStr]; setVotes(nv); }
-        else { setVotes({...votes, [dateStr]: next}); }
+        setVotes(prev => {
+          const cur = prev[dateStr] || null;
+          const idx = VOTE_CYCLE.indexOf(cur);
+          const next = VOTE_CYCLE[(idx+1) % VOTE_CYCLE.length];
+          if (next === null) { const nv = {...prev}; delete nv[dateStr]; return nv; }
+          return {...prev, [dateStr]: next};
+        });
       };
 
       const handleCopyLink = () => { navigator.clipboard.writeText(window.location.href).then(() => { setLinkCopied(true); setTimeout(() => setLinkCopied(false), 2000); }); };
@@ -527,18 +529,20 @@
             {/* 나머지 전부 불가 */}
             {Object.values(votes).some(v => v === "preferred") && (
               <button onClick={() => {
-                const newVotes = {...votes};
-                const today = new Date(); today.setHours(0,0,0,0);
-                const d = new Date(startDate);
-                while (d <= endDate) {
-                  const ds = fmtDate(d);
-                  const y = d.getFullYear(), m = d.getMonth(), day = d.getDate();
-                  if (d >= today && !isOff(y,m,day) && !newVotes[ds]) {
-                    newVotes[ds] = "unavailable";
+                setVotes(prev => {
+                  const newVotes = {...prev};
+                  const today = new Date(); today.setHours(0,0,0,0);
+                  const d = new Date(startDate);
+                  while (d <= endDate) {
+                    const ds = fmtDate(d);
+                    const y = d.getFullYear(), m = d.getMonth(), day = d.getDate();
+                    if (d >= today && !isOff(y,m,day) && !newVotes[ds]) {
+                      newVotes[ds] = "unavailable";
+                    }
+                    d.setDate(d.getDate()+1);
                   }
-                  d.setDate(d.getDate()+1);
-                }
-                setVotes(newVotes);
+                  return newVotes;
+                });
               }} style={{
                 width: "100%", marginTop: 8, padding: "10px 12px", borderRadius: 8,
                 background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)",
