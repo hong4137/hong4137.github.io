@@ -1,7 +1,7 @@
 {
-  "updated": "2026-02-05 16:02:54 KST",
+  "updated": "2026-02-05 22:08:22 KST",
   "epl": {
-    "matchday": 24,
+    "matchday": 25,
     "selected_round": 25,
     "display_matchday": "R25",
     "leader": "Arsenal",
@@ -25,7 +25,7 @@
         ],
         "rule_str": "Big Match, Early KO",
         "matchday": 25,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -41,7 +41,7 @@
         ],
         "rule_str": "Big Match, Prime Time",
         "matchday": 25,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -56,7 +56,7 @@
         ],
         "rule_str": "Leader",
         "matchday": 25,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ],
@@ -74,7 +74,7 @@
         ],
         "rule_str": "Big Match, Early KO",
         "matchday": 25,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -90,7 +90,7 @@
         ],
         "rule_str": "Big Match, Prime Time",
         "matchday": 25,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -105,14 +105,14 @@
         ],
         "rule_str": "Leader",
         "matchday": 25,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ]
   },
   "nba": {
     "record": "27-24",
-    "rank": "#8 West",
+    "rank": "-",
     "last": {
       "opp": "76ers",
       "result": "L",
@@ -151,12 +151,12 @@
       "opponent": "Novak Djokovic",
       "result": "W",
       "score": "2-6, 6-2, 6-3, 7-5",
-      "date": "February 1"
+      "date": "Feb 1"
     },
     "next": {
       "event": "Rotterdam Open",
       "detail": "-",
-      "match_time": "February 9-15",
+      "match_time": "Feb 9-15",
       "tournament_dates": "",
       "status": "-"
     }
