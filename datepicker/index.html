@@ -1083,6 +1083,16 @@
       };
 
       const handleDragCancel = () => {
+        // 취소 시 선택된 날짜들을 빈 상태(비선호)로 되돌림
+        if (pendingDates && pendingDates.length > 0) {
+          setVotes(prev => {
+            const newVotes = { ...prev };
+            pendingDates.forEach(ds => {
+              delete newVotes[ds];
+            });
+            return newVotes;
+          });
+        }
         setPendingDates(null);
       };
 
@@ -1211,6 +1221,20 @@
                     </div>
                   )}
 
+                  {/* 버튼을 달력 위에 배치 */}
+                  <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
+                    <button onClick={() => { setEditingFocus(false); setNewRanges([]); }} style={{
+                      flex: 1, padding: "10px", borderRadius: 8, background: "rgba(51,65,85,0.6)",
+                      border: "1px solid #475569", color: "#94a3b8", fontSize: 13, cursor: "pointer", fontFamily: "inherit",
+                    }}>취소</button>
+                    <button onClick={handleFocusSave} disabled={newRanges.length === 0 || focusSaving} style={{
+                      flex: 1, padding: "10px", borderRadius: 8,
+                      background: newRanges.length > 0 ? "linear-gradient(135deg,#0ea5e9,#38bdf8)" : "rgba(51,65,85,0.6)",
+                      border: "none", color: "#fff", fontSize: 13, cursor: newRanges.length > 0 ? "pointer" : "default",
+                      opacity: newRanges.length === 0 ? 0.5 : 1, fontFamily: "inherit",
+                    }}>{focusSaving ? "저장 중..." : "구간 변경"}</button>
+                  </div>
+
                   {/* 미니 캘린더 */}
                   {(() => {
                     const miniMonths = [];
@@ -1227,19 +1251,6 @@
                         onDateClick={handleFocusDateClick} />
                     ));
                   })()}
-
-                  <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
-                    <button onClick={() => { setEditingFocus(false); setNewRanges([]); }} style={{
-                      flex: 1, padding: "10px", borderRadius: 8, background: "rgba(51,65,85,0.6)",
-                      border: "1px solid #475569", color: "#94a3b8", fontSize: 13, cursor: "pointer", fontFamily: "inherit",
-                    }}>취소</button>
-                    <button onClick={handleFocusSave} disabled={newRanges.length === 0 || focusSaving} style={{
-                      flex: 1, padding: "10px", borderRadius: 8,
-                      background: newRanges.length > 0 ? "linear-gradient(135deg,#0ea5e9,#38bdf8)" : "rgba(51,65,85,0.6)",
-                      border: "none", color: "#fff", fontSize: 13, cursor: newRanges.length > 0 ? "pointer" : "default",
-                      opacity: newRanges.length === 0 ? 0.5 : 1, fontFamily: "inherit",
-                    }}>{focusSaving ? "저장 중..." : "구간 변경"}</button>
-                  </div>
                 </div>
               )}
             </Card>
