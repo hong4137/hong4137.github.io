@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-06 15:58:55 KST",
+  "updated": "2026-02-06 22:05:40 KST",
   "epl": {
     "matchday": 25,
     "selected_round": 25,
@@ -112,7 +112,7 @@
   },
   "nba": {
     "record": "28-24",
-    "rank": "-",
+    "rank": "#8 West",
     "last": {
       "opp": "Suns",
       "result": "W",
@@ -151,12 +151,12 @@
       "opponent": "Novak Djokovic",
       "result": "W",
       "score": "2-6, 6-2, 6-3, 7-5",
-      "date": "February 1"
+      "date": "Feb 1"
     },
     "next": {
       "event": "Rotterdam Open",
       "detail": "-",
-      "match_time": "February 9-15",
+      "match_time": "Feb 9-15",
       "tournament_dates": "",
       "status": "-"
     }
