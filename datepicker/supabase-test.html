@@ -66,29 +66,29 @@
     <h2>1. Supabase 설정</h2>
     <input type="text" id="supabaseUrl" placeholder="Project URL (https://xxx.supabase.co)" />
     <input type="text" id="supabaseKey" placeholder="anon key" />
-    <button onclick="initSupabase()">연결 테스트</button>
+    <button id="btnInit">연결 테스트</button>
     <pre id="initResult" class="loading">설정을 입력하고 연결 테스트를 눌러주세요</pre>
   </div>
 
   <!-- Groups 조회 -->
   <div class="card">
     <h2>2. Groups 테이블 조회</h2>
-    <button onclick="fetchGroups()">모든 그룹 가져오기</button>
-    <button onclick="fetchGroup('test1234')">test1234 그룹 가져오기</button>
+    <button id="btnFetchAll">모든 그룹 가져오기</button>
+    <button id="btnFetchOne">test1234 그룹 가져오기</button>
     <pre id="groupsResult">-</pre>
   </div>
 
   <!-- Votes 조회 -->
   <div class="card">
     <h2>3. Votes 테이블 조회</h2>
-    <button onclick="fetchVotes('test1234')">test1234 투표 가져오기</button>
+    <button id="btnFetchVotes">test1234 투표 가져오기</button>
     <pre id="votesResult">-</pre>
   </div>
 
   <!-- 새 그룹 생성 -->
   <div class="card">
     <h2>4. 새 그룹 생성 테스트</h2>
-    <button onclick="createTestGroup()">테스트 그룹 생성</button>
+    <button id="btnCreate">테스트 그룹 생성</button>
     <pre id="createResult">-</pre>
   </div>
 
@@ -96,12 +96,13 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   
   <script>
-    let supabase = null;
+    // 변수명을 db로 변경 (supabase SDK와 충돌 방지)
+    var db = null;
 
     // 1. Supabase 초기화
-    function initSupabase() {
-      const url = document.getElementById('supabaseUrl').value.trim();
-      const key = document.getElementById('supabaseKey').value.trim();
+    document.getElementById('btnInit').addEventListener('click', function() {
+      var url = document.getElementById('supabaseUrl').value.trim();
+      var key = document.getElementById('supabaseKey').value.trim();
       
       if (!url || !key) {
         document.getElementById('initResult').innerHTML = '<span class="error">URL과 Key를 모두 입력해주세요</span>';
@@ -109,79 +110,70 @@
       }
 
       try {
-        supabase = window.supabase.createClient(url, key);
+        db = window.supabase.createClient(url, key);
         document.getElementById('initResult').innerHTML = '<span style="color:#22c55e">✓ Supabase 클라이언트 생성 완료!</span>\n\n이제 아래 테스트를 진행해보세요.';
       } catch (err) {
         document.getElementById('initResult').innerHTML = '<span class="error">✕ 오류: ' + err.message + '</span>';
       }
-    }
+    });
 
     // 2. 모든 그룹 조회
-    async function fetchGroups() {
-      if (!supabase) {
+    document.getElementById('btnFetchAll').addEventListener('click', async function() {
+      if (!db) {
         document.getElementById('groupsResult').innerHTML = '<span class="error">먼저 Supabase 연결을 해주세요</span>';
         return;
       }
 
       document.getElementById('groupsResult').innerHTML = '<span class="loading">로딩 중...</span>';
 
-      const { data, error } = await supabase
-        .from('groups')
-        .select('*');
+      var result = await db.from('groups').select('*');
 
-      if (error) {
-        document.getElementById('groupsResult').innerHTML = '<span class="error">오류: ' + error.message + '</span>';
+      if (result.error) {
+        document.getElementById('groupsResult').innerHTML = '<span class="error">오류: ' + result.error.message + '</span>';
       } else {
-        document.getElementById('groupsResult').textContent = JSON.stringify(data, null, 2);
+        document.getElementById('groupsResult').textContent = JSON.stringify(result.data, null, 2);
       }
-    }
+    });
 
     // 특정 그룹 조회
-    async function fetchGroup(groupId) {
-      if (!supabase) {
+    document.getElementById('btnFetchOne').addEventListener('click', async function() {
+      if (!db) {
         document.getElementById('groupsResult').innerHTML = '<span class="error">먼저 Supabase 연결을 해주세요</span>';
         return;
       }
 
       document.getElementById('groupsResult').innerHTML = '<span class="loading">로딩 중...</span>';
 
-      const { data, error } = await supabase
-        .from('groups')
-        .select('*')
-        .eq('group_id', groupId)
-        .single();
+      var result = await db.from('groups').select('*').eq('group_id', 'test1234').single();
 
-      if (error) {
-        document.getElementById('groupsResult').innerHTML = '<span class="error">오류: ' + error.message + '</span>';
+      if (result.error) {
+        document.getElementById('groupsResult').innerHTML = '<span class="error">오류: ' + result.error.message + '</span>';
       } else {
-        document.getElementById('groupsResult').textContent = JSON.stringify(data, null, 2);
+        document.getElementById('groupsResult').textContent = JSON.stringify(result.data, null, 2);
       }
-    }
+    });
 
     // 3. 투표 조회
-    async function fetchVotes(groupId) {
-      if (!supabase) {
+    document.getElementById('btnFetchVotes').addEventListener('click', async function() {
+      if (!db) {
         document.getElementById('votesResult').innerHTML = '<span class="error">먼저 Supabase 연결을 해주세요</span>';
         return;
       }
 
       document.getElementById('votesResult').innerHTML = '<span class="loading">로딩 중...</span>';
 
-      const { data, error } = await supabase
-        .from('votes')
-        .select('*')
-        .eq('group_id', groupId);
+      var result = await db.from('votes').select('*').eq('group_id', 'test1234');
 
-      if (error) {
-        document.getElementById('votesResult').innerHTML = '<span class="error">오류: ' + error.message + '</span>';
+      if (result.error) {
+        document.getElementById('votesResult').innerHTML = '<span class="error">오류: ' + result.error.message + '</span>';
       } else {
-        document.getElementById('votesResult').textContent = JSON.stringify(data, null, 2);
+        document.getElementById('votesResult').textContent = JSON.stringify(result.data, null, 2);
       }
-    }
+    });
 
     // 4. 새 그룹 생성
-    async function createTestGroup() {
-      if (!supabase) {
+    document.getElementById('btnCreate').addEventListener('click', async function() {
+      if (!db) {
         document.getElementById('createResult').innerHTML = '<span class="error">먼저 Supabase 연결을 해주세요</span>';
         return;
       }
@@ -189,17 +181,17 @@
       document.getElementById('createResult').innerHTML = '<span class="loading">생성 중...</span>';
 
       // 랜덤 8자리 ID 생성
-      const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-      let groupId = '';
-      for (let i = 0; i < 8; i++) {
+      var chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+      var groupId = '';
+      for (var i = 0; i < 8; i++) {
         groupId += chars.charAt(Math.floor(Math.random() * chars.length));
       }
 
-      const today = new Date();
-      const endDate = new Date(today);
+      var today = new Date();
+      var endDate = new Date(today);
       endDate.setDate(endDate.getDate() + 90);
 
-      const newGroup = {
+      var newGroup = {
         group_id: groupId,
         creator: '테스트유저',
         members: ['테스트유저', '친구1', '친구2'],
@@ -209,17 +201,14 @@
         meal_type: 'dinner'
       };
 
-      const { data, error } = await supabase
-        .from('groups')
-        .insert(newGroup)
-        .select();
+      var result = await db.from('groups').insert(newGroup).select();
 
-      if (error) {
-        document.getElementById('createResult').innerHTML = '<span class="error">오류: ' + error.message + '</span>';
+      if (result.error) {
+        document.getElementById('createResult').innerHTML = '<span class="error">오류: ' + result.error.message + '</span>';
       } else {
-        document.getElementById('createResult').textContent = '✓ 생성 완료!\n\n' + JSON.stringify(data, null, 2);
+        document.getElementById('createResult').textContent = '✓ 생성 완료!\n\n' + JSON.stringify(result.data, null, 2);
       }
-    }
+    });
   </script>
 </body>
 </html>
