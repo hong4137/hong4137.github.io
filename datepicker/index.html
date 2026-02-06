@@ -1559,6 +1559,15 @@
                     선택: {fmtDisplay(parseDate(tempStart))} ~ ...
                   </div>
                 )}
+
+                {/* 버튼을 캘린더 위에 배치 */}
+                <div style={{ display: "flex", gap: 10, marginBottom: 12 }}>
+                  <Button variant="secondary" onClick={() => setEditingFocus(false)} style={{ flex: 1 }}>취소</Button>
+                  <Button onClick={handleFocusSave} disabled={newRanges.length === 0 || focusSaving} style={{ flex: 1 }}>
+                    {focusSaving ? "저장 중..." : "구간 변경 저장"}
+                  </Button>
+                </div>
+
                 {months.map(({year, month}) => (
                   <MiniMonthCalendar key={`mng-${year}-${month}`} year={year} month={month}
                     today={today} maxDate={endDate}
@@ -1566,12 +1575,6 @@
                     focusStep={focusStep}
                     onDateClick={handleFocusDateClick} />
                 ))}
-                <div style={{ display: "flex", gap: 10, marginTop: 8 }}>
-                  <Button variant="secondary" onClick={() => setEditingFocus(false)} style={{ flex: 1 }}>취소</Button>
-                  <Button onClick={handleFocusSave} disabled={newRanges.length === 0 || focusSaving} style={{ flex: 1 }}>
-                    {focusSaving ? "저장 중..." : "구간 변경 저장"}
-                  </Button>
-                </div>
               </div>
             )}
           </Card>
