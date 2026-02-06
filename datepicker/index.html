@@ -1711,11 +1711,11 @@
           const cards = captureRef.current.querySelectorAll('[data-card]');
           cards.forEach(card => {
             card.style.backdropFilter = 'none';
-            card.style.background = 'rgba(30, 41, 59, 0.95)';
+            card.style.background = '#1e293b';
           });
           
           const canvas = await html2canvas(captureRef.current, {
-            backgroundColor: "#1e293b",
+            backgroundColor: "#0f172a",
             scale: 2,
             useCORS: true,
           });
@@ -1723,7 +1723,7 @@
           // blur 효과 복원
           cards.forEach(card => {
             card.style.backdropFilter = 'blur(8px)';
-            card.style.background = 'rgba(15, 23, 42, 0.6)';
+            card.style.background = 'rgba(30, 41, 59, 0.8)';
           });
           
           // 클립보드에 복사
@@ -1766,7 +1766,7 @@
       return (
         <div>
           {/* 캡쳐 영역 시작 */}
-          <div ref={captureRef} style={{ background: "#1e293b", padding: "16px", borderRadius: 16 }}>
+          <div ref={captureRef} style={{ background: "#0f172a", padding: "16px", borderRadius: 16 }}>
             <Card style={{ background: cfg.bg, border: `1px solid ${cfg.border}`, textAlign: "center" }}>
               {group && group.groupName && <div style={{ fontSize: 16, fontWeight: 700, color: "#e2e8f0", marginBottom: 6 }}>{group.groupName}</div>}
               <div style={{ fontSize: 13, color: "#94a3b8", marginBottom: 8 }}>{mealEmoji} {mealLabel} 약속</div>
