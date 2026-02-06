@@ -482,7 +482,7 @@
 
     // ── 월별 캘린더 (투표용) ──────────────────
 
-    function MonthCalendar({ year, month, startDate, endDate, focusRanges, votes, onDayClick, blockedDates }) {
+    function MonthCalendar({ year, month, startDate, endDate, focusRanges, votes, onDayClick, blockedDates, dragState, onDragStart, onDragMove, onDragEnd }) {
       const WEEKDAYS = ["일","월","화","수","목","금","토"];
       const daysInMonth = getDaysInMonth(year, month);
       const firstDay = getFirstDayOfMonth(year, month);
@@ -490,6 +490,14 @@
       const today = new Date(); today.setHours(0,0,0,0);
       const ranges = focusRanges || [];
       const blocked = blockedDates || new Set();
+
+      // 드래그 범위 내인지 확인
+      const isInDragRange = (dateStr) => {
+        if (!dragState || !dragState.start) return false;
+        const s = dragState.start < dragState.end ? dragState.start : dragState.end;
+        const e = dragState.start < dragState.end ? dragState.end : dragState.start;
+        return dateStr >= s && dateStr <= e;
+      };
 
       const cells = [];
       for (let i = 0; i < firstDay; i++) cells.push(<div key={`e-${i}`} />);
@@ -506,30 +514,39 @@
         const isToday = fmtDate(date) === fmtDate(today);
         const isFocus = ranges.some(r => dateStr >= r.s && dateStr <= r.e);
         const canClick = isInRange && !off && !isBlocked;
+        const inDrag = isInDragRange(dateStr) && canClick;
 
         cells.push(
-          <div key={day} onClick={() => canClick && onDayClick(dateStr)} style={{
-            aspectRatio: "1", display: "flex", flexDirection: "column",
-            alignItems: "center", justifyContent: "center", borderRadius: 10,
-            cursor: canClick ? "pointer" : "default",
-            opacity: isInRange ? (off || isBlocked ? 0.35 : 1) : 0.2,
-            background: isBlocked && !off ? "rgba(239,68,68,0.08)"
-              : vc ? vc.bg
-              : off && isFocus ? "repeating-linear-gradient(135deg, rgba(56,189,248,0.08), rgba(56,189,248,0.08) 3px, rgba(30,41,59,0.4) 3px, rgba(30,41,59,0.4) 6px)"
-              : isFocus ? "rgba(56,189,248,0.1)"
-              : "transparent",
-            border: isToday ? "2px solid #38bdf8" : isFocus && !vc ? "1px solid rgba(56,189,248,0.25)" : isBlocked && !off ? "1px solid rgba(239,68,68,0.2)" : "1px solid transparent",
-            transition: "all 0.15s", userSelect: "none",
-            position: "relative",
-          }}>
+          <div key={day}
+            data-date={dateStr}
+            data-canclick={canClick ? "1" : "0"}
+            onMouseDown={() => canClick && onDragStart && onDragStart(dateStr)}
+            onMouseEnter={() => dragState && dragState.start && canClick && onDragMove && onDragMove(dateStr)}
+            onTouchStart={(e) => { if (canClick && onDragStart) { e.preventDefault(); onDragStart(dateStr); } }}
+            onClick={() => !dragState?.start && canClick && onDayClick(dateStr)}
+            style={{
+              aspectRatio: "1", display: "flex", flexDirection: "column",
+              alignItems: "center", justifyContent: "center", borderRadius: 10,
+              cursor: canClick ? "pointer" : "default",
+              opacity: isInRange ? (off || isBlocked ? 0.35 : 1) : 0.2,
+              background: inDrag ? "rgba(129,140,248,0.4)"
+                : isBlocked && !off ? "rgba(239,68,68,0.08)"
+                : vc ? vc.bg
+                : off && isFocus ? "repeating-linear-gradient(135deg, rgba(56,189,248,0.08), rgba(56,189,248,0.08) 3px, rgba(30,41,59,0.4) 3px, rgba(30,41,59,0.4) 6px)"
+                : isFocus ? "rgba(56,189,248,0.1)"
+                : "transparent",
+              border: inDrag ? "2px solid #818cf8" : isToday ? "2px solid #38bdf8" : isFocus && !vc ? "1px solid rgba(56,189,248,0.25)" : isBlocked && !off ? "1px solid rgba(239,68,68,0.2)" : "1px solid transparent",
+              transition: "all 0.1s", userSelect: "none",
+              position: "relative",
+            }}>
             <span style={{
               fontSize: 14, fontWeight: isToday ? 800 : 500,
-              color: isBlocked && !off ? "#64748b" : vc ? vc.text : (holiday || date.getDay()===0) ? "#f87171" : date.getDay()===6 ? "#60a5fa" : "#cbd5e1",
+              color: inDrag ? "#fff" : isBlocked && !off ? "#64748b" : vc ? vc.text : (holiday || date.getDay()===0) ? "#f87171" : date.getDay()===6 ? "#60a5fa" : "#cbd5e1",
               textDecoration: isBlocked && !off ? "line-through" : "none",
             }}>{day}</span>
-            {isBlocked && !off && !vc && <span style={{ fontSize: 9, color: "#64748b", marginTop: 1 }}>✕</span>}
-            {vc && <span style={{ fontSize: 9, color: vc.text, marginTop: 1, opacity: 0.9 }}>{vc.emoji}</span>}
-            {holiday && !vc && !isBlocked && <span style={{ fontSize: 7, color: "#f87171", marginTop: 1, lineHeight: 1, textAlign: "center" }}>{holiday.length > 3 ? holiday.slice(0,3) : holiday}</span>}
+            {isBlocked && !off && !vc && !inDrag && <span style={{ fontSize: 9, color: "#64748b", marginTop: 1 }}>✕</span>}
+            {vc && !inDrag && <span style={{ fontSize: 9, color: vc.text, marginTop: 1, opacity: 0.9 }}>{vc.emoji}</span>}
+            {holiday && !vc && !isBlocked && !inDrag && <span style={{ fontSize: 7, color: "#f87171", marginTop: 1, lineHeight: 1, textAlign: "center" }}>{holiday.length > 3 ? holiday.slice(0,3) : holiday}</span>}
           </div>
         );
       }
@@ -547,6 +564,58 @@
       );
     }
 
+    // ── 드래그 선택 팝업 ────────────────────────
+    function DragSelectPopup({ dates, onSelect, onCancel }) {
+      const count = dates.length;
+      const first = parseDate(dates[0]);
+      const last = parseDate(dates[dates.length - 1]);
+      const label = count === 1 
+        ? fmtDisplay(first)
+        : `${fmtDisplay(first)} ~ ${fmtDisplay(last)} (${count}일)`;
+
+      return (
+        <div style={{
+          position: "fixed", bottom: 0, left: 0, right: 0,
+          background: "linear-gradient(to top, rgba(15,23,42,0.98) 0%, rgba(15,23,42,0.95) 100%)",
+          borderTop: "1px solid rgba(56,189,248,0.3)",
+          padding: "20px 16px 32px", zIndex: 1000,
+          animation: "fadeIn 0.2s ease-out",
+        }}>
+          <div style={{ maxWidth: 480, margin: "0 auto" }}>
+            <div style={{ textAlign: "center", marginBottom: 16 }}>
+              <div style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0", marginBottom: 4 }}>
+                {label}
+              </div>
+              <div style={{ fontSize: 13, color: "#64748b" }}>선택한 날짜를 어떻게 표시할까요?</div>
+            </div>
+            <div style={{ display: "flex", gap: 10 }}>
+              <button onClick={() => onSelect("preferred")} style={{
+                flex: 1, padding: "14px", borderRadius: 12,
+                background: "#22c55e", border: "none",
+                color: "#fff", fontSize: 15, fontWeight: 700, cursor: "pointer", fontFamily: "inherit",
+              }}>
+                ♥ 선호
+              </button>
+              <button onClick={() => onSelect("unavailable")} style={{
+                flex: 1, padding: "14px", borderRadius: 12,
+                background: "#ef4444", border: "none",
+                color: "#fff", fontSize: 15, fontWeight: 700, cursor: "pointer", fontFamily: "inherit",
+              }}>
+                ✕ 불가
+              </button>
+              <button onClick={onCancel} style={{
+                padding: "14px 20px", borderRadius: 12,
+                background: "rgba(51,65,85,0.8)", border: "1px solid #475569",
+                color: "#94a3b8", fontSize: 15, fontWeight: 600, cursor: "pointer", fontFamily: "inherit",
+              }}>
+                취소
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     // ── 캘린더 투표 화면 ──────────────────────
 
     function CalendarScreen({ group, userName, votes, setVotes, onSave, saving, loading, onManage, isCreator, onBack, onUpdateFocus }) {
@@ -557,6 +626,10 @@
       const [tempStart, setTempStart] = useState("");
       const [newRanges, setNewRanges] = useState([]);
       const [focusSaving, setFocusSaving] = useState(false);
+      
+      // 드래그 선택 상태
+      const [dragState, setDragState] = useState(null); // { start: dateStr, end: dateStr }
+      const [pendingDates, setPendingDates] = useState(null); // 팝업용 선택된 날짜들
 
       const today = new Date(); today.setHours(0,0,0,0);
       const startDate = parseDate(group.dateStart);
@@ -637,6 +710,92 @@
           return {...prev, [dateStr]: next};
         });
       };
+
+      // 드래그 핸들러
+      const handleDragStart = (dateStr) => {
+        setDragState({ start: dateStr, end: dateStr });
+      };
+
+      const handleDragMove = (dateStr) => {
+        if (dragState) {
+          setDragState({ ...dragState, end: dateStr });
+        }
+      };
+
+      const handleDragEnd = () => {
+        if (dragState && dragState.start) {
+          // 선택된 범위의 날짜들 계산 (선택 가능한 날만)
+          const s = dragState.start < dragState.end ? dragState.start : dragState.end;
+          const e = dragState.start < dragState.end ? dragState.end : dragState.start;
+          const dates = [];
+          const d = parseDate(s);
+          const ed = parseDate(e);
+          while (d <= ed) {
+            const ds = fmtDate(d);
+            const y = d.getFullYear(), m = d.getMonth(), day = d.getDate();
+            if (d >= today && !isOff(y,m,day) && !blockedDates.has(ds)) {
+              dates.push(ds);
+            }
+            d.setDate(d.getDate() + 1);
+          }
+          if (dates.length > 0) {
+            setPendingDates(dates);
+          }
+          setDragState(null);
+        }
+      };
+
+      const handleDragSelect = (voteType) => {
+        if (pendingDates && pendingDates.length > 0) {
+          setVotes(prev => {
+            const newVotes = { ...prev };
+            pendingDates.forEach(ds => {
+              newVotes[ds] = voteType;
+            });
+            return newVotes;
+          });
+        }
+        setPendingDates(null);
+      };
+
+      const handleDragCancel = () => {
+        setPendingDates(null);
+      };
+
+      // 마우스 up 이벤트 전역 등록
+      React.useEffect(() => {
+        const handleMouseUp = () => {
+          if (dragState) handleDragEnd();
+        };
+        const handleTouchEnd = (e) => {
+          if (dragState) {
+            // 터치 위치의 요소 확인
+            const touch = e.changedTouches[0];
+            const el = document.elementFromPoint(touch.clientX, touch.clientY);
+            if (el && el.dataset.date && el.dataset.canclick === "1") {
+              setDragState(prev => prev ? { ...prev, end: el.dataset.date } : null);
+            }
+            setTimeout(() => handleDragEnd(), 10);
+          }
+        };
+        const handleTouchMove = (e) => {
+          if (dragState) {
+            const touch = e.touches[0];
+            const el = document.elementFromPoint(touch.clientX, touch.clientY);
+            if (el && el.dataset.date && el.dataset.canclick === "1") {
+              setDragState(prev => prev ? { ...prev, end: el.dataset.date } : null);
+            }
+          }
+        };
+        window.addEventListener("mouseup", handleMouseUp);
+        window.addEventListener("touchend", handleTouchEnd);
+        window.addEventListener("touchmove", handleTouchMove, { passive: true });
+        return () => {
+          window.removeEventListener("mouseup", handleMouseUp);
+          window.removeEventListener("touchend", handleTouchEnd);
+          window.removeEventListener("touchmove", handleTouchMove);
+        };
+      }, [dragState]);
 
       const handleCopyLink = () => { navigator.clipboard.writeText(window.location.href).then(() => { setLinkCopied(true); setTimeout(() => setLinkCopied(false), 2000); }); };
 
@@ -762,33 +921,33 @@
             </Card>
           )}
 
-          {/* 투표 가이드 */}
-          <Card style={{ padding: 20 }}>
+          {/* 투표 가이드 — 눈에 띄는 스타일 */}
+          <Card style={{ padding: 20, background: "linear-gradient(135deg, rgba(56,189,248,0.12) 0%, rgba(129,140,248,0.08) 100%)", border: "1px solid rgba(56,189,248,0.3)" }}>
             {/* 메인 지침 */}
             {hasFocus && (
-              <div style={{ textAlign: "center", fontSize: 15, fontWeight: 700, color: "#e2e8f0", marginBottom: 6, lineHeight: 1.5 }}>
-                하늘색 영역 위주로 투표해주세요
+              <div style={{ textAlign: "center", fontSize: 16, fontWeight: 800, color: "#38bdf8", marginBottom: 6, lineHeight: 1.5 }}>
+                📅 하늘색 영역 위주로 투표해주세요
               </div>
             )}
             {hasFocus && (
-              <div style={{ textAlign: "center", fontSize: 12, color: "#64748b", marginBottom: 16 }}>
+              <div style={{ textAlign: "center", fontSize: 12, color: "#94a3b8", marginBottom: 16 }}>
                 핵심 구간 이전·사이는 투표 불가 · 구간 이후는 투표 가능
               </div>
             )}
 
             {/* 탭 조작법 */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 16, flexWrap: "wrap" }}>
-              <span style={{ fontSize: 13, color: "#94a3b8" }}>한 번 탭</span>
+              <span style={{ fontSize: 13, color: "#e2e8f0" }}>한 번 탭</span>
               <div style={{ width: 28, height: 28, borderRadius: 6, background: "#22c55e", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <span style={{ fontSize: 11, color: "#fff", fontWeight: 700 }}>♥</span>
               </div>
               <span style={{ fontSize: 13, color: "#64748b", margin: "0 4px" }}>→</span>
-              <span style={{ fontSize: 13, color: "#94a3b8" }}>두 번 탭</span>
+              <span style={{ fontSize: 13, color: "#e2e8f0" }}>두 번 탭</span>
               <div style={{ width: 28, height: 28, borderRadius: 6, background: "#ef4444", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <span style={{ fontSize: 11, color: "#fff", fontWeight: 700 }}>✕</span>
               </div>
               <span style={{ fontSize: 13, color: "#64748b", margin: "0 4px" }}>→</span>
-              <span style={{ fontSize: 13, color: "#94a3b8" }}>세 번 탭 해제</span>
+              <span style={{ fontSize: 13, color: "#e2e8f0" }}>세 번 탭 해제</span>
             </div>
 
             {/* 범례 — 크게 */}
@@ -796,19 +955,19 @@
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 <div style={{ width: 20, height: 20, borderRadius: 6, background: "#22c55e" }} />
                 <span style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0" }}>선호하는 날</span>
-                <span style={{ fontSize: 14, color: "#64748b" }}>({counts["preferred"]||0})</span>
+                <span style={{ fontSize: 14, color: "#94a3b8" }}>({counts["preferred"]||0})</span>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 <div style={{ width: 20, height: 20, borderRadius: 6, background: "#ef4444" }} />
                 <span style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0" }}>절대 안되는 날</span>
-                <span style={{ fontSize: 14, color: "#64748b" }}>({counts["unavailable"]||0})</span>
+                <span style={{ fontSize: 14, color: "#94a3b8" }}>({counts["unavailable"]||0})</span>
               </div>
             </div>
 
-            {/* 빈 날짜 설명 */}
-            <div style={{ textAlign: "center", padding: "8px 12px", borderRadius: 8, background: "rgba(148,163,184,0.08)", border: "1px solid rgba(148,163,184,0.15)" }}>
-              <span style={{ fontSize: 13, color: "#94a3b8" }}>빈 날짜 = </span>
-              <span style={{ fontSize: 13, color: "#f59e0b", fontWeight: 700 }}>가능하지만 비선호</span>
+            {/* 빈 날짜 설명 — 강조 */}
+            <div style={{ textAlign: "center", padding: "12px 16px", borderRadius: 10, background: "rgba(245,158,11,0.15)", border: "2px solid rgba(245,158,11,0.4)" }}>
+              <span style={{ fontSize: 14, color: "#fbbf24", fontWeight: 700 }}>⚠️ 빈 날짜 = 가능하지만 비선호</span>
+              <div style={{ fontSize: 12, color: "#d97706", marginTop: 4 }}>선호하는 날만 초록색으로 표시해주세요</div>
             </div>
 
             {/* 나머지 전부 불가 */}
@@ -828,12 +987,12 @@
                   return newVotes;
                 });
               }} style={{
-                width: "100%", marginTop: 8, padding: "10px 12px", borderRadius: 8,
-                background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)",
-                color: "#94a3b8", fontSize: 13, cursor: "pointer", fontFamily: "inherit",
+                width: "100%", marginTop: 12, padding: "12px 14px", borderRadius: 10,
+                background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.3)",
+                color: "#f87171", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "inherit",
                 textAlign: "center",
               }}>
-                🏃 난 너무 바빠 <span style={{ color: "#64748b", fontSize: 12 }}>(선호하는 날 외 전부 불가 처리)</span>
+                🏃 난 너무 바빠 <span style={{ color: "#94a3b8", fontSize: 12, fontWeight: 400 }}>(선호 외 전부 불가)</span>
               </button>
             )}
           </Card>
@@ -844,8 +1003,20 @@
               startDate={startDate} endDate={endDate}
               focusRanges={focusRanges}
               votes={votes} onDayClick={handleDayClick}
-              blockedDates={blockedDates} />
+              blockedDates={blockedDates}
+              dragState={dragState}
+              onDragStart={handleDragStart}
+              onDragMove={handleDragMove}
+              onDragEnd={handleDragEnd} />
           ))}
+
+          {/* 드래그 선택 팝업 */}
+          {pendingDates && pendingDates.length > 0 && (
+            <DragSelectPopup
+              dates={pendingDates}
+              onSelect={handleDragSelect}
+              onCancel={handleDragCancel} />
+          )}
 
           <div style={{ position: "sticky", bottom: 0, padding: "16px 0 24px", background: "linear-gradient(transparent, #0f172a 20%)" }}>
             <Button onClick={handleSave} disabled={saving}>
