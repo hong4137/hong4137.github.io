@@ -383,6 +383,7 @@
       const [pendingRange, setPendingRange] = useState(null); // 확인 대기 중인 구간
       const [nameEnabled, setNameEnabled] = useState(false);
       const [emailEnabled, setEmailEnabled] = useState(false);
+      const confirmRef = React.useRef(null);
 
       const today = new Date(); today.setHours(0,0,0,0);
       const maxDate = new Date(today); maxDate.setDate(maxDate.getDate() + 90);
@@ -397,6 +398,12 @@
           // 바로 저장하지 않고 확인 화면으로
           setPendingRange({ s, e });
           setFocusStep(2); // 확인 단계
+          // 확인 메시지로 스크롤
+          setTimeout(() => {
+            if (confirmRef.current) {
+              confirmRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          }, 100);
         }
       };
 
@@ -503,7 +510,7 @@
               <div>
                 {focusStep === 2 && pendingRange && (
                   /* 확인 메시지 - 캘린더 위에 표시 */
-                  <div style={{ 
+                  <div ref={confirmRef} style={{ 
                     background: "rgba(15,23,42,0.95)", 
                     border: "1px solid #38bdf8",
                     borderRadius: 12, 
