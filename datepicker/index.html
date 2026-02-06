@@ -188,6 +188,7 @@
           confirmedDate: data.confirmed_date,
           groupName: data.group_name,
           email: data.email,
+          emailSent: data.email_sent,
           mealType: data.meal_type
         }
       };
@@ -199,6 +200,33 @@
       return { success: true, votes: data.map(v => ({ date: v.vote_date, voteType: v.vote_type })) };
     }
 
+    // 이메일 발송 함수
+    async function sendEmailNotification(to, groupName, groupId, memberCount, confirmedDate) {
+      if (!to) return; // 이메일 없으면 스킵
+      
+      try {
+        const response = await fetch(`${SUPABASE_URL}/functions/v1/send-email`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+          },
+          body: JSON.stringify({
+            to,
+            groupName,
+            groupId,
+            memberCount,
+            confirmedDate
+          }),
+        });
+        const result = await response.json();
+        console.log('Email sent:', result);
+        return result;
+      } catch (err) {
+        console.error('Email error:', err);
+      }
+    }
+
     async function apiSaveVotes(groupId, userName, votes) {
       await db.from('votes').delete().eq('group_id', groupId).eq('user_name', userName);
       if (votes.length > 0) {
@@ -206,6 +234,24 @@
         const { error } = await db.from('votes').insert(newVotes);
         if (error) return { error: error.message };
       }
+      
+      // 전원 투표 완료 체크 및 이메일 발송
+      const groupResult = await apiGetGroup(groupId);
+      if (groupResult.success && groupResult.group.email && !groupResult.group.emailSent) {
+        const group = groupResult.group;
+        const activeMembers = group.members.filter(m => !group.excluded.includes(m));
+        const { data: votesData } = await db.from('votes').select('user_name').eq('group_id', groupId);
+        const votedUsers = new Set(votesData?.map(v => v.user_name) || []);
+        const allVoted = activeMembers.every(m => votedUsers.has(m));
+        
+        if (allVoted) {
+          // 이메일 발송
+          await sendEmailNotification(group.email, group.groupName, groupId, activeMembers.length);
+          // email_sent 플래그 업데이트
+          await db.from('groups').update({ email_sent: true }).eq('group_id', groupId);
+        }
+      }
+      
       return { success: true, saved: votes.length };
     }
 
@@ -235,6 +281,15 @@
     async function apiConfirmDate(groupId, date) {
       const { error } = await db.from('groups').update({ confirmed_date: date }).eq('group_id', groupId);
       if (error) return { error: error.message };
+      
+      // 날짜 확정 이메일 발송
+      const groupResult = await apiGetGroup(groupId);
+      if (groupResult.success && groupResult.group.email) {
+        const group = groupResult.group;
+        const activeMembers = group.members.filter(m => !group.excluded.includes(m));
+        await sendEmailNotification(group.email, group.groupName, groupId, activeMembers.length, date);
+      }
+      
       return { success: true, confirmedDate: date };
     }
 
