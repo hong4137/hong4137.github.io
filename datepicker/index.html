@@ -376,7 +376,7 @@
     // ── 공통 컴포넌트 ─────────────────────────
 
     function Card({ children, style }) {
-      return <div style={{
+      return <div data-card="true" style={{
         background: "rgba(30,41,59,0.8)", border: "1px solid #334155",
         borderRadius: 16, padding: 24, marginBottom: 16,
         backdropFilter: "blur(8px)", animation: "fadeIn 0.3s ease", ...style,
@@ -1707,10 +1707,23 @@
         if (!captureRef.current || capturing) return;
         setCapturing(true);
         try {
+          // 캡쳐 전 blur 효과 임시 제거
+          const cards = captureRef.current.querySelectorAll('[data-card]');
+          cards.forEach(card => {
+            card.style.backdropFilter = 'none';
+            card.style.background = 'rgba(30, 41, 59, 0.95)';
+          });
+          
           const canvas = await html2canvas(captureRef.current, {
-            backgroundColor: "#0f172a",
+            backgroundColor: "#1e293b",
             scale: 2,
             useCORS: true,
+          });
+          
+          // blur 효과 복원
+          cards.forEach(card => {
+            card.style.backdropFilter = 'blur(8px)';
+            card.style.background = 'rgba(15, 23, 42, 0.6)';
           });
           
           // 클립보드에 복사
