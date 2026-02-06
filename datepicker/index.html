@@ -842,7 +842,6 @@
             onMouseDown={() => canClick && onDragStart && onDragStart(dateStr)}
             onMouseEnter={() => dragState && dragState.start && canClick && onDragMove && onDragMove(dateStr)}
             onTouchStart={(e) => { if (canClick && onDragStart) { e.preventDefault(); onDragStart(dateStr); } }}
-            onClick={() => !dragState?.start && canClick && onDayClick(dateStr)}
             style={{
               aspectRatio: "1", display: "flex", flexDirection: "column",
               alignItems: "center", justifyContent: "center", borderRadius: 10,
