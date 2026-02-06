@@ -1056,6 +1056,7 @@
 
       // 아코디언 초기화: 투표 가능한 날이 있는 모든 월 펼침
       React.useEffect(() => {
+        if (Object.keys(monthStatus).length === 0) return; // monthStatus가 아직 비어있으면 대기
         const votableMonths = allMonths.filter(({year, month}) => {
           const key = `${year}-${month}`;
           return monthStatus[key]?.hasVotableDays;
@@ -1063,7 +1064,7 @@
         if (votableMonths.length > 0) {
           setExpandedMonths(new Set(votableMonths.map(({year, month}) => `${year}-${month}`)));
         }
-      }, []);
+      }, [monthStatus]);
 
       const toggleMonth = (year, month) => {
         const key = `${year}-${month}`;
