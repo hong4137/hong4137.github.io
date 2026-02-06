@@ -538,38 +538,19 @@
     function CalendarScreen({ group, userName, votes, setVotes, onSave, saving, loading, onManage, isCreator, onBack, onUpdateFocus }) {
       const [linkCopied, setLinkCopied] = useState(false);
       const [saveMsg, setSaveMsg] = useState("");
-      const [page, setPage] = useState(0); // 0: 0~60일, 1: 60~120일
       const [editingFocus, setEditingFocus] = useState(false);
       const [focusStep, setFocusStep] = useState(0);
       const [tempStart, setTempStart] = useState("");
       const [newRanges, setNewRanges] = useState([]);
       const [focusSaving, setFocusSaving] = useState(false);
 
-      const PAGE_DAYS = 60;
       const today = new Date(); today.setHours(0,0,0,0);
       const startDate = parseDate(group.dateStart);
-      const endDate = parseDate(group.dateEnd);
-
-      // 페이지별 날짜 범위
-      const pageStart = new Date(today);
-      pageStart.setDate(pageStart.getDate() + page * PAGE_DAYS);
-      const pageEnd = new Date(today);
-      pageEnd.setDate(pageEnd.getDate() + (page + 1) * PAGE_DAYS - 1);
-      const effectiveStart = new Date(Math.max(startDate, pageStart));
-      const effectiveEnd = new Date(Math.min(endDate, pageEnd));
-
-      // 최대 120일까지
-      const maxPage = Math.ceil(120 / PAGE_DAYS) - 1;
-      const canNext = page < maxPage && pageEnd < endDate;
-      const canPrev = page > 0;
-
-      // 현재 페이지의 월 목록
-      const months = [];
-      const cur = new Date(effectiveStart.getFullYear(), effectiveStart.getMonth(), 1);
-      while (cur <= effectiveEnd) {
-        months.push({ year: cur.getFullYear(), month: cur.getMonth() });
-        cur.setMonth(cur.getMonth() + 1);
-      }
+      
+      // 마지막 날짜: 오늘+90일이 속한 달의 마지막 날
+      const day90 = new Date(today);
+      day90.setDate(day90.getDate() + 90);
+      const endDate = new Date(day90.getFullYear(), day90.getMonth() + 1, 0); // 해당 월의 마지막 날
 
       const focusRanges = group.focusRanges || [];
       const hasFocus = focusRanges.length > 0;
@@ -603,6 +584,35 @@
         }
         return blocked;
       }, [focusRanges, hasFocus, startDate, endDate]);
+
+      // 월 목록 계산: 전체 기간의 모든 월
+      const allMonths = React.useMemo(() => {
+        const months = [];
+        const cur = new Date(startDate.getFullYear(), startDate.getMonth(), 1);
+        while (cur <= endDate) {
+          months.push({ year: cur.getFullYear(), month: cur.getMonth() });
+          cur.setMonth(cur.getMonth() + 1);
+        }
+        return months;
+      }, [startDate, endDate]);
+
+      // 월이 완전히 차단됐는지 확인 (모든 평일이 blocked면 숨김)
+      const isMonthFullyBlocked = React.useCallback((year, month) => {
+        if (!hasFocus) return false;
+        const daysInMonth = getDaysInMonth(year, month);
+        for (let day = 1; day <= daysInMonth; day++) {
+          const d = new Date(year, month, day);
+          const ds = fmtDate(d);
+          if (d < today) continue; // 과거는 어차피 선택 불가
+          if (d > endDate) continue;
+          if (isOff(year, month, day)) continue; // 주말/공휴일 제외
+          if (!blockedDates.has(ds)) return false; // 선택 가능한 날이 하나라도 있으면 false
+        }
+        return true;
+      }, [hasFocus, blockedDates, today, endDate]);
+
+      // 표시할 월 목록 (완전 차단된 월 제외)
+      const visibleMonths = allMonths.filter(({year, month}) => !isMonthFullyBlocked(year, month));
 
       const handleDayClick = (dateStr) => {
         setVotes(prev => {
@@ -708,14 +718,13 @@
                   {(() => {
                     const miniMonths = [];
                     const c = new Date(Math.max(today, startDate)); c.setDate(1);
-                    const maxD = new Date(today); maxD.setDate(maxD.getDate() + 90);
-                    while (c <= maxD && c <= endDate) {
+                    while (c <= endDate) {
                       miniMonths.push({ year: c.getFullYear(), month: c.getMonth() });
                       c.setMonth(c.getMonth() + 1);
                     }
                     return miniMonths.map(({year, month}) => (
                       <MiniMonthCalendar key={`${year}-${month}`} year={year} month={month}
-                        today={today} maxDate={maxD}
+                        today={today} maxDate={endDate}
                         focusRanges={[...newRanges, ...(tempStart ? [{s: tempStart, e: tempStart}] : [])]}
                         focusStep={focusStep}
                         onDateClick={handleFocusDateClick} />
@@ -815,35 +824,14 @@
             )}
           </Card>
 
-          {/* 캘린더 */}
-          {months.map(({year,month}) => (
+          {/* 캘린더 — 완전 차단된 월은 숨김 */}
+          {visibleMonths.map(({year,month}) => (
             <MonthCalendar key={`${year}-${month}`} year={year} month={month}
-              startDate={effectiveStart} endDate={effectiveEnd}
+              startDate={startDate} endDate={endDate}
               focusRanges={focusRanges}
               votes={votes} onDayClick={handleDayClick}
               blockedDates={blockedDates} />
           ))}
-
-          {/* 페이지네이션 */}
-          <Card style={{ padding: 12 }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <button onClick={() => setPage(page - 1)} disabled={!canPrev} style={{
-                padding: "10px 20px", borderRadius: 8,
-                background: canPrev ? "rgba(56,189,248,0.1)" : "rgba(51,65,85,0.4)",
-                border: canPrev ? "1px solid rgba(56,189,248,0.3)" : "1px solid transparent",
-                color: canPrev ? "#38bdf8" : "#475569", fontSize: 14, cursor: canPrev ? "pointer" : "default", fontFamily: "inherit",
-              }}>← 이전</button>
-              <div style={{ fontSize: 13, color: "#64748b" }}>
-                {page === 0 ? "오늘 ~ 60일" : "60일 ~ 120일"}
-              </div>
-              <button onClick={() => setPage(page + 1)} disabled={!canNext} style={{
-                padding: "10px 20px", borderRadius: 8,
-                background: canNext ? "rgba(56,189,248,0.1)" : "rgba(51,65,85,0.4)",
-                border: canNext ? "1px solid rgba(56,189,248,0.3)" : "1px solid transparent",
-                color: canNext ? "#38bdf8" : "#475569", fontSize: 14, cursor: canNext ? "pointer" : "default", fontFamily: "inherit",
-              }}>다음 →</button>
-            </div>
-          </Card>
 
           <div style={{ position: "sticky", bottom: 0, padding: "16px 0 24px", background: "linear-gradient(transparent, #0f172a 20%)" }}>
             <Button onClick={handleSave} disabled={saving}>
