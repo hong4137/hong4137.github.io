@@ -1054,15 +1054,33 @@
         return status;
       }, [allMonths, blockedDates, today, endDate, isMonthFullyBlocked]);
 
-      // 아코디언 초기화: 투표 가능한 날이 있는 모든 월 펼침
+      // 아코디언 초기화: 핵심구간이 포함된 월만 펼침 (없으면 투표 가능한 첫 번째 월)
       React.useEffect(() => {
-        if (Object.keys(monthStatus).length === 0) return; // monthStatus가 아직 비어있으면 대기
-        const votableMonths = allMonths.filter(({year, month}) => {
-          const key = `${year}-${month}`;
-          return monthStatus[key]?.hasVotableDays;
-        });
-        if (votableMonths.length > 0) {
-          setExpandedMonths(new Set(votableMonths.map(({year, month}) => `${year}-${month}`)));
+        if (Object.keys(monthStatus).length === 0) return;
+        
+        // 핵심구간이 있으면 해당 월만 펼침
+        if (hasFocus && focusRanges.length > 0) {
+          const focusMonthKeys = new Set();
+          focusRanges.forEach(range => {
+            const startD = parseDate(range.s);
+            const endD = parseDate(range.e);
+            // 시작월부터 종료월까지 모든 월 추가
+            const cur = new Date(startD.getFullYear(), startD.getMonth(), 1);
+            while (cur <= endD) {
+              focusMonthKeys.add(`${cur.getFullYear()}-${cur.getMonth()}`);
+              cur.setMonth(cur.getMonth() + 1);
+            }
+          });
+          setExpandedMonths(focusMonthKeys);
+        } else {
+          // 핵심구간 없으면 투표 가능한 첫 번째 월만 펼침
+          const firstVotable = allMonths.find(({year, month}) => {
+            const key = `${year}-${month}`;
+            return monthStatus[key]?.hasVotableDays;
+          });
+          if (firstVotable) {
+            setExpandedMonths(new Set([`${firstVotable.year}-${firstVotable.month}`]));
+          }
         }
       }, [monthStatus]);
 
