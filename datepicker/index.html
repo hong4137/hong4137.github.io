@@ -377,9 +377,9 @@
 
     function Card({ children, style }) {
       return <div data-card="true" style={{
-        background: "rgba(30,41,59,0.8)", border: "1px solid #334155",
+        background: "rgba(30,41,59,0.9)", border: "1px solid #334155",
         borderRadius: 16, padding: 24, marginBottom: 16,
-        backdropFilter: "blur(8px)", animation: "fadeIn 0.3s ease", ...style,
+        animation: "fadeIn 0.3s ease", ...style,
       }}>{children}</div>;
     }
 
@@ -1707,38 +1707,11 @@
         if (!captureRef.current || capturing) return;
         setCapturing(true);
         try {
-          // 캡쳐 전 모든 Card의 스타일 저장 후 변경
-          const cards = captureRef.current.querySelectorAll('[data-card]');
-          const originalStyles = [];
-          cards.forEach((card, i) => {
-            originalStyles[i] = card.getAttribute('style');
-            card.setAttribute('style', `
-              background: #1e293b !important;
-              backdrop-filter: none !important;
-              -webkit-backdrop-filter: none !important;
-              border: 1px solid #334155;
-              border-radius: 16px;
-              padding: 24px;
-              margin-bottom: 16px;
-            `);
-          });
-          
-          // 캡쳐 영역 배경도 강제
-          const originalBg = captureRef.current.getAttribute('style');
-          captureRef.current.style.background = '#0f172a';
-          
           const canvas = await html2canvas(captureRef.current, {
             backgroundColor: "#0f172a",
             scale: 2,
             useCORS: true,
-            allowTaint: true,
           });
-          
-          // 스타일 복원
-          cards.forEach((card, i) => {
-            if (originalStyles[i]) card.setAttribute('style', originalStyles[i]);
-          });
-          captureRef.current.setAttribute('style', originalBg || '');
           
           // 클립보드에 복사
           canvas.toBlob(async (blob) => {
