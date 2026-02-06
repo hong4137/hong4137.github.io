@@ -1055,14 +1055,14 @@
         return status;
       }, [allMonths, blockedDates, today, endDate, isMonthFullyBlocked]);
 
-      // 아코디언 초기화: 투표 가능한 날이 있는 첫 번째 월만 펼침
+      // 아코디언 초기화: 투표 가능한 날이 있는 모든 월 펼침
       React.useEffect(() => {
-        const firstVotableMonth = allMonths.find(({year, month}) => {
+        const votableMonths = allMonths.filter(({year, month}) => {
           const key = `${year}-${month}`;
           return monthStatus[key]?.hasVotableDays;
         });
-        if (firstVotableMonth) {
-          setExpandedMonths(new Set([`${firstVotableMonth.year}-${firstVotableMonth.month}`]));
+        if (votableMonths.length > 0) {
+          setExpandedMonths(new Set(votableMonths.map(({year, month}) => `${year}-${month}`)));
         }
       }, []);
 
