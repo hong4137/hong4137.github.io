@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-06 03:53:57 KST",
+  "updated": "2026-02-06 11:23:48 KST",
   "epl": {
     "matchday": 25,
     "selected_round": 25,
@@ -112,7 +112,7 @@
   },
   "nba": {
     "record": "27-24",
-    "rank": "#8 West",
+    "rank": "-",
     "last": {
       "opp": "76ers",
       "result": "L",
@@ -156,7 +156,7 @@
     "next": {
       "event": "Rotterdam Open",
       "detail": "-",
-      "match_time": "Feb 9",
+      "match_time": "Feb 9-15",
       "tournament_dates": "",
       "status": "-"
     }
