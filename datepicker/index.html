@@ -1054,9 +1054,12 @@
         return status;
       }, [allMonths, blockedDates, today, endDate, isMonthFullyBlocked]);
 
-      // 아코디언 초기화: 핵심구간이 포함된 월만 펼침 (없으면 투표 가능한 첫 번째 월)
+      // 아코디언 초기화: 핵심구간이 포함된 월만 펼침 (한 번만 실행)
+      const initializedRef = React.useRef(false);
       React.useEffect(() => {
+        if (initializedRef.current) return;
         if (Object.keys(monthStatus).length === 0) return;
+        initializedRef.current = true;
         
         // 핵심구간이 있으면 해당 월만 펼침
         if (hasFocus && focusRanges.length > 0) {
@@ -1082,7 +1085,7 @@
             setExpandedMonths(new Set([`${firstVotable.year}-${firstVotable.month}`]));
           }
         }
-      }, [monthStatus]);
+      }, [monthStatus, hasFocus, focusRanges, allMonths]);
 
       const toggleMonth = (year, month) => {
         const key = `${year}-${month}`;
@@ -1415,7 +1418,6 @@
             const isExpanded = expandedMonths.has(key);
             const status = monthStatus[key] || {};
             const monthNames = ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"];
-            console.log("Rendering month:", key, "status:", status, "isExpanded:", isExpanded);
             
             return (
               <Card key={key} style={{ padding: 0, overflow: "hidden" }}>
