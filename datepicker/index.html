@@ -1707,10 +1707,28 @@
         if (!captureRef.current || capturing) return;
         setCapturing(true);
         try {
+          // 캡쳐 전 모든 투명 배경을 불투명하게 변환
+          const allElements = captureRef.current.querySelectorAll('*');
+          const originalBgs = [];
+          allElements.forEach((el, i) => {
+            const bg = el.style.background || window.getComputedStyle(el).background;
+            originalBgs[i] = el.style.background;
+            // rgba 투명 배경을 불투명하게 변환
+            if (bg && bg.includes('rgba')) {
+              const newBg = bg.replace(/rgba\((\d+),\s*(\d+),\s*(\d+),\s*[\d.]+\)/g, 'rgb($1, $2, $3)');
+              el.style.background = newBg;
+            }
+          });
+          
           const canvas = await html2canvas(captureRef.current, {
             backgroundColor: "#0f172a",
             scale: 2,
             useCORS: true,
+          });
+          
+          // 배경 복원
+          allElements.forEach((el, i) => {
+            el.style.background = originalBgs[i] || '';
           });
           
           // 클립보드에 복사
