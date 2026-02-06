@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>날짜잡자 v2 — Supabase</title>
+  
+  <!-- Open Graph / 카카오톡 등 -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="날짜잡자 (Click!)" />
+  <meta property="og:description" content="약속 날짜를 조율하는 가장 편한 방법" />
+  <meta property="og:image" content="https://hong4137.github.io/datepicker/og-image-v3.png" />
+  <meta property="og:url" content="https://hong4137.github.io/datepicker-v2/" />
+  
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body, #root { height: 100%; }
+    body {
+      font-family: 'Pretendard', 'Apple SD Gothic Neo', -apple-system, sans-serif;
+      background: linear-gradient(145deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      color: #e2e8f0;
+      -webkit-font-smoothing: antialiased;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    input:focus { border-color: #38bdf8 !important; outline: none; }
+    button { -webkit-appearance: none; }
+    .v2-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #8b5cf6, #6366f1);
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  
+  <!-- React -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+  
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <script type="text/babel">
+    const { useState, useEffect, useCallback } = React;
+
+    // ══════════════════════════════════════════════
+    // Supabase 설정 (여기에 너의 정보 입력!)
+    // ══════════════════════════════════════════════
+    const SUPABASE_URL = "https://ptyfrcfizmtlyqjjetjw.supabase.co";
+    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB0eWZyY2Zpem10bHlxampldGp3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAyMDY0NTAsImV4cCI6MjA4NTc4MjQ1MH0.L8207Uo0DlgkiXTkF9vHUOuX6NP8SfJcEpk9vFAPKBQ";
+    
+    const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    // ══════════════════════════════════════════════
+    // Supabase API 함수들 (Apps Script 대체)
+    // ══════════════════════════════════════════════
+
+    // 랜덤 8자리 ID 생성
+    function generateId() {
+      const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+      let id = '';
+      for (let i = 0; i < 8; i++) {
+        id += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return id;
+    }
+
+    // 그룹 생성
+    async function createGroup(creator, membersStr, focusRanges, groupName, email, mealType) {
+      const groupId = generateId();
+      const today = new Date();
+      const endDate = new Date(today);
+      endDate.setDate(endDate.getDate() + 90);
+
+      const members = membersStr.split(',').map(s => s.trim()).filter(Boolean);
+      if (!members.includes(creator)) members.unshift(creator);
+
+      const newGroup = {
+        group_id: groupId,
+        creator: creator,
+        members: members,
+        date_start: fmtDate(today),
+        date_end: fmtDate(endDate),
+        focus_ranges: focusRanges || [],
+        group_name: groupName || null,
+        email: email || null,
+        meal_type: mealType || 'dinner'
+      };
+
+      const { data, error } = await db.from('groups').insert(newGroup).select().single();
+      
+      if (error) return { error: error.message };
+      return { success: true, groupId: data.group_id, dateStart: data.date_start, dateEnd: data.date_end };
+    }
+
+    // 그룹 조회
+    async function getGroup(groupId) {
+      const { data, error } = await db
+        .from('groups')
+        .select('*')
+        .eq('group_id', groupId)
+        .single();
+
+      if (error) return { error: 'Group not found' };
+      
+      return {
+        success: true,
+        group: {
+          groupId: data.group_id,
+          creator: data.creator,
+          members: data.members,
+          dateStart: data.date_start,
+          dateEnd: data.date_end,
+          status: data.status,
+          excluded: data.excluded || [],
+          focusRanges: data.focus_ranges || [],
+          vip: data.vip,
+          confirmedDate: data.confirmed_date,
+          groupName: data.group_name,
+          email: data.email,
+          mealType: data.meal_type
+        }
+      };
+    }
+
+    // 내 투표 조회
+    async function getMyVotes(groupId, userName) {
+      const { data, error } = await db
+        .from('votes')
+        .select('*')
+        .eq('group_id', groupId)
+        .eq('user_name', userName);
+
+      if (error) return { error: error.message };
+      
+      return {
+        success: true,
+        votes: data.map(v => ({ date: v.vote_date, voteType: v.vote_type }))
+      };
+    }
+
+    // 투표 저장 (기존 투표 삭제 후 새로 저장)
+    async function saveVotes(groupId, userName, votes) {
+      // 1. 기존 투표 삭제
+      await db
+        .from('votes')
+        .delete()
+        .eq('group_id', groupId)
+        .eq('user_name', userName);
+
+      // 2. 새 투표 저장
+      if (votes.length > 0) {
+        const newVotes = votes.map(v => ({
+          group_id: groupId,
+          user_name: userName,
+          vote_date: v.date,
+          vote_type: v.voteType
+        }));
+
+        const { error } = await db.from('votes').insert(newVotes);
+        if (error) return { error: error.message };
+      }
+
+      // TODO: 전원 투표 완료 시 이메일 알림 (Edge Function으로 구현 예정)
+      
+      return { success: true, saved: votes.length };
+    }
+
+    // 투표 현황 조회
+    async function getVoteStatus(groupId) {
+      const groupResult = await getGroup(groupId);
+      if (groupResult.error) return groupResult;
+
+      const group = groupResult.group;
+      const activeMembers = group.members.filter(m => !group.excluded.includes(m));
+
+      const { data: votesData } = await db
+        .from('votes')
+        .select('user_name')
+        .eq('group_id', groupId);
+
+      const votedUsers = new Set(votesData?.map(v => v.user_name) || []);
+      const status = activeMembers.map(m => ({ name: m, voted: votedUsers.has(m) }));
+
+      return {
+        success: true,
+        totalMembers: activeMembers.length,
+        votedCount: status.filter(s => s.voted).length,
+        members: status
+      };
+    }
+
+    // 그룹 마감
+    async function closeGroup(groupId, excludedMembers, vip) {
+      const { error } = await db
+        .from('groups')
+        .update({
+          status: 'closed',
+          excluded: excludedMembers,
+          vip: vip || null
+        })
+        .eq('group_id', groupId);
+
+      if (error) return { error: error.message };
+      return { success: true, excluded: excludedMembers, vip: vip || '' };
+    }
+
+    // 핵심구간 업데이트
+    async function updateFocus(groupId, focusRanges) {
+      const { error } = await db
+        .from('groups')
+        .update({ focus_ranges: focusRanges })
+        .eq('group_id', groupId);
+
+      if (error) return { error: error.message };
+      return { success: true, focusRanges };
+    }
+
+    // 날짜 확정
+    async function confirmDate(groupId, date) {
+      const { error } = await db
+        .from('groups')
+        .update({ confirmed_date: date })
+        .eq('group_id', groupId);
+
+      if (error) return { error: error.message };
+      return { success: true, confirmedDate: date };
+    }
+
+    // 결과 산출
+    async function getResult(groupId, vip) {
+      const groupResult = await getGroup(groupId);
+      if (groupResult.error) return groupResult;
+
+      const group = groupResult.group;
+      if (!vip && group.vip) vip = group.vip;
+      
+      const activeMembers = group.members.filter(m => !group.excluded.includes(m));
+      const totalMembers = activeMembers.length;
+      const hasVip = vip && activeMembers.includes(vip);
+
+      const focusRanges = group.focusRanges || [];
+      const hasFocus = focusRanges.length > 0;
+
+      function isInFocus(dateStr) {
+        return focusRanges.some(r => dateStr >= r.s && dateStr <= r.e);
+      }
+
+      // 투표 데이터 조회
+      const { data: votesData } = await db
+        .from('votes')
+        .select('*')
+        .eq('group_id', groupId);
+
+      const dateVotes = {};
+      
+      (votesData || []).forEach(v => {
+        if (!activeMembers.includes(v.user_name)) return;
+        const date = v.vote_date;
+        if (!dateVotes[date]) {
+          dateVotes[date] = { preferred: [], unavailable: [] };
+        }
+        if (v.vote_type === 'preferred') {
+          dateVotes[date].preferred.push(v.user_name);
+        } else if (v.vote_type === 'unavailable') {
+          dateVotes[date].unavailable.push(v.user_name);
+        }
+      });
+
+      // 핵심구간 내 날짜 보충
+      const allDates = new Set(Object.keys(dateVotes));
+      if (hasFocus) {
+        focusRanges.forEach(r => {
+          let cur = new Date(r.s + 'T00:00:00');
+          const end = new Date(r.e + 'T00:00:00');
+          while (cur <= end) {
+            allDates.add(fmtDate(cur));
+            cur.setDate(cur.getDate() + 1);
+          }
+        });
+      }
+
+      // Tier 분류
+      const focusTier1 = [], focusTier2 = [], focusTier3 = [];
+      const outerTier1 = [], outerTier2 = [], outerTier3 = [];
+
+      for (const date of allDates) {
+        if (isOffDay(date)) continue;
+
+        const v = dateVotes[date] || { preferred: [], unavailable: [] };
+
+        if (hasVip && v.unavailable.includes(vip)) continue;
+        if (hasVip && !v.preferred.includes(vip)) continue;
+
+        const preferredCount = v.preferred.length;
+        const unavailableCount = v.unavailable.length;
+        const neutralUsers = activeMembers.filter(m => !v.preferred.includes(m) && !v.unavailable.includes(m));
+
+        const isFocus = hasFocus && isInFocus(date);
+
+        const entry = {
+          date: date,
+          preferred: preferredCount,
+          unavailable: unavailableCount,
+          unavailableUsers: v.unavailable,
+          neutral: neutralUsers.length,
+          neutralUsers: neutralUsers
+        };
+
+        if (unavailableCount === 0 && preferredCount === totalMembers) {
+          (isFocus ? focusTier1 : outerTier1).push(entry);
+        } else if (unavailableCount === 0) {
+          (isFocus ? focusTier2 : outerTier2).push(entry);
+        } else {
+          (isFocus ? focusTier3 : outerTier3).push(entry);
+        }
+      }
+
+      function findBest(focusArr, outerArr) {
+        if (focusArr.length > 0) return { data: focusArr, fromFocus: true };
+        if (outerArr.length > 0) return { data: outerArr, fromFocus: false };
+        return null;
+      }
+
+      // Tier 1
+      let best = findBest(focusTier1, outerTier1);
+      if (best) {
+        best.data.sort((a, b) => a.date.localeCompare(b.date));
+        return {
+          success: true, tier: 1,
+          message: hasVip ? vip + '님 중심 · 모두가 선호하는 날' : '모두가 선호하는 날',
+          fromFocus: best.fromFocus,
+          dates: best.data,
+          totalMembers,
+          vip: vip || ''
+        };
+      }
+
+      // Tier 2
+      best = findBest(focusTier2, outerTier2);
+      if (best) {
+        best.data.sort((a, b) => {
+          if (b.preferred !== a.preferred) return b.preferred - a.preferred;
+          return a.date.localeCompare(b.date);
+        });
+        const topPref = best.data[0].preferred;
+        const topDates = best.data.filter(d => d.preferred === topPref);
+        return {
+          success: true, tier: 2,
+          message: hasVip ? vip + '님 중심 · 전원 가능한 날 중 최적' : '전원 가능한 날 중 최적',
+          fromFocus: best.fromFocus,
+          dates: topDates,
+          totalMembers,
+          vip: vip || ''
+        };
+      }
+
+      // Tier 3
+      best = findBest(focusTier3, outerTier3);
+      if (best) {
+        best.data.sort((a, b) => {
+          if (a.unavailable !== b.unavailable) return a.unavailable - b.unavailable;
+          if (b.preferred !== a.preferred) return b.preferred - a.preferred;
+          return a.date.localeCompare(b.date);
+        });
+        const top = best.data[0];
+        const topDates = best.data.filter(d =>
+          d.unavailable === top.unavailable && d.preferred === top.preferred
+        );
+        return {
+          success: true, tier: 3,
+          message: hasVip ? vip + '님 중심 · 양보가 필요한 날' : '양보가 필요한 날',
+          fromFocus: best.fromFocus,
+          dates: topDates,
+          totalMembers,
+          vip: vip || ''
+        };
+      }
+
+      return {
+        success: true, tier: 0,
+        message: '투표 데이터가 없습니다',
+        dates: [], totalMembers
+      };
+    }
+
+    // ══════════════════════════════════════════════
+    // 유틸리티 함수들 (기존 코드 그대로)
+    // ══════════════════════════════════════════════
+
+    function parseDate(d) {
+      if (!d) return null;
+      if (typeof d === "string") {
+        if (d.match(/^\d{4}-\d{2}-\d{2}$/)) { const [y,m,day] = d.split("-").map(Number); return new Date(y,m-1,day); }
+        return new Date(d);
+      }
+      return new Date(d);
+    }
+    function fmtDate(date) {
+      return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`;
+    }
+    function fmtDisplay(date) {
+      const days = ["일","월","화","수","목","금","토"];
+      return `${date.getMonth()+1}/${date.getDate()}(${days[date.getDay()]})`;
+    }
+    function getDaysInMonth(y,m) { return new Date(y,m+1,0).getDate(); }
+    function getFirstDayOfMonth(y,m) { return new Date(y,m,1).getDay(); }
+    function isWeekend(y,m,d) { const day = new Date(y,m,d).getDay(); return day===0||day===6; }
+
+    // 2026년 한국 공휴일
+    const KR_HOLIDAYS = {
+      "2026-01-01": "신정",
+      "2026-02-16": "설날 연휴",
+      "2026-02-17": "설날",
+      "2026-02-18": "설날 연휴",
+      "2026-03-01": "삼일절",
+      "2026-03-02": "삼일절 대체공휴일",
+      "2026-05-05": "어린이날",
+      "2026-05-24": "부처님오신날",
+      "2026-05-25": "부처님오신날 대체공휴일",
+      "2026-06-06": "현충일",
+      "2026-08-15": "광복절",
+      "2026-08-17": "광복절 대체공휴일",
+      "2026-09-24": "추석 연휴",
+      "2026-09-25": "추석",
+      "2026-09-26": "추석 연휴",
+      "2026-10-03": "개천절",
+      "2026-10-05": "개천절 대체공휴일",
+      "2026-10-09": "한글날",
+      "2026-12-25": "크리스마스",
+    };
+
+    function getHolidayName(dateStr) { return KR_HOLIDAYS[dateStr] || null; }
+    function isHoliday(dateStr) { return !!KR_HOLIDAYS[dateStr]; }
+    function isOff(y,m,d) {
+      const dateStr = fmtDate(new Date(y,m,d));
+      return isWeekend(y,m,d) || isHoliday(dateStr);
+    }
+    function isOffDay(dateStr) {
+      const d = new Date(dateStr + 'T00:00:00');
+      return d.getDay() === 0 || d.getDay() === 6 || !!KR_HOLIDAYS[dateStr];
+    }
+
+    const VOTE_COLORS = {
+      preferred: { bg: "#22c55e", text: "#fff", label: "선호하는 날", emoji: "♥" },
+      unavailable: { bg: "#ef4444", text: "#fff", label: "절대 안되는 날", emoji: "✕" },
+    };
+    const VOTE_CYCLE = [null, "preferred", "unavailable"];
+
+    const inputStyle = {
+      width: "100%", padding: "12px 14px", borderRadius: 10,
+      border: "1px solid #334155", background: "#0f172a",
+      color: "#e2e8f0", fontSize: 15, fontFamily: "inherit", outline: "none", boxSizing: "border-box",
+    };
+
+    // ══════════════════════════════════════════════
+    // UI 컴포넌트들 (기존 코드 그대로 - 간소화 버전)
+    // ══════════════════════════════════════════════
+
+    function Card({ children, style }) {
+      return <div style={{
+        background: "rgba(30,41,59,0.8)", border: "1px solid #334155",
+        borderRadius: 16, padding: 24, marginBottom: 16,
+        backdropFilter: "blur(8px)", animation: "fadeIn 0.3s ease", ...style,
+      }}>{children}</div>;
+    }
+
+    function Button({ children, onClick, disabled, variant="primary", style }) {
+      const styles = {
+        primary: { background: "linear-gradient(135deg,#0ea5e9,#38bdf8)", color: "#fff" },
+        secondary: { background: "rgba(51,65,85,0.8)", color: "#cbd5e1", border: "1px solid #475569" },
+        danger: { background: "linear-gradient(135deg,#dc2626,#ef4444)", color: "#fff" },
+      };
+      return <button onClick={onClick} disabled={disabled} style={{
+        width: "100%", padding: "14px 20px", borderRadius: 12, border: "none",
+        fontSize: 15, fontWeight: 700, cursor: disabled ? "default" : "pointer",
+        opacity: disabled ? 0.5 : 1, transition: "all 0.2s", fontFamily: "inherit",
+        ...styles[variant], ...style,
+      }}>{children}</button>;
+    }
+
+    function Header() {
+      const handleHome = () => { window.location.href = window.location.pathname; };
+      return (
+        <div style={{ textAlign: "center", padding: "20px 0 8px" }}>
+          <div onClick={handleHome} style={{ cursor: "pointer", display: "inline-block" }}>
+            <div style={{ fontSize: 24, fontWeight: 900, background: "linear-gradient(135deg,#38bdf8,#818cf8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              날짜잡자 <span className="v2-badge">v2</span>
+            </div>
+            <div style={{ fontSize: 12, color: "#64748b", marginTop: 2 }}>Supabase 버전 테스트</div>
+          </div>
+        </div>
+      );
+    }
+
+    function LoadingSpinner() {
+      return <div style={{ textAlign: "center", padding: 60 }}>
+        <div style={{ width: 36, height: 36, border: "3px solid #334155", borderTop: "3px solid #38bdf8", borderRadius: "50%", animation: "spin 0.8s linear infinite", margin: "0 auto" }} />
+      </div>;
+    }
+
+    function ErrorScreen({ message }) {
+      return <Card><div style={{ textAlign: "center", padding: 24 }}>
+        <div style={{ fontSize: 40, marginBottom: 12 }}>⚠️</div>
+        <div style={{ fontSize: 16, color: "#f87171", marginBottom: 8 }}>{message}</div>
+        <button onClick={() => { window.location.href = window.location.pathname; }} style={{
+          marginTop: 16, padding: "12px 24px", borderRadius: 10,
+          background: "rgba(51,65,85,0.8)", border: "1px solid #475569",
+          color: "#cbd5e1", fontSize: 14, cursor: "pointer", fontFamily: "inherit",
+        }}>새 약속 만들기</button>
+      </div></Card>;
+    }
+
+    // ══════════════════════════════════════════════
+    // 간소화된 테스트용 앱
+    // ══════════════════════════════════════════════
+
+    function App() {
+      const [screen, setScreen] = useState("loading");
+      const [groupId, setGroupId] = useState(null);
+      const [group, setGroup] = useState(null);
+      const [error, setError] = useState(null);
+      const [loading, setLoading] = useState(false);
+
+      // Supabase 연결 확인
+      const [dbConnected, setDbConnected] = useState(false);
+
+      useEffect(() => {
+        // Supabase 연결 테스트
+        if (!SUPABASE_KEY) {
+          setError("SUPABASE_KEY가 설정되지 않았습니다. 코드에서 anon key를 입력해주세요.");
+          setScreen("error");
+          return;
+        }
+
+        // URL 파라미터 확인
+        const p = new URLSearchParams(window.location.search);
+        const gId = p.get("g");
+        
+        if (gId) {
+          setGroupId(gId);
+          setScreen("loadingGroup");
+        } else {
+          setScreen("home");
+        }
+      }, []);
+
+      // 그룹 로딩
+      useEffect(() => {
+        if (screen !== "loadingGroup" || !groupId) return;
+        
+        getGroup(groupId).then(data => {
+          if (data.error) {
+            setError("그룹을 찾을 수 없습니다");
+            setScreen("error");
+          } else {
+            setGroup(data.group);
+            setScreen("groupInfo");
+          }
+        });
+      }, [screen, groupId]);
+
+      return (
+        <div style={{ maxWidth: 480, margin: "0 auto", padding: "0 16px" }}>
+          <Header />
+          
+          {screen === "loading" && <LoadingSpinner />}
+          {screen === "loadingGroup" && <LoadingSpinner />}
+          {screen === "error" && <ErrorScreen message={error} />}
+          
+          {screen === "home" && (
+            <Card>
+              <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 20 }}>🧪 Supabase 연결 테스트</div>
+              
+              <div style={{ background: "#1e293b", borderRadius: 10, padding: 16, marginBottom: 20 }}>
+                <div style={{ fontSize: 13, color: "#94a3b8", marginBottom: 8 }}>연결 상태</div>
+                <div style={{ fontSize: 15, color: "#22c55e", fontWeight: 600 }}>✓ Supabase 연결됨</div>
+                <div style={{ fontSize: 12, color: "#64748b", marginTop: 4 }}>{SUPABASE_URL}</div>
+              </div>
+
+              <div style={{ fontSize: 14, color: "#94a3b8", marginBottom: 16 }}>
+                기존에 만든 테스트 그룹을 조회해보세요:
+              </div>
+
+              <Button onClick={() => {
+                window.location.href = window.location.pathname + "?g=test1234";
+              }}>
+                test1234 그룹 조회하기
+              </Button>
+
+              <div style={{ marginTop: 12 }}>
+                <Button variant="secondary" onClick={() => {
+                  window.location.href = "https://hong4137.github.io/datepicker/";
+                }}>
+                  기존 버전으로 가기 (v1)
+                </Button>
+              </div>
+            </Card>
+          )}
+
+          {screen === "groupInfo" && group && (
+            <Card>
+              <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 20 }}>✅ 그룹 조회 성공!</div>
+              
+              <div style={{ background: "#1e293b", borderRadius: 10, padding: 16 }}>
+                <div style={{ marginBottom: 12 }}>
+                  <div style={{ fontSize: 12, color: "#64748b" }}>그룹 ID</div>
+                  <div style={{ fontSize: 15, color: "#e2e8f0", fontWeight: 600 }}>{group.groupId}</div>
+                </div>
+                <div style={{ marginBottom: 12 }}>
+                  <div style={{ fontSize: 12, color: "#64748b" }}>모임 이름</div>
+                  <div style={{ fontSize: 15, color: "#e2e8f0", fontWeight: 600 }}>{group.groupName || "(없음)"}</div>
+                </div>
+                <div style={{ marginBottom: 12 }}>
+                  <div style={{ fontSize: 12, color: "#64748b" }}>발행자</div>
+                  <div style={{ fontSize: 15, color: "#e2e8f0", fontWeight: 600 }}>{group.creator}</div>
+                </div>
+                <div style={{ marginBottom: 12 }}>
+                  <div style={{ fontSize: 12, color: "#64748b" }}>참여자</div>
+                  <div style={{ fontSize: 15, color: "#e2e8f0", fontWeight: 600 }}>{group.members.join(", ")}</div>
+                </div>
+                <div style={{ marginBottom: 12 }}>
+                  <div style={{ fontSize: 12, color: "#64748b" }}>기간</div>
+                  <div style={{ fontSize: 15, color: "#e2e8f0", fontWeight: 600 }}>{group.dateStart} ~ {group.dateEnd}</div>
+                </div>
+                <div>
+                  <div style={{ fontSize: 12, color: "#64748b" }}>상태</div>
+                  <div style={{ fontSize: 15, color: group.status === 'voting' ? "#22c55e" : "#f59e0b", fontWeight: 600 }}>
+                    {group.status === 'voting' ? '투표 중' : '마감됨'}
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ marginTop: 20 }}>
+                <Button onClick={() => {
+                  window.location.href = window.location.pathname;
+                }}>
+                  홈으로 돌아가기
+                </Button>
+              </div>
+            </Card>
+          )}
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
