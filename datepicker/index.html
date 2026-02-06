@@ -1689,30 +1689,27 @@
             useCORS: true,
           });
           
-          // 모바일/데스크톱 공유
+          // 클립보드에 복사
           canvas.toBlob(async (blob) => {
-            if (navigator.share && navigator.canShare && navigator.canShare({ files: [new File([blob], 'result.png', { type: 'image/png' })] })) {
-              // 모바일 공유
-              try {
-                await navigator.share({
-                  files: [new File([blob], `${group?.groupName || '약속'}_결과.png`, { type: 'image/png' })],
-                  title: '날짜잡자 결과',
-                });
-              } catch (e) {
-                // 공유 취소 등
-              }
-            } else {
-              // 데스크톱: 다운로드
+            try {
+              await navigator.clipboard.write([
+                new ClipboardItem({ 'image/png': blob })
+              ]);
+              alert('📋 이미지가 클립보드에 복사되었습니다!\n\n카카오톡, 메모장 등에 붙여넣기(Ctrl+V) 하세요.');
+            } catch (err) {
+              // 클립보드 API 실패 시 다운로드로 대체
               const url = URL.createObjectURL(blob);
               const a = document.createElement('a');
               a.href = url;
               a.download = `${group?.groupName || '약속'}_결과.png`;
               a.click();
               URL.revokeObjectURL(url);
+              alert('📥 이미지가 다운로드 폴더에 저장되었습니다!');
             }
           }, 'image/png');
         } catch (err) {
           console.error('Capture error:', err);
+          alert('캡쳐에 실패했습니다.');
         } finally {
           setCapturing(false);
         }
@@ -1802,7 +1799,7 @@
               color: "#c084fc", fontSize: 15, fontWeight: 700, cursor: capturing ? "default" : "pointer",
               opacity: capturing ? 0.6 : 1, fontFamily: "inherit",
             }}>
-              {capturing ? "캡쳐 중..." : "📸 결과 이미지로 저장/공유"}
+              {capturing ? "캡쳐 중..." : "📋 결과 이미지 복사하기"}
             </button>
           </Card>
 
