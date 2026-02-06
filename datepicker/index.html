@@ -1397,6 +1397,7 @@
             const isExpanded = expandedMonths.has(key);
             const status = monthStatus[key] || {};
             const monthNames = ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"];
+            console.log("Rendering month:", key, "status:", status, "isExpanded:", isExpanded);
             
             return (
               <Card key={key} style={{ padding: 0, overflow: "hidden" }}>
@@ -1411,7 +1412,7 @@
                   }}
                 >
                   <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    <span style={{ fontSize: 16, fontWeight: 700, color: status.hasVotableDays ? "#e2e8f0" : "#64748b" }}>
+                    <span style={{ fontSize: 16, fontWeight: 700, color: "#e2e8f0" }}>
                       {year}년 {monthNames[month]}
                     </span>
                     {!status.hasVotableDays && (
