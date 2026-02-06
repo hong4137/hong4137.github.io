@@ -380,6 +380,7 @@
       const [selectingFocus, setSelectingFocus] = useState(false);
       const [focusStep, setFocusStep] = useState(0);
       const [tempStart, setTempStart] = useState("");
+      const [pendingRange, setPendingRange] = useState(null); // 확인 대기 중인 구간
       const [nameEnabled, setNameEnabled] = useState(false);
       const [emailEnabled, setEmailEnabled] = useState(false);
 
@@ -393,12 +394,28 @@
         } else {
           let s = tempStart, e = dateStr;
           if (e < s) { const t = s; s = e; e = t; }
-          const newRanges = [...(form.focusRanges || []), { s, e }];
-          setForm({ ...form, focusRanges: newRanges });
-          setTempStart("");
-          setFocusStep(0);
-          setSelectingFocus(false);
+          // 바로 저장하지 않고 확인 화면으로
+          setPendingRange({ s, e });
+          setFocusStep(2); // 확인 단계
         }
+      };
+
+      const confirmRange = () => {
+        if (pendingRange) {
+          const newRanges = [...(form.focusRanges || []), pendingRange];
+          setForm({ ...form, focusRanges: newRanges });
+        }
+        setPendingRange(null);
+        setTempStart("");
+        setFocusStep(0);
+        setSelectingFocus(false);
+      };
+
+      const resetRange = () => {
+        setPendingRange(null);
+        setTempStart("");
+        setFocusStep(0);
+        // 달력은 유지 (selectingFocus는 true 유지)
       };
 
       const removeRange = (idx) => {
@@ -484,25 +501,54 @@
               </button>
             ) : (
               <div>
-                <div style={{ fontSize: 13, color: "#38bdf8", marginBottom: 8, fontWeight: 600 }}>
-                  {focusStep === 0 ? "▸ 시작일을 선택하세요" : "▸ 종료일을 선택하세요"}
-                </div>
-                {tempStart && (
-                  <div style={{ fontSize: 13, color: "#94a3b8", marginBottom: 8 }}>
-                    선택: {fmtDisplay(parseDate(tempStart))} ~ ...
+                {focusStep === 2 && pendingRange ? (
+                  /* 확인 화면 */
+                  <div style={{ textAlign: "center", padding: "20px 0" }}>
+                    <div style={{ fontSize: 15, color: "#e2e8f0", marginBottom: 16, lineHeight: 1.6 }}>
+                      <span style={{ color: "#38bdf8", fontWeight: 700 }}>{fmtDisplay(parseDate(pendingRange.s))}</span>
+                      <span style={{ color: "#94a3b8" }}> 부터 </span>
+                      <span style={{ color: "#38bdf8", fontWeight: 700 }}>{fmtDisplay(parseDate(pendingRange.e))}</span>
+                      <span style={{ color: "#94a3b8" }}> 까지</span>
+                      <br />
+                      <span style={{ color: "#94a3b8" }}>기간을 위주로 투표를 받을까요?</span>
+                    </div>
+                    <div style={{ display: "flex", gap: 10 }}>
+                      <button onClick={resetRange} style={{
+                        flex: 1, padding: "14px", borderRadius: 10, border: "1px solid #475569",
+                        background: "transparent", color: "#94a3b8", fontSize: 14, fontWeight: 600,
+                        cursor: "pointer", fontFamily: "inherit",
+                      }}>다시 선택</button>
+                      <button onClick={confirmRange} style={{
+                        flex: 1, padding: "14px", borderRadius: 10, border: "none",
+                        background: "linear-gradient(135deg,#0ea5e9,#38bdf8)", color: "#fff",
+                        fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "inherit",
+                      }}>네, 확인</button>
+                    </div>
                   </div>
+                ) : (
+                  /* 날짜 선택 화면 */
+                  <>
+                    <div style={{ fontSize: 13, color: "#38bdf8", marginBottom: 8, fontWeight: 600 }}>
+                      {focusStep === 0 ? "▸ 시작일을 선택하세요" : "▸ 종료일을 선택하세요"}
+                    </div>
+                    {tempStart && (
+                      <div style={{ fontSize: 13, color: "#94a3b8", marginBottom: 8 }}>
+                        선택: {fmtDisplay(parseDate(tempStart))} ~ ...
+                      </div>
+                    )}
+                    {months.map(({year, month}) => (
+                      <MiniMonthCalendar key={`${year}-${month}`} year={year} month={month}
+                        today={today} maxDate={maxDate}
+                        focusRanges={[...(form.focusRanges || []), ...(tempStart ? [{s: tempStart, e: tempStart}] : [])]}
+                        focusStep={focusStep}
+                        onDateClick={handleFocusDateClick} />
+                    ))}
+                    <button onClick={() => { setSelectingFocus(false); setFocusStep(0); setTempStart(""); setPendingRange(null); }} style={{
+                      width: "100%", padding: "10px", borderRadius: 10, border: "1px solid #475569",
+                      background: "transparent", color: "#94a3b8", fontSize: 13, cursor: "pointer", fontFamily: "inherit", marginTop: 8,
+                    }}>취소</button>
+                  </>
                 )}
-                {months.map(({year, month}) => (
-                  <MiniMonthCalendar key={`${year}-${month}`} year={year} month={month}
-                    today={today} maxDate={maxDate}
-                    focusRanges={[...(form.focusRanges || []), ...(tempStart ? [{s: tempStart, e: tempStart}] : [])]}
-                    focusStep={focusStep}
-                    onDateClick={handleFocusDateClick} />
-                ))}
-                <button onClick={() => { setSelectingFocus(false); setFocusStep(0); setTempStart(""); }} style={{
-                  width: "100%", padding: "10px", borderRadius: 10, border: "1px solid #475569",
-                  background: "transparent", color: "#94a3b8", fontSize: 13, cursor: "pointer", fontFamily: "inherit", marginTop: 8,
-                }}>취소</button>
               </div>
             )}
             <div style={{ fontSize: 13, color: "#fbbf24", marginTop: 8, fontWeight: 600 }}>
