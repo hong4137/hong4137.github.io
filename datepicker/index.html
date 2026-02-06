@@ -200,25 +200,23 @@
       return { success: true, votes: data.map(v => ({ date: v.vote_date, voteType: v.vote_type })) };
     }
 
-    // 이메일 발송 함수
+    // 이메일 발송 함수 (Apps Script 사용)
+    const EMAIL_API_URL = "https://script.google.com/macros/s/AKfycbw-W6LC3wGkGdWnUWkMPLsS3wvBMj5cUzvf7C7GU37RE7sygFqs4NefTB-_Zhwo88e_GQ/exec";
+    
     async function sendEmailNotification(to, groupName, groupId, memberCount, confirmedDate) {
       if (!to) return; // 이메일 없으면 스킵
       
       try {
-        const response = await fetch(`${SUPABASE_URL}/functions/v1/send-email`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${SUPABASE_KEY}`,
-          },
-          body: JSON.stringify({
-            to,
-            groupName,
-            groupId,
-            memberCount,
-            confirmedDate
-          }),
+        const params = new URLSearchParams({
+          action: 'sendEmail',
+          to,
+          groupName: groupName || '',
+          groupId,
+          memberCount: memberCount || '',
         });
+        if (confirmedDate) params.append('confirmedDate', confirmedDate);
+        
+        const response = await fetch(`${EMAIL_API_URL}?${params.toString()}`);
         const result = await response.json();
         console.log('Email sent:', result);
         return result;
