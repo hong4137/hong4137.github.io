@@ -124,6 +124,18 @@
       }}>{children}</button>;
     }
 
+    function Header() {
+      const handleHome = () => { window.location.href = window.location.pathname; };
+      return (
+        <div style={{ textAlign: "center", padding: "20px 0 8px" }}>
+          <div onClick={handleHome} style={{ cursor: "pointer", display: "inline-block" }}>
+            <div style={{ fontSize: 24, fontWeight: 900, background: "linear-gradient(135deg,#38bdf8,#818cf8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>날짜잡자</div>
+            <div style={{ fontSize: 12, color: "#64748b", marginTop: 2 }}>쉽고 빠른 약속 날짜 조율</div>
+          </div>
+        </div>
+      );
+    }
+
     function LoadingSpinner() {
       return <div style={{ textAlign: "center", padding: 60 }}>
         <div style={{ width: 36, height: 36, border: "3px solid #334155", borderTop: "3px solid #38bdf8", borderRadius: "50%", animation: "spin 0.8s linear infinite", margin: "0 auto" }} />
@@ -456,13 +468,14 @@
 
     // ── 월별 캘린더 (투표용) ──────────────────
 
-    function MonthCalendar({ year, month, startDate, endDate, focusRanges, votes, onDayClick }) {
+    function MonthCalendar({ year, month, startDate, endDate, focusRanges, votes, onDayClick, blockedDates }) {
       const WEEKDAYS = ["일","월","화","수","목","금","토"];
       const daysInMonth = getDaysInMonth(year, month);
       const firstDay = getFirstDayOfMonth(year, month);
       const monthNames = ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"];
       const today = new Date(); today.setHours(0,0,0,0);
       const ranges = focusRanges || [];
+      const blocked = blockedDates || new Set();
 
       const cells = [];
       for (let i = 0; i < firstDay; i++) cells.push(<div key={`e-${i}`} />);
@@ -473,31 +486,36 @@
         const weekend = isWeekend(year, month, day);
         const holiday = getHolidayName(dateStr);
         const off = weekend || !!holiday;
+        const isBlocked = blocked.has(dateStr);
         const vote = votes[dateStr];
         const vc = vote ? VOTE_COLORS[vote] : null;
         const isToday = fmtDate(date) === fmtDate(today);
         const isFocus = ranges.some(r => dateStr >= r.s && dateStr <= r.e);
+        const canClick = isInRange && !off && !isBlocked;
 
         cells.push(
-          <div key={day} onClick={() => isInRange && !off && onDayClick(dateStr)} style={{
+          <div key={day} onClick={() => canClick && onDayClick(dateStr)} style={{
             aspectRatio: "1", display: "flex", flexDirection: "column",
             alignItems: "center", justifyContent: "center", borderRadius: 10,
-            cursor: isInRange && !off ? "pointer" : "default",
-            opacity: isInRange ? (off ? 0.45 : 1) : 0.2,
-            background: vc ? vc.bg
+            cursor: canClick ? "pointer" : "default",
+            opacity: isInRange ? (off || isBlocked ? 0.35 : 1) : 0.2,
+            background: isBlocked && !off ? "rgba(239,68,68,0.08)"
+              : vc ? vc.bg
               : off && isFocus ? "repeating-linear-gradient(135deg, rgba(56,189,248,0.08), rgba(56,189,248,0.08) 3px, rgba(30,41,59,0.4) 3px, rgba(30,41,59,0.4) 6px)"
               : isFocus ? "rgba(56,189,248,0.1)"
               : "transparent",
-            border: isToday ? "2px solid #38bdf8" : isFocus && !vc ? "1px solid rgba(56,189,248,0.25)" : "1px solid transparent",
+            border: isToday ? "2px solid #38bdf8" : isFocus && !vc ? "1px solid rgba(56,189,248,0.25)" : isBlocked && !off ? "1px solid rgba(239,68,68,0.2)" : "1px solid transparent",
             transition: "all 0.15s", userSelect: "none",
             position: "relative",
           }}>
             <span style={{
               fontSize: 14, fontWeight: isToday ? 800 : 500,
-              color: vc ? vc.text : (holiday || date.getDay()===0) ? "#f87171" : date.getDay()===6 ? "#60a5fa" : "#cbd5e1",
+              color: isBlocked && !off ? "#64748b" : vc ? vc.text : (holiday || date.getDay()===0) ? "#f87171" : date.getDay()===6 ? "#60a5fa" : "#cbd5e1",
+              textDecoration: isBlocked && !off ? "line-through" : "none",
             }}>{day}</span>
+            {isBlocked && !off && !vc && <span style={{ fontSize: 9, color: "#64748b", marginTop: 1 }}>✕</span>}
             {vc && <span style={{ fontSize: 9, color: vc.text, marginTop: 1, opacity: 0.9 }}>{vc.emoji}</span>}
-            {holiday && !vc && <span style={{ fontSize: 7, color: "#f87171", marginTop: 1, lineHeight: 1, textAlign: "center" }}>{holiday.length > 3 ? holiday.slice(0,3) : holiday}</span>}
+            {holiday && !vc && !isBlocked && <span style={{ fontSize: 7, color: "#f87171", marginTop: 1, lineHeight: 1, textAlign: "center" }}>{holiday.length > 3 ? holiday.slice(0,3) : holiday}</span>}
           </div>
         );
       }
@@ -517,17 +535,74 @@
 
     // ── 캘린더 투표 화면 ──────────────────────
 
-    function CalendarScreen({ group, userName, votes, setVotes, onSave, saving, loading, onManage, isCreator, onBack }) {
+    function CalendarScreen({ group, userName, votes, setVotes, onSave, saving, loading, onManage, isCreator, onBack, onUpdateFocus }) {
       const [linkCopied, setLinkCopied] = useState(false);
       const [saveMsg, setSaveMsg] = useState("");
+      const [page, setPage] = useState(0); // 0: 0~60일, 1: 60~120일
+      const [editingFocus, setEditingFocus] = useState(false);
+      const [focusStep, setFocusStep] = useState(0);
+      const [tempStart, setTempStart] = useState("");
+      const [newRanges, setNewRanges] = useState([]);
+      const [focusSaving, setFocusSaving] = useState(false);
+
+      const PAGE_DAYS = 60;
+      const today = new Date(); today.setHours(0,0,0,0);
       const startDate = parseDate(group.dateStart);
       const endDate = parseDate(group.dateEnd);
+
+      // 페이지별 날짜 범위
+      const pageStart = new Date(today);
+      pageStart.setDate(pageStart.getDate() + page * PAGE_DAYS);
+      const pageEnd = new Date(today);
+      pageEnd.setDate(pageEnd.getDate() + (page + 1) * PAGE_DAYS - 1);
+      const effectiveStart = new Date(Math.max(startDate, pageStart));
+      const effectiveEnd = new Date(Math.min(endDate, pageEnd));
+
+      // 최대 120일까지
+      const maxPage = Math.ceil(120 / PAGE_DAYS) - 1;
+      const canNext = page < maxPage && pageEnd < endDate;
+      const canPrev = page > 0;
+
+      // 현재 페이지의 월 목록
       const months = [];
-      const cur = new Date(startDate.getFullYear(), startDate.getMonth(), 1);
-      while (cur <= endDate) { months.push({ year: cur.getFullYear(), month: cur.getMonth() }); cur.setMonth(cur.getMonth() + 1); }
+      const cur = new Date(effectiveStart.getFullYear(), effectiveStart.getMonth(), 1);
+      while (cur <= effectiveEnd) {
+        months.push({ year: cur.getFullYear(), month: cur.getMonth() });
+        cur.setMonth(cur.getMonth() + 1);
+      }
 
       const focusRanges = group.focusRanges || [];
       const hasFocus = focusRanges.length > 0;
+
+      // blockedDates 계산: 첫 핵심구간 이전 + 구간 사이 (마지막 구간 이후는 열림)
+      const blockedDates = React.useMemo(() => {
+        const blocked = new Set();
+        if (!hasFocus) return blocked;
+
+        // 구간 정렬
+        const sorted = [...focusRanges].sort((a, b) => a.s.localeCompare(b.s));
+        const firstStart = sorted[0].s;
+        const lastEnd = sorted[sorted.length - 1].e;
+
+        // 전체 날짜 범위 순회
+        const d = new Date(startDate);
+        while (d <= endDate) {
+          const ds = fmtDate(d);
+          const inAnyFocus = sorted.some(r => ds >= r.s && ds <= r.e);
+
+          if (ds < firstStart) {
+            // 첫 핵심구간 이전 → 차단
+            blocked.add(ds);
+          } else if (ds > lastEnd) {
+            // 마지막 핵심구간 이후 → 열림 (차단 안 함)
+          } else if (!inAnyFocus) {
+            // 구간 사이 (어느 구간에도 안 속함) → 차단
+            blocked.add(ds);
+          }
+          d.setDate(d.getDate() + 1);
+        }
+        return blocked;
+      }, [focusRanges, hasFocus, startDate, endDate]);
 
       const handleDayClick = (dateStr) => {
         setVotes(prev => {
@@ -551,13 +626,38 @@
 
       const mealLabel = group.mealType === "lunch" ? "점심" : "저녁";
       const mealEmoji = group.mealType === "lunch" ? "☀️" : "🌙";
+      const title = group.groupName || `${mealLabel} 약속 잡자`;
+
+      // 핵심구간 수정 핸들러 (발행자용)
+      const handleFocusDateClick = (dateStr) => {
+        if (focusStep === 0) {
+          setTempStart(dateStr);
+          setFocusStep(1);
+        } else {
+          let s = tempStart, e = dateStr;
+          if (e < s) { const t = s; s = e; e = t; }
+          setNewRanges([...newRanges, { s, e }]);
+          setTempStart("");
+          setFocusStep(0);
+        }
+      };
+
+      const handleFocusSave = async () => {
+        if (newRanges.length === 0) return;
+        setFocusSaving(true);
+        try {
+          await onUpdateFocus(newRanges);
+          setEditingFocus(false);
+          setNewRanges([]);
+        } finally { setFocusSaving(false); }
+      };
 
       return (
         <div>
           <Card style={{ padding: 16 }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <button onClick={onBack} style={{ background: "none", border: "none", color: "#94a3b8", fontSize: 14, cursor: "pointer", fontFamily: "inherit" }}>← 뒤로</button>
-              <div style={{ fontSize: 15, fontWeight: 700 }}>{mealEmoji} {mealLabel} 약속 잡자</div>
+              <div style={{ fontSize: 15, fontWeight: 700 }}>{mealEmoji} {title}</div>
               <button onClick={handleCopyLink} style={{ background: "none", border: "none", color: linkCopied ? "#22c55e" : "#64748b", fontSize: 13, cursor: "pointer", fontFamily: "inherit", whiteSpace: "nowrap" }}>
                 {linkCopied ? "✓ 복사됨" : "🔗 링크"}
               </button>
@@ -566,6 +666,78 @@
               <span style={{ color: "#38bdf8", fontWeight: 600 }}>{userName}</span>님의 투표
             </div>
           </Card>
+
+          {/* 핵심구간 표시 + 발행자 수정 */}
+          {hasFocus && (
+            <Card style={{ padding: 16 }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: editingFocus ? 12 : 0 }}>
+                <div>
+                  <div style={{ fontSize: 13, color: "#64748b", marginBottom: 4 }}>📅 핵심 구간</div>
+                  <div style={{ fontSize: 14, color: "#38bdf8", fontWeight: 600 }}>
+                    {focusRanges.map((r,i) => `${fmtDisplay(parseDate(r.s))}~${fmtDisplay(parseDate(r.e))}`).join(", ")}
+                  </div>
+                </div>
+                {isCreator && !editingFocus && (
+                  <button onClick={() => { setEditingFocus(true); setNewRanges([]); setFocusStep(0); setTempStart(""); }} style={{
+                    padding: "6px 12px", borderRadius: 8, background: "rgba(56,189,248,0.1)",
+                    border: "1px solid rgba(56,189,248,0.3)", color: "#38bdf8", fontSize: 12, cursor: "pointer", fontFamily: "inherit",
+                  }}>수정</button>
+                )}
+              </div>
+
+              {/* 핵심구간 수정 UI */}
+              {editingFocus && (
+                <div style={{ borderTop: "1px solid rgba(71,85,105,0.3)", paddingTop: 12 }}>
+                  <div style={{ fontSize: 12, color: "#f59e0b", marginBottom: 10 }}>
+                    {focusStep === 0 ? "새 구간의 시작일을 선택하세요" : "종료일을 선택하세요"}
+                  </div>
+
+                  {/* 새 구간 리스트 */}
+                  {newRanges.length > 0 && (
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 10 }}>
+                      {newRanges.map((r, idx) => (
+                        <div key={idx} style={{ display: "flex", alignItems: "center", gap: 4, padding: "4px 10px", borderRadius: 6, background: "rgba(56,189,248,0.1)", border: "1px solid rgba(56,189,248,0.3)" }}>
+                          <span style={{ fontSize: 12, color: "#38bdf8" }}>{fmtDisplay(parseDate(r.s))}~{fmtDisplay(parseDate(r.e))}</span>
+                          <button onClick={() => setNewRanges(newRanges.filter((_,i) => i !== idx))} style={{ background: "none", border: "none", color: "#64748b", fontSize: 12, cursor: "pointer", padding: 0, marginLeft: 2 }}>✕</button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* 미니 캘린더 */}
+                  {(() => {
+                    const miniMonths = [];
+                    const c = new Date(Math.max(today, startDate)); c.setDate(1);
+                    const maxD = new Date(today); maxD.setDate(maxD.getDate() + 90);
+                    while (c <= maxD && c <= endDate) {
+                      miniMonths.push({ year: c.getFullYear(), month: c.getMonth() });
+                      c.setMonth(c.getMonth() + 1);
+                    }
+                    return miniMonths.map(({year, month}) => (
+                      <MiniMonthCalendar key={`${year}-${month}`} year={year} month={month}
+                        today={today} maxDate={maxD}
+                        focusRanges={[...newRanges, ...(tempStart ? [{s: tempStart, e: tempStart}] : [])]}
+                        focusStep={focusStep}
+                        onDateClick={handleFocusDateClick} />
+                    ));
+                  })()}
+
+                  <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
+                    <button onClick={() => { setEditingFocus(false); setNewRanges([]); }} style={{
+                      flex: 1, padding: "10px", borderRadius: 8, background: "rgba(51,65,85,0.6)",
+                      border: "1px solid #475569", color: "#94a3b8", fontSize: 13, cursor: "pointer", fontFamily: "inherit",
+                    }}>취소</button>
+                    <button onClick={handleFocusSave} disabled={newRanges.length === 0 || focusSaving} style={{
+                      flex: 1, padding: "10px", borderRadius: 8,
+                      background: newRanges.length > 0 ? "linear-gradient(135deg,#0ea5e9,#38bdf8)" : "rgba(51,65,85,0.6)",
+                      border: "none", color: "#fff", fontSize: 13, cursor: newRanges.length > 0 ? "pointer" : "default",
+                      opacity: newRanges.length === 0 ? 0.5 : 1, fontFamily: "inherit",
+                    }}>{focusSaving ? "저장 중..." : "구간 변경"}</button>
+                  </div>
+                </div>
+              )}
+            </Card>
+          )}
 
           {/* 투표 가이드 */}
           <Card style={{ padding: 20 }}>
@@ -577,7 +749,7 @@
             )}
             {hasFocus && (
               <div style={{ textAlign: "center", fontSize: 12, color: "#64748b", marginBottom: 16 }}>
-                {focusRanges.map((r,i) => `${fmtDisplay(parseDate(r.s))}~${fmtDisplay(parseDate(r.e))}`).join(", ")} · 영역 밖도 투표 가능
+                핵심 구간 이전·사이는 투표 불가 · 구간 이후는 투표 가능
               </div>
             )}
 
@@ -621,12 +793,11 @@
               <button onClick={() => {
                 setVotes(prev => {
                   const newVotes = {...prev};
-                  const today = new Date(); today.setHours(0,0,0,0);
                   const d = new Date(startDate);
                   while (d <= endDate) {
                     const ds = fmtDate(d);
                     const y = d.getFullYear(), m = d.getMonth(), day = d.getDate();
-                    if (d >= today && !isOff(y,m,day) && !newVotes[ds]) {
+                    if (d >= today && !isOff(y,m,day) && !blockedDates.has(ds) && !newVotes[ds]) {
                       newVotes[ds] = "unavailable";
                     }
                     d.setDate(d.getDate()+1);
@@ -644,12 +815,35 @@
             )}
           </Card>
 
+          {/* 캘린더 */}
           {months.map(({year,month}) => (
             <MonthCalendar key={`${year}-${month}`} year={year} month={month}
-              startDate={startDate} endDate={endDate}
+              startDate={effectiveStart} endDate={effectiveEnd}
               focusRanges={focusRanges}
-              votes={votes} onDayClick={handleDayClick} />
+              votes={votes} onDayClick={handleDayClick}
+              blockedDates={blockedDates} />
           ))}
+
+          {/* 페이지네이션 */}
+          <Card style={{ padding: 12 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <button onClick={() => setPage(page - 1)} disabled={!canPrev} style={{
+                padding: "10px 20px", borderRadius: 8,
+                background: canPrev ? "rgba(56,189,248,0.1)" : "rgba(51,65,85,0.4)",
+                border: canPrev ? "1px solid rgba(56,189,248,0.3)" : "1px solid transparent",
+                color: canPrev ? "#38bdf8" : "#475569", fontSize: 14, cursor: canPrev ? "pointer" : "default", fontFamily: "inherit",
+              }}>← 이전</button>
+              <div style={{ fontSize: 13, color: "#64748b" }}>
+                {page === 0 ? "오늘 ~ 60일" : "60일 ~ 120일"}
+              </div>
+              <button onClick={() => setPage(page + 1)} disabled={!canNext} style={{
+                padding: "10px 20px", borderRadius: 8,
+                background: canNext ? "rgba(56,189,248,0.1)" : "rgba(51,65,85,0.4)",
+                border: canNext ? "1px solid rgba(56,189,248,0.3)" : "1px solid transparent",
+                color: canNext ? "#38bdf8" : "#475569", fontSize: 14, cursor: canNext ? "pointer" : "default", fontFamily: "inherit",
+              }}>다음 →</button>
+            </div>
+          </Card>
 
           <div style={{ position: "sticky", bottom: 0, padding: "16px 0 24px", background: "linear-gradient(transparent, #0f172a 20%)" }}>
             <Button onClick={handleSave} disabled={saving}>
@@ -1163,18 +1357,13 @@
 
       return (
         <div style={{ maxWidth: 480, margin: "0 auto", padding: "0 16px" }}>
-          <div style={{ textAlign: "center", padding: "32px 0 16px" }}>
-            <div style={{ fontSize: 28, fontWeight: 800, letterSpacing: "-0.5px" }}>
-              <span style={{ color: "#38bdf8" }}>날짜</span><span style={{ color: "#e2e8f0" }}>잡자</span>
-            </div>
-            <div style={{ fontSize: 13, color: "#64748b", marginTop: 4 }}>쉽고 빠른 약속 날짜 조율</div>
-          </div>
+          <Header />
           {(screen === "loading" || screen === "loadingGroup" || screen === "resultLoading") && <LoadingSpinner />}
           {screen === "error" && <ErrorScreen message={error} />}
           {screen === "create" && <CreateScreen form={createForm} setForm={setCreateForm} onSubmit={handleCreate} loading={loading} />}
           {screen === "created" && <CreatedScreen link={createdLink} />}
           {screen === "selectName" && group && <SelectNameScreen group={group} onSelect={name => { setUserName(name); loadMyVotes(name); setScreen("calendar"); }} />}
-          {screen === "calendar" && group && <CalendarScreen group={group} userName={userName} votes={votes} setVotes={(fn) => { userModifiedRef.current = true; setVotes(fn); }} onSave={handleSave} saving={saving} loading={loading} onManage={() => { loadVoteStatus(); setScreen("manage"); }} isCreator={userName === group.creator} onBack={() => setScreen("selectName")} />}
+          {screen === "calendar" && group && <CalendarScreen group={group} userName={userName} votes={votes} setVotes={(fn) => { userModifiedRef.current = true; setVotes(fn); }} onSave={handleSave} saving={saving} loading={loading} onManage={() => { loadVoteStatus(); setScreen("manage"); }} isCreator={userName === group.creator} onBack={() => setScreen("selectName")} onUpdateFocus={handleUpdateFocus} />}
           {screen === "manage" && group && <ManageScreen group={group} voteStatus={voteStatus} onClose={handleClose} onBack={() => setScreen("calendar")} loading={loading} onRefresh={loadVoteStatus} onUpdateFocus={handleUpdateFocus} />}
           {screen === "result" && result && <ResultScreen result={result} group={group} onConfirmDate={handleConfirmDate} />}
         </div>
