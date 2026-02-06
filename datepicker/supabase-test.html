@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Supabase 연결 테스트</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 24px;
+      min-height: 100vh;
+    }
+    h1 { font-size: 24px; margin-bottom: 24px; color: #38bdf8; }
+    .card {
+      background: rgba(30,41,59,0.8);
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .card h2 { font-size: 16px; color: #94a3b8; margin-bottom: 12px; }
+    pre {
+      background: #1e293b;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      font-size: 13px;
+      color: #22c55e;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .error { color: #ef4444; }
+    .loading { color: #fbbf24; }
+    button {
+      background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+      border: none;
+      border-radius: 8px;
+      padding: 12px 24px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+    button:hover { opacity: 0.9; }
+    input {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: #e2e8f0;
+      font-size: 14px;
+      width: 100%;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧪 Supabase 연결 테스트</h1>
+
+  <!-- 설정 -->
+  <div class="card">
+    <h2>1. Supabase 설정</h2>
+    <input type="text" id="supabaseUrl" placeholder="Project URL (https://xxx.supabase.co)" />
+    <input type="text" id="supabaseKey" placeholder="anon key" />
+    <button onclick="initSupabase()">연결 테스트</button>
+    <pre id="initResult" class="loading">설정을 입력하고 연결 테스트를 눌러주세요</pre>
+  </div>
+
+  <!-- Groups 조회 -->
+  <div class="card">
+    <h2>2. Groups 테이블 조회</h2>
+    <button onclick="fetchGroups()">모든 그룹 가져오기</button>
+    <button onclick="fetchGroup('test1234')">test1234 그룹 가져오기</button>
+    <pre id="groupsResult">-</pre>
+  </div>
+
+  <!-- Votes 조회 -->
+  <div class="card">
+    <h2>3. Votes 테이블 조회</h2>
+    <button onclick="fetchVotes('test1234')">test1234 투표 가져오기</button>
+    <pre id="votesResult">-</pre>
+  </div>
+
+  <!-- 새 그룹 생성 -->
+  <div class="card">
+    <h2>4. 새 그룹 생성 테스트</h2>
+    <button onclick="createTestGroup()">테스트 그룹 생성</button>
+    <pre id="createResult">-</pre>
+  </div>
+
+  <!-- Supabase JS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <script>
+    let supabase = null;
+
+    // 1. Supabase 초기화
+    function initSupabase() {
+      const url = document.getElementById('supabaseUrl').value.trim();
+      const key = document.getElementById('supabaseKey').value.trim();
+      
+      if (!url || !key) {
+        document.getElementById('initResult').innerHTML = '<span class="error">URL과 Key를 모두 입력해주세요</span>';
+        return;
+      }
+
+      try {
+        supabase = window.supabase.createClient(url, key);
+        document.getElementById('initResult').innerHTML = '<span style="color:#22c55e">✓ Supabase 클라이언트 생성 완료!</span>\n\n이제 아래 테스트를 진행해보세요.';
+      } catch (err) {
+        document.getElementById('initResult').innerHTML = '<span class="error">✕ 오류: ' + err.message + '</span>';
+      }
+    }
+
+    // 2. 모든 그룹 조회
+    async function fetchGroups() {
+      if (!supabase) {
+        document.getElementById('groupsResult').innerHTML = '<span class="error">먼저 Supabase 연결을 해주세요</span>';
+        return;
+      }
+
+      document.getElementById('groupsResult').innerHTML = '<span class="loading">로딩 중...</span>';
+
+      const { data, error } = await supabase
+        .from('groups')
+        .select('*');
+
+      if (error) {
+        document.getElementById('groupsResult').innerHTML = '<span class="error">오류: ' + error.message + '</span>';
+      } else {
+        document.getElementById('groupsResult').textContent = JSON.stringify(data, null, 2);
+      }
+    }
+
+    // 특정 그룹 조회
+    async function fetchGroup(groupId) {
+      if (!supabase) {
+        document.getElementById('groupsResult').innerHTML = '<span class="error">먼저 Supabase 연결을 해주세요</span>';
+        return;
+      }
+
+      document.getElementById('groupsResult').innerHTML = '<span class="loading">로딩 중...</span>';
+
+      const { data, error } = await supabase
+        .from('groups')
+        .select('*')
+        .eq('group_id', groupId)
+        .single();
+
+      if (error) {
+        document.getElementById('groupsResult').innerHTML = '<span class="error">오류: ' + error.message + '</span>';
+      } else {
+        document.getElementById('groupsResult').textContent = JSON.stringify(data, null, 2);
+      }
+    }
+
+    // 3. 투표 조회
+    async function fetchVotes(groupId) {
+      if (!supabase) {
+        document.getElementById('votesResult').innerHTML = '<span class="error">먼저 Supabase 연결을 해주세요</span>';
+        return;
+      }
+
+      document.getElementById('votesResult').innerHTML = '<span class="loading">로딩 중...</span>';
+
+      const { data, error } = await supabase
+        .from('votes')
+        .select('*')
+        .eq('group_id', groupId);
+
+      if (error) {
+        document.getElementById('votesResult').innerHTML = '<span class="error">오류: ' + error.message + '</span>';
+      } else {
+        document.getElementById('votesResult').textContent = JSON.stringify(data, null, 2);
+      }
+    }
+
+    // 4. 새 그룹 생성
+    async function createTestGroup() {
+      if (!supabase) {
+        document.getElementById('createResult').innerHTML = '<span class="error">먼저 Supabase 연결을 해주세요</span>';
+        return;
+      }
+
+      document.getElementById('createResult').innerHTML = '<span class="loading">생성 중...</span>';
+
+      // 랜덤 8자리 ID 생성
+      const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+      let groupId = '';
+      for (let i = 0; i < 8; i++) {
+        groupId += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+
+      const today = new Date();
+      const endDate = new Date(today);
+      endDate.setDate(endDate.getDate() + 90);
+
+      const newGroup = {
+        group_id: groupId,
+        creator: '테스트유저',
+        members: ['테스트유저', '친구1', '친구2'],
+        date_start: today.toISOString().split('T')[0],
+        date_end: endDate.toISOString().split('T')[0],
+        group_name: 'Supabase 테스트 그룹',
+        meal_type: 'dinner'
+      };
+
+      const { data, error } = await supabase
+        .from('groups')
+        .insert(newGroup)
+        .select();
+
+      if (error) {
+        document.getElementById('createResult').innerHTML = '<span class="error">오류: ' + error.message + '</span>';
+      } else {
+        document.getElementById('createResult').textContent = '✓ 생성 완료!\n\n' + JSON.stringify(data, null, 2);
+      }
+    }
+  </script>
+</body>
+</html>
