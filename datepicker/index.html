@@ -38,6 +38,7 @@
   <div id="root"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script type="text/babel">
@@ -1662,6 +1663,8 @@
       const [gcalLink, setGcalLink] = useState("");
       const [linkCopied, setLinkCopied] = useState(false);
       const [confirming, setConfirming] = useState(false);
+      const [capturing, setCapturing] = useState(false);
+      const captureRef = React.useRef(null);
 
       if (!result || !result.success) return <Card><div style={{ textAlign: "center", padding: 24, color: "#94a3b8" }}>결과를 불러올 수 없습니다</div></Card>;
 
@@ -1674,6 +1677,46 @@
         2: { icon: "📅", color: "#f59e0b", bg: "rgba(245,158,11,0.08)", border: "rgba(245,158,11,0.3)" },
         3: { icon: "⚠️", color: "#ef4444", bg: "rgba(239,68,68,0.08)", border: "rgba(239,68,68,0.3)" },
       }[result.tier] || { icon: "📅", color: "#94a3b8", bg: "rgba(148,163,184,0.08)", border: "rgba(148,163,184,0.3)" };
+
+      // 캡쳐 기능
+      const handleCapture = async () => {
+        if (!captureRef.current || capturing) return;
+        setCapturing(true);
+        try {
+          const canvas = await html2canvas(captureRef.current, {
+            backgroundColor: "#0f172a",
+            scale: 2,
+            useCORS: true,
+          });
+          
+          // 모바일/데스크톱 공유
+          canvas.toBlob(async (blob) => {
+            if (navigator.share && navigator.canShare && navigator.canShare({ files: [new File([blob], 'result.png', { type: 'image/png' })] })) {
+              // 모바일 공유
+              try {
+                await navigator.share({
+                  files: [new File([blob], `${group?.groupName || '약속'}_결과.png`, { type: 'image/png' })],
+                  title: '날짜잡자 결과',
+                });
+              } catch (e) {
+                // 공유 취소 등
+              }
+            } else {
+              // 데스크톱: 다운로드
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = `${group?.groupName || '약속'}_결과.png`;
+              a.click();
+              URL.revokeObjectURL(url);
+            }
+          }, 'image/png');
+        } catch (err) {
+          console.error('Capture error:', err);
+        } finally {
+          setCapturing(false);
+        }
+      };
 
       const buildGcalUrl = () => {
         const d = parseDate(selectedDate);
@@ -1688,53 +1731,55 @@
 
       return (
         <div>
-          <Card style={{ background: cfg.bg, border: `1px solid ${cfg.border}`, textAlign: "center" }}>
-            {group && group.groupName && <div style={{ fontSize: 16, fontWeight: 700, color: "#e2e8f0", marginBottom: 6 }}>{group.groupName}</div>}
-            <div style={{ fontSize: 13, color: "#94a3b8", marginBottom: 8 }}>{mealEmoji} {mealLabel} 약속</div>
-            {result.vip && <div style={{ fontSize: 13, color: "#c084fc", marginBottom: 4 }}>👑 {result.vip}님 중심으로 산출</div>}
-            <div style={{ fontSize: 48, marginBottom: 12 }}>{cfg.icon}</div>
-            <div style={{ fontSize: 20, fontWeight: 800, marginBottom: 6, color: cfg.color }}>{result.message}</div>
-            <div style={{ fontSize: 13, color: "#64748b" }}>
-              참여 인원: {result.totalMembers}명
-              {group && group.excluded && group.excluded.length > 0 && <span> (제외: {group.excluded.join(", ")})</span>}
-            </div>
-            {result.fromFocus === false && <div style={{ fontSize: 12, color: "#f59e0b", marginTop: 6 }}>핵심 구간에서 결과를 찾지 못해 전체 범위에서 산출했습니다</div>}
-          </Card>
+          {/* 캡쳐 영역 시작 */}
+          <div ref={captureRef} style={{ background: "#0f172a", padding: "1px 0" }}>
+            <Card style={{ background: cfg.bg, border: `1px solid ${cfg.border}`, textAlign: "center" }}>
+              {group && group.groupName && <div style={{ fontSize: 16, fontWeight: 700, color: "#e2e8f0", marginBottom: 6 }}>{group.groupName}</div>}
+              <div style={{ fontSize: 13, color: "#94a3b8", marginBottom: 8 }}>{mealEmoji} {mealLabel} 약속</div>
+              {result.vip && <div style={{ fontSize: 13, color: "#c084fc", marginBottom: 4 }}>👑 {result.vip}님 중심으로 산출</div>}
+              <div style={{ fontSize: 48, marginBottom: 12 }}>{cfg.icon}</div>
+              <div style={{ fontSize: 20, fontWeight: 800, marginBottom: 6, color: cfg.color }}>{result.message}</div>
+              <div style={{ fontSize: 13, color: "#64748b" }}>
+                참여 인원: {result.totalMembers}명
+                {group && group.excluded && group.excluded.length > 0 && <span> (제외: {group.excluded.join(", ")})</span>}
+              </div>
+              {result.fromFocus === false && <div style={{ fontSize: 12, color: "#f59e0b", marginTop: 6 }}>핵심 구간에서 결과를 찾지 못해 전체 범위에서 산출했습니다</div>}
+            </Card>
 
-          {/* 후보 날짜 리스트 — 선택 가능 */}
-          <Card>
-            <div style={{ fontSize: 13, color: "#94a3b8", marginBottom: 12 }}>
-              {confirmedDate ? "✅ 확정된 날짜" : "날짜를 선택하면 캘린더에 추가할 수 있어요"}
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {result.dates.map((d, i) => {
-                const date = parseDate(d.date);
-                const isSelected = selectedDate === d.date;
-                const isConfirmed = confirmedDate === d.date;
-                return (
-                  <button key={i} onClick={() => !confirmedDate && setSelectedDate(isSelected ? null : d.date)} style={{
-                    padding: "16px 20px", borderRadius: 12, textAlign: "left",
-                    background: isConfirmed ? "rgba(34,197,94,0.12)" : isSelected ? "rgba(56,189,248,0.1)" : "rgba(15,23,42,0.6)",
-                    border: isConfirmed ? "2px solid #22c55e" : isSelected ? "2px solid #38bdf8" : `1px solid ${cfg.border}`,
-                    cursor: confirmedDate ? "default" : "pointer", fontFamily: "inherit", transition: "all 0.15s",
-                    opacity: confirmedDate && !isConfirmed ? 0.4 : 1,
-                  }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                      <div style={{ fontSize: 18, fontWeight: 800, color: isConfirmed ? "#22c55e" : isSelected ? "#38bdf8" : cfg.color }}>
-                        {date ? fmtDisplay(date) : d.date}
+            {/* 후보 날짜 리스트 — 선택 가능 */}
+            <Card>
+              <div style={{ fontSize: 13, color: "#94a3b8", marginBottom: 12 }}>
+                {confirmedDate ? "✅ 확정된 날짜" : "날짜를 선택하면 캘린더에 추가할 수 있어요"}
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                {result.dates.map((d, i) => {
+                  const date = parseDate(d.date);
+                  const isSelected = selectedDate === d.date;
+                  const isConfirmed = confirmedDate === d.date;
+                  return (
+                    <button key={i} onClick={() => !confirmedDate && setSelectedDate(isSelected ? null : d.date)} style={{
+                      padding: "16px 20px", borderRadius: 12, textAlign: "left",
+                      background: isConfirmed ? "rgba(34,197,94,0.12)" : isSelected ? "rgba(56,189,248,0.1)" : "rgba(15,23,42,0.6)",
+                      border: isConfirmed ? "2px solid #22c55e" : isSelected ? "2px solid #38bdf8" : `1px solid ${cfg.border}`,
+                      cursor: confirmedDate ? "default" : "pointer", fontFamily: "inherit", transition: "all 0.15s",
+                      opacity: confirmedDate && !isConfirmed ? 0.4 : 1,
+                    }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                        <div style={{ fontSize: 18, fontWeight: 800, color: isConfirmed ? "#22c55e" : isSelected ? "#38bdf8" : cfg.color }}>
+                          {date ? fmtDisplay(date) : d.date}
+                        </div>
+                        {isConfirmed && <span style={{ fontSize: 13, color: "#22c55e", fontWeight: 600 }}>확정됨 ✅</span>}
+                        {!confirmedDate && isSelected && <span style={{ fontSize: 13, color: "#38bdf8", fontWeight: 600 }}>선택됨 ✓</span>}
                       </div>
-                      {isConfirmed && <span style={{ fontSize: 13, color: "#22c55e", fontWeight: 600 }}>확정됨 ✅</span>}
-                      {!confirmedDate && isSelected && <span style={{ fontSize: 13, color: "#38bdf8", fontWeight: 600 }}>선택됨 ✓</span>}
-                    </div>
-                    {result.tier === 2 && (
-                      <div style={{ fontSize: 13, color: "#94a3b8", marginTop: 6 }}>
-                        선호 {d.preferred}명
-                        {d.neutralUsers && d.neutralUsers.length > 0 && <span style={{ color: "#f59e0b" }}> · 비선호: {d.neutralUsers.join(", ")}</span>}
-                      </div>
-                    )}
-                    {result.tier === 3 && (
-                      <div style={{ fontSize: 13, marginTop: 6 }}>
-                        <div style={{ color: "#f87171", marginBottom: 2 }}>절대불가 {d.unavailable}명 ({d.unavailableUsers.join(", ")})</div>
+                      {result.tier === 2 && (
+                        <div style={{ fontSize: 13, color: "#94a3b8", marginTop: 6 }}>
+                          선호 {d.preferred}명
+                          {d.neutralUsers && d.neutralUsers.length > 0 && <span style={{ color: "#f59e0b" }}> · 비선호: {d.neutralUsers.join(", ")}</span>}
+                        </div>
+                      )}
+                      {result.tier === 3 && (
+                        <div style={{ fontSize: 13, marginTop: 6 }}>
+                          <div style={{ color: "#f87171", marginBottom: 2 }}>절대불가 {d.unavailable}명 ({d.unavailableUsers.join(", ")})</div>
                         <div style={{ color: "#94a3b8" }}>
                           선호 {d.preferred}명
                           {d.neutralUsers && d.neutralUsers.length > 0 && <span style={{ color: "#f59e0b" }}> · 비선호: {d.neutralUsers.join(", ")}</span>}
@@ -1745,6 +1790,20 @@
                 );
               })}
             </div>
+          </Card>
+          </div>
+          {/* 캡쳐 영역 끝 */}
+
+          {/* 캡쳐/공유 버튼 */}
+          <Card style={{ textAlign: "center" }}>
+            <button onClick={handleCapture} disabled={capturing} style={{
+              width: "100%", padding: "14px 20px", borderRadius: 12,
+              background: "rgba(168,85,247,0.15)", border: "1px solid rgba(168,85,247,0.3)",
+              color: "#c084fc", fontSize: 15, fontWeight: 700, cursor: capturing ? "default" : "pointer",
+              opacity: capturing ? 0.6 : 1, fontFamily: "inherit",
+            }}>
+              {capturing ? "캡쳐 중..." : "📸 결과 이미지로 저장/공유"}
+            </button>
           </Card>
 
           {/* 날짜 확정 버튼 — 미확정 + 선택됨 상태일 때 */}
