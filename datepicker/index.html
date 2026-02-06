@@ -1115,7 +1115,12 @@
             }
             d.setDate(d.getDate() + 1);
           }
-          if (dates.length > 0) {
+          
+          if (dates.length === 1) {
+            // 단일 선택: 기존처럼 바로 토글
+            handleDayClick(dates[0]);
+          } else if (dates.length > 1) {
+            // 드래그 선택 (2개 이상): 팝업 표시
             setPendingDates(dates);
           }
           setDragState(null);
