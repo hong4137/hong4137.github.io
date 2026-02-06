@@ -747,7 +747,7 @@
 
     // ── 월별 캘린더 (투표용) ──────────────────
 
-    function MonthCalendar({ year, month, startDate, endDate, focusRanges, votes, onDayClick, blockedDates, dragState, onDragStart, onDragMove, onDragEnd }) {
+    function MonthCalendar({ year, month, startDate, endDate, focusRanges, votes, onDayClick, blockedDates, dragState, onDragStart, onDragMove, onDragEnd, hideHeader }) {
       const WEEKDAYS = ["일","월","화","수","목","금","토"];
       const daysInMonth = getDaysInMonth(year, month);
       const firstDay = getFirstDayOfMonth(year, month);
@@ -813,6 +813,18 @@
             {vc && !inDrag && <span style={{ fontSize: 9, color: vc.text, marginTop: 1, opacity: 0.9 }}>{vc.emoji}</span>}
             {holiday && !vc && !isBlocked && !inDrag && <span style={{ fontSize: 7, color: "#f87171", marginTop: 1, lineHeight: 1, textAlign: "center" }}>{holiday.length > 3 ? holiday.slice(0,3) : holiday}</span>}
           </div>
+        );
+      }
+
+      // hideHeader면 Card 없이 내용만 반환
+      if (hideHeader) {
+        return (
+          <>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", gap: 4, marginBottom: 6 }}>
+              {WEEKDAYS.map((d,i) => <div key={d} style={{ textAlign: "center", fontSize: 12, fontWeight: 600, color: i===0?"#f87171":i===6?"#60a5fa":"#64748b", padding: "4px 0" }}>{d}</div>)}
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", gap: 4 }}>{cells}</div>
+          </>
         );
       }
 
@@ -895,6 +907,9 @@
       // 드래그 선택 상태
       const [dragState, setDragState] = useState(null); // { start: dateStr, end: dateStr }
       const [pendingDates, setPendingDates] = useState(null); // 팝업용 선택된 날짜들
+      
+      // 아코디언 펼침 상태
+      const [expandedMonths, setExpandedMonths] = useState(new Set());
 
       const today = new Date(); today.setHours(0,0,0,0);
       const startDate = parseDate(group.dateStart);
@@ -963,8 +978,52 @@
         return true;
       }, [hasFocus, blockedDates, today, endDate]);
 
-      // 표시할 월 목록 (완전 차단된 월 제외)
-      const visibleMonths = allMonths.filter(({year, month}) => !isMonthFullyBlocked(year, month));
+      // 월별 상태 계산: 투표 가능한 날이 있는지
+      const monthStatus = React.useMemo(() => {
+        const status = {};
+        allMonths.forEach(({year, month}) => {
+          const key = `${year}-${month}`;
+          const daysInMonth = getDaysInMonth(year, month);
+          let hasVotableDays = false;
+          for (let day = 1; day <= daysInMonth; day++) {
+            const d = new Date(year, month, day);
+            const ds = fmtDate(d);
+            if (d < today) continue;
+            if (d > endDate) continue;
+            if (isOff(year, month, day)) continue;
+            if (!blockedDates.has(ds)) {
+              hasVotableDays = true;
+              break;
+            }
+          }
+          status[key] = { hasVotableDays, fullyBlocked: isMonthFullyBlocked(year, month) };
+        });
+        return status;
+      }, [allMonths, blockedDates, today, endDate, isMonthFullyBlocked]);
+
+      // 아코디언 초기화: 투표 가능한 날이 있는 첫 번째 월만 펼침
+      React.useEffect(() => {
+        const firstVotableMonth = allMonths.find(({year, month}) => {
+          const key = `${year}-${month}`;
+          return monthStatus[key]?.hasVotableDays;
+        });
+        if (firstVotableMonth) {
+          setExpandedMonths(new Set([`${firstVotableMonth.year}-${firstVotableMonth.month}`]));
+        }
+      }, []);
+
+      const toggleMonth = (year, month) => {
+        const key = `${year}-${month}`;
+        setExpandedMonths(prev => {
+          const next = new Set(prev);
+          if (next.has(key)) next.delete(key);
+          else next.add(key);
+          return next;
+        });
+      };
+
+      // 표시할 월 목록 (이제 전부 표시, 아코디언으로 관리)
+      const visibleMonths = allMonths;
 
       const handleDayClick = (dateStr) => {
         setVotes(prev => {
@@ -1262,18 +1321,58 @@
             )}
           </Card>
 
-          {/* 캘린더 — 완전 차단된 월은 숨김 */}
-          {visibleMonths.map(({year,month}) => (
-            <MonthCalendar key={`${year}-${month}`} year={year} month={month}
-              startDate={startDate} endDate={endDate}
-              focusRanges={focusRanges}
-              votes={votes} onDayClick={handleDayClick}
-              blockedDates={blockedDates}
-              dragState={dragState}
-              onDragStart={handleDragStart}
-              onDragMove={handleDragMove}
-              onDragEnd={handleDragEnd} />
-          ))}
+          {/* 캘린더 — 아코디언 스타일 */}
+          {visibleMonths.map(({year, month}) => {
+            const key = `${year}-${month}`;
+            const isExpanded = expandedMonths.has(key);
+            const status = monthStatus[key] || {};
+            const monthNames = ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"];
+            
+            return (
+              <Card key={key} style={{ padding: 0, overflow: "hidden" }}>
+                {/* 월 헤더 (클릭 가능) */}
+                <div 
+                  onClick={() => toggleMonth(year, month)}
+                  style={{
+                    display: "flex", alignItems: "center", justifyContent: "space-between",
+                    padding: "14px 16px", cursor: "pointer",
+                    background: isExpanded ? "transparent" : "rgba(15,23,42,0.4)",
+                    borderBottom: isExpanded ? "1px solid rgba(71,85,105,0.3)" : "none",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <span style={{ fontSize: 16, fontWeight: 700, color: status.hasVotableDays ? "#e2e8f0" : "#64748b" }}>
+                      {year}년 {monthNames[month]}
+                    </span>
+                    {!status.hasVotableDays && (
+                      <span style={{ fontSize: 11, color: "#64748b", background: "rgba(71,85,105,0.3)", padding: "2px 8px", borderRadius: 4 }}>
+                        투표 불가
+                      </span>
+                    )}
+                  </div>
+                  <span style={{ fontSize: 14, color: "#64748b", transition: "transform 0.2s", transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)" }}>
+                    ▼
+                  </span>
+                </div>
+                
+                {/* 캘린더 본문 (펼쳐졌을 때만) */}
+                {isExpanded && (
+                  <div style={{ padding: "12px 16px 16px" }}>
+                    <MonthCalendar year={year} month={month}
+                      startDate={startDate} endDate={endDate}
+                      focusRanges={focusRanges}
+                      votes={votes} onDayClick={handleDayClick}
+                      blockedDates={blockedDates}
+                      dragState={dragState}
+                      onDragStart={handleDragStart}
+                      onDragMove={handleDragMove}
+                      onDragEnd={handleDragEnd}
+                      hideHeader={true} />
+                  </div>
+                )}
+              </Card>
+            );
+          })}
 
           {/* 드래그 선택 팝업 */}
           {pendingDates && pendingDates.length > 0 && (
