@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-07 15:46:53 KST",
+  "updated": "2026-02-07 21:55:10 KST",
   "epl": {
     "matchday": 25,
     "selected_round": 25,
@@ -25,8 +25,8 @@
         ],
         "rule_str": "Big Match, Early KO",
         "matchday": 25,
-        "status": "TIMED",
-        "score": "-"
+        "status": "IN_PLAY",
+        "score": "0-0"
       },
       {
         "match_id": 538030,
@@ -74,8 +74,8 @@
         ],
         "rule_str": "Big Match, Early KO",
         "matchday": 25,
-        "status": "TIMED",
-        "score": "-"
+        "status": "IN_PLAY",
+        "score": "0-0"
       },
       {
         "match_id": 538030,
@@ -156,7 +156,7 @@
     "next": {
       "event": "Rotterdam Open",
       "detail": "-",
-      "match_time": "Feb 9-15",
+      "match_time": "Feb 9",
       "tournament_dates": "",
       "status": "-"
     }
