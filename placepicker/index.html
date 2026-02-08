@@ -26,7 +26,7 @@ async function sb(p,o={}){const r=await fetch(SB+"/rest/v1/"+p,{headers:HD,...o}
 class SE{
   constructor(tt,mp){this.tt=tt;this.mp=mp;}
   g(o,d,tr,ts){if(o===d)return 0;const v=this.tt[o+"|"+d+"|"+tr+"|"+ts];if(v!==undefined)return v;const rv=this.tt[d+"|"+o+"|"+tr+"|"+ts];if(rv!==undefined)return rv;if(tr==="car"){const s=this.tt[o+"|"+d+"|subway|evening"]||this.tt[d+"|"+o+"|subway|evening"];if(s!==undefined)return Math.round(s*(ts==="evening"?.8:.6));}return null;}
-  calc(parts,opts={}){const{vip=null,pp=[],topN=5}=opts;const sc=this.mp.map(c=>this._s(c,parts,vip,pp)).filter(Boolean);sc.sort((a,b)=>a.score-b.score);return{rankings:sc.slice(0,topN).map((s,i)=>({rank:i+1,...s})),candN:this.mp.length,partN:parts.length};}
+  calc(parts,opts={}){const{vip=null,pp=[],topN=5,mode="start"}=opts;const fn=mode==="balance"?this._sB.bind(this):this._s.bind(this);const sc=this.mp.map(c=>fn(c,parts,vip,pp)).filter(Boolean);sc.sort((a,b)=>a.score-b.score);return{rankings:sc.slice(0,topN).map((s,i)=>({rank:i+1,...s})),candN:this.mp.length,partN:parts.length};}
   _s(c,parts,vip,pp){const ds=[];for(const p of parts){const dm=toM(p.departure_time||"18:00"),wk=p.transport==="car"?0:(p.walk_minutes||0);let tv=this.g(p.departure,c.id,p.transport,"evening");if(tv===null)return null;const tot=wk+tv,isV=vip&&p.name===vip;let rt=this.g(c.id,p.home,p.home_transport||"subway","night");if(rt===null)rt=this.g(p.home,c.id,p.home_transport||"subway","evening");if(rt===null)return null;ds.push({name:p.name,isV,wk,tv,tot,arr:dm+tot,at:frM(dm+tot),rt,tr:p.transport,htr:p.home_transport||"subway"});}
     /* === 새 스코어링 v2 === */
     const n=ds.length;
@@ -61,6 +61,39 @@ class SE{
     if(mxR<=40)rs.push("귀가 40분 이내");else if(mxR<=60)rs.push("귀가 1시간 이내");else rs.push(ds.filter(d=>d.rt>60).length+"명 귀가 1h+");
     if(ip)rs.push("⭐ 선호");
     if(vip){const vd=ds.find(d=>d.isV);if(vd)rs.push("VIP "+vd.tot+"분");}
+    return{placeId:c.id,placeName:c.name,placeRegion:c.region,isP:ip,meetTime:frM(meetArr),score:Math.round(sc*10)/10,reason:rs.join(" · "),details:ds.map(d=>({name:d.name,isVip:d.isV,walkMinutes:d.wk,travelMinutes:d.tv,totalTravelMinutes:d.tot,arrivalTime:d.at,waitMinutes:d.wt,returnMinutes:d.rt,transport:d.tr,homeTransport:d.htr}))};}
+  /* === 밸런스 모드: 이동+귀가 균형 === */
+  _sB(c,parts,vip,pp){const ds=[];for(const p of parts){const dm=toM(p.departure_time||"18:00"),wk=p.transport==="car"?0:(p.walk_minutes||0);let tv=this.g(p.departure,c.id,p.transport,"evening");if(tv===null)return null;const tot=wk+tv,isV=vip&&p.name===vip;let rt=this.g(c.id,p.home,p.home_transport||"subway","night");if(rt===null)rt=this.g(p.home,c.id,p.home_transport||"subway","evening");if(rt===null)return null;ds.push({name:p.name,isV,wk,tv,tot,arr:dm+tot,at:frM(dm+tot),rt,tr:p.transport,htr:p.home_transport||"subway"});}
+    const n=ds.length;
+    const arrs=[...ds].sort((a,b)=>a.arr-b.arr);
+    const p60=Math.ceil(n*0.6);
+    const meetArr=arrs[p60-1].arr;
+    ds.forEach(d=>{d.wt=Math.max(0,d.arr-meetArr);d.early=Math.max(0,meetArr-d.arr);});
+    /* 이동시간 통계 */
+    const tots=ds.map(d=>d.tot),rts=ds.map(d=>d.rt);
+    const avgTot=tots.reduce((s,v)=>s+v,0)/n,maxTot=Math.max(...tots);
+    const avgRt=rts.reduce((s,v)=>s+v,0)/n,maxRt=Math.max(...rts);
+    /* 표준편차 */
+    const sdTot=Math.sqrt(tots.reduce((s,v)=>s+(v-avgTot)**2,0)/n);
+    const sdRt=Math.sqrt(rts.reduce((s,v)=>s+(v-avgRt)**2,0)/n);
+    /* 총부담 = 이동+귀가 합 */
+    const burdens=ds.map(d=>d.tot+d.rt);
+    const avgB=burdens.reduce((s,v)=>s+v,0)/n;
+    const maxB=Math.max(...burdens);
+    const sdB=Math.sqrt(burdens.reduce((s,v)=>s+(v-avgB)**2,0)/n);
+    /* VIP */
+    let vipPen=0;
+    if(vip){const vd=ds.find(d=>d.isV);if(vd)vipPen=(vd.tot+vd.rt)*1.5;}
+    /* 점수: 총부담 균형 중심 */
+    let sc=1.5*avgB+2.0*maxB+3.0*sdB+1.0*maxTot+1.0*maxRt+2.0*vipPen;
+    const ip=pp.includes(c.id);if(ip)sc*=0.7;
+    /* 이유 */
+    const rs=[];
+    rs.push("평균 "+(avgTot|0)+"+"+(avgRt|0)+"분(이동+귀가)");
+    rs.push("편차 "+(sdB|0)+"분");
+    if(maxB<=80)rs.push("전원 총 80분 이내");else if(maxB<=100)rs.push("전원 총 100분 이내");else rs.push("최대 총 "+maxB+"분");
+    if(ip)rs.push("⭐ 선호");
+    if(vip){const vd=ds.find(d=>d.isV);if(vd)rs.push("VIP "+(vd.tot+vd.rt)+"분");}
     return{placeId:c.id,placeName:c.name,placeRegion:c.region,isP:ip,meetTime:frM(meetArr),score:Math.round(sc*10)/10,reason:rs.join(" · "),details:ds.map(d=>({name:d.name,isVip:d.isV,walkMinutes:d.wk,travelMinutes:d.tv,totalTravelMinutes:d.tot,arrivalTime:d.at,waitMinutes:d.wt,returnMinutes:d.rt,transport:d.tr,homeTransport:d.htr}))};}
 }
 function toM(t){const p=(t||"18:00").split(":");return(+p[0])*60+(+p[1]);}
@@ -237,12 +270,12 @@ function CreateFlow(){
 }
 
 function JoinFlow({gid}){
-  const[g,setG]=useState(null);const[ps,setPs]=useState([]);const[me,setMe]=useState(null);const[step,setStep]=useState("loading");const[td,setTd]=useState(null);const[res,setRes]=useState(null);const[vip,setVip]=useState("");const[busy,setBusy]=useState(false);
+  const[g,setG]=useState(null);const[ps,setPs]=useState([]);const[me,setMe]=useState(null);const[step,setStep]=useState("loading");const[td,setTd]=useState(null);const[res,setRes]=useState(null);const[vip,setVip]=useState("");const[cmode,setCmode]=useState("start");const[busy,setBusy]=useState(false);
   const load=useCallback(async()=>{try{const gr=await sb("groups?id=eq."+gid+"&select=*");if(!gr||!gr.length){setStep("404");return;}setG(gr[0]);setVip(gr[0].vip||"");const pt=await sb("participants?group_id=eq."+gid+"&select=*");setPs(pt||[]);if(!me)setStep("pick");else setStep("status");}catch(e){console.error(e);setStep("err");}},[gid,me]);
   const loadTT=useCallback(async()=>{if(td)return td;let all=[],off=0;while(true){const c=await sb("travel_times?select=origin,destination,transport,time_slot,minutes&offset="+off+"&limit=5000");if(!c||!c.length)break;all=all.concat(c);off+=5000;if(c.length<5000)break;}const lk={};for(const t of all)lk[t.origin+"|"+t.destination+"|"+t.transport+"|"+t.time_slot]=t.minutes;setTd(lk);return lk;},[td]);
   useEffect(()=>{load();},[gid]);
   const saveInfo=async(data)=>{setBusy(true);try{const ex=ps.find(p=>p.name===me);if(ex)await sb("participants?id=eq."+ex.id,{method:"PATCH",body:JSON.stringify({...data,updated_at:new Date().toISOString()})});else await sb("participants",{method:"POST",body:JSON.stringify({group_id:gid,name:me,...data})});await load();}catch(e){alert("저장 실패: "+e.message);}finally{setBusy(false);}};
-  const doCalc=async()=>{setBusy(true);try{const tt=await loadTT();const eng=new SE(tt,MT.map(p=>({id:p.id,name:p.name,region:p.region})));const fp=ps.filter(p=>p.departure&&p.home);if(fp.length<2){alert("2명 이상 입력이 필요합니다.");setBusy(false);return;}console.log("TT entries:",Object.keys(tt).length);console.log("Parts:",JSON.stringify(fp.map(p=>({n:p.name,d:p.departure,h:p.home,t:p.transport,ht:p.home_transport}))));const r=eng.calc(fp,{vip:vip||null,pp:g.preferred_places||[],topN:5});console.log("Rankings:",r.rankings.length,"of",r.candN);if(!r.rankings.length){alert("경로를 찾을 수 없습니다. (TT:"+Object.keys(tt).length+"건, 참여자:"+fp.length+"명)");setBusy(false);return;}await sb("groups?id=eq."+gid,{method:"PATCH",body:JSON.stringify({vip:vip||null,result:r,status:"calculated"})});setRes(r);setStep("result");}catch(e){alert("계산 실패: "+e.message);}finally{setBusy(false);}};
+  const doCalc=async()=>{setBusy(true);try{const tt=await loadTT();const eng=new SE(tt,MT.map(p=>({id:p.id,name:p.name,region:p.region})));const fp=ps.filter(p=>p.departure&&p.home);if(fp.length<2){alert("2명 이상 입력이 필요합니다.");setBusy(false);return;}console.log("TT entries:",Object.keys(tt).length);console.log("Parts:",JSON.stringify(fp.map(p=>({n:p.name,d:p.departure,h:p.home,t:p.transport,ht:p.home_transport}))));const r=eng.calc(fp,{vip:vip||null,pp:g.preferred_places||[],topN:5,mode:cmode});console.log("Rankings:",r.rankings.length,"of",r.candN);if(!r.rankings.length){alert("경로를 찾을 수 없습니다. (TT:"+Object.keys(tt).length+"건, 참여자:"+fp.length+"명)");setBusy(false);return;}await sb("groups?id=eq."+gid,{method:"PATCH",body:JSON.stringify({vip:vip||null,result:r,status:"calculated"})});setRes(r);setStep("result");}catch(e){alert("계산 실패: "+e.message);}finally{setBusy(false);}};
 
   if(step==="loading")return <Ld msg="모임 정보 로딩 중..."/>;
   if(step==="404")return <div className="fade-in"><Hdr title="장소잡자" icon="📍"/><Cd><p style={{textAlign:"center",color:C.dm,padding:20}}>모임을 찾을 수 없습니다</p></Cd></div>;
@@ -256,7 +289,7 @@ function JoinFlow({gid}){
   if(step==="status"){const fp=ps.filter(p=>p.departure&&p.home);return(<div className="fade-in"><Hdr title={g.group_name} sub="입력 현황" back={()=>setStep("pick")}/>
     <Cd>{g.members.map(m=>{const p=ps.find(x=>x.name===m);const d=p&&p.departure&&p.home;return(<div key={m} style={{display:"flex",alignItems:"center",gap:12,padding:"12px 0",borderBottom:"1px solid "+C.bd}}><span style={{fontSize:18}}>{d?"✅":"⬜"}</span><div style={{flex:1}}><div style={{fontWeight:600,fontSize:15}}>{m}{m===g.host_name?" 👑":""}</div>{d?<div style={{color:C.dm,fontSize:13,marginTop:2}}>{pN(p.departure)} {p.departure_time} {p.transport==="car"?"🚗":"🚇"}{p.walk_minutes>0&&p.transport==="subway"?" +"+p.walk_minutes+"분":""} → {pN(p.home)} {(p.home_transport||"subway")==="car"?"🚗":"🚇"}</div>:<div style={{color:C.mt,fontSize:13}}>미입력</div>}</div></div>);})}</Cd>
     <Bt full style={{marginTop:16}} onClick={load}>🔄 새로고침</Bt>
-    {fp.length>=2&&<div style={{marginTop:20}}><Sc title="👑 VIP 지정 (선택)"><p style={{color:C.dm,fontSize:13,marginBottom:8}}>VIP의 이동 부담을 최소화합니다</p><Sl value={vip} onChange={e=>setVip(e.target.value)}><option value="">없음</option>{g.members.map(m=><option key={m} value={m}>{m}</option>)}</Sl></Sc><Bt pri full onClick={doCalc} disabled={busy}>{busy?"계산 중...":"🔍 최적 장소 계산"}</Bt></div>}
+    {fp.length>=2&&<div style={{marginTop:20}}><Sc title="📐 계산 모드"><div style={{display:"flex",gap:8}}><To on={cmode==="start"} onClick={()=>setCmode("start")}>⏱️ 시작시간 기준</To><To on={cmode==="balance"} onClick={()=>setCmode("balance")}>⚖️ 밸런스 기준</To></div><p style={{color:C.mt,fontSize:12,marginTop:6}}>{cmode==="start"?"60% 도착 시 모임 시작, 후착자 패널티 적용":"이동시간+귀가시간을 전원 고루 배분"}</p></Sc><Sc title="👑 VIP 지정 (선택)"><p style={{color:C.dm,fontSize:13,marginBottom:8}}>VIP의 이동 부담을 최소화합니다</p><Sl value={vip} onChange={e=>setVip(e.target.value)}><option value="">없음</option>{g.members.map(m=><option key={m} value={m}>{m}</option>)}</Sl></Sc><Bt pri full onClick={doCalc} disabled={busy}>{busy?"계산 중...":"🔍 최적 장소 계산"}</Bt></div>}
     {fp.length<2&&<p style={{color:C.og,fontSize:14,textAlign:"center",marginTop:20}}>2명 이상 입력이 필요합니다 ({fp.length}/{g.members.length} 완료)</p>}
     {g.result&&g.result.rankings&&<Bt full style={{marginTop:12}} onClick={()=>{setRes(g.result);setStep("result");}}>📊 이전 결과 보기</Bt>}
   </div>);}
