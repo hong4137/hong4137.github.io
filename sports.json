@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-08 11:46:11 KST",
+  "updated": "2026-02-08 03:39:20 KST",
   "epl": {
     "matchday": 25,
     "selected_round": 25,
@@ -112,7 +112,7 @@
   },
   "nba": {
     "record": "28-24",
-    "rank": "#8 West",
+    "rank": "-",
     "last": {
       "opp": "Suns",
       "result": "W",
@@ -137,63 +137,7 @@
         "venue": "Chase Center",
         "channel": ""
       }
-    ],
-    "allstar": {
-      "title": "NBA All-Star 2026",
-      "dates": "Feb 13-15",
-      "location": "Los Angeles (Intuit Dome)",
-      "note": "Steph Curry selected as starter",
-      "events": [
-        {
-          "name": "Celebrity Game",
-          "date": "02.14 (토)",
-          "kst_time": "09:00",
-          "et_time": "7:00 PM ET",
-          "channel": "ESPN",
-          "venue": "Kia Forum"
-        },
-        {
-          "name": "Rising Stars",
-          "date": "02.14 (토)",
-          "kst_time": "11:00",
-          "et_time": "9:00 PM ET",
-          "channel": "Peacock",
-          "venue": "Intuit Dome"
-        },
-        {
-          "name": "Shooting Stars",
-          "date": "02.15 (일)",
-          "kst_time": "07:00",
-          "et_time": "5:00 PM ET",
-          "channel": "NBC",
-          "venue": "Intuit Dome"
-        },
-        {
-          "name": "3-Point Contest",
-          "date": "02.15 (일)",
-          "kst_time": "~08:00",
-          "et_time": "~6:00 PM ET",
-          "channel": "NBC",
-          "venue": "Intuit Dome"
-        },
-        {
-          "name": "Slam Dunk",
-          "date": "02.15 (일)",
-          "kst_time": "~09:00",
-          "et_time": "~7:00 PM ET",
-          "channel": "NBC",
-          "venue": "Intuit Dome"
-        },
-        {
-          "name": "75th All-Star Game",
-          "date": "02.16 (월)",
-          "kst_time": "07:00",
-          "et_time": "5:00 PM ET",
-          "channel": "NBC",
-          "venue": "Intuit Dome"
-        }
-      ]
-    }
+    ]
   },
   "f1": {
     "status": "Pre-Season",
