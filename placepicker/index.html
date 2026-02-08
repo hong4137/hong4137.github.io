@@ -75,17 +75,19 @@ const DEPART_BOT = [
   {id:"gs_d",name:"경기",c:"#607090",out:1,pids:["pangyo","gwangmyeong"],area:{gridColumn:"1/6"}},
 ];
 
-// === 귀가용 ===
+// === 귀가용 (만남장소 포함) ===
 const HOME_MAP = [
   {id:"gnw",name:"경기 북서부",c:"#607090",out:1,pids:["ilsan","gimpo","paju","samsong","wonheung"],area:{gridRow:"1/2",gridColumn:"1/3"}},
   {id:"gne",name:"경기 북동부",c:"#607090",out:1,pids:["uijeongbu","yangju","namyangju","guri","hanam"],area:{gridRow:"1/2",gridColumn:"3/5"}},
-  {id:"mapo_h",name:"마포·서대문",c:"#7c6cf0",pids:["bulgwang","gajwa"],area:{gridRow:"2/3",gridColumn:"1/2"}},
-  {id:"center_h",name:"도심·용산",c:"#6c8cf0",pids:["yaksu"],area:{gridRow:"2/3",gridColumn:"2/3"}},
-  {id:"ne_h",name:"동북권",c:"#4cb8e0",pids:["nowon","suyu","mia","dobong"],area:{gridRow:"2/3",gridColumn:"3/5"}},
-  {id:"ydp_h",name:"영등포·서부",c:"#9c6cf0",pids:["sindorim","mokdong","hwagok"],area:{gridRow:"3/4",gridColumn:"1/2"}},
-  {id:"gangnam_h",name:"강남·서초",c:"#7c8cf0",pids:["bangbae"],area:{gridRow:"3/4",gridColumn:"2/3"}},
-  {id:"seongdong_h",name:"성동·광진",c:"#6cacf0",pids:["sangbong","jungnang"],area:{gridRow:"3/4",gridColumn:"3/4"}},
-  {id:"songpa_h",name:"송파·강동",c:"#5cbce0",pids:["gildong","godeok"],area:{gridRow:"3/4",gridColumn:"4/5"}},
+  {id:"mapo_h",name:"마포·서대문",c:"#7c6cf0",pids:["hongdae","sinchon","hapjeong","mangwon","bulgwang","gajwa"],area:{gridRow:"2/3",gridColumn:"1/2"}},
+  {id:"center_h",name:"도심·용산",c:"#6c8cf0",pids:["gwanghwamun","jongno","jongno3ga","euljiro","cityhall","seoul_station","myeongdong","chungmuro","seochon","seodaemun","yongsan","samgakji","itaewon","hannam","yaksu"],area:{gridRow:"2/4",gridColumn:"2/3"}},
+  {id:"dongdae_h",name:"동대문·성북",c:"#5ca0f0",pids:["daehakro","sungshin","sinseoldong"],area:{gridRow:"2/3",gridColumn:"3/4"}},
+  {id:"ne_h",name:"노원·동북",c:"#4cb8e0",pids:["nowon","seokgye","hoegi","suyu","mia","dobong"],area:{gridRow:"2/3",gridColumn:"4/5"}},
+  {id:"ydp_h",name:"영등포·여의도",c:"#9c6cf0",pids:["yeouido","yeongdeungpo","sindorim","mokdong","hwagok"],area:{gridRow:"4/5",gridColumn:"1/2"}},
+  {id:"gwanak_h",name:"관악·동작",c:"#ac6cf0",pids:["sadang","sillim","isu"],area:{gridRow:"4/5",gridColumn:"2/3"}},
+  {id:"gangnam_h",name:"강남권",c:"#7c8cf0",pids:["gangnam","yeoksam","seolleung","samseong","gyodae","sinsa","apgujeong","hakdong","bangbae"],area:{gridRow:"3/5",gridColumn:"3/4"}},
+  {id:"seongdong_h",name:"성동·광진",c:"#6cacf0",pids:["seongsu","wangsimni","konkuk","ttukseom","sangbong","jungnang"],area:{gridRow:"3/4",gridColumn:"4/5"}},
+  {id:"songpa_h",name:"송파·강동",c:"#5cbce0",pids:["jamsil","cheonho","gildong","godeok"],area:{gridRow:"4/5",gridColumn:"4/5"}},
 ];
 const HOME_BOT = [
   {id:"ic",name:"인천",c:"#607090",out:1,pids:["bupyeong","bucheon","incheon_cityhall","cheongna","songdo"],area:{gridColumn:"1/3"}},
