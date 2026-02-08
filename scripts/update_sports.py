@@ -790,6 +790,102 @@ def get_nba_default_data():
     }
 
 # =============================================================================
+# NBA All-Star Week (기간 내 자동 표시)
+# =============================================================================
+# 올스타 일정을 여기에 정의해두면, 해당 기간에만 자동으로 표시됩니다.
+# 올스타가 끝나면 자동으로 사라집니다. 매년 새 일정으로 교체하면 됩니다.
+#
+# 2026 NBA All-Star Weekend: Feb 13-15, Los Angeles (Intuit Dome)
+# KST 변환: ET + 14시간
+
+ALLSTAR_DATA = {
+    "title": "NBA All-Star 2026",
+    "dates": "Feb 13-15",
+    "location": "Los Angeles (Intuit Dome)",
+    "note": "Steph Curry selected as starter",
+    # 표시 기간: 이 날짜 범위 안에서만 대시보드에 노출
+    "show_from": "2026-02-08",   # 올스타 1주 전부터 표시
+    "show_until": "2026-02-17",  # 올스타 다음날까지 표시
+    "events": [
+        {
+            "name": "Celebrity Game",
+            "date": "02.14 (토)",
+            "kst_time": "09:00",
+            "et_time": "7:00 PM ET",
+            "channel": "ESPN",
+            "venue": "Kia Forum"
+        },
+        {
+            "name": "Rising Stars",
+            "date": "02.14 (토)",
+            "kst_time": "11:00",
+            "et_time": "9:00 PM ET",
+            "channel": "Peacock",
+            "venue": "Intuit Dome"
+        },
+        {
+            "name": "Shooting Stars",
+            "date": "02.15 (일)",
+            "kst_time": "07:00",
+            "et_time": "5:00 PM ET",
+            "channel": "NBC",
+            "venue": "Intuit Dome"
+        },
+        {
+            "name": "3-Point Contest",
+            "date": "02.15 (일)",
+            "kst_time": "~08:00",
+            "et_time": "~6:00 PM ET",
+            "channel": "NBC",
+            "venue": "Intuit Dome"
+        },
+        {
+            "name": "Slam Dunk",
+            "date": "02.15 (일)",
+            "kst_time": "~09:00",
+            "et_time": "~7:00 PM ET",
+            "channel": "NBC",
+            "venue": "Intuit Dome"
+        },
+        {
+            "name": "75th All-Star Game",
+            "date": "02.16 (월)",
+            "kst_time": "07:00",
+            "et_time": "5:00 PM ET",
+            "channel": "NBC",
+            "venue": "Intuit Dome"
+        }
+    ]
+}
+
+def inject_allstar_data(nba_data, kst_now):
+    """
+    올스타 기간이면 nba_data에 allstar 필드를 추가.
+    기간 밖이면 아무것도 하지 않음.
+    """
+    try:
+        show_from = datetime.date.fromisoformat(ALLSTAR_DATA["show_from"])
+        show_until = datetime.date.fromisoformat(ALLSTAR_DATA["show_until"])
+        today = kst_now.date()
+
+        if show_from <= today <= show_until:
+            allstar_output = {
+                "title": ALLSTAR_DATA["title"],
+                "dates": ALLSTAR_DATA["dates"],
+                "location": ALLSTAR_DATA["location"],
+                "note": ALLSTAR_DATA["note"],
+                "events": ALLSTAR_DATA["events"]
+            }
+            nba_data["allstar"] = allstar_output
+            log(f"   ⭐ All-Star Week 데이터 삽입 ({ALLSTAR_DATA['dates']})")
+        else:
+            log(f"   ℹ️ All-Star 표시 기간 아님 (표시: {ALLSTAR_DATA['show_from']} ~ {ALLSTAR_DATA['show_until']})")
+    except Exception as e:
+        log(f"   ⚠️ All-Star 데이터 처리 오류: {e}")
+
+    return nba_data
+
+# =============================================================================
 # F1 함수
 # =============================================================================
 def search_f1_schedule(serper_key):
@@ -1156,6 +1252,11 @@ def update_sports_data():
     next_match = tennis_data.get('next', {})
     log(f"   ✅ Recent: {recent.get('event', '-')} vs {recent.get('opponent', '-')} {recent.get('result', '-')} ({recent.get('score', '-')}) | {recent.get('date', '-')}")
     log(f"   ✅ Next: {next_match.get('event', '-')} | {next_match.get('detail', '-')} | {next_match.get('match_time', '-')} [{next_match.get('status', '-')}]")
+
+    # =========================================================================
+    # NBA All-Star Week 데이터 삽입 (기간 내 자동 표시/숨김)
+    # =========================================================================
+    nba_data = inject_allstar_data(nba_data, kst_now)
 
     # =========================================================================
     # 데이터 저장
