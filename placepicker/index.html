@@ -2,6 +2,8 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>장소잡자 — 최적의 만남 장소</title>
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
@@ -203,7 +205,7 @@ function JoinFlow({gid}){
   const loadTT=useCallback(async()=>{if(td)return td;let all=[],off=0;while(true){const c=await sb("travel_times?select=origin,destination,transport,time_slot,minutes&offset="+off+"&limit=5000");if(!c||!c.length)break;all=all.concat(c);off+=5000;if(c.length<5000)break;}const lk={};for(const t of all)lk[t.origin+"|"+t.destination+"|"+t.transport+"|"+t.time_slot]=t.minutes;setTd(lk);return lk;},[td]);
   useEffect(()=>{load();},[gid]);
   const saveInfo=async(data)=>{setBusy(true);try{const ex=ps.find(p=>p.name===me);if(ex)await sb("participants?id=eq."+ex.id,{method:"PATCH",body:JSON.stringify({...data,updated_at:new Date().toISOString()})});else await sb("participants",{method:"POST",body:JSON.stringify({group_id:gid,name:me,...data})});await load();}catch(e){alert("저장 실패: "+e.message);}finally{setBusy(false);}};
-  const doCalc=async()=>{setBusy(true);try{const tt=await loadTT();const eng=new SE(tt,MT.map(p=>({id:p.id,name:p.name,region:p.region})));const fp=ps.filter(p=>p.departure&&p.home);if(fp.length<2){alert("2명 이상 입력이 필요합니다.");setBusy(false);return;}const r=eng.calc(fp,{vip:vip||null,pp:g.preferred_places||[],topN:2});if(!r.rankings.length){alert("경로를 찾을 수 없습니다.");setBusy(false);return;}await sb("groups?id=eq."+gid,{method:"PATCH",body:JSON.stringify({vip:vip||null,result:r,status:"calculated"})});setRes(r);setStep("result");}catch(e){alert("계산 실패: "+e.message);}finally{setBusy(false);}};
+  const doCalc=async()=>{setBusy(true);try{const tt=await loadTT();const eng=new SE(tt,MT.map(p=>({id:p.id,name:p.name,region:p.region})));const fp=ps.filter(p=>p.departure&&p.home);if(fp.length<2){alert("2명 이상 입력이 필요합니다.");setBusy(false);return;}console.log("TT entries:",Object.keys(tt).length);console.log("Parts:",JSON.stringify(fp.map(p=>({n:p.name,d:p.departure,h:p.home,t:p.transport,ht:p.home_transport}))));const r=eng.calc(fp,{vip:vip||null,pp:g.preferred_places||[],topN:2});console.log("Rankings:",r.rankings.length,"of",r.candN);if(!r.rankings.length){alert("경로를 찾을 수 없습니다. (TT:"+Object.keys(tt).length+"건, 참여자:"+fp.length+"명)");setBusy(false);return;}await sb("groups?id=eq."+gid,{method:"PATCH",body:JSON.stringify({vip:vip||null,result:r,status:"calculated"})});setRes(r);setStep("result");}catch(e){alert("계산 실패: "+e.message);}finally{setBusy(false);}};
 
   if(step==="loading")return <Ld msg="모임 정보 로딩 중..."/>;
   if(step==="404")return <div className="fade-in"><Hdr title="장소잡자" icon="📍"/><Cd><p style={{textAlign:"center",color:C.dm,padding:20}}>모임을 찾을 수 없습니다</p></Cd></div>;
