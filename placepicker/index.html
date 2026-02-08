@@ -110,7 +110,7 @@ function PlacePicker({mode,selected,onToggle,single}){
       <button onClick={()=>setShowMap(!showMap)} style={{display:"flex",alignItems:"center",gap:6,marginTop:8,padding:0,background:"none",border:"none",color:showMap?C.al:C.mt,fontSize:15,fontWeight:500,cursor:"pointer",transition:"color .15s"}}>
         <span>{showMap?"▼":"▶"}</span><span>🗺️ 지도로 보기</span>
       </button>
-      {showMap&&<div style={{marginTop:8}}><MapMode mode={mode} selected={selected} onToggle={id=>{if(val&&val!==id)onToggle(val);if(id!==val)onToggle(id);else onToggle(id);}}/></div>}
+      {showMap&&<div style={{marginTop:8}}><MapMode mode={mode} selected={selected} onToggle={id=>{if(val&&val!==id)onToggle(val);if(id!==val)onToggle(id);else onToggle(id);setShowMap(false);}}/></div>}
     </div>);
   }
 
