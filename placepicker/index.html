@@ -26,8 +26,42 @@ async function sb(p,o={}){const r=await fetch(SB+"/rest/v1/"+p,{headers:HD,...o}
 class SE{
   constructor(tt,mp){this.tt=tt;this.mp=mp;}
   g(o,d,tr,ts){if(o===d)return 0;const v=this.tt[o+"|"+d+"|"+tr+"|"+ts];if(v!==undefined)return v;const rv=this.tt[d+"|"+o+"|"+tr+"|"+ts];if(rv!==undefined)return rv;if(tr==="car"){const s=this.tt[o+"|"+d+"|subway|evening"]||this.tt[d+"|"+o+"|subway|evening"];if(s!==undefined)return Math.round(s*(ts==="evening"?.8:.6));}return null;}
-  calc(parts,opts={}){const{vip=null,pp=[],topN=2}=opts;const sc=this.mp.map(c=>this._s(c,parts,vip,pp)).filter(Boolean);sc.sort((a,b)=>a.score-b.score);return{rankings:sc.slice(0,topN).map((s,i)=>({rank:i+1,...s})),candN:this.mp.length,partN:parts.length};}
-  _s(c,parts,vip,pp){const ds=[];for(const p of parts){const dm=toM(p.departure_time||"18:00"),wk=p.transport==="car"?0:(p.walk_minutes||0);let tv=this.g(p.departure,c.id,p.transport,"evening");if(tv===null)return null;const tot=wk+tv,isV=vip&&p.name===vip;let rt=this.g(c.id,p.home,p.home_transport||"subway","night");if(rt===null)rt=this.g(p.home,c.id,p.home_transport||"subway","evening");if(rt===null)return null;ds.push({name:p.name,isV,wk,tv,tot,eff:isV?tot*2:tot,arr:dm+tot,at:frM(dm+tot),rt,tr:p.transport,htr:p.home_transport||"subway"});}const mt=Math.max(...ds.map(d=>d.arr));ds.forEach(d=>d.wt=mt-d.arr);const tw=ds.reduce((s,d)=>s+d.wt,0),rp=ds.reduce((s,d)=>d.rt>60?s+(d.rt-60)**2:s,0);let sc=3*mt+2*tw+1.5*rp;const ip=pp.includes(c.id);if(ip)sc*=0.7;const rs=[];const mxT=Math.max(...ds.map(d=>d.tot));rs.push(mxT<=15?"전원 15분 이내":mxT<=30?"전원 30분 이내":mxT<=45?"전원 45분 이내":"최대 "+mxT+"분");const mxR=Math.max(...ds.map(d=>d.rt));if(mxR<=40)rs.push("귀가 40분 이내");else if(mxR<=60)rs.push("귀가 1시간 이내");else rs.push(ds.filter(d=>d.rt>60).length+"명 귀가 1h+");if(ip)rs.push("⭐ 선호");if(vip){const vd=ds.find(d=>d.isV);if(vd&&vd.tot<=15)rs.push("VIP "+vd.tot+"분");}return{placeId:c.id,placeName:c.name,placeRegion:c.region,isP:ip,meetTime:frM(mt),score:Math.round(sc*10)/10,reason:rs.join(" · "),details:ds.map(d=>({name:d.name,isVip:d.isV,walkMinutes:d.wk,travelMinutes:d.tv,totalTravelMinutes:d.tot,arrivalTime:d.at,waitMinutes:d.wt,returnMinutes:d.rt,transport:d.tr,homeTransport:d.htr}))};}
+  calc(parts,opts={}){const{vip=null,pp=[],topN=5}=opts;const sc=this.mp.map(c=>this._s(c,parts,vip,pp)).filter(Boolean);sc.sort((a,b)=>a.score-b.score);return{rankings:sc.slice(0,topN).map((s,i)=>({rank:i+1,...s})),candN:this.mp.length,partN:parts.length};}
+  _s(c,parts,vip,pp){const ds=[];for(const p of parts){const dm=toM(p.departure_time||"18:00"),wk=p.transport==="car"?0:(p.walk_minutes||0);let tv=this.g(p.departure,c.id,p.transport,"evening");if(tv===null)return null;const tot=wk+tv,isV=vip&&p.name===vip;let rt=this.g(c.id,p.home,p.home_transport||"subway","night");if(rt===null)rt=this.g(p.home,c.id,p.home_transport||"subway","evening");if(rt===null)return null;ds.push({name:p.name,isV,wk,tv,tot,arr:dm+tot,at:frM(dm+tot),rt,tr:p.transport,htr:p.home_transport||"subway"});}
+    /* === 새 스코어링 v2 === */
+    const n=ds.length;
+    /* 1) 60% 도착시간 = 모임시작 */
+    const arrs=[...ds].sort((a,b)=>a.arr-b.arr);
+    const p60=Math.ceil(n*0.6);
+    const meetArr=arrs[p60-1].arr;
+    ds.forEach(d=>{d.wt=Math.max(0,d.arr-meetArr);d.early=Math.max(0,meetArr-d.arr);});
+    /* 2) 평균 이동시간 */
+    const avgTot=ds.reduce((s,d)=>s+d.tot,0)/n;
+    /* 3) 최대 이동시간 */
+    const maxTot=Math.max(...ds.map(d=>d.tot));
+    /* 4) 후착 페널티: 30분 이내 소폭, 30~60 급격, 60+ 거의 불가 */
+    let latePen=0;
+    ds.forEach(d=>{const w=d.wt;if(w<=0)return;if(w<=30)latePen+=w*0.5;else if(w<=60)latePen+=15+(w-30)**2*0.3;else latePen+=15+270+(w-60)**3*0.5;});
+    /* 5) 귀가 페널티 */
+    let retPen=0;
+    ds.forEach(d=>{if(d.rt>60)retPen+=(d.rt-60)**2;});
+    /* 6) VIP 보정 */
+    let vipPen=0;
+    if(vip){const vd=ds.find(d=>d.isV);if(vd)vipPen=vd.tot*2+vd.wt*3;}
+    /* 종합 스코어 */
+    let sc=1.0*avgTot+2.5*maxTot+3.0*latePen+1.5*retPen+2.0*vipPen;
+    const ip=pp.includes(c.id);if(ip)sc*=0.7;
+    /* 이유 텍스트 */
+    const rs=[];
+    const early=arrs.slice(0,p60).map(d=>d.name);
+    const late=arrs.slice(p60).map(d=>d.name);
+    rs.push(p60+"명 "+frM(meetArr)+" 시작");
+    if(late.length>0){const mxW=Math.max(...ds.map(d=>d.wt));rs.push(late.join(",")+(" +"+mxW+"분 합류"));}
+    const mxR=Math.max(...ds.map(d=>d.rt));
+    if(mxR<=40)rs.push("귀가 40분 이내");else if(mxR<=60)rs.push("귀가 1시간 이내");else rs.push(ds.filter(d=>d.rt>60).length+"명 귀가 1h+");
+    if(ip)rs.push("⭐ 선호");
+    if(vip){const vd=ds.find(d=>d.isV);if(vd)rs.push("VIP "+vd.tot+"분");}
+    return{placeId:c.id,placeName:c.name,placeRegion:c.region,isP:ip,meetTime:frM(meetArr),score:Math.round(sc*10)/10,reason:rs.join(" · "),details:ds.map(d=>({name:d.name,isVip:d.isV,walkMinutes:d.wk,travelMinutes:d.tv,totalTravelMinutes:d.tot,arrivalTime:d.at,waitMinutes:d.wt,returnMinutes:d.rt,transport:d.tr,homeTransport:d.htr}))};}
 }
 function toM(t){const p=(t||"18:00").split(":");return(+p[0])*60+(+p[1]);}
 function frM(m){return Math.floor(m/60)+":"+String(m%60).padStart(2,"0");}
