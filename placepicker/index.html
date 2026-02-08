@@ -207,7 +207,7 @@ function JoinFlow({gid}){
   const loadTT=useCallback(async()=>{if(td)return td;let all=[],off=0;while(true){const c=await sb("travel_times?select=origin,destination,transport,time_slot,minutes&offset="+off+"&limit=5000");if(!c||!c.length)break;all=all.concat(c);off+=5000;if(c.length<5000)break;}const lk={};for(const t of all)lk[t.origin+"|"+t.destination+"|"+t.transport+"|"+t.time_slot]=t.minutes;setTd(lk);return lk;},[td]);
   useEffect(()=>{load();},[gid]);
   const saveInfo=async(data)=>{setBusy(true);try{const ex=ps.find(p=>p.name===me);if(ex)await sb("participants?id=eq."+ex.id,{method:"PATCH",body:JSON.stringify({...data,updated_at:new Date().toISOString()})});else await sb("participants",{method:"POST",body:JSON.stringify({group_id:gid,name:me,...data})});await load();}catch(e){alert("저장 실패: "+e.message);}finally{setBusy(false);}};
-  const doCalc=async()=>{setBusy(true);try{const tt=await loadTT();const eng=new SE(tt,MT.map(p=>({id:p.id,name:p.name,region:p.region})));const fp=ps.filter(p=>p.departure&&p.home);if(fp.length<2){alert("2명 이상 입력이 필요합니다.");setBusy(false);return;}console.log("TT entries:",Object.keys(tt).length);console.log("Parts:",JSON.stringify(fp.map(p=>({n:p.name,d:p.departure,h:p.home,t:p.transport,ht:p.home_transport}))));const r=eng.calc(fp,{vip:vip||null,pp:g.preferred_places||[],topN:2});console.log("Rankings:",r.rankings.length,"of",r.candN);if(!r.rankings.length){alert("경로를 찾을 수 없습니다. (TT:"+Object.keys(tt).length+"건, 참여자:"+fp.length+"명)");setBusy(false);return;}await sb("groups?id=eq."+gid,{method:"PATCH",body:JSON.stringify({vip:vip||null,result:r,status:"calculated"})});setRes(r);setStep("result");}catch(e){alert("계산 실패: "+e.message);}finally{setBusy(false);}};
+  const doCalc=async()=>{setBusy(true);try{const tt=await loadTT();const eng=new SE(tt,MT.map(p=>({id:p.id,name:p.name,region:p.region})));const fp=ps.filter(p=>p.departure&&p.home);if(fp.length<2){alert("2명 이상 입력이 필요합니다.");setBusy(false);return;}console.log("TT entries:",Object.keys(tt).length);console.log("Parts:",JSON.stringify(fp.map(p=>({n:p.name,d:p.departure,h:p.home,t:p.transport,ht:p.home_transport}))));const r=eng.calc(fp,{vip:vip||null,pp:g.preferred_places||[],topN:5});console.log("Rankings:",r.rankings.length,"of",r.candN);if(!r.rankings.length){alert("경로를 찾을 수 없습니다. (TT:"+Object.keys(tt).length+"건, 참여자:"+fp.length+"명)");setBusy(false);return;}await sb("groups?id=eq."+gid,{method:"PATCH",body:JSON.stringify({vip:vip||null,result:r,status:"calculated"})});setRes(r);setStep("result");}catch(e){alert("계산 실패: "+e.message);}finally{setBusy(false);}};
 
   if(step==="loading")return <Ld msg="모임 정보 로딩 중..."/>;
   if(step==="404")return <div className="fade-in"><Hdr title="장소잡자" icon="📍"/><Cd><p style={{textAlign:"center",color:C.dm,padding:20}}>모임을 찾을 수 없습니다</p></Cd></div>;
@@ -247,11 +247,14 @@ function IF({name,ex,busy,onSave,onBack}){
 
 function RV({gn,res,onBack}){
   const[exp,setExp]=useState(0);
+  const[showMore,setShowMore]=useState(false);
+  const top2=res.rankings.slice(0,2),rest=res.rankings.slice(2);
+  const visible=showMore?res.rankings:top2;
   return(<div className="fade-in"><Hdr title={gn} sub="최적 장소 결과" back={onBack}/><div style={{color:C.dm,fontSize:13,marginBottom:16}}>후보 {res.candN}개 중 · {res.partN}명 기준</div>
-    {res.rankings.map((r,i)=>{const top=i===0,open=exp===i;return(
+    {visible.map((r,i)=>{const top=i===0,open=exp===i;return(
       <div key={r.placeId} onClick={()=>setExp(open?-1:i)} style={{background:top?"linear-gradient(135deg,"+C.cd+" 0%,rgba(108,99,255,0.1) 100%)":C.cd,border:"1.5px solid "+(top?C.ac:C.bd),borderRadius:16,padding:"16px 20px",marginBottom:12,cursor:"pointer",transition:"all .2s"}}>
         <div style={{display:"flex",alignItems:"center",gap:12}}>
-          <span style={{fontSize:top?32:24}}>{top?"🥇":"🥈"}</span>
+          <span style={{fontSize:top?32:24}}>{["🥇","🥈","🥉","4️⃣","5️⃣"][i]||"📍"}</span>
           <div style={{flex:1}}><div style={{display:"flex",alignItems:"center",gap:8,flexWrap:"wrap"}}><span style={{fontSize:top?20:17,fontWeight:700,color:C.wh}}>{r.placeName}</span>{r.isP&&<span style={{fontSize:13,color:C.gd}}>⭐</span>}{top&&<span style={{fontSize:12,fontWeight:700,color:C.wh,background:C.ac,padding:"2px 10px",borderRadius:20}}>추천</span>}</div><div style={{color:C.dm,fontSize:13,marginTop:2}}>{r.placeRegion}</div></div>
           <div style={{textAlign:"right"}}><div style={{fontSize:top?22:18,fontWeight:700,color:C.al}}>{r.meetTime}</div><div style={{color:C.mt,fontSize:12}}>만남</div></div>
         </div>
@@ -259,6 +262,8 @@ function RV({gn,res,onBack}){
         {open&&<div style={{marginTop:16}}>{r.details.map(d=>(<div key={d.name} style={{display:"flex",alignItems:"center",gap:8,padding:"10px 0",borderTop:"1px solid "+C.bd,fontSize:14}}><span style={{fontWeight:600,minWidth:48}}>{d.isVip?"👑 ":""}{d.name}</span><div style={{flex:1,color:C.dm}}><span>{d.transport==="car"?"🚗":"🚇"} </span>{d.walkMinutes>0&&<span style={{color:C.og}}>도보{d.walkMinutes}+</span>}<span>이동{d.travelMinutes}분</span><span style={{color:C.mt}}> → {d.arrivalTime}</span>{d.waitMinutes>0&&<span style={{color:C.og}}> 대기{d.waitMinutes}분</span>}</div><div style={{color:C.mt,fontSize:13,whiteSpace:"nowrap"}}>귀가{d.returnMinutes}분{d.homeTransport==="car"?"🚗":"🚇"}</div></div>))}</div>}
         {!open&&<div style={{textAlign:"center",color:C.mt,fontSize:12,marginTop:8}}>탭하여 상세 보기</div>}
       </div>);})}
+    {rest.length>0&&!showMore&&<Bt full style={{marginTop:8}} onClick={()=>setShowMore(true)}>📊 {rest.length}개 더 보기 (3~{2+rest.length}위)</Bt>}
+    {showMore&&<Bt full style={{marginTop:8}} onClick={()=>setShowMore(false)}>접기</Bt>}
     <Bt full style={{marginTop:8}} onClick={onBack}>← 다시 계산</Bt>
   </div>);
 }
