@@ -804,7 +804,7 @@ ALLSTAR_DATA = {
     "location": "Los Angeles (Intuit Dome)",
     "note": "Steph Curry selected as starter",
     # 표시 기간: 이 날짜 범위 안에서만 대시보드에 노출
-    "show_from": "2026-02-08",   # 올스타 1주 전부터 표시
+    "show_from": "2026-02-13",   # 올스타 당일부터 표시
     "show_until": "2026-02-17",  # 올스타 다음날까지 표시
     "events": [
         {
