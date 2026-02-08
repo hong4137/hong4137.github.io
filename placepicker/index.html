@@ -41,7 +41,7 @@ class SE{
     const maxTot=Math.max(...ds.map(d=>d.tot));
     /* 4) 후착 페널티: 30분 이내 소폭, 30~60 급격, 60+ 거의 불가 */
     let latePen=0;
-    ds.forEach(d=>{const w=d.wt;if(w<=0)return;if(w<=30)latePen+=w*0.5;else if(w<=60)latePen+=15+(w-30)**2*0.3;else latePen+=15+270+(w-60)**3*0.5;});
+    ds.forEach(d=>{const w=d.wt;if(w<=0)return;if(w<=30)latePen+=w*0.15;else if(w<=60)latePen+=15+(w-30)**2*0.3;else latePen+=15+270+(w-60)**3*0.5;});
     /* 5) 귀가 페널티 */
     let retPen=0;
     ds.forEach(d=>{if(d.rt>60)retPen+=(d.rt-60)**2;});
