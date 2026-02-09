@@ -1,7 +1,7 @@
 {
-  "updated": "2026-02-09 16:08:22 KST",
+  "updated": "2026-02-09 22:15:33 KST",
   "epl": {
-    "matchday": 25,
+    "matchday": 26,
     "selected_round": 26,
     "display_matchday": "R26",
     "leader": "Arsenal",
@@ -24,7 +24,7 @@
         ],
         "rule_str": "Leader",
         "matchday": 26,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ],
@@ -41,7 +41,7 @@
         ],
         "rule_str": "Leader",
         "matchday": 26,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ]
@@ -92,7 +92,7 @@
     "next": {
       "event": "Rotterdam Open",
       "detail": "-",
-      "match_time": "Feb 9",
+      "match_time": "Feb 9-15",
       "tournament_dates": "",
       "status": "-"
     }
