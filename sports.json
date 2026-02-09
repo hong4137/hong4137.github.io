@@ -1,9 +1,9 @@
 {
-  "updated": "2026-02-09 03:40:26 KST",
+  "updated": "2026-02-09 11:31:23 KST",
   "epl": {
     "matchday": 25,
-    "selected_round": 25,
-    "display_matchday": "R25",
+    "selected_round": 26,
+    "display_matchday": "R26",
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
@@ -13,100 +13,36 @@
     ],
     "matches": [
       {
-        "match_id": 538032,
-        "home": "Manchester United",
-        "away": "Tottenham",
-        "kst_time": "02.07 21:30 (KST)",
-        "uk_time": "Saturday 12:30 (UK)",
-        "local": "Sky Sports",
-        "rules": [
-          "Big Match",
-          "Early KO"
-        ],
-        "rule_str": "Big Match, Early KO",
-        "matchday": 25,
-        "status": "FINISHED",
-        "score": "2-0"
-      },
-      {
-        "match_id": 538030,
-        "home": "Liverpool",
-        "away": "Manchester City",
-        "kst_time": "02.09 01:30 (KST)",
-        "uk_time": "Sunday 16:30 (UK)",
+        "match_id": 538038,
+        "home": "Brentford",
+        "away": "Arsenal",
+        "kst_time": "02.13 05:00 (KST)",
+        "uk_time": "Thursday 20:00 (UK)",
         "local": "Sky Sports Main Event",
-        "rules": [
-          "Big Match",
-          "Prime Time"
-        ],
-        "rule_str": "Big Match, Prime Time",
-        "matchday": 25,
-        "status": "IN_PLAY",
-        "score": "1-3"
-      },
-      {
-        "match_id": 538027,
-        "home": "Arsenal",
-        "away": "Sunderland AFC",
-        "kst_time": "02.08 00:00 (KST)",
-        "uk_time": "Saturday 15:00 (UK)",
-        "local": "Sky Sports",
         "rules": [
           "Leader"
         ],
         "rule_str": "Leader",
-        "matchday": 25,
-        "status": "FINISHED",
-        "score": "3-0"
+        "matchday": 26,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ],
     "selected_matches": [
       {
-        "match_id": 538032,
-        "home": "Manchester United",
-        "away": "Tottenham",
-        "kst_time": "02.07 21:30 (KST)",
-        "uk_time": "Saturday 12:30 (UK)",
-        "local": "Sky Sports",
-        "rules": [
-          "Big Match",
-          "Early KO"
-        ],
-        "rule_str": "Big Match, Early KO",
-        "matchday": 25,
-        "status": "FINISHED",
-        "score": "2-0"
-      },
-      {
-        "match_id": 538030,
-        "home": "Liverpool",
-        "away": "Manchester City",
-        "kst_time": "02.09 01:30 (KST)",
-        "uk_time": "Sunday 16:30 (UK)",
+        "match_id": 538038,
+        "home": "Brentford",
+        "away": "Arsenal",
+        "kst_time": "02.13 05:00 (KST)",
+        "uk_time": "Thursday 20:00 (UK)",
         "local": "Sky Sports Main Event",
-        "rules": [
-          "Big Match",
-          "Prime Time"
-        ],
-        "rule_str": "Big Match, Prime Time",
-        "matchday": 25,
-        "status": "IN_PLAY",
-        "score": "1-3"
-      },
-      {
-        "match_id": 538027,
-        "home": "Arsenal",
-        "away": "Sunderland AFC",
-        "kst_time": "02.08 00:00 (KST)",
-        "uk_time": "Saturday 15:00 (UK)",
-        "local": "Sky Sports",
         "rules": [
           "Leader"
         ],
         "rule_str": "Leader",
-        "matchday": 25,
-        "status": "FINISHED",
-        "score": "3-0"
+        "matchday": 26,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ]
   },
@@ -156,7 +92,7 @@
     "next": {
       "event": "Rotterdam Open",
       "detail": "-",
-      "match_time": "Feb 9-15",
+      "match_time": "Feb 9",
       "tournament_dates": "",
       "status": "-"
     }
