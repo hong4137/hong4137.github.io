@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-09 22:15:33 KST",
+  "updated": "2026-02-10 04:19:01 KST",
   "epl": {
     "matchday": 26,
     "selected_round": 26,
@@ -56,8 +56,8 @@
     },
     "schedule": [
       {
-        "opp": "Grizzlies",
-        "date": "02.10",
+        "opp": "Spurs",
+        "date": "02.12",
         "kst_time": "12:00",
         "local_time": "7:00 PM PT",
         "location": "home",
@@ -65,8 +65,8 @@
         "channel": ""
       },
       {
-        "opp": "Spurs",
-        "date": "02.12",
+        "opp": "Celtics",
+        "date": "02.20",
         "kst_time": "12:00",
         "local_time": "7:00 PM PT",
         "location": "home",
@@ -92,7 +92,7 @@
     "next": {
       "event": "Rotterdam Open",
       "detail": "-",
-      "match_time": "Feb 9-15",
+      "match_time": "Feb 9",
       "tournament_dates": "",
       "status": "-"
     }
