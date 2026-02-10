@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-10 04:19:01 KST",
+  "updated": "2026-02-10 11:39:29 KST",
   "epl": {
     "matchday": 26,
     "selected_round": 26,
@@ -87,12 +87,12 @@
       "opponent": "Novak Djokovic",
       "result": "W",
       "score": "2-6, 6-2, 6-3, 7-5",
-      "date": "Feb 1"
+      "date": "Feb 8"
     },
     "next": {
       "event": "Rotterdam Open",
       "detail": "-",
-      "match_time": "Feb 9",
+      "match_time": "Feb 9-15",
       "tournament_dates": "",
       "status": "-"
     }
