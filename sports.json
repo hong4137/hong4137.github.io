@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-10 11:39:29 KST",
+  "updated": "2026-02-10 16:08:39 KST",
   "epl": {
     "matchday": 26,
     "selected_round": 26,
@@ -47,12 +47,12 @@
     ]
   },
   "nba": {
-    "record": "28-25",
+    "record": "29-25",
     "rank": "#8 West",
     "last": {
-      "opp": "Lakers",
-      "result": "L",
-      "score": "99-105"
+      "opp": "Grizzlies",
+      "result": "W",
+      "score": "114-113"
     },
     "schedule": [
       {
@@ -87,7 +87,7 @@
       "opponent": "Novak Djokovic",
       "result": "W",
       "score": "2-6, 6-2, 6-3, 7-5",
-      "date": "Feb 8"
+      "date": "Feb 1"
     },
     "next": {
       "event": "Rotterdam Open",
