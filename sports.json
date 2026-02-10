@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-10 22:20:04 KST",
+  "updated": "2026-02-11 04:09:12 KST",
   "epl": {
     "matchday": 26,
     "selected_round": 26,
@@ -76,7 +76,7 @@
     ]
   },
   "f1": {
-    "status": "Pre-Season",
+    "status": "Testing",
     "name": "Test 2",
     "circuit": "Bahrain International",
     "date": "Feb 11-13"
