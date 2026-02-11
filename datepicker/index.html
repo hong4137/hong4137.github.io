@@ -1193,10 +1193,39 @@
             // 터치 위치의 요소 확인
             const touch = e.changedTouches[0];
             const el = document.elementFromPoint(touch.clientX, touch.clientY);
+            let finalEnd = dragState.end;
             if (el && el.dataset.date && el.dataset.canclick === "1") {
-              setDragState(prev => prev ? { ...prev, end: el.dataset.date } : null);
+              finalEnd = el.dataset.date;
             }
-            setTimeout(() => handleDragEnd(), 10);
+            
+            // 직접 토글 처리 (handleDragEnd 로직 인라인)
+            const s = dragState.start < finalEnd ? dragState.start : finalEnd;
+            const eDate = dragState.start < finalEnd ? finalEnd : dragState.start;
+            const dates = [];
+            const d = parseDate(s);
+            const ed = parseDate(eDate);
+            while (d <= ed) {
+              const ds = fmtDate(d);
+              const y = d.getFullYear(), m = d.getMonth(), day = d.getDate();
+              if (d >= today && !isOff(y,m,day) && !blockedDates.has(ds)) {
+                dates.push(ds);
+              }
+              d.setDate(d.getDate() + 1);
+            }
+            
+            if (dates.length === 1) {
+              const dateStr = dates[0];
+              setVotes(prev => {
+                const cur = prev[dateStr] || null;
+                const idx = VOTE_CYCLE.indexOf(cur);
+                const next = VOTE_CYCLE[(idx+1) % VOTE_CYCLE.length];
+                if (next === null) { const nv = {...prev}; delete nv[dateStr]; return nv; }
+                return {...prev, [dateStr]: next};
+              });
+            } else if (dates.length > 1) {
+              setPendingDates(dates);
+            }
+            setDragState(null);
           }
         };
         const handleTouchMove = (e) => {
