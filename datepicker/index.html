@@ -1139,8 +1139,15 @@
           }
           
           if (dates.length === 1) {
-            // 단일 선택: 기존처럼 바로 토글
-            handleDayClick(dates[0]);
+            // 단일 선택: 바로 토글
+            const dateStr = dates[0];
+            setVotes(prev => {
+              const cur = prev[dateStr] || null;
+              const idx = VOTE_CYCLE.indexOf(cur);
+              const next = VOTE_CYCLE[(idx+1) % VOTE_CYCLE.length];
+              if (next === null) { const nv = {...prev}; delete nv[dateStr]; return nv; }
+              return {...prev, [dateStr]: next};
+            });
           } else if (dates.length > 1) {
             // 드래그 선택 (2개 이상): 팝업 표시
             setPendingDates(dates);
