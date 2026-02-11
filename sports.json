@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-11 22:17:07 KST",
+  "updated": "2026-02-12 04:07:03 KST",
   "epl": {
     "matchday": 26,
     "selected_round": 26,
@@ -56,8 +56,8 @@
     },
     "schedule": [
       {
-        "opp": "Spurs",
-        "date": "02.12",
+        "opp": "Celtics",
+        "date": "02.20",
         "kst_time": "12:00",
         "local_time": "7:00 PM PT",
         "location": "home",
@@ -65,10 +65,10 @@
         "channel": ""
       },
       {
-        "opp": "Celtics",
-        "date": "02.20",
-        "kst_time": "12:00",
-        "local_time": "7:00 PM PT",
+        "opp": "Nuggets",
+        "date": "02.23",
+        "kst_time": "05:30",
+        "local_time": "12:30 PM PT",
         "location": "home",
         "venue": "Chase Center",
         "channel": ""
