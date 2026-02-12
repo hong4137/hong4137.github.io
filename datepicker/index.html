@@ -1863,8 +1863,11 @@
           {/* 날짜 확정 버튼 — 미확정 + 선택됨 상태일 때 */}
           {!confirmedDate && selectedDate && (
             <Card style={{ textAlign: "center" }}>
-              <div style={{ fontSize: 14, color: "#94a3b8", marginBottom: 12 }}>
-                이 날짜로 확정하면 모든 참여자에게 보여요
+              <div style={{ 
+                padding: "12px 16px", borderRadius: 10, marginBottom: 16,
+                background: "rgba(56,189,248,0.1)", border: "1px solid rgba(56,189,248,0.3)"
+              }}>
+                <span style={{ fontSize: 14, color: "#38bdf8" }}>📢 날짜를 확정하면 공유가 가능합니다</span>
               </div>
               <button onClick={async () => {
                 setConfirming(true);
@@ -1877,7 +1880,7 @@
                 fontSize: 15, fontWeight: 700, cursor: confirming ? "default" : "pointer",
                 opacity: confirming ? 0.6 : 1, fontFamily: "inherit",
               }}>
-                {confirming ? "확정 중..." : `✅ ${fmtDisplay(parseDate(selectedDate))} 확정하기`}
+                {confirming ? "확정 중..." : `📅 ${fmtDisplay(parseDate(selectedDate))} 확정하기`}
               </button>
             </Card>
           )}
