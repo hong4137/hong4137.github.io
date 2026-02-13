@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-13 22:06:13 KST",
+  "updated": "2026-02-14 03:54:27 KST",
   "epl": {
     "matchday": 26,
     "selected_round": 27,
@@ -136,10 +136,10 @@
     }
   },
   "f1": {
-    "status": "Testing",
-    "name": "Test 2",
+    "status": "Pre-Season",
+    "name": "Test 3",
     "circuit": "Bahrain International",
-    "date": "Feb 11-13"
+    "date": "Feb 18-20"
   },
   "tennis": {
     "recent": {
