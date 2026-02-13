@@ -1,9 +1,9 @@
 {
-  "updated": "2026-02-13 04:06:17 KST",
+  "updated": "2026-02-13 11:33:09 KST",
   "epl": {
     "matchday": 26,
-    "selected_round": 26,
-    "display_matchday": "R26",
+    "selected_round": 27,
+    "display_matchday": "R27",
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
@@ -13,35 +13,39 @@
     ],
     "matches": [
       {
-        "match_id": 538038,
-        "home": "Brentford",
+        "match_id": 538053,
+        "home": "Tottenham",
         "away": "Arsenal",
-        "kst_time": "02.13 05:00 (KST)",
-        "uk_time": "Thursday 20:00 (UK)",
-        "local": "Sky Sports Main Event",
+        "kst_time": "02.23 01:30 (KST)",
+        "uk_time": "Sunday 16:30 (UK)",
+        "local": "Sky Sports",
         "rules": [
+          "Big Match",
+          "Prime Time",
           "Leader"
         ],
-        "rule_str": "Leader",
-        "matchday": 26,
-        "status": "TIMED",
+        "rule_str": "Big Match, Prime Time, Leader",
+        "matchday": 27,
+        "status": "SCHEDULED",
         "score": "-"
       }
     ],
     "selected_matches": [
       {
-        "match_id": 538038,
-        "home": "Brentford",
+        "match_id": 538053,
+        "home": "Tottenham",
         "away": "Arsenal",
-        "kst_time": "02.13 05:00 (KST)",
-        "uk_time": "Thursday 20:00 (UK)",
-        "local": "Sky Sports Main Event",
+        "kst_time": "02.23 01:30 (KST)",
+        "uk_time": "Sunday 16:30 (UK)",
+        "local": "Sky Sports",
         "rules": [
+          "Big Match",
+          "Prime Time",
           "Leader"
         ],
-        "rule_str": "Leader",
-        "matchday": 26,
-        "status": "TIMED",
+        "rule_str": "Big Match, Prime Time, Leader",
+        "matchday": 27,
+        "status": "SCHEDULED",
         "score": "-"
       }
     ]
