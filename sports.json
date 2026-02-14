@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-14 21:55:13 KST",
+  "updated": "2026-02-15 03:39:07 KST",
   "epl": {
     "matchday": 26,
     "selected_round": 27,
@@ -151,7 +151,7 @@
     },
     "next": {
       "event": "Rotterdam Open",
-      "detail": "-",
+      "detail": "1R vs Arthur Rinderknech",
       "match_time": "Feb 9-15",
       "tournament_dates": "",
       "status": "-"
