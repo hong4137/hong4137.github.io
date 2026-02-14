@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-14 11:21:23 KST",
+  "updated": "2026-02-14 15:50:41 KST",
   "epl": {
     "matchday": 26,
     "selected_round": 27,
@@ -152,7 +152,7 @@
     "next": {
       "event": "Rotterdam Open",
       "detail": "-",
-      "match_time": "Feb 9",
+      "match_time": "Feb 9-15",
       "tournament_dates": "",
       "status": "-"
     }
