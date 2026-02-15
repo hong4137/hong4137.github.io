@@ -1,7 +1,7 @@
 {
-  "updated": "2026-02-15 15:55:13 KST",
+  "updated": "2026-02-15 21:57:08 KST",
   "epl": {
-    "matchday": 26,
+    "matchday": 31,
     "selected_round": 27,
     "display_matchday": "R27",
     "leader": "Arsenal",
@@ -150,9 +150,9 @@
       "date": "Feb 1"
     },
     "next": {
-      "event": "Rotterdam Open",
+      "event": "Qatar Open",
       "detail": "R32 vs Arthur Rinderknech",
-      "match_time": "Feb 15",
+      "match_time": "Feb 16",
       "tournament_dates": "",
       "status": "-"
     }
