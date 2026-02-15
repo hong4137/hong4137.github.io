@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-15 11:33:06 KST",
+  "updated": "2026-02-15 15:55:13 KST",
   "epl": {
     "matchday": 26,
     "selected_round": 27,
@@ -52,7 +52,7 @@
   },
   "nba": {
     "record": "29-26",
-    "rank": "#8 West",
+    "rank": "-",
     "last": {
       "opp": "Spurs",
       "result": "L",
@@ -151,7 +151,7 @@
     },
     "next": {
       "event": "Rotterdam Open",
-      "detail": "F vs Novak Djokovic",
+      "detail": "R32 vs Arthur Rinderknech",
       "match_time": "Feb 15",
       "tournament_dates": "",
       "status": "-"
