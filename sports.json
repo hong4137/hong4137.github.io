@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-16 22:10:11 KST",
+  "updated": "2026-02-17 03:49:36 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 27,
@@ -52,7 +52,7 @@
   },
   "nba": {
     "record": "29-26",
-    "rank": "#1 West",
+    "rank": "-",
     "last": {
       "opp": "Spurs",
       "result": "L",
@@ -151,8 +151,8 @@
     },
     "next": {
       "event": "Qatar Open",
-      "detail": "vs Arthur Rinderknech",
-      "match_time": "Feb 16",
+      "detail": "R32 vs Arthur Rinderknech",
+      "match_time": "Feb 17 22:00 KST",
       "tournament_dates": "",
       "status": "-"
     }
