@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-16 11:29:29 KST",
+  "updated": "2026-02-16 16:07:06 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 27,
@@ -146,12 +146,12 @@
       "event": "Australian Open",
       "opponent": "Novak Djokovic",
       "result": "W",
-      "score": "3-1",
+      "score": "2-6, 6-2, 6-3, 7-5",
       "date": "Feb 1"
     },
     "next": {
       "event": "Qatar Open",
-      "detail": "1R vs Arthur Rinderknech",
+      "detail": "R32 vs Arthur Rinderknech",
       "match_time": "Feb 16",
       "tournament_dates": "",
       "status": "-"
