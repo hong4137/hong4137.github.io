@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-17 22:09:47 KST",
+  "updated": "2026-02-18 04:00:47 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 27,
@@ -52,7 +52,7 @@
   },
   "nba": {
     "record": "29-26",
-    "rank": "-",
+    "rank": "#8 West",
     "last": {
       "opp": "Spurs",
       "result": "L",
@@ -77,66 +77,10 @@
         "venue": "Chase Center",
         "channel": ""
       }
-    ],
-    "allstar": {
-      "title": "NBA All-Star 2026",
-      "dates": "Feb 13-15",
-      "location": "Los Angeles (Intuit Dome)",
-      "note": "Steph Curry selected as starter",
-      "events": [
-        {
-          "name": "Celebrity Game",
-          "date": "02.14 (토)",
-          "kst_time": "09:00",
-          "et_time": "7:00 PM ET",
-          "channel": "ESPN",
-          "venue": "Kia Forum"
-        },
-        {
-          "name": "Rising Stars",
-          "date": "02.14 (토)",
-          "kst_time": "11:00",
-          "et_time": "9:00 PM ET",
-          "channel": "Peacock",
-          "venue": "Intuit Dome"
-        },
-        {
-          "name": "Shooting Stars",
-          "date": "02.15 (일)",
-          "kst_time": "07:00",
-          "et_time": "5:00 PM ET",
-          "channel": "NBC",
-          "venue": "Intuit Dome"
-        },
-        {
-          "name": "3-Point Contest",
-          "date": "02.15 (일)",
-          "kst_time": "~08:00",
-          "et_time": "~6:00 PM ET",
-          "channel": "NBC",
-          "venue": "Intuit Dome"
-        },
-        {
-          "name": "Slam Dunk",
-          "date": "02.15 (일)",
-          "kst_time": "~09:00",
-          "et_time": "~7:00 PM ET",
-          "channel": "NBC",
-          "venue": "Intuit Dome"
-        },
-        {
-          "name": "75th All-Star Game",
-          "date": "02.16 (월)",
-          "kst_time": "07:00",
-          "et_time": "5:00 PM ET",
-          "channel": "NBC",
-          "venue": "Intuit Dome"
-        }
-      ]
-    }
+    ]
   },
   "f1": {
-    "status": "Pre-Season",
+    "status": "Testing",
     "name": "Test 3",
     "circuit": "Bahrain International",
     "date": "Feb 18-20"
@@ -146,13 +90,13 @@
       "event": "Australian Open",
       "opponent": "Novak Djokovic",
       "result": "W",
-      "score": "2-6, 6-2, 6-3, 7-5",
-      "date": "Jan 31"
+      "score": "3-1",
+      "date": "-"
     },
     "next": {
       "event": "Qatar Open",
-      "detail": "R32 vs Arthur Rinderknech",
-      "match_time": "Feb 17",
+      "detail": "1R vs Arthur Rinderknech",
+      "match_time": "Feb 16",
       "tournament_dates": "",
       "status": "-"
     }
