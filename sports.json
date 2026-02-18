@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-18 16:04:28 KST",
+  "updated": "2026-02-18 22:10:56 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 27,
@@ -87,16 +87,16 @@
   },
   "tennis": {
     "recent": {
-      "event": "Qatar Open",
-      "opponent": "Arthur Rinderknech",
+      "event": "Australian Open",
+      "opponent": "Novak Djokovic",
       "result": "W",
-      "score": "6-4, 7-6 (7-5)",
-      "date": "Feb 18"
+      "score": "3-1",
+      "date": "Feb 1"
     },
     "next": {
       "event": "Qatar Open",
       "detail": "-",
-      "match_time": "-",
+      "match_time": "Feb 18",
       "tournament_dates": "",
       "status": "-"
     }
