@@ -209,7 +209,7 @@
     </div>
 
     <script>
-        const DEFAULT_STOCKS = [{ s: "NASDAQ:NVDA", d: "엔비디아" }, { s: "NASDAQ:MU", d: "마이크론" }, { s: "NASDAQ:TSLA", d: "테슬라" }, { s: "FX_IDC:USDKRW", d: "원달러 환율" }];
+        const DEFAULT_STOCKS = [{ s: "NASDAQ:MU", d: "마이크론" }, { s: "NASDAQ:NVDA", d: "엔비디아" }, { s: "NASDAQ:TSLA", d: "테슬라" }, { s: "FX_IDC:USDKRW", d: "원달러 환율" }];
         let currentStocks = JSON.parse(localStorage.getItem('dashboard_stocks')) || DEFAULT_STOCKS;
         let tempStocks = [];
 
