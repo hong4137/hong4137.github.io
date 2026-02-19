@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-19 22:12:22 KST",
+  "updated": "2026-02-20 03:53:56 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 27,
@@ -60,21 +60,21 @@
     },
     "schedule": [
       {
-        "opp": "Celtics",
-        "date": "02.20",
-        "kst_time": "12:00",
-        "local_time": "7:00 PM PT",
-        "location": "home",
-        "venue": "Chase Center",
-        "channel": ""
-      },
-      {
         "opp": "Nuggets",
         "date": "02.23",
         "kst_time": "05:30",
         "local_time": "12:30 PM PT",
         "location": "home",
         "venue": "Chase Center",
+        "channel": ""
+      },
+      {
+        "opp": "Pelicans",
+        "date": "02.25",
+        "kst_time": "10:00",
+        "local_time": "5:00 PM PT",
+        "location": "away",
+        "venue": "@ New Orleans",
         "channel": ""
       }
     ]
@@ -87,16 +87,16 @@
   },
   "tennis": {
     "recent": {
-      "event": "Doha",
-      "opponent": "Valentin Royer",
+      "event": "Qatar Open",
+      "opponent": "Arthur Rinderknech",
       "result": "W",
       "score": "6-4, 7-6 (7-5)",
       "date": "Feb 18"
     },
     "next": {
-      "event": "Qatar ExxonMobil Open",
-      "detail": "R32 vs Arthur Rinderknech",
-      "match_time": "Feb 19",
+      "event": "Qatar Open",
+      "detail": "QF",
+      "match_time": "Feb 20",
       "tournament_dates": "",
       "status": "-"
     }
