@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-20 16:00:28 KST",
+  "updated": "2026-02-20 22:04:26 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 27,
@@ -87,16 +87,16 @@
   },
   "tennis": {
     "recent": {
-      "event": "ATP Doha",
+      "event": "Doha",
       "opponent": "Karen Khachanov",
       "result": "W",
       "score": "6-7(1), 6-4, 6-3",
       "date": "Feb 20"
     },
     "next": {
-      "event": "ATP Doha",
-      "detail": "SF vs Andrey Rublev",
-      "match_time": "Feb 20 01:30 KST",
+      "event": "Qatar Open",
+      "detail": "-",
+      "match_time": "Feb 21",
       "tournament_dates": "",
       "status": "-"
     }
