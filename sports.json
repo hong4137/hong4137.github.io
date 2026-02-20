@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-20 03:53:56 KST",
+  "updated": "2026-02-20 11:24:17 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 27,
@@ -87,15 +87,15 @@
   },
   "tennis": {
     "recent": {
-      "event": "Qatar Open",
-      "opponent": "Arthur Rinderknech",
+      "event": "ATP Doha",
+      "opponent": "Karen Khachanov",
       "result": "W",
-      "score": "6-4, 7-6 (7-5)",
-      "date": "Feb 18"
+      "score": "6-7(1), 6-4, 6-3",
+      "date": "Feb 20"
     },
     "next": {
       "event": "Qatar Open",
-      "detail": "QF",
+      "detail": "SF",
       "match_time": "Feb 20",
       "tournament_dates": "",
       "status": "-"
