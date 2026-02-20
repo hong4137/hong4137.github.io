@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-20 11:24:17 KST",
+  "updated": "2026-02-20 16:00:28 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 27,
@@ -51,12 +51,12 @@
     ]
   },
   "nba": {
-    "record": "29-26",
-    "rank": "#8 West",
+    "record": "29-27",
+    "rank": "-",
     "last": {
-      "opp": "Spurs",
+      "opp": "Celtics",
       "result": "L",
-      "score": "113-126"
+      "score": "110-121"
     },
     "schedule": [
       {
@@ -94,9 +94,9 @@
       "date": "Feb 20"
     },
     "next": {
-      "event": "Qatar Open",
-      "detail": "SF",
-      "match_time": "Feb 20",
+      "event": "ATP Doha",
+      "detail": "SF vs Andrey Rublev",
+      "match_time": "Feb 20 01:30 KST",
       "tournament_dates": "",
       "status": "-"
     }
