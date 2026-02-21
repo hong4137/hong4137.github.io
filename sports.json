@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-21 21:54:10 KST",
+  "updated": "2026-02-22 03:38:57 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 27,
@@ -9,7 +9,7 @@
       "Arsenal",
       "Manchester City",
       "Aston Villa",
-      "Manchester United"
+      "Chelsea"
     ],
     "matches": [
       {
@@ -52,7 +52,7 @@
   },
   "nba": {
     "record": "29-27",
-    "rank": "-",
+    "rank": "#8 West",
     "last": {
       "opp": "Celtics",
       "result": "L",
@@ -91,12 +91,12 @@
       "opponent": "Andrey Rublev",
       "result": "W",
       "score": "7-6 (3), 6-4",
-      "date": "Feb 20"
+      "date": "Feb 21"
     },
     "next": {
       "event": "ATP Doha 2026",
       "detail": "QF vs Karen Khachanov",
-      "match_time": "Feb 20",
+      "match_time": "Feb 26",
       "tournament_dates": "",
       "status": "-"
     }
