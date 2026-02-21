@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-21 15:46:58 KST",
+  "updated": "2026-02-21 21:54:10 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 27,
@@ -90,11 +90,11 @@
       "event": "Qatar ExxonMobil Open",
       "opponent": "Andrey Rublev",
       "result": "W",
-      "score": "7-6 (7-3), 6-4",
+      "score": "7-6 (3), 6-4",
       "date": "Feb 20"
     },
     "next": {
-      "event": "ATP Doha",
+      "event": "ATP Doha 2026",
       "detail": "QF vs Karen Khachanov",
       "match_time": "Feb 20",
       "tournament_dates": "",
