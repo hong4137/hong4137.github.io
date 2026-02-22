@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-22 03:38:57 KST",
+  "updated": "2026-02-22 11:28:56 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 27,
@@ -88,15 +88,15 @@
   "tennis": {
     "recent": {
       "event": "Qatar ExxonMobil Open",
-      "opponent": "Andrey Rublev",
+      "opponent": "Arthur Fils",
       "result": "W",
-      "score": "7-6 (3), 6-4",
+      "score": "6-2, 6-1",
       "date": "Feb 21"
     },
     "next": {
       "event": "ATP Doha 2026",
       "detail": "QF vs Karen Khachanov",
-      "match_time": "Feb 26",
+      "match_time": "Feb 27",
       "tournament_dates": "",
       "status": "-"
     }
