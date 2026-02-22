@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-22 11:28:56 KST",
+  "updated": "2026-02-22 15:52:46 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 27,
@@ -94,9 +94,9 @@
       "date": "Feb 21"
     },
     "next": {
-      "event": "ATP Doha 2026",
-      "detail": "QF vs Karen Khachanov",
-      "match_time": "Feb 27",
+      "event": "Dubai Duty Free Tennis Championships",
+      "detail": "R32",
+      "match_time": "Feb 23",
       "tournament_dates": "",
       "status": "-"
     }
