@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-22 21:55:42 KST",
+  "updated": "2026-02-23 03:39:17 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 27,
@@ -60,21 +60,21 @@
     },
     "schedule": [
       {
-        "opp": "Nuggets",
-        "date": "02.23",
-        "kst_time": "05:30",
-        "local_time": "12:30 PM PT",
-        "location": "home",
-        "venue": "Chase Center",
-        "channel": ""
-      },
-      {
         "opp": "Pelicans",
         "date": "02.25",
         "kst_time": "10:00",
         "local_time": "5:00 PM PT",
         "location": "away",
         "venue": "@ New Orleans",
+        "channel": ""
+      },
+      {
+        "opp": "Grizzlies",
+        "date": "02.26",
+        "kst_time": "09:30",
+        "local_time": "4:30 PM PT",
+        "location": "away",
+        "venue": "@ Memphis",
         "channel": ""
       }
     ]
@@ -91,12 +91,12 @@
       "opponent": "Arthur Fils",
       "result": "W",
       "score": "6-2, 6-1",
-      "date": "Feb 21"
+      "date": "Feb 19"
     },
     "next": {
       "event": "Qatar Open",
-      "detail": "QF vs Karen Khachanov",
-      "match_time": "Feb 19",
+      "detail": "F",
+      "match_time": "Feb 22 19:00 KST",
       "tournament_dates": "",
       "status": "-"
     }
