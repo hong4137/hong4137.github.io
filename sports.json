@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-23 16:08:02 KST",
+  "updated": "2026-02-23 22:11:46 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 27,
@@ -87,16 +87,16 @@
   },
   "tennis": {
     "recent": {
-      "event": "Qatar ExxonMobil Open",
+      "event": "Qatar Open",
       "opponent": "Arthur Fils",
       "result": "W",
-      "score": "6-3, 6-1",
+      "score": "6-2, 6-1",
       "date": "Feb 21"
     },
     "next": {
-      "event": "Qatar Open",
-      "detail": "F",
-      "match_time": "Feb 21",
+      "event": "ATP Doha",
+      "detail": "QF vs Karen Khachanov",
+      "match_time": "Feb 27",
       "tournament_dates": "",
       "status": "-"
     }
