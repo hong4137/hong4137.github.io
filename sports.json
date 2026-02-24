@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-24 16:03:49 KST",
+  "updated": "2026-02-24 22:12:36 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 27,
@@ -52,7 +52,7 @@
   },
   "nba": {
     "record": "30-27",
-    "rank": "-",
+    "rank": "#8 West",
     "last": {
       "opp": "Nuggets",
       "result": "W",
@@ -94,11 +94,11 @@
       "date": "Feb 21"
     },
     "next": {
-      "event": "Dubai Duty Free Tennis Championships",
-      "detail": "R32",
-      "match_time": "Feb 23",
-      "tournament_dates": "",
-      "status": "-"
+      "event": "Indian Wells",
+      "detail": "-",
+      "match_time": "Mar 4",
+      "tournament_dates": "Mar 5 - 16",
+      "status": "Masters"
     }
   }
 }
