@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-25 11:27:30 KST",
+  "updated": "2026-02-25 16:05:03 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 27,
@@ -51,12 +51,12 @@
     ]
   },
   "nba": {
-    "record": "30-27",
+    "record": "30-28",
     "rank": "#8 West",
     "last": {
-      "opp": "Nuggets",
-      "result": "W",
-      "score": "128-117"
+      "opp": "Pelicans",
+      "result": "L",
+      "score": "109-113"
     },
     "schedule": [
       {
@@ -94,11 +94,11 @@
       "date": "Feb 21"
     },
     "next": {
-      "event": "ABN AMRO Open",
+      "event": "Indian Wells",
       "detail": "-",
-      "match_time": "Feb 9",
-      "tournament_dates": "",
-      "status": "-"
+      "match_time": "Mar 4",
+      "tournament_dates": "Mar 5 - 16",
+      "status": "Masters"
     }
   }
 }
