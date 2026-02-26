@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-26 11:23:38 KST",
+  "updated": "2026-02-26 16:03:47 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 27,
@@ -51,12 +51,12 @@
     ]
   },
   "nba": {
-    "record": "30-28",
+    "record": "31-28",
     "rank": "-",
     "last": {
-      "opp": "Pelicans",
-      "result": "L",
-      "score": "109-113"
+      "opp": "Grizzlies",
+      "result": "W",
+      "score": "133-112"
     },
     "schedule": [
       {
@@ -90,7 +90,7 @@
       "event": "Qatar Open",
       "opponent": "Arthur Fils",
       "result": "W",
-      "score": "2-0",
+      "score": "6-2, 6-1",
       "date": "Feb 21"
     },
     "next": {
