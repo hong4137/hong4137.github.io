@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-26 04:09:55 KST",
+  "updated": "2026-02-26 11:23:38 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 27,
@@ -52,7 +52,7 @@
   },
   "nba": {
     "record": "30-28",
-    "rank": "#8 West",
+    "rank": "-",
     "last": {
       "opp": "Pelicans",
       "result": "L",
@@ -90,15 +90,15 @@
       "event": "Qatar Open",
       "opponent": "Arthur Fils",
       "result": "W",
-      "score": "6-2, 6-1",
+      "score": "2-0",
       "date": "Feb 21"
     },
     "next": {
-      "event": "Indian Wells",
+      "event": "BNP Paribas Open",
       "detail": "-",
-      "match_time": "-",
-      "tournament_dates": "Mar 5 - 16",
-      "status": "Masters"
+      "match_time": "Mar 4",
+      "tournament_dates": "",
+      "status": "-"
     }
   }
 }
