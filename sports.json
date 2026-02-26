@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-26 16:03:47 KST",
+  "updated": "2026-02-26 22:12:39 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 27,
@@ -94,11 +94,11 @@
       "date": "Feb 21"
     },
     "next": {
-      "event": "BNP Paribas Open",
+      "event": "Indian Wells",
       "detail": "-",
       "match_time": "Mar 4",
-      "tournament_dates": "",
-      "status": "-"
+      "tournament_dates": "Mar 5 - 16",
+      "status": "Masters"
     }
   }
 }
