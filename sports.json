@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-27 11:22:23 KST",
+  "updated": "2026-02-27 15:58:11 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 27,
@@ -52,7 +52,7 @@
   },
   "nba": {
     "record": "31-28",
-    "rank": "#8 West",
+    "rank": "-",
     "last": {
       "opp": "Grizzlies",
       "result": "W",
@@ -90,15 +90,15 @@
       "event": "Qatar Open",
       "opponent": "Arthur Fils",
       "result": "W",
-      "score": "2 - 0",
+      "score": "2-0 (Carlos Alcaraz won the game)",
       "date": "Feb 21"
     },
     "next": {
-      "event": "Indian Wells",
+      "event": "BNP Paribas Open",
       "detail": "-",
       "match_time": "Mar 4",
-      "tournament_dates": "Mar 5 - 16",
-      "status": "Masters"
+      "tournament_dates": "",
+      "status": "-"
     }
   }
 }
