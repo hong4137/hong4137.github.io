@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-01 01:12:10 KST",
+  "updated": "2026-03-01 01:32:31 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 28,
@@ -26,36 +26,6 @@
         ],
         "rule_str": "Big Match, Prime Time, Leader",
         "matchday": 28,
-        "status": "TIMED",
-        "score": "-"
-      },
-      {
-        "match_id": 538066,
-        "home": "Aston Villa",
-        "away": "Chelsea",
-        "kst_time": "03.05 04:30 (KST)",
-        "uk_time": "Wednesday 19:30 (UK)",
-        "local": "Sky Sports Main Event",
-        "rules": [
-          "Challenger"
-        ],
-        "rule_str": "Challenger",
-        "matchday": 29,
-        "status": "SCHEDULED",
-        "score": "-"
-      },
-      {
-        "match_id": 538087,
-        "home": "Brighton & Hove Albion",
-        "away": "Liverpool",
-        "kst_time": "03.21 21:30 (KST)",
-        "uk_time": "Saturday 12:30 (UK)",
-        "local": "TNT Sports 1",
-        "rules": [
-          "Early KO"
-        ],
-        "rule_str": "Early KO",
-        "matchday": 31,
         "status": "SCHEDULED",
         "score": "-"
       }
@@ -75,36 +45,6 @@
         ],
         "rule_str": "Big Match, Prime Time, Leader",
         "matchday": 28,
-        "status": "TIMED",
-        "score": "-"
-      },
-      {
-        "match_id": 538066,
-        "home": "Aston Villa",
-        "away": "Chelsea",
-        "kst_time": "03.05 04:30 (KST)",
-        "uk_time": "Wednesday 19:30 (UK)",
-        "local": "Sky Sports Main Event",
-        "rules": [
-          "Challenger"
-        ],
-        "rule_str": "Challenger",
-        "matchday": 29,
-        "status": "SCHEDULED",
-        "score": "-"
-      },
-      {
-        "match_id": 538087,
-        "home": "Brighton & Hove Albion",
-        "away": "Liverpool",
-        "kst_time": "03.21 21:30 (KST)",
-        "uk_time": "Saturday 12:30 (UK)",
-        "local": "TNT Sports 1",
-        "rules": [
-          "Early KO"
-        ],
-        "rule_str": "Early KO",
-        "matchday": 31,
         "status": "SCHEDULED",
         "score": "-"
       }
@@ -150,13 +90,13 @@
       "event": "Qatar Open",
       "opponent": "Arthur Fils",
       "result": "W",
-      "score": "6-2, 6-1",
-      "date": "Feb 21"
+      "score": "2-0",
+      "date": "February 21"
     },
     "next": {
       "event": "BNP Paribas Open",
       "detail": "-",
-      "match_time": "Mar 2",
+      "match_time": "March 2 03:00 KST",
       "tournament_dates": "",
       "status": "-"
     }
