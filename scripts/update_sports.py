@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-update_sports.py - Sports Dashboard Data Updater v2.3
+update_sports.py - Sports Dashboard Data Updater v2.4
 ======================================================
 EPL: Football-Data.org 무료 API (순위, 일정)
 NBA: balldontlie.io 무료 API (일정, 결과)
@@ -14,6 +14,10 @@ EPL 중계/F1/Tennis: Serper API 검색 (월 2,500회 무료)
 4. Prime Time: 일요일 16:30 UK
 5. Early KO: 토요일 12:30 UK
 6. Leader: 리그 1위 팀 포함
+
+[v2.4 변경사항]
+- EPL: 기존 선정 라운드 경기를 별도 API 조회하여 정확한 상태 확인
+- EPL: 경기 시간 3시간 경과 시 강제 FINISHED 처리 (API 미반영 방지)
 
 [v2.3 변경사항]
 - EPL: 선정 경기 모두 종료 + 현재 라운드에 선정 가능 경기 없음 → 다음 라운드 자동 전환
@@ -377,6 +381,24 @@ def load_existing_sports_data():
         pass
     return None
 
+# =============================================================================
+# v2.4 신규: 경기 시간 경과 확인
+# =============================================================================
+def is_match_past(kst_time_str):
+    """
+    v2.4: 경기 시간이 3시간 이상 지났는지 확인 (경기 종료 여유)
+    kst_time_str 예: "02.23 01:30 (KST)"
+    """
+    try:
+        kst_now = get_kst_now()
+        clean = kst_time_str.replace(" (KST)", "").strip()
+        year = kst_now.year
+        match_dt = datetime.datetime.strptime(f"{year}.{clean}", "%Y.%m.%d %H:%M")
+        match_dt = match_dt.replace(tzinfo=TZ_KST)
+        return kst_now > match_dt + timedelta(hours=3)
+    except:
+        return False
+
 def select_matches_from_round(matches, top_4, leader, serper_key=None):
     """
     특정 라운드 경기에서 룰에 맞는 경기 선정 (내부 헬퍼 함수)
@@ -452,11 +474,11 @@ def select_matches_from_round(matches, top_4, leader, serper_key=None):
 def process_epl_matches(matches, top_4, leader, serper_key=None, existing_data=None, 
                         football_api_key=None, current_matchday=None):
     """
-    EPL 경기 처리 및 필터링 (v2.3 개선)
+    EPL 경기 처리 및 필터링 (v2.4)
     
-    1. 기존에 선정된 경기가 있고, 아직 모두 종료되지 않았으면 → 상태만 업데이트
-    2. 기존 선정 경기가 모두 종료됨 → 현재 라운드에서 새로 선정 시도
-    3. 현재 라운드에 선정 가능 경기 없음 → 다음 라운드 자동 조회 (v2.3 추가)
+    v2.4 핵심 변경:
+    - 선정 라운드가 현재 라운드와 다르면 선정 라운드 경기를 별도 API 조회
+    - API에서 상태를 못 가져와도, 경기 시간이 3시간 이상 지났으면 강제 FINISHED
     """
     
     # =========================================================================
@@ -470,20 +492,38 @@ def process_epl_matches(matches, top_4, leader, serper_key=None, existing_data=N
         existing_selected = existing_epl.get('selected_matches', [])
         existing_round = existing_epl.get('selected_round')
     
-    # 기존 선정 경기의 ID 목록
     existing_ids = {m.get('match_id') for m in existing_selected if m.get('match_id')}
     
     # =========================================================================
-    # 현재 라운드 경기 상태 확인
+    # v2.4: 선정 라운드가 현재 라운드와 다르면 별도 조회
     # =========================================================================
+    selected_round_matches_by_id = {}
+    
+    if existing_round and existing_round != current_matchday and football_api_key:
+        log(f"   🔍 선정 라운드(R{existing_round}) 경기 별도 조회 (현재: R{current_matchday})")
+        round_matches = get_epl_matches(football_api_key, matchday=existing_round)
+        for m in round_matches:
+            mid = m.get('id')
+            if mid:
+                selected_round_matches_by_id[mid] = m
+        sr_status = {}
+        for m in round_matches:
+            s = m.get('status', 'UNKNOWN')
+            sr_status[s] = sr_status.get(s, 0) + 1
+        log(f"   📊 R{existing_round} 상태: {sr_status}")
+    
+    # 현재 라운드 경기
     current_matches_by_id = {}
     for match in matches:
         match_id = match.get('id')
         if match_id:
             current_matches_by_id[match_id] = match
     
+    # 합치기 (선정 라운드 우선)
+    all_matches_by_id = {**current_matches_by_id, **selected_round_matches_by_id}
+    
     # =========================================================================
-    # 기존 선정 경기 상태 업데이트 체크
+    # 기존 선정 경기 상태 업데이트
     # =========================================================================
     if existing_selected and existing_ids:
         all_finished = True
@@ -491,7 +531,7 @@ def process_epl_matches(matches, top_4, leader, serper_key=None, existing_data=N
         
         for sel_match in existing_selected:
             match_id = sel_match.get('match_id')
-            current = current_matches_by_id.get(match_id)
+            current = all_matches_by_id.get(match_id)
             
             if current:
                 status = current.get('status', 'SCHEDULED')
@@ -507,7 +547,13 @@ def process_epl_matches(matches, top_4, leader, serper_key=None, existing_data=N
                     score = f"{home_score}-{away_score}"
                     all_finished = False
                 else:
-                    all_finished = False
+                    # v2.4: API가 SCHEDULED인데 경기 시간 3시간 이상 지남 → 강제 FINISHED
+                    if is_match_past(sel_match.get('kst_time', '')):
+                        log(f"      ⏰ 강제 FINISHED: {sel_match['home']} vs {sel_match['away']} (경기 시간 경과)")
+                        status = 'FINISHED'
+                        score = 'N/A'
+                    else:
+                        all_finished = False
                 
                 updated_matches.append({
                     **sel_match,
@@ -515,9 +561,18 @@ def process_epl_matches(matches, top_4, leader, serper_key=None, existing_data=N
                     'score': score
                 })
             else:
-                updated_matches.append(sel_match)
-                if sel_match.get('status') != 'FINISHED':
-                    all_finished = False
+                # v2.4: API에서 못 찾아도 날짜 지났으면 강제 FINISHED
+                if is_match_past(sel_match.get('kst_time', '')):
+                    log(f"      ⏰ 강제 FINISHED (API 미조회): {sel_match['home']} vs {sel_match['away']}")
+                    updated_matches.append({
+                        **sel_match,
+                        'status': 'FINISHED',
+                        'score': 'N/A'
+                    })
+                else:
+                    updated_matches.append(sel_match)
+                    if sel_match.get('status') != 'FINISHED':
+                        all_finished = False
         
         # 모두 종료되지 않았으면 기존 선정 유지 + 상태만 업데이트
         if not all_finished:
@@ -544,7 +599,7 @@ def process_epl_matches(matches, top_4, leader, serper_key=None, existing_data=N
         return selected_matches, selected_round, True
     
     # =========================================================================
-    # v2.3: 현재 라운드에 선정 가능 경기 없음 → 다음 라운드 조회
+    # 다음 라운드 조회
     # =========================================================================
     if football_api_key and current_matchday:
         next_matchday = current_matchday + 1
@@ -553,7 +608,6 @@ def process_epl_matches(matches, top_4, leader, serper_key=None, existing_data=N
         next_round_matches = get_epl_matches(football_api_key, matchday=next_matchday)
         
         if next_round_matches:
-            # 상태별 로그
             status_count = {}
             for m in next_round_matches:
                 s = m.get('status', 'UNKNOWN')
@@ -792,20 +846,13 @@ def get_nba_default_data():
 # =============================================================================
 # NBA All-Star Week (기간 내 자동 표시)
 # =============================================================================
-# 올스타 일정을 여기에 정의해두면, 해당 기간에만 자동으로 표시됩니다.
-# 올스타가 끝나면 자동으로 사라집니다. 매년 새 일정으로 교체하면 됩니다.
-#
-# 2026 NBA All-Star Weekend: Feb 13-15, Los Angeles (Intuit Dome)
-# KST 변환: ET + 14시간
-
 ALLSTAR_DATA = {
     "title": "NBA All-Star 2026",
     "dates": "Feb 13-15",
     "location": "Los Angeles (Intuit Dome)",
     "note": "Steph Curry selected as starter",
-    # 표시 기간: 이 날짜 범위 안에서만 대시보드에 노출
-    "show_from": "2026-02-13",   # 올스타 당일부터 표시
-    "show_until": "2026-02-17",  # 올스타 다음날까지 표시
+    "show_from": "2026-02-13",
+    "show_until": "2026-02-17",
     "events": [
         {
             "name": "Celebrity Game",
@@ -859,10 +906,7 @@ ALLSTAR_DATA = {
 }
 
 def inject_allstar_data(nba_data, kst_now):
-    """
-    올스타 기간이면 nba_data에 allstar 필드를 추가.
-    기간 밖이면 아무것도 하지 않음.
-    """
+    """올스타 기간이면 nba_data에 allstar 필드를 추가."""
     try:
         show_from = datetime.date.fromisoformat(ALLSTAR_DATA["show_from"])
         show_until = datetime.date.fromisoformat(ALLSTAR_DATA["show_until"])
@@ -913,54 +957,19 @@ def search_f1_schedule(serper_key):
         test3_end = date(2026, 2, 20)
 
         if today < test1_start:
-            f1_data = {
-                'status': 'Pre-Season',
-                'name': 'Test 1 (Private)',
-                'circuit': 'Barcelona-Catalunya',
-                'date': 'Jan 26-30'
-            }
+            f1_data = {'status': 'Pre-Season', 'name': 'Test 1 (Private)', 'circuit': 'Barcelona-Catalunya', 'date': 'Jan 26-30'}
         elif today <= test1_end:
-            f1_data = {
-                'status': 'Testing',
-                'name': 'Test 1 (Private)',
-                'circuit': 'Barcelona-Catalunya',
-                'date': 'Jan 26-30'
-            }
+            f1_data = {'status': 'Testing', 'name': 'Test 1 (Private)', 'circuit': 'Barcelona-Catalunya', 'date': 'Jan 26-30'}
         elif today < test2_start:
-            f1_data = {
-                'status': 'Pre-Season',
-                'name': 'Test 2',
-                'circuit': 'Bahrain International',
-                'date': 'Feb 11-13'
-            }
+            f1_data = {'status': 'Pre-Season', 'name': 'Test 2', 'circuit': 'Bahrain International', 'date': 'Feb 11-13'}
         elif today <= test2_end:
-            f1_data = {
-                'status': 'Testing',
-                'name': 'Test 2',
-                'circuit': 'Bahrain International',
-                'date': 'Feb 11-13'
-            }
+            f1_data = {'status': 'Testing', 'name': 'Test 2', 'circuit': 'Bahrain International', 'date': 'Feb 11-13'}
         elif today < test3_start:
-            f1_data = {
-                'status': 'Pre-Season',
-                'name': 'Test 3',
-                'circuit': 'Bahrain International',
-                'date': 'Feb 18-20'
-            }
+            f1_data = {'status': 'Pre-Season', 'name': 'Test 3', 'circuit': 'Bahrain International', 'date': 'Feb 18-20'}
         elif today <= test3_end:
-            f1_data = {
-                'status': 'Testing',
-                'name': 'Test 3',
-                'circuit': 'Bahrain International',
-                'date': 'Feb 18-20'
-            }
+            f1_data = {'status': 'Testing', 'name': 'Test 3', 'circuit': 'Bahrain International', 'date': 'Feb 18-20'}
         else:
-            f1_data = {
-                'status': 'Off-Season',
-                'name': 'AUSTRALIAN Grand Prix',
-                'circuit': 'Albert Park, Melbourne',
-                'date': 'Mar 06-08'
-            }
+            f1_data = {'status': 'Off-Season', 'name': 'AUSTRALIAN Grand Prix', 'circuit': 'Albert Park, Melbourne', 'date': 'Mar 06-08'}
 
         return f1_data
 
@@ -1022,9 +1031,7 @@ def search_f1_schedule(serper_key):
 TENNIS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxtXuoeprkGMGbLBIOoxtYK47lU4rQ4faJHAnW6clP1Exi8EO0eAqj-NM6efl9aSMbxSQ/exec"
 
 def get_tennis_data_from_webapp():
-    """
-    Tennis (Alcaraz) - Apps Script Web App에서 데이터 가져오기
-    """
+    """Tennis (Alcaraz) - Apps Script Web App에서 데이터 가져오기"""
     
     tournament_schedule = {
         'australian open': 'Jan 12 - Feb 2',
@@ -1174,7 +1181,7 @@ def update_sports_data():
     # =========================================================================
     # STEP 2: EPL 경기 일정 + 6가지 룰 + 티어 우선순위
     # =========================================================================
-    log("\n⚽ [Step 2/5] Premier League 경기 선정 (v2.3)...")
+    log("\n⚽ [Step 2/5] Premier League 경기 선정 (v2.4)...")
     log("   [티어 우선순위]")
     log("   T1. Big Match: Big 6 vs Big 6")
     log("   T2. Top Tier: Top 4 vs Top 4")
@@ -1194,11 +1201,11 @@ def update_sports_data():
     log(f"   📋 R{current_matchday} 전체: {len(matches)}경기")
     log(f"   📊 상태별: {status_count}")
 
-    # v2.3: football_api_key와 current_matchday 전달하여 다음 라운드 조회 가능하게
+    # v2.4: football_api_key와 current_matchday 전달
     validated_epl, selected_round, is_new_selection = process_epl_matches(
         matches, top_4_teams, leader_team, serper_api_key, existing_data,
-        football_api_key=football_api_key,  # v2.3 추가
-        current_matchday=current_matchday    # v2.3 추가
+        football_api_key=football_api_key,
+        current_matchday=current_matchday
     )
     
     if is_new_selection:
@@ -1263,7 +1270,7 @@ def update_sports_data():
     # =========================================================================
     log("\n💾 [Save] 데이터 저장...")
 
-    # EPL 표시용 라운드: 선정된 라운드가 있으면 그것 사용, 없으면 현재 라운드
+    # EPL 표시용 라운드
     display_matchday = f"R{selected_round}" if selected_round else f"R{current_matchday}"
 
     sports_data = {
