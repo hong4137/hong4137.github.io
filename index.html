@@ -44,36 +44,6 @@
         #briefing-view { display: none; width: 100%; height: 100%; background-color: #fff; }
         iframe { width: 100%; height: 100%; border: none; display: block; }
         .overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 999; backdrop-filter: blur(2px); }
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            .mobile-header { display: flex; }
-            .sidebar { position: fixed; top: 0; left: -100%; height: 100%; width: 280px; box-shadow: 2px 0 10px rgba(0,0,0,0.5); padding-top: 60px; }
-            .sidebar.active { left: 0; }
-            .sidebar-close-btn { display: block; }
-            .logo-area { display: none; }
-            .main-content { margin-top: 60px; padding-top: 0; }
-            #dashboard-view { padding: 14px; }
-            .header { margin-bottom: 16px; }
-            .welcome-msg h1 { font-size: 20px; }
-            .welcome-msg p { font-size: 12px; }
-            .dashboard-grid { grid-template-columns: 1fr; gap: 14px; margin-bottom: 20px; }
-            .sports-grid { grid-template-columns: 1fr; gap: 10px; }
-            .card { min-height: auto; padding: 14px; }
-            .sport-card { padding: 12px; }
-            .temp-big { font-size: 36px; }
-            .weather-desc { font-size: 12px; }
-            .world-clock { padding: 8px 0; margin-bottom: 10px; }
-            .clock-time { font-size: 14px; }
-            .clock-city { font-size: 10px; }
-            .hourly-item span { font-size: 10px !important; }
-            .hourly-item i { font-size: 14px !important; }
-            #tradingview-container { min-height: 320px; }
-            .modal-content { width: 95%; padding: 18px; }
-            .stock-list-item { padding: 8px; font-size: 12px; }
-            .stock-add-form input { padding: 8px; font-size: 12px; }
-            .stock-add-form { flex-wrap: wrap; }
-            .stock-hint { font-size: 10px; }
-        }
         .header { margin-bottom: 30px; }
         .welcome-msg h1 { margin: 0; font-size: 28px; font-weight: 600; }
         .welcome-msg p { margin: 5px 0 0; color: var(--text-sub); font-size: 14px; }
@@ -126,6 +96,36 @@
         .btn-cancel:hover { background: #666; }
         .stock-edit-btn { background: none; border: none; color: #666; cursor: pointer; font-size: 14px; padding: 5px; }
         .stock-edit-btn:hover { color: var(--accent-color); }
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .mobile-header { display: flex; }
+            .sidebar { position: fixed; top: 0; left: -100%; height: 100%; width: 280px; box-shadow: 2px 0 10px rgba(0,0,0,0.5); padding-top: 60px; }
+            .sidebar.active { left: 0; }
+            .sidebar-close-btn { display: block; }
+            .logo-area { display: none; }
+            .main-content { margin-top: 60px; padding-top: 0; }
+            #dashboard-view { padding: 14px; }
+            .header { margin-bottom: 16px; }
+            .welcome-msg h1 { font-size: 20px; }
+            .welcome-msg p { font-size: 12px; }
+            .dashboard-grid { grid-template-columns: 1fr !important; gap: 14px; margin-bottom: 20px; }
+            .sports-grid { grid-template-columns: 1fr !important; gap: 10px; }
+            .card { min-height: auto; padding: 14px; }
+            .sport-card { padding: 12px; }
+            .temp-big { font-size: 36px; }
+            .weather-desc { font-size: 12px; }
+            .world-clock { padding: 8px 0; margin-bottom: 10px; }
+            .clock-time { font-size: 14px; }
+            .clock-city { font-size: 10px; }
+            .hourly-item span { font-size: 10px !important; }
+            .hourly-item i { font-size: 14px !important; }
+            #tradingview-container { min-height: 320px; }
+            .modal-content { width: 95%; padding: 18px; }
+            .stock-list-item { padding: 8px; font-size: 12px; }
+            .stock-add-form input { padding: 8px; font-size: 12px; }
+            .stock-add-form { flex-wrap: wrap; }
+            .stock-hint { font-size: 10px; }
+        }
     </style>
 </head>
 <body>
