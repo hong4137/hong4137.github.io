@@ -477,10 +477,10 @@ def process_epl_matches(matches, top_4, leader, serper_key=None, existing_data=N
     EPL 경기 처리 및 필터링 (v2.4 redesign)
     
     핵심 원칙:
-    - 전달받은 matches(모든 라운드 합본)에서 가장 가까운 미래 경기 중 최고 티어 선정
-    - 기존 선정 경기가 진행 중(IN_PLAY)이면 유지
-    - 기존 선정 경기가 아직 안 시작했는데, 더 가까운 시간에 더 좋은 경기가 있으면 교체
-    - 기존 선정 경기가 모두 종료되면 새로 선정
+    - matches는 항상 단일 라운드 경기만 전달받음
+    - current_matchday는 선정 대상 라운드 (가장 가까운 미종료 라운드)
+    - 기존 선정 라운드와 다르면 → 새로 선정
+    - 기존 선정 라운드와 같으면 → 상태 업데이트, 모두 종료 시 새로 선정 불필요
     """
     
     # =========================================================================
@@ -494,34 +494,39 @@ def process_epl_matches(matches, top_4, leader, serper_key=None, existing_data=N
         existing_selected = existing_epl.get('selected_matches', [])
         existing_round = existing_epl.get('selected_round')
     
-    existing_ids = {m.get('match_id') for m in existing_selected if m.get('match_id')}
+    has_existing = bool(existing_selected)
     
     # =========================================================================
-    # 기존 선정 경기의 최신 상태 확인 (API에서)
+    # 기존 선정 라운드와 대상 라운드가 다르면 → 새로 선정
     # =========================================================================
-    matches_by_id = {}
-    for match in matches:
-        match_id = match.get('id')
-        if match_id:
-            matches_by_id[match_id] = match
-    
-    # 선정 라운드가 현재 라운드와 다르면 별도 조회
-    if existing_round and existing_round != current_matchday and football_api_key:
-        log(f"   🔍 선정 라운드(R{existing_round}) 경기 별도 조회")
-        round_matches = get_epl_matches(football_api_key, matchday=existing_round)
-        for m in round_matches:
-            mid = m.get('id')
-            if mid and mid not in matches_by_id:
-                matches_by_id[mid] = m
+    if has_existing and existing_round != current_matchday:
+        # 기존 선정 경기가 진행 중인지 확인
+        matches_by_id = {m.get('id'): m for m in matches if m.get('id')}
+        
+        # 기존 선정 라운드 경기 별도 조회
+        existing_live = False
+        if football_api_key and existing_round:
+            round_matches = get_epl_matches(football_api_key, matchday=existing_round)
+            for rm in round_matches:
+                if rm.get('id') in {m.get('match_id') for m in existing_selected}:
+                    if rm.get('status') == 'IN_PLAY':
+                        existing_live = True
+                        break
+        
+        if existing_live:
+            log(f"   🔴 기존 R{existing_round} 경기 진행 중 → 유지")
+            return existing_selected, existing_round, False
+        
+        log(f"   🔄 라운드 변경: R{existing_round} → R{current_matchday} (새로 선정)")
+        # 아래 새 선정으로 진행
     
     # =========================================================================
-    # 기존 선정 경기 상태 판단
+    # 기존 선정 라운드와 같으면 → 상태 업데이트
     # =========================================================================
-    has_in_play = False      # 현재 진행 중인 경기 있는지
-    all_finished = True      # 모두 종료됐는지
-    has_existing = bool(existing_selected and existing_ids)
-    
-    if has_existing:
+    elif has_existing and existing_round == current_matchday:
+        matches_by_id = {m.get('id'): m for m in matches if m.get('id')}
+        all_finished = True
+        has_in_play = False
         updated_matches = []
         
         for sel_match in existing_selected:
@@ -534,13 +539,13 @@ def process_epl_matches(matches, top_4, leader, serper_key=None, existing_data=N
             if current:
                 status = current.get('status', 'SCHEDULED')
                 if status == 'FINISHED':
-                    home_score = current.get('score', {}).get('fullTime', {}).get('home', 0)
-                    away_score = current.get('score', {}).get('fullTime', {}).get('away', 0)
-                    score = f"{home_score}-{away_score}"
+                    hs = current.get('score', {}).get('fullTime', {}).get('home', 0)
+                    as_ = current.get('score', {}).get('fullTime', {}).get('away', 0)
+                    score = f"{hs}-{as_}"
                 elif status == 'IN_PLAY':
-                    home_score = current.get('score', {}).get('fullTime', {}).get('home', 0)
-                    away_score = current.get('score', {}).get('fullTime', {}).get('away', 0)
-                    score = f"{home_score}-{away_score}"
+                    hs = current.get('score', {}).get('fullTime', {}).get('home', 0)
+                    as_ = current.get('score', {}).get('fullTime', {}).get('away', 0)
+                    score = f"{hs}-{as_}"
                     has_in_play = True
                     all_finished = False
                 else:
@@ -552,7 +557,6 @@ def process_epl_matches(matches, top_4, leader, serper_key=None, existing_data=N
                         all_finished = False
             else:
                 if is_match_past(sel_match.get('kst_time', '')):
-                    log(f"      ⏰ 강제 FINISHED (API 미조회): {sel_match['home']} vs {sel_match['away']}")
                     status = 'FINISHED'
                     score = 'N/A'
                 elif status != 'FINISHED':
@@ -560,65 +564,29 @@ def process_epl_matches(matches, top_4, leader, serper_key=None, existing_data=N
             
             updated_matches.append({**sel_match, 'status': status, 'score': score})
         
-        # === 진행 중인 경기가 있으면 무조건 유지 ===
-        if has_in_play:
-            log(f"   🔴 경기 진행 중 → 기존 선정 유지 (R{existing_round})")
+        if not all_finished:
+            log(f"   📌 기존 선정 유지 (R{existing_round})")
             for m in updated_matches:
-                status_icon = '🔴' if m.get('status') == 'IN_PLAY' else ('✅' if m.get('status') == 'FINISHED' else '⏳')
-                log(f"      {status_icon} {m['home']} vs {m['away']} [{m.get('status')}] {m.get('score', '-')}")
+                icon = '🔴' if m.get('status') == 'IN_PLAY' else ('✅' if m.get('status') == 'FINISHED' else '⏳')
+                log(f"      {icon} {m['home']} vs {m['away']} [{m.get('status')}] {m.get('score', '-')}")
             return updated_matches, existing_round, False
-        
-        # === 모두 종료 → 새로 선정 ===
-        if all_finished:
-            log(f"   🔄 기존 선정 경기 모두 종료 → 새로 선정")
-            # 아래로 진행
         else:
-            # === 아직 안 끝난 경기가 있지만 진행 중은 아님 ===
-            # 전체 matches에서 더 나은 선택지가 있는지 확인
-            new_candidates = select_matches_from_round(matches, top_4, leader, serper_key)
-            
-            if new_candidates:
-                new_best_tier = get_best_tier(new_candidates[0]['rules'])
-                existing_best_tier = min(get_best_tier(m.get('rules', [])) for m in existing_selected)
-                
-                # 더 가까운 시간에 같거나 더 좋은 티어가 있으면 교체
-                new_earliest = new_candidates[0].get('kst_time', '')
-                existing_earliest = existing_selected[0].get('kst_time', '')
-                
-                if new_best_tier < existing_best_tier:
-                    log(f"   🔄 더 높은 티어 경기 발견 (T{new_best_tier} < T{existing_best_tier}) → 교체")
-                elif new_best_tier == existing_best_tier and new_earliest < existing_earliest:
-                    log(f"   🔄 같은 티어지만 더 빠른 경기 발견 → 교체")
-                else:
-                    # 기존 유지
-                    log(f"   📌 기존 선정 경기 유지 (R{existing_round})")
-                    for m in updated_matches:
-                        status_icon = '✅' if m.get('status') == 'FINISHED' else '⏳'
-                        log(f"      {status_icon} {m['home']} vs {m['away']} [{m.get('status')}] {m.get('score', '-')}")
-                    return updated_matches, existing_round, False
-            else:
-                # 새 후보가 없으면 기존 유지
-                log(f"   📌 기존 선정 경기 유지 (R{existing_round}, 대안 없음)")
-                for m in updated_matches:
-                    status_icon = '✅' if m.get('status') == 'FINISHED' else '⏳'
-                    log(f"      {status_icon} {m['home']} vs {m['away']} [{m.get('status')}] {m.get('score', '-')}")
-                return updated_matches, existing_round, False
+            log(f"   🔄 R{existing_round} 경기 모두 종료 → 새로 선정 불필요")
+            return updated_matches, existing_round, False
     
     # =========================================================================
-    # 새로운 경기 선정 (전체 matches에서)
+    # 새로운 경기 선정 (단일 라운드에서)
     # =========================================================================
     selected_matches = select_matches_from_round(matches, top_4, leader, serper_key)
     
     if selected_matches:
-        selected_round = selected_matches[0]['matchday'] if selected_matches else None
-        log(f"   🏆 {len(selected_matches)}경기 선정 (R{selected_round}):")
+        log(f"   🏆 R{current_matchday}에서 {len(selected_matches)}경기 선정:")
         for m in selected_matches:
             tier = get_best_tier(m['rules'])
             log(f"      • [T{tier}] {m['home']} vs {m['away']} [{m['rule_str']}] {m['kst_time']}")
-        return selected_matches, selected_round, True
+        return selected_matches, current_matchday, True
     
-    # 선정 가능한 경기 없음
-    log(f"   ⚠️ 선정 가능한 경기 없음")
+    log(f"   ⚠️ R{current_matchday}에 선정 가능한 경기 없음")
     return [], current_matchday, True
 
 # =============================================================================
@@ -1193,21 +1161,45 @@ def update_sports_data():
             matches.append(dm)
             seen_ids.add(dm['id'])
     
-    # 상태별 경기 수 로그 (디버깅용)
-    status_count = {}
-    matchday_set = set()
+    # 라운드별 그룹핑
+    rounds = {}
     for m in matches:
+        rd = m.get('matchday')
+        if rd:
+            if rd not in rounds:
+                rounds[rd] = []
+            rounds[rd].append(m)
+    
+    # 가장 가까운 미종료 라운드 찾기 (라운드 번호 오름차순)
+    target_round = None
+    target_matches = []
+    for rd in sorted(rounds.keys()):
+        rd_matches = rounds[rd]
+        has_unfinished = any(m.get('status') not in ('FINISHED',) for m in rd_matches)
+        if has_unfinished:
+            target_round = rd
+            target_matches = rd_matches
+            break
+    
+    # 모든 라운드가 종료된 경우 → 가장 높은 라운드 사용
+    if target_round is None and rounds:
+        target_round = max(rounds.keys())
+        target_matches = rounds[target_round]
+    
+    # 상태별 로그
+    status_count = {}
+    for m in target_matches:
         s = m.get('status', 'UNKNOWN')
         status_count[s] = status_count.get(s, 0) + 1
-        matchday_set.add(m.get('matchday'))
-    log(f"   📋 조회 결과: {len(matches)}경기 (라운드: {sorted(matchday_set)})")
+    log(f"   📋 전체: {len(matches)}경기 (라운드: {sorted(rounds.keys())})")
+    log(f"   🎯 선정 대상: R{target_round} ({len(target_matches)}경기)")
     log(f"   📊 상태별: {status_count}")
 
-    # v2.4: football_api_key와 current_matchday 전달
+    # v2.4: 단일 라운드(target_matches)만 전달
     validated_epl, selected_round, is_new_selection = process_epl_matches(
-        matches, top_4_teams, leader_team, serper_api_key, existing_data,
+        target_matches, top_4_teams, leader_team, serper_api_key, existing_data,
         football_api_key=football_api_key,
-        current_matchday=current_matchday
+        current_matchday=target_round
     )
     
     if is_new_selection:
