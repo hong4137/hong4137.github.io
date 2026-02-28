@@ -1,9 +1,9 @@
 {
-  "updated": "2026-02-28 21:51:55 KST",
+  "updated": "2026-03-01 00:30:10 KST",
   "epl": {
     "matchday": 31,
-    "selected_round": 27,
-    "display_matchday": "R27",
+    "selected_round": 31,
+    "display_matchday": "R31",
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
@@ -13,38 +13,34 @@
     ],
     "matches": [
       {
-        "match_id": 538053,
-        "home": "Tottenham",
-        "away": "Arsenal",
-        "kst_time": "02.23 01:30 (KST)",
-        "uk_time": "Sunday 16:30 (UK)",
+        "match_id": 538087,
+        "home": "Brighton & Hove Albion",
+        "away": "Liverpool",
+        "kst_time": "03.21 21:30 (KST)",
+        "uk_time": "Saturday 12:30 (UK)",
         "local": "Sky Sports",
         "rules": [
-          "Big Match",
-          "Prime Time",
-          "Leader"
+          "Early KO"
         ],
-        "rule_str": "Big Match, Prime Time, Leader",
-        "matchday": 27,
+        "rule_str": "Early KO",
+        "matchday": 31,
         "status": "SCHEDULED",
         "score": "-"
       }
     ],
     "selected_matches": [
       {
-        "match_id": 538053,
-        "home": "Tottenham",
-        "away": "Arsenal",
-        "kst_time": "02.23 01:30 (KST)",
-        "uk_time": "Sunday 16:30 (UK)",
+        "match_id": 538087,
+        "home": "Brighton & Hove Albion",
+        "away": "Liverpool",
+        "kst_time": "03.21 21:30 (KST)",
+        "uk_time": "Saturday 12:30 (UK)",
         "local": "Sky Sports",
         "rules": [
-          "Big Match",
-          "Prime Time",
-          "Leader"
+          "Early KO"
         ],
-        "rule_str": "Big Match, Prime Time, Leader",
-        "matchday": 27,
+        "rule_str": "Early KO",
+        "matchday": 31,
         "status": "SCHEDULED",
         "score": "-"
       }
@@ -60,15 +56,6 @@
     },
     "schedule": [
       {
-        "opp": "Lakers",
-        "date": "03.01",
-        "kst_time": "10:30",
-        "local_time": "5:30 PM PT",
-        "location": "home",
-        "venue": "Chase Center",
-        "channel": ""
-      },
-      {
         "opp": "Clippers",
         "date": "03.03",
         "kst_time": "12:00",
@@ -76,14 +63,23 @@
         "location": "home",
         "venue": "Chase Center",
         "channel": ""
+      },
+      {
+        "opp": "Rockets",
+        "date": "03.06",
+        "kst_time": "09:30",
+        "local_time": "4:30 PM PT",
+        "location": "away",
+        "venue": "@ Houston",
+        "channel": ""
       }
     ]
   },
   "f1": {
-    "status": "Off-Season",
+    "status": "Next GP",
     "name": "AUSTRALIAN Grand Prix",
     "circuit": "Albert Park, Melbourne",
-    "date": "Mar 06-08"
+    "date": "Mar 6-8"
   },
   "tennis": {
     "recent": {
@@ -96,7 +92,7 @@
     "next": {
       "event": "BNP Paribas Open",
       "detail": "-",
-      "match_time": "Mar 4",
+      "match_time": "Mar 2",
       "tournament_dates": "",
       "status": "-"
     }
