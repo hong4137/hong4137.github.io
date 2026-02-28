@@ -1193,12 +1193,24 @@ def update_sports_data():
 
     matches = get_epl_matches(football_api_key, current_matchday)
     
+    # v2.4: 날짜 기반 7일 조회도 추가 (API currentMatchday가 실제보다 앞서는 경우 대비)
+    date_matches = get_epl_matches(football_api_key, matchday=None)  # 7일간 경기
+    
+    # 두 소스 합치기 (중복 제거)
+    seen_ids = {m.get('id') for m in matches if m.get('id')}
+    for dm in date_matches:
+        if dm.get('id') and dm['id'] not in seen_ids:
+            matches.append(dm)
+            seen_ids.add(dm['id'])
+    
     # 상태별 경기 수 로그 (디버깅용)
     status_count = {}
+    matchday_set = set()
     for m in matches:
         s = m.get('status', 'UNKNOWN')
         status_count[s] = status_count.get(s, 0) + 1
-    log(f"   📋 R{current_matchday} 전체: {len(matches)}경기")
+        matchday_set.add(m.get('matchday'))
+    log(f"   📋 조회 결과: {len(matches)}경기 (라운드: {sorted(matchday_set)})")
     log(f"   📊 상태별: {status_count}")
 
     # v2.4: football_api_key와 current_matchday 전달
