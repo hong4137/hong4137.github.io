@@ -524,55 +524,76 @@ def process_epl_matches(matches, top_4, leader, serper_key=None, existing_data=N
     # 기존 선정 라운드와 같으면 → 상태 업데이트
     # =========================================================================
     elif has_existing and existing_round == current_matchday:
+        # 기존 경기가 실제로 이 라운드에 속하는지 검증
         matches_by_id = {m.get('id'): m for m in matches if m.get('id')}
-        all_finished = True
-        has_in_play = False
-        updated_matches = []
         
+        mismatch = False
         for sel_match in existing_selected:
-            match_id = sel_match.get('match_id')
-            current = matches_by_id.get(match_id)
+            mid = sel_match.get('match_id')
+            api_match = matches_by_id.get(mid)
+            if api_match:
+                actual_rd = api_match.get('matchday')
+                if actual_rd and actual_rd != current_matchday:
+                    log(f"      ⚠️ {sel_match['home']} vs {sel_match['away']}: R{actual_rd} (선정 R{current_matchday}와 불일치)")
+                    mismatch = True
+            elif sel_match.get('status') != 'FINISHED':
+                sel_md = sel_match.get('matchday')
+                if sel_md and sel_md != current_matchday:
+                    log(f"      ⚠️ {sel_match['home']} vs {sel_match['away']}: 저장된 R{sel_md} (불일치)")
+                    mismatch = True
+        
+        if mismatch:
+            log(f"   🔄 기존 선정에 다른 라운드 경기 혼입 → R{current_matchday}에서 새로 선정")
+            # 아래 "새로운 경기 선정" 섹션으로 fall through
+        else:
+            # 상태 업데이트
+            all_finished = True
+            has_in_play = False
+            updated_matches = []
             
-            status = sel_match.get('status', 'SCHEDULED')
-            score = sel_match.get('score', '-')
-            
-            if current:
-                status = current.get('status', 'SCHEDULED')
-                if status == 'FINISHED':
-                    hs = current.get('score', {}).get('fullTime', {}).get('home', 0)
-                    as_ = current.get('score', {}).get('fullTime', {}).get('away', 0)
-                    score = f"{hs}-{as_}"
-                elif status == 'IN_PLAY':
-                    hs = current.get('score', {}).get('fullTime', {}).get('home', 0)
-                    as_ = current.get('score', {}).get('fullTime', {}).get('away', 0)
-                    score = f"{hs}-{as_}"
-                    has_in_play = True
-                    all_finished = False
+            for sel_match in existing_selected:
+                match_id = sel_match.get('match_id')
+                current = matches_by_id.get(match_id)
+                status = sel_match.get('status', 'SCHEDULED')
+                score = sel_match.get('score', '-')
+                
+                if current:
+                    status = current.get('status', 'SCHEDULED')
+                    if status == 'FINISHED':
+                        hs = current.get('score', {}).get('fullTime', {}).get('home', 0)
+                        as_ = current.get('score', {}).get('fullTime', {}).get('away', 0)
+                        score = f"{hs}-{as_}"
+                    elif status == 'IN_PLAY':
+                        hs = current.get('score', {}).get('fullTime', {}).get('home', 0)
+                        as_ = current.get('score', {}).get('fullTime', {}).get('away', 0)
+                        score = f"{hs}-{as_}"
+                        has_in_play = True
+                        all_finished = False
+                    else:
+                        if is_match_past(sel_match.get('kst_time', '')):
+                            log(f"      ⏰ 강제 FINISHED: {sel_match['home']} vs {sel_match['away']}")
+                            status = 'FINISHED'
+                            score = 'N/A'
+                        else:
+                            all_finished = False
                 else:
                     if is_match_past(sel_match.get('kst_time', '')):
-                        log(f"      ⏰ 강제 FINISHED: {sel_match['home']} vs {sel_match['away']}")
                         status = 'FINISHED'
                         score = 'N/A'
-                    else:
+                    elif status != 'FINISHED':
                         all_finished = False
-            else:
-                if is_match_past(sel_match.get('kst_time', '')):
-                    status = 'FINISHED'
-                    score = 'N/A'
-                elif status != 'FINISHED':
-                    all_finished = False
+                
+                updated_matches.append({**sel_match, 'status': status, 'score': score})
             
-            updated_matches.append({**sel_match, 'status': status, 'score': score})
-        
-        if not all_finished:
-            log(f"   📌 기존 선정 유지 (R{existing_round})")
-            for m in updated_matches:
-                icon = '🔴' if m.get('status') == 'IN_PLAY' else ('✅' if m.get('status') == 'FINISHED' else '⏳')
-                log(f"      {icon} {m['home']} vs {m['away']} [{m.get('status')}] {m.get('score', '-')}")
-            return updated_matches, existing_round, False
-        else:
-            log(f"   🔄 R{existing_round} 경기 모두 종료 → 새로 선정 불필요")
-            return updated_matches, existing_round, False
+            if not all_finished:
+                log(f"   📌 기존 선정 유지 (R{existing_round})")
+                for m in updated_matches:
+                    icon = '🔴' if m.get('status') == 'IN_PLAY' else ('✅' if m.get('status') == 'FINISHED' else '⏳')
+                    log(f"      {icon} {m['home']} vs {m['away']} [{m.get('status')}] {m.get('score', '-')}")
+                return updated_matches, existing_round, False
+            else:
+                log(f"   🔄 R{existing_round} 경기 모두 종료 → 새로 선정 불필요")
+                return updated_matches, existing_round, False
     
     # =========================================================================
     # 새로운 경기 선정 (단일 라운드에서)
