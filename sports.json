@@ -1,9 +1,9 @@
 {
-  "updated": "2026-03-01 00:37:41 KST",
+  "updated": "2026-03-01 01:02:18 KST",
   "epl": {
     "matchday": 31,
-    "selected_round": 31,
-    "display_matchday": "R31",
+    "selected_round": 28,
+    "display_matchday": "R28",
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
@@ -13,35 +13,99 @@
     ],
     "matches": [
       {
-        "match_id": 538087,
-        "home": "Brighton & Hove Albion",
-        "away": "Liverpool",
-        "kst_time": "03.21 21:30 (KST)",
-        "uk_time": "Saturday 12:30 (UK)",
-        "local": "Sky Sports",
+        "match_id": 538057,
+        "home": "Arsenal",
+        "away": "Chelsea",
+        "kst_time": "03.02 01:30 (KST)",
+        "uk_time": "Sunday 16:30 (UK)",
+        "local": "Sky Sports Main Event",
         "rules": [
-          "Early KO"
+          "Big Match",
+          "Prime Time",
+          "Leader"
         ],
-        "rule_str": "Early KO",
-        "matchday": 31,
-        "status": "TIMED",
+        "rule_str": "Big Match, Prime Time, Leader",
+        "matchday": 28,
+        "status": "SCHEDULED",
         "score": "-"
-      }
-    ],
-    "selected_matches": [
+      },
+      {
+        "match_id": 538066,
+        "home": "Aston Villa",
+        "away": "Chelsea",
+        "kst_time": "03.05 04:30 (KST)",
+        "uk_time": "Wednesday 19:30 (UK)",
+        "local": "Sky Sports Main Event",
+        "rules": [
+          "Challenger"
+        ],
+        "rule_str": "Challenger",
+        "matchday": 29,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
       {
         "match_id": 538087,
         "home": "Brighton & Hove Albion",
         "away": "Liverpool",
         "kst_time": "03.21 21:30 (KST)",
         "uk_time": "Saturday 12:30 (UK)",
-        "local": "Sky Sports",
+        "local": "TNT Sports 1",
         "rules": [
           "Early KO"
         ],
         "rule_str": "Early KO",
         "matchday": 31,
-        "status": "TIMED",
+        "status": "SCHEDULED",
+        "score": "-"
+      }
+    ],
+    "selected_matches": [
+      {
+        "match_id": 538057,
+        "home": "Arsenal",
+        "away": "Chelsea",
+        "kst_time": "03.02 01:30 (KST)",
+        "uk_time": "Sunday 16:30 (UK)",
+        "local": "Sky Sports Main Event",
+        "rules": [
+          "Big Match",
+          "Prime Time",
+          "Leader"
+        ],
+        "rule_str": "Big Match, Prime Time, Leader",
+        "matchday": 28,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 538066,
+        "home": "Aston Villa",
+        "away": "Chelsea",
+        "kst_time": "03.05 04:30 (KST)",
+        "uk_time": "Wednesday 19:30 (UK)",
+        "local": "Sky Sports Main Event",
+        "rules": [
+          "Challenger"
+        ],
+        "rule_str": "Challenger",
+        "matchday": 29,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 538087,
+        "home": "Brighton & Hove Albion",
+        "away": "Liverpool",
+        "kst_time": "03.21 21:30 (KST)",
+        "uk_time": "Saturday 12:30 (UK)",
+        "local": "TNT Sports 1",
+        "rules": [
+          "Early KO"
+        ],
+        "rule_str": "Early KO",
+        "matchday": 31,
+        "status": "SCHEDULED",
         "score": "-"
       }
     ]
@@ -83,16 +147,16 @@
   },
   "tennis": {
     "recent": {
-      "event": "Doha",
+      "event": "Qatar Open",
       "opponent": "Arthur Fils",
       "result": "W",
-      "score": "2-0",
-      "date": "-"
+      "score": "6-2, 6-1",
+      "date": "Feb 21"
     },
     "next": {
       "event": "BNP Paribas Open",
       "detail": "-",
-      "match_time": "Mar 2 03:00 KST",
+      "match_time": "Mar 2",
       "tournament_dates": "",
       "status": "-"
     }
