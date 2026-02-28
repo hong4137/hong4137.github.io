@@ -44,7 +44,36 @@
         #briefing-view { display: none; width: 100%; height: 100%; background-color: #fff; }
         iframe { width: 100%; height: 100%; border: none; display: block; }
         .overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 999; backdrop-filter: blur(2px); }
-        @media (max-width: 768px) { body { flex-direction: column; } .mobile-header { display: flex; } .sidebar { position: fixed; top: 0; left: -100%; height: 100%; width: 280px; box-shadow: 2px 0 10px rgba(0,0,0,0.5); padding-top: 60px; } .sidebar.active { left: 0; } .sidebar-close-btn { display: block; } .logo-area { display: none; } .main-content { margin-top: 60px; padding-top: 10px; } #dashboard-view { padding: 20px; } .dashboard-grid { grid-template-columns: 1fr; } .sports-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .mobile-header { display: flex; }
+            .sidebar { position: fixed; top: 0; left: -100%; height: 100%; width: 280px; box-shadow: 2px 0 10px rgba(0,0,0,0.5); padding-top: 60px; }
+            .sidebar.active { left: 0; }
+            .sidebar-close-btn { display: block; }
+            .logo-area { display: none; }
+            .main-content { margin-top: 60px; padding-top: 0; }
+            #dashboard-view { padding: 14px; }
+            .header { margin-bottom: 16px; }
+            .welcome-msg h1 { font-size: 20px; }
+            .welcome-msg p { font-size: 12px; }
+            .dashboard-grid { grid-template-columns: 1fr; gap: 14px; margin-bottom: 20px; }
+            .sports-grid { grid-template-columns: 1fr; gap: 10px; }
+            .card { min-height: auto; padding: 14px; }
+            .sport-card { padding: 12px; }
+            .temp-big { font-size: 36px; }
+            .weather-desc { font-size: 12px; }
+            .world-clock { padding: 8px 0; margin-bottom: 10px; }
+            .clock-time { font-size: 14px; }
+            .clock-city { font-size: 10px; }
+            .hourly-item span { font-size: 10px !important; }
+            .hourly-item i { font-size: 14px !important; }
+            #tradingview-container { min-height: 320px; }
+            .modal-content { width: 95%; padding: 18px; }
+            .stock-list-item { padding: 8px; font-size: 12px; }
+            .stock-add-form input { padding: 8px; font-size: 12px; }
+            .stock-add-form { flex-wrap: wrap; }
+            .stock-hint { font-size: 10px; }
+        }
         .header { margin-bottom: 30px; }
         .welcome-msg h1 { margin: 0; font-size: 28px; font-weight: 600; }
         .welcome-msg p { margin: 5px 0 0; color: var(--text-sub); font-size: 14px; }
@@ -73,8 +102,15 @@
         .modal-title { font-size: 18px; font-weight: bold; color: white; }
         .modal-close { background: none; border: none; color: #888; font-size: 24px; cursor: pointer; }
         .modal-close:hover { color: white; }
-        .stock-list-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 6px; margin-bottom: 8px; }
-        .stock-list-item span { font-size: 13px; }
+        .stock-list-item { display: flex; align-items: center; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 6px; margin-bottom: 8px; gap: 8px; transition: background 0.15s; }
+        .stock-list-item.dragging { opacity: 0.4; background: rgba(255,68,0,0.1); }
+        .stock-list-item.drag-over { border-top: 2px solid var(--accent-color); }
+        .stock-list-item span { font-size: 13px; flex: 1; }
+        .stock-drag-handle { cursor: grab; color: #555; font-size: 14px; padding: 2px 4px; }
+        .stock-drag-handle:active { cursor: grabbing; }
+        .stock-move-btn { background: none; border: none; color: #666; cursor: pointer; font-size: 13px; padding: 2px 5px; }
+        .stock-move-btn:hover { color: white; }
+        .stock-move-btn:disabled { color: #333; cursor: default; }
         .stock-delete-btn { background: #e74c3c; border: none; color: white; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 11px; }
         .stock-delete-btn:hover { background: #c0392b; }
         .stock-add-form { display: flex; gap: 8px; margin-top: 15px; }
@@ -116,7 +152,6 @@
         <div class="menu-label">바로가기</div>
         <div style="display: flex; flex-direction: column; gap: 2px;">
             <a href="https://hong4137.github.io/briefing/index.html" target="_blank" class="shortcut-item"><i class="fas fa-globe"></i><span>Briefing Site</span></a>
-            <a href="https://hong4137.github.io/schooltodo" target="_blank" class="shortcut-item"><i class="fas fa-sticky-note"></i><span>School ToDo</span></a>
             <a href="https://hong4137.github.io/datepicker/" target="_blank" class="shortcut-item"><i class="fas fa-calendar-check"></i><span>약속 잡기</span></a>
             <a href="https://www.linkedin.com/" target="_blank" class="shortcut-item"><i class="fab fa-linkedin"></i><span>LinkedIn</span></a>
             <a href="https://outlook.office.com/" target="_blank" class="shortcut-item"><i class="fas fa-envelope"></i><span>Outlook</span></a>
@@ -179,7 +214,7 @@
                 </div>
                 <div class="sport-card">
                     <div class="sport-header">
-                        <div style="display:flex; align-items:center; gap:8px;"><span style="color:#ccff00; font-size: 1.2rem;">🎾</span><a href="https://www.google.com/search?gs_ssp=eJzj4tVP1zc0TDM1MLI0qiwzYPRiT8xJTixKrAIAT2sG9g&q=alcaraz&rlz=1C1FKPE_koKR997KR997&oq=alc&gs_lcrp=EgZjaHJvbWUqDAgBEC4YJxiABBiKBTIJCAAQRRg5GIAEMgwIARAuGCcYgAQYigUyBwgCEAAYgAQyBggDEEUYPDIGCAQQRRg8MgYIBRBFGDwyBggGEEUYPDIGCAcQRRg80gEIMjA3MGowajeoAgCwAgA&sourceid=chrome&ie=UTF-8" target="_blank" class="sport-title-link">Carlos Alcaraz</a></div>
+                        <div style="display:flex; align-items:center; gap:8px;"><span style="color:#ccff00; font-size: 1.2rem;">🎾</span><a href="https://www.atptour.com/en/players/carlos-alcaraz/a0e2/overview" target="_blank" class="sport-title-link">Carlos Alcaraz</a></div>
                         <span id="tennis-status" style="font-size:10px; background:#333; padding:2px 6px; border-radius:4px; color:#aaa;">-</span>
                     </div>
                     <div id="tennis-content" style="text-align: center; margin-top: 15px;"><div class="loading-text">Loading...</div></div>
@@ -210,7 +245,7 @@
     </div>
 
     <script>
-        const DEFAULT_STOCKS = [{ s: "NASDAQ:MU", d: "마이크론" }, { s: "NASDAQ:NVDA", d: "엔비디아" }, { s: "NASDAQ:TSLA", d: "테슬라" }, { s: "FX_IDC:USDKRW", d: "원달러 환율" }];
+        const DEFAULT_STOCKS = [{ s: "NASDAQ:NVDA", d: "엔비디아" }, { s: "NASDAQ:MU", d: "마이크론" }, { s: "NASDAQ:TSLA", d: "테슬라" }, { s: "FX_IDC:USDKRW", d: "원달러 환율" }];
         let currentStocks = JSON.parse(localStorage.getItem('dashboard_stocks')) || DEFAULT_STOCKS;
         let tempStocks = [];
 
@@ -233,9 +268,17 @@
 
         function openStockModal() { tempStocks = [...currentStocks]; renderStockList(); document.getElementById('stock-modal').style.display = 'flex'; }
         function closeStockModal() { document.getElementById('stock-modal').style.display = 'none'; document.getElementById('stock-symbol').value = ''; document.getElementById('stock-name').value = ''; }
-        function renderStockList() { const l = document.getElementById('stock-list'); if (tempStocks.length === 0) { l.innerHTML = '<div style="color:#666; font-size:12px; padding:10px;">종목이 없습니다.</div>'; return; } l.innerHTML = tempStocks.map((s, i) => `<div class="stock-list-item"><span>${s.s} - ${s.d}</span><button class="stock-delete-btn" onclick="removeStock(${i})">삭제</button></div>`).join(''); }
-        function addStock() { const sym = document.getElementById('stock-symbol').value.trim(); const nm = document.getElementById('stock-name').value.trim(); if (!sym || !nm) { alert('심볼과 이름을 모두 입력해주세요.'); return; } if (tempStocks.length >= 6) { alert('최대 6개까지 추가할 수 있습니다.'); return; } if (tempStocks.some(s => s.s === sym)) { alert('이미 추가된 종목입니다.'); return; } tempStocks.push({ s: sym, d: nm }); renderStockList(); document.getElementById('stock-symbol').value = ''; document.getElementById('stock-name').value = ''; }
+        function renderStockList() { const l = document.getElementById('stock-list'); if (tempStocks.length === 0) { l.innerHTML = '<div style="color:#666; font-size:12px; padding:10px;">종목이 없습니다.</div>'; return; } l.innerHTML = tempStocks.map((s, i) => `<div class="stock-list-item" draggable="true" data-idx="${i}" ondragstart="dragStart(event)" ondragover="dragOver(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" ondrop="dropItem(event)" ondragend="dragEnd(event)"><span class="stock-drag-handle" title="드래그하여 순서 변경"><i class="fas fa-grip-vertical"></i></span><span>${s.s} - ${s.d}</span><button class="stock-move-btn" onclick="moveStock(${i},-1)" ${i===0?'disabled':''}><i class="fas fa-chevron-up"></i></button><button class="stock-move-btn" onclick="moveStock(${i},1)" ${i===tempStocks.length-1?'disabled':''}><i class="fas fa-chevron-down"></i></button><button class="stock-delete-btn" onclick="removeStock(${i})">삭제</button></div>`).join(''); }
+        function moveStock(i,dir) { const j=i+dir; if(j<0||j>=tempStocks.length) return; [tempStocks[i],tempStocks[j]]=[tempStocks[j],tempStocks[i]]; renderStockList(); }
+        let dragIdx=null;
+        function dragStart(e) { dragIdx=+e.currentTarget.dataset.idx; e.currentTarget.classList.add('dragging'); e.dataTransfer.effectAllowed='move'; }
+        function dragOver(e) { e.preventDefault(); e.dataTransfer.dropEffect='move'; }
+        function dragEnter(e) { e.preventDefault(); const el=e.currentTarget; if(+el.dataset.idx!==dragIdx) el.classList.add('drag-over'); }
+        function dragLeave(e) { e.currentTarget.classList.remove('drag-over'); }
+        function dropItem(e) { e.preventDefault(); const to=+e.currentTarget.dataset.idx; if(dragIdx!==null&&dragIdx!==to) { const item=tempStocks.splice(dragIdx,1)[0]; tempStocks.splice(to,0,item); renderStockList(); } e.currentTarget.classList.remove('drag-over'); }
+        function dragEnd(e) { e.currentTarget.classList.remove('dragging'); document.querySelectorAll('.stock-list-item').forEach(el=>el.classList.remove('drag-over')); dragIdx=null; }
         function removeStock(i) { tempStocks.splice(i, 1); renderStockList(); }
+        function addStock() { const sym = document.getElementById('stock-symbol').value.trim(); const nm = document.getElementById('stock-name').value.trim(); if (!sym || !nm) { alert('심볼과 이름을 모두 입력해주세요.'); return; } if (tempStocks.length >= 6) { alert('최대 6개까지 추가할 수 있습니다.'); return; } if (tempStocks.some(s => s.s === sym)) { alert('이미 추가된 종목입니다.'); return; } tempStocks.push({ s: sym, d: nm }); renderStockList(); document.getElementById('stock-symbol').value = ''; document.getElementById('stock-name').value = ''; }
         function saveStocks() { if (tempStocks.length === 0) { alert('최소 1개 이상의 종목이 필요합니다.'); return; } currentStocks = [...tempStocks]; localStorage.setItem('dashboard_stocks', JSON.stringify(currentStocks)); closeStockModal(); loadTradingViewWidget(); }
 
         async function loadBriefingMenu() {
