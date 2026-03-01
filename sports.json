@@ -1,51 +1,77 @@
 {
-  "updated": "2026-03-01 21:54:28 KST",
+  "updated": "2026-03-02 03:37:34 KST",
   "epl": {
     "matchday": 31,
-    "selected_round": 28,
-    "display_matchday": "R28",
+    "selected_round": 29,
+    "display_matchday": "R29",
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
       "Manchester City",
-      "Aston Villa",
-      "Manchester United"
+      "Manchester United",
+      "Aston Villa"
     ],
     "matches": [
       {
-        "match_id": 538057,
-        "home": "Arsenal",
+        "match_id": 538066,
+        "home": "Aston Villa",
         "away": "Chelsea",
-        "kst_time": "03.02 01:30 (KST)",
-        "uk_time": "Sunday 16:30 (UK)",
+        "kst_time": "03.05 04:30 (KST)",
+        "uk_time": "Wednesday 19:30 (UK)",
         "local": "Sky Sports Main Event",
         "rules": [
-          "Big Match",
-          "Prime Time",
+          "Challenger"
+        ],
+        "rule_str": "Challenger",
+        "matchday": 29,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 538067,
+        "home": "Brighton & Hove Albion",
+        "away": "Arsenal",
+        "kst_time": "03.05 04:30 (KST)",
+        "uk_time": "Wednesday 19:30 (UK)",
+        "local": "Sky Sports",
+        "rules": [
           "Leader"
         ],
-        "rule_str": "Big Match, Prime Time, Leader",
-        "matchday": 28,
-        "status": "TIMED",
+        "rule_str": "Leader",
+        "matchday": 29,
+        "status": "SCHEDULED",
         "score": "-"
       }
     ],
     "selected_matches": [
       {
-        "match_id": 538057,
-        "home": "Arsenal",
+        "match_id": 538066,
+        "home": "Aston Villa",
         "away": "Chelsea",
-        "kst_time": "03.02 01:30 (KST)",
-        "uk_time": "Sunday 16:30 (UK)",
+        "kst_time": "03.05 04:30 (KST)",
+        "uk_time": "Wednesday 19:30 (UK)",
         "local": "Sky Sports Main Event",
         "rules": [
-          "Big Match",
-          "Prime Time",
+          "Challenger"
+        ],
+        "rule_str": "Challenger",
+        "matchday": 29,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 538067,
+        "home": "Brighton & Hove Albion",
+        "away": "Arsenal",
+        "kst_time": "03.05 04:30 (KST)",
+        "uk_time": "Wednesday 19:30 (UK)",
+        "local": "Sky Sports",
+        "rules": [
           "Leader"
         ],
-        "rule_str": "Big Match, Prime Time, Leader",
-        "matchday": 28,
-        "status": "TIMED",
+        "rule_str": "Leader",
+        "matchday": 29,
+        "status": "SCHEDULED",
         "score": "-"
       }
     ]
@@ -96,7 +122,7 @@
     "next": {
       "event": "Indian Wells",
       "detail": "-",
-      "match_time": "-",
+      "match_time": "Mar 4",
       "tournament_dates": "Mar 5 - 16",
       "status": "Masters"
     }
