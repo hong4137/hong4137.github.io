@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VOD Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0B0E11; --surface: #151921; --surface2: #1C2333; --border: #2A3244;
+      --text: #E1E4EA; --text2: #8B95A5;
+      --accent: #3B82F6; --accent-dim: #1E3A5F;
+      --green: #22C55E; --green-dim: #14532D;
+      --red: #EF4444; --red-dim: #7F1D1D;
+      --yellow: #F59E0B; --yellow-dim: #78350F;
+      --mono: 'JetBrains Mono', monospace; --sans: 'Noto Sans KR', sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:var(--sans); background:var(--bg); color:var(--text); min-height:100vh; -webkit-tap-highlight-color:transparent; }
+
+    /* === AUTH SCREEN === */
+    .auth-screen { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px; }
+    .auth-box { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:40px 32px; width:100%; max-width:380px; text-align:center; }
+    .auth-title { font-family:var(--mono); font-size:20px; font-weight:700; color:var(--accent); margin-bottom:8px; }
+    .auth-sub { font-size:13px; color:var(--text2); margin-bottom:28px; }
+    .auth-input { width:100%; padding:14px 16px; background:var(--bg); border:1px solid var(--border); border-radius:10px; color:var(--text); font-size:16px; font-family:var(--mono); outline:none; text-align:center; margin-bottom:12px; }
+    .auth-input:focus { border-color:var(--accent); }
+    .auth-input.code { letter-spacing:8px; font-size:24px; }
+    .auth-btn { width:100%; padding:14px; background:var(--accent); color:#fff; border:none; border-radius:10px; font-size:14px; font-weight:600; cursor:pointer; font-family:var(--sans); }
+    .auth-btn:hover { background:#2563EB; }
+    .auth-btn:disabled { opacity:0.5; cursor:not-allowed; }
+    .auth-msg { font-size:12px; margin-top:12px; }
+    .auth-msg.error { color:var(--red); }
+    .auth-msg.success { color:var(--green); }
+    .auth-step { display:none; }
+    .auth-step.active { display:block; }
+    .auth-back { font-size:12px; color:var(--text2); cursor:pointer; margin-top:16px; }
+    .auth-back:hover { color:var(--text); }
+
+    /* === HEADER === */
+    .header { background:var(--surface); border-bottom:1px solid var(--border); padding:14px 20px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
+    .header-title { font-family:var(--mono); font-size:15px; font-weight:700; color:var(--accent); }
+    .header-right { display:flex; align-items:center; gap:12px; }
+    .header-email { font-size:11px; color:var(--text2); font-family:var(--mono); }
+    .logout-btn { font-size:11px; color:var(--text2); background:none; border:1px solid var(--border); border-radius:6px; padding:4px 10px; cursor:pointer; font-family:var(--mono); }
+    .logout-btn:hover { color:var(--red); border-color:var(--red); }
+
+    /* === LAYOUT === */
+    .app { display:none; }
+    .container { max-width:960px; margin:0 auto; padding:20px; }
+
+    /* === TABS === */
+    .tabs { display:flex; gap:2px; margin-bottom:20px; background:var(--surface); border-radius:10px; padding:4px; border:1px solid var(--border); overflow-x:auto; }
+    .tab { flex:1; padding:10px 12px; text-align:center; font-size:12px; font-weight:600; color:var(--text2); background:transparent; border:none; border-radius:8px; cursor:pointer; transition:all 0.2s; font-family:var(--sans); white-space:nowrap; }
+    .tab:hover { color:var(--text); }
+    .tab.active { background:var(--accent-dim); color:var(--accent); }
+    .tab-panel { display:none; }
+    .tab-panel.active { display:block; }
+
+    /* === CARD === */
+    .card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:20px; margin-bottom:16px; }
+    .card-title { font-size:14px; font-weight:700; margin-bottom:16px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    .card-title .icon { width:20px; height:20px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:11px; }
+
+    /* === FORM === */
+    .form-row { display:flex; gap:10px; margin-bottom:12px; }
+    .form-group { flex:1; }
+    .form-label { display:block; font-size:11px; font-weight:600; color:var(--text2); margin-bottom:5px; text-transform:uppercase; letter-spacing:0.5px; font-family:var(--mono); }
+    .form-input, .form-textarea { width:100%; padding:10px 12px; background:var(--bg); border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:14px; font-family:var(--sans); outline:none; transition:border-color 0.2s; }
+    .form-input:focus, .form-textarea:focus { border-color:var(--accent); }
+    .form-input::placeholder, .form-textarea::placeholder { color:#4A5568; }
+    .form-textarea { min-height:100px; resize:vertical; line-height:1.6; }
+
+    /* === BUTTON === */
+    .btn { padding:10px 18px; font-size:13px; font-weight:600; border:none; border-radius:8px; cursor:pointer; font-family:var(--sans); transition:all 0.2s; }
+    .btn-primary { background:var(--accent); color:#fff; }
+    .btn-primary:hover { background:#2563EB; }
+    .btn-sm { padding:5px 12px; font-size:11px; border-radius:6px; }
+    .btn-green { background:var(--green-dim); color:var(--green); }
+    .btn-green:hover { background:#166534; }
+    .btn-red { background:var(--red-dim); color:var(--red); }
+    .btn-red:hover { background:#991B1B; }
+    .btn-blue { background:var(--accent-dim); color:var(--accent); }
+    .btn-blue:hover { background:#1E40AF33; }
+    .btn-outline { background:transparent; color:var(--text2); border:1px solid var(--border); }
+    .btn-outline:hover { color:var(--text); border-color:var(--text2); }
+
+    /* === TABLE === */
+    .table-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:10px; -webkit-overflow-scrolling:touch; }
+    table { width:100%; border-collapse:collapse; font-size:13px; }
+    th { text-align:left; padding:10px 12px; background:var(--surface2); color:var(--text2); font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; font-family:var(--mono); white-space:nowrap; }
+    td { padding:10px 12px; border-top:1px solid var(--border); white-space:nowrap; }
+    tr:hover td { background:rgba(59,130,246,0.04); }
+    .badge { display:inline-block; padding:3px 8px; border-radius:4px; font-size:11px; font-weight:600; font-family:var(--mono); }
+    .badge-green { background:var(--green-dim); color:var(--green); }
+    .badge-yellow { background:var(--yellow-dim); color:var(--yellow); }
+    .badge-blue { background:var(--accent-dim); color:var(--accent); }
+    .badge-red { background:var(--red-dim); color:var(--red); }
+
+    /* === STATS === */
+    .stats { display:flex; gap:10px; margin-bottom:20px; }
+    .stat { flex:1; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:14px; }
+    .stat-label { font-size:10px; color:var(--text2); font-family:var(--mono); text-transform:uppercase; margin-bottom:2px; }
+    .stat-value { font-size:26px; font-weight:700; font-family:var(--mono); }
+
+    /* === MSG === */
+    .msg { padding:10px 14px; border-radius:8px; font-size:13px; margin-top:12px; display:none; }
+    .msg.show { display:block; }
+    .msg-success { background:var(--green-dim); color:var(--green); }
+    .msg-error { background:var(--red-dim); color:var(--red); }
+
+    /* === TEMPLATE CARD === */
+    .tmpl-card { background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:16px; margin-bottom:12px; }
+    .tmpl-card-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+    .tmpl-card-title { font-size:14px; font-weight:600; }
+    .tmpl-card-date { font-size:11px; color:var(--text2); font-family:var(--mono); }
+    .tmpl-card-body { font-size:13px; color:var(--text2); line-height:1.7; white-space:pre-wrap; word-break:break-all; }
+    .tmpl-card-actions { display:flex; gap:8px; margin-top:12px; }
+
+    /* === MOBILE CARDS === */
+    .mobile-cards { display:none; }
+    .req-card { background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:14px; margin-bottom:10px; }
+    .req-card-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
+    .req-card-name { font-weight:600; font-size:14px; }
+    .req-card-detail { font-size:12px; color:var(--text2); font-family:var(--mono); }
+
+    /* === LOADING === */
+    .spinner { display:inline-block; width:16px; height:16px; border:2px solid var(--border); border-top-color:var(--accent); border-radius:50%; animation:spin 0.6s linear infinite; margin-right:8px; vertical-align:middle; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+
+    @media (max-width:640px) {
+      .form-row { flex-direction:column; }
+      .stats { flex-direction:column; }
+      .container { padding:14px; }
+      .card { padding:16px; }
+      .desktop-table { display:none; }
+      .mobile-cards { display:block; }
+      .header-email { display:none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======================== -->
+  <!-- AUTH SCREEN -->
+  <!-- ======================== -->
+  <div class="auth-screen" id="authScreen">
+    <div class="auth-box">
+      <div class="auth-title">VOD ADMIN</div>
+
+      <!-- Step 1: Email -->
+      <div class="auth-step active" id="authStep1">
+        <div class="auth-sub">관리자 이메일을 입력하세요</div>
+        <input type="email" class="auth-input" id="authEmail" placeholder="admin@email.com" autofocus>
+        <button class="auth-btn" id="sendCodeBtn" onclick="sendCode()">인증 코드 받기</button>
+        <div class="auth-msg" id="authMsg1"></div>
+      </div>
+
+      <!-- Step 2: Code -->
+      <div class="auth-step" id="authStep2">
+        <div class="auth-sub">이메일로 받은 6자리 코드를 입력하세요</div>
+        <input type="text" class="auth-input code" id="authCode" placeholder="000000" maxlength="6" inputmode="numeric">
+        <button class="auth-btn" id="verifyBtn" onclick="verifyCode()">확인</button>
+        <div class="auth-msg" id="authMsg2"></div>
+        <div class="auth-back" onclick="backToEmail()">← 이메일 다시 입력</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== -->
+  <!-- MAIN APP -->
+  <!-- ======================== -->
+  <div class="app" id="mainApp">
+    <div class="header">
+      <div class="header-title">VOD ADMIN</div>
+      <div class="header-right">
+        <div class="header-email" id="headerEmail"></div>
+        <button class="logout-btn" onclick="doLogout()">logout</button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab('members',this)">가입자</button>
+        <button class="tab" onclick="switchTab('requests',this)">신청 목록</button>
+        <button class="tab" onclick="switchTab('templates',this)">알림 템플릿</button>
+      </div>
+
+      <!-- TAB 1 -->
+      <div class="tab-panel active" id="panel-members">
+        <div class="card">
+          <div class="card-title"><span class="icon" style="background:var(--accent-dim);color:var(--accent);">+</span>가입자 추가</div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">이름</label><input type="text" class="form-input" id="memberName" placeholder="홍길동"></div>
+            <div class="form-group"><label class="form-label">이메일</label><input type="email" class="form-input" id="memberEmail" placeholder="user@email.com"></div>
+          </div>
+          <button class="btn btn-primary" onclick="addMember()">추가</button>
+          <div class="msg" id="addMsg"></div>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="icon" style="background:var(--green-dim);color:var(--green);">▤</span>가입자 목록<span style="font-size:12px;color:var(--text2);font-weight:400;margin-left:auto;" id="memberCount"></span></div>
+          <div class="table-wrap"><table><thead><tr><th>이름</th><th>이메일</th><th>등록일</th><th></th></tr></thead><tbody id="memberTable"></tbody></table></div>
+        </div>
+      </div>
+
+      <!-- TAB 2 -->
+      <div class="tab-panel" id="panel-requests">
+        <div class="stats">
+          <div class="stat"><div class="stat-label">전체</div><div class="stat-value" id="statTotal">-</div></div>
+          <div class="stat"><div class="stat-label">미처리</div><div class="stat-value" style="color:var(--yellow);" id="statPending">-</div></div>
+          <div class="stat"><div class="stat-label">완료</div><div class="stat-value" style="color:var(--green);" id="statDone">-</div></div>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="icon" style="background:var(--yellow-dim);color:var(--yellow);">⬡</span>신청 목록<button class="btn btn-sm btn-green" style="margin-left:auto;" onclick="loadRequests()">새로고침</button></div>
+          <div class="table-wrap desktop-table"><table><thead><tr><th>이름</th><th>이벤터스 이메일</th><th>방식</th><th>플랫폼 계정</th><th>상태</th><th>수정</th><th>신청일</th><th></th></tr></thead><tbody id="requestTable"></tbody></table></div>
+          <div class="mobile-cards" id="requestCards"></div>
+        </div>
+      </div>
+
+      <!-- TAB 3 -->
+      <div class="tab-panel" id="panel-templates">
+        <div class="card">
+          <div class="card-title"><span class="icon" style="background:var(--accent-dim);color:var(--accent);">✎</span><span id="tmplFormTitle">새 템플릿 작성</span></div>
+          <div class="form-group" style="margin-bottom:10px;"><label class="form-label">제목</label><input type="text" class="form-input" id="tmplTitle" placeholder="예: VOD 접근 권한 안내"></div>
+          <div class="form-group" style="margin-bottom:12px;"><label class="form-label">내용</label><textarea class="form-textarea" id="tmplBody" placeholder="알림 메시지 내용을 입력하세요..."></textarea></div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-primary" onclick="saveTemplate()">저장</button>
+            <button class="btn btn-outline" id="tmplCancelBtn" style="display:none;" onclick="cancelEditTemplate()">취소</button>
+          </div>
+          <div class="msg" id="tmplMsg"></div>
+        </div>
+        <div id="tmplList"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ============================================================
+    // CONFIG
+    // ============================================================
+    const API_BASE = 'https://zypcrqomnzazjrgbifah.supabase.co/functions/v1';
+    let authToken = null;
+    let authEmail = null;
+    let editingTemplateId = null;
+
+    // ============================================================
+    // AUTH
+    // ============================================================
+    async function sendCode() {
+      const email = document.getElementById('authEmail').value.trim().toLowerCase();
+      const msgEl = document.getElementById('authMsg1');
+      const btn = document.getElementById('sendCodeBtn');
+      if (!email) { showAuthMsg(msgEl, '이메일을 입력해주세요.', 'error'); return; }
+
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span>발송 중...';
+
+      try {
+        const res = await fetch(`${API_BASE}/admin-auth`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'sendCode', email }),
+        });
+        const data = await res.json();
+        if (!res.ok) { showAuthMsg(msgEl, data.error || '발송 실패', 'error'); return; }
+
+        authEmail = email;
+        document.getElementById('authStep1').classList.remove('active');
+        document.getElementById('authStep2').classList.add('active');
+        document.getElementById('authCode').focus();
+      } catch (e) {
+        showAuthMsg(msgEl, '네트워크 오류', 'error');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '인증 코드 받기';
+      }
+    }
+
+    async function verifyCode() {
+      const code = document.getElementById('authCode').value.trim();
+      const msgEl = document.getElementById('authMsg2');
+      const btn = document.getElementById('verifyBtn');
+      if (!code || code.length !== 6) { showAuthMsg(msgEl, '6자리 코드를 입력해주세요.', 'error'); return; }
+
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span>확인 중...';
+
+      try {
+        const res = await fetch(`${API_BASE}/admin-auth`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'verify', email: authEmail, code }),
+        });
+        const data = await res.json();
+        if (!res.ok) { showAuthMsg(msgEl, data.error || '인증 실패', 'error'); return; }
+
+        authToken = data.token;
+        localStorage.setItem('vod_admin_token', data.token);
+        localStorage.setItem('vod_admin_email', authEmail);
+        localStorage.setItem('vod_admin_exp', data.expiresAt);
+        showApp();
+      } catch (e) {
+        showAuthMsg(msgEl, '네트워크 오류', 'error');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '확인';
+      }
+    }
+
+    function backToEmail() {
+      document.getElementById('authStep2').classList.remove('active');
+      document.getElementById('authStep1').classList.add('active');
+      document.getElementById('authCode').value = '';
+      document.getElementById('authMsg2').className = 'auth-msg';
+    }
+
+    function doLogout() {
+      localStorage.removeItem('vod_admin_token');
+      localStorage.removeItem('vod_admin_email');
+      localStorage.removeItem('vod_admin_exp');
+      authToken = null;
+      authEmail = null;
+      document.getElementById('mainApp').style.display = 'none';
+      document.getElementById('authScreen').style.display = 'flex';
+      document.getElementById('authEmail').value = '';
+      document.getElementById('authCode').value = '';
+      backToEmail();
+    }
+
+    function showApp() {
+      document.getElementById('authScreen').style.display = 'none';
+      document.getElementById('mainApp').style.display = 'block';
+      document.getElementById('headerEmail').textContent = authEmail;
+      loadMembers();
+    }
+
+    function showAuthMsg(el, text, type) {
+      el.className = `auth-msg ${type}`;
+      el.textContent = text;
+    }
+
+    // Auto-login
+    (function() {
+      const token = localStorage.getItem('vod_admin_token');
+      const email = localStorage.getItem('vod_admin_email');
+      const exp = localStorage.getItem('vod_admin_exp');
+      if (token && email && exp && Number(exp) > Date.now()) {
+        authToken = token;
+        authEmail = email;
+        showApp();
+      }
+    })();
+
+    // Enter keys
+    document.getElementById('authEmail').addEventListener('keydown', e => { if (e.key === 'Enter') sendCode(); });
+    document.getElementById('authCode').addEventListener('keydown', e => { if (e.key === 'Enter') verifyCode(); });
+
+    // ============================================================
+    // API HELPER
+    // ============================================================
+    async function api(action, params = {}) {
+      const res = await fetch(`${API_BASE}/admin-api`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`,
+        },
+        body: JSON.stringify({ action, ...params }),
+      });
+      const data = await res.json();
+      if (res.status === 401) { doLogout(); throw new Error('인증 만료'); }
+      if (!res.ok) throw new Error(data.error || '요청 실패');
+      return data;
+    }
+
+    // ============================================================
+    // TABS
+    // ============================================================
+    function switchTab(tab, el) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById(`panel-${tab}`).classList.add('active');
+      if (tab === 'members') loadMembers();
+      if (tab === 'requests') loadRequests();
+      if (tab === 'templates') loadTemplates();
+    }
+
+    // ============================================================
+    // 가입자
+    // ============================================================
+    async function loadMembers() {
+      try {
+        const { data } = await api('getMembers');
+        document.getElementById('memberCount').textContent = `${data.length}명`;
+        document.getElementById('memberTable').innerHTML = data.map(m => `<tr>
+          <td>${esc(m.name)}</td>
+          <td style="font-family:var(--mono);font-size:12px;">${esc(m.email)}</td>
+          <td style="color:var(--text2);font-size:12px;">${fmtDate(m.created_at)}</td>
+          <td><button class="btn btn-sm btn-red" onclick="deleteMember('${m.id}','${esc(m.name)}')">삭제</button></td>
+        </tr>`).join('');
+      } catch (e) { console.error(e); }
+    }
+
+    async function addMember() {
+      const name = document.getElementById('memberName').value.trim();
+      const email = document.getElementById('memberEmail').value.trim().toLowerCase();
+      const msgEl = document.getElementById('addMsg');
+      if (!name || !email) { showMsg(msgEl, '이름과 이메일을 입력해주세요.', 'error'); return; }
+      try {
+        await api('addMember', { name, email });
+        showMsg(msgEl, `${name} (${email}) 추가 완료`, 'success');
+        document.getElementById('memberName').value = '';
+        document.getElementById('memberEmail').value = '';
+        document.getElementById('memberName').focus();
+        loadMembers();
+      } catch (e) { showMsg(msgEl, e.message.includes('duplicate') ? '이미 등록된 이메일입니다.' : e.message, 'error'); }
+    }
+
+    async function deleteMember(id, name) {
+      if (!confirm(`"${name}" 가입자를 삭제하시겠습니까?`)) return;
+      try { await api('deleteMember', { id }); loadMembers(); } catch (e) { alert('삭제 실패: ' + e.message); }
+    }
+
+    // ============================================================
+    // 신청 목록
+    // ============================================================
+    async function loadRequests() {
+      try {
+        const { data } = await api('getRequests');
+        const total = data.length, pending = data.filter(r => !r.is_processed).length;
+        document.getElementById('statTotal').textContent = total;
+        document.getElementById('statPending').textContent = pending;
+        document.getElementById('statDone').textContent = total - pending;
+
+        document.getElementById('requestTable').innerHTML = data.map(r => `<tr>
+          <td>${esc(r.name || '-')}</td>
+          <td style="font-family:var(--mono);font-size:12px;">${esc(r.eventus_email)}</td>
+          <td><span class="badge ${r.vod_method === 'google_drive' ? 'badge-blue' : 'badge-red'}">${r.vod_method === 'google_drive' ? 'Drive' : 'Vimeo'}</span></td>
+          <td style="font-family:var(--mono);font-size:12px;">${esc(r.platform_account)}</td>
+          <td>${r.is_processed ? '<span class="badge badge-green">완료</span>' : '<span class="badge badge-yellow">대기</span>'}</td>
+          <td>${r.is_modified ? '<span class="badge badge-red">수정</span>' : ''}</td>
+          <td style="color:var(--text2);font-size:12px;">${fmtDate(r.created_at)}</td>
+          <td>${!r.is_processed ? `<button class="btn btn-sm btn-green" onclick="markProcessed('${r.id}')">처리</button>` : ''}</td>
+        </tr>`).join('');
+
+        document.getElementById('requestCards').innerHTML = data.map(r => `<div class="req-card">
+          <div class="req-card-row"><span class="req-card-name">${esc(r.name || '-')}</span>${r.is_processed ? '<span class="badge badge-green">완료</span>' : '<span class="badge badge-yellow">대기</span>'}</div>
+          <div class="req-card-detail">${esc(r.eventus_email)}</div>
+          <div class="req-card-row" style="margin-top:8px;"><span class="badge ${r.vod_method === 'google_drive' ? 'badge-blue' : 'badge-red'}">${r.vod_method === 'google_drive' ? 'Drive' : 'Vimeo'}</span><span class="req-card-detail">${esc(r.platform_account)}</span></div>
+          ${r.is_modified ? '<div style="margin-top:6px;"><span class="badge badge-red">수정됨</span></div>' : ''}
+          ${!r.is_processed ? `<div style="margin-top:10px;"><button class="btn btn-sm btn-green" onclick="markProcessed('${r.id}')">처리 완료</button></div>` : ''}
+        </div>`).join('');
+      } catch (e) { console.error(e); }
+    }
+
+    async function markProcessed(id) {
+      try { await api('markProcessed', { id }); loadRequests(); } catch (e) { alert('처리 실패: ' + e.message); }
+    }
+
+    // ============================================================
+    // 알림 템플릿
+    // ============================================================
+    async function loadTemplates() {
+      try {
+        const { data } = await api('getTemplates');
+        const c = document.getElementById('tmplList');
+        if (!data.length) { c.innerHTML = '<div class="card" style="text-align:center;color:var(--text2);font-size:13px;">저장된 템플릿이 없습니다.</div>'; return; }
+        c.innerHTML = data.map(t => `<div class="tmpl-card">
+          <div class="tmpl-card-header"><div class="tmpl-card-title">${esc(t.title)}</div><div class="tmpl-card-date">${fmtDate(t.updated_at || t.created_at)}</div></div>
+          <div class="tmpl-card-body">${esc(t.body)}</div>
+          <div class="tmpl-card-actions">
+            <button class="btn btn-sm btn-blue" onclick="copyTemplate('${esc(t.body).replace(/'/g, "\\'")}')">복사</button>
+            <button class="btn btn-sm btn-outline" onclick="editTemplate('${t.id}','${esc(t.title).replace(/'/g, "\\'")}','${esc(t.body).replace(/'/g, "\\'")}')">편집</button>
+            <button class="btn btn-sm btn-red" onclick="deleteTemplate('${t.id}')">삭제</button>
+          </div>
+        </div>`).join('');
+      } catch (e) { console.error(e); }
+    }
+
+    async function saveTemplate() {
+      const title = document.getElementById('tmplTitle').value.trim();
+      const body = document.getElementById('tmplBody').value.trim();
+      const msgEl = document.getElementById('tmplMsg');
+      if (!title || !body) { showMsg(msgEl, '제목과 내용을 입력해주세요.', 'error'); return; }
+      try {
+        if (editingTemplateId) {
+          await api('updateTemplate', { id: editingTemplateId, title, body });
+        } else {
+          await api('addTemplate', { title, body });
+        }
+        cancelEditTemplate();
+        showMsg(msgEl, '저장 완료', 'success');
+        loadTemplates();
+      } catch (e) { showMsg(msgEl, e.message, 'error'); }
+    }
+
+    function editTemplate(id, title, body) {
+      editingTemplateId = id;
+      document.getElementById('tmplTitle').value = title;
+      document.getElementById('tmplBody').value = body;
+      document.getElementById('tmplFormTitle').textContent = '템플릿 편집';
+      document.getElementById('tmplCancelBtn').style.display = 'block';
+      document.getElementById('tmplTitle').focus();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function cancelEditTemplate() {
+      editingTemplateId = null;
+      document.getElementById('tmplTitle').value = '';
+      document.getElementById('tmplBody').value = '';
+      document.getElementById('tmplFormTitle').textContent = '새 템플릿 작성';
+      document.getElementById('tmplCancelBtn').style.display = 'none';
+    }
+
+    function copyTemplate(body) {
+      navigator.clipboard.writeText(body).then(() => alert('클립보드에 복사되었습니다.'));
+    }
+
+    async function deleteTemplate(id) {
+      if (!confirm('삭제하시겠습니까?')) return;
+      try { await api('deleteTemplate', { id }); loadTemplates(); } catch (e) { alert('삭제 실패: ' + e.message); }
+    }
+
+    // ============================================================
+    // UTILS
+    // ============================================================
+    function esc(s) { if (!s) return ''; const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+    function fmtDate(d) { return new Date(d).toLocaleDateString('ko'); }
+    function showMsg(el, text, type) { el.className = `msg msg-${type} show`; el.textContent = text; setTimeout(() => el.classList.remove('show'), 4000); }
+
+    document.getElementById('memberName').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('memberEmail').focus(); });
+    document.getElementById('memberEmail').addEventListener('keydown', e => { if (e.key === 'Enter') addMember(); });
+  </script>
+</body>
+</html>
