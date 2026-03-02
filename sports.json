@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-02 03:37:34 KST",
+  "updated": "2026-03-02 11:25:11 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 29,
@@ -24,7 +24,7 @@
         ],
         "rule_str": "Challenger",
         "matchday": 29,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -39,7 +39,7 @@
         ],
         "rule_str": "Leader",
         "matchday": 29,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ],
@@ -56,7 +56,7 @@
         ],
         "rule_str": "Challenger",
         "matchday": 29,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -71,7 +71,7 @@
         ],
         "rule_str": "Leader",
         "matchday": 29,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ]
@@ -113,18 +113,18 @@
   },
   "tennis": {
     "recent": {
-      "event": "Qatar Open",
-      "opponent": "Arthur Fils",
+      "event": "Australian Open",
+      "opponent": "Novak Djokovic",
       "result": "W",
-      "score": "6-2, 6-1",
-      "date": "Feb 21"
+      "score": "2-6, 6-2, 6-3, 7-5",
+      "date": "Feb 1"
     },
     "next": {
-      "event": "Indian Wells",
+      "event": "BNP Paribas Open",
       "detail": "-",
-      "match_time": "Mar 4",
-      "tournament_dates": "Mar 5 - 16",
-      "status": "Masters"
+      "match_time": "Mar 2 03:00 KST",
+      "tournament_dates": "",
+      "status": "-"
     }
   }
 }
