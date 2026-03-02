@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-02 22:04:49 KST",
+  "updated": "2026-03-03 03:53:58 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 29,
@@ -78,7 +78,7 @@
   },
   "nba": {
     "record": "31-29",
-    "rank": "-",
+    "rank": "#8 West",
     "last": {
       "opp": "Lakers",
       "result": "L",
@@ -86,21 +86,21 @@
     },
     "schedule": [
       {
-        "opp": "Clippers",
-        "date": "03.03",
-        "kst_time": "12:00",
-        "local_time": "7:00 PM PT",
-        "location": "home",
-        "venue": "Chase Center",
-        "channel": ""
-      },
-      {
         "opp": "Rockets",
         "date": "03.06",
         "kst_time": "09:30",
         "local_time": "4:30 PM PT",
         "location": "away",
         "venue": "@ Houston",
+        "channel": ""
+      },
+      {
+        "opp": "Thunder",
+        "date": "03.08",
+        "kst_time": "10:30",
+        "local_time": "5:30 PM PT",
+        "location": "away",
+        "venue": "@ Oklahoma City",
         "channel": ""
       }
     ]
@@ -113,16 +113,16 @@
   },
   "tennis": {
     "recent": {
-      "event": "2026 Australian Open",
-      "opponent": "Novak Djokovic",
+      "event": "Doha",
+      "opponent": "Arthur Fils",
       "result": "W",
-      "score": "2-6, 6-2, 6-3, 7-5",
-      "date": "Feb 1"
+      "score": "2 - 0",
+      "date": "Feb 21"
     },
     "next": {
-      "event": "BNP Paribas Open",
+      "event": "ATP 500 ABN AMRO Open",
       "detail": "-",
-      "match_time": "Mar 4",
+      "match_time": "Feb 16",
       "tournament_dates": "",
       "status": "-"
     }
