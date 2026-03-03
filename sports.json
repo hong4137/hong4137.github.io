@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-03 15:56:18 KST",
+  "updated": "2026-03-03 22:03:39 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 29,
@@ -120,7 +120,7 @@
       "date": "Feb 21"
     },
     "next": {
-      "event": "Indian Wells Open",
+      "event": "Indian Wells",
       "detail": "-",
       "match_time": "Mar 4",
       "tournament_dates": "Mar 5 - 16",
