@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-04 03:56:01 KST",
+  "updated": "2026-03-04 11:21:33 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 29,
@@ -109,7 +109,7 @@
     "status": "Next GP",
     "name": "AUSTRALIAN Grand Prix",
     "circuit": "Albert Park, Melbourne",
-    "date": "Mar 27-29"
+    "date": "Mar 6-8"
   },
   "tennis": {
     "recent": {
@@ -117,12 +117,12 @@
       "opponent": "Arthur Fils",
       "result": "W",
       "score": "6-2, 6-1",
-      "date": "Feb 21"
+      "date": "-"
     },
     "next": {
       "event": "BNP Paribas Open",
-      "detail": "-",
-      "match_time": "Mar 4",
+      "detail": "First round",
+      "match_time": "March 4",
       "tournament_dates": "",
       "status": "-"
     }
