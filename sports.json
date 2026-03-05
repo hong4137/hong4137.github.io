@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-05 03:55:25 KST",
+  "updated": "2026-03-05 11:23:57 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 29,
@@ -24,8 +24,8 @@
         ],
         "rule_str": "Challenger",
         "matchday": 29,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "N/A"
       },
       {
         "match_id": 538067,
@@ -39,8 +39,8 @@
         ],
         "rule_str": "Leader",
         "matchday": 29,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "N/A"
       }
     ],
     "selected_matches": [
@@ -56,8 +56,8 @@
         ],
         "rule_str": "Challenger",
         "matchday": 29,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "N/A"
       },
       {
         "match_id": 538067,
@@ -71,8 +71,8 @@
         ],
         "rule_str": "Leader",
         "matchday": 29,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "N/A"
       }
     ]
   },
@@ -106,23 +106,23 @@
     ]
   },
   "f1": {
-    "status": "Next GP",
-    "name": "BAHRAIN Grand Prix",
-    "circuit": "Sakhir",
-    "date": "Mar 27-29"
+    "status": "Off-Season",
+    "name": "TBD",
+    "circuit": "TBD",
+    "date": ""
   },
   "tennis": {
     "recent": {
       "event": "Doha",
       "opponent": "Arthur Fils",
       "result": "W",
-      "score": "6-2, 6-1",
-      "date": "March 5"
+      "score": "2-0",
+      "date": "-"
     },
     "next": {
-      "event": "Rotterdam Open",
-      "detail": "-",
-      "match_time": "Feb 9",
+      "event": "ATP 500 Doha",
+      "detail": "vs Cameron Norrie",
+      "match_time": "Feb 16",
       "tournament_dates": "",
       "status": "-"
     }
