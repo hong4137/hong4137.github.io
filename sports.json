@@ -1,9 +1,9 @@
 {
-  "updated": "2026-03-05 22:06:32 KST",
+  "updated": "2026-03-06 04:18:08 KST",
   "epl": {
     "matchday": 31,
-    "selected_round": 29,
-    "display_matchday": "R29",
+    "selected_round": 31,
+    "display_matchday": "R31",
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
@@ -13,66 +13,36 @@
     ],
     "matches": [
       {
-        "match_id": 538066,
-        "home": "Aston Villa",
-        "away": "Chelsea",
-        "kst_time": "03.05 04:30 (KST)",
-        "uk_time": "Wednesday 19:30 (UK)",
-        "local": "Sky Sports Main Event",
-        "rules": [
-          "Challenger"
-        ],
-        "rule_str": "Challenger",
-        "matchday": 29,
-        "status": "FINISHED",
-        "score": "N/A"
-      },
-      {
-        "match_id": 538067,
+        "match_id": 538087,
         "home": "Brighton & Hove Albion",
-        "away": "Arsenal",
-        "kst_time": "03.05 04:30 (KST)",
-        "uk_time": "Wednesday 19:30 (UK)",
-        "local": "Sky Sports",
+        "away": "Liverpool",
+        "kst_time": "03.21 21:30 (KST)",
+        "uk_time": "Saturday 12:30 (UK)",
+        "local": "TNT Sports 1",
         "rules": [
-          "Leader"
+          "Early KO"
         ],
-        "rule_str": "Leader",
-        "matchday": 29,
-        "status": "FINISHED",
-        "score": "N/A"
+        "rule_str": "Early KO",
+        "matchday": 31,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ],
     "selected_matches": [
       {
-        "match_id": 538066,
-        "home": "Aston Villa",
-        "away": "Chelsea",
-        "kst_time": "03.05 04:30 (KST)",
-        "uk_time": "Wednesday 19:30 (UK)",
-        "local": "Sky Sports Main Event",
-        "rules": [
-          "Challenger"
-        ],
-        "rule_str": "Challenger",
-        "matchday": 29,
-        "status": "FINISHED",
-        "score": "N/A"
-      },
-      {
-        "match_id": 538067,
+        "match_id": 538087,
         "home": "Brighton & Hove Albion",
-        "away": "Arsenal",
-        "kst_time": "03.05 04:30 (KST)",
-        "uk_time": "Wednesday 19:30 (UK)",
-        "local": "Sky Sports",
+        "away": "Liverpool",
+        "kst_time": "03.21 21:30 (KST)",
+        "uk_time": "Saturday 12:30 (UK)",
+        "local": "TNT Sports 1",
         "rules": [
-          "Leader"
+          "Early KO"
         ],
-        "rule_str": "Leader",
-        "matchday": 29,
-        "status": "FINISHED",
-        "score": "N/A"
+        "rule_str": "Early KO",
+        "matchday": 31,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ]
   },
@@ -86,15 +56,6 @@
     },
     "schedule": [
       {
-        "opp": "Rockets",
-        "date": "03.06",
-        "kst_time": "09:30",
-        "local_time": "4:30 PM PT",
-        "location": "away",
-        "venue": "@ Houston",
-        "channel": ""
-      },
-      {
         "opp": "Thunder",
         "date": "03.08",
         "kst_time": "10:30",
@@ -102,29 +63,38 @@
         "location": "away",
         "venue": "@ Oklahoma City",
         "channel": ""
+      },
+      {
+        "opp": "Jazz",
+        "date": "03.10",
+        "kst_time": "10:00",
+        "local_time": "6:00 PM PT",
+        "location": "away",
+        "venue": "@ Utah",
+        "channel": ""
       }
     ]
   },
   "f1": {
-    "status": "Off-Season",
-    "name": "TBD",
-    "circuit": "TBD",
-    "date": ""
+    "status": "Next GP",
+    "name": "AUSTRALIAN Grand Prix",
+    "circuit": "Albert Park, Melbourne",
+    "date": "Mar 6-8"
   },
   "tennis": {
     "recent": {
-      "event": "Qatar Open",
-      "opponent": "Arthur Fils",
-      "result": "W",
-      "score": "6-2, 6-1",
-      "date": "Feb 21"
+      "event": "-",
+      "opponent": "-",
+      "result": "-",
+      "score": "-",
+      "date": "-"
     },
     "next": {
-      "event": "Indian Wells",
-      "detail": "SF vs Jack Draper",
-      "match_time": "-",
-      "tournament_dates": "Mar 5 - 16",
-      "status": "Masters"
+      "event": "Rolex Monte-Carlo Masters",
+      "detail": "-",
+      "match_time": "Apr 10",
+      "tournament_dates": "",
+      "status": "-"
     }
   }
 }
