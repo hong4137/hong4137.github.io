@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-05 11:23:57 KST",
+  "updated": "2026-03-05 15:56:41 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 29,
@@ -106,22 +106,22 @@
     ]
   },
   "f1": {
-    "status": "Off-Season",
-    "name": "TBD",
-    "circuit": "TBD",
-    "date": ""
+    "status": "Next GP",
+    "name": "AUSTRALIAN Grand Prix",
+    "circuit": "Albert Park, Melbourne",
+    "date": "Mar 6-8"
   },
   "tennis": {
     "recent": {
       "event": "Doha",
       "opponent": "Arthur Fils",
       "result": "W",
-      "score": "2-0",
+      "score": "6-2, 6-1",
       "date": "-"
     },
     "next": {
       "event": "ATP 500 Doha",
-      "detail": "vs Cameron Norrie",
+      "detail": "-",
       "match_time": "Feb 16",
       "tournament_dates": "",
       "status": "-"
