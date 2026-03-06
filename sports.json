@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-06 11:22:19 KST",
+  "updated": "2026-03-06 15:54:30 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 31,
@@ -47,12 +47,12 @@
     ]
   },
   "nba": {
-    "record": "31-30",
+    "record": "32-30",
     "rank": "-",
     "last": {
-      "opp": "Clippers",
-      "result": "L",
-      "score": "101-114"
+      "opp": "Rockets",
+      "result": "W",
+      "score": "115-113"
     },
     "schedule": [
       {
@@ -77,24 +77,24 @@
   },
   "f1": {
     "status": "Next GP",
-    "name": "AUSTRALIAN Grand Prix",
-    "circuit": "Albert Park, Melbourne",
+    "name": "BAHRAIN Grand Prix",
+    "circuit": "Sakhir",
     "date": "Mar 6-8"
   },
   "tennis": {
     "recent": {
-      "event": "ATP 500 Doha",
+      "event": "Qatar Open",
       "opponent": "Arthur Fils",
       "result": "W",
       "score": "2-0",
       "date": "Feb 21"
     },
     "next": {
-      "event": "Rolex Monte-Carlo Masters",
+      "event": "Indian Wells Open",
       "detail": "-",
-      "match_time": "Apr 10",
-      "tournament_dates": "",
-      "status": "-"
+      "match_time": "-",
+      "tournament_dates": "Mar 5 - 16",
+      "status": "Masters"
     }
   }
 }
