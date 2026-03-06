@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-06 15:54:30 KST",
+  "updated": "2026-03-06 22:02:12 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 31,
@@ -77,24 +77,24 @@
   },
   "f1": {
     "status": "Next GP",
-    "name": "BAHRAIN Grand Prix",
-    "circuit": "Sakhir",
-    "date": "Mar 6-8"
+    "name": "AUSTRALIAN Grand Prix",
+    "circuit": "Albert Park, Melbourne",
+    "date": "Mar 27-29"
   },
   "tennis": {
     "recent": {
-      "event": "Qatar Open",
+      "event": "Doha",
       "opponent": "Arthur Fils",
       "result": "W",
       "score": "2-0",
-      "date": "Feb 21"
+      "date": "Feb 15"
     },
     "next": {
-      "event": "Indian Wells Open",
+      "event": "ABN AMRO Open",
       "detail": "-",
-      "match_time": "-",
-      "tournament_dates": "Mar 5 - 16",
-      "status": "Masters"
+      "match_time": "Feb 16",
+      "tournament_dates": "",
+      "status": "-"
     }
   }
 }
