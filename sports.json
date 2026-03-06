@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-06 04:18:08 KST",
+  "updated": "2026-03-06 11:22:19 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 31,
@@ -24,7 +24,7 @@
         ],
         "rule_str": "Early KO",
         "matchday": 31,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ],
@@ -41,7 +41,7 @@
         ],
         "rule_str": "Early KO",
         "matchday": 31,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ]
@@ -83,11 +83,11 @@
   },
   "tennis": {
     "recent": {
-      "event": "-",
-      "opponent": "-",
-      "result": "-",
-      "score": "-",
-      "date": "-"
+      "event": "ATP 500 Doha",
+      "opponent": "Arthur Fils",
+      "result": "W",
+      "score": "2-0",
+      "date": "Feb 21"
     },
     "next": {
       "event": "Rolex Monte-Carlo Masters",
