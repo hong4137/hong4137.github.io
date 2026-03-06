@@ -1,9 +1,9 @@
 {
-  "updated": "2026-03-06 22:02:12 KST",
+  "updated": "2026-03-07 03:51:36 KST",
   "epl": {
     "matchday": 31,
-    "selected_round": 31,
-    "display_matchday": "R31",
+    "selected_round": 30,
+    "display_matchday": "R30",
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
@@ -13,42 +13,42 @@
     ],
     "matches": [
       {
-        "match_id": 538087,
-        "home": "Brighton & Hove Albion",
-        "away": "Liverpool",
-        "kst_time": "03.21 21:30 (KST)",
-        "uk_time": "Saturday 12:30 (UK)",
-        "local": "TNT Sports 1",
+        "match_id": 538077,
+        "home": "Arsenal",
+        "away": "Everton",
+        "kst_time": "03.15 02:30 (KST)",
+        "uk_time": "Saturday 17:30 (UK)",
+        "local": "Sky Sports",
         "rules": [
-          "Early KO"
+          "Leader"
         ],
-        "rule_str": "Early KO",
-        "matchday": 31,
-        "status": "TIMED",
+        "rule_str": "Leader",
+        "matchday": 30,
+        "status": "SCHEDULED",
         "score": "-"
       }
     ],
     "selected_matches": [
       {
-        "match_id": 538087,
-        "home": "Brighton & Hove Albion",
-        "away": "Liverpool",
-        "kst_time": "03.21 21:30 (KST)",
-        "uk_time": "Saturday 12:30 (UK)",
-        "local": "TNT Sports 1",
+        "match_id": 538077,
+        "home": "Arsenal",
+        "away": "Everton",
+        "kst_time": "03.15 02:30 (KST)",
+        "uk_time": "Saturday 17:30 (UK)",
+        "local": "Sky Sports",
         "rules": [
-          "Early KO"
+          "Leader"
         ],
-        "rule_str": "Early KO",
-        "matchday": 31,
-        "status": "TIMED",
+        "rule_str": "Leader",
+        "matchday": 30,
+        "status": "SCHEDULED",
         "score": "-"
       }
     ]
   },
   "nba": {
     "record": "32-30",
-    "rank": "-",
+    "rank": "#8 West",
     "last": {
       "opp": "Rockets",
       "result": "W",
@@ -79,20 +79,20 @@
     "status": "Next GP",
     "name": "AUSTRALIAN Grand Prix",
     "circuit": "Albert Park, Melbourne",
-    "date": "Mar 27-29"
+    "date": ""
   },
   "tennis": {
     "recent": {
-      "event": "Doha",
+      "event": "Qatar Open",
       "opponent": "Arthur Fils",
       "result": "W",
-      "score": "2-0",
-      "date": "Feb 15"
+      "score": "2-0 (Carlos Alcaraz won the game)",
+      "date": "Feb 21"
     },
     "next": {
-      "event": "ABN AMRO Open",
+      "event": "BNP Paribas Open",
       "detail": "-",
-      "match_time": "Feb 16",
+      "match_time": "Mar 06",
       "tournament_dates": "",
       "status": "-"
     }
