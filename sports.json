@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-07 03:51:36 KST",
+  "updated": "2026-03-07 11:08:41 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 30,
@@ -24,7 +24,7 @@
         ],
         "rule_str": "Leader",
         "matchday": 30,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ],
@@ -41,14 +41,14 @@
         ],
         "rule_str": "Leader",
         "matchday": 30,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ]
   },
   "nba": {
     "record": "32-30",
-    "rank": "#8 West",
+    "rank": "-",
     "last": {
       "opp": "Rockets",
       "result": "W",
@@ -76,23 +76,23 @@
     ]
   },
   "f1": {
-    "status": "Next GP",
-    "name": "AUSTRALIAN Grand Prix",
-    "circuit": "Albert Park, Melbourne",
+    "status": "Off-Season",
+    "name": "TBD",
+    "circuit": "TBD",
     "date": ""
   },
   "tennis": {
     "recent": {
-      "event": "Qatar Open",
+      "event": "ATP Doha",
       "opponent": "Arthur Fils",
       "result": "W",
-      "score": "2-0 (Carlos Alcaraz won the game)",
-      "date": "Feb 21"
+      "score": "2-0",
+      "date": "March 7"
     },
     "next": {
-      "event": "BNP Paribas Open",
-      "detail": "-",
-      "match_time": "Mar 06",
+      "event": "ATP Doha",
+      "detail": "QF vs Karen Khachanov",
+      "match_time": "March 7",
       "tournament_dates": "",
       "status": "-"
     }
