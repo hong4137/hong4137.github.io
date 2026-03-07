@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-07 21:53:24 KST",
+  "updated": "2026-03-08 03:37:40 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 30,
@@ -56,15 +56,6 @@
     },
     "schedule": [
       {
-        "opp": "Thunder",
-        "date": "03.08",
-        "kst_time": "10:30",
-        "local_time": "5:30 PM PT",
-        "location": "away",
-        "venue": "@ Oklahoma City",
-        "channel": ""
-      },
-      {
         "opp": "Jazz",
         "date": "03.10",
         "kst_time": "10:00",
@@ -72,29 +63,38 @@
         "location": "away",
         "venue": "@ Utah",
         "channel": ""
+      },
+      {
+        "opp": "Bulls",
+        "date": "03.11",
+        "kst_time": "11:00",
+        "local_time": "7:00 PM PT",
+        "location": "home",
+        "venue": "Chase Center",
+        "channel": ""
       }
     ]
   },
   "f1": {
-    "status": "Next GP",
-    "name": "BAHRAIN Grand Prix",
-    "circuit": "Sakhir",
-    "date": "Mar 6-8"
+    "status": "Off-Season",
+    "name": "TBD",
+    "circuit": "TBD",
+    "date": ""
   },
   "tennis": {
     "recent": {
       "event": "Doha",
       "opponent": "Arthur Fils",
       "result": "W",
-      "score": "2-0",
-      "date": "Feb 16"
+      "score": "2 - 0",
+      "date": "-"
     },
     "next": {
-      "event": "Indian Wells",
-      "detail": "R64 vs Grigor Dimitrov",
-      "match_time": "Mar 7",
-      "tournament_dates": "Mar 5 - 16",
-      "status": "Masters"
+      "event": "BNP Paribas Open",
+      "detail": "-",
+      "match_time": "Mar 4",
+      "tournament_dates": "",
+      "status": "-"
     }
   }
 }
