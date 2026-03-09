@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-09 22:09:36 KST",
+  "updated": "2026-03-10 03:57:02 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 30,
@@ -48,7 +48,7 @@
   },
   "nba": {
     "record": "32-31",
-    "rank": "-",
+    "rank": "#8 West",
     "last": {
       "opp": "Thunder",
       "result": "L",
@@ -56,17 +56,17 @@
     },
     "schedule": [
       {
-        "opp": "Jazz",
-        "date": "03.10",
-        "kst_time": "10:00",
-        "local_time": "6:00 PM PT",
-        "location": "away",
-        "venue": "@ Utah",
+        "opp": "Bulls",
+        "date": "03.11",
+        "kst_time": "11:00",
+        "local_time": "7:00 PM PT",
+        "location": "home",
+        "venue": "Chase Center",
         "channel": ""
       },
       {
-        "opp": "Bulls",
-        "date": "03.11",
+        "opp": "Timberwolves",
+        "date": "03.14",
         "kst_time": "11:00",
         "local_time": "7:00 PM PT",
         "location": "home",
@@ -77,24 +77,24 @@
   },
   "f1": {
     "status": "Next GP",
-    "name": "BAHRAIN Grand Prix",
-    "circuit": "Sakhir",
+    "name": "AUSTRALIAN Grand Prix",
+    "circuit": "Albert Park, Melbourne",
     "date": "Mar 6-8"
   },
   "tennis": {
     "recent": {
-      "event": "BNP Paribas Open",
+      "event": "Indian Wells ATP Masters",
       "opponent": "Grigor Dimitrov",
       "result": "W",
       "score": "6-2, 6-4",
-      "date": "Mar 7"
+      "date": "March 7"
     },
     "next": {
-      "event": "BNP Paribas Open",
+      "event": "Indian Wells Open",
       "detail": "R32",
-      "match_time": "-",
-      "tournament_dates": "",
-      "status": "-"
+      "match_time": "March 9",
+      "tournament_dates": "Mar 5 - 16",
+      "status": "Masters"
     }
   }
 }
