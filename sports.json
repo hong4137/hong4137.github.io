@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-09 03:38:07 KST",
+  "updated": "2026-03-09 11:27:40 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 30,
@@ -83,18 +83,18 @@
   },
   "tennis": {
     "recent": {
-      "event": "BNP Paribas Open",
-      "opponent": "Grigor Dimitrov",
-      "result": "W",
-      "score": "6-2, 6-4",
-      "date": "Mar 7"
+      "event": "Tournament Name",
+      "opponent": "Player Name",
+      "result": "-",
+      "score": "-",
+      "date": "-"
     },
     "next": {
-      "event": "Indian Wells Open",
-      "detail": "R32 vs Arthur Rinderknech",
-      "match_time": "Mar 9",
-      "tournament_dates": "Mar 5 - 16",
-      "status": "Masters"
+      "event": "BNP Paribas Open",
+      "detail": "-",
+      "match_time": "Mar 4",
+      "tournament_dates": "",
+      "status": "-"
     }
   }
 }
