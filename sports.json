@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-10 22:06:56 KST",
+  "updated": "2026-03-11 03:54:27 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 30,
@@ -56,8 +56,8 @@
     },
     "schedule": [
       {
-        "opp": "Bulls",
-        "date": "03.11",
+        "opp": "Timberwolves",
+        "date": "03.14",
         "kst_time": "11:00",
         "local_time": "7:00 PM PT",
         "location": "home",
@@ -65,12 +65,12 @@
         "channel": ""
       },
       {
-        "opp": "Timberwolves",
-        "date": "03.14",
-        "kst_time": "11:00",
-        "local_time": "7:00 PM PT",
-        "location": "home",
-        "venue": "Chase Center",
+        "opp": "Knicks",
+        "date": "03.16",
+        "kst_time": "09:00",
+        "local_time": "5:00 PM PT",
+        "location": "away",
+        "venue": "@ New York",
         "channel": ""
       }
     ]
@@ -84,15 +84,15 @@
   "tennis": {
     "recent": {
       "event": "Indian Wells",
-      "opponent": "Arthur Rinderknech",
+      "opponent": "Rinderknech",
       "result": "W",
       "score": "6-7(6), 6-3, 6-2",
-      "date": "March 10"
+      "date": "Mar 10"
     },
     "next": {
       "event": "BNP Paribas Open",
       "detail": "-",
-      "match_time": "March 10",
+      "match_time": "Mar 9",
       "tournament_dates": "",
       "status": "-"
     }
