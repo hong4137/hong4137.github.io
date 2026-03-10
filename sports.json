@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-10 03:57:02 KST",
+  "updated": "2026-03-10 11:13:15 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 30,
@@ -77,22 +77,22 @@
   },
   "f1": {
     "status": "Next GP",
-    "name": "AUSTRALIAN Grand Prix",
-    "circuit": "Albert Park, Melbourne",
+    "name": "BAHRAIN Grand Prix",
+    "circuit": "Sakhir",
     "date": "Mar 6-8"
   },
   "tennis": {
     "recent": {
-      "event": "Indian Wells ATP Masters",
-      "opponent": "Grigor Dimitrov",
+      "event": "Australian Open",
+      "opponent": "Novak Djokovic",
       "result": "W",
-      "score": "6-2, 6-4",
-      "date": "March 7"
+      "score": "2-6, 6-2, 6-3, 7-5",
+      "date": "-"
     },
     "next": {
       "event": "Indian Wells Open",
-      "detail": "R32",
-      "match_time": "March 9",
+      "detail": "-",
+      "match_time": "Mar 9",
       "tournament_dates": "Mar 5 - 16",
       "status": "Masters"
     }
