@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-11 15:57:50 KST",
+  "updated": "2026-03-11 22:06:40 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 30,
@@ -83,18 +83,18 @@
   },
   "tennis": {
     "recent": {
-      "event": "Indian Wells Open",
+      "event": "Tournament Name",
       "opponent": "Arthur Rinderknech",
       "result": "W",
-      "score": "6-7(6), 6-3, 6-2",
-      "date": "Mar 10"
+      "score": "6-7(6) 6-3 6-2",
+      "date": "March 11"
     },
     "next": {
-      "event": "Indian Wells Open",
-      "detail": "R16 vs Casper Ruud",
-      "match_time": "Mar 11 23:00 KST",
-      "tournament_dates": "Mar 5 - 16",
-      "status": "Masters"
+      "event": "BNP Paribas Open",
+      "detail": "-",
+      "match_time": "March 4",
+      "tournament_dates": "",
+      "status": "-"
     }
   }
 }
