@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-11 22:06:40 KST",
+  "updated": "2026-03-12 03:56:48 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 30,
@@ -86,13 +86,13 @@
       "event": "Tournament Name",
       "opponent": "Arthur Rinderknech",
       "result": "W",
-      "score": "6-7(6) 6-3 6-2",
-      "date": "March 11"
+      "score": "6-7(6), 6-3, 6-2",
+      "date": "-"
     },
     "next": {
       "event": "BNP Paribas Open",
       "detail": "-",
-      "match_time": "March 4",
+      "match_time": "Mar 9",
       "tournament_dates": "",
       "status": "-"
     }
