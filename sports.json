@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-11 11:12:01 KST",
+  "updated": "2026-03-11 15:57:50 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 30,
@@ -47,12 +47,12 @@
     ]
   },
   "nba": {
-    "record": "32-32",
-    "rank": "-",
+    "record": "32-33",
+    "rank": "#9 West",
     "last": {
-      "opp": "Jazz",
+      "opp": "Bulls",
       "result": "L",
-      "score": "116-119"
+      "score": "124-130"
     },
     "schedule": [
       {
@@ -83,18 +83,18 @@
   },
   "tennis": {
     "recent": {
-      "event": "Indian Wells",
-      "opponent": "Rinderknech",
+      "event": "Indian Wells Open",
+      "opponent": "Arthur Rinderknech",
       "result": "W",
       "score": "6-7(6), 6-3, 6-2",
-      "date": "Mar 11"
+      "date": "Mar 10"
     },
     "next": {
-      "event": "BNP Paribas Open",
-      "detail": "vs Casper Ruud",
+      "event": "Indian Wells Open",
+      "detail": "R16 vs Casper Ruud",
       "match_time": "Mar 11 23:00 KST",
-      "tournament_dates": "",
-      "status": "-"
+      "tournament_dates": "Mar 5 - 16",
+      "status": "Masters"
     }
   }
 }
