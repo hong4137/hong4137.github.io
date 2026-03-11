@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-11 03:54:27 KST",
+  "updated": "2026-03-11 11:12:01 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 30,
@@ -48,7 +48,7 @@
   },
   "nba": {
     "record": "32-32",
-    "rank": "#8 West",
+    "rank": "-",
     "last": {
       "opp": "Jazz",
       "result": "L",
@@ -87,12 +87,12 @@
       "opponent": "Rinderknech",
       "result": "W",
       "score": "6-7(6), 6-3, 6-2",
-      "date": "Mar 10"
+      "date": "Mar 11"
     },
     "next": {
       "event": "BNP Paribas Open",
-      "detail": "-",
-      "match_time": "Mar 9",
+      "detail": "vs Casper Ruud",
+      "match_time": "Mar 11 23:00 KST",
       "tournament_dates": "",
       "status": "-"
     }
