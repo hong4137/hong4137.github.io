@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-13 01:08:32 KST",
+  "updated": "2026-03-13 03:57:47 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 30,
@@ -253,11 +253,11 @@
   },
   "tennis": {
     "recent": {
-      "event": "Indian Wells Open",
+      "event": "BNP Paribas Open",
       "opponent": "Casper Ruud",
       "result": "W",
       "score": "6-1, 7-6(2)",
-      "date": "Mar 11"
+      "date": "Mar 12"
     },
     "next": {
       "event": "BNP Paribas Open",
