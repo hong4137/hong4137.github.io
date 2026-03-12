@@ -590,15 +590,49 @@ def process_epl_matches(matches, top_4, leader, serper_key=None, existing_data=N
                 
                 updated_matches.append({**sel_match, 'status': status, 'score': score})
             
-            if not all_finished:
-                log(f"   📌 기존 선정 유지 (R{existing_round})")
-                for m in updated_matches:
-                    icon = '🔴' if m.get('status') == 'IN_PLAY' else ('✅' if m.get('status') == 'FINISHED' else '⏳')
-                    log(f"      {icon} {m['home']} vs {m['away']} [{m.get('status')}] {m.get('score', '-')}")
-                return updated_matches, existing_round, False
-            else:
-                log(f"   🔄 R{existing_round} 경기 모두 종료 → 새로 선정 불필요")
-                return updated_matches, existing_round, False
+            # v2.5: 기존 선정이 MAX보다 적으면, 더 높은 티어 경기가 있는지 확인 후 보충/교체
+            existing_ids = {m.get('match_id') for m in updated_matches}
+            existing_best_tier = min((get_best_tier(m.get('rules', [])) for m in updated_matches), default=99)
+            
+            if len(updated_matches) < MAX_EPL_MATCHES or True:
+                # 현재 라운드에서 선정 가능한 모든 경기를 다시 계산
+                all_candidates = select_matches_from_round(matches, top_4, leader, serper_key)
+                
+                # 기존에 없는 더 좋은 경기가 있는지 확인
+                new_candidates = [c for c in all_candidates if c.get('match_id') not in existing_ids]
+                better_candidates = [c for c in new_candidates if get_best_tier(c.get('rules', [])) < existing_best_tier]
+                
+                if better_candidates:
+                    # 더 높은 티어 경기 발견 → 전체 재선정
+                    log(f"   🔄 더 높은 티어 경기 발견 → 재선정")
+                    for bc in better_candidates:
+                        tier = get_best_tier(bc['rules'])
+                        log(f"      ⬆️ [T{tier}] {bc['home']} vs {bc['away']} [{bc['rule_str']}]")
+                    # fall through to 새 선정 (아래로)
+                elif len(updated_matches) < MAX_EPL_MATCHES and new_candidates:
+                    # 부족분 보충
+                    slots = MAX_EPL_MATCHES - len(updated_matches)
+                    for nc in new_candidates[:slots]:
+                        updated_matches.append(nc)
+                        log(f"      ➕ 보충: {nc['home']} vs {nc['away']} [{nc['rule_str']}]")
+                    
+                    if not all_finished:
+                        log(f"   📌 기존 선정 + 보충 (R{existing_round}): {len(updated_matches)}경기")
+                        return updated_matches, existing_round, False
+                    else:
+                        log(f"   🔄 R{existing_round} 경기 모두 종료")
+                        return updated_matches, existing_round, False
+                else:
+                    # 변동 없음 → 기존 유지
+                    if not all_finished:
+                        log(f"   📌 기존 선정 유지 (R{existing_round})")
+                        for m in updated_matches:
+                            icon = '🔴' if m.get('status') == 'IN_PLAY' else ('✅' if m.get('status') == 'FINISHED' else '⏳')
+                            log(f"      {icon} {m['home']} vs {m['away']} [{m.get('status')}] {m.get('score', '-')}")
+                        return updated_matches, existing_round, False
+                    else:
+                        log(f"   🔄 R{existing_round} 경기 모두 종료 → 새로 선정 불필요")
+                        return updated_matches, existing_round, False
     
     # =========================================================================
     # 새로운 경기 선정 (단일 라운드에서)
