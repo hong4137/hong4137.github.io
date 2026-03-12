@@ -914,99 +914,479 @@ def inject_allstar_data(nba_data, kst_now):
     return nba_data
 
 # =============================================================================
-# F1 함수
+# F1 함수 - v2.5 (순위 + 세부 스케줄)
 # =============================================================================
-def search_f1_schedule(serper_key):
-    """F1 다음 그랑프리 또는 프리시즌 테스트 검색"""
+
+# 2026 F1 캘린더 (하드코딩 - 시즌 시작 전 업데이트)
+F1_2026_CALENDAR = [
+    {'round': 1, 'name': 'Australian Grand Prix', 'circuit': 'Albert Park, Melbourne', 'country': 'Australia',
+     'date_from': '2026-03-06', 'date_to': '2026-03-08', 'local_tz': 'AEDT', 'utc_offset': 11, 'sprint': False},
+    {'round': 2, 'name': 'Chinese Grand Prix', 'circuit': 'Shanghai International Circuit', 'country': 'China',
+     'date_from': '2026-03-13', 'date_to': '2026-03-15', 'local_tz': 'CST', 'utc_offset': 8, 'sprint': True},
+    {'round': 3, 'name': 'Japanese Grand Prix', 'circuit': 'Suzuka Circuit', 'country': 'Japan',
+     'date_from': '2026-03-27', 'date_to': '2026-03-29', 'local_tz': 'JST', 'utc_offset': 9, 'sprint': False},
+    {'round': 4, 'name': 'Bahrain Grand Prix', 'circuit': 'Bahrain International Circuit, Sakhir', 'country': 'Bahrain',
+     'date_from': '2026-04-10', 'date_to': '2026-04-12', 'local_tz': 'AST', 'utc_offset': 3, 'sprint': False},
+    {'round': 5, 'name': 'Saudi Arabian Grand Prix', 'circuit': 'Jeddah Corniche Circuit', 'country': 'Saudi Arabia',
+     'date_from': '2026-04-17', 'date_to': '2026-04-19', 'local_tz': 'AST', 'utc_offset': 3, 'sprint': False},
+    {'round': 6, 'name': 'Miami Grand Prix', 'circuit': 'Miami International Autodrome', 'country': 'USA',
+     'date_from': '2026-05-01', 'date_to': '2026-05-03', 'local_tz': 'EDT', 'utc_offset': -4, 'sprint': True},
+    {'round': 7, 'name': 'Canadian Grand Prix', 'circuit': 'Circuit Gilles Villeneuve, Montreal', 'country': 'Canada',
+     'date_from': '2026-05-15', 'date_to': '2026-05-17', 'local_tz': 'EDT', 'utc_offset': -4, 'sprint': False},
+    {'round': 8, 'name': 'Monaco Grand Prix', 'circuit': 'Circuit de Monaco', 'country': 'Monaco',
+     'date_from': '2026-05-22', 'date_to': '2026-05-24', 'local_tz': 'CEST', 'utc_offset': 2, 'sprint': False},
+    {'round': 9, 'name': 'Spanish Grand Prix', 'circuit': 'Circuit de Barcelona-Catalunya', 'country': 'Spain',
+     'date_from': '2026-06-05', 'date_to': '2026-06-07', 'local_tz': 'CEST', 'utc_offset': 2, 'sprint': False},
+    {'round': 10, 'name': 'Austrian Grand Prix', 'circuit': 'Red Bull Ring, Spielberg', 'country': 'Austria',
+     'date_from': '2026-06-26', 'date_to': '2026-06-28', 'local_tz': 'CEST', 'utc_offset': 2, 'sprint': False},
+    {'round': 11, 'name': 'British Grand Prix', 'circuit': 'Silverstone Circuit', 'country': 'UK',
+     'date_from': '2026-07-03', 'date_to': '2026-07-05', 'local_tz': 'BST', 'utc_offset': 1, 'sprint': False},
+    {'round': 12, 'name': 'Belgian Grand Prix', 'circuit': 'Circuit de Spa-Francorchamps', 'country': 'Belgium',
+     'date_from': '2026-07-24', 'date_to': '2026-07-26', 'local_tz': 'CEST', 'utc_offset': 2, 'sprint': True},
+    {'round': 13, 'name': 'Hungarian Grand Prix', 'circuit': 'Hungaroring, Budapest', 'country': 'Hungary',
+     'date_from': '2026-07-31', 'date_to': '2026-08-02', 'local_tz': 'CEST', 'utc_offset': 2, 'sprint': False},
+    {'round': 14, 'name': 'Dutch Grand Prix', 'circuit': 'Circuit Zandvoort', 'country': 'Netherlands',
+     'date_from': '2026-08-28', 'date_to': '2026-08-30', 'local_tz': 'CEST', 'utc_offset': 2, 'sprint': False},
+    {'round': 15, 'name': 'Italian Grand Prix', 'circuit': 'Autodromo di Monza', 'country': 'Italy',
+     'date_from': '2026-09-04', 'date_to': '2026-09-06', 'local_tz': 'CEST', 'utc_offset': 2, 'sprint': False},
+    {'round': 16, 'name': 'Azerbaijan Grand Prix', 'circuit': 'Baku City Circuit', 'country': 'Azerbaijan',
+     'date_from': '2026-09-18', 'date_to': '2026-09-20', 'local_tz': 'AZT', 'utc_offset': 4, 'sprint': False},
+    {'round': 17, 'name': 'Singapore Grand Prix', 'circuit': 'Marina Bay Street Circuit', 'country': 'Singapore',
+     'date_from': '2026-10-02', 'date_to': '2026-10-04', 'local_tz': 'SGT', 'utc_offset': 8, 'sprint': False},
+    {'round': 18, 'name': 'United States Grand Prix', 'circuit': 'COTA, Austin', 'country': 'USA',
+     'date_from': '2026-10-16', 'date_to': '2026-10-18', 'local_tz': 'CDT', 'utc_offset': -5, 'sprint': True},
+    {'round': 19, 'name': 'Mexico City Grand Prix', 'circuit': 'Autódromo Hermanos Rodríguez', 'country': 'Mexico',
+     'date_from': '2026-10-23', 'date_to': '2026-10-25', 'local_tz': 'CDT', 'utc_offset': -5, 'sprint': False},
+    {'round': 20, 'name': 'São Paulo Grand Prix', 'circuit': 'Interlagos, São Paulo', 'country': 'Brazil',
+     'date_from': '2026-11-06', 'date_to': '2026-11-08', 'local_tz': 'BRT', 'utc_offset': -3, 'sprint': True},
+    {'round': 21, 'name': 'Las Vegas Grand Prix', 'circuit': 'Las Vegas Strip Circuit', 'country': 'USA',
+     'date_from': '2026-11-20', 'date_to': '2026-11-22', 'local_tz': 'PST', 'utc_offset': -8, 'sprint': False},
+    {'round': 22, 'name': 'Qatar Grand Prix', 'circuit': 'Lusail International Circuit', 'country': 'Qatar',
+     'date_from': '2026-11-27', 'date_to': '2026-11-29', 'local_tz': 'AST', 'utc_offset': 3, 'sprint': True},
+    {'round': 23, 'name': 'Abu Dhabi Grand Prix', 'circuit': 'Yas Marina Circuit', 'country': 'UAE',
+     'date_from': '2026-12-04', 'date_to': '2026-12-06', 'local_tz': 'GST', 'utc_offset': 4, 'sprint': False},
+]
+
+def get_f1_next_race():
+    """캘린더에서 다음/현재 GP 찾기"""
     kst_now = get_kst_now()
+    today = kst_now.date()
+    
+    for gp in F1_2026_CALENDAR:
+        gp_end = datetime.date.fromisoformat(gp['date_to'])
+        if today <= gp_end:
+            gp_start = datetime.date.fromisoformat(gp['date_from'])
+            if today >= gp_start:
+                status = 'This Week'
+            else:
+                status = 'Next GP'
+            return {**gp, 'status': status}
+    
+    # 시즌 종료
+    return None
 
-    f1_data = {
-        'status': 'Off-Season',
-        'name': 'TBD',
-        'circuit': 'TBD',
-        'date': ''
+def get_f1_race_schedule(gp_info):
+    """
+    GP의 세부 세션 스케줄 생성 (KST 시간 포함)
+    표준 스케줄 기반 + UTC offset으로 KST 변환
+    """
+    if not gp_info:
+        return []
+    
+    date_from = datetime.date.fromisoformat(gp_info['date_from'])
+    utc_offset = gp_info.get('utc_offset', 0)
+    is_sprint = gp_info.get('sprint', False)
+    
+    friday = date_from
+    saturday = date_from + timedelta(days=1)
+    sunday = date_from + timedelta(days=2)
+    
+    sessions = []
+    
+    if is_sprint:
+        # 스프린트 주말 포맷: FP1, SQ, Sprint, Qualifying, Race
+        # 일반적 현지 시간대 (변동 가능하지만 대략적 기준)
+        sprint_schedule = [
+            (friday, 'FP1', 13, 30),
+            (friday, 'Sprint Qualifying', 17, 30),
+            (saturday, 'Sprint', 12, 0),
+            (saturday, 'Qualifying', 16, 0),
+            (sunday, 'Race', 15, 0),
+        ]
+        for day, name, local_h, local_m in sprint_schedule:
+            utc_h = local_h - utc_offset
+            kst_h = utc_h + 9
+            # 날짜 보정
+            kst_date = day
+            if kst_h >= 24:
+                kst_h -= 24
+                kst_date = day + timedelta(days=1)
+            elif kst_h < 0:
+                kst_h += 24
+                kst_date = day - timedelta(days=1)
+            
+            sessions.append({
+                'name': name,
+                'date': kst_date.strftime("%m.%d"),
+                'day_local': day.strftime("%a"),
+                'kst_time': f"{kst_h:02d}:{local_m:02d}",
+                'local_time': f"{local_h:02d}:{local_m:02d}",
+            })
+    else:
+        # 표준 주말 포맷: FP1, FP2, FP3, Qualifying, Race
+        # 세션별 기본 현지 시간 (서킷마다 다를 수 있지만 일반적 기준)
+        standard_schedule = [
+            (friday, 'FP1', 13, 30),
+            (friday, 'FP2', 17, 0),
+            (saturday, 'FP3', 12, 30),
+            (saturday, 'Qualifying', 16, 0),
+            (sunday, 'Race', 15, 0),
+        ]
+        
+        for day, name, local_h, local_m in standard_schedule:
+            utc_h = local_h - utc_offset
+            kst_h = utc_h + 9
+            kst_date = day
+            if kst_h >= 24:
+                kst_h -= 24
+                kst_date = day + timedelta(days=1)
+            elif kst_h < 0:
+                kst_h += 24
+                kst_date = day - timedelta(days=1)
+            
+            sessions.append({
+                'name': name,
+                'date': kst_date.strftime("%m.%d"),
+                'day_local': day.strftime("%a"),
+                'kst_time': f"{kst_h:02d}:{local_m:02d}",
+                'local_time': f"{local_h:02d}:{local_m:02d}",
+            })
+    
+    return sessions
+
+def get_f1_standings(serper_key, gemini_key):
+    """
+    F1 드라이버 순위 가져오기 (Serper + Gemini)
+    Top 10 드라이버의 이름, 팀, 포인트 반환
+    """
+    if not serper_key:
+        return None
+    
+    query = "F1 2026 driver standings championship points"
+    result = call_serper_api(query, serper_key)
+    
+    if not result:
+        return None
+    
+    text = ""
+    if 'answerBox' in result:
+        text += result['answerBox'].get('snippet', '') + " "
+        text += result['answerBox'].get('answer', '') + " "
+    if 'sportsResults' in result:
+        text += json.dumps(result['sportsResults']) + " "
+    for item in result.get('organic', [])[:5]:
+        text += item.get('snippet', '') + " "
+    
+    # Gemini로 구조화
+    if gemini_key:
+        kst_now = get_kst_now()
+        today_str = kst_now.strftime("%B %d, %Y")
+        
+        prompt = f"""You are an F1 data extractor. Today is {today_str}.
+
+From the search results below, extract the current 2026 F1 World Championship Driver Standings (top 10).
+
+Search results:
+---
+{text[:3000]}
+---
+
+Respond with ONLY a JSON array, no markdown, no explanation. Each element:
+{{
+  "pos": 1,
+  "driver": "Full Name",
+  "team": "Team Name",
+  "points": 25
+}}
+
+If you cannot determine the standings, respond with: []"""
+        
+        gemini_response = call_gemini_api(prompt, gemini_key)
+        
+        if gemini_response:
+            try:
+                clean = gemini_response.strip()
+                clean = re.sub(r'^```(?:json)?\s*', '', clean)
+                clean = re.sub(r'\s*```$', '', clean)
+                standings = json.loads(clean)
+                if isinstance(standings, list) and len(standings) > 0:
+                    return standings[:10]
+            except:
+                log(f"      ⚠️ Gemini F1 standings 파싱 실패")
+    
+    # Gemini 실패 시 regex fallback
+    return get_f1_standings_regex(text)
+
+def get_f1_standings_regex(text):
+    """Regex fallback으로 F1 순위 추출"""
+    # 일반적인 순위 패턴: "1. Russell (Mercedes) 25" 등
+    known_drivers = {
+        'Russell': ('George Russell', 'Mercedes'),
+        'Antonelli': ('Kimi Antonelli', 'Mercedes'),
+        'Leclerc': ('Charles Leclerc', 'Ferrari'),
+        'Hamilton': ('Lewis Hamilton', 'Ferrari'),
+        'Norris': ('Lando Norris', 'McLaren'),
+        'Verstappen': ('Max Verstappen', 'Red Bull'),
+        'Bearman': ('Oliver Bearman', 'Haas'),
+        'Lindblad': ('Arvid Lindblad', 'Racing Bulls'),
+        'Bortoleto': ('Gabriel Bortoleto', 'Audi'),
+        'Gasly': ('Pierre Gasly', 'Alpine'),
+        'Piastri': ('Oscar Piastri', 'McLaren'),
+        'Sainz': ('Carlos Sainz', 'Williams'),
+        'Albon': ('Alexander Albon', 'Williams'),
+        'Stroll': ('Lance Stroll', 'Aston Martin'),
+        'Alonso': ('Fernando Alonso', 'Aston Martin'),
+        'Tsunoda': ('Yuki Tsunoda', 'Red Bull'),
+        'Hulkenberg': ('Nico Hülkenberg', 'Audi'),
+        'Ocon': ('Esteban Ocon', 'Haas'),
+        'Doohan': ('Jack Doohan', 'Alpine'),
+        'Colapinto': ('Franco Colapinto', 'Alpine'),
+        'Lawson': ('Liam Lawson', 'Red Bull'),
+        'Hadjar': ('Isack Hadjar', 'Racing Bulls'),
+        'Bottas': ('Valtteri Bottas', 'Cadillac'),
+        'Perez': ('Sergio Perez', 'Cadillac'),
     }
+    
+    standings = []
+    for surname, (full_name, team) in known_drivers.items():
+        # "surname ... XX points" 또는 "surname XX pts"
+        pattern = rf'{surname}\s+.*?(\d{{1,3}})\s*(?:pts?|points?)'
+        match = re.search(pattern, text, re.IGNORECASE)
+        if match:
+            pts = int(match.group(1))
+            if pts > 0:
+                standings.append({
+                    'driver': full_name,
+                    'team': team,
+                    'points': pts
+                })
+    
+    if standings:
+        standings.sort(key=lambda x: x['points'], reverse=True)
+        for i, s in enumerate(standings):
+            s['pos'] = i + 1
+        return standings[:10]
+    
+    return None
 
+def get_f1_schedule_from_search(gp_info, serper_key, gemini_key):
+    """
+    Serper + Gemini로 정확한 세션 시간 가져오기 (선택적 보완)
+    캘린더 기반 기본 스케줄이 있으므로, 검색으로 정확한 시간만 보완
+    """
+    if not serper_key or not gemini_key or not gp_info:
+        return None
+    
+    gp_name = gp_info.get('name', '')
+    year = 2026
+    
+    query = f"F1 {year} {gp_name} schedule practice qualifying race start times"
+    result = call_serper_api(query, serper_key)
+    
+    if not result:
+        return None
+    
+    text = ""
+    if 'answerBox' in result:
+        text += result['answerBox'].get('snippet', '') + " "
+    for item in result.get('organic', [])[:5]:
+        text += item.get('snippet', '') + " "
+    
+    kst_now = get_kst_now()
+    today_str = kst_now.strftime("%B %d, %Y")
+    
+    is_sprint = gp_info.get('sprint', False)
+    
+    if is_sprint:
+        format_hint = "This is a SPRINT weekend. Sessions are: FP1 (Friday), Sprint Qualifying (Friday), Sprint (Saturday), Qualifying (Saturday), Race (Sunday)."
+    else:
+        format_hint = "This is a STANDARD weekend. Sessions are: FP1 (Friday), FP2 (Friday), FP3 (Saturday), Qualifying (Saturday), Race (Sunday)."
+    
+    prompt = f"""You are an F1 schedule extractor. Today is {today_str}.
+Extract the 2026 {gp_name} session schedule with LOCAL times.
+{format_hint}
+
+Search results:
+---
+{text[:3000]}
+---
+
+Respond with ONLY a JSON array, no markdown. Each element:
+{{
+  "name": "session name (FP1/FP2/FP3/Sprint Qualifying/Sprint/Qualifying/Race)",
+  "date": "YYYY-MM-DD",
+  "local_time": "HH:MM (24h format, local circuit time)"
+}}
+
+If you cannot determine, respond with: []"""
+    
+    gemini_response = call_gemini_api(prompt, gemini_key)
+    if not gemini_response:
+        return None
+    
+    try:
+        clean = gemini_response.strip()
+        clean = re.sub(r'^```(?:json)?\s*', '', clean)
+        clean = re.sub(r'\s*```$', '', clean)
+        sessions_raw = json.loads(clean)
+        
+        if not isinstance(sessions_raw, list) or len(sessions_raw) == 0:
+            return None
+        
+        utc_offset = gp_info.get('utc_offset', 0)
+        sessions = []
+        
+        for s in sessions_raw:
+            local_time = s.get('local_time', '')
+            session_date_str = s.get('date', '')
+            name = s.get('name', '')
+            
+            if not local_time or not name:
+                continue
+            
+            try:
+                local_h, local_m = map(int, local_time.split(':'))
+                utc_h = local_h - utc_offset
+                kst_h = utc_h + 9
+                
+                if session_date_str:
+                    session_date = datetime.date.fromisoformat(session_date_str)
+                else:
+                    session_date = datetime.date.today()
+                
+                kst_date = session_date
+                if kst_h >= 24:
+                    kst_h -= 24
+                    kst_date = session_date + timedelta(days=1)
+                elif kst_h < 0:
+                    kst_h += 24
+                    kst_date = session_date - timedelta(days=1)
+                
+                sessions.append({
+                    'name': name,
+                    'date': kst_date.strftime("%m.%d"),
+                    'day_local': session_date.strftime("%a"),
+                    'kst_time': f"{kst_h:02d}:{local_m:02d}",
+                    'local_time': local_time,
+                })
+            except:
+                continue
+        
+        if len(sessions) >= 3:
+            return sessions
+    except:
+        pass
+    
+    return None
+
+def search_f1_data(serper_key, gemini_key=None):
+    """
+    v2.5: F1 데이터 통합 수집
+    Returns: {
+        'next_race': {...},      # 다음/현재 GP 정보
+        'schedule': [...],        # 세부 세션 스케줄 (KST)
+        'standings': [...],       # 드라이버 순위 Top 10
+    }
+    """
+    kst_now = get_kst_now()
+    
+    f1_data = {
+        'next_race': None,
+        'schedule': [],
+        'standings': [],
+    }
+    
     # =========================================================================
-    # 시즌 전 (1~2월): 프리시즌 테스트 일정 표시
+    # 시즌 전 (1~2월): 프리시즌 테스트
     # =========================================================================
     if kst_now.month <= 2:
         today = kst_now.date()
-
+        
         test1_start = date(2026, 1, 26)
         test1_end = date(2026, 1, 30)
         test2_start = date(2026, 2, 11)
         test2_end = date(2026, 2, 13)
         test3_start = date(2026, 2, 18)
         test3_end = date(2026, 2, 20)
-
+        
         if today < test1_start:
-            f1_data = {'status': 'Pre-Season', 'name': 'Test 1 (Private)', 'circuit': 'Barcelona-Catalunya', 'date': 'Jan 26-30'}
+            f1_data['next_race'] = {'status': 'Pre-Season', 'name': 'Test 1 (Private)', 'circuit': 'Barcelona-Catalunya', 'date': 'Jan 26-30'}
         elif today <= test1_end:
-            f1_data = {'status': 'Testing', 'name': 'Test 1 (Private)', 'circuit': 'Barcelona-Catalunya', 'date': 'Jan 26-30'}
+            f1_data['next_race'] = {'status': 'Testing', 'name': 'Test 1 (Private)', 'circuit': 'Barcelona-Catalunya', 'date': 'Jan 26-30'}
         elif today < test2_start:
-            f1_data = {'status': 'Pre-Season', 'name': 'Test 2', 'circuit': 'Bahrain International', 'date': 'Feb 11-13'}
+            f1_data['next_race'] = {'status': 'Pre-Season', 'name': 'Test 2', 'circuit': 'Bahrain International', 'date': 'Feb 11-13'}
         elif today <= test2_end:
-            f1_data = {'status': 'Testing', 'name': 'Test 2', 'circuit': 'Bahrain International', 'date': 'Feb 11-13'}
+            f1_data['next_race'] = {'status': 'Testing', 'name': 'Test 2', 'circuit': 'Bahrain International', 'date': 'Feb 11-13'}
         elif today < test3_start:
-            f1_data = {'status': 'Pre-Season', 'name': 'Test 3', 'circuit': 'Bahrain International', 'date': 'Feb 18-20'}
+            f1_data['next_race'] = {'status': 'Pre-Season', 'name': 'Test 3', 'circuit': 'Bahrain International', 'date': 'Feb 18-20'}
         elif today <= test3_end:
-            f1_data = {'status': 'Testing', 'name': 'Test 3', 'circuit': 'Bahrain International', 'date': 'Feb 18-20'}
+            f1_data['next_race'] = {'status': 'Testing', 'name': 'Test 3', 'circuit': 'Bahrain International', 'date': 'Feb 18-20'}
         else:
-            f1_data = {'status': 'Off-Season', 'name': 'AUSTRALIAN Grand Prix', 'circuit': 'Albert Park, Melbourne', 'date': 'Mar 06-08'}
-
+            f1_data['next_race'] = {'status': 'Pre-Season', 'name': 'Australian Grand Prix', 'circuit': 'Albert Park, Melbourne', 'date': 'Mar 06-08'}
+        
         return f1_data
-
+    
     # =========================================================================
-    # 시즌 중 (3월~): 다음 GP 검색
+    # 시즌 중 (3월~): 캘린더 기반 + 검색 보완
     # =========================================================================
-    query = "F1 2026 next Grand Prix race schedule"
-    result = call_serper_api(query, serper_key)
-
-    if not result:
-        return {
-            "status": "Off-Season",
-            "name": "Australian Grand Prix",
-            "circuit": "Albert Park, Melbourne",
-            "date": "Mar 2026"
+    
+    # 1. 다음/현재 GP 찾기
+    gp_info = get_f1_next_race()
+    if gp_info:
+        gp_start = datetime.date.fromisoformat(gp_info['date_from'])
+        gp_end = datetime.date.fromisoformat(gp_info['date_to'])
+        
+        f1_data['next_race'] = {
+            'round': gp_info['round'],
+            'name': gp_info['name'],
+            'circuit': gp_info['circuit'],
+            'country': gp_info['country'],
+            'date': f"{gp_start.strftime('%b %d')}-{gp_end.strftime('%d')}",
+            'date_from': gp_info['date_from'],
+            'date_to': gp_info['date_to'],
+            'status': gp_info['status'],
+            'sprint': gp_info.get('sprint', False),
         }
-
-    text = ""
-    if 'answerBox' in result:
-        text += result['answerBox'].get('snippet', '') + " "
-    for item in result.get('organic', [])[:5]:
-        text += item.get('snippet', '') + " "
-        text += item.get('title', '') + " "
-
-    gp_circuit_map = {
-        'Australian': 'Albert Park, Melbourne',
-        'Bahrain': 'Sakhir',
-        'Saudi Arabian': 'Jeddah',
-        'Japanese': 'Suzuka',
-        'Chinese': 'Shanghai',
-        'Miami': 'Miami',
-        'Monaco': 'Monaco',
-        'Canadian': 'Montreal',
-        'Spanish': 'Barcelona',
-        'Austrian': 'Red Bull Ring',
-        'British': 'Silverstone',
-    }
-
-    for gp_name, circuit in gp_circuit_map.items():
-        if gp_name.lower() in text.lower():
-            f1_data['name'] = f"{gp_name.upper()} Grand Prix"
-            f1_data['circuit'] = circuit
-            f1_data['status'] = 'Next GP'
-            break
-
-    date_pattern = r'(March|April|May|June|July|August|September|October|November)\s+(\d{1,2})(?:-(\d{1,2}))?'
-    date_match = re.search(date_pattern, text, re.IGNORECASE)
-    if date_match:
-        month = date_match.group(1)[:3]
-        day_start = date_match.group(2)
-        day_end = date_match.group(3) or str(int(day_start) + 2)
-        f1_data['date'] = f"{month} {day_start}-{day_end}"
-
+        
+        # 2. 세부 스케줄: 먼저 Serper+Gemini로 시도, 실패 시 캘린더 기반
+        log("   [F1] 세부 스케줄 조회...")
+        search_schedule = get_f1_schedule_from_search(gp_info, serper_key, gemini_key)
+        
+        if search_schedule:
+            f1_data['schedule'] = search_schedule
+            log(f"   ✅ Serper+Gemini 스케줄: {len(search_schedule)}세션")
+        else:
+            f1_data['schedule'] = get_f1_race_schedule(gp_info)
+            log(f"   ℹ️ 캘린더 기반 스케줄 (기본값): {len(f1_data['schedule'])}세션")
+    else:
+        f1_data['next_race'] = {
+            'status': 'Off-Season',
+            'name': 'Season Complete',
+            'circuit': '-',
+            'date': '-'
+        }
+    
+    # 3. 드라이버 순위
+    log("   [F1] 드라이버 순위 조회...")
+    standings = get_f1_standings(serper_key, gemini_key)
+    if standings:
+        f1_data['standings'] = standings
+        log(f"   ✅ 순위: {len(standings)}명")
+        for s in standings[:5]:
+            log(f"      {s.get('pos', '-')}. {s.get('driver', '-')} ({s.get('team', '-')}) {s.get('points', 0)}pts")
+    else:
+        log("   ⚠️ 순위 조회 실패")
+    
     return f1_data
 
 # =============================================================================
@@ -1617,20 +1997,18 @@ def update_sports_data():
         log("   ⚠️ BALLDONTLIE_API_KEY 없음, 기본값 사용")
 
     # =========================================================================
-    # STEP 4: F1
+    # STEP 4: F1 (v2.5: 순위 + 세부 스케줄)
     # =========================================================================
-    log("\n🏎️ [Step 4/5] F1 일정...")
+    log("\n🏎️ [Step 4/5] F1 (v2.5: 순위 + 세부 스케줄)...")
 
-    if serper_api_key:
-        f1_data = search_f1_schedule(serper_api_key)
-        log(f"   ✅ {f1_data['name']} | {f1_data['circuit']} | {f1_data['date']}")
-    else:
-        f1_data = {
-            "status": "Off-Season",
-            "name": "Australian Grand Prix",
-            "circuit": "Albert Park, Melbourne",
-            "date": "Mar 2026"
-        }
+    f1_data = search_f1_data(serper_api_key, gemini_api_key)
+    next_race = f1_data.get('next_race', {})
+    log(f"   ✅ {next_race.get('name', '-')} | {next_race.get('circuit', '-')} | {next_race.get('date', '-')} [{next_race.get('status', '-')}]")
+    if f1_data.get('schedule'):
+        for s in f1_data['schedule']:
+            log(f"      📅 {s['date']} {s['kst_time']} KST | {s['name']}")
+    if f1_data.get('standings'):
+        log(f"   ✅ 순위: {len(f1_data['standings'])}명 로드")
 
     # =========================================================================
     # STEP 5: Tennis (v2.5: Web App + Serper/Gemini 보완)
@@ -1733,6 +2111,7 @@ def update_sports_data():
     log(f"✅ [Complete]")
     log(f"   EPL: {len(validated_epl)}경기 ({display_matchday})")
     log(f"   NBA: {len(nba_data['schedule'])}경기")
+    log(f"   F1: {next_race.get('name', '-')} | {len(f1_data.get('schedule', []))}세션 | {len(f1_data.get('standings', []))}명 순위")
     log(f"   Tennis: {final_next.get('event', '-')} | {final_next.get('detail', '-')}{enriched_tag}")
     log(f"   파일: {SPORTS_FILE}")
 
