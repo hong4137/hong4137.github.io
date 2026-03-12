@@ -1828,8 +1828,8 @@ Respond with ONLY a JSON object, no markdown, no explanation:
     
     # confidence가 low면 보완하지 않음
     if confidence == 'low':
-        log("      ⚠️ Low confidence → 보완하지 않음")
-        return webapp_data
+        log("      ⚠️ Low confidence → regex fallback 시도")
+        return enrich_tennis_regex_fallback(webapp_data, combined_search)
     
     # next 데이터 보완
     if gem_tournament and gem_tournament != '-':
@@ -1846,6 +1846,14 @@ Respond with ONLY a JSON object, no markdown, no explanation:
     
     if gem_time_kst and gem_time_kst != '-':
         enriched['next']['time_kst'] = gem_time_kst
+    
+    # Gemini가 상대를 못 찾았으면 (TBD 또는 -) regex로 추가 시도
+    if enriched['next'].get('opponent', '-') in ('-', '', None, 'TBD'):
+        log("      ℹ️ Gemini 상대 미확인 → regex 추가 시도")
+        regex_result = enrich_tennis_regex_fallback(enriched, combined_search)
+        if regex_result.get('next', {}).get('opponent', '-') not in ('-', '', None, 'TBD'):
+            enriched['next']['opponent'] = regex_result['next']['opponent']
+            log(f"      📎 Regex로 상대 보완: {enriched['next']['opponent']}")
     
     # enriched에 source 표시
     enriched['_enriched'] = True
