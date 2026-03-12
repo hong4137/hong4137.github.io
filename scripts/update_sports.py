@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-update_sports.py - Sports Dashboard Data Updater v2.4
+update_sports.py - Sports Dashboard Data Updater v2.5
 ======================================================
 EPL: Football-Data.org 무료 API (순위, 일정)
 NBA: balldontlie.io 무료 API (일정, 결과)
@@ -14,6 +14,11 @@ EPL 중계/F1/Tennis: Serper API 검색 (월 2,500회 무료)
 4. Prime Time: 일요일 16:30 UK
 5. Early KO: 토요일 12:30 UK
 6. Leader: 리그 1위 팀 포함
+
+[v2.5 변경사항]
+- Tennis: Web App 데이터 검증 + Serper/Gemini 보완 로직 추가
+- Tennis: 대회 진행 중 next 경기 상대/라운드/시간 정확도 대폭 개선
+- Tennis: 같은 대회 내 다음 경기 감지 (recent 대회 == 현재 진행 중)
 
 [v2.4 변경사항]
 - EPL: 기존 선정 라운드 경기를 별도 API 조회하여 정확한 상태 확인
@@ -1005,13 +1010,380 @@ def search_f1_schedule(serper_key):
     return f1_data
 
 # =============================================================================
-# 테니스 함수 - v2.5 (Apps Script Web App 호출)
+# 테니스 함수 - v2.5 (Apps Script Web App + Serper/Gemini 보완)
 # =============================================================================
 TENNIS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxtXuoeprkGMGbLBIOoxtYK47lU4rQ4faJHAnW6clP1Exi8EO0eAqj-NM6efl9aSMbxSQ/exec"
+
+# 대회명 정규화 매핑 (같은 대회의 다른 이름들)
+TOURNAMENT_ALIASES = {
+    'bnp paribas open': 'Indian Wells',
+    'indian wells open': 'Indian Wells',
+    'indian wells masters': 'Indian Wells',
+    'indian wells': 'Indian Wells',
+    'miami open': 'Miami Open',
+    'miami masters': 'Miami Open',
+    'monte carlo masters': 'Monte Carlo Masters',
+    'monte-carlo masters': 'Monte Carlo Masters',
+    'mutua madrid open': 'Madrid Open',
+    'madrid open': 'Madrid Open',
+    'internazionali d\'italia': 'Italian Open',
+    'italian open': 'Italian Open',
+    'rome masters': 'Italian Open',
+    'roland garros': 'Roland Garros',
+    'french open': 'Roland Garros',
+    'wimbledon': 'Wimbledon',
+    'us open': 'US Open',
+    'australian open': 'Australian Open',
+    'canadian open': 'Canadian Open',
+    'national bank open': 'Canadian Open',
+    'cincinnati open': 'Cincinnati Masters',
+    'western & southern open': 'Cincinnati Masters',
+    'shanghai masters': 'Shanghai Masters',
+    'paris masters': 'Paris Masters',
+    'rolex paris masters': 'Paris Masters',
+    'atp finals': 'ATP Finals',
+    'nitto atp finals': 'ATP Finals',
+}
+
+def normalize_tournament_name(name):
+    """대회명 정규화"""
+    if not name or name == '-':
+        return name
+    name_lower = name.lower().strip()
+    for alias, standard in TOURNAMENT_ALIASES.items():
+        if alias in name_lower:
+            return standard
+    return name
+
+def is_same_tournament(name1, name2):
+    """두 대회명이 같은 대회인지 확인"""
+    if not name1 or not name2 or name1 == '-' or name2 == '-':
+        return False
+    norm1 = normalize_tournament_name(name1)
+    norm2 = normalize_tournament_name(name2)
+    return norm1 == norm2
+
+def is_tennis_data_incomplete(webapp_data):
+    """
+    v2.5: Web App 데이터가 불완전한지 검증
+    
+    불완전 판정 기준:
+    1. next 상대가 '-' 또는 빈 값
+    2. next 대회가 recent 대회와 같은 대회인데 라운드/상대 정보 없음
+    3. next 날짜가 비어있거나 '-'
+    """
+    recent = webapp_data.get('recent', {})
+    next_data = webapp_data.get('next', {})
+    
+    next_event = next_data.get('event', '-')
+    next_opponent = next_data.get('opponent', '-')
+    next_round = next_data.get('round', '-')
+    next_date = next_data.get('date', '-')
+    recent_event = recent.get('event', '-')
+    
+    reasons = []
+    
+    # 1. 상대 정보 없음
+    if next_opponent in ('-', '', None):
+        reasons.append('no_opponent')
+    
+    # 2. 같은 대회 진행 중인데 라운드 정보 없음 (대회 아직 끝나지 않음)
+    if is_same_tournament(recent_event, next_event):
+        if next_round in ('-', '', None):
+            reasons.append('same_tournament_no_round')
+    
+    # 3. 다른 대회로 넘어갔는데 상대/라운드 모두 없음 (너무 이른 정보)
+    if not is_same_tournament(recent_event, next_event):
+        if next_opponent in ('-', '', None) and next_round in ('-', '', None):
+            reasons.append('future_tournament_no_detail')
+    
+    # 4. 날짜 없음
+    if next_date in ('-', '', None):
+        reasons.append('no_date')
+    
+    # 5. 현재 대회가 아직 진행 중인데 다른 대회로 넘어간 경우
+    #    (recent 대회 종료일이 아직 지나지 않았는데 next가 다른 대회)
+    if not is_same_tournament(recent_event, next_event) and recent_event != '-':
+        tournament_end_dates = {
+            'Indian Wells': (3, 16),  # Mar 16
+            'Miami Open': (3, 30),
+            'Monte Carlo Masters': (4, 13),
+            'Madrid Open': (5, 4),
+            'Italian Open': (5, 18),
+            'Roland Garros': (6, 8),
+            'Wimbledon': (7, 13),
+            'Canadian Open': (8, 10),
+            'Cincinnati Masters': (8, 17),
+            'US Open': (9, 7),
+            'Shanghai Masters': (10, 12),
+            'Paris Masters': (11, 2),
+            'ATP Finals': (11, 16),
+            'Australian Open': (2, 2),
+        }
+        recent_norm = normalize_tournament_name(recent_event)
+        end_date = tournament_end_dates.get(recent_norm)
+        if end_date:
+            kst_now = get_kst_now()
+            tournament_end = datetime.date(kst_now.year, end_date[0], end_date[1])
+            if kst_now.date() <= tournament_end:
+                reasons.append('recent_tournament_still_ongoing')
+    
+    return reasons
+
+def enrich_tennis_with_search(webapp_data, serper_key, gemini_key):
+    """
+    v2.5: Serper 검색 + Gemini 파싱으로 Web App 데이터 보완
+    
+    흐름:
+    1. Serper로 "Alcaraz next match" 검색 (2회)
+    2. 검색 결과를 Gemini에게 JSON 파싱 요청
+    3. 파싱 결과로 Web App 데이터 보완/교체
+    
+    Returns: 보완된 webapp_data (원본 구조 유지)
+    """
+    if not serper_key:
+        log("      ⚠️ Serper API 키 없음 → 보완 불가")
+        return webapp_data
+    
+    recent = webapp_data.get('recent', {})
+    next_data = webapp_data.get('next', {})
+    recent_event = recent.get('event', '-')
+    
+    # =========================================================================
+    # Step 1: Serper 검색 (2개 쿼리)
+    # =========================================================================
+    kst_now = get_kst_now()
+    today_str = kst_now.strftime("%B %d, %Y")
+    
+    search_texts = []
+    
+    # 쿼리 1: 다음 경기 정보
+    q1 = "Carlos Alcaraz next match opponent schedule"
+    result1 = call_serper_api(q1, serper_key)
+    if result1:
+        text = ""
+        if 'answerBox' in result1:
+            text += result1['answerBox'].get('snippet', '') + " "
+            text += result1['answerBox'].get('answer', '') + " "
+        if 'sportsResults' in result1:
+            text += json.dumps(result1['sportsResults']) + " "
+        for item in result1.get('organic', [])[:5]:
+            text += item.get('snippet', '') + " "
+            text += item.get('title', '') + " "
+        search_texts.append(text)
+    
+    # 쿼리 2: 현재 대회 진행 상황
+    recent_norm = normalize_tournament_name(recent_event)
+    q2 = f"Alcaraz {recent_norm} 2026 draw results round"
+    result2 = call_serper_api(q2, serper_key)
+    if result2:
+        text = ""
+        if 'answerBox' in result2:
+            text += result2['answerBox'].get('snippet', '') + " "
+        for item in result2.get('organic', [])[:5]:
+            text += item.get('snippet', '') + " "
+            text += item.get('title', '') + " "
+        search_texts.append(text)
+    
+    if not search_texts:
+        log("      ⚠️ Serper 검색 결과 없음")
+        return webapp_data
+    
+    combined_search = "\n\n".join(search_texts)
+    
+    # =========================================================================
+    # Step 2: Gemini로 구조화 파싱
+    # =========================================================================
+    if not gemini_key:
+        # Gemini 없으면 regex fallback
+        log("      ℹ️ Gemini 키 없음 → regex fallback")
+        return enrich_tennis_regex_fallback(webapp_data, combined_search)
+    
+    prompt = f"""You are a tennis data extractor. Today is {today_str}.
+
+From the search results below, extract Carlos Alcaraz's NEXT upcoming match information.
+Important: Focus on his NEXT match that has NOT been played yet. Ignore completed matches.
+If a tournament is currently ongoing, the next match is within that same tournament.
+
+Search results:
+---
+{combined_search[:3000]}
+---
+
+Web App current data (may be inaccurate):
+- Recent match: {recent.get('event', '-')} vs {recent.get('opponent', '-')} ({recent.get('result', '-')}) on {recent.get('date', '-')}
+- Next shown: {next_data.get('event', '-')} vs {next_data.get('opponent', '-')} on {next_data.get('date', '-')}
+
+Respond with ONLY a JSON object, no markdown, no explanation:
+{{
+  "tournament": "tournament name",
+  "opponent": "opponent full name or TBD if unknown",
+  "round": "round name (e.g. QF, SF, F, R16, R32, R64, R128) or - if unknown",
+  "date": "match date in Mon DD format (e.g. Mar 14) or - if unknown",
+  "time_kst": "match time in KST HH:MM format or - if unknown",
+  "status": "tournament category: Grand Slam, Masters, ATP 500, ATP 250, or -",
+  "confidence": "high, medium, or low"
+}}"""
+
+    gemini_response = call_gemini_api(prompt, gemini_key)
+    
+    if not gemini_response:
+        log("      ⚠️ Gemini 응답 없음 → regex fallback")
+        return enrich_tennis_regex_fallback(webapp_data, combined_search)
+    
+    # JSON 파싱
+    try:
+        # ```json ... ``` 제거
+        clean = gemini_response.strip()
+        clean = re.sub(r'^```(?:json)?\s*', '', clean)
+        clean = re.sub(r'\s*```$', '', clean)
+        parsed = json.loads(clean)
+    except json.JSONDecodeError:
+        log(f"      ⚠️ Gemini JSON 파싱 실패: {gemini_response[:100]}")
+        return enrich_tennis_regex_fallback(webapp_data, combined_search)
+    
+    confidence = parsed.get('confidence', 'low')
+    log(f"      🤖 Gemini 파싱 결과 (confidence: {confidence}):")
+    log(f"         대회: {parsed.get('tournament', '-')}")
+    log(f"         상대: {parsed.get('opponent', '-')}")
+    log(f"         라운드: {parsed.get('round', '-')}")
+    log(f"         날짜: {parsed.get('date', '-')}")
+    log(f"         시간(KST): {parsed.get('time_kst', '-')}")
+    
+    # =========================================================================
+    # Step 3: Web App 데이터 보완
+    # =========================================================================
+    enriched = json.loads(json.dumps(webapp_data))  # deep copy
+    
+    gem_tournament = parsed.get('tournament', '-')
+    gem_opponent = parsed.get('opponent', '-')
+    gem_round = parsed.get('round', '-')
+    gem_date = parsed.get('date', '-')
+    gem_time_kst = parsed.get('time_kst', '-')
+    gem_status = parsed.get('status', '-')
+    
+    # confidence가 low면 보완하지 않음
+    if confidence == 'low':
+        log("      ⚠️ Low confidence → 보완하지 않음")
+        return webapp_data
+    
+    # next 데이터 보완
+    if gem_tournament and gem_tournament != '-':
+        enriched['next']['event'] = gem_tournament
+    
+    if gem_opponent and gem_opponent not in ('-', 'TBD', ''):
+        enriched['next']['opponent'] = gem_opponent
+    
+    if gem_round and gem_round != '-':
+        enriched['next']['round'] = gem_round
+    
+    if gem_date and gem_date != '-':
+        enriched['next']['date'] = gem_date
+    
+    if gem_time_kst and gem_time_kst != '-':
+        enriched['next']['time_kst'] = gem_time_kst
+    
+    # enriched에 source 표시
+    enriched['_enriched'] = True
+    enriched['_enriched_confidence'] = confidence
+    
+    return enriched
+
+def enrich_tennis_regex_fallback(webapp_data, search_text):
+    """
+    Gemini 없을 때 regex로 최소한의 보완 시도
+    주로 상대 이름과 라운드 추출
+    """
+    enriched = json.loads(json.dumps(webapp_data))
+    
+    text = search_text.lower()
+    
+    # 라운드 감지
+    round_patterns = [
+        (r'alcaraz.*?quarter[\s-]?final', 'QF'),
+        (r'quarter[\s-]?final.*?alcaraz', 'QF'),
+        (r'alcaraz.*?semi[\s-]?final', 'SF'),
+        (r'semi[\s-]?final.*?alcaraz', 'SF'),
+        (r'alcaraz.*?\bfinal\b', 'F'),
+        (r'alcaraz.*?round of 16', 'R16'),
+        (r'alcaraz.*?fourth round', 'R16'),
+        (r'alcaraz.*?third round', 'R32'),
+        (r'alcaraz.*?second round', 'R64'),
+    ]
+    
+    detected_round = None
+    for pattern, round_name in round_patterns:
+        if re.search(pattern, text):
+            detected_round = round_name
+            break
+    
+    if detected_round and enriched.get('next', {}).get('round', '-') in ('-', '', None):
+        enriched['next']['round'] = detected_round
+        log(f"      📎 Regex fallback: round={detected_round}")
+    
+    # 상대 감지: "Alcaraz vs/faces/plays [Name]" 또는 "[Name] vs Alcaraz"
+    opponent_patterns = [
+        r'alcaraz\s+(?:vs\.?|faces?|plays?|takes?\s+on|meets?|against)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)',
+        r'([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s+vs\.?\s+(?:Carlos\s+)?Alcaraz',
+    ]
+    
+    detected_opponent = None
+    for pattern in opponent_patterns:
+        match = re.search(pattern, search_text)  # case-sensitive on original text
+        if match:
+            candidate = match.group(1).strip()
+            # 필터: 너무 짧거나 일반적인 단어 제외
+            skip_words = {'The', 'And', 'For', 'His', 'This', 'That', 'Next', 'Match', 
+                         'Round', 'Final', 'Open', 'Masters', 'Grand', 'Slam'}
+            if candidate not in skip_words and len(candidate) > 2:
+                detected_opponent = candidate
+                break
+    
+    if detected_opponent and enriched.get('next', {}).get('opponent', '-') in ('-', '', None):
+        enriched['next']['opponent'] = detected_opponent
+        log(f"      📎 Regex fallback: opponent={detected_opponent}")
+    
+    if detected_round or detected_opponent:
+        enriched['_enriched'] = True
+        enriched['_enriched_confidence'] = 'regex'
+    
+    return enriched
 
 def get_tennis_data_from_webapp():
     """Tennis (Alcaraz) - Apps Script Web App에서 데이터 가져오기"""
     
+    default_data = {
+        'recent': {'event': '-', 'opponent': '-', 'result': '-', 'score': '-', 'date': '-'},
+        'next': {'event': '-', 'detail': '-', 'match_time': 'TBD', 'tournament_dates': '', 'status': '-'}
+    }
+    
+    try:
+        response = requests.get(TENNIS_WEBAPP_URL, timeout=30)
+        if response.status_code != 200:
+            log(f"   ⚠️ Web App 호출 실패: {response.status_code}")
+            return None  # v2.5: None 반환하여 호출측에서 fallback 가능
+        
+        data = response.json()
+        
+        if 'error' in data:
+            log(f"   ⚠️ Web App 에러: {data['error']}")
+            return None
+        
+        # v2.5: raw 데이터 반환 (후처리는 format_tennis_data에서)
+        return data
+        
+    except requests.exceptions.Timeout:
+        log(f"   ⚠️ Web App 타임아웃")
+        return None
+    except Exception as e:
+        log(f"   ⚠️ Web App 예외: {e}")
+        return None
+
+def format_tennis_data(raw_data):
+    """
+    v2.5: raw 데이터를 대시보드 표시용 포맷으로 변환
+    Web App 원본이든 enriched 데이터든 동일하게 처리
+    """
     tournament_schedule = {
         'australian open': 'Jan 12 - Feb 2',
         'roland garros': 'May 25 - Jun 8',
@@ -1030,91 +1402,86 @@ def get_tennis_data_from_webapp():
         'atp finals': 'Nov 9 - 16',
     }
     
-    default_data = {
-        'recent': {'event': '-', 'opponent': '-', 'result': '-', 'score': '-', 'date': '-'},
-        'next': {'event': '-', 'detail': '-', 'match_time': 'TBD', 'tournament_dates': '', 'status': '-'}
+    status_map = {
+        'australian open': 'Grand Slam', 'french open': 'Grand Slam',
+        'roland garros': 'Grand Slam', 'wimbledon': 'Grand Slam',
+        'us open': 'Grand Slam', 'indian wells': 'Masters',
+        'miami': 'Masters', 'monte carlo': 'Masters',
+        'madrid': 'Masters', 'rome': 'Masters', 'italian': 'Masters',
+        'cincinnati': 'Masters', 'shanghai': 'Masters',
+        'paris masters': 'Masters', 'atp finals': 'Finals'
     }
     
-    try:
-        response = requests.get(TENNIS_WEBAPP_URL, timeout=30)
-        if response.status_code != 200:
-            log(f"   ⚠️ Web App 호출 실패: {response.status_code}")
-            return default_data
-        
-        data = response.json()
-        
-        if 'error' in data:
-            log(f"   ⚠️ Web App 에러: {data['error']}")
-            return default_data
-        
-        recent = data.get('recent', {})
-        next_data = data.get('next', {})
-        next_event = next_data.get('event', '-')
-        next_opponent = next_data.get('opponent', '-')
-        next_round = next_data.get('round', '-')
-        next_date = next_data.get('date', '-')
-        time_kst = next_data.get('time_kst', '-')
-        
-        if next_round != '-' and next_opponent != '-':
-            next_detail = f"{next_round} vs {next_opponent}"
-        elif next_round != '-':
-            next_detail = next_round
-        elif next_opponent != '-':
-            next_detail = f"vs {next_opponent}"
-        else:
-            next_detail = '-'
-        
-        if time_kst != '-':
-            match_time = f"{next_date} {time_kst} KST"
-        else:
-            match_time = next_date
-        
-        tournament_dates = ''
-        for keyword, dates in tournament_schedule.items():
-            if keyword in next_event.lower():
-                tournament_dates = dates
-                break
-        
-        status_map = {
-            'australian open': 'Grand Slam', 'french open': 'Grand Slam', 
-            'roland garros': 'Grand Slam', 'wimbledon': 'Grand Slam', 
-            'us open': 'Grand Slam', 'indian wells': 'Masters', 
-            'miami': 'Masters', 'monte carlo': 'Masters', 
-            'madrid': 'Masters', 'rome': 'Masters', 'italian': 'Masters',
-            'cincinnati': 'Masters', 'shanghai': 'Masters', 
-            'paris masters': 'Masters', 'atp finals': 'Finals'
+    if not raw_data:
+        return {
+            'recent': {'event': '-', 'opponent': '-', 'result': '-', 'score': '-', 'date': '-'},
+            'next': {'event': '-', 'detail': '-', 'match_time': 'TBD', 'tournament_dates': '', 'status': '-'}
         }
-        next_status = '-'
-        for keyword, status in status_map.items():
-            if keyword in next_event.lower():
-                next_status = status
-                break
-        
-        tennis_data = {
-            'recent': {
-                'event': recent.get('event', '-'),
-                'opponent': recent.get('opponent', '-'),
-                'result': recent.get('result', '-'),
-                'score': recent.get('score', '-'),
-                'date': recent.get('date', '-')
-            },
-            'next': {
-                'event': next_event,
-                'detail': next_detail,
-                'match_time': match_time,
-                'tournament_dates': tournament_dates,
-                'status': next_status
-            }
+    
+    recent = raw_data.get('recent', {})
+    next_data = raw_data.get('next', {})
+    
+    next_event = next_data.get('event', '-')
+    next_opponent = next_data.get('opponent', '-')
+    next_round = next_data.get('round', '-')
+    next_date = next_data.get('date', '-')
+    time_kst = next_data.get('time_kst', '-')
+    
+    # detail 구성
+    if next_round not in ('-', '', None) and next_opponent not in ('-', '', None, 'TBD'):
+        next_detail = f"{next_round} vs {next_opponent}"
+    elif next_round not in ('-', '', None):
+        next_detail = next_round
+    elif next_opponent not in ('-', '', None, 'TBD'):
+        next_detail = f"vs {next_opponent}"
+    else:
+        next_detail = '-'
+    
+    # match_time 구성
+    if time_kst not in ('-', '', None):
+        match_time = f"{next_date} {time_kst} KST"
+    elif next_date not in ('-', '', None):
+        match_time = next_date
+    else:
+        match_time = 'TBD'
+    
+    # tournament_dates
+    tournament_dates = ''
+    for keyword, dates in tournament_schedule.items():
+        if keyword in next_event.lower():
+            tournament_dates = dates
+            break
+    
+    # status (대회 등급)
+    next_status = '-'
+    for keyword, status in status_map.items():
+        if keyword in next_event.lower():
+            next_status = status
+            break
+    
+    tennis_data = {
+        'recent': {
+            'event': recent.get('event', '-'),
+            'opponent': recent.get('opponent', '-'),
+            'result': recent.get('result', '-'),
+            'score': recent.get('score', '-'),
+            'date': recent.get('date', '-')
+        },
+        'next': {
+            'event': next_event,
+            'detail': next_detail,
+            'match_time': match_time,
+            'tournament_dates': tournament_dates,
+            'status': next_status
         }
-        
-        return tennis_data
-        
-    except requests.exceptions.Timeout:
-        log(f"   ⚠️ Web App 타임아웃")
-        return default_data
-    except Exception as e:
-        log(f"   ⚠️ Web App 예외: {e}")
-        return default_data
+    }
+    
+    # enriched 메타데이터 전달
+    if raw_data.get('_enriched'):
+        tennis_data['_enriched'] = True
+        tennis_data['_enriched_confidence'] = raw_data.get('_enriched_confidence', '-')
+    
+    return tennis_data
 
 # =============================================================================
 # 메인 업데이트 함수
@@ -1136,6 +1503,7 @@ def update_sports_data():
     log(f"   - EPL: Football-Data.org ✅")
     log(f"   - NBA: balldontlie.io {'✅' if balldontlie_api_key else '❌'}")
     log(f"   - Search: Serper API {'✅' if serper_api_key else '❌'}")
+    log(f"   - AI Parse: Gemini API {'✅' if gemini_api_key else '❌'}")
 
     # 기존 데이터 로드
     existing_data = load_existing_sports_data()
@@ -1265,15 +1633,67 @@ def update_sports_data():
         }
 
     # =========================================================================
-    # STEP 5: Tennis (Apps Script Web App)
+    # STEP 5: Tennis (v2.5: Web App + Serper/Gemini 보완)
     # =========================================================================
-    log("\n🎾 [Step 5/5] Tennis (Alcaraz) - Web App...")
+    log("\n🎾 [Step 5/5] Tennis (Alcaraz) - v2.5...")
 
-    tennis_data = get_tennis_data_from_webapp()
-    recent = tennis_data.get('recent', {})
-    next_match = tennis_data.get('next', {})
-    log(f"   ✅ Recent: {recent.get('event', '-')} vs {recent.get('opponent', '-')} {recent.get('result', '-')} ({recent.get('score', '-')}) | {recent.get('date', '-')}")
-    log(f"   ✅ Next: {next_match.get('event', '-')} | {next_match.get('detail', '-')} | {next_match.get('match_time', '-')} [{next_match.get('status', '-')}]")
+    # 5-1: Web App 호출
+    log("   [5-1] Web App 호출...")
+    raw_tennis = get_tennis_data_from_webapp()
+    
+    if raw_tennis:
+        recent = raw_tennis.get('recent', {})
+        next_raw = raw_tennis.get('next', {})
+        log(f"   ✅ Web App 응답:")
+        log(f"      Recent: {recent.get('event', '-')} vs {recent.get('opponent', '-')} {recent.get('result', '-')} ({recent.get('score', '-')})")
+        log(f"      Next: {next_raw.get('event', '-')} vs {next_raw.get('opponent', '-')} | R:{next_raw.get('round', '-')} | {next_raw.get('date', '-')}")
+        
+        # 5-2: 데이터 검증
+        log("   [5-2] 데이터 검증...")
+        issues = is_tennis_data_incomplete(raw_tennis)
+        
+        if issues:
+            log(f"   ⚠️ 불완전 데이터 감지: {', '.join(issues)}")
+            
+            # 5-3: Serper + Gemini 보완
+            log("   [5-3] Serper + Gemini 보완 시도...")
+            enriched_tennis = enrich_tennis_with_search(raw_tennis, serper_api_key, gemini_api_key)
+            
+            # 보완 결과 로그
+            enriched_next = enriched_tennis.get('next', {})
+            was_enriched = enriched_tennis.get('_enriched', False)
+            if was_enriched:
+                log(f"   ✅ 보완 완료 ({enriched_tennis.get('_enriched_confidence', '-')}):")
+                log(f"      Next: {enriched_next.get('event', '-')} vs {enriched_next.get('opponent', '-')} | R:{enriched_next.get('round', '-')} | {enriched_next.get('date', '-')}")
+            else:
+                log(f"   ℹ️ 보완 실패, Web App 원본 유지")
+            
+            tennis_data = format_tennis_data(enriched_tennis)
+        else:
+            log(f"   ✅ 데이터 완전 → 보완 불필요")
+            tennis_data = format_tennis_data(raw_tennis)
+    else:
+        # Web App 완전 실패 → Serper/Gemini만으로 시도
+        log("   ⚠️ Web App 실패 → Serper/Gemini fallback...")
+        
+        fallback_data = {
+            'recent': {'event': '-', 'opponent': '-', 'result': '-', 'score': '-', 'date': '-'},
+            'next': {'event': '-', 'opponent': '-', 'round': '-', 'date': '-', 'time_kst': '-'}
+        }
+        
+        if serper_api_key:
+            enriched = enrich_tennis_with_search(fallback_data, serper_api_key, gemini_api_key)
+            tennis_data = format_tennis_data(enriched)
+        else:
+            tennis_data = format_tennis_data(fallback_data)
+    
+    # 최종 결과 로그
+    final_recent = tennis_data.get('recent', {})
+    final_next = tennis_data.get('next', {})
+    enriched_tag = " [enriched]" if tennis_data.get('_enriched') else ""
+    log(f"   📊 최종 결과{enriched_tag}:")
+    log(f"      Recent: {final_recent.get('event', '-')} vs {final_recent.get('opponent', '-')} {final_recent.get('result', '-')} ({final_recent.get('score', '-')}) | {final_recent.get('date', '-')}")
+    log(f"      Next: {final_next.get('event', '-')} | {final_next.get('detail', '-')} | {final_next.get('match_time', '-')} [{final_next.get('status', '-')}]")
 
     # =========================================================================
     # NBA All-Star Week 데이터 삽입 (기간 내 자동 표시/숨김)
@@ -1287,6 +1707,9 @@ def update_sports_data():
 
     # EPL 표시용 라운드
     display_matchday = f"R{selected_round}" if selected_round else f"R{current_matchday}"
+    
+    # _enriched 메타는 저장하지 않음
+    clean_tennis = {k: v for k, v in tennis_data.items() if not k.startswith('_')}
 
     sports_data = {
         "updated": kst_now.strftime("%Y-%m-%d %H:%M:%S KST"),
@@ -1301,7 +1724,7 @@ def update_sports_data():
         },
         "nba": nba_data,
         "f1": f1_data,
-        "tennis": tennis_data
+        "tennis": clean_tennis
     }
 
     with open(SPORTS_FILE, 'w', encoding='utf-8') as f:
@@ -1310,6 +1733,7 @@ def update_sports_data():
     log(f"✅ [Complete]")
     log(f"   EPL: {len(validated_epl)}경기 ({display_matchday})")
     log(f"   NBA: {len(nba_data['schedule'])}경기")
+    log(f"   Tennis: {final_next.get('event', '-')} | {final_next.get('detail', '-')}{enriched_tag}")
     log(f"   파일: {SPORTS_FILE}")
 
     return sports_data
