@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-13 00:32:58 KST",
+  "updated": "2026-03-13 00:48:19 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 30,
@@ -126,28 +126,64 @@
     ],
     "standings": [
       {
+        "pos": 1,
         "driver": "George Russell",
         "team": "Mercedes",
-        "points": 25,
-        "pos": 1
+        "points": 25
       },
       {
+        "pos": 2,
+        "driver": "Kimi Antonelli",
+        "team": "Mercedes",
+        "points": 18
+      },
+      {
+        "pos": 3,
+        "driver": "Charles Leclerc",
+        "team": "Ferrari",
+        "points": 15
+      },
+      {
+        "pos": 4,
+        "driver": "Lewis Hamilton",
+        "team": "Ferrari",
+        "points": 12
+      },
+      {
+        "pos": 5,
         "driver": "Lando Norris",
         "team": "McLaren",
-        "points": 25,
-        "pos": 2
+        "points": 10
       },
       {
+        "pos": 6,
         "driver": "Max Verstappen",
         "team": "Red Bull",
-        "points": 25,
-        "pos": 3
+        "points": 8
       },
       {
+        "pos": 7,
         "driver": "Oliver Bearman",
         "team": "Haas",
-        "points": 25,
-        "pos": 4
+        "points": 6
+      },
+      {
+        "pos": 8,
+        "driver": "Arvid Lindblad",
+        "team": "Racing Bulls",
+        "points": 4
+      },
+      {
+        "pos": 9,
+        "driver": "Gabriel Bortoleto",
+        "team": "Audi",
+        "points": 2
+      },
+      {
+        "pos": 10,
+        "driver": "Pierre Gasly",
+        "team": "Alpine",
+        "points": 1
       }
     ]
   },
@@ -162,7 +198,7 @@
     "next": {
       "event": "BNP Paribas Open",
       "detail": "QF",
-      "match_time": "Mar 14",
+      "match_time": "Mar 13",
       "tournament_dates": "",
       "status": "-"
     }
