@@ -1066,18 +1066,67 @@ def get_f1_race_schedule(gp_info):
 
 def get_f1_standings(serper_key, gemini_key):
     """
-    F1 드라이버 순위 가져오기 (Serper + Gemini)
-    Top 10 드라이버의 이름, 팀, 포인트 반환
+    F1 드라이버 순위 가져오기
+    1차: 신뢰할 수 있는 페이지 직접 fetch + regex 파싱
+    2차: Serper 검색 + Gemini 파싱 (fallback)
     """
+    
+    # =========================================================================
+    # 1차: 웹페이지 직접 fetch (total-motorsport.com 테이블)
+    # =========================================================================
+    standings_urls = [
+        "https://www.total-motorsport.com/f1-driver-standings-2026/",
+        "https://racingnews365.com/f1/standings/2026/drivers",
+    ]
+    
+    for url in standings_urls:
+        try:
+            resp = requests.get(url, timeout=15, headers={
+                'User-Agent': 'Mozilla/5.0 (compatible; DashboardBot/1.0)'
+            })
+            if resp.status_code != 200:
+                continue
+            
+            page_text = resp.text
+            standings = parse_f1_standings_from_html(page_text)
+            if standings and len(standings) >= 5:
+                log(f"      ✅ 순위 직접 파싱 성공 ({url.split('/')[2]}): {len(standings)}명")
+                return standings[:10]
+        except Exception as e:
+            log(f"      ⚠️ fetch 실패 ({url.split('/')[2]}): {e}")
+            continue
+    
+    # =========================================================================
+    # 2차: Serper + Gemini fallback
+    # =========================================================================
     if not serper_key:
         return None
     
-    query = "F1 2026 driver standings championship points"
+    query = "F1 2026 driver championship standings points table"
     result = call_serper_api(query, serper_key)
     
     if not result:
         return None
     
+    # 검색 결과 중 유용한 URL을 fetch 시도
+    for item in result.get('organic', [])[:3]:
+        item_url = item.get('link', '')
+        if not item_url:
+            continue
+        if 'standings' in item_url.lower() or 'championship' in item_url.lower():
+            try:
+                resp = requests.get(item_url, timeout=15, headers={
+                    'User-Agent': 'Mozilla/5.0 (compatible; DashboardBot/1.0)'
+                })
+                if resp.status_code == 200:
+                    standings = parse_f1_standings_from_html(resp.text)
+                    if standings and len(standings) >= 5:
+                        log(f"      ✅ Serper URL 파싱 성공: {len(standings)}명")
+                        return standings[:10]
+            except:
+                continue
+    
+    # Serper snippet에서 직접 파싱
     text = ""
     if 'answerBox' in result:
         text += result['answerBox'].get('snippet', '') + " "
@@ -1087,29 +1136,27 @@ def get_f1_standings(serper_key, gemini_key):
     for item in result.get('organic', [])[:5]:
         text += item.get('snippet', '') + " "
     
-    # Gemini로 구조화
-    if gemini_key:
+    # Gemini 파싱 시도
+    if gemini_key and text.strip():
         kst_now = get_kst_now()
         today_str = kst_now.strftime("%B %d, %Y")
         
         prompt = f"""You are an F1 data extractor. Today is {today_str}.
 
-From the search results below, extract the current 2026 F1 World Championship Driver Standings (top 10).
+Extract the current 2026 F1 World Championship Driver Standings (top 10) with ACCURATE points.
+Points after each race: 1st=25, 2nd=18, 3rd=15, 4th=12, 5th=10, 6th=8, 7th=6, 8th=4, 9th=2, 10th=1.
 
 Search results:
 ---
 {text[:3000]}
 ---
 
-Respond with ONLY a JSON array, no markdown, no explanation. Each element:
-{{
-  "pos": 1,
-  "driver": "Full Name",
-  "team": "Team Name",
-  "points": 25
-}}
+CRITICAL: Each driver's points must be DIFFERENT (unless truly tied). Do NOT give everyone the same points.
 
-If you cannot determine the standings, respond with: []"""
+Respond with ONLY a JSON array, no markdown:
+[{{"pos": 1, "driver": "Full Name", "team": "Team Name", "points": 25}}, ...]
+
+If unsure, respond: []"""
         
         gemini_response = call_gemini_api(prompt, gemini_key)
         
@@ -1119,13 +1166,116 @@ If you cannot determine the standings, respond with: []"""
                 clean = re.sub(r'^```(?:json)?\s*', '', clean)
                 clean = re.sub(r'\s*```$', '', clean)
                 standings = json.loads(clean)
-                if isinstance(standings, list) and len(standings) > 0:
-                    return standings[:10]
+                if isinstance(standings, list) and len(standings) >= 5:
+                    # 검증: 모든 포인트가 같으면 잘못된 파싱
+                    points_set = set(s.get('points', 0) for s in standings[:5])
+                    if len(points_set) >= 3:  # 최소 3종류 이상의 포인트
+                        return standings[:10]
+                    else:
+                        log(f"      ⚠️ Gemini 결과 의심 (포인트 중복): {points_set}")
             except:
                 log(f"      ⚠️ Gemini F1 standings 파싱 실패")
     
-    # Gemini 실패 시 regex fallback
-    return get_f1_standings_regex(text)
+    return None
+
+def parse_f1_standings_from_html(html_text):
+    """
+    HTML 페이지에서 F1 드라이버 순위 테이블 파싱
+    다양한 형식의 테이블/리스트를 처리
+    """
+    known_drivers = {
+        'Russell': ('George Russell', 'Mercedes'),
+        'Antonelli': ('Kimi Antonelli', 'Mercedes'),
+        'Leclerc': ('Charles Leclerc', 'Ferrari'),
+        'Hamilton': ('Lewis Hamilton', 'Ferrari'),
+        'Norris': ('Lando Norris', 'McLaren'),
+        'Verstappen': ('Max Verstappen', 'Red Bull'),
+        'Bearman': ('Oliver Bearman', 'Haas'),
+        'Lindblad': ('Arvid Lindblad', 'Racing Bulls'),
+        'Bortoleto': ('Gabriel Bortoleto', 'Audi'),
+        'Gasly': ('Pierre Gasly', 'Alpine'),
+        'Piastri': ('Oscar Piastri', 'McLaren'),
+        'Sainz': ('Carlos Sainz', 'Williams'),
+        'Albon': ('Alexander Albon', 'Williams'),
+        'Stroll': ('Lance Stroll', 'Aston Martin'),
+        'Alonso': ('Fernando Alonso', 'Aston Martin'),
+        'Tsunoda': ('Yuki Tsunoda', 'Red Bull'),
+        'Hulkenberg': ('Nico Hülkenberg', 'Audi'),
+        'Hülkenberg': ('Nico Hülkenberg', 'Audi'),
+        'Ocon': ('Esteban Ocon', 'Haas'),
+        'Doohan': ('Jack Doohan', 'Alpine'),
+        'Colapinto': ('Franco Colapinto', 'Alpine'),
+        'Lawson': ('Liam Lawson', 'Red Bull'),
+        'Hadjar': ('Isack Hadjar', 'Racing Bulls'),
+        'Bottas': ('Valtteri Bottas', 'Cadillac'),
+        'Perez': ('Sergio Perez', 'Cadillac'),
+        'Pérez': ('Sergio Perez', 'Cadillac'),
+    }
+    
+    standings = []
+    
+    # 패턴 1: HTML 테이블 행 (<td> 기반)
+    # "Position | Driver | Team | Points" 형태
+    row_pattern = r'<tr[^>]*>\s*<td[^>]*>\s*(\d{1,2})\s*</td>\s*<td[^>]*>(.*?)</td>\s*<td[^>]*>(.*?)</td>\s*<td[^>]*>\s*(\d{1,3})\s*</td>'
+    rows = re.findall(row_pattern, html_text, re.DOTALL | re.IGNORECASE)
+    
+    if rows:
+        for pos_str, driver_cell, team_cell, pts_str in rows:
+            pos = int(pos_str)
+            pts = int(pts_str)
+            
+            # driver_cell에서 이름 추출 (HTML 태그 제거)
+            driver_name = re.sub(r'<[^>]+>', '', driver_cell).strip()
+            team_name = re.sub(r'<[^>]+>', '', team_cell).strip()
+            
+            if driver_name and pts >= 0 and pos <= 22:
+                standings.append({
+                    'pos': pos,
+                    'driver': driver_name,
+                    'team': team_name,
+                    'points': pts
+                })
+        
+        if len(standings) >= 5:
+            standings.sort(key=lambda x: x['pos'])
+            return standings
+    
+    # 패턴 2: 텍스트에서 "1 George Russell Mercedes 25" 형태
+    text = re.sub(r'<[^>]+>', ' ', html_text)  # 모든 태그 제거
+    text = re.sub(r'\s+', ' ', text)
+    
+    for surname, (full_name, team) in known_drivers.items():
+        # "surname ... NN" (포인트가 이름 근처에 있는 패턴)
+        patterns = [
+            rf'{surname}\s+{re.escape(team)}\s+(\d{{1,3}})',
+            rf'{surname}[^0-9]{{0,30}}(\d{{1,3}})\s',
+            rf'(\d{{1,3}})\s+{surname}',
+        ]
+        for pattern in patterns:
+            match = re.search(pattern, text, re.IGNORECASE)
+            if match:
+                pts = int(match.group(1))
+                if 0 <= pts <= 500:  # 합리적 범위
+                    standings.append({
+                        'driver': full_name,
+                        'team': team,
+                        'points': pts
+                    })
+                    break
+    
+    if standings:
+        standings.sort(key=lambda x: x['points'], reverse=True)
+        # 중복 제거
+        seen = set()
+        unique = []
+        for s in standings:
+            if s['driver'] not in seen:
+                seen.add(s['driver'])
+                s['pos'] = len(unique) + 1
+                unique.append(s)
+        return unique if len(unique) >= 3 else None
+    
+    return None
 
 def get_f1_standings_regex(text):
     """Regex fallback으로 F1 순위 추출"""
@@ -1537,8 +1687,8 @@ def enrich_tennis_with_search(webapp_data, serper_key, gemini_key):
     
     search_texts = []
     
-    # 쿼리 1: 다음 경기 정보
-    q1 = "Carlos Alcaraz next match opponent schedule"
+    # 쿼리 1: 다음 경기 상대 (가장 직접적)
+    q1 = "Alcaraz next match vs opponent today tomorrow"
     result1 = call_serper_api(q1, serper_key)
     if result1:
         text = ""
@@ -1552,9 +1702,9 @@ def enrich_tennis_with_search(webapp_data, serper_key, gemini_key):
             text += item.get('title', '') + " "
         search_texts.append(text)
     
-    # 쿼리 2: 현재 대회 진행 상황
+    # 쿼리 2: 현재 대회 쿼터파이널/다음 라운드 (상대 이름이 나올 확률 높음)
     recent_norm = normalize_tournament_name(recent_event)
-    q2 = f"Alcaraz {recent_norm} 2026 draw results round"
+    q2 = f"Alcaraz {recent_norm} 2026 quarterfinal semifinal preview prediction"
     result2 = call_serper_api(q2, serper_key)
     if result2:
         text = ""
@@ -1701,23 +1851,44 @@ def enrich_tennis_regex_fallback(webapp_data, search_text):
         enriched['next']['round'] = detected_round
         log(f"      📎 Regex fallback: round={detected_round}")
     
-    # 상대 감지: "Alcaraz vs/faces/plays [Name]" 또는 "[Name] vs Alcaraz"
+    # 상대 감지: 다양한 패턴으로 상대 이름 추출
     opponent_patterns = [
-        r'alcaraz\s+(?:vs\.?|faces?|plays?|takes?\s+on|meets?|against)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)',
-        r'([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s+vs\.?\s+(?:Carlos\s+)?Alcaraz',
+        # "Alcaraz vs Cameron Norrie", "Alcaraz will face Cameron Norrie"
+        r'[Aa]lcaraz\s+(?:vs\.?|faces?|plays?|takes?\s+on|meets?|against|will\s+face)\s+(?:\(\d+\)\s*)?([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)',
+        # "Alcaraz vs [27] Cameron Norrie" (시드 포함)
+        r'[Aa]lcaraz\s+(?:vs\.?|faces?)\s+\[?\d*\]?\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)',
+        # "[1] Carlos Alcaraz (ESP) vs [27] Cameron Norrie (GBR)"
+        r'Alcaraz\s+\([A-Z]{3}\)\s+(?:vs?\.?\s+|d\.?\s+)\[?\d*\]?\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)',
+        # "Cameron Norrie vs Alcaraz" / "Cameron Norrie vs Carlos Alcaraz"
+        r'([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)\s+vs\.?\s+(?:Carlos\s+)?[Aa]lcaraz',
+        # "quarterfinal against Cameron Norrie" / "faces Cameron Norrie in the quarterfinals"
+        r'(?:quarter|semi|final|round)[\w\s]*(?:against|vs\.?|with)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)',
+        # "Next: vs Cameron Norrie"
+        r'[Nn]ext:?\s+(?:vs\.?\s+)?([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)',
     ]
     
     detected_opponent = None
+    skip_words = {'The', 'And', 'For', 'His', 'This', 'That', 'Next', 'Match', 
+                 'Round', 'Final', 'Open', 'Masters', 'Grand', 'Slam', 'Indian Wells',
+                 'Carlos Alcaraz', 'Stadium Court', 'Not Before', 'BNP Paribas'}
+    
     for pattern in opponent_patterns:
-        match = re.search(pattern, search_text)  # case-sensitive on original text
-        if match:
-            candidate = match.group(1).strip()
-            # 필터: 너무 짧거나 일반적인 단어 제외
-            skip_words = {'The', 'And', 'For', 'His', 'This', 'That', 'Next', 'Match', 
-                         'Round', 'Final', 'Open', 'Masters', 'Grand', 'Slam'}
-            if candidate not in skip_words and len(candidate) > 2:
-                detected_opponent = candidate
-                break
+        matches = re.findall(pattern, search_text)
+        for candidate in matches:
+            candidate = candidate.strip()
+            if candidate in skip_words or len(candidate) < 4:
+                continue
+            # 알카라스 본인 이름 제외
+            if 'alcaraz' in candidate.lower() or 'carlos' in candidate.lower():
+                continue
+            # 후행 불필요 단어 제거 (Preview, Prediction 등)
+            candidate = re.sub(r'\s+(Preview|Prediction|Highlights?|Schedule|Results?|Head|Match|Live|ATP|WTA).*$', '', candidate, flags=re.IGNORECASE).strip()
+            if len(candidate) < 4:
+                continue
+            detected_opponent = candidate
+            break
+        if detected_opponent:
+            break
     
     if detected_opponent and enriched.get('next', {}).get('opponent', '-') in ('-', '', None):
         enriched['next']['opponent'] = detected_opponent
