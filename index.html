@@ -231,7 +231,7 @@
                         <div style="display:flex; align-items:center; gap:8px;"><i class="fas fa-flag-checkered" style="color:#e10600; font-size: 1.2rem;"></i><a href="https://www.formula1.com" target="_blank" class="sport-title-link">Formula 1</a></div>
                         <span id="f1-badge" style="font-size:10px; background:#333; padding:2px 6px; border-radius:4px; color:#aaa;">Next GP</span>
                     </div>
-                    <div id="f1-content" style="text-align: center; margin-top: 10px;"><div class="loading-text">Loading...</div></div>
+                    <div id="f1-content" style="margin-top: 10px;"><div class="loading-text">Loading...</div></div>
                 </div>
             </div>
             <div style="margin-top: 25px;">
@@ -363,6 +363,90 @@
         }
         function toggleMonth(h) { const items = h.nextElementSibling; items.style.display = items.style.display === 'none' ? 'block' : 'none'; }
 
+        // =====================================================================
+        // F1 렌더링 함수 (v2.5: 좌우 분할 - 순위 + 세부 스케줄)
+        // =====================================================================
+        function renderF1Card(f1) {
+            const el = document.getElementById('f1-content');
+            const badge = document.getElementById('f1-badge');
+            if (!f1 || !el) return;
+
+            const nr = f1.next_race || f1;
+            const standings = f1.standings || [];
+            const schedule = f1.schedule || [];
+
+            // 배지 설정
+            if (nr.status) badge.innerText = nr.status;
+            else if (nr.round) badge.innerText = `R${nr.round}`;
+            else badge.innerText = 'F1';
+
+            // v1 호환: 기존 flat 구조 (next_race 없는 경우)
+            if (!f1.next_race && !f1.standings) {
+                el.innerHTML = `<div style="text-align:center;"><div style="font-size:13px; font-weight:bold; color:white; margin-bottom:4px;">${f1.name || '-'}</div><div style="font-size:14px; color:#e10600; font-weight:bold;">${f1.date || '-'}</div><div style="font-size:10px; color:#666; margin-top:4px;">${f1.circuit || '-'}</div></div>`;
+                return;
+            }
+
+            // 팀 색상 매핑
+            const teamColors = {
+                'Mercedes': '#27F4D2', 'Ferrari': '#E8002D', 'McLaren': '#FF8000',
+                'Red Bull': '#3671C6', 'Aston Martin': '#229971', 'Alpine': '#0093CC',
+                'Williams': '#64C4FF', 'Racing Bulls': '#6692FF', 'Haas': '#B6BABD',
+                'Audi': '#FF0000', 'Cadillac': '#FFD700',
+            };
+
+            // 왼쪽: 드라이버 순위 (Top 5, 포인트만)
+            let standingsHtml = '';
+            if (standings.length > 0) {
+                standingsHtml = `<div style="font-size:10px; color:#666; margin-bottom:8px; text-transform:uppercase;">Standings</div>`;
+                standings.slice(0, 5).forEach((d, i) => {
+                    const tc = teamColors[d.team] || '#888';
+                    const surname = (d.driver || '').split(' ').pop();
+                    const posColor = i === 0 ? '#FFD700' : i === 1 ? '#C0C0C0' : i === 2 ? '#CD7F32' : '#888';
+                    standingsHtml += `<div style="display:flex; align-items:center; gap:6px; padding:4px 0;">` +
+                        `<span style="font-size:11px; color:${posColor}; width:12px; text-align:right; font-weight:bold;">${d.pos || i+1}</span>` +
+                        `<span style="width:3px; height:14px; background:${tc}; border-radius:1px;"></span>` +
+                        `<span style="font-size:12px; color:#ddd; flex:1;">${surname}</span>` +
+                        `<span style="font-size:11px; color:#fff; font-weight:bold;">${d.points || 0}</span>` +
+                    `</div>`;
+                });
+            } else {
+                standingsHtml = `<div style="font-size:10px; color:#555; text-align:center; padding:10px 0;">시즌 순위 준비 중</div>`;
+            }
+
+            // 오른쪽: 세부 스케줄
+            let scheduleHtml = '';
+            if (schedule.length > 0) {
+                const sprintTag = nr.sprint ? ' <span style="font-size:8px; background:#e10600; color:#fff; padding:1px 4px; border-radius:2px; vertical-align:middle;">SPRINT</span>' : '';
+                scheduleHtml = `<div style="font-size:12px; font-weight:bold; color:white; margin-bottom:2px;">${nr.name || '-'}${sprintTag}</div>`;
+                scheduleHtml += `<div style="font-size:10px; color:#666; margin-bottom:8px;">${nr.circuit || '-'}</div>`;
+
+                schedule.forEach(s => {
+                    const isRace = s.name === 'Race';
+                    const isSprint = s.name === 'Sprint';
+                    const isQual = s.name === 'Qualifying' || s.name === 'Sprint Qualifying';
+                    let accent = '#888';
+                    let bg = 'transparent';
+                    if (isRace) { accent = '#e10600'; bg = 'rgba(225,6,0,0.1)'; }
+                    else if (isSprint) { accent = '#ff6b35'; bg = 'rgba(255,107,53,0.06)'; }
+                    else if (isQual) { accent = '#ffae00'; }
+
+                    scheduleHtml += `<div style="display:flex; align-items:center; gap:6px; padding:4px 6px; border-radius:4px; background:${bg}; margin-bottom:2px;">` +
+                        `<span style="font-size:10px; color:#666; width:32px;">${s.date || ''}</span>` +
+                        `<span style="font-size:11px; color:${accent}; font-weight:bold; width:38px;">${s.kst_time || '-'}</span>` +
+                        `<span style="font-size:10px; color:${isRace ? '#fff' : '#bbb'}; ${isRace ? 'font-weight:bold;' : ''}">${s.name || '-'}</span>` +
+                    `</div>`;
+                });
+            } else {
+                scheduleHtml = `<div style="text-align:center;"><div style="font-size:13px; font-weight:bold; color:white; margin-bottom:4px;">${nr.name || '-'}</div><div style="font-size:14px; color:#e10600; font-weight:bold;">${nr.date || '-'}</div><div style="font-size:10px; color:#666; margin-top:4px;">${nr.circuit || '-'}</div></div>`;
+            }
+
+            // 좌우 분할 조합
+            el.innerHTML = `<div style="display:flex; gap:12px;">` +
+                `<div style="flex:1; padding:8px; background:rgba(255,255,255,0.03); border-radius:6px;">${standingsHtml}</div>` +
+                `<div style="flex:1; padding:8px; background:rgba(255,255,255,0.03); border-radius:6px;">${scheduleHtml}</div>` +
+            `</div>`;
+        }
+
         async function loadSportsData() {
             try {
                 const r = await fetch('./sports.json?v=' + Date.now()); if (!r.ok) throw new Error("fail"); const data = await r.json();
@@ -370,7 +454,8 @@
                 try { const e = data.epl; if (e) { document.getElementById('epl-badge').innerText = e.display_matchday || (e.matchday ? `R${e.matchday}` : 'EPL'); } const el = e && e.matches ? e.matches : []; const ec = document.getElementById('epl-content'); if (ec) { if (el.length > 0) { let h = ''; el.forEach((m, i) => { const bg = i === 0 ? 'background: rgba(160, 0, 255, 0.1); border-left: 3px solid #a000ff;' : 'background: rgba(255, 255, 255, 0.05); border-left: 3px solid #666;'; h += `<div style="${bg} padding: 8px; border-radius: 6px; margin-bottom: 6px;"><div style="font-size:13px; font-weight:bold; color:white; margin-bottom:6px;">${m.home} vs ${m.away}</div><div style="display:flex; justify-content:space-between; align-items:end;"><div><div style="font-size:12px; font-weight:bold; color:#ddd;">${m.kst_time || '-'}</div><div style="font-size:10px; color:#666; margin-top:1px;">Local: ${m.local || '-'}</div></div><div style="font-size:9px; color:#a000ff; font-weight:bold; background:rgba(0,0,0,0.3); padding:2px 5px; border-radius:4px;">${m.rule_str || 'Match'}</div></div></div>`; }); ec.innerHTML = h; } else { ec.innerHTML = '<div class="loading-text">No Match Data</div>'; } } } catch (e) {}
                 try { const n = data.nba; if (n && document.getElementById('nba-content')) { document.getElementById('nba-record').innerText = `${n.record || '-'} | ${n.rank || '-'}`; let h = ''; if (n.last && n.last.opp && n.last.opp !== '-') { const rc = n.last.result === 'W' ? '#ff4400' : '#0088ff'; h += `<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; padding-bottom:8px; border-bottom:1px solid #333;"><span style="font-size:11px; color:#888;">Recent</span><span style="font-size:12px;">vs ${n.last.opp} <span style="color:${rc}; font-weight:bold;">${n.last.result}</span> <span style="color:#666;">(${n.last.score})</span></span></div>`; } if (n.schedule && n.schedule.length > 0) { n.schedule.forEach(g => { const ih = g.location === 'home'; const bg = ih ? 'background: rgba(255, 174, 0, 0.1); border-left: 3px solid #ffae00;' : 'background: rgba(255, 255, 255, 0.05); border-left: 3px solid #666;'; const lp = g.location === 'away' ? '@ ' : 'vs '; h += `<div style="${bg} padding: 8px; border-radius: 6px; margin-bottom: 6px;"><div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;"><span style="font-size:13px; font-weight:bold; color:white;">${lp}${g.opp || 'TBD'}</span><span style="font-size:10px; color:#888;">${g.date || ''}</span></div><div style="display:flex; justify-content:space-between; align-items:end;"><div><div style="font-size:12px; font-weight:bold; color:#ddd;">${g.kst_time || '-'}</div><div style="font-size:10px; color:#666; margin-top:1px;">Local: ${g.local_time || '-'}</div></div></div></div>`; }); } if (n.allstar && n.allstar.events) { h += `<div style="margin-top:10px; border-top:1px solid #333; padding-top:10px;"><div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;"><span style="font-size:12px; font-weight:bold; color:#ffd700;">⭐ ${n.allstar.title || 'All-Star Week'}</span><span style="font-size:10px; color:#888;">${n.allstar.location || ''}</span></div>`; if (n.allstar.note) { h += `<div style="font-size:10px; color:#ffae00; margin-bottom:8px; padding:4px 8px; background:rgba(255,215,0,0.08); border-radius:4px;">🏀 ${n.allstar.note}</div>`; } n.allstar.events.forEach(ev => { const isMain = ev.name.includes('All-Star Game'); const isDunk = ev.name.includes('Dunk'); const is3pt = ev.name.includes('3-Point'); let accent = '#ffd700'; if (isMain) accent = '#ff4400'; else if (isDunk) accent = '#ff6b35'; else if (is3pt) accent = '#00d4ff'; const bg = isMain ? 'background: rgba(255, 68, 0, 0.12); border-left: 3px solid #ff4400;' : `background: rgba(255, 215, 0, 0.06); border-left: 3px solid ${accent};`; h += `<div style="${bg} padding: 6px 8px; border-radius: 6px; margin-bottom: 4px;"><div style="display:flex; justify-content:space-between; align-items:center;"><span style="font-size:12px; font-weight:${isMain ? 'bold' : '600'}; color:${isMain ? '#ff4400' : '#ddd'};">${ev.name}</span><span style="font-size:10px; color:#888;">${ev.date || ''}</span></div><div style="display:flex; justify-content:space-between; align-items:center; margin-top:3px;"><span style="font-size:11px; color:#aaa;">${ev.kst_time || '-'} KST</span><span style="font-size:9px; color:#666;">${ev.channel || ''}</span></div></div>`; }); h += `</div>`; } document.getElementById('nba-content').innerHTML = h || '<div class="loading-text">No Data</div>'; } } catch (e) {}
                 try { const t = data.tennis; if (t && document.getElementById('tennis-content')) { const rc = t.recent || {}; const nx = t.next || {}; document.getElementById('tennis-status').innerText = nx.status || '-'; const rcol = rc.result === 'W' ? '#4CAF50' : rc.result === 'L' ? '#f44336' : '#888'; const rtxt = rc.result === 'W' ? 'Win' : rc.result === 'L' ? 'Loss' : '-'; document.getElementById('tennis-content').innerHTML = `<div style="display:flex; gap:15px;"><div style="flex:1; padding:8px; background:rgba(255,255,255,0.03); border-radius:6px;"><div style="font-size:10px; color:#666; margin-bottom:6px; text-transform:uppercase;">Recent</div><div style="font-size:11px; color:#aaa; margin-bottom:2px;">${rc.event || '-'}</div><div style="font-size:12px; font-weight:bold; color:white;">vs ${rc.opponent || '-'}</div><div style="display:flex; justify-content:space-between; align-items:center; margin-top:4px;"><span style="font-size:13px; font-weight:bold; color:${rcol};">${rtxt}</span><span style="font-size:10px; color:#888;">${rc.score || '-'}</span></div><div style="font-size:9px; color:#555; margin-top:4px;">${rc.date || '-'}</div></div><div style="flex:1; padding:8px; background:rgba(255,255,255,0.03); border-radius:6px;"><div style="font-size:10px; color:#666; margin-bottom:6px; text-transform:uppercase;">Next</div><div style="font-size:12px; font-weight:bold; color:white; margin-bottom:2px;">${nx.event || '-'}</div><div style="font-size:11px; color:#aaa;">${nx.detail || '-'}</div><div style="font-size:11px; color:${nx.match_time === 'TBD' ? '#888' : '#ccff00'}; margin-top:6px;">${nx.match_time || 'TBD'}</div><div style="font-size:9px; color:#555; margin-top:2px;">${nx.tournament_dates || ''}</div></div></div>`; } } catch (e) {}
-                try { const f = data.f1; if (f && document.getElementById('f1-content')) { document.getElementById('f1-badge').innerText = f.status || 'Next GP'; document.getElementById('f1-content').innerHTML = `<div style="font-size:13px; font-weight:bold; color:white; margin-bottom:4px;">${f.name || '-'}</div><div style="font-size:14px; color:#e10600; font-weight:bold;">${f.date || '-'}</div><div style="font-size:10px; color:#666; margin-top:4px;">${f.circuit || '-'}</div>`; } } catch (e) {}
+                // F1 v2.5: 새 렌더링 함수 호출
+                try { renderF1Card(data.f1); } catch (e) { console.error('F1 render error:', e); }
             } catch (e) { console.error('Sports Error:', e); }
         }
 
