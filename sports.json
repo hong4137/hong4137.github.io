@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-13 00:48:19 KST",
+  "updated": "2026-03-13 01:00:08 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 30,
@@ -13,35 +13,99 @@
     ],
     "matches": [
       {
-        "match_id": 538077,
-        "home": "Arsenal",
-        "away": "Everton",
-        "kst_time": "03.15 02:30 (KST)",
-        "uk_time": "Saturday 17:30 (UK)",
-        "local": "Sky Sports",
+        "match_id": 538081,
+        "home": "Liverpool",
+        "away": "Tottenham",
+        "kst_time": "03.16 01:30 (KST)",
+        "uk_time": "Sunday 16:30 (UK)",
+        "local": "Sky Sports Main Event",
         "rules": [
-          "Leader"
+          "Big Match",
+          "Prime Time"
         ],
-        "rule_str": "Leader",
+        "rule_str": "Big Match, Prime Time",
         "matchday": 30,
-        "status": "TIMED",
+        "status": "SCHEDULED",
         "score": "-"
-      }
-    ],
-    "selected_matches": [
+      },
+      {
+        "match_id": 538082,
+        "home": "Manchester United",
+        "away": "Aston Villa",
+        "kst_time": "03.15 23:00 (KST)",
+        "uk_time": "Sunday 14:00 (UK)",
+        "local": "Sky Sports Main Event",
+        "rules": [
+          "Top Tier",
+          "Challenger"
+        ],
+        "rule_str": "Top Tier, Challenger",
+        "matchday": 30,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
       {
         "match_id": 538077,
         "home": "Arsenal",
         "away": "Everton",
         "kst_time": "03.15 02:30 (KST)",
         "uk_time": "Saturday 17:30 (UK)",
-        "local": "Sky Sports",
+        "local": "Sky Sports Main Event",
         "rules": [
           "Leader"
         ],
         "rule_str": "Leader",
         "matchday": 30,
-        "status": "TIMED",
+        "status": "SCHEDULED",
+        "score": "-"
+      }
+    ],
+    "selected_matches": [
+      {
+        "match_id": 538081,
+        "home": "Liverpool",
+        "away": "Tottenham",
+        "kst_time": "03.16 01:30 (KST)",
+        "uk_time": "Sunday 16:30 (UK)",
+        "local": "Sky Sports Main Event",
+        "rules": [
+          "Big Match",
+          "Prime Time"
+        ],
+        "rule_str": "Big Match, Prime Time",
+        "matchday": 30,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 538082,
+        "home": "Manchester United",
+        "away": "Aston Villa",
+        "kst_time": "03.15 23:00 (KST)",
+        "uk_time": "Sunday 14:00 (UK)",
+        "local": "Sky Sports Main Event",
+        "rules": [
+          "Top Tier",
+          "Challenger"
+        ],
+        "rule_str": "Top Tier, Challenger",
+        "matchday": 30,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 538077,
+        "home": "Arsenal",
+        "away": "Everton",
+        "kst_time": "03.15 02:30 (KST)",
+        "uk_time": "Saturday 17:30 (UK)",
+        "local": "Sky Sports Main Event",
+        "rules": [
+          "Leader"
+        ],
+        "rule_str": "Leader",
+        "matchday": 30,
+        "status": "SCHEDULED",
         "score": "-"
       }
     ]
@@ -133,7 +197,7 @@
       },
       {
         "pos": 2,
-        "driver": "Kimi Antonelli",
+        "driver": "Andrea Kimi Antonelli",
         "team": "Mercedes",
         "points": 18
       },
@@ -164,7 +228,7 @@
       {
         "pos": 7,
         "driver": "Oliver Bearman",
-        "team": "Haas",
+        "team": "Haas F1 Team",
         "points": 6
       },
       {
@@ -182,7 +246,7 @@
       {
         "pos": 10,
         "driver": "Pierre Gasly",
-        "team": "Alpine",
+        "team": "Alpine F1 Team",
         "points": 1
       }
     ]
@@ -193,7 +257,7 @@
       "opponent": "Casper Ruud",
       "result": "W",
       "score": "6-1, 7-6(2)",
-      "date": "Mar 11"
+      "date": "Mar 13"
     },
     "next": {
       "event": "BNP Paribas Open",
