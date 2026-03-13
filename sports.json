@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-13 22:04:43 KST",
+  "updated": "2026-03-14 03:47:03 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 30,
@@ -120,21 +120,21 @@
     },
     "schedule": [
       {
-        "opp": "Timberwolves",
-        "date": "03.14",
-        "kst_time": "11:00",
-        "local_time": "7:00 PM PT",
-        "location": "home",
-        "venue": "Chase Center",
-        "channel": ""
-      },
-      {
         "opp": "Knicks",
         "date": "03.16",
         "kst_time": "09:00",
         "local_time": "5:00 PM PT",
         "location": "away",
         "venue": "@ New York",
+        "channel": ""
+      },
+      {
+        "opp": "Wizards",
+        "date": "03.17",
+        "kst_time": "08:00",
+        "local_time": "4:00 PM PT",
+        "location": "away",
+        "venue": "@ Washington",
         "channel": ""
       }
     ]
@@ -253,16 +253,16 @@
   },
   "tennis": {
     "recent": {
-      "event": "Tournament Name",
+      "event": "Rotterdam Open",
       "opponent": "Cameron Norrie",
       "result": "W",
       "score": "6-3, 6-4",
-      "date": "March 12"
+      "date": "Feb 15"
     },
     "next": {
       "event": "BNP Paribas Open",
       "detail": "QF vs Daniil Medvedev",
-      "match_time": "March 18",
+      "match_time": "Mar 18",
       "tournament_dates": "",
       "status": "-"
     }
