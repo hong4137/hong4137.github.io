@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-13 03:57:47 KST",
+  "updated": "2026-03-13 11:23:34 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 30,
@@ -253,16 +253,16 @@
   },
   "tennis": {
     "recent": {
-      "event": "BNP Paribas Open",
+      "event": "Indian Wells",
       "opponent": "Casper Ruud",
       "result": "W",
       "score": "6-1, 7-6(2)",
-      "date": "Mar 12"
+      "date": "Mar 11"
     },
     "next": {
       "event": "BNP Paribas Open",
-      "detail": "QF",
-      "match_time": "Mar 13",
+      "detail": "QF vs Cam Norrie",
+      "match_time": "Mar 18 11:00 KST",
       "tournament_dates": "",
       "status": "-"
     }
