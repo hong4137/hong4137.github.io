@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-13 15:58:07 KST",
+  "updated": "2026-03-13 22:04:43 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 30,
@@ -257,12 +257,12 @@
       "opponent": "Cameron Norrie",
       "result": "W",
       "score": "6-3, 6-4",
-      "date": "March 13"
+      "date": "March 12"
     },
     "next": {
       "event": "BNP Paribas Open",
-      "detail": "SF vs Daniil Medvedev",
-      "match_time": "Mar 14",
+      "detail": "QF vs Daniil Medvedev",
+      "match_time": "March 18",
       "tournament_dates": "",
       "status": "-"
     }
