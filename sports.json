@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-14 11:21:27 KST",
+  "updated": "2026-03-14 15:52:20 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 30,
@@ -111,12 +111,12 @@
     ]
   },
   "nba": {
-    "record": "32-33",
+    "record": "32-34",
     "rank": "#9 West",
     "last": {
-      "opp": "Bulls",
+      "opp": "Timberwolves",
       "result": "L",
-      "score": "124-130"
+      "score": "117-127"
     },
     "schedule": [
       {
@@ -256,13 +256,13 @@
       "event": "Indian Wells",
       "opponent": "Casper Ruud",
       "result": "W",
-      "score": "-",
+      "score": "2-0",
       "date": "-"
     },
     "next": {
       "event": "BNP Paribas Open",
-      "detail": "SF vs Daniil Medvedev",
-      "match_time": "Mar 14",
+      "detail": "QF vs Daniil Medvedev",
+      "match_time": "Mar 18 03:00 KST",
       "tournament_dates": "",
       "status": "-"
     }
