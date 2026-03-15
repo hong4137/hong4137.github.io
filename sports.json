@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-15 21:58:56 KST",
+  "updated": "2026-03-16 03:42:49 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 30,
@@ -41,8 +41,8 @@
         ],
         "rule_str": "Top Tier, Challenger",
         "matchday": 30,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "N/A"
       },
       {
         "match_id": 538077,
@@ -90,8 +90,8 @@
         ],
         "rule_str": "Top Tier, Challenger",
         "matchday": 30,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "N/A"
       },
       {
         "match_id": 538077,
@@ -120,15 +120,6 @@
     },
     "schedule": [
       {
-        "opp": "Knicks",
-        "date": "03.16",
-        "kst_time": "09:00",
-        "local_time": "5:00 PM PT",
-        "location": "away",
-        "venue": "@ New York",
-        "channel": ""
-      },
-      {
         "opp": "Wizards",
         "date": "03.17",
         "kst_time": "08:00",
@@ -136,55 +127,64 @@
         "location": "away",
         "venue": "@ Washington",
         "channel": ""
+      },
+      {
+        "opp": "Celtics",
+        "date": "03.19",
+        "kst_time": "08:00",
+        "local_time": "4:00 PM PT",
+        "location": "away",
+        "venue": "@ Boston",
+        "channel": ""
       }
     ]
   },
   "f1": {
     "next_race": {
-      "round": 2,
-      "name": "Chinese Grand Prix",
-      "circuit": "Shanghai International Circuit",
-      "country": "China",
-      "date": "Mar 13-15",
-      "date_from": "2026-03-13",
-      "date_to": "2026-03-15",
-      "status": "This Week",
-      "sprint": true
+      "round": 3,
+      "name": "Japanese Grand Prix",
+      "circuit": "Suzuka Circuit",
+      "country": "Japan",
+      "date": "Mar 27-29",
+      "date_from": "2026-03-27",
+      "date_to": "2026-03-29",
+      "status": "Next GP",
+      "sprint": false
     },
     "schedule": [
       {
         "name": "FP1",
-        "date": "03.13",
+        "date": "03.27",
         "day_local": "Fri",
-        "kst_time": "14:30",
+        "kst_time": "13:30",
         "local_time": "13:30"
       },
       {
-        "name": "Sprint Qualifying",
-        "date": "03.13",
+        "name": "FP2",
+        "date": "03.27",
         "day_local": "Fri",
-        "kst_time": "18:30",
-        "local_time": "17:30"
+        "kst_time": "17:00",
+        "local_time": "17:00"
       },
       {
-        "name": "Sprint",
-        "date": "03.14",
+        "name": "FP3",
+        "date": "03.28",
         "day_local": "Sat",
-        "kst_time": "13:00",
-        "local_time": "12:00"
+        "kst_time": "12:30",
+        "local_time": "12:30"
       },
       {
         "name": "Qualifying",
-        "date": "03.14",
+        "date": "03.28",
         "day_local": "Sat",
-        "kst_time": "17:00",
+        "kst_time": "16:00",
         "local_time": "16:00"
       },
       {
         "name": "Race",
-        "date": "03.15",
+        "date": "03.29",
         "day_local": "Sun",
-        "kst_time": "16:00",
+        "kst_time": "15:00",
         "local_time": "15:00"
       }
     ],
@@ -253,14 +253,14 @@
   },
   "tennis": {
     "recent": {
-      "event": "Indian Wells",
+      "event": "Indian Wells Open",
       "opponent": "Daniil Medvedev",
       "result": "L",
       "score": "6-3, 7-6 (3)",
       "date": "Mar 14"
     },
     "next": {
-      "event": "Indian Wells",
+      "event": "Indian Wells Open",
       "detail": "QF vs Cameron Norrie",
       "match_time": "Mar 12",
       "tournament_dates": "Mar 5 - 16",
