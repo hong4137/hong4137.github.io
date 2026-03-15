@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-15 03:42:09 KST",
+  "updated": "2026-03-15 11:40:17 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 30,
@@ -56,8 +56,8 @@
         ],
         "rule_str": "Leader",
         "matchday": 30,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "N/A"
       }
     ],
     "selected_matches": [
@@ -105,8 +105,8 @@
         ],
         "rule_str": "Leader",
         "matchday": 30,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "N/A"
       }
     ]
   },
@@ -253,16 +253,16 @@
   },
   "tennis": {
     "recent": {
-      "event": "Australian Open",
-      "opponent": "Novak Djokovic",
-      "result": "W",
-      "score": "2-6, 6-2, 6-3, 7-5",
-      "date": "-"
+      "event": "BNP Paribas Open",
+      "opponent": "Daniil Medvedev",
+      "result": "L",
+      "score": "6-3, 7-6(3)",
+      "date": "Mar 14"
     },
     "next": {
       "event": "BNP Paribas Open",
-      "detail": "QF vs Zverev In",
-      "match_time": "Mar 21",
+      "detail": "SF vs Daniil Medvedev",
+      "match_time": "Mar 15 03:00 KST",
       "tournament_dates": "",
       "status": "-"
     }
