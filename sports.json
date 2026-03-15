@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-15 11:40:17 KST",
+  "updated": "2026-03-15 16:01:23 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 30,
@@ -253,18 +253,18 @@
   },
   "tennis": {
     "recent": {
-      "event": "BNP Paribas Open",
+      "event": "Indian Wells Open",
       "opponent": "Daniil Medvedev",
       "result": "L",
-      "score": "6-3, 7-6(3)",
-      "date": "Mar 14"
+      "score": "6-3, 7-6 (3)",
+      "date": "Mar 15"
     },
     "next": {
-      "event": "BNP Paribas Open",
+      "event": "Miami Open",
       "detail": "SF vs Daniil Medvedev",
-      "match_time": "Mar 15 03:00 KST",
-      "tournament_dates": "",
-      "status": "-"
+      "match_time": "Mar 21",
+      "tournament_dates": "Mar 19 - 30",
+      "status": "Masters"
     }
   }
 }
