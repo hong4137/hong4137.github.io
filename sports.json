@@ -1,9 +1,9 @@
 {
-  "updated": "2026-03-16 22:19:06 KST",
+  "updated": "2026-03-17 04:06:02 KST",
   "epl": {
     "matchday": 31,
-    "selected_round": 30,
-    "display_matchday": "R30",
+    "selected_round": 31,
+    "display_matchday": "R31",
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
@@ -13,100 +13,36 @@
     ],
     "matches": [
       {
-        "match_id": 538081,
-        "home": "Liverpool",
-        "away": "Tottenham",
-        "kst_time": "03.16 01:30 (KST)",
-        "uk_time": "Sunday 16:30 (UK)",
+        "match_id": 538087,
+        "home": "Brighton & Hove Albion",
+        "away": "Liverpool",
+        "kst_time": "03.21 21:30 (KST)",
+        "uk_time": "Saturday 12:30 (UK)",
         "local": "Sky Sports Main Event",
         "rules": [
-          "Big Match",
-          "Prime Time"
+          "Early KO"
         ],
-        "rule_str": "Big Match, Prime Time",
-        "matchday": 30,
-        "status": "FINISHED",
-        "score": "N/A"
-      },
-      {
-        "match_id": 538082,
-        "home": "Manchester United",
-        "away": "Aston Villa",
-        "kst_time": "03.15 23:00 (KST)",
-        "uk_time": "Sunday 14:00 (UK)",
-        "local": "Sky Sports Main Event",
-        "rules": [
-          "Top Tier",
-          "Challenger"
-        ],
-        "rule_str": "Top Tier, Challenger",
-        "matchday": 30,
-        "status": "FINISHED",
-        "score": "N/A"
-      },
-      {
-        "match_id": 538077,
-        "home": "Arsenal",
-        "away": "Everton",
-        "kst_time": "03.15 02:30 (KST)",
-        "uk_time": "Saturday 17:30 (UK)",
-        "local": "Sky Sports Main Event",
-        "rules": [
-          "Leader"
-        ],
-        "rule_str": "Leader",
-        "matchday": 30,
-        "status": "FINISHED",
-        "score": "N/A"
+        "rule_str": "Early KO",
+        "matchday": 31,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ],
     "selected_matches": [
       {
-        "match_id": 538081,
-        "home": "Liverpool",
-        "away": "Tottenham",
-        "kst_time": "03.16 01:30 (KST)",
-        "uk_time": "Sunday 16:30 (UK)",
+        "match_id": 538087,
+        "home": "Brighton & Hove Albion",
+        "away": "Liverpool",
+        "kst_time": "03.21 21:30 (KST)",
+        "uk_time": "Saturday 12:30 (UK)",
         "local": "Sky Sports Main Event",
         "rules": [
-          "Big Match",
-          "Prime Time"
+          "Early KO"
         ],
-        "rule_str": "Big Match, Prime Time",
-        "matchday": 30,
-        "status": "FINISHED",
-        "score": "N/A"
-      },
-      {
-        "match_id": 538082,
-        "home": "Manchester United",
-        "away": "Aston Villa",
-        "kst_time": "03.15 23:00 (KST)",
-        "uk_time": "Sunday 14:00 (UK)",
-        "local": "Sky Sports Main Event",
-        "rules": [
-          "Top Tier",
-          "Challenger"
-        ],
-        "rule_str": "Top Tier, Challenger",
-        "matchday": 30,
-        "status": "FINISHED",
-        "score": "N/A"
-      },
-      {
-        "match_id": 538077,
-        "home": "Arsenal",
-        "away": "Everton",
-        "kst_time": "03.15 02:30 (KST)",
-        "uk_time": "Saturday 17:30 (UK)",
-        "local": "Sky Sports Main Event",
-        "rules": [
-          "Leader"
-        ],
-        "rule_str": "Leader",
-        "matchday": 30,
-        "status": "FINISHED",
-        "score": "N/A"
+        "rule_str": "Early KO",
+        "matchday": 31,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ]
   },
@@ -120,21 +56,21 @@
     },
     "schedule": [
       {
-        "opp": "Wizards",
-        "date": "03.17",
-        "kst_time": "08:00",
-        "local_time": "4:00 PM PT",
-        "location": "away",
-        "venue": "@ Washington",
-        "channel": ""
-      },
-      {
         "opp": "Celtics",
         "date": "03.19",
         "kst_time": "08:00",
         "local_time": "4:00 PM PT",
         "location": "away",
         "venue": "@ Boston",
+        "channel": ""
+      },
+      {
+        "opp": "Pistons",
+        "date": "03.21",
+        "kst_time": "08:30",
+        "local_time": "4:30 PM PT",
+        "location": "away",
+        "venue": "@ Detroit",
         "channel": ""
       }
     ]
@@ -253,17 +189,17 @@
   },
   "tennis": {
     "recent": {
-      "event": "Indian Wells Open",
+      "event": "Indian Wells",
       "opponent": "Daniil Medvedev",
       "result": "L",
-      "score": "6-3, 7-6 (3)",
-      "date": "Mar 14"
+      "score": "3-6, 6-7 (3)",
+      "date": "Mar 9"
     },
     "next": {
-      "event": "Miami Open",
+      "event": "Indian Wells Open",
       "detail": "QF vs Sinner Final",
-      "match_time": "Mar 16 13:00 KST",
-      "tournament_dates": "Mar 19 - 30",
+      "match_time": "Mar 18 11:00 KST",
+      "tournament_dates": "Mar 5 - 16",
       "status": "Masters"
     }
   }
