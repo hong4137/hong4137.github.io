@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-16 03:42:49 KST",
+  "updated": "2026-03-16 11:40:42 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 30,
@@ -25,8 +25,8 @@
         ],
         "rule_str": "Big Match, Prime Time",
         "matchday": 30,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "N/A"
       },
       {
         "match_id": 538082,
@@ -74,8 +74,8 @@
         ],
         "rule_str": "Big Match, Prime Time",
         "matchday": 30,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "N/A"
       },
       {
         "match_id": 538082,
@@ -253,7 +253,7 @@
   },
   "tennis": {
     "recent": {
-      "event": "Indian Wells Open",
+      "event": "Indian Wells",
       "opponent": "Daniil Medvedev",
       "result": "L",
       "score": "6-3, 7-6 (3)",
@@ -261,8 +261,8 @@
     },
     "next": {
       "event": "Indian Wells Open",
-      "detail": "QF vs Cameron Norrie",
-      "match_time": "Mar 12",
+      "detail": "QF vs Sinner Final",
+      "match_time": "Mar 18 11:00 KST",
       "tournament_dates": "Mar 5 - 16",
       "status": "Masters"
     }
