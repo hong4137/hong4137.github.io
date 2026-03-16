@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-16 16:22:01 KST",
+  "updated": "2026-03-16 22:19:06 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 30,
@@ -112,7 +112,7 @@
   },
   "nba": {
     "record": "32-35",
-    "rank": "-",
+    "rank": "#9 West",
     "last": {
       "opp": "Knicks",
       "result": "L",
@@ -260,10 +260,10 @@
       "date": "Mar 14"
     },
     "next": {
-      "event": "Indian Wells Open",
-      "detail": "QF vs Daniil Medvedev",
-      "match_time": "Mar 14 07:20 KST",
-      "tournament_dates": "Mar 5 - 16",
+      "event": "Miami Open",
+      "detail": "QF vs Sinner Final",
+      "match_time": "Mar 16 13:00 KST",
+      "tournament_dates": "Mar 19 - 30",
       "status": "Masters"
     }
   }
