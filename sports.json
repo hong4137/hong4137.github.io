@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-16 11:40:42 KST",
+  "updated": "2026-03-16 16:22:01 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 30,
@@ -111,12 +111,12 @@
     ]
   },
   "nba": {
-    "record": "32-34",
-    "rank": "#9 West",
+    "record": "32-35",
+    "rank": "-",
     "last": {
-      "opp": "Timberwolves",
+      "opp": "Knicks",
       "result": "L",
-      "score": "117-127"
+      "score": "107-110"
     },
     "schedule": [
       {
@@ -253,7 +253,7 @@
   },
   "tennis": {
     "recent": {
-      "event": "Indian Wells",
+      "event": "Indian Wells Open",
       "opponent": "Daniil Medvedev",
       "result": "L",
       "score": "6-3, 7-6 (3)",
@@ -261,8 +261,8 @@
     },
     "next": {
       "event": "Indian Wells Open",
-      "detail": "QF vs Sinner Final",
-      "match_time": "Mar 18 11:00 KST",
+      "detail": "QF vs Daniil Medvedev",
+      "match_time": "Mar 14 07:20 KST",
       "tournament_dates": "Mar 5 - 16",
       "status": "Masters"
     }
