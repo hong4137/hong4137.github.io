@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-17 11:25:46 KST",
+  "updated": "2026-03-17 16:08:14 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 31,
@@ -192,12 +192,12 @@
       "event": "Indian Wells",
       "opponent": "Daniil Medvedev",
       "result": "L",
-      "score": "0-2",
+      "score": "3-6, 6-7 (3)",
       "date": "-"
     },
     "next": {
       "event": "Madrid Open",
-      "detail": "QF vs Sinner Final",
+      "detail": "QF vs Daniil Medvedev",
       "match_time": "Apr 22",
       "tournament_dates": "Apr 27 - May 4",
       "status": "Masters"
