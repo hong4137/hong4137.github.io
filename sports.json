@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-18 11:30:41 KST",
+  "updated": "2026-03-18 16:05:11 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 31,
@@ -48,7 +48,7 @@
   },
   "nba": {
     "record": "33-35",
-    "rank": "#9 West",
+    "rank": "-",
     "last": {
       "opp": "Wizards",
       "result": "W",
@@ -189,18 +189,18 @@
   },
   "tennis": {
     "recent": {
-      "event": "Indian Wells",
-      "opponent": "Daniil Medvedev",
-      "result": "L",
-      "score": "3-6, 6-7 (3)",
-      "date": "Mar 17"
+      "event": "-",
+      "opponent": "-",
+      "result": "-",
+      "score": "-",
+      "date": "-"
     },
     "next": {
-      "event": "Miami Open",
-      "detail": "QF",
+      "event": "-",
+      "detail": "QF vs Medvedev",
       "match_time": "TBD",
-      "tournament_dates": "Mar 19 - 30",
-      "status": "Masters"
+      "tournament_dates": "",
+      "status": "-"
     }
   }
 }
