@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-18 22:19:31 KST",
+  "updated": "2026-03-19 04:04:35 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 31,
@@ -56,21 +56,21 @@
     },
     "schedule": [
       {
-        "opp": "Celtics",
-        "date": "03.19",
-        "kst_time": "08:00",
-        "local_time": "4:00 PM PT",
-        "location": "away",
-        "venue": "@ Boston",
-        "channel": ""
-      },
-      {
         "opp": "Pistons",
         "date": "03.21",
         "kst_time": "08:30",
         "local_time": "4:30 PM PT",
         "location": "away",
         "venue": "@ Detroit",
+        "channel": ""
+      },
+      {
+        "opp": "Hawks",
+        "date": "03.22",
+        "kst_time": "09:00",
+        "local_time": "5:00 PM PT",
+        "location": "away",
+        "venue": "@ Atlanta",
         "channel": ""
       }
     ]
@@ -189,18 +189,18 @@
   },
   "tennis": {
     "recent": {
-      "event": "Indian Wells Masters",
-      "opponent": "Arthur Rinderknech",
+      "event": "Australian Open",
+      "opponent": "Novak Djokovic",
       "result": "W",
-      "score": "6-76, 6-3, 6-2",
-      "date": "Mar 9"
+      "score": "2-6, 6-2, 6-3, 7-5",
+      "date": "Feb 1"
     },
     "next": {
-      "event": "Miami Open",
-      "detail": "vs Joao Fonseca",
-      "match_time": "Mar 16",
-      "tournament_dates": "Mar 19 - 30",
-      "status": "Masters"
+      "event": "Rotterdam Open",
+      "detail": "QF vs Zverev Men",
+      "match_time": "Feb 9",
+      "tournament_dates": "",
+      "status": "-"
     }
   }
 }
