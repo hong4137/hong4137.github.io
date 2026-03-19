@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-19 04:04:35 KST",
+  "updated": "2026-03-19 11:31:40 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 31,
@@ -47,12 +47,12 @@
     ]
   },
   "nba": {
-    "record": "33-35",
+    "record": "33-36",
     "rank": "-",
     "last": {
-      "opp": "Wizards",
-      "result": "W",
-      "score": "125-117"
+      "opp": "Celtics",
+      "result": "L",
+      "score": "99-120"
     },
     "schedule": [
       {
@@ -196,11 +196,11 @@
       "date": "Feb 1"
     },
     "next": {
-      "event": "Rotterdam Open",
-      "detail": "QF vs Zverev Men",
-      "match_time": "Feb 9",
-      "tournament_dates": "",
-      "status": "-"
+      "event": "Miami Open",
+      "detail": "vs Joao Fonseca",
+      "match_time": "Mar 18",
+      "tournament_dates": "Mar 19 - 30",
+      "status": "Masters"
     }
   }
 }
