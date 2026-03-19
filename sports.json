@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-19 16:01:56 KST",
+  "updated": "2026-03-19 22:11:15 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 31,
@@ -189,16 +189,16 @@
   },
   "tennis": {
     "recent": {
-      "event": "Australian Open",
-      "opponent": "Novak Djokovic",
+      "event": "Indian Wells",
+      "opponent": "Arthur Rinderknech",
       "result": "W",
-      "score": "2-6, 6-2, 6-3, 7-5",
-      "date": "Feb 1"
+      "score": "6-76, 6-3, 6-2",
+      "date": "Mar 9"
     },
     "next": {
-      "event": "Rotterdam Open",
-      "detail": "QF vs Zverev Men",
-      "match_time": "Feb 9",
+      "event": "BNP Paribas Open",
+      "detail": "QF vs Medvedev",
+      "match_time": "Mar 4",
       "tournament_dates": "",
       "status": "-"
     }
