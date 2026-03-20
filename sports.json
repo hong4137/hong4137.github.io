@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-20 04:02:18 KST",
+  "updated": "2026-03-20 11:24:20 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 31,
@@ -197,7 +197,7 @@
     },
     "next": {
       "event": "Rotterdam Open",
-      "detail": "QF vs Zverev Men",
+      "detail": "QF vs Zverev",
       "match_time": "Feb 9",
       "tournament_dates": "",
       "status": "-"
