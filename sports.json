@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-20 15:59:48 KST",
+  "updated": "2026-03-20 22:05:32 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 31,
@@ -48,7 +48,7 @@
   },
   "nba": {
     "record": "33-36",
-    "rank": "#1 West",
+    "rank": "#10 West",
     "last": {
       "opp": "Celtics",
       "result": "L",
@@ -196,10 +196,10 @@
       "date": "Feb 21"
     },
     "next": {
-      "event": "Indian Wells",
-      "detail": "QF vs Andrey Rublev",
-      "match_time": "Mar 03",
-      "tournament_dates": "Mar 5 - 16",
+      "event": "Miami Open",
+      "detail": "vs Joao Fonseca",
+      "match_time": "Mar 16",
+      "tournament_dates": "Mar 19 - 30",
       "status": "Masters"
     }
   }
