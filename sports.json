@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-20 22:05:32 KST",
+  "updated": "2026-03-21 03:54:15 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 31,
@@ -48,7 +48,7 @@
   },
   "nba": {
     "record": "33-36",
-    "rank": "#10 West",
+    "rank": "#1 West",
     "last": {
       "opp": "Celtics",
       "result": "L",
@@ -56,21 +56,21 @@
     },
     "schedule": [
       {
-        "opp": "Pistons",
-        "date": "03.21",
-        "kst_time": "08:30",
-        "local_time": "4:30 PM PT",
-        "location": "away",
-        "venue": "@ Detroit",
-        "channel": ""
-      },
-      {
         "opp": "Hawks",
         "date": "03.22",
         "kst_time": "09:00",
         "local_time": "5:00 PM PT",
         "location": "away",
         "venue": "@ Atlanta",
+        "channel": ""
+      },
+      {
+        "opp": "Mavericks",
+        "date": "03.24",
+        "kst_time": "10:30",
+        "local_time": "6:30 PM PT",
+        "location": "away",
+        "venue": "@ Dallas",
         "channel": ""
       }
     ]
@@ -189,18 +189,18 @@
   },
   "tennis": {
     "recent": {
-      "event": "Qatar Open",
-      "opponent": "Arthur Fils",
-      "result": "W",
-      "score": "6-1, 6-2",
-      "date": "Feb 21"
+      "event": "Indian Wells",
+      "opponent": "Daniil Medvedev",
+      "result": "lost",
+      "score": "6-3, 7-63",
+      "date": "Mar 14"
     },
     "next": {
-      "event": "Miami Open",
-      "detail": "vs Joao Fonseca",
-      "match_time": "Mar 16",
-      "tournament_dates": "Mar 19 - 30",
-      "status": "Masters"
+      "event": "Rotterdam Open",
+      "detail": "QF",
+      "match_time": "Feb 9",
+      "tournament_dates": "",
+      "status": "-"
     }
   }
 }
