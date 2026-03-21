@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-21 21:55:19 KST",
+  "updated": "2026-03-22 03:40:04 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 31,
@@ -24,8 +24,8 @@
         ],
         "rule_str": "Early KO",
         "matchday": 31,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "2-1"
       }
     ],
     "selected_matches": [
@@ -41,8 +41,8 @@
         ],
         "rule_str": "Early KO",
         "matchday": 31,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "2-1"
       }
     ]
   },
@@ -56,21 +56,21 @@
     },
     "schedule": [
       {
-        "opp": "Hawks",
-        "date": "03.22",
-        "kst_time": "09:00",
-        "local_time": "5:00 PM PT",
-        "location": "away",
-        "venue": "@ Atlanta",
-        "channel": ""
-      },
-      {
         "opp": "Mavericks",
         "date": "03.24",
         "kst_time": "10:30",
         "local_time": "6:30 PM PT",
         "location": "away",
         "venue": "@ Dallas",
+        "channel": ""
+      },
+      {
+        "opp": "Nets",
+        "date": "03.26",
+        "kst_time": "11:00",
+        "local_time": "7:00 PM PT",
+        "location": "home",
+        "venue": "Chase Center",
         "channel": ""
       }
     ]
@@ -189,16 +189,16 @@
   },
   "tennis": {
     "recent": {
-      "event": "Indian Wells",
-      "opponent": "Daniil Medvedev",
-      "result": "L",
-      "score": "6-3, 7-63",
-      "date": "Mar 14"
+      "event": "-",
+      "opponent": "-",
+      "result": "-",
+      "score": "-",
+      "date": "-"
     },
     "next": {
-      "event": "Rotterdam Open",
-      "detail": "QF vs Sinner Final",
-      "match_time": "Feb 9",
+      "event": "-",
+      "detail": "QF vs Joao Fonseca",
+      "match_time": "TBD",
       "tournament_dates": "",
       "status": "-"
     }
