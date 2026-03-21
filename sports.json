@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-21 15:49:49 KST",
+  "updated": "2026-03-21 21:55:19 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 31,
@@ -48,7 +48,7 @@
   },
   "nba": {
     "record": "33-37",
-    "rank": "-",
+    "rank": "#1 West",
     "last": {
       "opp": "Pistons",
       "result": "L",
@@ -133,7 +133,7 @@
       },
       {
         "pos": 2,
-        "driver": "Andrea Kimi Antonelli",
+        "driver": "Kimi Antonelli",
         "team": "Mercedes",
         "points": 47
       },
@@ -152,7 +152,7 @@
       {
         "pos": 5,
         "driver": "Oliver Bearman",
-        "team": "Haas F1 Team",
+        "team": "Haas",
         "points": 17
       },
       {
@@ -164,7 +164,7 @@
       {
         "pos": 7,
         "driver": "Pierre Gasly",
-        "team": "Alpine F1 Team",
+        "team": "Alpine",
         "points": 9
       },
       {
@@ -191,16 +191,16 @@
     "recent": {
       "event": "Indian Wells",
       "opponent": "Daniil Medvedev",
-      "result": "lost",
+      "result": "L",
       "score": "6-3, 7-63",
       "date": "Mar 14"
     },
     "next": {
-      "event": "Miami",
-      "detail": "R64 vs Joao Fonseca",
-      "match_time": "Mar 18",
+      "event": "Rotterdam Open",
+      "detail": "QF vs Sinner Final",
+      "match_time": "Feb 9",
       "tournament_dates": "",
-      "status": "Masters"
+      "status": "-"
     }
   }
 }
