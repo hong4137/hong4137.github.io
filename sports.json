@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-21 11:11:28 KST",
+  "updated": "2026-03-21 15:49:49 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 31,
@@ -133,7 +133,7 @@
       },
       {
         "pos": 2,
-        "driver": "Kimi Antonelli",
+        "driver": "Andrea Kimi Antonelli",
         "team": "Mercedes",
         "points": 47
       },
@@ -152,7 +152,7 @@
       {
         "pos": 5,
         "driver": "Oliver Bearman",
-        "team": "Haas",
+        "team": "Haas F1 Team",
         "points": 17
       },
       {
@@ -164,7 +164,7 @@
       {
         "pos": 7,
         "driver": "Pierre Gasly",
-        "team": "Alpine",
+        "team": "Alpine F1 Team",
         "points": 9
       },
       {
@@ -192,14 +192,14 @@
       "event": "Indian Wells",
       "opponent": "Daniil Medvedev",
       "result": "lost",
-      "score": "3-6, 6-73",
+      "score": "6-3, 7-63",
       "date": "Mar 14"
     },
     "next": {
-      "event": "Miami Open",
-      "detail": "vs Joao Fonseca",
-      "match_time": "March 21",
-      "tournament_dates": "Mar 19 - 30",
+      "event": "Miami",
+      "detail": "R64 vs Joao Fonseca",
+      "match_time": "Mar 18",
+      "tournament_dates": "",
       "status": "Masters"
     }
   }
