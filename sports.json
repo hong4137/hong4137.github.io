@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-21 03:54:15 KST",
+  "updated": "2026-03-21 11:11:28 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 31,
@@ -47,12 +47,12 @@
     ]
   },
   "nba": {
-    "record": "33-36",
-    "rank": "#1 West",
+    "record": "33-37",
+    "rank": "-",
     "last": {
-      "opp": "Celtics",
+      "opp": "Pistons",
       "result": "L",
-      "score": "99-120"
+      "score": "101-115"
     },
     "schedule": [
       {
@@ -192,15 +192,15 @@
       "event": "Indian Wells",
       "opponent": "Daniil Medvedev",
       "result": "lost",
-      "score": "6-3, 7-63",
+      "score": "3-6, 6-73",
       "date": "Mar 14"
     },
     "next": {
-      "event": "Rotterdam Open",
-      "detail": "QF",
-      "match_time": "Feb 9",
-      "tournament_dates": "",
-      "status": "-"
+      "event": "Miami Open",
+      "detail": "vs Joao Fonseca",
+      "match_time": "March 21",
+      "tournament_dates": "Mar 19 - 30",
+      "status": "Masters"
     }
   }
 }
