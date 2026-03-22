@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-22 03:40:04 KST",
+  "updated": "2026-03-22 11:32:16 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 31,
@@ -47,12 +47,12 @@
     ]
   },
   "nba": {
-    "record": "33-37",
+    "record": "33-38",
     "rank": "#1 West",
     "last": {
-      "opp": "Pistons",
+      "opp": "Hawks",
       "result": "L",
-      "score": "101-115"
+      "score": "110-126"
     },
     "schedule": [
       {
@@ -189,18 +189,18 @@
   },
   "tennis": {
     "recent": {
-      "event": "-",
-      "opponent": "-",
-      "result": "-",
-      "score": "-",
-      "date": "-"
+      "event": "Miami",
+      "opponent": "Joao Fonseca",
+      "result": "W",
+      "score": "2-0",
+      "date": "Mar 21"
     },
     "next": {
-      "event": "-",
-      "detail": "QF vs Joao Fonseca",
-      "match_time": "TBD",
+      "event": "Miami",
+      "detail": "3rd Round vs Joao Fonseca",
+      "match_time": "Mar 22 15:00 KST",
       "tournament_dates": "",
-      "status": "-"
+      "status": "Masters"
     }
   }
 }
