@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-23 16:14:45 KST",
+  "updated": "2026-03-23 22:14:15 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 31,
@@ -48,7 +48,7 @@
   },
   "nba": {
     "record": "33-38",
-    "rank": "#1 West",
+    "rank": "-",
     "last": {
       "opp": "Hawks",
       "result": "L",
@@ -133,7 +133,7 @@
       },
       {
         "pos": 2,
-        "driver": "Andrea Kimi Antonelli",
+        "driver": "Kimi Antonelli",
         "team": "Mercedes",
         "points": 47
       },
@@ -152,7 +152,7 @@
       {
         "pos": 5,
         "driver": "Oliver Bearman",
-        "team": "Haas F1 Team",
+        "team": "Haas",
         "points": 17
       },
       {
@@ -164,7 +164,7 @@
       {
         "pos": 7,
         "driver": "Pierre Gasly",
-        "team": "Alpine F1 Team",
+        "team": "Alpine",
         "points": 9
       },
       {
@@ -196,11 +196,11 @@
       "date": "Feb 21"
     },
     "next": {
-      "event": "Indian Wells",
-      "detail": "QF vs Karen Khachanov",
-      "match_time": "Mar 03",
-      "tournament_dates": "Mar 5 - 16",
-      "status": "Masters"
+      "event": "BNP Paribas Open",
+      "detail": "QF vs Andrey Rublev",
+      "match_time": "Mar 4",
+      "tournament_dates": "",
+      "status": "-"
     }
   }
 }
