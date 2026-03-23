@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-23 22:14:15 KST",
+  "updated": "2026-03-24 03:59:03 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 31,
@@ -56,17 +56,17 @@
     },
     "schedule": [
       {
-        "opp": "Mavericks",
-        "date": "03.24",
-        "kst_time": "10:30",
-        "local_time": "6:30 PM PT",
-        "location": "away",
-        "venue": "@ Dallas",
+        "opp": "Nets",
+        "date": "03.26",
+        "kst_time": "11:00",
+        "local_time": "7:00 PM PT",
+        "location": "home",
+        "venue": "Chase Center",
         "channel": ""
       },
       {
-        "opp": "Nets",
-        "date": "03.26",
+        "opp": "Wizards",
+        "date": "03.28",
         "kst_time": "11:00",
         "local_time": "7:00 PM PT",
         "location": "home",
@@ -189,18 +189,18 @@
   },
   "tennis": {
     "recent": {
-      "event": "Qatar Open",
-      "opponent": "Arthur Fils",
-      "result": "W",
-      "score": "7-5, 6-2, 6-1",
-      "date": "Feb 21"
+      "event": "Indian Wells",
+      "opponent": "Daniil Medvedev",
+      "result": "L",
+      "score": "6-3, 7-63",
+      "date": "Mar 14"
     },
     "next": {
-      "event": "BNP Paribas Open",
-      "detail": "QF vs Andrey Rublev",
-      "match_time": "Mar 4",
-      "tournament_dates": "",
-      "status": "-"
+      "event": "Miami Open",
+      "detail": "QF vs Daniil Medvedev",
+      "match_time": "March 24-30",
+      "tournament_dates": "Mar 19 - 30",
+      "status": "Masters"
     }
   }
 }
