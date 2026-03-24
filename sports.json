@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-24 03:59:03 KST",
+  "updated": "2026-03-24 11:24:58 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 31,
@@ -189,18 +189,18 @@
   },
   "tennis": {
     "recent": {
-      "event": "Indian Wells",
-      "opponent": "Daniil Medvedev",
+      "event": "Miami",
+      "opponent": "Sebastian Korda",
       "result": "L",
-      "score": "6-3, 7-63",
-      "date": "Mar 14"
+      "score": "6-3, 5-7, 6-4",
+      "date": "Mar 18"
     },
     "next": {
-      "event": "Miami Open",
-      "detail": "QF vs Daniil Medvedev",
-      "match_time": "March 24-30",
-      "tournament_dates": "Mar 19 - 30",
-      "status": "Masters"
+      "event": "Qatar Open",
+      "detail": "QF vs Joao Fonseca",
+      "match_time": "Feb 22 19:00 KST",
+      "tournament_dates": "",
+      "status": "-"
     }
   }
 }
