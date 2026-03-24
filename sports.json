@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-24 22:18:02 KST",
+  "updated": "2026-03-25 04:06:56 KST",
   "epl": {
     "matchday": 31,
     "selected_round": 31,
@@ -48,7 +48,7 @@
   },
   "nba": {
     "record": "34-38",
-    "rank": "-",
+    "rank": "#10 West",
     "last": {
       "opp": "Mavericks",
       "result": "W",
@@ -92,36 +92,36 @@
         "name": "FP1",
         "date": "03.27",
         "day_local": "Fri",
-        "kst_time": "11:30",
-        "local_time": "11:30"
+        "kst_time": "13:30",
+        "local_time": "13:30"
       },
       {
         "name": "FP2",
         "date": "03.27",
         "day_local": "Fri",
-        "kst_time": "15:00",
-        "local_time": "15:00"
+        "kst_time": "17:00",
+        "local_time": "17:00"
       },
       {
         "name": "FP3",
         "date": "03.28",
         "day_local": "Sat",
-        "kst_time": "11:30",
-        "local_time": "11:30"
+        "kst_time": "12:30",
+        "local_time": "12:30"
       },
       {
         "name": "Qualifying",
         "date": "03.28",
         "day_local": "Sat",
-        "kst_time": "15:00",
-        "local_time": "15:00"
+        "kst_time": "16:00",
+        "local_time": "16:00"
       },
       {
         "name": "Race",
         "date": "03.29",
         "day_local": "Sun",
-        "kst_time": "14:00",
-        "local_time": "14:00"
+        "kst_time": "15:00",
+        "local_time": "15:00"
       }
     ],
     "standings": [
@@ -196,9 +196,9 @@
       "date": "Mar 18"
     },
     "next": {
-      "event": "Rotterdam Open",
+      "event": "BNP Paribas Open",
       "detail": "QF vs Joao Fonseca",
-      "match_time": "Feb 9",
+      "match_time": "Mar 4",
       "tournament_dates": "",
       "status": "-"
     }
