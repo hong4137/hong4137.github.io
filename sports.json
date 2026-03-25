@@ -1,9 +1,9 @@
 {
-  "updated": "2026-03-25 11:29:55 KST",
+  "updated": "2026-03-25 16:05:50 KST",
   "epl": {
-    "matchday": 31,
-    "selected_round": 31,
-    "display_matchday": "R31",
+    "matchday": 32,
+    "selected_round": 32,
+    "display_matchday": "R32",
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
@@ -13,36 +13,70 @@
     ],
     "matches": [
       {
-        "match_id": 538087,
-        "home": "Brighton & Hove Albion",
-        "away": "Liverpool",
-        "kst_time": "03.21 21:30 (KST)",
+        "match_id": 538100,
+        "home": "Chelsea",
+        "away": "Manchester City",
+        "kst_time": "04.13 00:30 (KST)",
+        "uk_time": "Sunday 16:30 (UK)",
+        "local": "Sky Sports Main Event",
+        "rules": [
+          "Big Match",
+          "Prime Time"
+        ],
+        "rule_str": "Big Match, Prime Time",
+        "matchday": 32,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 538097,
+        "home": "Arsenal",
+        "away": "AFC Bournemouth",
+        "kst_time": "04.11 20:30 (KST)",
         "uk_time": "Saturday 12:30 (UK)",
         "local": "Sky Sports Main Event",
         "rules": [
-          "Early KO"
+          "Early KO",
+          "Leader"
         ],
-        "rule_str": "Early KO",
-        "matchday": 31,
-        "status": "FINISHED",
-        "score": "2-1"
+        "rule_str": "Early KO, Leader",
+        "matchday": 32,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ],
     "selected_matches": [
       {
-        "match_id": 538087,
-        "home": "Brighton & Hove Albion",
-        "away": "Liverpool",
-        "kst_time": "03.21 21:30 (KST)",
+        "match_id": 538100,
+        "home": "Chelsea",
+        "away": "Manchester City",
+        "kst_time": "04.13 00:30 (KST)",
+        "uk_time": "Sunday 16:30 (UK)",
+        "local": "Sky Sports Main Event",
+        "rules": [
+          "Big Match",
+          "Prime Time"
+        ],
+        "rule_str": "Big Match, Prime Time",
+        "matchday": 32,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 538097,
+        "home": "Arsenal",
+        "away": "AFC Bournemouth",
+        "kst_time": "04.11 20:30 (KST)",
         "uk_time": "Saturday 12:30 (UK)",
         "local": "Sky Sports Main Event",
         "rules": [
-          "Early KO"
+          "Early KO",
+          "Leader"
         ],
-        "rule_str": "Early KO",
-        "matchday": 31,
-        "status": "FINISHED",
-        "score": "2-1"
+        "rule_str": "Early KO, Leader",
+        "matchday": 32,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ]
   },
@@ -189,18 +223,18 @@
   },
   "tennis": {
     "recent": {
-      "event": "Miami",
-      "opponent": "Sebastian Korda",
-      "result": "L",
-      "score": "6-1, 0-6, 6-4",
-      "date": "Mar 18"
+      "event": "Qatar Open",
+      "opponent": "Arthur Fils",
+      "result": "W",
+      "score": "7-5, 6-2, 6-1",
+      "date": "Feb 21"
     },
     "next": {
-      "event": "Rotterdam Open",
-      "detail": "QF vs Joao Fonseca",
-      "match_time": "Feb 9",
-      "tournament_dates": "",
-      "status": "-"
+      "event": "Miami Open",
+      "detail": "R32 vs Sebastian Korda",
+      "match_time": "Mar 29",
+      "tournament_dates": "Mar 19 - 30",
+      "status": "Masters"
     }
   }
 }
