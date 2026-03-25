@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-25 22:17:12 KST",
+  "updated": "2026-03-26 03:59:18 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -90,8 +90,8 @@
     },
     "schedule": [
       {
-        "opp": "Nets",
-        "date": "03.26",
+        "opp": "Wizards",
+        "date": "03.28",
         "kst_time": "11:00",
         "local_time": "7:00 PM PT",
         "location": "home",
@@ -99,12 +99,12 @@
         "channel": ""
       },
       {
-        "opp": "Wizards",
-        "date": "03.28",
+        "opp": "Nuggets",
+        "date": "03.30",
         "kst_time": "11:00",
         "local_time": "7:00 PM PT",
-        "location": "home",
-        "venue": "Chase Center",
+        "location": "away",
+        "venue": "@ Denver",
         "channel": ""
       }
     ]
@@ -223,18 +223,18 @@
   },
   "tennis": {
     "recent": {
-      "event": "Miami Open",
-      "opponent": "Sebastian Korda",
-      "result": "L",
-      "score": "1-2",
-      "date": "March 23"
+      "event": "-",
+      "opponent": "-",
+      "result": "-",
+      "score": "-",
+      "date": "-"
     },
     "next": {
-      "event": "Miami Open",
-      "detail": "R32 vs Joao Fonseca",
-      "match_time": "March 16",
-      "tournament_dates": "Mar 19 - 30",
-      "status": "Masters"
+      "event": "-",
+      "detail": "QF vs Zverev",
+      "match_time": "TBD",
+      "tournament_dates": "",
+      "status": "-"
     }
   }
 }
