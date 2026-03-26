@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-26 22:22:36 KST",
+  "updated": "2026-03-27 04:10:41 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -118,7 +118,7 @@
       "date": "Mar 27-29",
       "date_from": "2026-03-27",
       "date_to": "2026-03-29",
-      "status": "Next GP",
+      "status": "This Week",
       "sprint": false
     },
     "schedule": [
@@ -223,16 +223,16 @@
   },
   "tennis": {
     "recent": {
-      "event": "Miami Open",
+      "event": "Miami",
       "opponent": "Sebastian Korda",
       "result": "L",
       "score": "1-2",
-      "date": "Mar 18"
+      "date": "-"
     },
     "next": {
       "event": "Rotterdam Open",
-      "detail": "QF",
-      "match_time": "Feb 9",
+      "detail": "QF vs Joao Fonseca",
+      "match_time": "Mar 27 13:00 KST",
       "tournament_dates": "",
       "status": "-"
     }
