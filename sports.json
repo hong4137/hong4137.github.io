@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-26 11:36:44 KST",
+  "updated": "2026-03-26 16:13:08 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -81,12 +81,12 @@
     ]
   },
   "nba": {
-    "record": "34-38",
+    "record": "35-38",
     "rank": "#10 West",
     "last": {
-      "opp": "Mavericks",
+      "opp": "Nets",
       "result": "W",
-      "score": "137-131"
+      "score": "109-106"
     },
     "schedule": [
       {
@@ -223,18 +223,18 @@
   },
   "tennis": {
     "recent": {
-      "event": "Australian Open",
-      "opponent": "Novak Djokovic",
+      "event": "Qatar Open",
+      "opponent": "Arthur Fils",
       "result": "W",
-      "score": "2-6, 6-2, 6-3, 7-5",
-      "date": "Feb 1"
+      "score": "7-5, 6-2, 6-1",
+      "date": "Feb 21"
     },
     "next": {
-      "event": "Miami Open",
-      "detail": "3R vs Sebastian Korda",
-      "match_time": "Mar 29",
-      "tournament_dates": "Mar 19 - 30",
-      "status": "Masters"
+      "event": "BNP Paribas Open",
+      "detail": "QF vs Novak Djokovic",
+      "match_time": "Mar 4",
+      "tournament_dates": "",
+      "status": "-"
     }
   }
 }
