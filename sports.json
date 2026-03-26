@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-26 11:16:26 KST",
+  "updated": "2026-03-26 11:21:04 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -223,16 +223,16 @@
   },
   "tennis": {
     "recent": {
-      "event": "Miami Open",
-      "opponent": "Sebastian Korda",
-      "result": "L",
-      "score": "1-2",
-      "date": "Mar 18"
+      "event": "Australian Open",
+      "opponent": "Novak Djokovic",
+      "result": "W",
+      "score": "-",
+      "date": "Feb 1"
     },
     "next": {
-      "event": "Rolex Monte-Carlo Masters",
-      "detail": "QF vs Sebastian Korda",
-      "match_time": "Apr 12",
+      "event": "ATP Doha",
+      "detail": "QF vs Karen Khachanov",
+      "match_time": "Mar 27",
       "tournament_dates": "",
       "status": "-"
     }
