@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-27 16:12:28 KST",
+  "updated": "2026-03-27 22:12:39 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -82,7 +82,7 @@
   },
   "nba": {
     "record": "35-38",
-    "rank": "#10 West",
+    "rank": "-",
     "last": {
       "opp": "Nets",
       "result": "W",
@@ -230,11 +230,11 @@
       "date": "Mar 18"
     },
     "next": {
-      "event": "Rotterdam Open",
-      "detail": "QF vs Joao Fonseca",
-      "match_time": "Feb 9",
+      "event": "Miami",
+      "detail": "R32 vs Joao Fonseca",
+      "match_time": "Mar 16",
       "tournament_dates": "",
-      "status": "-"
+      "status": "Masters"
     }
   }
 }
