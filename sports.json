@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-27 22:12:39 KST",
+  "updated": "2026-03-28 03:59:18 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -82,7 +82,7 @@
   },
   "nba": {
     "record": "35-38",
-    "rank": "-",
+    "rank": "#10 West",
     "last": {
       "opp": "Nets",
       "result": "W",
@@ -90,21 +90,21 @@
     },
     "schedule": [
       {
-        "opp": "Wizards",
-        "date": "03.28",
-        "kst_time": "11:00",
-        "local_time": "7:00 PM PT",
-        "location": "home",
-        "venue": "Chase Center",
-        "channel": ""
-      },
-      {
         "opp": "Nuggets",
         "date": "03.30",
         "kst_time": "11:00",
         "local_time": "7:00 PM PT",
         "location": "away",
         "venue": "@ Denver",
+        "channel": ""
+      },
+      {
+        "opp": "Spurs",
+        "date": "04.02",
+        "kst_time": "11:00",
+        "local_time": "7:00 PM PT",
+        "location": "home",
+        "venue": "Chase Center",
         "channel": ""
       }
     ]
@@ -230,11 +230,11 @@
       "date": "Mar 18"
     },
     "next": {
-      "event": "Miami",
-      "detail": "R32 vs Joao Fonseca",
-      "match_time": "Mar 16",
+      "event": "Rotterdam Open",
+      "detail": "QF vs Joao Fonseca",
+      "match_time": "Feb 9",
       "tournament_dates": "",
-      "status": "Masters"
+      "status": "-"
     }
   }
 }
