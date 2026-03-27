@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-27 04:10:41 KST",
+  "updated": "2026-03-27 11:38:28 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -227,12 +227,12 @@
       "opponent": "Sebastian Korda",
       "result": "L",
       "score": "1-2",
-      "date": "-"
+      "date": "Mar 18"
     },
     "next": {
       "event": "Rotterdam Open",
       "detail": "QF vs Joao Fonseca",
-      "match_time": "Mar 27 13:00 KST",
+      "match_time": "Feb 9",
       "tournament_dates": "",
       "status": "-"
     }
