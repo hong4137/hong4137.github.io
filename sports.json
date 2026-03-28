@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-28 11:28:55 KST",
+  "updated": "2026-03-28 16:02:24 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -81,12 +81,12 @@
     ]
   },
   "nba": {
-    "record": "35-38",
-    "rank": "#10 West",
+    "record": "36-38",
+    "rank": "-",
     "last": {
-      "opp": "Nets",
+      "opp": "Wizards",
       "result": "W",
-      "score": "109-106"
+      "score": "131-126"
     },
     "schedule": [
       {
@@ -231,7 +231,7 @@
     },
     "next": {
       "event": "BNP Paribas Open",
-      "detail": "QF vs Joao Fonseca",
+      "detail": "QF vs Sebastian Korda",
       "match_time": "Mar 4",
       "tournament_dates": "",
       "status": "-"
