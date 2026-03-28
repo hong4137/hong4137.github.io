@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-28 16:02:24 KST",
+  "updated": "2026-03-28 22:00:47 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -226,15 +226,15 @@
       "event": "Miami",
       "opponent": "Sebastian Korda",
       "result": "L",
-      "score": "1-6, 6-0, 4-6",
+      "score": "1-2",
       "date": "Mar 18"
     },
     "next": {
-      "event": "BNP Paribas Open",
-      "detail": "QF vs Sebastian Korda",
-      "match_time": "Mar 4",
-      "tournament_dates": "",
-      "status": "-"
+      "event": "Indian Wells",
+      "detail": "QF vs Joao Fonseca",
+      "match_time": "TBD",
+      "tournament_dates": "Mar 5 - 16",
+      "status": "Masters"
     }
   }
 }
