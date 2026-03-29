@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-29 22:01:33 KST",
+  "updated": "2026-03-30 01:08:06 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -82,7 +82,7 @@
   },
   "nba": {
     "record": "36-38",
-    "rank": "-",
+    "rank": "#10 West",
     "last": {
       "opp": "Wizards",
       "result": "W",
@@ -90,17 +90,17 @@
     },
     "schedule": [
       {
-        "opp": "Nuggets",
-        "date": "03.30",
+        "opp": "Spurs",
+        "date": "04.02",
         "kst_time": "11:00",
         "local_time": "7:00 PM PT",
-        "location": "away",
-        "venue": "@ Denver",
+        "location": "home",
+        "venue": "Chase Center",
         "channel": ""
       },
       {
-        "opp": "Spurs",
-        "date": "04.02",
+        "opp": "Cavaliers",
+        "date": "04.03",
         "kst_time": "11:00",
         "local_time": "7:00 PM PT",
         "location": "home",
@@ -111,128 +111,128 @@
   },
   "f1": {
     "next_race": {
-      "round": 3,
-      "name": "Japanese Grand Prix",
-      "circuit": "Suzuka Circuit",
-      "country": "Japan",
-      "date": "Mar 27-29",
-      "date_from": "2026-03-27",
-      "date_to": "2026-03-29",
-      "status": "This Week",
+      "round": 4,
+      "name": "Bahrain Grand Prix",
+      "circuit": "Bahrain International Circuit, Sakhir",
+      "country": "Bahrain",
+      "date": "Apr 10-12",
+      "date_from": "2026-04-10",
+      "date_to": "2026-04-12",
+      "status": "Next GP",
       "sprint": false
     },
     "schedule": [
       {
         "name": "FP1",
-        "date": "03.27",
+        "date": "04.10",
         "day_local": "Fri",
-        "kst_time": "13:30",
+        "kst_time": "19:30",
         "local_time": "13:30"
       },
       {
         "name": "FP2",
-        "date": "03.27",
+        "date": "04.10",
         "day_local": "Fri",
-        "kst_time": "17:00",
+        "kst_time": "23:00",
         "local_time": "17:00"
       },
       {
         "name": "FP3",
-        "date": "03.28",
+        "date": "04.11",
         "day_local": "Sat",
-        "kst_time": "12:30",
+        "kst_time": "18:30",
         "local_time": "12:30"
       },
       {
         "name": "Qualifying",
-        "date": "03.28",
+        "date": "04.11",
         "day_local": "Sat",
-        "kst_time": "16:00",
+        "kst_time": "22:00",
         "local_time": "16:00"
       },
       {
         "name": "Race",
-        "date": "03.29",
+        "date": "04.12",
         "day_local": "Sun",
-        "kst_time": "15:00",
+        "kst_time": "21:00",
         "local_time": "15:00"
       }
     ],
     "standings": [
       {
         "pos": 1,
-        "driver": "George Russell",
+        "driver": "Andrea Kimi Antonelli",
         "team": "Mercedes",
-        "points": 51
+        "points": 72
       },
       {
         "pos": 2,
-        "driver": "Kimi Antonelli",
+        "driver": "George Russell",
         "team": "Mercedes",
-        "points": 47
+        "points": 63
       },
       {
         "pos": 3,
         "driver": "Charles Leclerc",
         "team": "Ferrari",
-        "points": 34
+        "points": 49
       },
       {
         "pos": 4,
         "driver": "Lewis Hamilton",
         "team": "Ferrari",
-        "points": 33
+        "points": 41
       },
       {
         "pos": 5,
-        "driver": "Oliver Bearman",
-        "team": "Haas",
-        "points": 17
+        "driver": "Lando Norris",
+        "team": "McLaren",
+        "points": 25
       },
       {
         "pos": 6,
-        "driver": "Lando Norris",
+        "driver": "Oscar Piastri",
         "team": "McLaren",
-        "points": 15
+        "points": 21
       },
       {
         "pos": 7,
-        "driver": "Pierre Gasly",
-        "team": "Alpine",
-        "points": 9
+        "driver": "Oliver Bearman",
+        "team": "Haas F1 Team",
+        "points": 17
       },
       {
         "pos": 8,
-        "driver": "Max Verstappen",
-        "team": "Red Bull",
-        "points": 8
+        "driver": "Pierre Gasly",
+        "team": "Alpine F1 Team",
+        "points": 15
       },
       {
         "pos": 9,
-        "driver": "Liam Lawson",
-        "team": "Racing Bulls",
-        "points": 8
+        "driver": "Max Verstappen",
+        "team": "Red Bull",
+        "points": 12
       },
       {
         "pos": 10,
-        "driver": "Arvid Lindblad",
+        "driver": "Liam Lawson",
         "team": "Racing Bulls",
-        "points": 4
+        "points": 10
       }
     ]
   },
   "tennis": {
     "recent": {
-      "event": "Miami",
+      "event": "Miami Open",
       "opponent": "Sebastian Korda",
       "result": "L",
-      "score": "6-1",
+      "score": "1-2",
       "date": "Mar 18"
     },
     "next": {
-      "event": "Rotterdam Open",
-      "detail": "QF vs Joao Fonseca",
-      "match_time": "Feb 9",
+      "event": "BNP Paribas Open",
+      "detail": "QF vs Jannik Sinner",
+      "match_time": "Mar 4",
       "tournament_dates": "",
       "status": "-"
     }
