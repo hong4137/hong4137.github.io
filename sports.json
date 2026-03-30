@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-30 16:46:24 KST",
+  "updated": "2026-03-30 22:26:27 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -82,7 +82,7 @@
   },
   "nba": {
     "record": "36-39",
-    "rank": "-",
+    "rank": "#10 West",
     "last": {
       "opp": "Nuggets",
       "result": "L",
@@ -230,9 +230,9 @@
       "date": "Feb 1"
     },
     "next": {
-      "event": "Rotterdam Open",
+      "event": "BNP Paribas Open",
       "detail": "QF vs Alexander Zverev",
-      "match_time": "Feb 9",
+      "match_time": "Mar 4",
       "tournament_dates": "",
       "status": "-"
     }
