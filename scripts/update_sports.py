@@ -1106,8 +1106,10 @@ def get_f1_standings(serper_key, gemini_key):
     # 1차: 웹페이지 직접 fetch (total-motorsport.com 테이블)
     # =========================================================================
     standings_urls = [
+        "https://www.formula1.com/en/results/2026/drivers",
         "https://www.total-motorsport.com/f1-driver-standings-2026/",
         "https://racingnews365.com/f1/standings/2026/drivers",
+        "https://www.motorsport.com/f1/standings/",
     ]
     
     for url in standings_urls:
@@ -1271,7 +1273,28 @@ def parse_f1_standings_from_html(html_text):
             standings.sort(key=lambda x: x['pos'])
             return standings
     
-    # 패턴 2: 텍스트에서 "1 George Russell Mercedes 25" 형태
+    # 패턴 2: 마크다운 테이블 "| 1 | Driver Name | Team | 72 |"
+    md_pattern = r'\|\s*(\d{1,2})\s*\|.*?([A-Z][a-z]+(?:\s[A-Z][a-z]+)+).*?\|\s*(\d{1,3})\s*\|'
+    md_rows = re.findall(md_pattern, html_text)
+    if md_rows and len(md_rows) >= 5:
+        for pos_str, driver_name, pts_str in md_rows:
+            pos = int(pos_str)
+            pts = int(pts_str)
+            driver_name = driver_name.strip()
+            # known_drivers에서 팀 매칭
+            team = ''
+            for surname, (full, t) in known_drivers.items():
+                if surname.lower() in driver_name.lower():
+                    team = t
+                    driver_name = full
+                    break
+            if pos <= 22:
+                standings.append({'pos': pos, 'driver': driver_name, 'team': team, 'points': pts})
+        if len(standings) >= 5:
+            standings.sort(key=lambda x: x['pos'])
+            return standings
+    
+    # 패턴 3: 텍스트에서 "1 George Russell Mercedes 25" 형태
     text = re.sub(r'<[^>]+>', ' ', html_text)  # 모든 태그 제거
     text = re.sub(r'\s+', ' ', text)
     
