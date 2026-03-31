@@ -2224,12 +2224,10 @@ def update_sports_data():
         log(f"   ✅ 순위: {len(f1_data['standings'])}명 로드")
 
     # =========================================================================
-    # STEP 5: Tennis (v2.5: Web App + Serper/Gemini 보완)
+    # STEP 5: Tennis (v6: Sofascore Web App — Gemini 없음)
     # =========================================================================
-    log("\n🎾 [Step 5/5] Tennis (Alcaraz) - v2.5...")
+    log("\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...")
 
-    # 5-1: Web App 호출
-    log("   [5-1] Web App 호출...")
     raw_tennis = get_tennis_data_from_webapp()
     
     if raw_tennis:
@@ -2237,54 +2235,18 @@ def update_sports_data():
         next_raw = raw_tennis.get('next', {})
         log(f"   ✅ Web App 응답:")
         log(f"      Recent: {recent.get('event', '-')} vs {recent.get('opponent', '-')} {recent.get('result', '-')} ({recent.get('score', '-')})")
-        log(f"      Next: {next_raw.get('event', '-')} vs {next_raw.get('opponent', '-')} | R:{next_raw.get('round', '-')} | {next_raw.get('date', '-')}")
-        
-        # 5-2: 데이터 검증
-        log("   [5-2] 데이터 검증...")
-        issues = is_tennis_data_incomplete(raw_tennis)
-        
-        if issues:
-            log(f"   ⚠️ 불완전 데이터 감지: {', '.join(issues)}")
-            
-            # 5-3: Serper + Gemini 보완
-            log("   [5-3] Serper + Gemini 보완 시도...")
-            enriched_tennis = enrich_tennis_with_search(raw_tennis, serper_api_key, gemini_api_key)
-            
-            # 보완 결과 로그
-            enriched_next = enriched_tennis.get('next', {})
-            was_enriched = enriched_tennis.get('_enriched', False)
-            if was_enriched:
-                log(f"   ✅ 보완 완료 ({enriched_tennis.get('_enriched_confidence', '-')}):")
-                log(f"      Next: {enriched_next.get('event', '-')} vs {enriched_next.get('opponent', '-')} | R:{enriched_next.get('round', '-')} | {enriched_next.get('date', '-')}")
-            else:
-                log(f"   ℹ️ 보완 실패, Web App 원본 유지")
-            
-            tennis_data = format_tennis_data(enriched_tennis)
-        else:
-            log(f"   ✅ 데이터 완전 → 보완 불필요")
-            tennis_data = format_tennis_data(raw_tennis)
+        log(f"      Next: {next_raw.get('event', '-')} | {next_raw.get('date', '-')}")
+        tennis_data = format_tennis_data(raw_tennis)
     else:
-        # Web App 완전 실패 → Serper/Gemini만으로 시도
-        log("   ⚠️ Web App 실패 → Serper/Gemini fallback...")
-        
-        fallback_data = {
-            'recent': {'event': '-', 'opponent': '-', 'result': '-', 'score': '-', 'date': '-'},
-            'next': {'event': '-', 'opponent': '-', 'round': '-', 'date': '-', 'time_kst': '-'}
-        }
-        
-        if serper_api_key:
-            enriched = enrich_tennis_with_search(fallback_data, serper_api_key, gemini_api_key)
-            tennis_data = format_tennis_data(enriched)
-        else:
-            tennis_data = format_tennis_data(fallback_data)
+        log("   ⚠️ Web App 실패 → 기본값")
+        tennis_data = format_tennis_data(None)
     
     # 최종 결과 로그
     final_recent = tennis_data.get('recent', {})
     final_next = tennis_data.get('next', {})
-    enriched_tag = " [enriched]" if tennis_data.get('_enriched') else ""
-    log(f"   📊 최종 결과{enriched_tag}:")
+    log(f"   📊 최종:")
     log(f"      Recent: {final_recent.get('event', '-')} vs {final_recent.get('opponent', '-')} {final_recent.get('result', '-')} ({final_recent.get('score', '-')}) | {final_recent.get('date', '-')}")
-    log(f"      Next: {final_next.get('event', '-')} | {final_next.get('detail', '-')} | {final_next.get('match_time', '-')} [{final_next.get('status', '-')}]")
+    log(f"      Next: {final_next.get('event', '-')} | {final_next.get('detail', '-')} | {final_next.get('match_time', '-')}")
 
     # =========================================================================
     # NBA All-Star Week 데이터 삽입 (기간 내 자동 표시/숨김)
@@ -2299,8 +2261,7 @@ def update_sports_data():
     # EPL 표시용 라운드
     display_matchday = f"R{selected_round}" if selected_round else f"R{current_matchday}"
     
-    # _enriched 메타는 저장하지 않음
-    clean_tennis = {k: v for k, v in tennis_data.items() if not k.startswith('_')}
+    clean_tennis = tennis_data
 
     sports_data = {
         "updated": kst_now.strftime("%Y-%m-%d %H:%M:%S KST"),
@@ -2325,7 +2286,7 @@ def update_sports_data():
     log(f"   EPL: {len(validated_epl)}경기 ({display_matchday})")
     log(f"   NBA: {len(nba_data['schedule'])}경기")
     log(f"   F1: {next_race.get('name', '-')} | {len(f1_data.get('schedule', []))}세션 | {len(f1_data.get('standings', []))}명 순위")
-    log(f"   Tennis: {final_next.get('event', '-')} | {final_next.get('detail', '-')}{enriched_tag}")
+    log(f"   Tennis: {final_next.get('event', '-')} | {final_next.get('detail', '-')}")
     log(f"   파일: {SPORTS_FILE}")
 
     return sports_data
