@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-31 04:02:55 KST",
+  "updated": "2026-03-31 11:38:34 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -226,13 +226,13 @@
       "event": "Qatar Open",
       "opponent": "Arthur Fils",
       "result": "W",
-      "score": "-",
-      "date": "February 21"
+      "score": "6-2, 6-1",
+      "date": "-"
     },
     "next": {
-      "event": "BNP Paribas Open",
-      "detail": "QF vs Andrey Rublev",
-      "match_time": "March 4",
+      "event": "Rotterdam Open",
+      "detail": "QF vs Novak Djokovic",
+      "match_time": "Feb 9",
       "tournament_dates": "",
       "status": "-"
     }
