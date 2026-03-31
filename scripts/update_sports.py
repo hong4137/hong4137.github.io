@@ -1262,10 +1262,18 @@ def parse_f1_standings_from_html(html_text):
             team_name = re.sub(r'<[^>]+>', '', team_cell).strip()
             
             if driver_name and pts >= 0 and pos <= 22:
+                # known_drivers로 이름/팀 정리 (3글자 코드 등 제거)
+                clean_driver = driver_name
+                clean_team = team_name
+                for surname, (full, t) in known_drivers.items():
+                    if surname in driver_name:
+                        clean_driver = full
+                        clean_team = t
+                        break
                 standings.append({
                     'pos': pos,
-                    'driver': driver_name,
-                    'team': team_name,
+                    'driver': clean_driver,
+                    'team': clean_team,
                     'points': pts
                 })
         
