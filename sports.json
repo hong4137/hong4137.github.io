@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-31 13:39:53 KST",
+  "updated": "2026-03-31 14:05:16 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -82,7 +82,7 @@
   },
   "nba": {
     "record": "36-39",
-    "rank": "#10 West",
+    "rank": "-",
     "last": {
       "opp": "Nuggets",
       "result": "L",
@@ -231,7 +231,7 @@
     },
     "next": {
       "event": "Monte-Carlo Masters",
-      "detail": "QF vs Joao Fonseca",
+      "detail": "QF vs Jannik Sinner",
       "match_time": "Apr 5",
       "tournament_dates": "",
       "status": "-"
