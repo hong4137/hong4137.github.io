@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-31 16:59:08 KST",
+  "updated": "2026-03-31 17:25:40 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -161,63 +161,63 @@
     "standings": [
       {
         "pos": 1,
-        "driver": "George Russell",
-        "team": "Mercedes",
-        "points": 51
+        "driver": "Kimi AntonelliANT",
+        "team": "ITAMercedes",
+        "points": 72
       },
       {
         "pos": 2,
-        "driver": "Kimi Antonelli",
-        "team": "Mercedes",
-        "points": 47
+        "driver": "George RussellRUS",
+        "team": "GBRMercedes",
+        "points": 63
       },
       {
         "pos": 3,
-        "driver": "Charles Leclerc",
-        "team": "Ferrari",
-        "points": 34
+        "driver": "Charles LeclercLEC",
+        "team": "MONFerrari",
+        "points": 49
       },
       {
         "pos": 4,
-        "driver": "Lewis Hamilton",
-        "team": "Ferrari",
-        "points": 33
+        "driver": "Lewis HamiltonHAM",
+        "team": "GBRFerrari",
+        "points": 41
       },
       {
         "pos": 5,
-        "driver": "Oliver Bearman",
-        "team": "Haas",
-        "points": 17
+        "driver": "Lando NorrisNOR",
+        "team": "GBRMcLaren",
+        "points": 25
       },
       {
         "pos": 6,
-        "driver": "Lando Norris",
-        "team": "McLaren",
-        "points": 15
+        "driver": "Oscar PiastriPIA",
+        "team": "AUSMcLaren",
+        "points": 21
       },
       {
         "pos": 7,
-        "driver": "Pierre Gasly",
-        "team": "Alpine",
-        "points": 9
+        "driver": "Oliver BearmanBEA",
+        "team": "GBRHaas F1 Team",
+        "points": 17
       },
       {
         "pos": 8,
-        "driver": "Max Verstappen",
-        "team": "Red Bull",
-        "points": 8
+        "driver": "Pierre GaslyGAS",
+        "team": "FRAAlpine",
+        "points": 15
       },
       {
         "pos": 9,
-        "driver": "Liam Lawson",
-        "team": "Racing Bulls",
-        "points": 8
+        "driver": "Max VerstappenVER",
+        "team": "NEDRed Bull Racing",
+        "points": 12
       },
       {
         "pos": 10,
-        "driver": "Arvid Lindblad",
-        "team": "Racing Bulls",
-        "points": 4
+        "driver": "Liam LawsonLAW",
+        "team": "NZLRacing Bulls",
+        "points": 10
       }
     ]
   },
