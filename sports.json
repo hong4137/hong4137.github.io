@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-31 14:05:16 KST",
+  "updated": "2026-03-31 16:19:45 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -161,63 +161,63 @@
     "standings": [
       {
         "pos": 1,
-        "driver": "George Russell",
+        "driver": "Andrea Kimi Antonelli",
         "team": "Mercedes",
-        "points": 51
+        "points": 72
       },
       {
         "pos": 2,
-        "driver": "Kimi Antonelli",
+        "driver": "George Russell",
         "team": "Mercedes",
-        "points": 47
+        "points": 63
       },
       {
         "pos": 3,
         "driver": "Charles Leclerc",
         "team": "Ferrari",
-        "points": 34
+        "points": 49
       },
       {
         "pos": 4,
         "driver": "Lewis Hamilton",
         "team": "Ferrari",
-        "points": 33
+        "points": 41
       },
       {
         "pos": 5,
-        "driver": "Oliver Bearman",
-        "team": "Haas",
-        "points": 17
+        "driver": "Lando Norris",
+        "team": "McLaren",
+        "points": 25
       },
       {
         "pos": 6,
-        "driver": "Lando Norris",
+        "driver": "Oscar Piastri",
         "team": "McLaren",
-        "points": 15
+        "points": 21
       },
       {
         "pos": 7,
-        "driver": "Pierre Gasly",
-        "team": "Alpine",
-        "points": 9
+        "driver": "Oliver Bearman",
+        "team": "Haas F1 Team",
+        "points": 17
       },
       {
         "pos": 8,
-        "driver": "Max Verstappen",
-        "team": "Red Bull",
-        "points": 8
+        "driver": "Pierre Gasly",
+        "team": "Alpine F1 Team",
+        "points": 15
       },
       {
         "pos": 9,
-        "driver": "Liam Lawson",
-        "team": "Racing Bulls",
-        "points": 8
+        "driver": "Max Verstappen",
+        "team": "Red Bull",
+        "points": 12
       },
       {
         "pos": 10,
-        "driver": "Arvid Lindblad",
+        "driver": "Liam Lawson",
         "team": "Racing Bulls",
-        "points": 4
+        "points": 10
       }
     ]
   },
@@ -231,7 +231,7 @@
     },
     "next": {
       "event": "Monte-Carlo Masters",
-      "detail": "QF vs Jannik Sinner",
+      "detail": "QF vs Joao Fonseca",
       "match_time": "Apr 5",
       "tournament_dates": "",
       "status": "-"
