@@ -1576,7 +1576,7 @@ def search_f1_data(serper_key, gemini_key=None):
 # =============================================================================
 # 테니스 함수 - v2.5 (Apps Script Web App + Serper/Gemini 보완)
 # =============================================================================
-TENNIS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxtXuoeprkGMGbLBIOoxtYK47lU4rQ4faJHAnW6clP1Exi8EO0eAqj-NM6efl9aSMbxSQ/exec"
+TENNIS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbyl0S8XLRt4F9NYjO95ZYKOaPwppsI7v1xra-fuCIQZvNptFsDerXqq_peHtTn-Rt2qJw/exec"
 
 # 대회명 정규화 매핑 (같은 대회의 다른 이름들)
 TOURNAMENT_ALIASES = {
