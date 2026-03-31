@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-31 16:19:45 KST",
+  "updated": "2026-03-31 16:59:08 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -111,113 +111,113 @@
   },
   "f1": {
     "next_race": {
-      "round": 4,
-      "name": "Bahrain Grand Prix",
-      "circuit": "Bahrain International Circuit, Sakhir",
-      "country": "Bahrain",
-      "date": "Apr 10-12",
-      "date_from": "2026-04-10",
-      "date_to": "2026-04-12",
+      "round": 6,
+      "name": "Miami Grand Prix",
+      "circuit": "Miami International Autodrome",
+      "country": "USA",
+      "date": "May 01-03",
+      "date_from": "2026-05-01",
+      "date_to": "2026-05-03",
       "status": "Next GP",
-      "sprint": false
+      "sprint": true
     },
     "schedule": [
       {
         "name": "FP1",
-        "date": "04.10",
+        "date": "05.02",
         "day_local": "Fri",
-        "kst_time": "19:30",
+        "kst_time": "02:30",
         "local_time": "13:30"
       },
       {
-        "name": "FP2",
-        "date": "04.10",
+        "name": "Sprint Qualifying",
+        "date": "05.02",
         "day_local": "Fri",
-        "kst_time": "23:00",
-        "local_time": "17:00"
+        "kst_time": "06:30",
+        "local_time": "17:30"
       },
       {
-        "name": "FP3",
-        "date": "04.11",
+        "name": "Sprint",
+        "date": "05.03",
         "day_local": "Sat",
-        "kst_time": "18:30",
-        "local_time": "12:30"
+        "kst_time": "01:00",
+        "local_time": "12:00"
       },
       {
         "name": "Qualifying",
-        "date": "04.11",
+        "date": "05.03",
         "day_local": "Sat",
-        "kst_time": "22:00",
+        "kst_time": "05:00",
         "local_time": "16:00"
       },
       {
         "name": "Race",
-        "date": "04.12",
+        "date": "05.04",
         "day_local": "Sun",
-        "kst_time": "21:00",
+        "kst_time": "04:00",
         "local_time": "15:00"
       }
     ],
     "standings": [
       {
         "pos": 1,
-        "driver": "Andrea Kimi Antonelli",
+        "driver": "George Russell",
         "team": "Mercedes",
-        "points": 72
+        "points": 51
       },
       {
         "pos": 2,
-        "driver": "George Russell",
+        "driver": "Kimi Antonelli",
         "team": "Mercedes",
-        "points": 63
+        "points": 47
       },
       {
         "pos": 3,
         "driver": "Charles Leclerc",
         "team": "Ferrari",
-        "points": 49
+        "points": 34
       },
       {
         "pos": 4,
         "driver": "Lewis Hamilton",
         "team": "Ferrari",
-        "points": 41
+        "points": 33
       },
       {
         "pos": 5,
-        "driver": "Lando Norris",
-        "team": "McLaren",
-        "points": 25
-      },
-      {
-        "pos": 6,
-        "driver": "Oscar Piastri",
-        "team": "McLaren",
-        "points": 21
-      },
-      {
-        "pos": 7,
         "driver": "Oliver Bearman",
-        "team": "Haas F1 Team",
+        "team": "Haas",
         "points": 17
       },
       {
-        "pos": 8,
-        "driver": "Pierre Gasly",
-        "team": "Alpine F1 Team",
+        "pos": 6,
+        "driver": "Lando Norris",
+        "team": "McLaren",
         "points": 15
       },
       {
-        "pos": 9,
+        "pos": 7,
+        "driver": "Pierre Gasly",
+        "team": "Alpine",
+        "points": 9
+      },
+      {
+        "pos": 8,
         "driver": "Max Verstappen",
         "team": "Red Bull",
-        "points": 12
+        "points": 8
+      },
+      {
+        "pos": 9,
+        "driver": "Liam Lawson",
+        "team": "Racing Bulls",
+        "points": 8
       },
       {
         "pos": 10,
-        "driver": "Liam Lawson",
+        "driver": "Arvid Lindblad",
         "team": "Racing Bulls",
-        "points": 10
+        "points": 4
       }
     ]
   },
@@ -231,7 +231,7 @@
     },
     "next": {
       "event": "Monte-Carlo Masters",
-      "detail": "QF vs Joao Fonseca",
+      "detail": "-",
       "match_time": "Apr 5",
       "tournament_dates": "",
       "status": "-"
