@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-31 17:47:01 KST",
+  "updated": "2026-03-31 22:25:35 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -82,7 +82,7 @@
   },
   "nba": {
     "record": "36-39",
-    "rank": "#10 West",
+    "rank": "-",
     "last": {
       "opp": "Nuggets",
       "result": "L",
@@ -230,11 +230,11 @@
       "date": "Mar 23"
     },
     "next": {
-      "event": "Monte-Carlo Masters",
+      "event": "Shanghai Masters",
       "detail": "-",
-      "match_time": "Apr 5",
-      "tournament_dates": "",
-      "status": "-"
+      "match_time": "Oct 5",
+      "tournament_dates": "Oct 5 - 12",
+      "status": "Masters"
     }
   }
 }
