@@ -959,10 +959,7 @@ F1_2026_CALENDAR = [
      'date_from': '2026-03-13', 'date_to': '2026-03-15', 'local_tz': 'CST', 'utc_offset': 8, 'sprint': True},
     {'round': 3, 'name': 'Japanese Grand Prix', 'circuit': 'Suzuka Circuit', 'country': 'Japan',
      'date_from': '2026-03-27', 'date_to': '2026-03-29', 'local_tz': 'JST', 'utc_offset': 9, 'sprint': False},
-    {'round': 4, 'name': 'Bahrain Grand Prix', 'circuit': 'Bahrain International Circuit, Sakhir', 'country': 'Bahrain',
-     'date_from': '2026-04-10', 'date_to': '2026-04-12', 'local_tz': 'AST', 'utc_offset': 3, 'sprint': False},
-    {'round': 5, 'name': 'Saudi Arabian Grand Prix', 'circuit': 'Jeddah Corniche Circuit', 'country': 'Saudi Arabia',
-     'date_from': '2026-04-17', 'date_to': '2026-04-19', 'local_tz': 'AST', 'utc_offset': 3, 'sprint': False},
+    # Round 4-5 (Bahrain, Saudi Arabia) CANCELLED due to Middle East situation
     {'round': 6, 'name': 'Miami Grand Prix', 'circuit': 'Miami International Autodrome', 'country': 'USA',
      'date_from': '2026-05-01', 'date_to': '2026-05-03', 'local_tz': 'EDT', 'utc_offset': -4, 'sprint': True},
     {'round': 7, 'name': 'Canadian Grand Prix', 'circuit': 'Circuit Gilles Villeneuve, Montreal', 'country': 'Canada',
