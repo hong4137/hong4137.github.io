@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-01 22:27:27 KST",
+  "updated": "2026-04-02 04:06:26 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -90,8 +90,8 @@
     },
     "schedule": [
       {
-        "opp": "Spurs",
-        "date": "04.02",
+        "opp": "Cavaliers",
+        "date": "04.03",
         "kst_time": "11:00",
         "local_time": "7:00 PM PT",
         "location": "home",
@@ -99,8 +99,8 @@
         "channel": ""
       },
       {
-        "opp": "Cavaliers",
-        "date": "04.03",
+        "opp": "Rockets",
+        "date": "04.06",
         "kst_time": "11:00",
         "local_time": "7:00 PM PT",
         "location": "home",
