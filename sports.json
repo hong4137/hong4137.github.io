@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-04 11:28:01 KST",
+  "updated": "2026-04-04 16:04:26 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -82,7 +82,7 @@
   },
   "nba": {
     "record": "36-41",
-    "rank": "-",
+    "rank": "#10 West",
     "last": {
       "opp": "Cavaliers",
       "result": "L",
@@ -124,38 +124,38 @@
     "schedule": [
       {
         "name": "FP1",
-        "date": "05.01",
-        "day_local": "Fri",
-        "kst_time": "22:30",
-        "local_time": "09:30"
-      },
-      {
-        "name": "Sprint Qualifying",
         "date": "05.02",
         "day_local": "Fri",
         "kst_time": "02:30",
         "local_time": "13:30"
       },
       {
-        "name": "Sprint",
+        "name": "Sprint Qualifying",
         "date": "05.02",
+        "day_local": "Fri",
+        "kst_time": "06:30",
+        "local_time": "17:30"
+      },
+      {
+        "name": "Sprint",
+        "date": "05.03",
         "day_local": "Sat",
-        "kst_time": "22:00",
-        "local_time": "09:00"
+        "kst_time": "01:00",
+        "local_time": "12:00"
       },
       {
         "name": "Qualifying",
         "date": "05.03",
         "day_local": "Sat",
-        "kst_time": "02:00",
-        "local_time": "13:00"
+        "kst_time": "05:00",
+        "local_time": "16:00"
       },
       {
         "name": "Race",
         "date": "05.04",
         "day_local": "Sun",
-        "kst_time": "02:00",
-        "local_time": "13:00"
+        "kst_time": "04:00",
+        "local_time": "15:00"
       }
     ],
     "standings": [
@@ -230,11 +230,11 @@
       "date": "Apr 7"
     },
     "next": {
-      "event": "Monte-Carlo Masters",
+      "event": "Shanghai Masters",
       "detail": "-",
-      "match_time": "Apr 5",
-      "tournament_dates": "",
-      "status": "-"
+      "match_time": "Oct 5",
+      "tournament_dates": "Oct 5 - 12",
+      "status": "Masters"
     }
   }
 }
