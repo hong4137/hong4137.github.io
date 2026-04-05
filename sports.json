@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-05 16:11:15 KST",
+  "updated": "2026-04-05 22:03:41 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -82,7 +82,7 @@
   },
   "nba": {
     "record": "36-41",
-    "rank": "-",
+    "rank": "#10 West",
     "last": {
       "opp": "Cavaliers",
       "result": "L",
@@ -230,10 +230,10 @@
       "date": "Apr 7"
     },
     "next": {
-      "event": "Cincinnati Masters",
+      "event": "Shanghai Masters",
       "detail": "-",
-      "match_time": "Aug 11",
-      "tournament_dates": "Aug 11 - 17",
+      "match_time": "Oct 5",
+      "tournament_dates": "Oct 5 - 12",
       "status": "Masters"
     }
   }
