@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-05 11:44:53 KST",
+  "updated": "2026-04-05 16:11:15 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -82,7 +82,7 @@
   },
   "nba": {
     "record": "36-41",
-    "rank": "#10 West",
+    "rank": "-",
     "last": {
       "opp": "Cavaliers",
       "result": "L",
