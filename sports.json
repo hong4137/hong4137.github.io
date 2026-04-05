@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-05 22:03:41 KST",
+  "updated": "2026-04-06 03:49:31 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -90,8 +90,8 @@
     },
     "schedule": [
       {
-        "opp": "Rockets",
-        "date": "04.06",
+        "opp": "Kings",
+        "date": "04.08",
         "kst_time": "11:00",
         "local_time": "7:00 PM PT",
         "location": "home",
@@ -99,8 +99,8 @@
         "channel": ""
       },
       {
-        "opp": "Kings",
-        "date": "04.08",
+        "opp": "Lakers",
+        "date": "04.10",
         "kst_time": "11:00",
         "local_time": "7:00 PM PT",
         "location": "home",
@@ -124,38 +124,38 @@
     "schedule": [
       {
         "name": "FP1",
+        "date": "05.01",
+        "day_local": "Fri",
+        "kst_time": "22:30",
+        "local_time": "09:30"
+      },
+      {
+        "name": "Sprint Qualifying",
         "date": "05.02",
         "day_local": "Fri",
         "kst_time": "02:30",
         "local_time": "13:30"
       },
       {
-        "name": "Sprint Qualifying",
-        "date": "05.02",
-        "day_local": "Fri",
-        "kst_time": "06:30",
-        "local_time": "17:30"
-      },
-      {
         "name": "Sprint",
-        "date": "05.03",
+        "date": "05.02",
         "day_local": "Sat",
-        "kst_time": "01:00",
-        "local_time": "12:00"
+        "kst_time": "22:00",
+        "local_time": "09:00"
       },
       {
         "name": "Qualifying",
         "date": "05.03",
         "day_local": "Sat",
-        "kst_time": "05:00",
-        "local_time": "16:00"
+        "kst_time": "02:00",
+        "local_time": "13:00"
       },
       {
         "name": "Race",
         "date": "05.04",
         "day_local": "Sun",
-        "kst_time": "04:00",
-        "local_time": "15:00"
+        "kst_time": "02:00",
+        "local_time": "13:00"
       }
     ],
     "standings": [
