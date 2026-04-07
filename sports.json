@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-07 22:23:47 KST",
+  "updated": "2026-04-08 04:07:46 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -82,7 +82,7 @@
   },
   "nba": {
     "record": "36-42",
-    "rank": "#10 West",
+    "rank": "-",
     "last": {
       "opp": "Rockets",
       "result": "L",
@@ -90,8 +90,8 @@
     },
     "schedule": [
       {
-        "opp": "Kings",
-        "date": "04.08",
+        "opp": "Lakers",
+        "date": "04.10",
         "kst_time": "11:00",
         "local_time": "7:00 PM PT",
         "location": "home",
@@ -99,12 +99,12 @@
         "channel": ""
       },
       {
-        "opp": "Lakers",
-        "date": "04.10",
+        "opp": "Kings",
+        "date": "04.11",
         "kst_time": "11:00",
         "local_time": "7:00 PM PT",
-        "location": "home",
-        "venue": "Chase Center",
+        "location": "away",
+        "venue": "@ Sacramento",
         "channel": ""
       }
     ]
