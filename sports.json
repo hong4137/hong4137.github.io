@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-09 22:46:53 KST",
+  "updated": "2026-04-10 04:11:36 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -90,21 +90,21 @@
     },
     "schedule": [
       {
-        "opp": "Lakers",
-        "date": "04.10",
-        "kst_time": "11:00",
-        "local_time": "7:00 PM PT",
-        "location": "home",
-        "venue": "Chase Center",
-        "channel": ""
-      },
-      {
         "opp": "Kings",
         "date": "04.11",
         "kst_time": "11:00",
         "local_time": "7:00 PM PT",
         "location": "away",
         "venue": "@ Sacramento",
+        "channel": ""
+      },
+      {
+        "opp": "Clippers",
+        "date": "04.13",
+        "kst_time": "09:30",
+        "local_time": "5:30 PM PT",
+        "location": "away",
+        "venue": "@ LA",
         "channel": ""
       }
     ]
@@ -224,10 +224,10 @@
   "tennis": {
     "recent": {
       "event": "Monte Carlo",
-      "opponent": "Tomas Martin Etcheverry",
+      "opponent": "Alexander Bublik",
       "result": "L",
-      "score": "1-0",
-      "date": "Apr 9"
+      "score": "-",
+      "date": "Apr 10"
     },
     "next": {
       "event": "Shanghai Masters",
