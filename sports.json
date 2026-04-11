@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-11 16:04:07 KST",
+  "updated": "2026-04-11 22:04:17 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -41,8 +41,8 @@
         ],
         "rule_str": "Early KO, Leader",
         "matchday": 32,
-        "status": "TIMED",
-        "score": "-"
+        "status": "IN_PLAY",
+        "score": "1-1"
       }
     ],
     "selected_matches": [
@@ -75,8 +75,8 @@
         ],
         "rule_str": "Early KO, Leader",
         "matchday": 32,
-        "status": "TIMED",
-        "score": "-"
+        "status": "IN_PLAY",
+        "score": "1-1"
       }
     ]
   },
