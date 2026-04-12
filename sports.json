@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-12 22:06:50 KST",
+  "updated": "2026-04-13 03:54:42 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -25,8 +25,8 @@
         ],
         "rule_str": "Big Match, Prime Time",
         "matchday": 32,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "0-3"
       },
       {
         "match_id": 538097,
@@ -59,8 +59,8 @@
         ],
         "rule_str": "Big Match, Prime Time",
         "matchday": 32,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "0-3"
       },
       {
         "match_id": 538097,
@@ -82,23 +82,13 @@
   },
   "nba": {
     "record": "37-44",
-    "rank": "#1 West",
+    "rank": "-",
     "last": {
       "opp": "Kings",
       "result": "L",
       "score": "118-124"
     },
-    "schedule": [
-      {
-        "opp": "Clippers",
-        "date": "04.13",
-        "kst_time": "09:30",
-        "local_time": "5:30 PM PT",
-        "location": "away",
-        "venue": "@ LA",
-        "channel": ""
-      }
-    ]
+    "schedule": []
   },
   "f1": {
     "next_race": {
@@ -214,11 +204,11 @@
   },
   "tennis": {
     "recent": {
-      "event": "Monte Carlo",
-      "opponent": "Jannik Sinner",
+      "event": "Barcelona",
+      "opponent": "Otto Virtanen",
       "result": "L",
       "score": "-",
-      "date": "Apr 12"
+      "date": "Apr 14"
     },
     "next": {
       "event": "Shanghai Masters",
