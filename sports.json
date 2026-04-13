@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-13 22:44:08 KST",
+  "updated": "2026-04-14 04:17:21 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -221,10 +221,10 @@
       "date": "Apr 14"
     },
     "next": {
-      "event": "Shanghai Masters",
+      "event": "Madrid Open",
       "detail": "-",
-      "match_time": "Oct 5",
-      "tournament_dates": "Oct 5 - 12",
+      "match_time": "Apr 27",
+      "tournament_dates": "Apr 27 - May 4",
       "status": "Masters"
     }
   }
