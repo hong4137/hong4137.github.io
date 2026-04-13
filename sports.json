@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-13 11:55:19 KST",
+  "updated": "2026-04-13 17:08:32 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 32,
@@ -81,14 +81,24 @@
     ]
   },
   "nba": {
-    "record": "37-44",
+    "record": "37-45",
     "rank": "-",
     "last": {
-      "opp": "Kings",
+      "opp": "Clippers",
       "result": "L",
-      "score": "118-124"
+      "score": "110-115"
     },
-    "schedule": []
+    "schedule": [
+      {
+        "opp": "Clippers",
+        "date": "04.16",
+        "kst_time": "11:00",
+        "local_time": "7:00 PM PT",
+        "location": "away",
+        "venue": "@ LA",
+        "channel": ""
+      }
+    ]
   },
   "f1": {
     "next_race": {
