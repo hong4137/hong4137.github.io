@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-14 11:48:19 KST",
+  "updated": "2026-04-14 16:50:52 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 33,
@@ -24,7 +24,7 @@
         ],
         "rule_str": "Big Match",
         "matchday": 33,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -42,7 +42,7 @@
         ],
         "rule_str": "Big Match, Top Tier, Prime Time, Leader",
         "matchday": 33,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -57,7 +57,7 @@
         ],
         "rule_str": "Early KO",
         "matchday": 33,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ],
@@ -74,7 +74,7 @@
         ],
         "rule_str": "Big Match",
         "matchday": 33,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -92,7 +92,7 @@
         ],
         "rule_str": "Big Match, Top Tier, Prime Time, Leader",
         "matchday": 33,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -107,14 +107,14 @@
         ],
         "rule_str": "Early KO",
         "matchday": 33,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ]
   },
   "nba": {
     "record": "37-45",
-    "rank": "-",
+    "rank": "#10 West",
     "last": {
       "opp": "Clippers",
       "result": "L",
