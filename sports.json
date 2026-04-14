@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-14 22:48:09 KST",
+  "updated": "2026-04-15 04:20:22 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 33,
@@ -247,17 +247,17 @@
   "tennis": {
     "recent": {
       "event": "Barcelona",
-      "opponent": "Otto Virtanen",
+      "opponent": "Tomaš Machač",
       "result": "L",
       "score": "-",
-      "date": "Apr 14"
+      "date": "Apr 16"
     },
     "next": {
-      "event": "Madrid Open",
+      "event": "US Open",
       "detail": "-",
-      "match_time": "Apr 27",
-      "tournament_dates": "Apr 27 - May 4",
-      "status": "Masters"
+      "match_time": "Aug 25",
+      "tournament_dates": "Aug 25 - Sep 7",
+      "status": "Grand Slam"
     }
   }
 }
