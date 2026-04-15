@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-15 22:42:59 KST",
+  "updated": "2026-04-16 04:21:43 KST",
   "epl": {
     "matchday": 32,
     "selected_round": 33,
@@ -120,17 +120,7 @@
       "result": "L",
       "score": "110-115"
     },
-    "schedule": [
-      {
-        "opp": "Clippers",
-        "date": "04.16",
-        "kst_time": "11:00",
-        "local_time": "7:00 PM PT",
-        "location": "away",
-        "venue": "@ LA",
-        "channel": ""
-      }
-    ]
+    "schedule": []
   },
   "f1": {
     "next_race": {
@@ -250,7 +240,7 @@
       "opponent": "Tomaš Machač",
       "result": "L",
       "score": "-",
-      "date": "Apr 16"
+      "date": "Apr 17"
     },
     "next": {
       "event": "Madrid Open",
