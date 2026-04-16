@@ -1,7 +1,7 @@
 {
-  "updated": "2026-04-16 11:53:18 KST",
+  "updated": "2026-04-16 16:51:29 KST",
   "epl": {
-    "matchday": 32,
+    "matchday": 33,
     "selected_round": 33,
     "display_matchday": "R33",
     "leader": "Arsenal",
@@ -113,14 +113,24 @@
     ]
   },
   "nba": {
-    "record": "37-45",
+    "record": "38-45",
     "rank": "-",
     "last": {
       "opp": "Clippers",
-      "result": "L",
-      "score": "110-115"
+      "result": "W",
+      "score": "126-121"
     },
-    "schedule": []
+    "schedule": [
+      {
+        "opp": "Suns",
+        "date": "04.18",
+        "kst_time": "11:00",
+        "local_time": "7:00 PM PT",
+        "location": "away",
+        "venue": "@ Phoenix",
+        "channel": ""
+      }
+    ]
   },
   "f1": {
     "next_race": {
