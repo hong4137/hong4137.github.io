@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-17 22:24:46 KST",
+  "updated": "2026-04-18 04:04:31 KST",
   "epl": {
     "matchday": 33,
     "selected_round": 33,
@@ -120,17 +120,7 @@
       "result": "W",
       "score": "126-121"
     },
-    "schedule": [
-      {
-        "opp": "Suns",
-        "date": "04.18",
-        "kst_time": "11:00",
-        "local_time": "7:00 PM PT",
-        "location": "away",
-        "venue": "@ Phoenix",
-        "channel": ""
-      }
-    ]
+    "schedule": []
   },
   "f1": {
     "next_race": {
