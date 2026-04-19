@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-19 22:06:56 KST",
+  "updated": "2026-04-20 03:55:37 KST",
   "epl": {
     "matchday": 33,
     "selected_round": 33,
@@ -42,8 +42,8 @@
         ],
         "rule_str": "Big Match, Top Tier, Prime Time, Leader",
         "matchday": 33,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "2-1"
       },
       {
         "match_id": 538107,
@@ -92,8 +92,8 @@
         ],
         "rule_str": "Big Match, Top Tier, Prime Time, Leader",
         "matchday": 33,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "2-1"
       },
       {
         "match_id": 538107,
