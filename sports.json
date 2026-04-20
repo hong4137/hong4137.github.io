@@ -1,9 +1,9 @@
 {
-  "updated": "2026-04-20 22:47:48 KST",
+  "updated": "2026-04-21 04:09:45 KST",
   "epl": {
-    "matchday": 33,
-    "selected_round": 33,
-    "display_matchday": "R33",
+    "matchday": 34,
+    "selected_round": 34,
+    "display_matchday": "R34",
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
@@ -13,102 +13,66 @@
     ],
     "matches": [
       {
-        "match_id": 538108,
-        "home": "Chelsea",
-        "away": "Manchester United",
-        "kst_time": "04.19 04:00 (KST)",
-        "uk_time": "Saturday 20:00 (UK)",
-        "local": "Sky Sports Main Event",
-        "rules": [
-          "Big Match"
-        ],
-        "rule_str": "Big Match",
-        "matchday": 33,
-        "status": "FINISHED",
-        "score": "0-1"
-      },
-      {
-        "match_id": 538111,
-        "home": "Manchester City",
-        "away": "Arsenal",
-        "kst_time": "04.20 00:30 (KST)",
-        "uk_time": "Sunday 16:30 (UK)",
-        "local": "Sky Sports Main Event",
-        "rules": [
-          "Big Match",
-          "Top Tier",
-          "Prime Time",
-          "Leader"
-        ],
-        "rule_str": "Big Match, Top Tier, Prime Time, Leader",
-        "matchday": 33,
-        "status": "FINISHED",
-        "score": "2-1"
-      },
-      {
-        "match_id": 538107,
-        "home": "Brentford",
-        "away": "Fulham",
-        "kst_time": "04.18 20:30 (KST)",
+        "match_id": 538120,
+        "home": "Fulham",
+        "away": "Aston Villa",
+        "kst_time": "04.25 20:30 (KST)",
         "uk_time": "Saturday 12:30 (UK)",
-        "local": "Sky Sports",
+        "local": "",
         "rules": [
           "Early KO"
         ],
         "rule_str": "Early KO",
-        "matchday": 33,
-        "status": "FINISHED",
-        "score": "0-0"
+        "matchday": 34,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 538118,
+        "home": "Arsenal",
+        "away": "Newcastle United",
+        "kst_time": "04.26 01:30 (KST)",
+        "uk_time": "Saturday 17:30 (UK)",
+        "local": "",
+        "rules": [
+          "Leader"
+        ],
+        "rule_str": "Leader",
+        "matchday": 34,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ],
     "selected_matches": [
       {
-        "match_id": 538108,
-        "home": "Chelsea",
-        "away": "Manchester United",
-        "kst_time": "04.19 04:00 (KST)",
-        "uk_time": "Saturday 20:00 (UK)",
-        "local": "Sky Sports Main Event",
-        "rules": [
-          "Big Match"
-        ],
-        "rule_str": "Big Match",
-        "matchday": 33,
-        "status": "FINISHED",
-        "score": "0-1"
-      },
-      {
-        "match_id": 538111,
-        "home": "Manchester City",
-        "away": "Arsenal",
-        "kst_time": "04.20 00:30 (KST)",
-        "uk_time": "Sunday 16:30 (UK)",
-        "local": "Sky Sports Main Event",
-        "rules": [
-          "Big Match",
-          "Top Tier",
-          "Prime Time",
-          "Leader"
-        ],
-        "rule_str": "Big Match, Top Tier, Prime Time, Leader",
-        "matchday": 33,
-        "status": "FINISHED",
-        "score": "2-1"
-      },
-      {
-        "match_id": 538107,
-        "home": "Brentford",
-        "away": "Fulham",
-        "kst_time": "04.18 20:30 (KST)",
+        "match_id": 538120,
+        "home": "Fulham",
+        "away": "Aston Villa",
+        "kst_time": "04.25 20:30 (KST)",
         "uk_time": "Saturday 12:30 (UK)",
-        "local": "Sky Sports",
+        "local": "",
         "rules": [
           "Early KO"
         ],
         "rule_str": "Early KO",
-        "matchday": 33,
-        "status": "FINISHED",
-        "score": "0-0"
+        "matchday": 34,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 538118,
+        "home": "Arsenal",
+        "away": "Newcastle United",
+        "kst_time": "04.26 01:30 (KST)",
+        "uk_time": "Saturday 17:30 (UK)",
+        "local": "",
+        "rules": [
+          "Leader"
+        ],
+        "rule_str": "Leader",
+        "matchday": 34,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ]
   },
