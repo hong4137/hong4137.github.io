@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-23 11:51:02 KST",
+  "updated": "2026-04-23 16:59:15 KST",
   "epl": {
     "matchday": 34,
     "selected_round": 34,
@@ -200,11 +200,11 @@
   },
   "tennis": {
     "recent": {
-      "event": "Barcelona",
-      "opponent": "Tomaš Machač",
-      "result": "L",
+      "event": "-",
+      "opponent": "-",
+      "result": "-",
       "score": "-",
-      "date": "Apr 17"
+      "date": "-"
     },
     "next": {
       "event": "Madrid Open",
