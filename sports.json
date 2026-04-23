@@ -1,13 +1,13 @@
 {
-  "updated": "2026-04-23 04:17:50 KST",
+  "updated": "2026-04-23 11:51:02 KST",
   "epl": {
     "matchday": 34,
     "selected_round": 34,
     "display_matchday": "R34",
-    "leader": "Arsenal",
+    "leader": "Manchester City",
     "top4": [
-      "Arsenal",
       "Manchester City",
+      "Arsenal",
       "Manchester United",
       "Aston Villa"
     ],
