@@ -1,15 +1,15 @@
 {
-  "updated": "2026-04-25 22:10:20 KST",
+  "updated": "2026-04-26 03:57:07 KST",
   "epl": {
     "matchday": 34,
     "selected_round": 34,
     "display_matchday": "R34",
-    "leader": "Manchester City",
+    "leader": "Arsenal",
     "top4": [
-      "Manchester City",
       "Arsenal",
+      "Manchester City",
       "Manchester United",
-      "Aston Villa"
+      "Liverpool"
     ],
     "matches": [
       {
@@ -24,7 +24,7 @@
         ],
         "rule_str": "Early KO",
         "matchday": 34,
-        "status": "IN_PLAY",
+        "status": "FINISHED",
         "score": "1-0"
       },
       {
@@ -39,8 +39,8 @@
         ],
         "rule_str": "Leader",
         "matchday": 34,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "1-0"
       }
     ],
     "selected_matches": [
@@ -56,7 +56,7 @@
         ],
         "rule_str": "Early KO",
         "matchday": 34,
-        "status": "IN_PLAY",
+        "status": "FINISHED",
         "score": "1-0"
       },
       {
@@ -71,8 +71,8 @@
         ],
         "rule_str": "Leader",
         "matchday": 34,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "1-0"
       }
     ]
   },
