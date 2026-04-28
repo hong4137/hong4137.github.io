@@ -1,9 +1,9 @@
 {
-  "updated": "2026-04-28 04:26:54 KST",
+  "updated": "2026-04-28 12:29:07 KST",
   "epl": {
     "matchday": 34,
-    "selected_round": 34,
-    "display_matchday": "R34",
+    "selected_round": 35,
+    "display_matchday": "R35",
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
@@ -13,66 +13,68 @@
     ],
     "matches": [
       {
-        "match_id": 538120,
-        "home": "Fulham",
-        "away": "Aston Villa",
-        "kst_time": "04.25 20:30 (KST)",
-        "uk_time": "Saturday 12:30 (UK)",
+        "match_id": 538132,
+        "home": "Manchester United",
+        "away": "Liverpool",
+        "kst_time": "05.03 23:30 (KST)",
+        "uk_time": "Sunday 15:30 (UK)",
         "local": "",
         "rules": [
-          "Early KO"
+          "Big Match",
+          "Top Tier"
         ],
-        "rule_str": "Early KO",
-        "matchday": 34,
-        "status": "FINISHED",
-        "score": "1-0"
+        "rule_str": "Big Match, Top Tier",
+        "matchday": 35,
+        "status": "SCHEDULED",
+        "score": "-"
       },
       {
-        "match_id": 538118,
+        "match_id": 538127,
         "home": "Arsenal",
-        "away": "Newcastle United",
-        "kst_time": "04.26 01:30 (KST)",
+        "away": "Fulham",
+        "kst_time": "05.03 01:30 (KST)",
         "uk_time": "Saturday 17:30 (UK)",
         "local": "",
         "rules": [
           "Leader"
         ],
         "rule_str": "Leader",
-        "matchday": 34,
-        "status": "FINISHED",
-        "score": "1-0"
+        "matchday": 35,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ],
     "selected_matches": [
       {
-        "match_id": 538120,
-        "home": "Fulham",
-        "away": "Aston Villa",
-        "kst_time": "04.25 20:30 (KST)",
-        "uk_time": "Saturday 12:30 (UK)",
+        "match_id": 538132,
+        "home": "Manchester United",
+        "away": "Liverpool",
+        "kst_time": "05.03 23:30 (KST)",
+        "uk_time": "Sunday 15:30 (UK)",
         "local": "",
         "rules": [
-          "Early KO"
+          "Big Match",
+          "Top Tier"
         ],
-        "rule_str": "Early KO",
-        "matchday": 34,
-        "status": "FINISHED",
-        "score": "1-0"
+        "rule_str": "Big Match, Top Tier",
+        "matchday": 35,
+        "status": "SCHEDULED",
+        "score": "-"
       },
       {
-        "match_id": 538118,
+        "match_id": 538127,
         "home": "Arsenal",
-        "away": "Newcastle United",
-        "kst_time": "04.26 01:30 (KST)",
+        "away": "Fulham",
+        "kst_time": "05.03 01:30 (KST)",
         "uk_time": "Saturday 17:30 (UK)",
         "local": "",
         "rules": [
           "Leader"
         ],
         "rule_str": "Leader",
-        "matchday": 34,
-        "status": "FINISHED",
-        "score": "1-0"
+        "matchday": 35,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ]
   },
