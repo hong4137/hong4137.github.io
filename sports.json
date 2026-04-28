@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-28 12:29:07 KST",
+  "updated": "2026-04-28 17:28:31 KST",
   "epl": {
     "matchday": 34,
     "selected_round": 35,
@@ -25,7 +25,7 @@
         ],
         "rule_str": "Big Match, Top Tier",
         "matchday": 35,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -40,7 +40,7 @@
         ],
         "rule_str": "Leader",
         "matchday": 35,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ],
@@ -58,7 +58,7 @@
         ],
         "rule_str": "Big Match, Top Tier",
         "matchday": 35,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -73,7 +73,7 @@
         ],
         "rule_str": "Leader",
         "matchday": 35,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ]
