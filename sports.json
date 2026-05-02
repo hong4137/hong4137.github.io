@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-02 22:17:30 KST",
+  "updated": "2026-05-03 04:03:17 KST",
   "epl": {
     "matchday": 35,
     "selected_round": 35,
@@ -40,8 +40,8 @@
         ],
         "rule_str": "Leader",
         "matchday": 35,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "3-0"
       }
     ],
     "selected_matches": [
@@ -73,8 +73,8 @@
         ],
         "rule_str": "Leader",
         "matchday": 35,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "3-0"
       }
     ]
   },
@@ -142,37 +142,37 @@
         "pos": 1,
         "driver": "Kimi Antonelli",
         "team": "Mercedes",
-        "points": 72
+        "points": 75
       },
       {
         "pos": 2,
         "driver": "George Russell",
         "team": "Mercedes",
-        "points": 63
+        "points": 68
       },
       {
         "pos": 3,
         "driver": "Charles Leclerc",
         "team": "Ferrari",
-        "points": 49
+        "points": 55
       },
       {
         "pos": 4,
         "driver": "Lewis Hamilton",
         "team": "Ferrari",
-        "points": 41
+        "points": 43
       },
       {
         "pos": 5,
         "driver": "Lando Norris",
         "team": "McLaren",
-        "points": 25
+        "points": 33
       },
       {
         "pos": 6,
         "driver": "Oscar Piastri",
         "team": "McLaren",
-        "points": 21
+        "points": 28
       },
       {
         "pos": 7,
@@ -184,13 +184,13 @@
         "pos": 8,
         "driver": "Pierre Gasly",
         "team": "Alpine",
-        "points": 15
+        "points": 16
       },
       {
         "pos": 9,
         "driver": "Max Verstappen",
         "team": "Red Bull",
-        "points": 12
+        "points": 16
       },
       {
         "pos": 10,
