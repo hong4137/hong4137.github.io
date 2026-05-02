@@ -50,20 +50,21 @@ importance 4 이상만 포함:
 각 이벤트 schema (모든 필드 필수, 누락 시 null):
 {{
   "date": "YYYY-MM-DD",
-  "title": "한글 제목 (영문 보조)",
+  "title": "한글 제목 (60자 이내)",
   "category": "위 카테고리 ID 중 하나",
   "importance": 4 또는 5,
   "impact": ["VIX","yields","equities","USD","oil"] 같은 배열,
   "consensus": "+25bp" 또는 "3.2% YoY" 또는 null,
-  "source_url": "검증한 공식 출처 URL"
+  "source_url": "공식 publisher 도메인 short URL"
 }}
 
 엄격 규칙:
 1. 응답은 JSON 배열만. 코드블록(```json) 또는 설명 텍스트 절대 금지.
 2. 모든 date는 {today_kst} 이후의 미래 날짜.
-3. FOMC 일정은 federalreserve.gov, 거시 데이터는 bls.gov/bea.gov, earnings는 IR 페이지를 우선 참조.
-4. 최대 8개 항목, 날짜 오름차순 정렬.
-5. 추측·환각 금지. 확신 없으면 제외.
+3. **source_url은 반드시 공식 publisher 도메인의 짧은 URL** (예: "https://www.federalreserve.gov/", "https://www.bls.gov/cpi/", "https://investor.nvidia.com/"). 절대 "vertexaisearch.cloud.google.com" 또는 검색엔진 redirect URL 사용 금지. 도메인 root 또는 짧은 path만. 최대 80자.
+4. FOMC 일정은 federalreserve.gov, 거시 데이터는 bls.gov/bea.gov, earnings는 IR 페이지를 우선 참조.
+5. 최대 8개 항목, 날짜 오름차순 정렬.
+6. 추측·환각 금지. 확신 없으면 제외.
 """
 
 
@@ -71,7 +72,7 @@ def call_gemini_with_search(prompt: str, api_key: str) -> str | None:
     payload = {
         "contents": [{"parts": [{"text": prompt}]}],
         "tools": [{"google_search": {}}],
-        "generationConfig": {"temperature": 0.1, "maxOutputTokens": 4096},
+        "generationConfig": {"temperature": 0.1, "maxOutputTokens": 8192},
     }
     try:
         r = requests.post(
@@ -95,11 +96,25 @@ def call_gemini_with_search(prompt: str, api_key: str) -> str | None:
 def parse_events(text: str) -> list[dict]:
     cleaned = text.strip()
     cleaned = re.sub(r"^```(?:json)?\s*", "", cleaned)
-    cleaned = re.sub(r"\s*```$", "", cleaned)
-    m = re.search(r"\[.*\]", cleaned, re.DOTALL)
-    if m:
-        cleaned = m.group(0)
+    cleaned = re.sub(r"\s*```\s*$", "", cleaned)
+    # 가장 바깥 [ ... ] 추출 (greedy 으로 마지막 ]까지)
+    start = cleaned.find("[")
+    end = cleaned.rfind("]")
+    if start >= 0 and end > start:
+        cleaned = cleaned[start : end + 1]
     return json.loads(cleaned)
+
+
+def sanitize_url(url: str | None) -> str | None:
+    """grounding redirect URL을 차단하고 None 또는 공식 URL만 반환."""
+    if not url or not isinstance(url, str):
+        return None
+    blocked = ("vertexaisearch.cloud.google.com", "google.com/url?")
+    if any(b in url for b in blocked):
+        return None
+    if not url.startswith(("http://", "https://")):
+        return None
+    return url[:200]
 
 
 def validate_event(ev: dict, today: str) -> bool:
@@ -146,6 +161,9 @@ def main() -> int:
         log(f"   응답 일부: {text[:300]}")
         return 1
 
+    for e in raw_events:
+        if "source_url" in e:
+            e["source_url"] = sanitize_url(e.get("source_url"))
     valid = [e for e in raw_events if validate_event(e, today_iso)]
     valid.sort(key=lambda e: e["date"])
     valid = valid[:8]
