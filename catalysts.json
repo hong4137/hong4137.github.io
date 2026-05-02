@@ -1,0 +1,50 @@
+{
+  "generated_at": "2026-05-03 00:00 KST",
+  "events": [
+    {
+      "date": "2026-05-05",
+      "title": "NFP - April 고용보고서",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": ["VIX", "yields", "USD", "equities"],
+      "consensus": null,
+      "source_url": "https://www.bls.gov/news.release/empsit.toc.htm"
+    },
+    {
+      "date": "2026-05-12",
+      "title": "Fed FOMC 회의 + Powell 기자회견",
+      "category": "fed_fomc",
+      "importance": 5,
+      "impact": ["VIX", "USD", "yields", "equities"],
+      "consensus": null,
+      "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+    },
+    {
+      "date": "2026-05-13",
+      "title": "CPI - April 소비자물가",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": ["yields", "USD", "equities"],
+      "consensus": null,
+      "source_url": "https://www.bls.gov/cpi/"
+    },
+    {
+      "date": "2026-05-14",
+      "title": "Google I/O Day 1",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": ["GOOGL", "tech"],
+      "consensus": null,
+      "source_url": "https://io.google/"
+    },
+    {
+      "date": "2026-05-19",
+      "title": "NVIDIA Earnings (Q1 FY27 추정)",
+      "category": "earnings",
+      "importance": 5,
+      "impact": ["NVDA", "semis", "AI sector"],
+      "consensus": null,
+      "source_url": "https://investor.nvidia.com/"
+    }
+  ]
+}
