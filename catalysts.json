@@ -1,79 +1,44 @@
 {
-  "generated_at": "2026-05-03 06:37 KST",
+  "generated_at": "2026-05-04 06:38 KST",
   "events": [
     {
-      "date": "2026-05-03",
-      "title": "OPEC+ 회의 (6월 원유 생산량 목표 증산 논의)",
-      "category": "geopolitical",
-      "importance": 4,
-      "impact": [
-        "oil"
-      ],
-      "consensus": "188,000 bpd 증산 합의 (6월부터)",
-      "source_url": "https://www.opec.org/"
-    },
-    {
       "date": "2026-05-05",
-      "title": "미국 JOLTS 구인·이직 보고서 (3월)",
+      "title": "미국 ISM 서비스 PMI 발표",
       "category": "economic_data",
       "importance": 4,
       "impact": [
+        "VIX",
+        "yields",
         "equities",
-        "USD",
-        "yields"
+        "USD"
       ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/jlt/"
-    },
-    {
-      "date": "2026-05-08",
-      "title": "미국 비농업 고용보고서 (4월)",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/news.release/empsit.htm"
+      "consensus": "53.8",
+      "source_url": "https://www.ismworld.org/"
     },
     {
       "date": "2026-05-12",
-      "title": "미국 소비자물가지수 (CPI) (4월)",
+      "title": "미국 4월 CPI 발표",
       "category": "economic_data",
       "importance": 5,
       "impact": [
+        "VIX",
+        "yields",
         "equities",
-        "USD",
-        "yields"
+        "USD"
       ],
       "consensus": null,
       "source_url": "https://www.bls.gov/cpi/"
     },
     {
       "date": "2026-05-12",
-      "title": "MSCI 분기별 지수 검토 발표 (2분기)",
+      "title": "MSCI 분기별 지수 재조정 발표",
       "category": "market_structure",
       "importance": 4,
       "impact": [
         "equities"
       ],
       "consensus": null,
-      "source_url": "https://www.msci.com/index-review"
-    },
-    {
-      "date": "2026-05-13",
-      "title": "미국 생산자물가지수 (PPI) (4월)",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/ppi/"
+      "source_url": "https://www.msci.com/"
     }
   ]
 }
