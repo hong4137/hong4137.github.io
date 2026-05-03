@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-03 22:16:34 KST",
+  "updated": "2026-05-04 04:03:35 KST",
   "epl": {
     "matchday": 35,
     "selected_round": 35,
@@ -25,8 +25,8 @@
         ],
         "rule_str": "Big Match, Top Tier",
         "matchday": 35,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "3-2"
       },
       {
         "match_id": 538127,
@@ -58,8 +58,8 @@
         ],
         "rule_str": "Big Match, Top Tier",
         "matchday": 35,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "3-2"
       },
       {
         "match_id": 538127,
@@ -90,48 +90,48 @@
   },
   "f1": {
     "next_race": {
-      "round": 6,
-      "name": "Miami Grand Prix",
-      "circuit": "Miami International Autodrome",
-      "country": "USA",
-      "date": "May 01-03",
-      "date_from": "2026-05-01",
-      "date_to": "2026-05-03",
-      "status": "This Week",
-      "sprint": true
+      "round": 7,
+      "name": "Canadian Grand Prix",
+      "circuit": "Circuit Gilles Villeneuve, Montreal",
+      "country": "Canada",
+      "date": "May 15-17",
+      "date_from": "2026-05-15",
+      "date_to": "2026-05-17",
+      "status": "Next GP",
+      "sprint": false
     },
     "schedule": [
       {
         "name": "FP1",
-        "date": "05.02",
+        "date": "05.16",
         "day_local": "Fri",
         "kst_time": "02:30",
         "local_time": "13:30"
       },
       {
-        "name": "Sprint Qualifying",
-        "date": "05.02",
+        "name": "FP2",
+        "date": "05.16",
         "day_local": "Fri",
-        "kst_time": "06:30",
-        "local_time": "17:30"
+        "kst_time": "06:00",
+        "local_time": "17:00"
       },
       {
-        "name": "Sprint",
-        "date": "05.03",
+        "name": "FP3",
+        "date": "05.17",
         "day_local": "Sat",
-        "kst_time": "01:00",
-        "local_time": "12:00"
+        "kst_time": "01:30",
+        "local_time": "12:30"
       },
       {
         "name": "Qualifying",
-        "date": "05.03",
+        "date": "05.17",
         "day_local": "Sat",
         "kst_time": "05:00",
         "local_time": "16:00"
       },
       {
         "name": "Race",
-        "date": "05.04",
+        "date": "05.18",
         "day_local": "Sun",
         "kst_time": "04:00",
         "local_time": "15:00"
