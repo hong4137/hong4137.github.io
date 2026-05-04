@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-04 06:38 KST",
+  "generated_at": "2026-05-05 06:57 KST",
   "events": [
     {
       "date": "2026-05-05",
@@ -7,17 +7,29 @@
       "category": "economic_data",
       "importance": 4,
       "impact": [
-        "VIX",
-        "yields",
         "equities",
-        "USD"
+        "USD",
+        "yields"
       ],
-      "consensus": "53.8",
+      "consensus": "54.6",
       "source_url": "https://www.ismworld.org/"
     },
     {
+      "date": "2026-05-05",
+      "title": "미국 JOLTS (구인·이직 보고서) 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bls.gov/"
+    },
+    {
       "date": "2026-05-12",
-      "title": "미국 4월 CPI 발표",
+      "title": "미국 CPI (소비자물가지수) 발표",
       "category": "economic_data",
       "importance": 5,
       "impact": [
@@ -30,15 +42,41 @@
       "source_url": "https://www.bls.gov/cpi/"
     },
     {
-      "date": "2026-05-12",
-      "title": "MSCI 분기별 지수 재조정 발표",
-      "category": "market_structure",
+      "date": "2026-05-13",
+      "title": "미국 PPI (생산자물가지수) 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bls.gov/"
+    },
+    {
+      "date": "2026-05-15",
+      "title": "ISM 공급망 계획 전망 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.ismworld.org/"
+    },
+    {
+      "date": "2026-05-19",
+      "title": "Google I/O 2026 개발자 컨퍼런스 시작",
+      "category": "tech_conf",
       "importance": 4,
       "impact": [
         "equities"
       ],
       "consensus": null,
-      "source_url": "https://www.msci.com/"
+      "source_url": "https://io.google/"
     }
   ]
 }
