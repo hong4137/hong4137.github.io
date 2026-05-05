@@ -1,9 +1,9 @@
 {
-  "updated": "2026-05-05 04:43:19 KST",
+  "updated": "2026-05-05 11:55:32 KST",
   "epl": {
     "matchday": 35,
-    "selected_round": 35,
-    "display_matchday": "R35",
+    "selected_round": 36,
+    "display_matchday": "R36",
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
@@ -13,68 +13,70 @@
     ],
     "matches": [
       {
-        "match_id": 538132,
-        "home": "Manchester United",
-        "away": "Liverpool",
-        "kst_time": "05.03 23:30 (KST)",
-        "uk_time": "Sunday 15:30 (UK)",
+        "match_id": 538140,
+        "home": "Liverpool",
+        "away": "Chelsea",
+        "kst_time": "05.09 20:30 (KST)",
+        "uk_time": "Saturday 12:30 (UK)",
         "local": "",
         "rules": [
           "Big Match",
-          "Top Tier"
+          "Early KO"
         ],
-        "rule_str": "Big Match, Top Tier",
-        "matchday": 35,
-        "status": "FINISHED",
-        "score": "3-2"
+        "rule_str": "Big Match, Early KO",
+        "matchday": 36,
+        "status": "SCHEDULED",
+        "score": "-"
       },
       {
-        "match_id": 538127,
-        "home": "Arsenal",
-        "away": "Fulham",
-        "kst_time": "05.03 01:30 (KST)",
-        "uk_time": "Saturday 17:30 (UK)",
+        "match_id": 538144,
+        "home": "West Ham United",
+        "away": "Arsenal",
+        "kst_time": "05.11 00:30 (KST)",
+        "uk_time": "Sunday 16:30 (UK)",
         "local": "",
         "rules": [
+          "Prime Time",
           "Leader"
         ],
-        "rule_str": "Leader",
-        "matchday": 35,
-        "status": "FINISHED",
-        "score": "3-0"
+        "rule_str": "Prime Time, Leader",
+        "matchday": 36,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ],
     "selected_matches": [
       {
-        "match_id": 538132,
-        "home": "Manchester United",
-        "away": "Liverpool",
-        "kst_time": "05.03 23:30 (KST)",
-        "uk_time": "Sunday 15:30 (UK)",
+        "match_id": 538140,
+        "home": "Liverpool",
+        "away": "Chelsea",
+        "kst_time": "05.09 20:30 (KST)",
+        "uk_time": "Saturday 12:30 (UK)",
         "local": "",
         "rules": [
           "Big Match",
-          "Top Tier"
+          "Early KO"
         ],
-        "rule_str": "Big Match, Top Tier",
-        "matchday": 35,
-        "status": "FINISHED",
-        "score": "3-2"
+        "rule_str": "Big Match, Early KO",
+        "matchday": 36,
+        "status": "SCHEDULED",
+        "score": "-"
       },
       {
-        "match_id": 538127,
-        "home": "Arsenal",
-        "away": "Fulham",
-        "kst_time": "05.03 01:30 (KST)",
-        "uk_time": "Saturday 17:30 (UK)",
+        "match_id": 538144,
+        "home": "West Ham United",
+        "away": "Arsenal",
+        "kst_time": "05.11 00:30 (KST)",
+        "uk_time": "Sunday 16:30 (UK)",
         "local": "",
         "rules": [
+          "Prime Time",
           "Leader"
         ],
-        "rule_str": "Leader",
-        "matchday": 35,
-        "status": "FINISHED",
-        "score": "3-0"
+        "rule_str": "Prime Time, Leader",
+        "matchday": 36,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ]
   },
