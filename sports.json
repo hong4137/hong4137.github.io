@@ -1,9 +1,9 @@
 {
-  "updated": "2026-05-05 17:13:31 KST",
+  "updated": "2026-05-06 04:25:25 KST",
   "epl": {
     "matchday": 35,
-    "selected_round": 36,
-    "display_matchday": "R36",
+    "selected_round": 31,
+    "display_matchday": "R31",
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
@@ -11,74 +11,8 @@
       "Manchester United",
       "Liverpool"
     ],
-    "matches": [
-      {
-        "match_id": 538140,
-        "home": "Liverpool",
-        "away": "Chelsea",
-        "kst_time": "05.09 20:30 (KST)",
-        "uk_time": "Saturday 12:30 (UK)",
-        "local": "",
-        "rules": [
-          "Big Match",
-          "Early KO"
-        ],
-        "rule_str": "Big Match, Early KO",
-        "matchday": 36,
-        "status": "TIMED",
-        "score": "-"
-      },
-      {
-        "match_id": 538144,
-        "home": "West Ham United",
-        "away": "Arsenal",
-        "kst_time": "05.11 00:30 (KST)",
-        "uk_time": "Sunday 16:30 (UK)",
-        "local": "",
-        "rules": [
-          "Prime Time",
-          "Leader"
-        ],
-        "rule_str": "Prime Time, Leader",
-        "matchday": 36,
-        "status": "TIMED",
-        "score": "-"
-      }
-    ],
-    "selected_matches": [
-      {
-        "match_id": 538140,
-        "home": "Liverpool",
-        "away": "Chelsea",
-        "kst_time": "05.09 20:30 (KST)",
-        "uk_time": "Saturday 12:30 (UK)",
-        "local": "",
-        "rules": [
-          "Big Match",
-          "Early KO"
-        ],
-        "rule_str": "Big Match, Early KO",
-        "matchday": 36,
-        "status": "TIMED",
-        "score": "-"
-      },
-      {
-        "match_id": 538144,
-        "home": "West Ham United",
-        "away": "Arsenal",
-        "kst_time": "05.11 00:30 (KST)",
-        "uk_time": "Sunday 16:30 (UK)",
-        "local": "",
-        "rules": [
-          "Prime Time",
-          "Leader"
-        ],
-        "rule_str": "Prime Time, Leader",
-        "matchday": 36,
-        "status": "TIMED",
-        "score": "-"
-      }
-    ]
+    "matches": [],
+    "selected_matches": []
   },
   "nba": {
     "record": "38-46",
