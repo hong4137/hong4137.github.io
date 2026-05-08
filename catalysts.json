@@ -1,32 +1,6 @@
 {
-  "generated_at": "2026-05-08 06:54 KST",
+  "generated_at": "2026-05-09 06:57 KST",
   "events": [
-    {
-      "date": "2026-05-08",
-      "title": "미국 4월 고용 상황 보고서 (비농업 고용 지수)",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/"
-    },
-    {
-      "date": "2026-05-11",
-      "title": "미국 3년물 국채 입찰",
-      "category": "treasury_auction",
-      "importance": 4,
-      "impact": [
-        "yields",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.treasury.gov/"
-    },
     {
       "date": "2026-05-12",
       "title": "미국 10년물 국채 입찰",
@@ -34,25 +8,11 @@
       "importance": 4,
       "impact": [
         "yields",
-        "equities",
-        "USD"
+        "USD",
+        "equities"
       ],
       "consensus": null,
-      "source_url": "https://www.treasury.gov/"
-    },
-    {
-      "date": "2026-05-12",
-      "title": "미국 4월 소비자 물가 지수 (CPI)",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/"
+      "source_url": "https://home.treasury.gov/"
     },
     {
       "date": "2026-05-13",
@@ -61,36 +21,35 @@
       "importance": 4,
       "impact": [
         "yields",
-        "equities",
-        "USD"
+        "USD",
+        "equities"
       ],
       "consensus": null,
-      "source_url": "https://www.treasury.gov/"
+      "source_url": "https://home.treasury.gov/"
     },
     {
-      "date": "2026-05-13",
-      "title": "미국 4월 생산자 물가 지수 (PPI)",
-      "category": "economic_data",
+      "date": "2026-05-19",
+      "title": "Google I/O 2026 기조연설",
+      "category": "tech_conf",
       "importance": 4,
       "impact": [
-        "VIX",
-        "yields",
         "equities",
-        "USD"
+        "VIX"
       ],
       "consensus": null,
-      "source_url": "https://www.bls.gov/"
+      "source_url": "https://io.google/"
     },
     {
-      "date": "2026-05-14",
-      "title": "미국 4월 수출입 물가 지수",
-      "category": "economic_data",
+      "date": "2026-05-22",
+      "title": "러셀 미국 지수 재조정 (예비 목록 발표)",
+      "category": "market_structure",
       "importance": 4,
       "impact": [
-        "USD"
+        "equities",
+        "VIX"
       ],
       "consensus": null,
-      "source_url": "https://www.bls.gov/"
+      "source_url": "https://www.ftserussell.com/"
     }
   ]
 }
