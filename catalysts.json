@@ -1,6 +1,20 @@
 {
-  "generated_at": "2026-05-09 06:57 KST",
+  "generated_at": "2026-05-10 06:39 KST",
   "events": [
+    {
+      "date": "2026-05-12",
+      "title": "미국 4월 소비자물가지수 (CPI) 발표",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bls.gov/"
+    },
     {
       "date": "2026-05-12",
       "title": "미국 10년물 국채 입찰",
@@ -13,6 +27,31 @@
       ],
       "consensus": null,
       "source_url": "https://home.treasury.gov/"
+    },
+    {
+      "date": "2026-05-12",
+      "title": "MSCI 2026년 5월 지수 정기 변경 발표",
+      "category": "market_structure",
+      "importance": 4,
+      "impact": [
+        "equities"
+      ],
+      "consensus": null,
+      "source_url": "https://www.msci.com/"
+    },
+    {
+      "date": "2026-05-13",
+      "title": "미국 4월 생산자물가지수 (PPI) 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bls.gov/"
     },
     {
       "date": "2026-05-13",
@@ -28,28 +67,30 @@
       "source_url": "https://home.treasury.gov/"
     },
     {
-      "date": "2026-05-19",
-      "title": "Google I/O 2026 기조연설",
-      "category": "tech_conf",
+      "date": "2026-05-14",
+      "title": "미국 4월 수출입물가지수 발표",
+      "category": "economic_data",
       "importance": 4,
       "impact": [
-        "equities",
-        "VIX"
+        "USD",
+        "equities"
       ],
       "consensus": null,
-      "source_url": "https://io.google/"
+      "source_url": "https://www.bls.gov/"
     },
     {
-      "date": "2026-05-22",
-      "title": "러셀 미국 지수 재조정 (예비 목록 발표)",
-      "category": "market_structure",
+      "date": "2026-05-14",
+      "title": "미국 주간 신규 실업수당 청구건수 발표",
+      "category": "economic_data",
       "importance": 4,
       "impact": [
+        "VIX",
+        "yields",
         "equities",
-        "VIX"
+        "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.ftserussell.com/"
+      "source_url": "https://www.bls.gov/"
     }
   ]
 }
