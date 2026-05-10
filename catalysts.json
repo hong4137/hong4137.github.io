@@ -1,19 +1,18 @@
 {
-  "generated_at": "2026-05-10 06:39 KST",
+  "generated_at": "2026-05-11 06:44 KST",
   "events": [
     {
-      "date": "2026-05-12",
-      "title": "미국 4월 소비자물가지수 (CPI) 발표",
-      "category": "economic_data",
-      "importance": 5,
+      "date": "2026-05-11",
+      "title": "미국 3년물 국채 입찰",
+      "category": "treasury_auction",
+      "importance": 4,
       "impact": [
-        "VIX",
         "yields",
-        "equities",
-        "USD"
+        "USD",
+        "equities"
       ],
       "consensus": null,
-      "source_url": "https://www.bls.gov/"
+      "source_url": "https://www.treasury.gov/"
     },
     {
       "date": "2026-05-12",
@@ -26,32 +25,7 @@
         "equities"
       ],
       "consensus": null,
-      "source_url": "https://home.treasury.gov/"
-    },
-    {
-      "date": "2026-05-12",
-      "title": "MSCI 2026년 5월 지수 정기 변경 발표",
-      "category": "market_structure",
-      "importance": 4,
-      "impact": [
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://www.msci.com/"
-    },
-    {
-      "date": "2026-05-13",
-      "title": "미국 4월 생산자물가지수 (PPI) 발표",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/"
+      "source_url": "https://www.treasury.gov/"
     },
     {
       "date": "2026-05-13",
@@ -64,33 +38,43 @@
         "equities"
       ],
       "consensus": null,
-      "source_url": "https://home.treasury.gov/"
+      "source_url": "https://www.treasury.gov/"
     },
     {
-      "date": "2026-05-14",
-      "title": "미국 4월 수출입물가지수 발표",
-      "category": "economic_data",
+      "date": "2026-05-18",
+      "title": "G7 재무장관 회의 (파리)",
+      "category": "geopolitical",
       "importance": 4,
       "impact": [
         "USD",
+        "equities",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.focus2030.org/"
+    },
+    {
+      "date": "2026-05-19",
+      "title": "Google I/O 2026 키노트",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": [
         "equities"
       ],
       "consensus": null,
-      "source_url": "https://www.bls.gov/"
+      "source_url": "https://io.google/"
     },
     {
-      "date": "2026-05-14",
-      "title": "미국 주간 신규 실업수당 청구건수 발표",
-      "category": "economic_data",
-      "importance": 4,
+      "date": "2026-05-20",
+      "title": "엔비디아 (NVDA) 2027년 1분기 실적 발표",
+      "category": "earnings",
+      "importance": 5,
       "impact": [
-        "VIX",
-        "yields",
         "equities",
-        "USD"
+        "VIX"
       ],
       "consensus": null,
-      "source_url": "https://www.bls.gov/"
+      "source_url": "https://investor.nvidia.com/"
     }
   ]
 }
