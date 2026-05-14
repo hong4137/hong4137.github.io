@@ -1,47 +1,26 @@
 {
-  "generated_at": "2026-05-14 07:07 KST",
+  "generated_at": "2026-05-15 07:07 KST",
   "events": [
     {
       "date": "2026-05-15",
-      "title": "ISM 공급망 계획 예측",
-      "category": "economic_data",
+      "title": "미국 3년, 10년, 30년 국채 입찰 결제",
+      "category": "treasury_auction",
       "importance": 4,
       "impact": [
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.ismworld.org/"
-    },
-    {
-      "date": "2026-05-19",
-      "title": "Google I/O 2026 개발자 컨퍼런스",
-      "category": "tech_conf",
-      "importance": 4,
-      "impact": [
+        "yields",
+        "USD",
         "equities"
       ],
       "consensus": null,
-      "source_url": "https://io.google/"
+      "source_url": "https://home.treasury.gov/"
     },
     {
       "date": "2026-05-20",
-      "title": "NVIDIA FY27 1분기 실적 발표",
-      "category": "earnings",
-      "importance": 5,
-      "impact": [
-        "equities",
-        "VIX"
-      ],
-      "consensus": null,
-      "source_url": "https://investor.nvidia.com/"
-    },
-    {
-      "date": "2026-05-20",
-      "title": "FOMC 의사록 공개 (4월 28-29일 회의)",
+      "title": "FOMC 의사록 공개 (2026년 4월 28-29일 회의)",
       "category": "fed_fomc",
       "importance": 5,
       "impact": [
+        "VIX",
         "yields",
         "equities",
         "USD"
@@ -50,41 +29,51 @@
       "source_url": "https://www.federalreserve.gov/"
     },
     {
-      "date": "2026-05-21",
-      "title": "Walmart FY2027 1분기 실적 발표",
-      "category": "earnings",
+      "date": "2026-05-22",
+      "title": "러셀 미국 지수 재조정 예비 목록 발표",
+      "category": "market_structure",
       "importance": 4,
       "impact": [
         "equities"
       ],
       "consensus": null,
-      "source_url": "https://corporate.walmart.com/"
+      "source_url": "https://www.lseg.com/"
     },
     {
-      "date": "2026-05-28",
-      "title": "미국 GDP (2차 추정) 및 기업 이익 (2026년 1분기)",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bea.gov/"
-    },
-    {
-      "date": "2026-05-28",
-      "title": "미국 개인 소득 및 지출 (2026년 4월)",
+      "date": "2026-05-26",
+      "title": "H.6 - 통화량 지표 발표",
       "category": "economic_data",
       "importance": 4,
       "impact": [
-        "yields",
         "equities",
+        "yields",
         "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.bea.gov/"
+      "source_url": "https://www.federalreserve.gov/"
+    },
+    {
+      "date": "2026-05-29",
+      "title": "MSCI 지수 재조정 시행 (5월 검토)",
+      "category": "market_structure",
+      "importance": 4,
+      "impact": [
+        "equities"
+      ],
+      "consensus": null,
+      "source_url": "https://www.msci.com/"
+    },
+    {
+      "date": "2026-05-29",
+      "title": "G.20 - 금융 회사 통계 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.federalreserve.gov/"
     }
   ]
 }
