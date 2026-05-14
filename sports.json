@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-14 23:20:29 KST",
+  "updated": "2026-05-15 04:48:51 KST",
   "epl": {
     "matchday": 37,
     "selected_round": 37,
@@ -95,7 +95,7 @@
       "date": "May 15-17",
       "date_from": "2026-05-15",
       "date_to": "2026-05-17",
-      "status": "Next GP",
+      "status": "This Week",
       "sprint": false
     },
     "schedule": [
