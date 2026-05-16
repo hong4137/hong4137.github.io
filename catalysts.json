@@ -1,40 +1,107 @@
 {
-  "generated_at": "2026-05-16 06:57 KST",
+  "generated_at": "2026-05-17 06:43 KST",
   "events": [
     {
-      "date": "2026-05-20",
-      "title": "NVIDIA Q1 FY2027 실적 발표",
-      "category": "earnings",
-      "importance": 5,
-      "impact": [
-        "equities",
-        "VIX"
-      ],
-      "consensus": "$78.8B 매출, $1.77 EPS",
-      "source_url": "https://investor.nvidia.com/"
-    },
-    {
-      "date": "2026-05-20",
-      "title": "FOMC 의사록 공개 (4월 회의)",
-      "category": "fed_fomc",
-      "importance": 5,
-      "impact": [
-        "yields",
-        "USD",
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://www.federalreserve.gov/"
-    },
-    {
-      "date": "2026-05-28",
-      "title": "미국 1분기 GDP (2차 잠정치) 발표",
+      "date": "2026-05-21",
+      "title": "미국 주간 신규 실업수당 청구건수",
       "category": "economic_data",
       "importance": 4,
       "impact": [
         "equities",
         "USD",
         "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.dol.gov/"
+    },
+    {
+      "date": "2026-05-22",
+      "title": "미국 S&P 글로벌 제조업 PMI (잠정)",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.spglobal.com/"
+    },
+    {
+      "date": "2026-05-22",
+      "title": "미국 S&P 글로벌 서비스업 PMI (잠정)",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.spglobal.com/"
+    },
+    {
+      "date": "2026-05-23",
+      "title": "미국 신규 주택 판매",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.census.gov/"
+    },
+    {
+      "date": "2026-05-24",
+      "title": "미국 내구재 주문 (잠정)",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.census.gov/"
+    },
+    {
+      "date": "2026-05-28",
+      "title": "미국 컨퍼런스 보드 소비자 신뢰지수",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.conference-board.org/"
+    },
+    {
+      "date": "2026-05-29",
+      "title": "미국 1분기 GDP (2차 추정치)",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bea.gov/"
+    },
+    {
+      "date": "2026-05-31",
+      "title": "미국 개인소비지출 (PCE) 물가지수",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "equities",
+        "USD",
+        "yields",
+        "VIX"
       ],
       "consensus": null,
       "source_url": "https://www.bea.gov/"
