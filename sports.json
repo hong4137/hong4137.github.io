@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-17 22:25:30 KST",
+  "updated": "2026-05-18 04:12:47 KST",
   "epl": {
     "matchday": 37,
     "selected_round": 37,
@@ -80,58 +80,58 @@
     "record": "38-46",
     "rank": "-",
     "last": {
-      "opp": "Suns",
-      "result": "L",
-      "score": "96-111"
+      "opp": "-",
+      "result": "-",
+      "score": "-"
     },
     "schedule": []
   },
   "f1": {
     "next_race": {
-      "round": 7,
-      "name": "Canadian Grand Prix",
-      "circuit": "Circuit Gilles Villeneuve, Montreal",
-      "country": "Canada",
-      "date": "May 15-17",
-      "date_from": "2026-05-15",
-      "date_to": "2026-05-17",
-      "status": "This Week",
+      "round": 8,
+      "name": "Monaco Grand Prix",
+      "circuit": "Circuit de Monaco",
+      "country": "Monaco",
+      "date": "May 22-24",
+      "date_from": "2026-05-22",
+      "date_to": "2026-05-24",
+      "status": "Next GP",
       "sprint": false
     },
     "schedule": [
       {
         "name": "FP1",
-        "date": "05.16",
+        "date": "05.22",
         "day_local": "Fri",
-        "kst_time": "02:30",
+        "kst_time": "20:30",
         "local_time": "13:30"
       },
       {
         "name": "FP2",
-        "date": "05.16",
+        "date": "05.23",
         "day_local": "Fri",
-        "kst_time": "06:00",
+        "kst_time": "00:00",
         "local_time": "17:00"
       },
       {
         "name": "FP3",
-        "date": "05.17",
+        "date": "05.23",
         "day_local": "Sat",
-        "kst_time": "01:30",
+        "kst_time": "19:30",
         "local_time": "12:30"
       },
       {
         "name": "Qualifying",
-        "date": "05.17",
+        "date": "05.23",
         "day_local": "Sat",
-        "kst_time": "05:00",
+        "kst_time": "23:00",
         "local_time": "16:00"
       },
       {
         "name": "Race",
-        "date": "05.18",
+        "date": "05.24",
         "day_local": "Sun",
-        "kst_time": "04:00",
+        "kst_time": "22:00",
         "local_time": "15:00"
       }
     ],
