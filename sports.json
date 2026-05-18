@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-19 00:37:18 KST",
+  "updated": "2026-05-19 04:50:07 KST",
   "epl": {
     "matchday": 37,
     "selected_round": 37,
@@ -39,8 +39,8 @@
         ],
         "rule_str": "Leader",
         "matchday": 37,
-        "status": "TIMED",
-        "score": "-"
+        "status": "IN_PLAY",
+        "score": "1-0"
       }
     ],
     "selected_matches": [
@@ -71,8 +71,8 @@
         ],
         "rule_str": "Leader",
         "matchday": 37,
-        "status": "TIMED",
-        "score": "-"
+        "status": "IN_PLAY",
+        "score": "1-0"
       }
     ]
   },
