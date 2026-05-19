@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-20 00:29:44 KST",
+  "updated": "2026-05-20 04:54:03 KST",
   "epl": {
     "matchday": 37,
     "selected_round": 37,
@@ -24,8 +24,8 @@
         ],
         "rule_str": "Big Match",
         "matchday": 37,
-        "status": "TIMED",
-        "score": "-"
+        "status": "IN_PLAY",
+        "score": "1-0"
       },
       {
         "match_id": 538147,
@@ -56,8 +56,8 @@
         ],
         "rule_str": "Big Match",
         "matchday": 37,
-        "status": "TIMED",
-        "score": "-"
+        "status": "IN_PLAY",
+        "score": "1-0"
       },
       {
         "match_id": 538147,
