@@ -1,50 +1,85 @@
 {
-  "generated_at": "2026-05-20 07:13 KST",
+  "generated_at": "2026-05-21 07:23 KST",
   "events": [
     {
-      "date": "2026-05-20",
-      "title": "Google I/O 2026 (2일차)",
-      "category": "tech_conf",
+      "date": "2026-05-21",
+      "title": "미국 주간 신규 실업수당 청구건수",
+      "category": "economic_data",
       "importance": 4,
       "impact": [
+        "VIX",
+        "yields",
         "equities",
         "USD"
       ],
       "consensus": null,
-      "source_url": "https://io.google/"
+      "source_url": "https://www.dol.gov/"
     },
     {
-      "date": "2026-05-22",
-      "title": "Russell US Indexes 재구성 예비 목록 발표",
-      "category": "market_structure",
+      "date": "2026-05-21",
+      "title": "필라델피아 연은 제조업 지수",
+      "category": "economic_data",
       "importance": 4,
       "impact": [
+        "equities",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.philadelphiafed.org/"
+    },
+    {
+      "date": "2026-05-21",
+      "title": "S&P 글로벌 종합 PMI (속보치)",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "yields",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://ihsmarkit.com/"
+    },
+    {
+      "date": "2026-05-21",
+      "title": "10년물 물가연동국채(TIPS) 입찰",
+      "category": "treasury_auction",
+      "importance": 4,
+      "impact": [
+        "yields",
+        "USD",
         "equities"
       ],
       "consensus": null,
-      "source_url": "https://www.ftserussell.com/"
+      "source_url": "https://www.treasurydirect.gov/"
     },
     {
-      "date": "2026-05-29",
-      "title": "Russell US Indexes 재구성 예비 목록 업데이트",
-      "category": "market_structure",
-      "importance": 4,
+      "date": "2026-05-28",
+      "title": "개인소비지출 (PCE) 물가지수",
+      "category": "economic_data",
+      "importance": 5,
       "impact": [
-        "equities"
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.ftserussell.com/"
+      "source_url": "https://www.bea.gov/"
     },
     {
-      "date": "2026-05-29",
-      "title": "MSCI 지수 리밸런싱 (5월) 적용",
-      "category": "market_structure",
+      "date": "2026-06-01",
+      "title": "ISM 제조업 PMI",
+      "category": "economic_data",
       "importance": 4,
       "impact": [
-        "equities"
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.msci.com/"
+      "source_url": "https://www.ismworld.org/"
     },
     {
       "date": "2026-06-02",
