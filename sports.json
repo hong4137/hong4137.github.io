@@ -1,7 +1,7 @@
 {
-  "updated": "2026-05-22 12:54:42 KST",
+  "updated": "2026-05-22 18:30:33 KST",
   "epl": {
-    "matchday": 37,
+    "matchday": 38,
     "selected_round": 38,
     "display_matchday": "R38",
     "leader": "Arsenal",
@@ -25,7 +25,7 @@
         ],
         "rule_str": "Top Tier, Challenger",
         "matchday": 38,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -40,7 +40,7 @@
         ],
         "rule_str": "Leader",
         "matchday": 38,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ],
@@ -58,7 +58,7 @@
         ],
         "rule_str": "Top Tier, Challenger",
         "matchday": 38,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -73,7 +73,7 @@
         ],
         "rule_str": "Leader",
         "matchday": 38,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ]
