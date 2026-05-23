@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-23 22:40:24 KST",
+  "updated": "2026-05-24 04:14:04 KST",
   "epl": {
     "matchday": 38,
     "selected_round": 38,
@@ -142,43 +142,43 @@
         "pos": 1,
         "driver": "Kimi Antonelli",
         "team": "Mercedes",
-        "points": 100
+        "points": 106
       },
       {
         "pos": 2,
         "driver": "George Russell",
         "team": "Mercedes",
-        "points": 80
+        "points": 88
       },
       {
         "pos": 3,
         "driver": "Charles Leclerc",
         "team": "Ferrari",
-        "points": 59
+        "points": 63
       },
       {
         "pos": 4,
         "driver": "Lando Norris",
         "team": "McLaren",
-        "points": 51
+        "points": 58
       },
       {
         "pos": 5,
         "driver": "Lewis Hamilton",
         "team": "Ferrari",
-        "points": 51
+        "points": 54
       },
       {
         "pos": 6,
         "driver": "Oscar Piastri",
         "team": "McLaren",
-        "points": 43
+        "points": 48
       },
       {
         "pos": 7,
         "driver": "Max Verstappen",
         "team": "Red Bull",
-        "points": 26
+        "points": 28
       },
       {
         "pos": 8,
