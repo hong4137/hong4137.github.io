@@ -1,73 +1,82 @@
 {
-  "generated_at": "2026-05-23 07:05 KST",
+  "generated_at": "2026-05-24 06:51 KST",
   "events": [
     {
-      "date": "2026-05-28",
-      "title": "US 개인소비지출 (PCE) 발표",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bea.gov/"
-    },
-    {
       "date": "2026-06-01",
-      "title": "US ISM 제조업 PMI 발표",
+      "title": "미국 ISM 제조업 PMI (5월)",
       "category": "economic_data",
       "importance": 4,
       "impact": [
-        "VIX",
-        "yields",
         "equities",
-        "USD"
+        "USD",
+        "yields"
       ],
       "consensus": null,
       "source_url": "https://www.ismworld.org/"
     },
     {
+      "date": "2026-06-01",
+      "title": "NVIDIA GTC Taipei 2026 (COMPUTEX)",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "VIX"
+      ],
+      "consensus": null,
+      "source_url": "https://www.nvidia.com/gtc/"
+    },
+    {
       "date": "2026-06-02",
-      "title": "US JOLTS 채용공고 발표",
+      "title": "미국 JOLTS 채용공고 (4월)",
       "category": "economic_data",
       "importance": 4,
       "impact": [
-        "VIX",
-        "yields",
         "equities",
-        "USD"
+        "USD",
+        "yields"
+      ],
+      "consensus": "6.790M",
+      "source_url": "https://www.bls.gov/jlt/"
+    },
+    {
+      "date": "2026-06-02",
+      "title": "Microsoft Build 2026 컨퍼런스",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "VIX"
       ],
       "consensus": null,
-      "source_url": "https://www.bls.gov/"
+      "source_url": "https://build.microsoft.com/"
+    },
+    {
+      "date": "2026-06-03",
+      "title": "미국 ISM 서비스 PMI (5월)",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": "53.6",
+      "source_url": "https://www.ismworld.org/"
     },
     {
       "date": "2026-06-05",
-      "title": "US 비농업 고용보고서 (NFP) 발표",
+      "title": "미국 비농업 고용지수 (5월)",
       "category": "economic_data",
       "importance": 5,
       "impact": [
-        "VIX",
-        "yields",
         "equities",
-        "USD"
+        "USD",
+        "yields",
+        "VIX"
       ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/"
-    },
-    {
-      "date": "2026-06-07",
-      "title": "OPEC+ 장관급 회의",
-      "category": "geopolitical",
-      "importance": 4,
-      "impact": [
-        "oil",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.opec.org/"
+      "consensus": "77K",
+      "source_url": "https://www.bls.gov/news.release/empsit.nr.htm"
     },
     {
       "date": "2026-06-08",
@@ -75,10 +84,25 @@
       "category": "tech_conf",
       "importance": 4,
       "impact": [
-        "equities"
+        "equities",
+        "VIX"
       ],
-      "consensus": "AI 발전, iOS 27 등 소프트웨어 업데이트",
-      "source_url": "https://www.apple.com/"
+      "consensus": null,
+      "source_url": "https://developer.apple.com/wwdc/"
+    },
+    {
+      "date": "2026-06-10",
+      "title": "미국 소비자물가지수 (CPI) (5월)",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "equities",
+        "USD",
+        "yields",
+        "VIX"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bls.gov/cpi/"
     }
   ]
 }
