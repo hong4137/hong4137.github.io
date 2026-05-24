@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-24 22:40:11 KST",
+  "updated": "2026-05-25 04:20:04 KST",
   "epl": {
     "matchday": 38,
     "selected_round": 38,
@@ -25,8 +25,8 @@
         ],
         "rule_str": "Top Tier, Challenger",
         "matchday": 38,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "2-2"
       },
       {
         "match_id": 538157,
@@ -40,8 +40,8 @@
         ],
         "rule_str": "Leader",
         "matchday": 38,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "1-2"
       }
     ],
     "selected_matches": [
@@ -58,8 +58,8 @@
         ],
         "rule_str": "Top Tier, Challenger",
         "matchday": 38,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "2-2"
       },
       {
         "match_id": 538157,
@@ -73,8 +73,8 @@
         ],
         "rule_str": "Leader",
         "matchday": 38,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "1-2"
       }
     ]
   },
@@ -90,48 +90,48 @@
   },
   "f1": {
     "next_race": {
-      "round": 8,
-      "name": "Monaco Grand Prix",
-      "circuit": "Circuit de Monaco",
-      "country": "Monaco",
-      "date": "May 22-24",
-      "date_from": "2026-05-22",
-      "date_to": "2026-05-24",
-      "status": "This Week",
+      "round": 9,
+      "name": "Spanish Grand Prix",
+      "circuit": "Circuit de Barcelona-Catalunya",
+      "country": "Spain",
+      "date": "Jun 05-07",
+      "date_from": "2026-06-05",
+      "date_to": "2026-06-07",
+      "status": "Next GP",
       "sprint": false
     },
     "schedule": [
       {
         "name": "FP1",
-        "date": "05.22",
+        "date": "06.05",
         "day_local": "Fri",
         "kst_time": "20:30",
         "local_time": "13:30"
       },
       {
         "name": "FP2",
-        "date": "05.23",
+        "date": "06.06",
         "day_local": "Fri",
         "kst_time": "00:00",
         "local_time": "17:00"
       },
       {
         "name": "FP3",
-        "date": "05.23",
+        "date": "06.06",
         "day_local": "Sat",
         "kst_time": "19:30",
         "local_time": "12:30"
       },
       {
         "name": "Qualifying",
-        "date": "05.23",
+        "date": "06.06",
         "day_local": "Sat",
         "kst_time": "23:00",
         "local_time": "16:00"
       },
       {
         "name": "Race",
-        "date": "05.24",
+        "date": "06.07",
         "day_local": "Sun",
         "kst_time": "22:00",
         "local_time": "15:00"
@@ -209,11 +209,11 @@
       "date": "-"
     },
     "next": {
-      "event": "Roland Garros",
+      "event": "Queen's Club",
       "detail": "-",
-      "match_time": "May 25",
-      "tournament_dates": "May 25 - Jun 8",
-      "status": "Grand Slam"
+      "match_time": "Jun 15",
+      "tournament_dates": "",
+      "status": "-"
     }
   }
 }
