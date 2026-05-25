@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-25 04:20:04 KST",
+  "updated": "2026-05-25 13:03:56 KST",
   "epl": {
     "matchday": 38,
     "selected_round": 38,
@@ -26,7 +26,7 @@
         "rule_str": "Top Tier, Challenger",
         "matchday": 38,
         "status": "FINISHED",
-        "score": "2-2"
+        "score": "1-2"
       },
       {
         "match_id": 538157,
@@ -59,7 +59,7 @@
         "rule_str": "Top Tier, Challenger",
         "matchday": 38,
         "status": "FINISHED",
-        "score": "2-2"
+        "score": "1-2"
       },
       {
         "match_id": 538157,
@@ -142,7 +142,7 @@
         "pos": 1,
         "driver": "Kimi Antonelli",
         "team": "Mercedes",
-        "points": 106
+        "points": 131
       },
       {
         "pos": 2,
@@ -154,19 +154,19 @@
         "pos": 3,
         "driver": "Charles Leclerc",
         "team": "Ferrari",
-        "points": 63
+        "points": 75
       },
       {
         "pos": 4,
-        "driver": "Lando Norris",
-        "team": "McLaren",
-        "points": 58
+        "driver": "Lewis Hamilton",
+        "team": "Ferrari",
+        "points": 72
       },
       {
         "pos": 5,
-        "driver": "Lewis Hamilton",
-        "team": "Ferrari",
-        "points": 54
+        "driver": "Lando Norris",
+        "team": "McLaren",
+        "points": 58
       },
       {
         "pos": 6,
@@ -178,25 +178,25 @@
         "pos": 7,
         "driver": "Max Verstappen",
         "team": "Red Bull",
-        "points": 28
+        "points": 43
       },
       {
         "pos": 8,
-        "driver": "Oliver Bearman",
-        "team": "Haas",
-        "points": 17
+        "driver": "Pierre Gasly",
+        "team": "Alpine",
+        "points": 20
       },
       {
         "pos": 9,
-        "driver": "Pierre Gasly",
-        "team": "Alpine",
-        "points": 16
+        "driver": "Oliver Bearman",
+        "team": "Haas",
+        "points": 18
       },
       {
         "pos": 10,
         "driver": "Liam Lawson",
         "team": "Red Bull",
-        "points": 10
+        "points": 16
       }
     ]
   },
