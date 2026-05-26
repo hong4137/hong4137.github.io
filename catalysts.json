@@ -1,23 +1,20 @@
 {
-  "generated_at": "2026-05-26 07:04 KST",
+  "generated_at": "2026-05-27 07:17 KST",
   "events": [
     {
-      "date": "2026-05-28",
-      "title": "미국 4월 개인소비지출(PCE) 물가지수 발표",
-      "category": "economic_data",
-      "importance": 5,
+      "date": "2026-05-29",
+      "title": "MSCI 분기별 지수 리밸런싱 (Q2 2026)",
+      "category": "market_structure",
+      "importance": 4,
       "impact": [
-        "equities",
-        "USD",
-        "yields",
-        "VIX"
+        "equities"
       ],
-      "consensus": "3.20% YoY (Core PCE)",
-      "source_url": "https://www.bea.gov/"
+      "consensus": null,
+      "source_url": "https://www.msci.com/"
     },
     {
-      "date": "2026-06-01",
-      "title": "미국 5월 ISM 제조업 PMI 발표",
+      "date": "2026-05-29",
+      "title": "미국 선행 경제 지표 보고서 (국제 무역, 소매, 도매)",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -25,20 +22,59 @@
         "USD",
         "yields"
       ],
-      "consensus": "50.3",
+      "consensus": null,
+      "source_url": "https://www.census.gov/"
+    },
+    {
+      "date": "2026-06-01",
+      "title": "미국 건설 지출 (건설 투자)",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.census.gov/"
+    },
+    {
+      "date": "2026-06-01",
+      "title": "미국 ISM 제조업 PMI",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
       "source_url": "https://www.ismworld.org/"
     },
     {
       "date": "2026-06-02",
-      "title": "Microsoft Build 2026 개발자 컨퍼런스 시작",
+      "title": "마이크로소프트 빌드 2026 컨퍼런스 (1일차)",
       "category": "tech_conf",
       "importance": 4,
       "impact": [
-        "equities",
-        "VIX"
+        "equities"
       ],
       "consensus": null,
-      "source_url": "https://build.microsoft.com/"
+      "source_url": "https://www.microsoft.com/build/"
+    },
+    {
+      "date": "2026-06-05",
+      "title": "미국 비농업 고용보고서 (NFP)",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bls.gov/"
     },
     {
       "date": "2026-06-07",
@@ -47,35 +83,21 @@
       "importance": 4,
       "impact": [
         "oil",
-        "equities",
-        "USD"
+        "equities"
       ],
-      "consensus": "18.8만 bpd 증산 (6월)",
+      "consensus": null,
       "source_url": "https://www.opec.org/"
     },
     {
       "date": "2026-06-08",
-      "title": "Apple WWDC 2026 키노트 (iOS 27, AI 발표)",
+      "title": "애플 WWDC 2026 키노트",
       "category": "tech_conf",
       "importance": 4,
       "impact": [
-        "equities",
-        "VIX"
+        "equities"
       ],
       "consensus": null,
-      "source_url": "https://www.apple.com/wwdc/"
-    },
-    {
-      "date": "2026-06-08",
-      "title": "러셀 US 인덱스 재조정 (Lock-down 시작)",
-      "category": "market_structure",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "VIX"
-      ],
-      "consensus": null,
-      "source_url": "https://www.ftserussell.com/"
+      "source_url": "https://developer.apple.com/wwdc/"
     }
   ]
 }
