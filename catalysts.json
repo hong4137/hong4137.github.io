@@ -1,22 +1,20 @@
 {
-  "generated_at": "2026-05-30 07:27 KST",
+  "generated_at": "2026-05-31 06:58 KST",
   "events": [
     {
       "date": "2026-06-01",
-      "title": "미국 ISM 제조업 PMI (5월)",
-      "category": "economic_data",
+      "title": "MSCI 지수 리밸런싱 발효",
+      "category": "market_structure",
       "importance": 4,
       "impact": [
-        "equities",
-        "USD",
-        "yields"
+        "equities"
       ],
-      "consensus": "50.3",
-      "source_url": "https://www.ismworld.org/"
+      "consensus": null,
+      "source_url": "https://www.msci.com/"
     },
     {
-      "date": "2026-06-02",
-      "title": "미국 JOLTS 채용공고 (4월)",
+      "date": "2026-06-01",
+      "title": "미국 5월 ISM 제조업 PMI 발표",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -24,65 +22,64 @@
         "USD",
         "yields"
       ],
-      "consensus": "6.80M",
-      "source_url": "https://www.bls.gov/jlt/"
-    },
-    {
-      "date": "2026-06-03",
-      "title": "미국 ISM 서비스 PMI (5월)",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": "53.6",
+      "consensus": null,
       "source_url": "https://www.ismworld.org/"
     },
     {
       "date": "2026-06-05",
-      "title": "미국 고용보고서 (비농업 고용) (5월)",
+      "title": "미국 5월 고용보고서 (비농업 고용, 실업률, 평균 시급)",
       "category": "economic_data",
       "importance": 5,
       "impact": [
-        "VIX",
+        "equities",
+        "USD",
         "yields",
+        "VIX"
+      ],
+      "consensus": "102,000 jobs, 4.4% 실업률, 0.2% MoM 평균 시급",
+      "source_url": "https://www.bls.gov/"
+    },
+    {
+      "date": "2026-06-07",
+      "title": "OPEC+ 장관급 회의",
+      "category": "geopolitical",
+      "importance": 4,
+      "impact": [
+        "oil",
         "equities",
         "USD"
       ],
-      "consensus": "95.00K",
-      "source_url": "https://www.bls.gov/news.release/empsit.htm"
+      "consensus": null,
+      "source_url": "https://www.opec.org/"
     },
     {
       "date": "2026-06-08",
-      "title": "Apple WWDC 2026 키노트",
+      "title": "Apple WWDC 2026 키노트 (iOS 27, AI 업데이트)",
       "category": "tech_conf",
       "importance": 4,
       "impact": [
-        "equities",
-        "VIX"
+        "equities"
       ],
-      "consensus": "AI 기술 대폭 강화, iOS 27, macOS 27",
-      "source_url": "https://developer.apple.com/wwdc26/"
+      "consensus": null,
+      "source_url": "https://www.apple.com/wwdc/"
     },
     {
       "date": "2026-06-10",
-      "title": "미국 소비자물가지수 (CPI) (5월)",
+      "title": "미국 5월 소비자물가지수 (CPI) 발표",
       "category": "economic_data",
       "importance": 5,
       "impact": [
-        "VIX",
-        "yields",
         "equities",
-        "USD"
+        "USD",
+        "yields",
+        "VIX"
       ],
       "consensus": null,
       "source_url": "https://www.bls.gov/cpi/"
     },
     {
       "date": "2026-06-11",
-      "title": "미국 생산자물가지수 (PPI) (5월)",
+      "title": "미국 5월 생산자물가지수 (PPI) 발표",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -90,7 +87,7 @@
         "USD",
         "yields"
       ],
-      "consensus": "1.0% MoM",
+      "consensus": null,
       "source_url": "https://www.bls.gov/ppi/"
     }
   ]
