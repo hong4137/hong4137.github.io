@@ -1,23 +1,9 @@
 {
-  "generated_at": "2026-06-01 06:57 KST",
+  "generated_at": "2026-06-02 07:59 KST",
   "events": [
     {
-      "date": "2026-06-01",
-      "title": "Fed 의장 파월 연설",
-      "category": "fed_fomc",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.federalreserve.gov/"
-    },
-    {
-      "date": "2026-06-01",
-      "title": "미국 ISM 제조업 PMI 발표",
+      "date": "2026-06-03",
+      "title": "미국 ISM 서비스 PMI (5월)",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -26,33 +12,8 @@
         "equities",
         "USD"
       ],
-      "consensus": "53.3",
+      "consensus": null,
       "source_url": "https://www.ismworld.org/"
-    },
-    {
-      "date": "2026-06-02",
-      "title": "마이크로소프트 빌드 2026",
-      "category": "tech_conf",
-      "importance": 4,
-      "impact": [
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://www.microsoft.com/build"
-    },
-    {
-      "date": "2026-06-05",
-      "title": "미국 비농업 고용지수 (NFP) 발표",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/"
     },
     {
       "date": "2026-06-07",
@@ -61,14 +22,15 @@
       "importance": 4,
       "impact": [
         "oil",
-        "USD"
+        "USD",
+        "equities"
       ],
-      "consensus": "18.8만 bpd 생산량 조정",
+      "consensus": "+188k bpd 증산",
       "source_url": "https://www.opec.org/"
     },
     {
-      "date": "2026-06-08",
-      "title": "애플 WWDC 2026",
+      "date": "2026-06-09",
+      "title": "Apple WWDC 2026 키노트",
       "category": "tech_conf",
       "importance": 4,
       "impact": [
@@ -76,34 +38,6 @@
       ],
       "consensus": null,
       "source_url": "https://www.apple.com/"
-    },
-    {
-      "date": "2026-06-10",
-      "title": "미국 소비자물가지수 (CPI) 발표",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/"
-    },
-    {
-      "date": "2026-06-16",
-      "title": "FOMC 회의",
-      "category": "fed_fomc",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": "금리 인하 가능성",
-      "source_url": "https://www.federalreserve.gov/"
     }
   ]
 }
