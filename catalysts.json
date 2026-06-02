@@ -1,19 +1,44 @@
 {
-  "generated_at": "2026-06-02 07:59 KST",
+  "generated_at": "2026-06-03 07:59 KST",
   "events": [
     {
       "date": "2026-06-03",
-      "title": "미국 ISM 서비스 PMI (5월)",
+      "title": "Microsoft Build 2026 (2일차)",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "tech"
+      ],
+      "consensus": null,
+      "source_url": "https://build.microsoft.com/"
+    },
+    {
+      "date": "2026-06-03",
+      "title": "미국 ISM 서비스 PMI 발표",
       "category": "economic_data",
       "importance": 4,
       "impact": [
-        "VIX",
-        "yields",
+        "USD",
         "equities",
-        "USD"
+        "yields"
       ],
-      "consensus": null,
+      "consensus": "53.6",
       "source_url": "https://www.ismworld.org/"
+    },
+    {
+      "date": "2026-06-05",
+      "title": "미국 비농업 고용보고서 (NFP) 발표",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "USD",
+        "equities",
+        "yields",
+        "VIX"
+      ],
+      "consensus": "100,000",
+      "source_url": "https://www.bls.gov/"
     },
     {
       "date": "2026-06-07",
@@ -22,22 +47,51 @@
       "importance": 4,
       "impact": [
         "oil",
-        "USD",
-        "equities"
+        "equities",
+        "USD"
       ],
-      "consensus": "+188k bpd 증산",
+      "consensus": null,
       "source_url": "https://www.opec.org/"
     },
     {
-      "date": "2026-06-09",
-      "title": "Apple WWDC 2026 키노트",
+      "date": "2026-06-08",
+      "title": "Apple WWDC 2026 (키노트)",
       "category": "tech_conf",
       "importance": 4,
       "impact": [
-        "equities"
+        "equities",
+        "tech"
       ],
       "consensus": null,
-      "source_url": "https://www.apple.com/"
+      "source_url": "https://developer.apple.com/wwdc/"
+    },
+    {
+      "date": "2026-06-10",
+      "title": "미국 소비자물가지수 (CPI) 발표",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "USD",
+        "equities",
+        "yields",
+        "VIX"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bls.gov/cpi/"
+    },
+    {
+      "date": "2026-06-17",
+      "title": "FOMC 회의 및 경제 전망 요약 (SEP) 발표",
+      "category": "fed_fomc",
+      "importance": 5,
+      "impact": [
+        "USD",
+        "equities",
+        "yields",
+        "VIX"
+      ],
+      "consensus": "금리 동결 (3.50%-3.75%)",
+      "source_url": "https://www.federalreserve.gov/"
     }
   ]
 }
