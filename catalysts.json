@@ -1,91 +1,57 @@
 {
-  "generated_at": "2026-06-04 08:04 KST",
+  "generated_at": "2026-06-13 07:22 KST",
   "events": [
     {
-      "date": "2026-06-07",
-      "title": "OPEC+ 정례 장관급 회의",
-      "category": "geopolitical",
-      "importance": 4,
-      "impact": [
-        "oil",
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://www.opec.org/"
-    },
-    {
-      "date": "2026-06-08",
-      "title": "Apple WWDC 2026 기조연설 (iOS 27, AI 기능 발표)",
-      "category": "tech_conf",
-      "importance": 4,
-      "impact": [
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://www.apple.com/wwdc/"
-    },
-    {
-      "date": "2026-06-08",
-      "title": "Russell US 지수 재조정 락다운 시작",
-      "category": "market_structure",
-      "importance": 4,
-      "impact": [
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://www.lseg.com/ftse-russell/"
-    },
-    {
-      "date": "2026-06-10",
-      "title": "미국 10년물 국채 입찰",
-      "category": "treasury_auction",
-      "importance": 4,
-      "impact": [
-        "yields",
-        "USD",
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://www.treasurydirect.gov/"
-    },
-    {
       "date": "2026-06-15",
-      "title": "G7 정상회담 (프랑스 에비앙)",
+      "title": "제52차 G7 정상회담",
       "category": "geopolitical",
       "importance": 4,
       "impact": [
-        "USD",
         "equities",
+        "USD",
+        "yields",
+        "oil"
+      ],
+      "consensus": null,
+      "source_url": "https://www.g7.org/"
+    },
+    {
+      "date": "2026-06-25",
+      "title": "미국 개인소비지출(PCE) 물가지수 (5월)",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "equities",
+        "USD",
         "yields"
       ],
       "consensus": null,
-      "source_url": "https://www.elysee.fr/"
+      "source_url": "https://www.bea.gov/"
     },
     {
-      "date": "2026-06-16",
-      "title": "FOMC 회의 및 경제 전망 요약 (SEP) 발표",
-      "category": "fed_fomc",
-      "importance": 5,
+      "date": "2026-06-25",
+      "title": "미국 1분기 GDP 최종 추정치",
+      "category": "economic_data",
+      "importance": 4,
       "impact": [
-        "VIX",
-        "yields",
         "equities",
-        "USD"
+        "USD",
+        "yields"
       ],
       "consensus": null,
-      "source_url": "https://www.federalreserve.gov/"
+      "source_url": "https://www.bea.gov/"
     },
     {
-      "date": "2026-06-18",
-      "title": "쿼드러플 위칭 데이 (선물/옵션 만기일)",
+      "date": "2026-06-26",
+      "title": "러셀 지수 리밸런싱",
       "category": "market_structure",
       "importance": 4,
       "impact": [
-        "VIX",
-        "equities"
+        "equities",
+        "VIX"
       ],
       "consensus": null,
-      "source_url": "https://stocktitan.com/"
+      "source_url": "https://www.ftserussell.com/"
     }
   ]
 }
