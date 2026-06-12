@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-12 19:17:10 KST",
+  "updated": "2026-06-13 00:19:32 KST",
   "epl": {
     "matchday": 38,
     "selected_round": 38,
@@ -166,7 +166,7 @@
         "pos": 5,
         "driver": "Oscar Piastri",
         "team": "McLaren",
-        "points": 60
+        "points": 58
       },
       {
         "pos": 6,
@@ -182,21 +182,21 @@
       },
       {
         "pos": 8,
-        "driver": "Isack Hadjar",
-        "team": "Racing Bulls",
-        "points": 29
+        "driver": "Pierre Gasly",
+        "team": "Alpine",
+        "points": 35
       },
       {
         "pos": 9,
-        "driver": "Liam Lawson",
-        "team": "Red Bull",
+        "driver": "Isack Hadjar",
+        "team": "Racing Bulls",
         "points": 26
       },
       {
         "pos": 10,
-        "driver": "Pierre Gasly",
-        "team": "Alpine",
-        "points": 26
+        "driver": "Liam Lawson",
+        "team": "Red Bull",
+        "points": 24
       }
     ]
   },
