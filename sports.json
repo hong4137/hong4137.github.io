@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-14 02:06:51 KST",
+  "updated": "2026-06-14 02:31:44 KST",
   "epl": {
     "matchday": 38,
     "selected_round": 38,
@@ -218,7 +218,80 @@
   },
   "worldcup": {
     "phase": "Group Stage",
-    "matches": []
+    "matches": [
+      {
+        "home": "Qatar",
+        "away": "Switzerland",
+        "kst_date": "06.14",
+        "kst_time": "04:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": "Group B"
+      },
+      {
+        "home": "Brazil",
+        "away": "Morocco",
+        "kst_date": "06.14",
+        "kst_time": "07:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": "Group C"
+      },
+      {
+        "home": "Haiti",
+        "away": "Scotland",
+        "kst_date": "06.14",
+        "kst_time": "10:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": "Group C"
+      },
+      {
+        "home": "Australia",
+        "away": "Turkey",
+        "kst_date": "06.14",
+        "kst_time": "13:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": "Group D"
+      },
+      {
+        "home": "Germany",
+        "away": "Curaçao",
+        "kst_date": "06.15",
+        "kst_time": "02:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": "Group E"
+      },
+      {
+        "home": "Netherlands",
+        "away": "Japan",
+        "kst_date": "06.15",
+        "kst_time": "05:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": "Group F"
+      },
+      {
+        "home": "Ivory Coast",
+        "away": "Ecuador",
+        "kst_date": "06.15",
+        "kst_time": "08:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": "Group E"
+      },
+      {
+        "home": "Sweden",
+        "away": "Tunisia",
+        "kst_date": "06.15",
+        "kst_time": "11:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": "Group F"
+      }
+    ]
   },
   "debug": {
     "has_football_key": true,
@@ -226,7 +299,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-14 02:06:51 (KST)",
+      "🚀 [Start] 2026-06-14 02:31:44 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -273,11 +346,18 @@
       "      📅 06.27 23:00 KST | Qualifying",
       "      📅 06.28 22:00 KST | Race",
       "   ✅ 순위: 10명 로드",
-      "\n🏆 [Step 5a] 2026 FIFA World Cup (Serper + Gemini)...",
-      "   [WorldCup] Serper 검색: 2026 FIFA World Cup matches results schedule today tomorrow KST",
-      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ⚠️ Serper 검색 실패 → World Cup 빈 데이터 반환",
-      "   ✅ Phase: Group Stage | Matches: 0경기",
+      "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
+      "   [WorldCup] API 응답: 12경기 (UTC 2026-06-13~2026-06-15)",
+      "   ✅ World Cup 데이터: 8경기 (Group Stage)",
+      "      📅 06.14 04:00 KST | Qatar vs Switzerland [SCHEDULED]  Group B",
+      "      📅 06.14 07:00 KST | Brazil vs Morocco [SCHEDULED]  Group C",
+      "      📅 06.14 10:00 KST | Haiti vs Scotland [SCHEDULED]  Group C",
+      "      📅 06.14 13:00 KST | Australia vs Turkey [SCHEDULED]  Group D",
+      "      📅 06.15 02:00 KST | Germany vs Curaçao [SCHEDULED]  Group E",
+      "      📅 06.15 05:00 KST | Netherlands vs Japan [SCHEDULED]  Group F",
+      "      📅 06.15 08:00 KST | Ivory Coast vs Ecuador [SCHEDULED]  Group E",
+      "      📅 06.15 11:00 KST | Sweden vs Tunisia [SCHEDULED]  Group F",
+      "   ✅ Phase: Group Stage | Matches: 8경기",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
       "      Recent: - vs - - (-)",
