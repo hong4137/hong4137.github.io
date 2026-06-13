@@ -2089,142 +2089,114 @@ def format_tennis_data(raw_data):
     return tennis_data
 
 # =============================================================================
-# World Cup 함수 (Serper API + Gemini API)
+# World Cup 함수 (Football-Data.org API — competition code: WC)
 # =============================================================================
-def get_worldcup_data(serper_key, gemini_key):
+def get_worldcup_data(football_key):
     """
-    2026 FIFA World Cup 오늘/내일 경기 데이터 수집.
+    2026 FIFA World Cup 오늘/내일 경기 수집 (Football-Data.org API v4)
+    Endpoint: /v4/competitions/WC/matches
 
     Returns:
         dict: {"phase": str, "matches": list}
     """
-    if not serper_key or not gemini_key:
-        log("   ⚠️ Serper 또는 Gemini API 키 없음 → World Cup 데이터 수집 불가")
+    if not football_key:
+        log("   ⚠️ FOOTBALL_DATA_API_KEY 없음 → World Cup 데이터 수집 불가")
         return {"phase": "Group Stage", "matches": []}
 
     kst_now = get_kst_now()
-    today_kst = kst_now.strftime("%B %d, %Y")
-    tomorrow_kst = (kst_now + timedelta(days=1)).strftime("%B %d, %Y")
+    today_kst_str    = kst_now.strftime("%m.%d")
+    tomorrow_kst_str = (kst_now + timedelta(days=1)).strftime("%m.%d")
 
-    query = "2026 FIFA World Cup matches results schedule today tomorrow KST"
-    log(f"   [WorldCup] Serper 검색: {query}")
-    search_result = call_serper_api(query, serper_key)
+    date_from = (kst_now.date() - timedelta(days=1)).strftime("%Y-%m-%d")
+    date_to   = (kst_now.date() + timedelta(days=1)).strftime("%Y-%m-%d")
 
-    if not search_result:
-        log("   ⚠️ Serper 검색 실패 → World Cup 빈 데이터 반환")
-        return {"phase": "Group Stage", "matches": []}
+    url     = f"{FOOTBALL_DATA_API_URL}/competitions/WC/matches"
+    headers = {"X-Auth-Token": football_key}
+    params  = {"dateFrom": date_from, "dateTo": date_to}
 
-    search_text = ""
-    if "answerBox" in search_result:
-        search_text += search_result["answerBox"].get("snippet", "") + " "
-        search_text += search_result["answerBox"].get("answer", "") + " "
-    if "sportsResults" in search_result:
-        search_text += json.dumps(search_result["sportsResults"], ensure_ascii=False) + " "
-    for item in search_result.get("organic", [])[:6]:
-        search_text += item.get("snippet", "") + " "
-        search_text += item.get("title", "") + " "
-
-    log(f"   [WorldCup] 검색 텍스트 수집: {len(search_text)}자")
-
-    prompt = f"""You are a FIFA World Cup 2026 data extractor. Today (KST) is {today_kst}. Tomorrow (KST) is {tomorrow_kst}.
-
-From the search results below, extract ONLY the matches scheduled on TODAY ({today_kst}) or TOMORROW ({tomorrow_kst}) in Korean Standard Time (KST, UTC+9).
-
-Search results:
----
-{search_text[:4000]}
----
-
-RULES:
-1. Include ONLY matches on today or tomorrow (KST).
-2. Convert all match times to KST (UTC+9). A match at 20:00 ET = 09:00 next day KST.
-3. status must be exactly: "LIVE", "FINISHED", or "SCHEDULED".
-4. score: only if LIVE or FINISHED (e.g. "2-1"), else use "".
-5. group: e.g. "Group A", "Group B", "Round of 16", "Quarter-Final", "Semi-Final", "Final". Use "" if unknown.
-6. kst_date format: "MM.DD" (e.g. "06.15").
-7. kst_time format: "HH:MM" (e.g. "09:00").
-8. If no matches found for today/tomorrow, return an empty matches array.
-9. Also determine the current tournament phase: "Group Stage", "Round of 16", "Quarter-Finals", "Semi-Finals", "Final".
-
-Respond with ONLY a valid JSON object, no markdown, no explanation:
-{{
-  "phase": "Group Stage",
-  "matches": [
-    {{
-      "home": "Country Name",
-      "away": "Country Name",
-      "kst_date": "MM.DD",
-      "kst_time": "HH:MM",
-      "score": "",
-      "status": "SCHEDULED",
-      "group": "Group A"
-    }}
-  ]
-}}"""
-
-    log("   [WorldCup] Gemini API 호출...")
-    gemini_response = call_gemini_api(prompt, gemini_key)
-
-    if not gemini_response:
-        log("   ⚠️ Gemini 응답 없음 → World Cup 빈 데이터 반환")
-        return {"phase": "Group Stage", "matches": []}
+    STAGE_TO_PHASE = {
+        "GROUP_STAGE":    "Group Stage",
+        "LAST_16":        "Round of 16",
+        "ROUND_OF_16":    "Round of 16",
+        "QUARTER_FINALS": "Quarter-Finals",
+        "SEMI_FINALS":    "Semi-Finals",
+        "THIRD_PLACE":    "Third Place",
+        "FINAL":          "Final",
+    }
 
     try:
-        clean = gemini_response.strip()
-        clean = re.sub(r"^```(?:json)?\s*", "", clean)
-        clean = re.sub(r"\s*```$", "", clean)
-        parsed = json.loads(clean)
-
-        if not isinstance(parsed, dict):
-            log("   ⚠️ Gemini 응답이 dict 아님")
+        response = requests.get(url, headers=headers, params=params, timeout=10)
+        if response.status_code != 200:
+            log(f"   ⚠️ Football-Data WC API error: status={response.status_code}, body={response.text[:300]}")
             return {"phase": "Group Stage", "matches": []}
-
-        phase = str(parsed.get("phase", "Group Stage")).strip() or "Group Stage"
-        raw_matches = parsed.get("matches", [])
-
-        if not isinstance(raw_matches, list):
-            log("   ⚠️ matches 필드가 list 아님")
-            return {"phase": phase, "matches": []}
-
-        validated_matches = []
-        required_fields = {"home", "away", "kst_date", "kst_time", "status"}
-        valid_statuses = {"LIVE", "FINISHED", "SCHEDULED"}
-
-        for m in raw_matches:
-            if not isinstance(m, dict):
-                continue
-            if not required_fields.issubset(m.keys()):
-                log(f"      ⚠️ 필드 누락 스킵: {m}")
-                continue
-
-            status = str(m.get("status", "SCHEDULED")).upper()
-            if status not in valid_statuses:
-                status = "SCHEDULED"
-
-            validated_matches.append({
-                "home": str(m.get("home", "")).strip(),
-                "away": str(m.get("away", "")).strip(),
-                "kst_date": str(m.get("kst_date", "")).strip(),
-                "kst_time": str(m.get("kst_time", "")).strip(),
-                "score": str(m.get("score", "")).strip(),
-                "status": status,
-                "group": str(m.get("group", "")).strip()
-            })
-
-        log(f"   ✅ World Cup 데이터: {len(validated_matches)}경기 ({phase})")
-        for m in validated_matches:
-            icon = "🔴" if m["status"] == "LIVE" else ("✅" if m["status"] == "FINISHED" else "📅")
-            log(f"      {icon} {m['kst_date']} {m['kst_time']} KST | {m['home']} vs {m['away']} [{m['status']}] {m['score']} {m['group']}")
-
-        return {"phase": phase, "matches": validated_matches}
-
-    except json.JSONDecodeError as e:
-        log(f"   ⚠️ Gemini JSON 파싱 실패: {e}")
-        log(f"      Raw response: {gemini_response[:200]}")
-        return {"phase": "Group Stage", "matches": []}
+        all_matches = response.json().get("matches", [])
+        log(f"   [WorldCup] API 응답: {len(all_matches)}경기 (UTC {date_from}~{date_to})")
     except Exception as e:
-        log(f"   ⚠️ World Cup 데이터 처리 오류: {e}")
+        log(f"   ⚠️ Football-Data WC API exception: {e}")
         return {"phase": "Group Stage", "matches": []}
+
+    phase = "Group Stage"
+    output_matches = []
+
+    for match in all_matches:
+        utc_date  = match.get("utcDate", "")
+        time_info = convert_utc_to_kst(utc_date)
+        if not time_info:
+            continue
+
+        kst_date = time_info["kst_date"]
+        if kst_date not in (today_kst_str, tomorrow_kst_str):
+            continue
+
+        raw_status = match.get("status", "")
+        if raw_status in ("IN_PLAY", "PAUSED"):
+            status = "LIVE"
+        elif raw_status in ("FINISHED", "AWARDED"):
+            status = "FINISHED"
+        else:
+            status = "SCHEDULED"
+
+        if status in ("LIVE", "FINISHED"):
+            ft = match.get("score", {}).get("fullTime", {})
+            h, a = ft.get("home"), ft.get("away")
+            score = f"{h}-{a}" if h is not None and a is not None else ""
+        else:
+            score = ""
+
+        stage = match.get("stage", "")
+        phase_label = STAGE_TO_PHASE.get(stage)
+        if phase_label:
+            phase = phase_label
+
+        group_raw = match.get("group") or ""
+        if group_raw.startswith("GROUP_"):
+            group = "Group " + group_raw[6:]
+        elif group_raw:
+            group = group_raw.replace("_", " ").title()
+        else:
+            group = ""
+
+        home = match.get("homeTeam", {}).get("name", "").strip()
+        away = match.get("awayTeam", {}).get("name", "").strip()
+        if not home or not away:
+            continue
+
+        output_matches.append({
+            "home":     home,
+            "away":     away,
+            "kst_date": time_info["kst_date"],
+            "kst_time": time_info["kst_time"],
+            "score":    score,
+            "status":   status,
+            "group":    group
+        })
+
+    log(f"   ✅ World Cup 데이터: {len(output_matches)}경기 ({phase})")
+    for m in output_matches:
+        icon = "🔴" if m["status"] == "LIVE" else ("✅" if m["status"] == "FINISHED" else "📅")
+        log(f"      {icon} {m['kst_date']} {m['kst_time']} KST | {m['home']} vs {m['away']} [{m['status']}] {m['score']} {m['group']}")
+
+    return {"phase": phase, "matches": output_matches}
 
 # =============================================================================
 # 메인 업데이트 함수
@@ -2374,11 +2346,11 @@ def update_sports_data():
         log(f"   ✅ 순위: {len(f1_data['standings'])}명 로드")
 
     # =========================================================================
-    # STEP 5a: 2026 FIFA World Cup (Serper + Gemini)
+    # STEP 5a: 2026 FIFA World Cup (Football-Data.org API)
     # =========================================================================
-    log("\n🏆 [Step 5a] 2026 FIFA World Cup (Serper + Gemini)...")
+    log("\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...")
 
-    worldcup_data = get_worldcup_data(serper_api_key, gemini_api_key)
+    worldcup_data = get_worldcup_data(football_api_key)
     log(f"   ✅ Phase: {worldcup_data['phase']} | Matches: {len(worldcup_data['matches'])}경기")
 
     # =========================================================================
