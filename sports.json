@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-13 23:04:07 KST",
+  "updated": "2026-06-14 01:32:39 KST",
   "epl": {
     "matchday": 38,
     "selected_round": 38,
@@ -215,5 +215,9 @@
       "tournament_dates": "",
       "status": "-"
     }
+  },
+  "worldcup": {
+    "phase": "Group Stage",
+    "matches": []
   }
 }
