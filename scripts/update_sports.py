@@ -140,8 +140,10 @@ def call_serper_api(query, api_key):
         response = requests.post(SERPER_API_URL, json=payload, headers=headers, timeout=10)
         if response.status_code == 200:
             return response.json()
-    except:
-        pass
+        else:
+            log(f"   ⚠️ Serper API error: status={response.status_code}, body={response.text[:300]}")
+    except Exception as e:
+        log(f"   ⚠️ Serper API exception: {e}")
     return None
 
 def call_balldontlie_api(endpoint, params=None, api_key=None):
