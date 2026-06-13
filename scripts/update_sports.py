@@ -2084,6 +2084,144 @@ def format_tennis_data(raw_data):
     return tennis_data
 
 # =============================================================================
+# World Cup 함수 (Serper API + Gemini API)
+# =============================================================================
+def get_worldcup_data(serper_key, gemini_key):
+    """
+    2026 FIFA World Cup 오늘/내일 경기 데이터 수집.
+
+    Returns:
+        dict: {"phase": str, "matches": list}
+    """
+    if not serper_key or not gemini_key:
+        log("   ⚠️ Serper 또는 Gemini API 키 없음 → World Cup 데이터 수집 불가")
+        return {"phase": "Group Stage", "matches": []}
+
+    kst_now = get_kst_now()
+    today_kst = kst_now.strftime("%B %d, %Y")
+    tomorrow_kst = (kst_now + timedelta(days=1)).strftime("%B %d, %Y")
+
+    query = "2026 FIFA World Cup matches results schedule today tomorrow KST"
+    log(f"   [WorldCup] Serper 검색: {query}")
+    search_result = call_serper_api(query, serper_key)
+
+    if not search_result:
+        log("   ⚠️ Serper 검색 실패 → World Cup 빈 데이터 반환")
+        return {"phase": "Group Stage", "matches": []}
+
+    search_text = ""
+    if "answerBox" in search_result:
+        search_text += search_result["answerBox"].get("snippet", "") + " "
+        search_text += search_result["answerBox"].get("answer", "") + " "
+    if "sportsResults" in search_result:
+        search_text += json.dumps(search_result["sportsResults"], ensure_ascii=False) + " "
+    for item in search_result.get("organic", [])[:6]:
+        search_text += item.get("snippet", "") + " "
+        search_text += item.get("title", "") + " "
+
+    log(f"   [WorldCup] 검색 텍스트 수집: {len(search_text)}자")
+
+    prompt = f"""You are a FIFA World Cup 2026 data extractor. Today (KST) is {today_kst}. Tomorrow (KST) is {tomorrow_kst}.
+
+From the search results below, extract ONLY the matches scheduled on TODAY ({today_kst}) or TOMORROW ({tomorrow_kst}) in Korean Standard Time (KST, UTC+9).
+
+Search results:
+---
+{search_text[:4000]}
+---
+
+RULES:
+1. Include ONLY matches on today or tomorrow (KST).
+2. Convert all match times to KST (UTC+9). A match at 20:00 ET = 09:00 next day KST.
+3. status must be exactly: "LIVE", "FINISHED", or "SCHEDULED".
+4. score: only if LIVE or FINISHED (e.g. "2-1"), else use "".
+5. group: e.g. "Group A", "Group B", "Round of 16", "Quarter-Final", "Semi-Final", "Final". Use "" if unknown.
+6. kst_date format: "MM.DD" (e.g. "06.15").
+7. kst_time format: "HH:MM" (e.g. "09:00").
+8. If no matches found for today/tomorrow, return an empty matches array.
+9. Also determine the current tournament phase: "Group Stage", "Round of 16", "Quarter-Finals", "Semi-Finals", "Final".
+
+Respond with ONLY a valid JSON object, no markdown, no explanation:
+{{
+  "phase": "Group Stage",
+  "matches": [
+    {{
+      "home": "Country Name",
+      "away": "Country Name",
+      "kst_date": "MM.DD",
+      "kst_time": "HH:MM",
+      "score": "",
+      "status": "SCHEDULED",
+      "group": "Group A"
+    }}
+  ]
+}}"""
+
+    log("   [WorldCup] Gemini API 호출...")
+    gemini_response = call_gemini_api(prompt, gemini_key)
+
+    if not gemini_response:
+        log("   ⚠️ Gemini 응답 없음 → World Cup 빈 데이터 반환")
+        return {"phase": "Group Stage", "matches": []}
+
+    try:
+        clean = gemini_response.strip()
+        clean = re.sub(r"^```(?:json)?\s*", "", clean)
+        clean = re.sub(r"\s*```$", "", clean)
+        parsed = json.loads(clean)
+
+        if not isinstance(parsed, dict):
+            log("   ⚠️ Gemini 응답이 dict 아님")
+            return {"phase": "Group Stage", "matches": []}
+
+        phase = str(parsed.get("phase", "Group Stage")).strip() or "Group Stage"
+        raw_matches = parsed.get("matches", [])
+
+        if not isinstance(raw_matches, list):
+            log("   ⚠️ matches 필드가 list 아님")
+            return {"phase": phase, "matches": []}
+
+        validated_matches = []
+        required_fields = {"home", "away", "kst_date", "kst_time", "status"}
+        valid_statuses = {"LIVE", "FINISHED", "SCHEDULED"}
+
+        for m in raw_matches:
+            if not isinstance(m, dict):
+                continue
+            if not required_fields.issubset(m.keys()):
+                log(f"      ⚠️ 필드 누락 스킵: {m}")
+                continue
+
+            status = str(m.get("status", "SCHEDULED")).upper()
+            if status not in valid_statuses:
+                status = "SCHEDULED"
+
+            validated_matches.append({
+                "home": str(m.get("home", "")).strip(),
+                "away": str(m.get("away", "")).strip(),
+                "kst_date": str(m.get("kst_date", "")).strip(),
+                "kst_time": str(m.get("kst_time", "")).strip(),
+                "score": str(m.get("score", "")).strip(),
+                "status": status,
+                "group": str(m.get("group", "")).strip()
+            })
+
+        log(f"   ✅ World Cup 데이터: {len(validated_matches)}경기 ({phase})")
+        for m in validated_matches:
+            icon = "🔴" if m["status"] == "LIVE" else ("✅" if m["status"] == "FINISHED" else "📅")
+            log(f"      {icon} {m['kst_date']} {m['kst_time']} KST | {m['home']} vs {m['away']} [{m['status']}] {m['score']} {m['group']}")
+
+        return {"phase": phase, "matches": validated_matches}
+
+    except json.JSONDecodeError as e:
+        log(f"   ⚠️ Gemini JSON 파싱 실패: {e}")
+        log(f"      Raw response: {gemini_response[:200]}")
+        return {"phase": "Group Stage", "matches": []}
+    except Exception as e:
+        log(f"   ⚠️ World Cup 데이터 처리 오류: {e}")
+        return {"phase": "Group Stage", "matches": []}
+
+# =============================================================================
 # 메인 업데이트 함수
 # =============================================================================
 def update_sports_data():
@@ -2231,6 +2369,14 @@ def update_sports_data():
         log(f"   ✅ 순위: {len(f1_data['standings'])}명 로드")
 
     # =========================================================================
+    # STEP 5a: 2026 FIFA World Cup (Serper + Gemini)
+    # =========================================================================
+    log("\n🏆 [Step 5a] 2026 FIFA World Cup (Serper + Gemini)...")
+
+    worldcup_data = get_worldcup_data(serper_api_key, gemini_api_key)
+    log(f"   ✅ Phase: {worldcup_data['phase']} | Matches: {len(worldcup_data['matches'])}경기")
+
+    # =========================================================================
     # STEP 5: Tennis (v6: Sofascore Web App — Gemini 없음)
     # =========================================================================
     log("\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...")
@@ -2283,7 +2429,8 @@ def update_sports_data():
         },
         "nba": nba_data,
         "f1": f1_data,
-        "tennis": clean_tennis
+        "tennis": clean_tennis,
+        "worldcup": worldcup_data
     }
 
     with open(SPORTS_FILE, 'w', encoding='utf-8') as f:
@@ -2294,6 +2441,7 @@ def update_sports_data():
     log(f"   NBA: {len(nba_data['schedule'])}경기")
     log(f"   F1: {next_race.get('name', '-')} | {len(f1_data.get('schedule', []))}세션 | {len(f1_data.get('standings', []))}명 순위")
     log(f"   Tennis: {final_next.get('event', '-')} | {final_next.get('detail', '-')}")
+    log(f"   WorldCup: {worldcup_data['phase']} | {len(worldcup_data['matches'])}경기")
     log(f"   파일: {SPORTS_FILE}")
 
     return sports_data
