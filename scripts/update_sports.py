@@ -91,9 +91,12 @@ TIER_PRIORITY = {
 }
 MAX_EPL_MATCHES = 3  # 최대 선정 경기 수
 
+LOG_MESSAGES = []
+
 def log(message):
-    """버퍼링 없이 즉시 출력"""
+    """버퍼링 없이 즉시 출력 + LOG_MESSAGES에 누적"""
     print(message, flush=True)
+    LOG_MESSAGES.append(str(message))
 
 # =============================================================================
 # 타임존 변환 함수
@@ -2430,7 +2433,14 @@ def update_sports_data():
         "nba": nba_data,
         "f1": f1_data,
         "tennis": clean_tennis,
-        "worldcup": worldcup_data
+        "worldcup": worldcup_data,
+        "debug": {
+            "has_football_key": bool(football_api_key),
+            "has_serper_key": bool(serper_api_key),
+            "has_gemini_key": bool(gemini_api_key),
+            "has_balldontlie_key": bool(balldontlie_api_key),
+            "logs": LOG_MESSAGES
+        }
     }
 
     with open(SPORTS_FILE, 'w', encoding='utf-8') as f:
