@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-14 04:39:48 KST",
+  "updated": "2026-06-14 13:19:40 KST",
   "epl": {
     "matchday": 38,
     "selected_round": 38,
@@ -224,8 +224,8 @@
         "away": "Switzerland",
         "kst_date": "06.14",
         "kst_time": "04:00",
-        "score": "0-1",
-        "status": "LIVE",
+        "score": "1-1",
+        "status": "FINISHED",
         "group": "Group B"
       },
       {
@@ -233,8 +233,8 @@
         "away": "Morocco",
         "kst_date": "06.14",
         "kst_time": "07:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "1-1",
+        "status": "FINISHED",
         "group": "Group C"
       },
       {
@@ -242,8 +242,8 @@
         "away": "Scotland",
         "kst_date": "06.14",
         "kst_time": "10:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "0-1",
+        "status": "FINISHED",
         "group": "Group C"
       },
       {
@@ -251,8 +251,8 @@
         "away": "Turkey",
         "kst_date": "06.14",
         "kst_time": "13:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "0-0",
+        "status": "LIVE",
         "group": "Group D"
       },
       {
@@ -299,7 +299,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-14 04:39:48 (KST)",
+      "🚀 [Start] 2026-06-14 13:19:40 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -349,10 +349,10 @@
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
       "   [WorldCup] API 응답: 12경기 (UTC 2026-06-13~2026-06-15)",
       "   ✅ World Cup 데이터: 8경기 (Group Stage)",
-      "      🔴 06.14 04:00 KST | Qatar vs Switzerland [LIVE] 0-1 Group B",
-      "      📅 06.14 07:00 KST | Brazil vs Morocco [SCHEDULED]  Group C",
-      "      📅 06.14 10:00 KST | Haiti vs Scotland [SCHEDULED]  Group C",
-      "      📅 06.14 13:00 KST | Australia vs Turkey [SCHEDULED]  Group D",
+      "      ✅ 06.14 04:00 KST | Qatar vs Switzerland [FINISHED] 1-1 Group B",
+      "      ✅ 06.14 07:00 KST | Brazil vs Morocco [FINISHED] 1-1 Group C",
+      "      ✅ 06.14 10:00 KST | Haiti vs Scotland [FINISHED] 0-1 Group C",
+      "      🔴 06.14 13:00 KST | Australia vs Turkey [LIVE] 0-0 Group D",
       "      📅 06.15 02:00 KST | Germany vs Curaçao [SCHEDULED]  Group E",
       "      📅 06.15 05:00 KST | Netherlands vs Japan [SCHEDULED]  Group F",
       "      📅 06.15 08:00 KST | Ivory Coast vs Ecuador [SCHEDULED]  Group E",
