@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-06-14 07:00 KST",
+  "generated_at": "2026-06-15 07:06 KST",
   "events": [
     {
       "date": "2026-06-15",
-      "title": "미국 10년물 국채 입찰 (재개장)",
+      "title": "미국 10년물 국채 입찰",
       "category": "treasury_auction",
       "importance": 4,
       "impact": [
@@ -16,7 +16,7 @@
     },
     {
       "date": "2026-06-15",
-      "title": "미국 30년물 국채 입찰 (재개장)",
+      "title": "미국 30년물 국채 입찰",
       "category": "treasury_auction",
       "importance": 4,
       "impact": [
@@ -28,21 +28,8 @@
       "source_url": "https://www.treasurydirect.gov/"
     },
     {
-      "date": "2026-06-16",
-      "title": "미국 수출입 물가지수 (5월) 발표",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "USD",
-        "equities",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/"
-    },
-    {
       "date": "2026-06-17",
-      "title": "FOMC 회의 및 금리 결정, 경제 전망 요약 발표",
+      "title": "FOMC 회의 및 금리 결정",
       "category": "fed_fomc",
       "importance": 5,
       "impact": [
@@ -55,16 +42,56 @@
       "source_url": "https://www.federalreserve.gov/"
     },
     {
+      "date": "2026-06-17",
+      "title": "미국 소매판매 (핵심) 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.census.gov/"
+    },
+    {
       "date": "2026-06-18",
-      "title": "쿼드러플 위칭 데이 (주가지수 선물/옵션, 개별주식 옵션 동시 만기)",
+      "title": "미국 주식/지수 선물 및 옵션 만기일 (Quadruple Witching)",
       "category": "market_structure",
-      "importance": 5,
+      "importance": 4,
       "impact": [
         "VIX",
         "equities"
       ],
       "consensus": null,
       "source_url": "https://www.cboe.com/"
+    },
+    {
+      "date": "2026-06-25",
+      "title": "미국 GDP (최종) 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bea.gov/"
+    },
+    {
+      "date": "2026-06-25",
+      "title": "미국 개인소비지출 (PCE) 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bea.gov/"
     }
   ]
 }
