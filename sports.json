@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-14 23:08:01 KST",
+  "updated": "2026-06-15 04:39:28 KST",
   "epl": {
     "matchday": 38,
     "selected_round": 38,
@@ -148,13 +148,13 @@
         "pos": 2,
         "driver": "Lewis Hamilton",
         "team": "Ferrari",
-        "points": 90
+        "points": 115
       },
       {
         "pos": 3,
         "driver": "George Russell",
         "team": "Mercedes",
-        "points": 88
+        "points": 106
       },
       {
         "pos": 4,
@@ -164,39 +164,39 @@
       },
       {
         "pos": 5,
-        "driver": "Oscar Piastri",
+        "driver": "Lando Norris",
         "team": "McLaren",
-        "points": 58
+        "points": 73
       },
       {
         "pos": 6,
-        "driver": "Lando Norris",
+        "driver": "Oscar Piastri",
         "team": "McLaren",
-        "points": 58
+        "points": 68
       },
       {
         "pos": 7,
         "driver": "Max Verstappen",
         "team": "Red Bull",
-        "points": 43
+        "points": 55
       },
       {
         "pos": 8,
         "driver": "Pierre Gasly",
         "team": "Alpine",
-        "points": 35
+        "points": 41
       },
       {
         "pos": 9,
         "driver": "Isack Hadjar",
         "team": "Racing Bulls",
-        "points": 26
+        "points": 34
       },
       {
         "pos": 10,
         "driver": "Liam Lawson",
         "team": "Red Bull",
-        "points": 24
+        "points": 28
       }
     ]
   },
@@ -209,59 +209,23 @@
       "date": "-"
     },
     "next": {
-      "event": "Queen's Club",
+      "event": "Wimbledon",
       "detail": "-",
-      "match_time": "Jun 15",
-      "tournament_dates": "",
-      "status": "-"
+      "match_time": "Jun 30",
+      "tournament_dates": "Jun 30 - Jul 13",
+      "status": "Grand Slam"
     }
   },
   "worldcup": {
     "phase": "Group Stage",
     "matches": [
       {
-        "home": "Qatar",
-        "away": "Switzerland",
-        "kst_date": "06.14",
-        "kst_time": "04:00",
-        "score": "1-1",
-        "status": "FINISHED",
-        "group": "Group B"
-      },
-      {
-        "home": "Brazil",
-        "away": "Morocco",
-        "kst_date": "06.14",
-        "kst_time": "07:00",
-        "score": "1-1",
-        "status": "FINISHED",
-        "group": "Group C"
-      },
-      {
-        "home": "Haiti",
-        "away": "Scotland",
-        "kst_date": "06.14",
-        "kst_time": "10:00",
-        "score": "0-1",
-        "status": "FINISHED",
-        "group": "Group C"
-      },
-      {
-        "home": "Australia",
-        "away": "Turkey",
-        "kst_date": "06.14",
-        "kst_time": "13:00",
-        "score": "2-0",
-        "status": "FINISHED",
-        "group": "Group D"
-      },
-      {
         "home": "Germany",
         "away": "Curaçao",
         "kst_date": "06.15",
         "kst_time": "02:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "7-1",
+        "status": "FINISHED",
         "group": "Group E"
       },
       {
@@ -290,6 +254,42 @@
         "score": "",
         "status": "SCHEDULED",
         "group": "Group F"
+      },
+      {
+        "home": "Spain",
+        "away": "Cape Verde Islands",
+        "kst_date": "06.16",
+        "kst_time": "01:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": "Group H"
+      },
+      {
+        "home": "Belgium",
+        "away": "Egypt",
+        "kst_date": "06.16",
+        "kst_time": "04:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": "Group G"
+      },
+      {
+        "home": "Saudi Arabia",
+        "away": "Uruguay",
+        "kst_date": "06.16",
+        "kst_time": "07:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": "Group H"
+      },
+      {
+        "home": "Iran",
+        "away": "New Zealand",
+        "kst_date": "06.16",
+        "kst_time": "10:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": "Group G"
       }
     ]
   },
@@ -299,7 +299,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-14 23:08:01 (KST)",
+      "🚀 [Start] 2026-06-15 04:39:28 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -335,10 +335,10 @@
       "      ✅ 순위 직접 파싱 성공 (www.formula1.com): 22명",
       "   ✅ 순위: 10명",
       "      1. Kimi Antonelli (Mercedes) 156pts",
-      "      2. Lewis Hamilton (Ferrari) 90pts",
-      "      3. George Russell (Mercedes) 88pts",
+      "      2. Lewis Hamilton (Ferrari) 115pts",
+      "      3. George Russell (Mercedes) 106pts",
       "      4. Charles Leclerc (Ferrari) 75pts",
-      "      5. Oscar Piastri (McLaren) 58pts",
+      "      5. Lando Norris (McLaren) 73pts",
       "   ✅ Austrian Grand Prix | Red Bull Ring, Spielberg | Jun 26-28 [Next GP]",
       "      📅 06.26 20:30 KST | FP1",
       "      📅 06.27 00:00 KST | FP2",
@@ -347,24 +347,24 @@
       "      📅 06.28 22:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
-      "   [WorldCup] API 응답: 12경기 (UTC 2026-06-13~2026-06-15)",
+      "   [WorldCup] API 응답: 12경기 (UTC 2026-06-14~2026-06-16)",
       "   ✅ World Cup 데이터: 8경기 (Group Stage)",
-      "      ✅ 06.14 04:00 KST | Qatar vs Switzerland [FINISHED] 1-1 Group B",
-      "      ✅ 06.14 07:00 KST | Brazil vs Morocco [FINISHED] 1-1 Group C",
-      "      ✅ 06.14 10:00 KST | Haiti vs Scotland [FINISHED] 0-1 Group C",
-      "      ✅ 06.14 13:00 KST | Australia vs Turkey [FINISHED] 2-0 Group D",
-      "      📅 06.15 02:00 KST | Germany vs Curaçao [SCHEDULED]  Group E",
+      "      ✅ 06.15 02:00 KST | Germany vs Curaçao [FINISHED] 7-1 Group E",
       "      📅 06.15 05:00 KST | Netherlands vs Japan [SCHEDULED]  Group F",
       "      📅 06.15 08:00 KST | Ivory Coast vs Ecuador [SCHEDULED]  Group E",
       "      📅 06.15 11:00 KST | Sweden vs Tunisia [SCHEDULED]  Group F",
+      "      📅 06.16 01:00 KST | Spain vs Cape Verde Islands [SCHEDULED]  Group H",
+      "      📅 06.16 04:00 KST | Belgium vs Egypt [SCHEDULED]  Group G",
+      "      📅 06.16 07:00 KST | Saudi Arabia vs Uruguay [SCHEDULED]  Group H",
+      "      📅 06.16 10:00 KST | Iran vs New Zealand [SCHEDULED]  Group G",
       "   ✅ Phase: Group Stage | Matches: 8경기",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
       "      Recent: - vs - - (-)",
-      "      Next: Queen's Club | Jun 15",
+      "      Next: Wimbledon | Jun 30",
       "   📊 최종:",
       "      Recent: - vs - - (-) | -",
-      "      Next: Queen's Club | - | Jun 15",
+      "      Next: Wimbledon | - | Jun 30",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
     ]
