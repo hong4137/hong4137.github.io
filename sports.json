@@ -1,82 +1,18 @@
 {
-  "updated": "2026-06-15 04:39:28 KST",
+  "updated": "2026-06-15 13:42:51 KST",
   "epl": {
-    "matchday": 38,
-    "selected_round": 38,
-    "display_matchday": "R38",
+    "matchday": null,
+    "selected_round": null,
+    "display_matchday": "RNone",
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
       "Manchester City",
-      "Manchester United",
-      "Aston Villa"
+      "Liverpool",
+      "Chelsea"
     ],
-    "matches": [
-      {
-        "match_id": 538161,
-        "home": "Manchester City",
-        "away": "Aston Villa",
-        "kst_time": "05.25 00:00 (KST)",
-        "uk_time": "Sunday 16:00 (UK)",
-        "local": "",
-        "rules": [
-          "Top Tier",
-          "Challenger"
-        ],
-        "rule_str": "Top Tier, Challenger",
-        "matchday": 38,
-        "status": "FINISHED",
-        "score": "1-2"
-      },
-      {
-        "match_id": 538157,
-        "home": "Crystal Palace",
-        "away": "Arsenal",
-        "kst_time": "05.25 00:00 (KST)",
-        "uk_time": "Sunday 16:00 (UK)",
-        "local": "",
-        "rules": [
-          "Leader"
-        ],
-        "rule_str": "Leader",
-        "matchday": 38,
-        "status": "FINISHED",
-        "score": "1-2"
-      }
-    ],
-    "selected_matches": [
-      {
-        "match_id": 538161,
-        "home": "Manchester City",
-        "away": "Aston Villa",
-        "kst_time": "05.25 00:00 (KST)",
-        "uk_time": "Sunday 16:00 (UK)",
-        "local": "",
-        "rules": [
-          "Top Tier",
-          "Challenger"
-        ],
-        "rule_str": "Top Tier, Challenger",
-        "matchday": 38,
-        "status": "FINISHED",
-        "score": "1-2"
-      },
-      {
-        "match_id": 538157,
-        "home": "Crystal Palace",
-        "away": "Arsenal",
-        "kst_time": "05.25 00:00 (KST)",
-        "uk_time": "Sunday 16:00 (UK)",
-        "local": "",
-        "rules": [
-          "Leader"
-        ],
-        "rule_str": "Leader",
-        "matchday": 38,
-        "status": "FINISHED",
-        "score": "1-2"
-      }
-    ]
+    "matches": [],
+    "selected_matches": []
   },
   "nba": {
     "record": "38-46",
@@ -233,8 +169,8 @@
         "away": "Japan",
         "kst_date": "06.15",
         "kst_time": "05:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "2-2",
+        "status": "FINISHED",
         "group": "Group F"
       },
       {
@@ -242,8 +178,8 @@
         "away": "Ecuador",
         "kst_date": "06.15",
         "kst_time": "08:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "1-0",
+        "status": "FINISHED",
         "group": "Group E"
       },
       {
@@ -251,8 +187,8 @@
         "away": "Tunisia",
         "kst_date": "06.15",
         "kst_time": "11:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "5-1",
+        "status": "FINISHED",
         "group": "Group F"
       },
       {
@@ -299,16 +235,14 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-15 04:39:28 (KST)",
+      "🚀 [Start] 2026-06-15 13:42:51 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
       "   - Search: Serper API ✅",
       "   - AI Parse: Gemini API ✅",
       "\n⚽ [Step 1/5] Premier League 순위...",
-      "   ✅ 1위: Arsenal",
-      "   ✅ Top 4: Arsenal, Manchester City, Manchester United, Aston Villa",
-      "   ✅ 현재 라운드: R38",
+      "   ⚠️ 순위 정보 가져오기 실패, 기본값 사용",
       "\n⚽ [Step 2/5] Premier League 경기 선정 (v2.4)...",
       "   [티어 우선순위]",
       "   T1. Big Match: Big 6 vs Big 6",
@@ -318,11 +252,12 @@
       "   T5. Early KO: 토요일 12:30 UK",
       "   T6. Leader: 1위 팀 포함",
       "   [최대 선정: 3경기]",
-      "   📋 전체: 10경기 (라운드: [38])",
-      "   🎯 선정 대상: R38 (10경기)",
-      "   📊 상태별: {'FINISHED': 10}",
-      "   🔄 R38 경기 모두 종료 → 새로 선정 불필요",
-      "   ✅ 기존 선정 유지: 2경기 (R38)",
+      "   📋 전체: 0경기 (라운드: [])",
+      "   🎯 선정 대상: RNone (0경기)",
+      "   📊 상태별: {}",
+      "   🔄 라운드 변경: R38 → RNone (새로 선정)",
+      "   ⚠️ RNone에 선정 가능한 경기 없음",
+      "   ✅ 새로 선정됨: 0경기 (RNone)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ✅ 전적: 38-46 | 순위: -",
@@ -350,9 +285,9 @@
       "   [WorldCup] API 응답: 12경기 (UTC 2026-06-14~2026-06-16)",
       "   ✅ World Cup 데이터: 8경기 (Group Stage)",
       "      ✅ 06.15 02:00 KST | Germany vs Curaçao [FINISHED] 7-1 Group E",
-      "      📅 06.15 05:00 KST | Netherlands vs Japan [SCHEDULED]  Group F",
-      "      📅 06.15 08:00 KST | Ivory Coast vs Ecuador [SCHEDULED]  Group E",
-      "      📅 06.15 11:00 KST | Sweden vs Tunisia [SCHEDULED]  Group F",
+      "      ✅ 06.15 05:00 KST | Netherlands vs Japan [FINISHED] 2-2 Group F",
+      "      ✅ 06.15 08:00 KST | Ivory Coast vs Ecuador [FINISHED] 1-0 Group E",
+      "      ✅ 06.15 11:00 KST | Sweden vs Tunisia [FINISHED] 5-1 Group F",
       "      📅 06.16 01:00 KST | Spain vs Cape Verde Islands [SCHEDULED]  Group H",
       "      📅 06.16 04:00 KST | Belgium vs Egypt [SCHEDULED]  Group G",
       "      📅 06.16 07:00 KST | Saudi Arabia vs Uruguay [SCHEDULED]  Group H",
