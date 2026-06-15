@@ -1,32 +1,6 @@
 {
-  "generated_at": "2026-06-15 07:06 KST",
+  "generated_at": "2026-06-16 07:59 KST",
   "events": [
-    {
-      "date": "2026-06-15",
-      "title": "미국 10년물 국채 입찰",
-      "category": "treasury_auction",
-      "importance": 4,
-      "impact": [
-        "yields",
-        "USD",
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://www.treasurydirect.gov/"
-    },
-    {
-      "date": "2026-06-15",
-      "title": "미국 30년물 국채 입찰",
-      "category": "treasury_auction",
-      "importance": 4,
-      "impact": [
-        "yields",
-        "USD",
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://www.treasurydirect.gov/"
-    },
     {
       "date": "2026-06-17",
       "title": "FOMC 회의 및 금리 결정",
@@ -38,14 +12,14 @@
         "equities",
         "USD"
       ],
-      "consensus": null,
+      "consensus": "금리 동결 (3.50%-3.75%)",
       "source_url": "https://www.federalreserve.gov/"
     },
     {
       "date": "2026-06-17",
-      "title": "미국 소매판매 (핵심) 발표",
+      "title": "미국 5월 소매판매",
       "category": "economic_data",
-      "importance": 4,
+      "importance": 5,
       "impact": [
         "equities",
         "USD",
@@ -56,19 +30,7 @@
     },
     {
       "date": "2026-06-18",
-      "title": "미국 주식/지수 선물 및 옵션 만기일 (Quadruple Witching)",
-      "category": "market_structure",
-      "importance": 4,
-      "impact": [
-        "VIX",
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://www.cboe.com/"
-    },
-    {
-      "date": "2026-06-25",
-      "title": "미국 GDP (최종) 발표",
+      "title": "미국 주간 신규 실업수당 청구",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -76,22 +38,32 @@
         "USD",
         "yields"
       ],
-      "consensus": null,
-      "source_url": "https://www.bea.gov/"
+      "consensus": "225K",
+      "source_url": "https://www.dol.gov/"
     },
     {
-      "date": "2026-06-25",
-      "title": "미국 개인소비지출 (PCE) 발표",
-      "category": "economic_data",
+      "date": "2026-06-18",
+      "title": "미국 쿼드러플 위칭 데이 (준틴스 휴일로 인한 조정)",
+      "category": "market_structure",
       "importance": 4,
       "impact": [
-        "VIX",
-        "yields",
         "equities",
-        "USD"
+        "VIX"
       ],
       "consensus": null,
-      "source_url": "https://www.bea.gov/"
+      "source_url": "https://www.cboe.com/"
+    },
+    {
+      "date": "2026-06-26",
+      "title": "러셀 지수 리밸런싱",
+      "category": "market_structure",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "VIX"
+      ],
+      "consensus": null,
+      "source_url": "https://www.ftserussell.com/"
     }
   ]
 }
