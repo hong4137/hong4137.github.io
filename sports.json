@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-17 01:58:21 KST",
+  "updated": "2026-06-17 05:53:49 KST",
   "epl": {
     "matchday": 38,
     "selected_round": 38,
@@ -160,8 +160,8 @@
         "away": "Senegal",
         "kst_date": "06.17",
         "kst_time": "04:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "2-0",
+        "status": "LIVE",
         "group": "Group I"
       },
       {
@@ -235,7 +235,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-17 01:58:21 (KST)",
+      "🚀 [Start] 2026-06-17 05:53:49 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -285,7 +285,7 @@
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
       "   [WorldCup] API 응답: 12경기 (UTC 2026-06-16~2026-06-18)",
       "   ✅ World Cup 데이터: 8경기 (Group Stage)",
-      "      📅 06.17 04:00 KST | France vs Senegal [SCHEDULED]  Group I",
+      "      🔴 06.17 04:00 KST | France vs Senegal [LIVE] 2-0 Group I",
       "      📅 06.17 07:00 KST | Iraq vs Norway [SCHEDULED]  Group I",
       "      📅 06.17 10:00 KST | Argentina vs Algeria [SCHEDULED]  Group J",
       "      📅 06.17 13:00 KST | Austria vs Jordan [SCHEDULED]  Group J",
