@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-16 05:56:51 KST",
+  "updated": "2026-06-16 13:26:30 KST",
   "epl": {
     "matchday": 38,
     "selected_round": 38,
@@ -170,7 +170,7 @@
         "kst_date": "06.16",
         "kst_time": "04:00",
         "score": "1-1",
-        "status": "LIVE",
+        "status": "FINISHED",
         "group": "Group G"
       },
       {
@@ -178,8 +178,8 @@
         "away": "Uruguay",
         "kst_date": "06.16",
         "kst_time": "07:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "1-1",
+        "status": "FINISHED",
         "group": "Group H"
       },
       {
@@ -187,8 +187,8 @@
         "away": "New Zealand",
         "kst_date": "06.16",
         "kst_time": "10:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "2-2",
+        "status": "FINISHED",
         "group": "Group G"
       },
       {
@@ -235,7 +235,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-16 05:56:51 (KST)",
+      "🚀 [Start] 2026-06-16 13:26:30 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -286,9 +286,9 @@
       "   [WorldCup] API 응답: 12경기 (UTC 2026-06-15~2026-06-17)",
       "   ✅ World Cup 데이터: 8경기 (Group Stage)",
       "      ✅ 06.16 01:00 KST | Spain vs Cape Verde Islands [FINISHED] 0-0 Group H",
-      "      🔴 06.16 04:00 KST | Belgium vs Egypt [LIVE] 1-1 Group G",
-      "      📅 06.16 07:00 KST | Saudi Arabia vs Uruguay [SCHEDULED]  Group H",
-      "      📅 06.16 10:00 KST | Iran vs New Zealand [SCHEDULED]  Group G",
+      "      ✅ 06.16 04:00 KST | Belgium vs Egypt [FINISHED] 1-1 Group G",
+      "      ✅ 06.16 07:00 KST | Saudi Arabia vs Uruguay [FINISHED] 1-1 Group H",
+      "      ✅ 06.16 10:00 KST | Iran vs New Zealand [FINISHED] 2-2 Group G",
       "      📅 06.17 04:00 KST | France vs Senegal [SCHEDULED]  Group I",
       "      📅 06.17 07:00 KST | Iraq vs Norway [SCHEDULED]  Group I",
       "      📅 06.17 10:00 KST | Argentina vs Algeria [SCHEDULED]  Group J",
