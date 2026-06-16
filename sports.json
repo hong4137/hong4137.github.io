@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-16 20:15:30 KST",
+  "updated": "2026-06-17 01:58:21 KST",
   "epl": {
     "matchday": 38,
     "selected_round": 38,
@@ -156,42 +156,6 @@
     "phase": "Group Stage",
     "matches": [
       {
-        "home": "Spain",
-        "away": "Cape Verde Islands",
-        "kst_date": "06.16",
-        "kst_time": "01:00",
-        "score": "0-0",
-        "status": "FINISHED",
-        "group": "Group H"
-      },
-      {
-        "home": "Belgium",
-        "away": "Egypt",
-        "kst_date": "06.16",
-        "kst_time": "04:00",
-        "score": "1-1",
-        "status": "FINISHED",
-        "group": "Group G"
-      },
-      {
-        "home": "Saudi Arabia",
-        "away": "Uruguay",
-        "kst_date": "06.16",
-        "kst_time": "07:00",
-        "score": "1-1",
-        "status": "FINISHED",
-        "group": "Group H"
-      },
-      {
-        "home": "Iran",
-        "away": "New Zealand",
-        "kst_date": "06.16",
-        "kst_time": "10:00",
-        "score": "2-2",
-        "status": "FINISHED",
-        "group": "Group G"
-      },
-      {
         "home": "France",
         "away": "Senegal",
         "kst_date": "06.17",
@@ -226,6 +190,42 @@
         "score": "",
         "status": "SCHEDULED",
         "group": "Group J"
+      },
+      {
+        "home": "Portugal",
+        "away": "Congo DR",
+        "kst_date": "06.18",
+        "kst_time": "02:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": "Group K"
+      },
+      {
+        "home": "England",
+        "away": "Croatia",
+        "kst_date": "06.18",
+        "kst_time": "05:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": "Group L"
+      },
+      {
+        "home": "Ghana",
+        "away": "Panama",
+        "kst_date": "06.18",
+        "kst_time": "08:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": "Group L"
+      },
+      {
+        "home": "Uzbekistan",
+        "away": "Colombia",
+        "kst_date": "06.18",
+        "kst_time": "11:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": "Group K"
       }
     ]
   },
@@ -235,7 +235,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-16 20:15:30 (KST)",
+      "🚀 [Start] 2026-06-17 01:58:21 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -283,16 +283,16 @@
       "      📅 06.28 22:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
-      "   [WorldCup] API 응답: 12경기 (UTC 2026-06-15~2026-06-17)",
+      "   [WorldCup] API 응답: 12경기 (UTC 2026-06-16~2026-06-18)",
       "   ✅ World Cup 데이터: 8경기 (Group Stage)",
-      "      ✅ 06.16 01:00 KST | Spain vs Cape Verde Islands [FINISHED] 0-0 Group H",
-      "      ✅ 06.16 04:00 KST | Belgium vs Egypt [FINISHED] 1-1 Group G",
-      "      ✅ 06.16 07:00 KST | Saudi Arabia vs Uruguay [FINISHED] 1-1 Group H",
-      "      ✅ 06.16 10:00 KST | Iran vs New Zealand [FINISHED] 2-2 Group G",
       "      📅 06.17 04:00 KST | France vs Senegal [SCHEDULED]  Group I",
       "      📅 06.17 07:00 KST | Iraq vs Norway [SCHEDULED]  Group I",
       "      📅 06.17 10:00 KST | Argentina vs Algeria [SCHEDULED]  Group J",
       "      📅 06.17 13:00 KST | Austria vs Jordan [SCHEDULED]  Group J",
+      "      📅 06.18 02:00 KST | Portugal vs Congo DR [SCHEDULED]  Group K",
+      "      📅 06.18 05:00 KST | England vs Croatia [SCHEDULED]  Group L",
+      "      📅 06.18 08:00 KST | Ghana vs Panama [SCHEDULED]  Group L",
+      "      📅 06.18 11:00 KST | Uzbekistan vs Colombia [SCHEDULED]  Group K",
       "   ✅ Phase: Group Stage | Matches: 8경기",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
