@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-17 13:20:39 KST",
+  "updated": "2026-06-17 20:00:35 KST",
   "epl": {
     "matchday": 38,
     "selected_round": 38,
@@ -187,8 +187,8 @@
         "away": "Jordan",
         "kst_date": "06.17",
         "kst_time": "13:00",
-        "score": "0-0",
-        "status": "LIVE",
+        "score": "3-1",
+        "status": "FINISHED",
         "group": "Group J"
       },
       {
@@ -235,7 +235,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-17 13:20:39 (KST)",
+      "🚀 [Start] 2026-06-17 20:00:35 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -288,7 +288,7 @@
       "      ✅ 06.17 04:00 KST | France vs Senegal [FINISHED] 3-1 Group I",
       "      ✅ 06.17 07:00 KST | Iraq vs Norway [FINISHED] 1-4 Group I",
       "      ✅ 06.17 10:00 KST | Argentina vs Algeria [FINISHED] 3-0 Group J",
-      "      🔴 06.17 13:00 KST | Austria vs Jordan [LIVE] 0-0 Group J",
+      "      ✅ 06.17 13:00 KST | Austria vs Jordan [FINISHED] 3-1 Group J",
       "      📅 06.18 02:00 KST | Portugal vs Congo DR [SCHEDULED]  Group K",
       "      📅 06.18 05:00 KST | England vs Croatia [SCHEDULED]  Group L",
       "      📅 06.18 08:00 KST | Ghana vs Panama [SCHEDULED]  Group L",
