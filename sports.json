@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-17 05:53:49 KST",
+  "updated": "2026-06-17 13:20:39 KST",
   "epl": {
     "matchday": 38,
     "selected_round": 38,
@@ -160,8 +160,8 @@
         "away": "Senegal",
         "kst_date": "06.17",
         "kst_time": "04:00",
-        "score": "2-0",
-        "status": "LIVE",
+        "score": "3-1",
+        "status": "FINISHED",
         "group": "Group I"
       },
       {
@@ -169,8 +169,8 @@
         "away": "Norway",
         "kst_date": "06.17",
         "kst_time": "07:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "1-4",
+        "status": "FINISHED",
         "group": "Group I"
       },
       {
@@ -178,8 +178,8 @@
         "away": "Algeria",
         "kst_date": "06.17",
         "kst_time": "10:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "3-0",
+        "status": "FINISHED",
         "group": "Group J"
       },
       {
@@ -187,8 +187,8 @@
         "away": "Jordan",
         "kst_date": "06.17",
         "kst_time": "13:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "0-0",
+        "status": "LIVE",
         "group": "Group J"
       },
       {
@@ -235,7 +235,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-17 05:53:49 (KST)",
+      "🚀 [Start] 2026-06-17 13:20:39 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -285,10 +285,10 @@
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
       "   [WorldCup] API 응답: 12경기 (UTC 2026-06-16~2026-06-18)",
       "   ✅ World Cup 데이터: 8경기 (Group Stage)",
-      "      🔴 06.17 04:00 KST | France vs Senegal [LIVE] 2-0 Group I",
-      "      📅 06.17 07:00 KST | Iraq vs Norway [SCHEDULED]  Group I",
-      "      📅 06.17 10:00 KST | Argentina vs Algeria [SCHEDULED]  Group J",
-      "      📅 06.17 13:00 KST | Austria vs Jordan [SCHEDULED]  Group J",
+      "      ✅ 06.17 04:00 KST | France vs Senegal [FINISHED] 3-1 Group I",
+      "      ✅ 06.17 07:00 KST | Iraq vs Norway [FINISHED] 1-4 Group I",
+      "      ✅ 06.17 10:00 KST | Argentina vs Algeria [FINISHED] 3-0 Group J",
+      "      🔴 06.17 13:00 KST | Austria vs Jordan [LIVE] 0-0 Group J",
       "      📅 06.18 02:00 KST | Portugal vs Congo DR [SCHEDULED]  Group K",
       "      📅 06.18 05:00 KST | England vs Croatia [SCHEDULED]  Group L",
       "      📅 06.18 08:00 KST | Ghana vs Panama [SCHEDULED]  Group L",
