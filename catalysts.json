@@ -1,48 +1,9 @@
 {
-  "generated_at": "2026-06-17 07:51 KST",
+  "generated_at": "2026-06-18 07:44 KST",
   "events": [
     {
-      "date": "2026-06-17",
-      "title": "FOMC 회의 결과 발표 및 기자회견",
-      "category": "fed_fomc",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": "금리 동결",
-      "source_url": "https://www.federalreserve.gov/"
-    },
-    {
-      "date": "2026-06-17",
-      "title": "G7 정상회담 종료 (프랑스 에비앙)",
-      "category": "geopolitical",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.elysee.fr/"
-    },
-    {
       "date": "2026-06-18",
-      "title": "쿼드러플 위칭 데이 (Triple Witching)",
-      "category": "market_structure",
-      "importance": 4,
-      "impact": [
-        "VIX",
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://www.cboe.com/"
-    },
-    {
-      "date": "2026-06-19",
-      "title": "준틴스 국경일 (미국 금융시장 휴장)",
+      "title": "미국 쿼드러플 위칭 데이",
       "category": "market_structure",
       "importance": 4,
       "impact": [
@@ -50,48 +11,36 @@
         "VIX"
       ],
       "consensus": null,
-      "source_url": "https://www.bls.gov/"
+      "source_url": "https://www.cboe.com/"
+    },
+    {
+      "date": "2026-06-25",
+      "title": "미국 1분기 GDP 최종치 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": "1.6% QoQ SAAR",
+      "source_url": "https://www.bea.gov/"
     },
     {
       "date": "2026-06-26",
-      "title": "러셀 지수 재조정 발효 (장 마감 후)",
+      "title": "러셀 지수 리밸런싱 최종 적용",
       "category": "market_structure",
       "importance": 4,
       "impact": [
-        "equities"
+        "equities",
+        "VIX"
       ],
       "consensus": null,
       "source_url": "https://www.lseg.com/"
     },
     {
-      "date": "2026-06-29",
-      "title": "G20 셰르파 회의 (워싱턴 D.C.)",
-      "category": "geopolitical",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://home.treasury.gov/"
-    },
-    {
       "date": "2026-06-30",
-      "title": "G20 셰르파 회의 (워싱턴 D.C.)",
-      "category": "geopolitical",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://home.treasury.gov/"
-    },
-    {
-      "date": "2026-06-30",
-      "title": "미국 JOLTS (구인·이직 보고서) 발표 (5월 데이터)",
+      "title": "미국 5월 JOLTS 구인 이직 보고서",
       "category": "economic_data",
       "importance": 4,
       "impact": [
