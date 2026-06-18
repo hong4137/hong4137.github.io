@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-19 00:30:21 KST",
+  "updated": "2026-06-19 05:27:42 KST",
   "epl": {
     "matchday": 38,
     "selected_round": 38,
@@ -160,8 +160,8 @@
         "away": "South Africa",
         "kst_date": "06.19",
         "kst_time": "01:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "1-1",
+        "status": "FINISHED",
         "group": "Group A"
       },
       {
@@ -170,7 +170,7 @@
         "kst_date": "06.19",
         "kst_time": "04:00",
         "score": "",
-        "status": "SCHEDULED",
+        "status": "LIVE",
         "group": "Group B"
       },
       {
@@ -235,7 +235,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-19 00:30:21 (KST)",
+      "🚀 [Start] 2026-06-19 05:27:42 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -285,8 +285,8 @@
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
       "   [WorldCup] API 응답: 12경기 (UTC 2026-06-18~2026-06-20)",
       "   ✅ World Cup 데이터: 8경기 (Group Stage)",
-      "      📅 06.19 01:00 KST | Czechia vs South Africa [SCHEDULED]  Group A",
-      "      📅 06.19 04:00 KST | Switzerland vs Bosnia-Herzegovina [SCHEDULED]  Group B",
+      "      ✅ 06.19 01:00 KST | Czechia vs South Africa [FINISHED] 1-1 Group A",
+      "      🔴 06.19 04:00 KST | Switzerland vs Bosnia-Herzegovina [LIVE]  Group B",
       "      📅 06.19 07:00 KST | Canada vs Qatar [SCHEDULED]  Group B",
       "      📅 06.19 10:00 KST | Mexico vs South Korea [SCHEDULED]  Group A",
       "      📅 06.20 04:00 KST | United States vs Australia [SCHEDULED]  Group D",
