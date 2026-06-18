@@ -1,21 +1,9 @@
 {
-  "generated_at": "2026-06-18 07:44 KST",
+  "generated_at": "2026-06-19 07:54 KST",
   "events": [
     {
-      "date": "2026-06-18",
-      "title": "미국 쿼드러플 위칭 데이",
-      "category": "market_structure",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "VIX"
-      ],
-      "consensus": null,
-      "source_url": "https://www.cboe.com/"
-    },
-    {
       "date": "2026-06-25",
-      "title": "미국 1분기 GDP 최종치 발표",
+      "title": "주간 신규 실업수당 청구건수",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -23,26 +11,40 @@
         "USD",
         "yields"
       ],
-      "consensus": "1.6% QoQ SAAR",
+      "consensus": null,
+      "source_url": "https://www.dol.gov/"
+    },
+    {
+      "date": "2026-06-25",
+      "title": "미국 1분기 GDP 최종 추정치",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
       "source_url": "https://www.bea.gov/"
     },
     {
-      "date": "2026-06-26",
-      "title": "러셀 지수 리밸런싱 최종 적용",
-      "category": "market_structure",
+      "date": "2026-07-01",
+      "title": "미국 6월 ISM 제조업 PMI",
+      "category": "economic_data",
       "importance": 4,
       "impact": [
         "equities",
-        "VIX"
+        "USD",
+        "yields"
       ],
       "consensus": null,
-      "source_url": "https://www.lseg.com/"
+      "source_url": "https://www.ismworld.org/"
     },
     {
-      "date": "2026-06-30",
-      "title": "미국 5월 JOLTS 구인 이직 보고서",
+      "date": "2026-07-02",
+      "title": "미국 6월 고용보고서 (NFP)",
       "category": "economic_data",
-      "importance": 4,
+      "importance": 5,
       "impact": [
         "equities",
         "USD",
@@ -50,6 +52,32 @@
       ],
       "consensus": null,
       "source_url": "https://www.bls.gov/"
+    },
+    {
+      "date": "2026-07-02",
+      "title": "주간 신규 실업수당 청구건수",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.dol.gov/"
+    },
+    {
+      "date": "2026-07-03",
+      "title": "미국 6월 ISM 서비스업 PMI",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.ismworld.org/"
     }
   ]
 }
