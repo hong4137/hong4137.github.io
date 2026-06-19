@@ -1,80 +1,94 @@
 {
-  "generated_at": "2026-06-19 07:54 KST",
+  "generated_at": "2026-06-20 07:01 KST",
   "events": [
     {
       "date": "2026-06-25",
-      "title": "주간 신규 실업수당 청구건수",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.dol.gov/"
-    },
-    {
-      "date": "2026-06-25",
-      "title": "미국 1분기 GDP 최종 추정치",
+      "title": "미국 개인소비지출 (PCE) 물가지수 (5월)",
       "category": "economic_data",
       "importance": 5,
       "impact": [
+        "VIX",
+        "yields",
         "equities",
-        "USD",
-        "yields"
+        "USD"
       ],
       "consensus": null,
       "source_url": "https://www.bea.gov/"
     },
     {
-      "date": "2026-07-01",
-      "title": "미국 6월 ISM 제조업 PMI",
+      "date": "2026-06-25",
+      "title": "미국 주간 신규 실업수당 청구건수",
       "category": "economic_data",
       "importance": 4,
       "impact": [
+        "VIX",
+        "yields",
         "equities",
-        "USD",
-        "yields"
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bls.gov/"
+    },
+    {
+      "date": "2026-06-26",
+      "title": "러셀 지수 리밸런싱 최종 적용",
+      "category": "market_structure",
+      "importance": 4,
+      "impact": [
+        "equities"
+      ],
+      "consensus": null,
+      "source_url": "https://www.lseg.com/"
+    },
+    {
+      "date": "2026-07-01",
+      "title": "미국 ISM 제조업 PMI (6월)",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
       ],
       "consensus": null,
       "source_url": "https://www.ismworld.org/"
     },
     {
       "date": "2026-07-02",
-      "title": "미국 6월 고용보고서 (NFP)",
+      "title": "미국 고용보고서 (NFP) (6월)",
       "category": "economic_data",
       "importance": 5,
       "impact": [
+        "VIX",
+        "yields",
         "equities",
-        "USD",
-        "yields"
+        "USD"
       ],
       "consensus": null,
       "source_url": "https://www.bls.gov/"
     },
     {
-      "date": "2026-07-02",
-      "title": "주간 신규 실업수당 청구건수",
-      "category": "economic_data",
+      "date": "2026-07-03",
+      "title": "미국 독립기념일 (금융시장 휴장)",
+      "category": "market_structure",
       "importance": 4,
       "impact": [
-        "equities",
-        "USD",
-        "yields"
+        "equities"
       ],
       "consensus": null,
-      "source_url": "https://www.dol.gov/"
+      "source_url": "https://www.bls.gov/"
     },
     {
-      "date": "2026-07-03",
-      "title": "미국 6월 ISM 서비스업 PMI",
+      "date": "2026-07-06",
+      "title": "미국 ISM 서비스업 PMI (6월)",
       "category": "economic_data",
       "importance": 4,
       "impact": [
+        "VIX",
+        "yields",
         "equities",
-        "USD",
-        "yields"
+        "USD"
       ],
       "consensus": null,
       "source_url": "https://www.ismworld.org/"
