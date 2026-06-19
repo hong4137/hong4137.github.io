@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-20 00:24:04 KST",
+  "updated": "2026-06-20 04:51:30 KST",
   "epl": {
     "matchday": 1,
     "selected_round": null,
@@ -160,8 +160,8 @@
         "away": "Australia",
         "kst_date": "06.20",
         "kst_time": "04:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "1-0",
+        "status": "LIVE",
         "group": "Group D"
       },
       {
@@ -235,7 +235,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-20 00:24:04 (KST)",
+      "🚀 [Start] 2026-06-20 04:51:30 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -285,7 +285,7 @@
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
       "   [WorldCup] API 응답: 12경기 (UTC 2026-06-19~2026-06-21)",
       "   ✅ World Cup 데이터: 8경기 (Group Stage)",
-      "      📅 06.20 04:00 KST | United States vs Australia [SCHEDULED]  Group D",
+      "      🔴 06.20 04:00 KST | United States vs Australia [LIVE] 1-0 Group D",
       "      📅 06.20 07:00 KST | Scotland vs Morocco [SCHEDULED]  Group C",
       "      📅 06.20 09:30 KST | Brazil vs Haiti [SCHEDULED]  Group C",
       "      📅 06.20 12:00 KST | Turkey vs Paraguay [SCHEDULED]  Group D",
