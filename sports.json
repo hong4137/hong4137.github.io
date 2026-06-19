@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-19 05:27:42 KST",
+  "updated": "2026-06-19 13:41:53 KST",
   "epl": {
     "matchday": 38,
     "selected_round": 38,
@@ -169,8 +169,8 @@
         "away": "Bosnia-Herzegovina",
         "kst_date": "06.19",
         "kst_time": "04:00",
-        "score": "",
-        "status": "LIVE",
+        "score": "4-1",
+        "status": "FINISHED",
         "group": "Group B"
       },
       {
@@ -178,8 +178,8 @@
         "away": "Qatar",
         "kst_date": "06.19",
         "kst_time": "07:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "6-0",
+        "status": "FINISHED",
         "group": "Group B"
       },
       {
@@ -187,8 +187,8 @@
         "away": "South Korea",
         "kst_date": "06.19",
         "kst_time": "10:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "1-0",
+        "status": "FINISHED",
         "group": "Group A"
       },
       {
@@ -235,7 +235,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-19 05:27:42 (KST)",
+      "🚀 [Start] 2026-06-19 13:41:53 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -286,9 +286,9 @@
       "   [WorldCup] API 응답: 12경기 (UTC 2026-06-18~2026-06-20)",
       "   ✅ World Cup 데이터: 8경기 (Group Stage)",
       "      ✅ 06.19 01:00 KST | Czechia vs South Africa [FINISHED] 1-1 Group A",
-      "      🔴 06.19 04:00 KST | Switzerland vs Bosnia-Herzegovina [LIVE]  Group B",
-      "      📅 06.19 07:00 KST | Canada vs Qatar [SCHEDULED]  Group B",
-      "      📅 06.19 10:00 KST | Mexico vs South Korea [SCHEDULED]  Group A",
+      "      ✅ 06.19 04:00 KST | Switzerland vs Bosnia-Herzegovina [FINISHED] 4-1 Group B",
+      "      ✅ 06.19 07:00 KST | Canada vs Qatar [FINISHED] 6-0 Group B",
+      "      ✅ 06.19 10:00 KST | Mexico vs South Korea [FINISHED] 1-0 Group A",
       "      📅 06.20 04:00 KST | United States vs Australia [SCHEDULED]  Group D",
       "      📅 06.20 07:00 KST | Scotland vs Morocco [SCHEDULED]  Group C",
       "      📅 06.20 09:30 KST | Brazil vs Haiti [SCHEDULED]  Group C",
