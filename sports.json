@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-20 12:55:52 KST",
+  "updated": "2026-06-20 18:19:20 KST",
   "epl": {
     "matchday": 1,
     "selected_round": null,
@@ -188,7 +188,7 @@
         "kst_date": "06.20",
         "kst_time": "12:00",
         "score": "0-1",
-        "status": "LIVE",
+        "status": "FINISHED",
         "group": "Group D"
       },
       {
@@ -235,7 +235,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-20 12:55:52 (KST)",
+      "🚀 [Start] 2026-06-20 18:19:20 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -288,7 +288,7 @@
       "      ✅ 06.20 04:00 KST | United States vs Australia [FINISHED] 2-0 Group D",
       "      ✅ 06.20 07:00 KST | Scotland vs Morocco [FINISHED] 0-1 Group C",
       "      ✅ 06.20 09:30 KST | Brazil vs Haiti [FINISHED] 3-0 Group C",
-      "      🔴 06.20 12:00 KST | Turkey vs Paraguay [LIVE] 0-1 Group D",
+      "      ✅ 06.20 12:00 KST | Turkey vs Paraguay [FINISHED] 0-1 Group D",
       "      📅 06.21 02:00 KST | Netherlands vs Sweden [SCHEDULED]  Group F",
       "      📅 06.21 05:00 KST | Germany vs Ivory Coast [SCHEDULED]  Group E",
       "      📅 06.21 09:00 KST | Ecuador vs Curaçao [SCHEDULED]  Group E",
