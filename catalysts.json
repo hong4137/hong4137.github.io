@@ -1,11 +1,24 @@
 {
-  "generated_at": "2026-06-20 07:01 KST",
+  "generated_at": "2026-06-21 07:03 KST",
   "events": [
     {
+      "date": "2026-06-22",
+      "title": "미국 20년물 국채 입찰",
+      "category": "treasury_auction",
+      "importance": 4,
+      "impact": [
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.treasurydirect.gov/"
+    },
+    {
       "date": "2026-06-25",
-      "title": "미국 개인소비지출 (PCE) 물가지수 (5월)",
+      "title": "미국 1분기 GDP 확정치, 산업별 GDP, 기업 이익 발표",
       "category": "economic_data",
-      "importance": 5,
+      "importance": 4,
       "impact": [
         "VIX",
         "yields",
@@ -17,7 +30,7 @@
     },
     {
       "date": "2026-06-25",
-      "title": "미국 주간 신규 실업수당 청구건수",
+      "title": "미국 5월 개인 소득 및 지출",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -27,22 +40,37 @@
         "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.bls.gov/"
+      "source_url": "https://www.bea.gov/"
     },
     {
       "date": "2026-06-26",
-      "title": "러셀 지수 리밸런싱 최종 적용",
+      "title": "러셀 지수 연간 재조정 발효",
       "category": "market_structure",
-      "importance": 4,
+      "importance": 5,
       "impact": [
-        "equities"
+        "equities",
+        "VIX"
       ],
       "consensus": null,
       "source_url": "https://www.lseg.com/"
     },
     {
+      "date": "2026-06-30",
+      "title": "미국 5년물 물가연동국채(TIPS) 입찰",
+      "category": "treasury_auction",
+      "importance": 4,
+      "impact": [
+        "yields",
+        "equities",
+        "USD",
+        "inflation"
+      ],
+      "consensus": null,
+      "source_url": "https://www.treasurydirect.gov/"
+    },
+    {
       "date": "2026-07-01",
-      "title": "미국 ISM 제조업 PMI (6월)",
+      "title": "미국 6월 ISM 제조업 PMI",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -56,7 +84,7 @@
     },
     {
       "date": "2026-07-02",
-      "title": "미국 고용보고서 (NFP) (6월)",
+      "title": "미국 6월 고용 상황 보고서 (NFP)",
       "category": "economic_data",
       "importance": 5,
       "impact": [
@@ -67,31 +95,6 @@
       ],
       "consensus": null,
       "source_url": "https://www.bls.gov/"
-    },
-    {
-      "date": "2026-07-03",
-      "title": "미국 독립기념일 (금융시장 휴장)",
-      "category": "market_structure",
-      "importance": 4,
-      "impact": [
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/"
-    },
-    {
-      "date": "2026-07-06",
-      "title": "미국 ISM 서비스업 PMI (6월)",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.ismworld.org/"
     }
   ]
 }
