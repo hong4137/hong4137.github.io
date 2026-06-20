@@ -1,8 +1,8 @@
 {
-  "updated": "2026-06-20 18:19:20 KST",
+  "updated": "2026-06-20 23:08:23 KST",
   "epl": {
     "matchday": 1,
-    "selected_round": null,
+    "selected_round": 1,
     "display_matchday": "R1",
     "leader": "AFC Bournemouth",
     "top4": [
@@ -11,8 +11,102 @@
       "Aston Villa",
       "Brentford"
     ],
-    "matches": [],
-    "selected_matches": []
+    "matches": [
+      {
+        "match_id": 560547,
+        "home": "Brentford",
+        "away": "Tottenham",
+        "kst_time": "08.23 01:30 (KST)",
+        "uk_time": "Saturday 17:30 (UK)",
+        "local": "",
+        "rules": [
+          "Challenger"
+        ],
+        "rule_str": "Challenger",
+        "matchday": 1,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 560548,
+        "home": "Manchester City",
+        "away": "AFC Bournemouth",
+        "kst_time": "08.23 22:00 (KST)",
+        "uk_time": "Sunday 14:00 (UK)",
+        "local": "",
+        "rules": [
+          "Challenger",
+          "Leader"
+        ],
+        "rule_str": "Challenger, Leader",
+        "matchday": 1,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 560550,
+        "home": "Newcastle United",
+        "away": "Liverpool",
+        "kst_time": "08.24 00:30 (KST)",
+        "uk_time": "Sunday 16:30 (UK)",
+        "local": "",
+        "rules": [
+          "Prime Time"
+        ],
+        "rule_str": "Prime Time",
+        "matchday": 1,
+        "status": "SCHEDULED",
+        "score": "-"
+      }
+    ],
+    "selected_matches": [
+      {
+        "match_id": 560547,
+        "home": "Brentford",
+        "away": "Tottenham",
+        "kst_time": "08.23 01:30 (KST)",
+        "uk_time": "Saturday 17:30 (UK)",
+        "local": "",
+        "rules": [
+          "Challenger"
+        ],
+        "rule_str": "Challenger",
+        "matchday": 1,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 560548,
+        "home": "Manchester City",
+        "away": "AFC Bournemouth",
+        "kst_time": "08.23 22:00 (KST)",
+        "uk_time": "Sunday 14:00 (UK)",
+        "local": "",
+        "rules": [
+          "Challenger",
+          "Leader"
+        ],
+        "rule_str": "Challenger, Leader",
+        "matchday": 1,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 560550,
+        "home": "Newcastle United",
+        "away": "Liverpool",
+        "kst_time": "08.24 00:30 (KST)",
+        "uk_time": "Sunday 16:30 (UK)",
+        "local": "",
+        "rules": [
+          "Prime Time"
+        ],
+        "rule_str": "Prime Time",
+        "matchday": 1,
+        "status": "SCHEDULED",
+        "score": "-"
+      }
+    ]
   },
   "nba": {
     "record": "38-46",
@@ -235,7 +329,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-20 18:19:20 (KST)",
+      "🚀 [Start] 2026-06-20 23:08:23 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -254,11 +348,22 @@
       "   T5. Early KO: 토요일 12:30 UK",
       "   T6. Leader: 1위 팀 포함",
       "   [최대 선정: 3경기]",
-      "   📋 전체: 0경기 (라운드: [])",
-      "   🎯 선정 대상: RNone (0경기)",
-      "   📊 상태별: {}",
-      "   ⚠️ RNone에 선정 가능한 경기 없음",
-      "   ✅ 새로 선정됨: 0경기 (RNone)",
+      "   📋 전체: 10경기 (라운드: [1])",
+      "   🎯 선정 대상: R1 (10경기)",
+      "   📊 상태별: {'SCHEDULED': 10}",
+      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🏆 R1에서 3경기 선정:",
+      "      • [T3] Brentford vs Tottenham [Challenger] 08.23 01:30 (KST)",
+      "      • [T3] Manchester City vs AFC Bournemouth [Challenger, Leader] 08.23 22:00 (KST)",
+      "      • [T4] Newcastle United vs Liverpool [Prime Time] 08.24 00:30 (KST)",
+      "   ✅ 새로 선정됨: 3경기 (R1)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ✅ 전적: 38-46 | 순위: -",
