@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-21 04:39:55 KST",
+  "updated": "2026-06-21 13:26:26 KST",
   "epl": {
     "matchday": 1,
     "selected_round": null,
@@ -169,8 +169,8 @@
         "away": "Ivory Coast",
         "kst_date": "06.21",
         "kst_time": "05:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "2-1",
+        "status": "FINISHED",
         "group": "Group E"
       },
       {
@@ -178,8 +178,8 @@
         "away": "Curaçao",
         "kst_date": "06.21",
         "kst_time": "09:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "0-0",
+        "status": "FINISHED",
         "group": "Group E"
       },
       {
@@ -187,8 +187,8 @@
         "away": "Japan",
         "kst_date": "06.21",
         "kst_time": "13:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "0-1",
+        "status": "LIVE",
         "group": "Group F"
       },
       {
@@ -235,7 +235,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-21 04:39:55 (KST)",
+      "🚀 [Start] 2026-06-21 13:26:26 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -257,7 +257,6 @@
       "   📋 전체: 0경기 (라운드: [])",
       "   🎯 선정 대상: RNone (0경기)",
       "   📊 상태별: {}",
-      "   🔄 라운드 변경: R1 → RNone (새로 선정)",
       "   ⚠️ RNone에 선정 가능한 경기 없음",
       "   ✅ 새로 선정됨: 0경기 (RNone)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
@@ -287,9 +286,9 @@
       "   [WorldCup] API 응답: 13경기 (UTC 2026-06-20~2026-06-22)",
       "   ✅ World Cup 데이터: 8경기 (Group Stage)",
       "      ✅ 06.21 02:00 KST | Netherlands vs Sweden [FINISHED] 5-1 Group F",
-      "      📅 06.21 05:00 KST | Germany vs Ivory Coast [SCHEDULED]  Group E",
-      "      📅 06.21 09:00 KST | Ecuador vs Curaçao [SCHEDULED]  Group E",
-      "      📅 06.21 13:00 KST | Tunisia vs Japan [SCHEDULED]  Group F",
+      "      ✅ 06.21 05:00 KST | Germany vs Ivory Coast [FINISHED] 2-1 Group E",
+      "      ✅ 06.21 09:00 KST | Ecuador vs Curaçao [FINISHED] 0-0 Group E",
+      "      🔴 06.21 13:00 KST | Tunisia vs Japan [LIVE] 0-1 Group F",
       "      📅 06.22 01:00 KST | Spain vs Saudi Arabia [SCHEDULED]  Group H",
       "      📅 06.22 04:00 KST | Belgium vs Iran [SCHEDULED]  Group G",
       "      📅 06.22 07:00 KST | Uruguay vs Cape Verde Islands [SCHEDULED]  Group H",
