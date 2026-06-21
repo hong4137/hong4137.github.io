@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-21 13:26:26 KST",
+  "updated": "2026-06-21 18:52:56 KST",
   "epl": {
     "matchday": 1,
     "selected_round": null,
@@ -187,8 +187,8 @@
         "away": "Japan",
         "kst_date": "06.21",
         "kst_time": "13:00",
-        "score": "0-1",
-        "status": "LIVE",
+        "score": "0-4",
+        "status": "FINISHED",
         "group": "Group F"
       },
       {
@@ -235,7 +235,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-21 13:26:26 (KST)",
+      "🚀 [Start] 2026-06-21 18:52:56 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -288,7 +288,7 @@
       "      ✅ 06.21 02:00 KST | Netherlands vs Sweden [FINISHED] 5-1 Group F",
       "      ✅ 06.21 05:00 KST | Germany vs Ivory Coast [FINISHED] 2-1 Group E",
       "      ✅ 06.21 09:00 KST | Ecuador vs Curaçao [FINISHED] 0-0 Group E",
-      "      🔴 06.21 13:00 KST | Tunisia vs Japan [LIVE] 0-1 Group F",
+      "      ✅ 06.21 13:00 KST | Tunisia vs Japan [FINISHED] 0-4 Group F",
       "      📅 06.22 01:00 KST | Spain vs Saudi Arabia [SCHEDULED]  Group H",
       "      📅 06.22 04:00 KST | Belgium vs Iran [SCHEDULED]  Group G",
       "      📅 06.22 07:00 KST | Uruguay vs Cape Verde Islands [SCHEDULED]  Group H",
