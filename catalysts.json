@@ -1,107 +1,69 @@
 {
-  "generated_at": "2026-06-23 07:45 KST",
+  "generated_at": "2026-06-24 07:09 KST",
   "events": [
     {
+      "date": "2026-06-25",
+      "title": "US 개인소비지출 (PCE) 발표",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bea.gov/"
+    },
+    {
       "date": "2026-06-26",
-      "title": "러셀 지수 리밸런싱 최종 적용",
+      "title": "Russell US Indexes Reconstitution 최종 적용",
       "category": "market_structure",
       "importance": 4,
       "impact": [
-        "equities",
-        "VIX"
+        "equities"
       ],
       "consensus": null,
       "source_url": "https://www.lseg.com/"
     },
     {
+      "date": "2026-07-01",
+      "title": "US ISM 제조업 PMI 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.ismworld.org/"
+    },
+    {
       "date": "2026-07-02",
-      "title": "미국 고용 상황 보고서 (비농업 고용)",
+      "title": "US 고용보고서 (NFP) 발표",
       "category": "economic_data",
       "importance": 5,
       "impact": [
-        "equities",
-        "USD",
+        "VIX",
         "yields",
-        "VIX"
+        "equities",
+        "USD"
       ],
       "consensus": null,
       "source_url": "https://www.bls.gov/"
     },
     {
-      "date": "2026-07-08",
-      "title": "미국 10년물 국채 입찰",
-      "category": "treasury_auction",
+      "date": "2026-07-05",
+      "title": "OPEC+ 7개국 월간 회의",
+      "category": "geopolitical",
       "importance": 4,
       "impact": [
-        "yields",
-        "USD",
-        "equities"
+        "oil"
       ],
       "consensus": null,
-      "source_url": "https://www.treasurydirect.gov/"
-    },
-    {
-      "date": "2026-07-14",
-      "title": "JP모건체이스 2분기 실적 발표",
-      "category": "earnings",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.jpmorganchase.com/"
-    },
-    {
-      "date": "2026-07-14",
-      "title": "뱅크오브아메리카 2분기 실적 발표",
-      "category": "earnings",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://investor.bankofamerica.com/"
-    },
-    {
-      "date": "2026-07-14",
-      "title": "미국 소비자 물가 지수 (CPI)",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
-        "equities",
-        "USD",
-        "yields",
-        "VIX"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/"
-    },
-    {
-      "date": "2026-07-15",
-      "title": "미국 생산자 물가 지수 (PPI)",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields",
-        "VIX"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/"
-    },
-    {
-      "date": "2026-07-16",
-      "title": "넷플릭스 2분기 실적 발표",
-      "category": "earnings",
-      "importance": 4,
-      "impact": [
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "http://ir.netflix.net/"
+      "source_url": "https://www.opec.org/"
     }
   ]
 }
