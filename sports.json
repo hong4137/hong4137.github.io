@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-23 12:47:40 KST",
+  "updated": "2026-06-23 18:44:42 KST",
   "epl": {
     "matchday": 1,
     "selected_round": null,
@@ -187,8 +187,8 @@
         "away": "Algeria",
         "kst_date": "06.23",
         "kst_time": "12:00",
-        "score": "1-0",
-        "status": "LIVE",
+        "score": "1-2",
+        "status": "FINISHED",
         "group": "Group J"
       },
       {
@@ -235,7 +235,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-23 12:47:40 (KST)",
+      "🚀 [Start] 2026-06-23 18:44:42 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -257,7 +257,6 @@
       "   📋 전체: 0경기 (라운드: [])",
       "   🎯 선정 대상: RNone (0경기)",
       "   📊 상태별: {}",
-      "   🔄 라운드 변경: R1 → RNone (새로 선정)",
       "   ⚠️ RNone에 선정 가능한 경기 없음",
       "   ✅ 새로 선정됨: 0경기 (RNone)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
@@ -289,7 +288,7 @@
       "      ✅ 06.23 02:00 KST | Argentina vs Austria [FINISHED] 2-0 Group J",
       "      ✅ 06.23 06:00 KST | France vs Iraq [FINISHED] 3-0 Group I",
       "      ✅ 06.23 09:00 KST | Norway vs Senegal [FINISHED] 3-2 Group I",
-      "      🔴 06.23 12:00 KST | Jordan vs Algeria [LIVE] 1-0 Group J",
+      "      ✅ 06.23 12:00 KST | Jordan vs Algeria [FINISHED] 1-2 Group J",
       "      📅 06.24 02:00 KST | Portugal vs Uzbekistan [SCHEDULED]  Group K",
       "      📅 06.24 05:00 KST | England vs Ghana [SCHEDULED]  Group L",
       "      📅 06.24 08:00 KST | Panama vs Croatia [SCHEDULED]  Group L",
