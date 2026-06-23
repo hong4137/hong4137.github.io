@@ -1,8 +1,8 @@
 {
-  "updated": "2026-06-23 05:50:52 KST",
+  "updated": "2026-06-23 12:47:40 KST",
   "epl": {
     "matchday": 1,
-    "selected_round": 1,
+    "selected_round": null,
     "display_matchday": "R1",
     "leader": "AFC Bournemouth",
     "top4": [
@@ -11,102 +11,8 @@
       "Aston Villa",
       "Brentford"
     ],
-    "matches": [
-      {
-        "match_id": 560547,
-        "home": "Brentford",
-        "away": "Tottenham",
-        "kst_time": "08.23 01:30 (KST)",
-        "uk_time": "Saturday 17:30 (UK)",
-        "local": "",
-        "rules": [
-          "Challenger"
-        ],
-        "rule_str": "Challenger",
-        "matchday": 1,
-        "status": "SCHEDULED",
-        "score": "-"
-      },
-      {
-        "match_id": 560548,
-        "home": "Manchester City",
-        "away": "AFC Bournemouth",
-        "kst_time": "08.23 22:00 (KST)",
-        "uk_time": "Sunday 14:00 (UK)",
-        "local": "",
-        "rules": [
-          "Challenger",
-          "Leader"
-        ],
-        "rule_str": "Challenger, Leader",
-        "matchday": 1,
-        "status": "SCHEDULED",
-        "score": "-"
-      },
-      {
-        "match_id": 560550,
-        "home": "Newcastle United",
-        "away": "Liverpool",
-        "kst_time": "08.24 00:30 (KST)",
-        "uk_time": "Sunday 16:30 (UK)",
-        "local": "",
-        "rules": [
-          "Prime Time"
-        ],
-        "rule_str": "Prime Time",
-        "matchday": 1,
-        "status": "SCHEDULED",
-        "score": "-"
-      }
-    ],
-    "selected_matches": [
-      {
-        "match_id": 560547,
-        "home": "Brentford",
-        "away": "Tottenham",
-        "kst_time": "08.23 01:30 (KST)",
-        "uk_time": "Saturday 17:30 (UK)",
-        "local": "",
-        "rules": [
-          "Challenger"
-        ],
-        "rule_str": "Challenger",
-        "matchday": 1,
-        "status": "SCHEDULED",
-        "score": "-"
-      },
-      {
-        "match_id": 560548,
-        "home": "Manchester City",
-        "away": "AFC Bournemouth",
-        "kst_time": "08.23 22:00 (KST)",
-        "uk_time": "Sunday 14:00 (UK)",
-        "local": "",
-        "rules": [
-          "Challenger",
-          "Leader"
-        ],
-        "rule_str": "Challenger, Leader",
-        "matchday": 1,
-        "status": "SCHEDULED",
-        "score": "-"
-      },
-      {
-        "match_id": 560550,
-        "home": "Newcastle United",
-        "away": "Liverpool",
-        "kst_time": "08.24 00:30 (KST)",
-        "uk_time": "Sunday 16:30 (UK)",
-        "local": "",
-        "rules": [
-          "Prime Time"
-        ],
-        "rule_str": "Prime Time",
-        "matchday": 1,
-        "status": "SCHEDULED",
-        "score": "-"
-      }
-    ]
+    "matches": [],
+    "selected_matches": []
   },
   "nba": {
     "record": "38-46",
@@ -263,8 +169,8 @@
         "away": "Iraq",
         "kst_date": "06.23",
         "kst_time": "06:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "3-0",
+        "status": "FINISHED",
         "group": "Group I"
       },
       {
@@ -272,8 +178,8 @@
         "away": "Senegal",
         "kst_date": "06.23",
         "kst_time": "09:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "3-2",
+        "status": "FINISHED",
         "group": "Group I"
       },
       {
@@ -281,8 +187,8 @@
         "away": "Algeria",
         "kst_date": "06.23",
         "kst_time": "12:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "1-0",
+        "status": "LIVE",
         "group": "Group J"
       },
       {
@@ -329,7 +235,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-23 05:50:52 (KST)",
+      "🚀 [Start] 2026-06-23 12:47:40 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -348,22 +254,12 @@
       "   T5. Early KO: 토요일 12:30 UK",
       "   T6. Leader: 1위 팀 포함",
       "   [최대 선정: 3경기]",
-      "   📋 전체: 10경기 (라운드: [1])",
-      "   🎯 선정 대상: R1 (10경기)",
-      "   📊 상태별: {'SCHEDULED': 10}",
-      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🏆 R1에서 3경기 선정:",
-      "      • [T3] Brentford vs Tottenham [Challenger] 08.23 01:30 (KST)",
-      "      • [T3] Manchester City vs AFC Bournemouth [Challenger, Leader] 08.23 22:00 (KST)",
-      "      • [T4] Newcastle United vs Liverpool [Prime Time] 08.24 00:30 (KST)",
-      "   ✅ 새로 선정됨: 3경기 (R1)",
+      "   📋 전체: 0경기 (라운드: [])",
+      "   🎯 선정 대상: RNone (0경기)",
+      "   📊 상태별: {}",
+      "   🔄 라운드 변경: R1 → RNone (새로 선정)",
+      "   ⚠️ RNone에 선정 가능한 경기 없음",
+      "   ✅ 새로 선정됨: 0경기 (RNone)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ✅ 전적: 38-46 | 순위: -",
@@ -391,9 +287,9 @@
       "   [WorldCup] API 응답: 13경기 (UTC 2026-06-22~2026-06-24)",
       "   ✅ World Cup 데이터: 8경기 (Group Stage)",
       "      ✅ 06.23 02:00 KST | Argentina vs Austria [FINISHED] 2-0 Group J",
-      "      📅 06.23 06:00 KST | France vs Iraq [SCHEDULED]  Group I",
-      "      📅 06.23 09:00 KST | Norway vs Senegal [SCHEDULED]  Group I",
-      "      📅 06.23 12:00 KST | Jordan vs Algeria [SCHEDULED]  Group J",
+      "      ✅ 06.23 06:00 KST | France vs Iraq [FINISHED] 3-0 Group I",
+      "      ✅ 06.23 09:00 KST | Norway vs Senegal [FINISHED] 3-2 Group I",
+      "      🔴 06.23 12:00 KST | Jordan vs Algeria [LIVE] 1-0 Group J",
       "      📅 06.24 02:00 KST | Portugal vs Uzbekistan [SCHEDULED]  Group K",
       "      📅 06.24 05:00 KST | England vs Ghana [SCHEDULED]  Group L",
       "      📅 06.24 08:00 KST | Panama vs Croatia [SCHEDULED]  Group L",
