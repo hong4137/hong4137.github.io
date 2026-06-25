@@ -1,46 +1,9 @@
 {
-  "generated_at": "2026-06-25 07:13 KST",
+  "generated_at": "2026-06-26 07:19 KST",
   "events": [
     {
-      "date": "2026-06-25",
-      "title": "미국 1분기 GDP 최종 추정치 발표",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bea.gov/news/release-schedule"
-    },
-    {
-      "date": "2026-06-25",
-      "title": "미국 5월 개인소득 및 지출 (PCE) 발표",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bea.gov/news/release-schedule"
-    },
-    {
-      "date": "2026-06-26",
-      "title": "러셀 US 지수 리밸런싱 최종 적용",
-      "category": "market_structure",
-      "importance": 4,
-      "impact": [
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://www.lseg.com/en/ftse-russell/"
-    },
-    {
       "date": "2026-07-01",
-      "title": "미국 6월 ISM 제조업 PMI 발표",
+      "title": "미국 ISM 제조업 PMI",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -53,39 +16,56 @@
     },
     {
       "date": "2026-07-02",
-      "title": "미국 6월 고용보고서 (비농업 고용) 발표",
+      "title": "미국 비농업 고용보고서",
       "category": "economic_data",
       "importance": 5,
+      "impact": [
+        "equities",
+        "USD",
+        "yields",
+        "VIX"
+      ],
+      "consensus": "172K",
+      "source_url": "https://www.bls.gov/"
+    },
+    {
+      "date": "2026-07-05",
+      "title": "OPEC+ 장관급 회의",
+      "category": "geopolitical",
+      "importance": 4,
+      "impact": [
+        "oil",
+        "equities"
+      ],
+      "consensus": null,
+      "source_url": "https://www.opec.org/"
+    },
+    {
+      "date": "2026-07-06",
+      "title": "미국 ISM 서비스업 PMI",
+      "category": "economic_data",
+      "importance": 4,
       "impact": [
         "equities",
         "USD",
         "yields"
       ],
       "consensus": null,
-      "source_url": "https://www.bls.gov/"
+      "source_url": "https://www.ismworld.org/"
     },
     {
-      "date": "2026-07-05",
-      "title": "OPEC+ 월간 회의 (7월 산유량 결정)",
-      "category": "geopolitical",
-      "importance": 4,
+      "date": "2026-07-08",
+      "title": "FOMC 의사록 공개",
+      "category": "fed_fomc",
+      "importance": 5,
       "impact": [
-        "oil"
-      ],
-      "consensus": "+188k bpd",
-      "source_url": "https://www.opec.org/"
-    },
-    {
-      "date": "2026-07-07",
-      "title": "미국 5월 국제 무역수지 발표",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
+        "equities",
         "USD",
-        "equities"
+        "yields",
+        "VIX"
       ],
       "consensus": null,
-      "source_url": "https://www.bea.gov/news/release-schedule"
+      "source_url": "https://www.federalreserve.gov/"
     },
     {
       "date": "2026-07-08",
@@ -94,11 +74,11 @@
       "importance": 4,
       "impact": [
         "yields",
-        "equities",
-        "USD"
+        "USD",
+        "equities"
       ],
       "consensus": null,
-      "source_url": "https://www.treasurydirect.gov/"
+      "source_url": "https://home.treasury.gov/"
     }
   ]
 }
