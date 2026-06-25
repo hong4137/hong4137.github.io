@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-25 12:50:27 KST",
+  "updated": "2026-06-25 18:25:44 KST",
   "epl": {
     "matchday": 1,
     "selected_round": null,
@@ -271,7 +271,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-25 12:50:27 (KST)",
+      "🚀 [Start] 2026-06-25 18:25:44 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
