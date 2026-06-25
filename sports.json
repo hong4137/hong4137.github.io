@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-25 04:49:24 KST",
+  "updated": "2026-06-25 12:50:27 KST",
   "epl": {
     "matchday": 1,
     "selected_round": null,
@@ -160,8 +160,8 @@
         "away": "Canada",
         "kst_date": "06.25",
         "kst_time": "04:00",
-        "score": "0-0",
-        "status": "LIVE",
+        "score": "2-1",
+        "status": "FINISHED",
         "group": "Group B"
       },
       {
@@ -169,8 +169,8 @@
         "away": "Qatar",
         "kst_date": "06.25",
         "kst_time": "04:00",
-        "score": "2-1",
-        "status": "LIVE",
+        "score": "3-1",
+        "status": "FINISHED",
         "group": "Group B"
       },
       {
@@ -178,8 +178,8 @@
         "away": "Haiti",
         "kst_date": "06.25",
         "kst_time": "07:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "4-2",
+        "status": "FINISHED",
         "group": "Group C"
       },
       {
@@ -187,8 +187,8 @@
         "away": "Brazil",
         "kst_date": "06.25",
         "kst_time": "07:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "0-3",
+        "status": "FINISHED",
         "group": "Group C"
       },
       {
@@ -196,8 +196,8 @@
         "away": "Mexico",
         "kst_date": "06.25",
         "kst_time": "10:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "0-3",
+        "status": "FINISHED",
         "group": "Group A"
       },
       {
@@ -205,8 +205,8 @@
         "away": "South Korea",
         "kst_date": "06.25",
         "kst_time": "10:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "1-0",
+        "status": "FINISHED",
         "group": "Group A"
       },
       {
@@ -271,7 +271,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-25 04:49:24 (KST)",
+      "🚀 [Start] 2026-06-25 12:50:27 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -293,7 +293,6 @@
       "   📋 전체: 0경기 (라운드: [])",
       "   🎯 선정 대상: RNone (0경기)",
       "   📊 상태별: {}",
-      "   🔄 라운드 변경: R1 → RNone (새로 선정)",
       "   ⚠️ RNone에 선정 가능한 경기 없음",
       "   ✅ 새로 선정됨: 0경기 (RNone)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
@@ -322,12 +321,12 @@
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
       "   [WorldCup] API 응답: 17경기 (UTC 2026-06-24~2026-06-26)",
       "   ✅ World Cup 데이터: 12경기 (Group Stage)",
-      "      🔴 06.25 04:00 KST | Switzerland vs Canada [LIVE] 0-0 Group B",
-      "      🔴 06.25 04:00 KST | Bosnia-Herzegovina vs Qatar [LIVE] 2-1 Group B",
-      "      📅 06.25 07:00 KST | Morocco vs Haiti [SCHEDULED]  Group C",
-      "      📅 06.25 07:00 KST | Scotland vs Brazil [SCHEDULED]  Group C",
-      "      📅 06.25 10:00 KST | Czechia vs Mexico [SCHEDULED]  Group A",
-      "      📅 06.25 10:00 KST | South Africa vs South Korea [SCHEDULED]  Group A",
+      "      ✅ 06.25 04:00 KST | Switzerland vs Canada [FINISHED] 2-1 Group B",
+      "      ✅ 06.25 04:00 KST | Bosnia-Herzegovina vs Qatar [FINISHED] 3-1 Group B",
+      "      ✅ 06.25 07:00 KST | Morocco vs Haiti [FINISHED] 4-2 Group C",
+      "      ✅ 06.25 07:00 KST | Scotland vs Brazil [FINISHED] 0-3 Group C",
+      "      ✅ 06.25 10:00 KST | Czechia vs Mexico [FINISHED] 0-3 Group A",
+      "      ✅ 06.25 10:00 KST | South Africa vs South Korea [FINISHED] 1-0 Group A",
       "      📅 06.26 05:00 KST | Ecuador vs Germany [SCHEDULED]  Group E",
       "      📅 06.26 05:00 KST | Curaçao vs Ivory Coast [SCHEDULED]  Group E",
       "      📅 06.26 08:00 KST | Tunisia vs Netherlands [SCHEDULED]  Group F",
