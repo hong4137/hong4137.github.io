@@ -1,8 +1,8 @@
 {
-  "updated": "2026-06-26 23:28:53 KST",
+  "updated": "2026-06-27 04:51:03 KST",
   "epl": {
     "matchday": 1,
-    "selected_round": 1,
+    "selected_round": null,
     "display_matchday": "R1",
     "leader": "AFC Bournemouth",
     "top4": [
@@ -11,102 +11,8 @@
       "Aston Villa",
       "Brentford"
     ],
-    "matches": [
-      {
-        "match_id": 560547,
-        "home": "Brentford",
-        "away": "Tottenham",
-        "kst_time": "08.23 01:30 (KST)",
-        "uk_time": "Saturday 17:30 (UK)",
-        "local": "",
-        "rules": [
-          "Challenger"
-        ],
-        "rule_str": "Challenger",
-        "matchday": 1,
-        "status": "SCHEDULED",
-        "score": "-"
-      },
-      {
-        "match_id": 560548,
-        "home": "Manchester City",
-        "away": "AFC Bournemouth",
-        "kst_time": "08.23 22:00 (KST)",
-        "uk_time": "Sunday 14:00 (UK)",
-        "local": "",
-        "rules": [
-          "Challenger",
-          "Leader"
-        ],
-        "rule_str": "Challenger, Leader",
-        "matchday": 1,
-        "status": "SCHEDULED",
-        "score": "-"
-      },
-      {
-        "match_id": 560550,
-        "home": "Newcastle United",
-        "away": "Liverpool",
-        "kst_time": "08.24 00:30 (KST)",
-        "uk_time": "Sunday 16:30 (UK)",
-        "local": "",
-        "rules": [
-          "Prime Time"
-        ],
-        "rule_str": "Prime Time",
-        "matchday": 1,
-        "status": "SCHEDULED",
-        "score": "-"
-      }
-    ],
-    "selected_matches": [
-      {
-        "match_id": 560547,
-        "home": "Brentford",
-        "away": "Tottenham",
-        "kst_time": "08.23 01:30 (KST)",
-        "uk_time": "Saturday 17:30 (UK)",
-        "local": "",
-        "rules": [
-          "Challenger"
-        ],
-        "rule_str": "Challenger",
-        "matchday": 1,
-        "status": "SCHEDULED",
-        "score": "-"
-      },
-      {
-        "match_id": 560548,
-        "home": "Manchester City",
-        "away": "AFC Bournemouth",
-        "kst_time": "08.23 22:00 (KST)",
-        "uk_time": "Sunday 14:00 (UK)",
-        "local": "",
-        "rules": [
-          "Challenger",
-          "Leader"
-        ],
-        "rule_str": "Challenger, Leader",
-        "matchday": 1,
-        "status": "SCHEDULED",
-        "score": "-"
-      },
-      {
-        "match_id": 560550,
-        "home": "Newcastle United",
-        "away": "Liverpool",
-        "kst_time": "08.24 00:30 (KST)",
-        "uk_time": "Sunday 16:30 (UK)",
-        "local": "",
-        "rules": [
-          "Prime Time"
-        ],
-        "rule_str": "Prime Time",
-        "matchday": 1,
-        "status": "SCHEDULED",
-        "score": "-"
-      }
-    ]
+    "matches": [],
+    "selected_matches": []
   },
   "nba": {
     "record": "38-46",
@@ -250,60 +156,6 @@
     "phase": "Group Stage",
     "matches": [
       {
-        "home": "Ecuador",
-        "away": "Germany",
-        "kst_date": "06.26",
-        "kst_time": "05:00",
-        "score": "2-1",
-        "status": "FINISHED",
-        "group": "Group E"
-      },
-      {
-        "home": "Curaçao",
-        "away": "Ivory Coast",
-        "kst_date": "06.26",
-        "kst_time": "05:00",
-        "score": "0-2",
-        "status": "FINISHED",
-        "group": "Group E"
-      },
-      {
-        "home": "Tunisia",
-        "away": "Netherlands",
-        "kst_date": "06.26",
-        "kst_time": "08:00",
-        "score": "1-3",
-        "status": "FINISHED",
-        "group": "Group F"
-      },
-      {
-        "home": "Japan",
-        "away": "Sweden",
-        "kst_date": "06.26",
-        "kst_time": "08:00",
-        "score": "1-1",
-        "status": "FINISHED",
-        "group": "Group F"
-      },
-      {
-        "home": "Turkey",
-        "away": "United States",
-        "kst_date": "06.26",
-        "kst_time": "11:00",
-        "score": "3-2",
-        "status": "FINISHED",
-        "group": "Group D"
-      },
-      {
-        "home": "Paraguay",
-        "away": "Australia",
-        "kst_date": "06.26",
-        "kst_time": "11:00",
-        "score": "0-0",
-        "status": "FINISHED",
-        "group": "Group D"
-      },
-      {
         "home": "Norway",
         "away": "France",
         "kst_date": "06.27",
@@ -356,6 +208,60 @@
         "score": "",
         "status": "SCHEDULED",
         "group": "Group G"
+      },
+      {
+        "home": "Panama",
+        "away": "England",
+        "kst_date": "06.28",
+        "kst_time": "06:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": "Group L"
+      },
+      {
+        "home": "Croatia",
+        "away": "Ghana",
+        "kst_date": "06.28",
+        "kst_time": "06:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": "Group L"
+      },
+      {
+        "home": "Colombia",
+        "away": "Portugal",
+        "kst_date": "06.28",
+        "kst_time": "08:30",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": "Group K"
+      },
+      {
+        "home": "Congo DR",
+        "away": "Uzbekistan",
+        "kst_date": "06.28",
+        "kst_time": "08:30",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": "Group K"
+      },
+      {
+        "home": "Jordan",
+        "away": "Argentina",
+        "kst_date": "06.28",
+        "kst_time": "11:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": "Group J"
+      },
+      {
+        "home": "Algeria",
+        "away": "Austria",
+        "kst_date": "06.28",
+        "kst_time": "11:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": "Group J"
       }
     ]
   },
@@ -365,7 +271,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-26 23:28:53 (KST)",
+      "🚀 [Start] 2026-06-27 04:51:03 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -384,22 +290,12 @@
       "   T5. Early KO: 토요일 12:30 UK",
       "   T6. Leader: 1위 팀 포함",
       "   [최대 선정: 3경기]",
-      "   📋 전체: 10경기 (라운드: [1])",
-      "   🎯 선정 대상: R1 (10경기)",
-      "   📊 상태별: {'SCHEDULED': 10}",
-      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   📌 기존 선정 유지 (R1)",
-      "      ⏳ Brentford vs Tottenham [SCHEDULED] -",
-      "      ⏳ Manchester City vs AFC Bournemouth [SCHEDULED] -",
-      "      ⏳ Newcastle United vs Liverpool [SCHEDULED] -",
-      "   ✅ 기존 선정 유지: 3경기 (R1)",
+      "   📋 전체: 0경기 (라운드: [])",
+      "   🎯 선정 대상: RNone (0경기)",
+      "   📊 상태별: {}",
+      "   🔄 라운드 변경: R1 → RNone (새로 선정)",
+      "   ⚠️ RNone에 선정 가능한 경기 없음",
+      "   ✅ 새로 선정됨: 0경기 (RNone)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ✅ 전적: 38-46 | 순위: -",
@@ -424,20 +320,20 @@
       "      📅 06.28 22:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
-      "   [WorldCup] API 응답: 18경기 (UTC 2026-06-25~2026-06-27)",
+      "   [WorldCup] API 응답: 15경기 (UTC 2026-06-26~2026-06-28)",
       "   ✅ World Cup 데이터: 12경기 (Group Stage)",
-      "      ✅ 06.26 05:00 KST | Ecuador vs Germany [FINISHED] 2-1 Group E",
-      "      ✅ 06.26 05:00 KST | Curaçao vs Ivory Coast [FINISHED] 0-2 Group E",
-      "      ✅ 06.26 08:00 KST | Tunisia vs Netherlands [FINISHED] 1-3 Group F",
-      "      ✅ 06.26 08:00 KST | Japan vs Sweden [FINISHED] 1-1 Group F",
-      "      ✅ 06.26 11:00 KST | Turkey vs United States [FINISHED] 3-2 Group D",
-      "      ✅ 06.26 11:00 KST | Paraguay vs Australia [FINISHED] 0-0 Group D",
       "      📅 06.27 04:00 KST | Norway vs France [SCHEDULED]  Group I",
       "      📅 06.27 04:00 KST | Senegal vs Iraq [SCHEDULED]  Group I",
       "      📅 06.27 09:00 KST | Uruguay vs Spain [SCHEDULED]  Group H",
       "      📅 06.27 09:00 KST | Cape Verde Islands vs Saudi Arabia [SCHEDULED]  Group H",
       "      📅 06.27 12:00 KST | New Zealand vs Belgium [SCHEDULED]  Group G",
       "      📅 06.27 12:00 KST | Egypt vs Iran [SCHEDULED]  Group G",
+      "      📅 06.28 06:00 KST | Panama vs England [SCHEDULED]  Group L",
+      "      📅 06.28 06:00 KST | Croatia vs Ghana [SCHEDULED]  Group L",
+      "      📅 06.28 08:30 KST | Colombia vs Portugal [SCHEDULED]  Group K",
+      "      📅 06.28 08:30 KST | Congo DR vs Uzbekistan [SCHEDULED]  Group K",
+      "      📅 06.28 11:00 KST | Jordan vs Argentina [SCHEDULED]  Group J",
+      "      📅 06.28 11:00 KST | Algeria vs Austria [SCHEDULED]  Group J",
       "   ✅ Phase: Group Stage | Matches: 12경기",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
