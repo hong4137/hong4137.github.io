@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-26 18:31:15 KST",
+  "updated": "2026-06-26 23:28:53 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -365,7 +365,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-26 18:31:15 (KST)",
+      "🚀 [Start] 2026-06-26 23:28:53 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -395,11 +395,11 @@
       "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🏆 R1에서 3경기 선정:",
-      "      • [T3] Brentford vs Tottenham [Challenger] 08.23 01:30 (KST)",
-      "      • [T3] Manchester City vs AFC Bournemouth [Challenger, Leader] 08.23 22:00 (KST)",
-      "      • [T4] Newcastle United vs Liverpool [Prime Time] 08.24 00:30 (KST)",
-      "   ✅ 새로 선정됨: 3경기 (R1)",
+      "   📌 기존 선정 유지 (R1)",
+      "      ⏳ Brentford vs Tottenham [SCHEDULED] -",
+      "      ⏳ Manchester City vs AFC Bournemouth [SCHEDULED] -",
+      "      ⏳ Newcastle United vs Liverpool [SCHEDULED] -",
+      "   ✅ 기존 선정 유지: 3경기 (R1)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ✅ 전적: 38-46 | 순위: -",
