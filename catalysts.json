@@ -1,22 +1,9 @@
 {
-  "generated_at": "2026-06-27 07:09 KST",
+  "generated_at": "2026-06-28 07:00 KST",
   "events": [
     {
-      "date": "2026-06-30",
-      "title": "JOLTS (구인·이직 보고서) 5월",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/"
-    },
-    {
       "date": "2026-07-01",
-      "title": "ISM 제조업 구매관리자지수 6월",
+      "title": "미국 6월 ISM 제조업 PMI 발표",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -29,29 +16,30 @@
     },
     {
       "date": "2026-07-02",
-      "title": "고용보고서 (비농업 고용지수) 6월",
+      "title": "미국 6월 비농업 고용보고서 발표",
       "category": "economic_data",
       "importance": 5,
       "impact": [
         "equities",
         "USD",
-        "yields"
+        "yields",
+        "VIX"
       ],
       "consensus": null,
       "source_url": "https://www.bls.gov/"
     },
     {
-      "date": "2026-07-02",
-      "title": "주간 신규 실업수당 청구 (6월 27일 마감 주)",
-      "category": "economic_data",
+      "date": "2026-07-05",
+      "title": "OPEC+ 월간 회의",
+      "category": "geopolitical",
       "importance": 4,
       "impact": [
+        "oil",
         "equities",
-        "USD",
-        "yields"
+        "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.dol.gov/"
+      "source_url": "https://www.opec.org/"
     }
   ]
 }
