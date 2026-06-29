@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-29 20:04:10 KST",
+  "updated": "2026-06-30 00:50:55 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -239,25 +239,16 @@
       "date": "-"
     },
     "next": {
-      "event": "Wimbledon",
+      "event": "Canadian Open",
       "detail": "-",
-      "match_time": "Jun 30",
-      "tournament_dates": "Jun 30 - Jul 13",
-      "status": "Grand Slam"
+      "match_time": "Aug 4",
+      "tournament_dates": "Aug 4 - 10",
+      "status": "-"
     }
   },
   "worldcup": {
     "phase": "Group Stage",
     "matches": [
-      {
-        "home": "South Africa",
-        "away": "Canada",
-        "kst_date": "06.29",
-        "kst_time": "04:00",
-        "score": "0-1",
-        "status": "FINISHED",
-        "group": ""
-      },
       {
         "home": "Brazil",
         "away": "Japan",
@@ -284,6 +275,33 @@
         "score": "",
         "status": "SCHEDULED",
         "group": ""
+      },
+      {
+        "home": "Ivory Coast",
+        "away": "Norway",
+        "kst_date": "07.01",
+        "kst_time": "02:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": ""
+      },
+      {
+        "home": "France",
+        "away": "Sweden",
+        "kst_date": "07.01",
+        "kst_time": "06:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": ""
+      },
+      {
+        "home": "Mexico",
+        "away": "Ecuador",
+        "kst_date": "07.01",
+        "kst_time": "10:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": ""
       }
     ]
   },
@@ -293,7 +311,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-29 20:04:10 (KST)",
+      "🚀 [Start] 2026-06-30 00:50:55 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -352,20 +370,22 @@
       "      📅 07.05 23:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
-      "   [WorldCup] API 응답: 8경기 (UTC 2026-06-28~2026-06-30)",
-      "   ✅ World Cup 데이터: 4경기 (Group Stage)",
-      "      ✅ 06.29 04:00 KST | South Africa vs Canada [FINISHED] 0-1 ",
+      "   [WorldCup] API 응답: 9경기 (UTC 2026-06-29~2026-07-01)",
+      "   ✅ World Cup 데이터: 6경기 (Group Stage)",
       "      📅 06.30 02:00 KST | Brazil vs Japan [SCHEDULED]  ",
       "      📅 06.30 05:30 KST | Germany vs Paraguay [SCHEDULED]  ",
       "      📅 06.30 10:00 KST | Netherlands vs Morocco [SCHEDULED]  ",
-      "   ✅ Phase: Group Stage | Matches: 4경기",
+      "      📅 07.01 02:00 KST | Ivory Coast vs Norway [SCHEDULED]  ",
+      "      📅 07.01 06:00 KST | France vs Sweden [SCHEDULED]  ",
+      "      📅 07.01 10:00 KST | Mexico vs Ecuador [SCHEDULED]  ",
+      "   ✅ Phase: Group Stage | Matches: 6경기",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
       "      Recent: - vs - - (-)",
-      "      Next: Wimbledon | Jun 30",
+      "      Next: Canadian Open | Aug 4",
       "   📊 최종:",
       "      Recent: - vs - - (-) | -",
-      "      Next: Wimbledon | - | Jun 30",
+      "      Next: Canadian Open | - | Aug 4",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
     ]
