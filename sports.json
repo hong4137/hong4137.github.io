@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-29 04:23:47 KST",
+  "updated": "2026-06-29 13:10:30 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -254,8 +254,8 @@
         "away": "Canada",
         "kst_date": "06.29",
         "kst_time": "04:00",
-        "score": "0-0",
-        "status": "LIVE",
+        "score": "0-1",
+        "status": "FINISHED",
         "group": ""
       },
       {
@@ -293,7 +293,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-29 04:23:47 (KST)",
+      "🚀 [Start] 2026-06-29 13:10:30 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -354,7 +354,7 @@
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
       "   [WorldCup] API 응답: 8경기 (UTC 2026-06-28~2026-06-30)",
       "   ✅ World Cup 데이터: 4경기 (Group Stage)",
-      "      🔴 06.29 04:00 KST | South Africa vs Canada [LIVE] 0-0 ",
+      "      ✅ 06.29 04:00 KST | South Africa vs Canada [FINISHED] 0-1 ",
       "      📅 06.30 02:00 KST | Brazil vs Japan [SCHEDULED]  ",
       "      📅 06.30 05:30 KST | Germany vs Paraguay [SCHEDULED]  ",
       "      📅 06.30 10:00 KST | Netherlands vs Morocco [SCHEDULED]  ",
