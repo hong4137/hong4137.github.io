@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-30 23:23:35 KST",
+  "updated": "2026-07-01 05:01:10 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -250,39 +250,12 @@
     "phase": "Group Stage",
     "matches": [
       {
-        "home": "Brazil",
-        "away": "Japan",
-        "kst_date": "06.30",
-        "kst_time": "02:00",
-        "score": "2-1",
-        "status": "FINISHED",
-        "group": ""
-      },
-      {
-        "home": "Germany",
-        "away": "Paraguay",
-        "kst_date": "06.30",
-        "kst_time": "05:30",
-        "score": "4-5",
-        "status": "FINISHED",
-        "group": ""
-      },
-      {
-        "home": "Netherlands",
-        "away": "Morocco",
-        "kst_date": "06.30",
-        "kst_time": "10:00",
-        "score": "3-4",
-        "status": "FINISHED",
-        "group": ""
-      },
-      {
         "home": "Ivory Coast",
         "away": "Norway",
         "kst_date": "07.01",
         "kst_time": "02:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "1-2",
+        "status": "FINISHED",
         "group": ""
       },
       {
@@ -302,6 +275,33 @@
         "score": "",
         "status": "SCHEDULED",
         "group": ""
+      },
+      {
+        "home": "England",
+        "away": "Congo DR",
+        "kst_date": "07.02",
+        "kst_time": "01:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": ""
+      },
+      {
+        "home": "Belgium",
+        "away": "Senegal",
+        "kst_date": "07.02",
+        "kst_time": "05:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": ""
+      },
+      {
+        "home": "United States",
+        "away": "Bosnia-Herzegovina",
+        "kst_date": "07.02",
+        "kst_time": "09:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": ""
       }
     ]
   },
@@ -311,7 +311,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-06-30 23:23:35 (KST)",
+      "🚀 [Start] 2026-07-01 05:01:10 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -370,14 +370,14 @@
       "      📅 07.05 23:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
-      "   [WorldCup] API 응답: 9경기 (UTC 2026-06-29~2026-07-01)",
+      "   [WorldCup] API 응답: 9경기 (UTC 2026-06-30~2026-07-02)",
       "   ✅ World Cup 데이터: 6경기 (Group Stage)",
-      "      ✅ 06.30 02:00 KST | Brazil vs Japan [FINISHED] 2-1 ",
-      "      ✅ 06.30 05:30 KST | Germany vs Paraguay [FINISHED] 4-5 ",
-      "      ✅ 06.30 10:00 KST | Netherlands vs Morocco [FINISHED] 3-4 ",
-      "      📅 07.01 02:00 KST | Ivory Coast vs Norway [SCHEDULED]  ",
+      "      ✅ 07.01 02:00 KST | Ivory Coast vs Norway [FINISHED] 1-2 ",
       "      📅 07.01 06:00 KST | France vs Sweden [SCHEDULED]  ",
       "      📅 07.01 10:00 KST | Mexico vs Ecuador [SCHEDULED]  ",
+      "      📅 07.02 01:00 KST | England vs Congo DR [SCHEDULED]  ",
+      "      📅 07.02 05:00 KST | Belgium vs Senegal [SCHEDULED]  ",
+      "      📅 07.02 09:00 KST | United States vs Bosnia-Herzegovina [SCHEDULED]  ",
       "   ✅ Phase: Group Stage | Matches: 6경기",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
