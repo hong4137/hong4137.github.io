@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-06-30 07:06 KST",
+  "generated_at": "2026-07-01 07:13 KST",
   "events": [
     {
       "date": "2026-07-01",
-      "title": "미국 ISM 제조업 PMI 발표",
+      "title": "미국 ISM 제조업 구매관리자지수 (6월)",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -11,25 +11,12 @@
         "USD",
         "yields"
       ],
-      "consensus": "53.7",
+      "consensus": "53.8",
       "source_url": "https://www.ismworld.org/"
     },
     {
       "date": "2026-07-02",
-      "title": "미국 주간 신규 실업수당 청구건수 발표",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": "220K",
-      "source_url": "https://www.dol.gov/"
-    },
-    {
-      "date": "2026-07-02",
-      "title": "미국 비농업 고용보고서 (NFP, 실업률, 평균 시급) 발표",
+      "title": "미국 고용보고서 (6월)",
       "category": "economic_data",
       "importance": 5,
       "impact": [
@@ -38,26 +25,13 @@
         "equities",
         "USD"
       ],
-      "consensus": "170K (NFP)",
+      "consensus": null,
       "source_url": "https://www.bls.gov/"
     },
     {
-      "date": "2026-07-05",
-      "title": "OPEC+ 회의",
-      "category": "geopolitical",
-      "importance": 4,
-      "impact": [
-        "oil",
-        "equities",
-        "USD"
-      ],
-      "consensus": "188,000 b/d 증산",
-      "source_url": "https://www.opec.org/"
-    },
-    {
-      "date": "2026-07-06",
-      "title": "미국 ISM 서비스업 PMI 발표",
-      "category": "economic_data",
+      "date": "2026-07-03",
+      "title": "미국 독립기념일 (시장 휴장)",
+      "category": "market_structure",
       "importance": 4,
       "impact": [
         "equities",
@@ -65,6 +39,19 @@
         "yields"
       ],
       "consensus": null,
+      "source_url": "https://www.federalreserve.gov/"
+    },
+    {
+      "date": "2026-07-06",
+      "title": "미국 ISM 서비스 구매관리자지수 (6월)",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": "54.5",
       "source_url": "https://www.ismworld.org/"
     }
   ]
