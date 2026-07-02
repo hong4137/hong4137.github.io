@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-02 23:06:22 KST",
+  "updated": "2026-07-03 04:26:53 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -127,7 +127,7 @@
       "date": "Jul 03-05",
       "date_from": "2026-07-03",
       "date_to": "2026-07-05",
-      "status": "Next GP",
+      "status": "This Week",
       "sprint": false
     },
     "schedule": [
@@ -250,33 +250,6 @@
     "phase": "Group Stage",
     "matches": [
       {
-        "home": "England",
-        "away": "Congo DR",
-        "kst_date": "07.02",
-        "kst_time": "01:00",
-        "score": "2-1",
-        "status": "FINISHED",
-        "group": ""
-      },
-      {
-        "home": "Belgium",
-        "away": "Senegal",
-        "kst_date": "07.02",
-        "kst_time": "05:00",
-        "score": "3-2",
-        "status": "FINISHED",
-        "group": ""
-      },
-      {
-        "home": "United States",
-        "away": "Bosnia-Herzegovina",
-        "kst_date": "07.02",
-        "kst_time": "09:00",
-        "score": "2-0",
-        "status": "FINISHED",
-        "group": ""
-      },
-      {
         "home": "Spain",
         "away": "Austria",
         "kst_date": "07.03",
@@ -302,6 +275,33 @@
         "score": "",
         "status": "SCHEDULED",
         "group": ""
+      },
+      {
+        "home": "Australia",
+        "away": "Egypt",
+        "kst_date": "07.04",
+        "kst_time": "03:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": ""
+      },
+      {
+        "home": "Argentina",
+        "away": "Cape Verde Islands",
+        "kst_date": "07.04",
+        "kst_time": "07:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": ""
+      },
+      {
+        "home": "Colombia",
+        "away": "Ghana",
+        "kst_date": "07.04",
+        "kst_time": "10:30",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": ""
       }
     ]
   },
@@ -311,7 +311,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-07-02 23:06:22 (KST)",
+      "🚀 [Start] 2026-07-03 04:26:53 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -362,7 +362,7 @@
       "      3. Lewis Hamilton (Ferrari) 125pts",
       "      4. Oscar Piastri (McLaren) 80pts",
       "      5. Lando Norris (McLaren) 79pts",
-      "   ✅ British Grand Prix | Silverstone Circuit | Jul 03-05 [Next GP]",
+      "   ✅ British Grand Prix | Silverstone Circuit | Jul 03-05 [This Week]",
       "      📅 07.03 21:30 KST | FP1",
       "      📅 07.04 01:00 KST | FP2",
       "      📅 07.04 20:30 KST | FP3",
@@ -370,14 +370,14 @@
       "      📅 07.05 23:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
-      "   [WorldCup] API 응답: 9경기 (UTC 2026-07-01~2026-07-03)",
+      "   [WorldCup] API 응답: 9경기 (UTC 2026-07-02~2026-07-04)",
       "   ✅ World Cup 데이터: 6경기 (Group Stage)",
-      "      ✅ 07.02 01:00 KST | England vs Congo DR [FINISHED] 2-1 ",
-      "      ✅ 07.02 05:00 KST | Belgium vs Senegal [FINISHED] 3-2 ",
-      "      ✅ 07.02 09:00 KST | United States vs Bosnia-Herzegovina [FINISHED] 2-0 ",
       "      📅 07.03 04:00 KST | Spain vs Austria [SCHEDULED]  ",
       "      📅 07.03 08:00 KST | Portugal vs Croatia [SCHEDULED]  ",
       "      📅 07.03 12:00 KST | Switzerland vs Algeria [SCHEDULED]  ",
+      "      📅 07.04 03:00 KST | Australia vs Egypt [SCHEDULED]  ",
+      "      📅 07.04 07:00 KST | Argentina vs Cape Verde Islands [SCHEDULED]  ",
+      "      📅 07.04 10:30 KST | Colombia vs Ghana [SCHEDULED]  ",
       "   ✅ Phase: Group Stage | Matches: 6경기",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
