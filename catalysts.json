@@ -1,73 +1,57 @@
 {
-  "generated_at": "2026-07-03 07:03 KST",
+  "generated_at": "2026-07-04 07:02 KST",
   "events": [
     {
-      "date": "2026-07-06",
-      "title": "미국 ISM 서비스 PMI (6월)",
-      "category": "economic_data",
+      "date": "2026-07-05",
+      "title": "OPEC+ 장관급 회의 (8월 생산량 결정)",
+      "category": "geopolitical",
       "importance": 4,
       "impact": [
+        "oil",
         "equities",
-        "USD",
-        "yields"
+        "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.ismworld.org/"
+      "source_url": "https://www.opec.org/"
+    },
+    {
+      "date": "2026-07-07",
+      "title": "미국 3년물 국채 입찰",
+      "category": "treasury_auction",
+      "importance": 4,
+      "impact": [
+        "yields",
+        "USD",
+        "equities"
+      ],
+      "consensus": null,
+      "source_url": "https://www.treasurydirect.gov/"
     },
     {
       "date": "2026-07-08",
-      "title": "FOMC 의사록 공개",
-      "category": "fed_fomc",
-      "importance": 5,
+      "title": "미국 10년물 국채 입찰 (재개)",
+      "category": "treasury_auction",
+      "importance": 4,
       "impact": [
-        "VIX",
         "yields",
-        "equities",
-        "USD"
+        "USD",
+        "equities"
       ],
       "consensus": null,
-      "source_url": "https://www.federalreserve.gov/"
+      "source_url": "https://www.treasurydirect.gov/"
     },
     {
       "date": "2026-07-09",
-      "title": "미국 주간 실업수당 청구건수",
-      "category": "economic_data",
+      "title": "미국 30년물 국채 입찰 (재개)",
+      "category": "treasury_auction",
       "importance": 4,
       "impact": [
-        "equities",
+        "yields",
         "USD",
-        "yields"
+        "equities"
       ],
       "consensus": null,
-      "source_url": "https://www.dol.gov/"
-    },
-    {
-      "date": "2026-07-14",
-      "title": "미국 소비자물가지수 (CPI) (6월)",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/cpi/"
-    },
-    {
-      "date": "2026-07-15",
-      "title": "미국 생산자물가지수 (PPI) (6월)",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/ppi/"
+      "source_url": "https://www.treasurydirect.gov/"
     }
   ]
 }
