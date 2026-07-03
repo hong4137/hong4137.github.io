@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-03 23:10:43 KST",
+  "updated": "2026-07-04 04:25:42 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -247,42 +247,15 @@
     }
   },
   "worldcup": {
-    "phase": "Group Stage",
+    "phase": "Round of 16",
     "matches": [
-      {
-        "home": "Spain",
-        "away": "Austria",
-        "kst_date": "07.03",
-        "kst_time": "04:00",
-        "score": "3-0",
-        "status": "FINISHED",
-        "group": ""
-      },
-      {
-        "home": "Portugal",
-        "away": "Croatia",
-        "kst_date": "07.03",
-        "kst_time": "08:00",
-        "score": "2-1",
-        "status": "FINISHED",
-        "group": ""
-      },
-      {
-        "home": "Switzerland",
-        "away": "Algeria",
-        "kst_date": "07.03",
-        "kst_time": "12:00",
-        "score": "2-0",
-        "status": "FINISHED",
-        "group": ""
-      },
       {
         "home": "Australia",
         "away": "Egypt",
         "kst_date": "07.04",
         "kst_time": "03:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "1-1",
+        "status": "LIVE",
         "group": ""
       },
       {
@@ -302,6 +275,24 @@
         "score": "",
         "status": "SCHEDULED",
         "group": ""
+      },
+      {
+        "home": "Canada",
+        "away": "Morocco",
+        "kst_date": "07.05",
+        "kst_time": "02:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": ""
+      },
+      {
+        "home": "Paraguay",
+        "away": "France",
+        "kst_date": "07.05",
+        "kst_time": "06:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": ""
       }
     ]
   },
@@ -311,7 +302,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-07-03 23:10:43 (KST)",
+      "🚀 [Start] 2026-07-04 04:25:42 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -370,15 +361,14 @@
       "      📅 07.05 23:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
-      "   [WorldCup] API 응답: 9경기 (UTC 2026-07-02~2026-07-04)",
-      "   ✅ World Cup 데이터: 6경기 (Group Stage)",
-      "      ✅ 07.03 04:00 KST | Spain vs Austria [FINISHED] 3-0 ",
-      "      ✅ 07.03 08:00 KST | Portugal vs Croatia [FINISHED] 2-1 ",
-      "      ✅ 07.03 12:00 KST | Switzerland vs Algeria [FINISHED] 2-0 ",
-      "      📅 07.04 03:00 KST | Australia vs Egypt [SCHEDULED]  ",
+      "   [WorldCup] API 응답: 8경기 (UTC 2026-07-03~2026-07-05)",
+      "   ✅ World Cup 데이터: 5경기 (Round of 16)",
+      "      🔴 07.04 03:00 KST | Australia vs Egypt [LIVE] 1-1 ",
       "      📅 07.04 07:00 KST | Argentina vs Cape Verde Islands [SCHEDULED]  ",
       "      📅 07.04 10:30 KST | Colombia vs Ghana [SCHEDULED]  ",
-      "   ✅ Phase: Group Stage | Matches: 6경기",
+      "      📅 07.05 02:00 KST | Canada vs Morocco [SCHEDULED]  ",
+      "      📅 07.05 06:00 KST | Paraguay vs France [SCHEDULED]  ",
+      "   ✅ Phase: Round of 16 | Matches: 5경기",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
       "      Recent: - vs - - (-)",
