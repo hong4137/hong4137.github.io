@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-03 04:26:53 KST",
+  "updated": "2026-07-03 12:29:36 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -254,8 +254,8 @@
         "away": "Austria",
         "kst_date": "07.03",
         "kst_time": "04:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "3-0",
+        "status": "FINISHED",
         "group": ""
       },
       {
@@ -263,8 +263,8 @@
         "away": "Croatia",
         "kst_date": "07.03",
         "kst_time": "08:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "2-1",
+        "status": "FINISHED",
         "group": ""
       },
       {
@@ -272,8 +272,8 @@
         "away": "Algeria",
         "kst_date": "07.03",
         "kst_time": "12:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "1-0",
+        "status": "LIVE",
         "group": ""
       },
       {
@@ -311,7 +311,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-07-03 04:26:53 (KST)",
+      "🚀 [Start] 2026-07-03 12:29:36 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -372,9 +372,9 @@
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
       "   [WorldCup] API 응답: 9경기 (UTC 2026-07-02~2026-07-04)",
       "   ✅ World Cup 데이터: 6경기 (Group Stage)",
-      "      📅 07.03 04:00 KST | Spain vs Austria [SCHEDULED]  ",
-      "      📅 07.03 08:00 KST | Portugal vs Croatia [SCHEDULED]  ",
-      "      📅 07.03 12:00 KST | Switzerland vs Algeria [SCHEDULED]  ",
+      "      ✅ 07.03 04:00 KST | Spain vs Austria [FINISHED] 3-0 ",
+      "      ✅ 07.03 08:00 KST | Portugal vs Croatia [FINISHED] 2-1 ",
+      "      🔴 07.03 12:00 KST | Switzerland vs Algeria [LIVE] 1-0 ",
       "      📅 07.04 03:00 KST | Australia vs Egypt [SCHEDULED]  ",
       "      📅 07.04 07:00 KST | Argentina vs Cape Verde Islands [SCHEDULED]  ",
       "      📅 07.04 10:30 KST | Colombia vs Ghana [SCHEDULED]  ",
