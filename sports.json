@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-04 22:37:46 KST",
+  "updated": "2026-07-05 04:16:54 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -239,10 +239,10 @@
       "date": "-"
     },
     "next": {
-      "event": "-",
+      "event": "Canadian Open",
       "detail": "-",
-      "match_time": "TBD",
-      "tournament_dates": "",
+      "match_time": "Aug 4",
+      "tournament_dates": "Aug 4 - 10",
       "status": "-"
     }
   },
@@ -250,39 +250,12 @@
     "phase": "Round of 16",
     "matches": [
       {
-        "home": "Australia",
-        "away": "Egypt",
-        "kst_date": "07.04",
-        "kst_time": "03:00",
-        "score": "3-5",
-        "status": "FINISHED",
-        "group": ""
-      },
-      {
-        "home": "Argentina",
-        "away": "Cape Verde Islands",
-        "kst_date": "07.04",
-        "kst_time": "07:00",
-        "score": "3-2",
-        "status": "FINISHED",
-        "group": ""
-      },
-      {
-        "home": "Colombia",
-        "away": "Ghana",
-        "kst_date": "07.04",
-        "kst_time": "10:30",
-        "score": "1-0",
-        "status": "FINISHED",
-        "group": ""
-      },
-      {
         "home": "Canada",
         "away": "Morocco",
         "kst_date": "07.05",
         "kst_time": "02:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "0-3",
+        "status": "FINISHED",
         "group": ""
       },
       {
@@ -290,6 +263,24 @@
         "away": "France",
         "kst_date": "07.05",
         "kst_time": "06:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": ""
+      },
+      {
+        "home": "Brazil",
+        "away": "Norway",
+        "kst_date": "07.06",
+        "kst_time": "05:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": ""
+      },
+      {
+        "home": "Mexico",
+        "away": "England",
+        "kst_date": "07.06",
+        "kst_time": "09:00",
         "score": "",
         "status": "SCHEDULED",
         "group": ""
@@ -302,7 +293,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-07-04 22:37:46 (KST)",
+      "🚀 [Start] 2026-07-05 04:16:54 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -361,20 +352,20 @@
       "      📅 07.05 23:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
-      "   [WorldCup] API 응답: 8경기 (UTC 2026-07-03~2026-07-05)",
-      "   ✅ World Cup 데이터: 5경기 (Round of 16)",
-      "      ✅ 07.04 03:00 KST | Australia vs Egypt [FINISHED] 3-5 ",
-      "      ✅ 07.04 07:00 KST | Argentina vs Cape Verde Islands [FINISHED] 3-2 ",
-      "      ✅ 07.04 10:30 KST | Colombia vs Ghana [FINISHED] 1-0 ",
-      "      📅 07.05 02:00 KST | Canada vs Morocco [SCHEDULED]  ",
+      "   [WorldCup] API 응답: 7경기 (UTC 2026-07-04~2026-07-06)",
+      "   ✅ World Cup 데이터: 4경기 (Round of 16)",
+      "      ✅ 07.05 02:00 KST | Canada vs Morocco [FINISHED] 0-3 ",
       "      📅 07.05 06:00 KST | Paraguay vs France [SCHEDULED]  ",
-      "   ✅ Phase: Round of 16 | Matches: 5경기",
+      "      📅 07.06 05:00 KST | Brazil vs Norway [SCHEDULED]  ",
+      "      📅 07.06 09:00 KST | Mexico vs England [SCHEDULED]  ",
+      "   ✅ Phase: Round of 16 | Matches: 4경기",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
-      "   ⚠️ Web App 호출 실패: 404",
-      "   ⚠️ Web App 실패 → 기본값",
+      "   ✅ Web App 응답:",
+      "      Recent: - vs - - (-)",
+      "      Next: Canadian Open | Aug 4",
       "   📊 최종:",
       "      Recent: - vs - - (-) | -",
-      "      Next: - | - | TBD",
+      "      Next: Canadian Open | - | Aug 4",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
     ]
