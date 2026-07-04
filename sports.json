@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-04 17:39:54 KST",
+  "updated": "2026-07-04 22:37:46 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -172,43 +172,43 @@
         "pos": 1,
         "driver": "Kimi Antonelli",
         "team": "Mercedes",
-        "points": 171
+        "points": 179
       },
       {
         "pos": 2,
         "driver": "George Russell",
         "team": "Mercedes",
-        "points": 131
+        "points": 136
       },
       {
         "pos": 3,
         "driver": "Lewis Hamilton",
         "team": "Ferrari",
-        "points": 125
+        "points": 132
       },
       {
         "pos": 4,
-        "driver": "Oscar Piastri",
+        "driver": "Lando Norris",
         "team": "McLaren",
-        "points": 80
+        "points": 85
       },
       {
         "pos": 5,
-        "driver": "Lando Norris",
-        "team": "McLaren",
-        "points": 79
+        "driver": "Charles Leclerc",
+        "team": "Ferrari",
+        "points": 83
       },
       {
         "pos": 6,
-        "driver": "Charles Leclerc",
-        "team": "Ferrari",
-        "points": 79
+        "driver": "Oscar Piastri",
+        "team": "McLaren",
+        "points": 82
       },
       {
         "pos": 7,
         "driver": "Max Verstappen",
         "team": "Red Bull",
-        "points": 73
+        "points": 76
       },
       {
         "pos": 8,
@@ -226,7 +226,7 @@
         "pos": 10,
         "driver": "Liam Lawson",
         "team": "Red Bull",
-        "points": 30
+        "points": 31
       }
     ]
   },
@@ -239,10 +239,10 @@
       "date": "-"
     },
     "next": {
-      "event": "Canadian Open",
+      "event": "-",
       "detail": "-",
-      "match_time": "Aug 4",
-      "tournament_dates": "Aug 4 - 10",
+      "match_time": "TBD",
+      "tournament_dates": "",
       "status": "-"
     }
   },
@@ -302,7 +302,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-07-04 17:39:54 (KST)",
+      "🚀 [Start] 2026-07-04 22:37:46 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -348,11 +348,11 @@
       "   [F1] 드라이버 순위 조회...",
       "      ✅ 순위 직접 파싱 성공 (www.formula1.com): 22명",
       "   ✅ 순위: 10명",
-      "      1. Kimi Antonelli (Mercedes) 171pts",
-      "      2. George Russell (Mercedes) 131pts",
-      "      3. Lewis Hamilton (Ferrari) 125pts",
-      "      4. Oscar Piastri (McLaren) 80pts",
-      "      5. Lando Norris (McLaren) 79pts",
+      "      1. Kimi Antonelli (Mercedes) 179pts",
+      "      2. George Russell (Mercedes) 136pts",
+      "      3. Lewis Hamilton (Ferrari) 132pts",
+      "      4. Lando Norris (McLaren) 85pts",
+      "      5. Charles Leclerc (Ferrari) 83pts",
       "   ✅ British Grand Prix | Silverstone Circuit | Jul 03-05 [This Week]",
       "      📅 07.03 21:30 KST | FP1",
       "      📅 07.04 01:00 KST | FP2",
@@ -370,12 +370,11 @@
       "      📅 07.05 06:00 KST | Paraguay vs France [SCHEDULED]  ",
       "   ✅ Phase: Round of 16 | Matches: 5경기",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
-      "   ✅ Web App 응답:",
-      "      Recent: - vs - - (-)",
-      "      Next: Canadian Open | Aug 4",
+      "   ⚠️ Web App 호출 실패: 404",
+      "   ⚠️ Web App 실패 → 기본값",
       "   📊 최종:",
       "      Recent: - vs - - (-) | -",
-      "      Next: Canadian Open | - | Aug 4",
+      "      Next: - | - | TBD",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
     ]
