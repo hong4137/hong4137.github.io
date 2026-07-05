@@ -1,57 +1,100 @@
 {
-  "generated_at": "2026-07-04 07:02 KST",
+  "generated_at": "2026-07-06 06:57 KST",
   "events": [
     {
-      "date": "2026-07-05",
-      "title": "OPEC+ 장관급 회의 (8월 생산량 결정)",
-      "category": "geopolitical",
+      "date": "2026-07-14",
+      "title": "JPMorgan Chase & Co. 2분기 2026년 실적 발표",
+      "category": "earnings",
       "importance": 4,
       "impact": [
-        "oil",
+        "equities"
+      ],
+      "consensus": "EPS $5.61, Revenue $49.56 billion",
+      "source_url": "https://www.jpmorganchase.com/ir/"
+    },
+    {
+      "date": "2026-07-14",
+      "title": "Bank of America 2분기 2026년 실적 발표",
+      "category": "earnings",
+      "importance": 4,
+      "impact": [
+        "equities"
+      ],
+      "consensus": null,
+      "source_url": "https://investor.bankofamerica.com/"
+    },
+    {
+      "date": "2026-07-16",
+      "title": "Netflix 2분기 2026년 실적 발표",
+      "category": "earnings",
+      "importance": 4,
+      "impact": [
+        "equities"
+      ],
+      "consensus": "Revenue $12.57 billion, EPS $0.79",
+      "source_url": "http://ir.netflix.net/"
+    },
+    {
+      "date": "2026-07-22",
+      "title": "Tesla 2분기 2026년 실적 발표",
+      "category": "earnings",
+      "importance": 5,
+      "impact": [
+        "equities",
+        "VIX"
+      ],
+      "consensus": null,
+      "source_url": "https://ir.tesla.com/"
+    },
+    {
+      "date": "2026-07-28",
+      "title": "FOMC 회의 및 성명 발표",
+      "category": "fed_fomc",
+      "importance": 5,
+      "impact": [
+        "VIX",
+        "yields",
         "equities",
         "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.opec.org/"
+      "source_url": "https://www.federalreserve.gov/"
     },
     {
-      "date": "2026-07-07",
-      "title": "미국 3년물 국채 입찰",
-      "category": "treasury_auction",
-      "importance": 4,
+      "date": "2026-07-29",
+      "title": "Meta Platforms 2분기 2026년 실적 발표",
+      "category": "earnings",
+      "importance": 5,
       "impact": [
-        "yields",
-        "USD",
-        "equities"
+        "equities",
+        "VIX"
       ],
-      "consensus": null,
-      "source_url": "https://www.treasurydirect.gov/"
+      "consensus": "Revenue $58-61 billion, EPS $7.09",
+      "source_url": "https://investor.meta.com/"
     },
     {
-      "date": "2026-07-08",
-      "title": "미국 10년물 국채 입찰 (재개)",
-      "category": "treasury_auction",
-      "importance": 4,
+      "date": "2026-07-30",
+      "title": "Apple 3분기 2026년 실적 발표",
+      "category": "earnings",
+      "importance": 5,
       "impact": [
-        "yields",
-        "USD",
-        "equities"
+        "equities",
+        "VIX"
       ],
-      "consensus": null,
-      "source_url": "https://www.treasurydirect.gov/"
+      "consensus": "EPS $1.89, Revenue $109.69 billion",
+      "source_url": "https://www.apple.com/investor/"
     },
     {
-      "date": "2026-07-09",
-      "title": "미국 30년물 국채 입찰 (재개)",
-      "category": "treasury_auction",
-      "importance": 4,
+      "date": "2026-07-30",
+      "title": "Amazon 2분기 2026년 실적 발표",
+      "category": "earnings",
+      "importance": 5,
       "impact": [
-        "yields",
-        "USD",
-        "equities"
+        "equities",
+        "VIX"
       ],
-      "consensus": null,
-      "source_url": "https://www.treasurydirect.gov/"
+      "consensus": "EPS $1.81, Revenue $194–$199 billion",
+      "source_url": "https://ir.aboutamazon.com/"
     }
   ]
 }
