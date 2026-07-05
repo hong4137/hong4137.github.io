@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-05 04:16:54 KST",
+  "updated": "2026-07-05 12:38:49 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -263,8 +263,8 @@
         "away": "France",
         "kst_date": "07.05",
         "kst_time": "06:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "0-1",
+        "status": "FINISHED",
         "group": ""
       },
       {
@@ -293,7 +293,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-07-05 04:16:54 (KST)",
+      "🚀 [Start] 2026-07-05 12:38:49 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -355,7 +355,7 @@
       "   [WorldCup] API 응답: 7경기 (UTC 2026-07-04~2026-07-06)",
       "   ✅ World Cup 데이터: 4경기 (Round of 16)",
       "      ✅ 07.05 02:00 KST | Canada vs Morocco [FINISHED] 0-3 ",
-      "      📅 07.05 06:00 KST | Paraguay vs France [SCHEDULED]  ",
+      "      ✅ 07.05 06:00 KST | Paraguay vs France [FINISHED] 0-1 ",
       "      📅 07.06 05:00 KST | Brazil vs Norway [SCHEDULED]  ",
       "      📅 07.06 09:00 KST | Mexico vs England [SCHEDULED]  ",
       "   ✅ Phase: Round of 16 | Matches: 4경기",
