@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-05 22:44:12 KST",
+  "updated": "2026-07-06 04:20:35 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -120,50 +120,50 @@
   },
   "f1": {
     "next_race": {
-      "round": 11,
-      "name": "British Grand Prix",
-      "circuit": "Silverstone Circuit",
-      "country": "UK",
-      "date": "Jul 03-05",
-      "date_from": "2026-07-03",
-      "date_to": "2026-07-05",
-      "status": "This Week",
-      "sprint": false
+      "round": 12,
+      "name": "Belgian Grand Prix",
+      "circuit": "Circuit de Spa-Francorchamps",
+      "country": "Belgium",
+      "date": "Jul 24-26",
+      "date_from": "2026-07-24",
+      "date_to": "2026-07-26",
+      "status": "Next GP",
+      "sprint": true
     },
     "schedule": [
       {
         "name": "FP1",
-        "date": "07.03",
+        "date": "07.24",
         "day_local": "Fri",
-        "kst_time": "21:30",
+        "kst_time": "20:30",
         "local_time": "13:30"
       },
       {
-        "name": "FP2",
-        "date": "07.04",
+        "name": "Sprint Qualifying",
+        "date": "07.25",
         "day_local": "Fri",
-        "kst_time": "01:00",
-        "local_time": "17:00"
+        "kst_time": "00:30",
+        "local_time": "17:30"
       },
       {
-        "name": "FP3",
-        "date": "07.04",
+        "name": "Sprint",
+        "date": "07.25",
         "day_local": "Sat",
-        "kst_time": "20:30",
-        "local_time": "12:30"
+        "kst_time": "19:00",
+        "local_time": "12:00"
       },
       {
         "name": "Qualifying",
-        "date": "07.05",
+        "date": "07.25",
         "day_local": "Sat",
-        "kst_time": "00:00",
+        "kst_time": "23:00",
         "local_time": "16:00"
       },
       {
         "name": "Race",
-        "date": "07.05",
+        "date": "07.26",
         "day_local": "Sun",
-        "kst_time": "23:00",
+        "kst_time": "22:00",
         "local_time": "15:00"
       }
     ],
@@ -178,25 +178,25 @@
         "pos": 2,
         "driver": "George Russell",
         "team": "Mercedes",
-        "points": 136
+        "points": 154
       },
       {
         "pos": 3,
         "driver": "Lewis Hamilton",
         "team": "Ferrari",
-        "points": 132
+        "points": 147
       },
       {
         "pos": 4,
-        "driver": "Lando Norris",
-        "team": "McLaren",
-        "points": 85
+        "driver": "Charles Leclerc",
+        "team": "Ferrari",
+        "points": 108
       },
       {
         "pos": 5,
-        "driver": "Charles Leclerc",
-        "team": "Ferrari",
-        "points": 83
+        "driver": "Lando Norris",
+        "team": "McLaren",
+        "points": 97
       },
       {
         "pos": 6,
@@ -214,19 +214,19 @@
         "pos": 8,
         "driver": "Isack Hadjar",
         "team": "Racing Bulls",
-        "points": 42
+        "points": 52
       },
       {
         "pos": 9,
         "driver": "Pierre Gasly",
         "team": "Alpine",
-        "points": 41
+        "points": 42
       },
       {
         "pos": 10,
         "driver": "Liam Lawson",
         "team": "Red Bull",
-        "points": 31
+        "points": 39
       }
     ]
   },
@@ -250,24 +250,6 @@
     "phase": "Round of 16",
     "matches": [
       {
-        "home": "Canada",
-        "away": "Morocco",
-        "kst_date": "07.05",
-        "kst_time": "02:00",
-        "score": "0-3",
-        "status": "FINISHED",
-        "group": ""
-      },
-      {
-        "home": "Paraguay",
-        "away": "France",
-        "kst_date": "07.05",
-        "kst_time": "06:00",
-        "score": "0-1",
-        "status": "FINISHED",
-        "group": ""
-      },
-      {
         "home": "Brazil",
         "away": "Norway",
         "kst_date": "07.06",
@@ -284,6 +266,24 @@
         "score": "",
         "status": "SCHEDULED",
         "group": ""
+      },
+      {
+        "home": "Portugal",
+        "away": "Spain",
+        "kst_date": "07.07",
+        "kst_time": "04:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": ""
+      },
+      {
+        "home": "United States",
+        "away": "Belgium",
+        "kst_date": "07.07",
+        "kst_time": "09:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": ""
       }
     ]
   },
@@ -293,7 +293,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-07-05 22:44:12 (KST)",
+      "🚀 [Start] 2026-07-06 04:20:35 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -340,24 +340,24 @@
       "      ✅ 순위 직접 파싱 성공 (www.formula1.com): 22명",
       "   ✅ 순위: 10명",
       "      1. Kimi Antonelli (Mercedes) 179pts",
-      "      2. George Russell (Mercedes) 136pts",
-      "      3. Lewis Hamilton (Ferrari) 132pts",
-      "      4. Lando Norris (McLaren) 85pts",
-      "      5. Charles Leclerc (Ferrari) 83pts",
-      "   ✅ British Grand Prix | Silverstone Circuit | Jul 03-05 [This Week]",
-      "      📅 07.03 21:30 KST | FP1",
-      "      📅 07.04 01:00 KST | FP2",
-      "      📅 07.04 20:30 KST | FP3",
-      "      📅 07.05 00:00 KST | Qualifying",
-      "      📅 07.05 23:00 KST | Race",
+      "      2. George Russell (Mercedes) 154pts",
+      "      3. Lewis Hamilton (Ferrari) 147pts",
+      "      4. Charles Leclerc (Ferrari) 108pts",
+      "      5. Lando Norris (McLaren) 97pts",
+      "   ✅ Belgian Grand Prix | Circuit de Spa-Francorchamps | Jul 24-26 [Next GP]",
+      "      📅 07.24 20:30 KST | FP1",
+      "      📅 07.25 00:30 KST | Sprint Qualifying",
+      "      📅 07.25 19:00 KST | Sprint",
+      "      📅 07.25 23:00 KST | Qualifying",
+      "      📅 07.26 22:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
-      "   [WorldCup] API 응답: 7경기 (UTC 2026-07-04~2026-07-06)",
+      "   [WorldCup] API 응답: 6경기 (UTC 2026-07-05~2026-07-07)",
       "   ✅ World Cup 데이터: 4경기 (Round of 16)",
-      "      ✅ 07.05 02:00 KST | Canada vs Morocco [FINISHED] 0-3 ",
-      "      ✅ 07.05 06:00 KST | Paraguay vs France [FINISHED] 0-1 ",
       "      📅 07.06 05:00 KST | Brazil vs Norway [SCHEDULED]  ",
       "      📅 07.06 09:00 KST | Mexico vs England [SCHEDULED]  ",
+      "      📅 07.07 04:00 KST | Portugal vs Spain [SCHEDULED]  ",
+      "      📅 07.07 09:00 KST | United States vs Belgium [SCHEDULED]  ",
       "   ✅ Phase: Round of 16 | Matches: 4경기",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
