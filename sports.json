@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-06 19:27:05 KST",
+  "updated": "2026-07-07 00:37:31 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -250,24 +250,6 @@
     "phase": "Round of 16",
     "matches": [
       {
-        "home": "Brazil",
-        "away": "Norway",
-        "kst_date": "07.06",
-        "kst_time": "05:00",
-        "score": "1-2",
-        "status": "FINISHED",
-        "group": ""
-      },
-      {
-        "home": "Mexico",
-        "away": "England",
-        "kst_date": "07.06",
-        "kst_time": "10:00",
-        "score": "2-3",
-        "status": "FINISHED",
-        "group": ""
-      },
-      {
         "home": "Portugal",
         "away": "Spain",
         "kst_date": "07.07",
@@ -284,6 +266,24 @@
         "score": "",
         "status": "SCHEDULED",
         "group": ""
+      },
+      {
+        "home": "Argentina",
+        "away": "Egypt",
+        "kst_date": "07.08",
+        "kst_time": "01:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": ""
+      },
+      {
+        "home": "Switzerland",
+        "away": "Colombia",
+        "kst_date": "07.08",
+        "kst_time": "05:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": ""
       }
     ]
   },
@@ -293,7 +293,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-07-06 19:27:05 (KST)",
+      "🚀 [Start] 2026-07-07 00:37:31 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -352,12 +352,12 @@
       "      📅 07.26 22:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
-      "   [WorldCup] API 응답: 6경기 (UTC 2026-07-05~2026-07-07)",
+      "   [WorldCup] API 응답: 5경기 (UTC 2026-07-06~2026-07-08)",
       "   ✅ World Cup 데이터: 4경기 (Round of 16)",
-      "      ✅ 07.06 05:00 KST | Brazil vs Norway [FINISHED] 1-2 ",
-      "      ✅ 07.06 10:00 KST | Mexico vs England [FINISHED] 2-3 ",
       "      📅 07.07 04:00 KST | Portugal vs Spain [SCHEDULED]  ",
       "      📅 07.07 09:00 KST | United States vs Belgium [SCHEDULED]  ",
+      "      📅 07.08 01:00 KST | Argentina vs Egypt [SCHEDULED]  ",
+      "      📅 07.08 05:00 KST | Switzerland vs Colombia [SCHEDULED]  ",
       "   ✅ Phase: Round of 16 | Matches: 4경기",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
