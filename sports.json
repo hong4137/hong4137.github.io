@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-07 00:37:31 KST",
+  "updated": "2026-07-07 05:00:37 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -254,8 +254,8 @@
         "away": "Spain",
         "kst_date": "07.07",
         "kst_time": "04:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "0-0",
+        "status": "LIVE",
         "group": ""
       },
       {
@@ -293,7 +293,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-07-07 00:37:31 (KST)",
+      "🚀 [Start] 2026-07-07 05:00:37 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -354,7 +354,7 @@
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
       "   [WorldCup] API 응답: 5경기 (UTC 2026-07-06~2026-07-08)",
       "   ✅ World Cup 데이터: 4경기 (Round of 16)",
-      "      📅 07.07 04:00 KST | Portugal vs Spain [SCHEDULED]  ",
+      "      🔴 07.07 04:00 KST | Portugal vs Spain [LIVE] 0-0 ",
       "      📅 07.07 09:00 KST | United States vs Belgium [SCHEDULED]  ",
       "      📅 07.08 01:00 KST | Argentina vs Egypt [SCHEDULED]  ",
       "      📅 07.08 05:00 KST | Switzerland vs Colombia [SCHEDULED]  ",
