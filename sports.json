@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-08 04:57:52 KST",
+  "updated": "2026-07-08 11:52:38 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -263,8 +263,8 @@
         "away": "Colombia",
         "kst_date": "07.08",
         "kst_time": "05:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "4-3",
+        "status": "FINISHED",
         "group": ""
       }
     ]
@@ -275,7 +275,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-07-08 04:57:52 (KST)",
+      "🚀 [Start] 2026-07-08 11:52:38 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -337,7 +337,7 @@
       "   [WorldCup] API 응답: 4경기 (UTC 2026-07-07~2026-07-09)",
       "   ✅ World Cup 데이터: 2경기 (Round of 16)",
       "      ✅ 07.08 01:00 KST | Argentina vs Egypt [FINISHED] 3-2 ",
-      "      📅 07.08 05:00 KST | Switzerland vs Colombia [SCHEDULED]  ",
+      "      ✅ 07.08 05:00 KST | Switzerland vs Colombia [FINISHED] 4-3 ",
       "   ✅ Phase: Round of 16 | Matches: 2경기",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
