@@ -1,21 +1,22 @@
 {
-  "generated_at": "2026-07-08 07:08 KST",
+  "generated_at": "2026-07-09 07:02 KST",
   "events": [
     {
       "date": "2026-07-09",
-      "title": "미국 주간 신규 실업수당 청구건수",
-      "category": "economic_data",
+      "title": "미국 30년물 국채 입찰",
+      "category": "treasury_auction",
       "importance": 4,
       "impact": [
+        "yields",
         "equities",
         "USD"
       ],
-      "consensus": "220K",
-      "source_url": "https://www.dol.gov/"
+      "consensus": null,
+      "source_url": "https://www.treasurydirect.gov/"
     },
     {
       "date": "2026-07-14",
-      "title": "미국 6월 소비자물가지수 (CPI)",
+      "title": "미국 6월 소비자물가지수 (CPI) 발표",
       "category": "economic_data",
       "importance": 5,
       "impact": [
@@ -29,40 +30,30 @@
     },
     {
       "date": "2026-07-15",
-      "title": "미국 6월 생산자물가지수 (PPI)",
+      "title": "미국 6월 생산자물가지수 (PPI) 발표",
       "category": "economic_data",
       "importance": 4,
       "impact": [
+        "VIX",
         "yields",
         "equities",
         "USD"
       ],
-      "consensus": "6.5% YoY",
+      "consensus": null,
       "source_url": "https://www.bls.gov/ppi/"
     },
     {
       "date": "2026-07-16",
-      "title": "미국 6월 소매판매",
+      "title": "미국 6월 소매판매 발표",
       "category": "economic_data",
       "importance": 4,
       "impact": [
         "equities",
-        "USD"
+        "USD",
+        "yields"
       ],
       "consensus": null,
       "source_url": "https://www.census.gov/retail/"
-    },
-    {
-      "date": "2026-07-22",
-      "title": "미국 주별 구인·이직 보고서 (연간 2025)",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/jlt/"
     }
   ]
 }
