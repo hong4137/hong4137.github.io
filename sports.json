@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-08 23:16:18 KST",
+  "updated": "2026-07-09 04:35:26 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -247,24 +247,15 @@
     }
   },
   "worldcup": {
-    "phase": "Round of 16",
+    "phase": "Quarter-Finals",
     "matches": [
       {
-        "home": "Argentina",
-        "away": "Egypt",
-        "kst_date": "07.08",
-        "kst_time": "01:00",
-        "score": "3-2",
-        "status": "FINISHED",
-        "group": ""
-      },
-      {
-        "home": "Switzerland",
-        "away": "Colombia",
-        "kst_date": "07.08",
+        "home": "France",
+        "away": "Morocco",
+        "kst_date": "07.10",
         "kst_time": "05:00",
-        "score": "4-3",
-        "status": "FINISHED",
+        "score": "",
+        "status": "SCHEDULED",
         "group": ""
       }
     ]
@@ -275,7 +266,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-07-08 23:16:18 (KST)",
+      "🚀 [Start] 2026-07-09 04:35:26 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -334,11 +325,10 @@
       "      📅 07.26 22:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
-      "   [WorldCup] API 응답: 4경기 (UTC 2026-07-07~2026-07-09)",
-      "   ✅ World Cup 데이터: 2경기 (Round of 16)",
-      "      ✅ 07.08 01:00 KST | Argentina vs Egypt [FINISHED] 3-2 ",
-      "      ✅ 07.08 05:00 KST | Switzerland vs Colombia [FINISHED] 4-3 ",
-      "   ✅ Phase: Round of 16 | Matches: 2경기",
+      "   [WorldCup] API 응답: 2경기 (UTC 2026-07-08~2026-07-10)",
+      "   ✅ World Cup 데이터: 1경기 (Quarter-Finals)",
+      "      📅 07.10 05:00 KST | France vs Morocco [SCHEDULED]  ",
+      "   ✅ Phase: Quarter-Finals | Matches: 1경기",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
       "      Recent: - vs - - (-)",
