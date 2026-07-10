@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-10 04:49:00 KST",
+  "updated": "2026-07-10 12:32:58 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -254,8 +254,8 @@
         "away": "Morocco",
         "kst_date": "07.10",
         "kst_time": "05:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "2-0",
+        "status": "FINISHED",
         "group": ""
       },
       {
@@ -275,7 +275,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-07-10 04:49:00 (KST)",
+      "🚀 [Start] 2026-07-10 12:32:58 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -336,7 +336,7 @@
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
       "   [WorldCup] API 응답: 3경기 (UTC 2026-07-09~2026-07-11)",
       "   ✅ World Cup 데이터: 2경기 (Quarter-Finals)",
-      "      📅 07.10 05:00 KST | France vs Morocco [SCHEDULED]  ",
+      "      ✅ 07.10 05:00 KST | France vs Morocco [FINISHED] 2-0 ",
       "      📅 07.11 04:00 KST | Spain vs Belgium [SCHEDULED]  ",
       "   ✅ Phase: Quarter-Finals | Matches: 2경기",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
