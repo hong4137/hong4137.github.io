@@ -1,22 +1,21 @@
 {
-  "generated_at": "2026-07-09 07:02 KST",
+  "generated_at": "2026-07-11 06:58 KST",
   "events": [
     {
-      "date": "2026-07-09",
-      "title": "미국 30년물 국채 입찰",
-      "category": "treasury_auction",
+      "date": "2026-07-13",
+      "title": "OPEC+ 회의",
+      "category": "geopolitical",
       "importance": 4,
       "impact": [
-        "yields",
-        "equities",
-        "USD"
+        "oil",
+        "equities"
       ],
       "consensus": null,
-      "source_url": "https://www.treasurydirect.gov/"
+      "source_url": "https://www.opec.org/"
     },
     {
       "date": "2026-07-14",
-      "title": "미국 6월 소비자물가지수 (CPI) 발표",
+      "title": "미국 6월 소비자물가지수(CPI) 발표",
       "category": "economic_data",
       "importance": 5,
       "impact": [
@@ -29,8 +28,32 @@
       "source_url": "https://www.bls.gov/cpi/"
     },
     {
+      "date": "2026-07-14",
+      "title": "JPMorgan Chase 2분기 실적 발표",
+      "category": "earnings",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "VIX"
+      ],
+      "consensus": null,
+      "source_url": "https://www.jpmorganchase.com/ir"
+    },
+    {
+      "date": "2026-07-14",
+      "title": "Bank of America 2분기 실적 발표",
+      "category": "earnings",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "VIX"
+      ],
+      "consensus": null,
+      "source_url": "https://investor.bankofamerica.com/"
+    },
+    {
       "date": "2026-07-15",
-      "title": "미국 6월 생산자물가지수 (PPI) 발표",
+      "title": "미국 6월 생산자물가지수(PPI) 발표",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -44,6 +67,19 @@
     },
     {
       "date": "2026-07-16",
+      "title": "미국 주간 신규 실업수당 청구 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.dol.gov/agencies/eta/unemployment-insurance"
+    },
+    {
+      "date": "2026-07-16",
       "title": "미국 6월 소매판매 발표",
       "category": "economic_data",
       "importance": 4,
@@ -54,6 +90,19 @@
       ],
       "consensus": null,
       "source_url": "https://www.census.gov/retail/"
+    },
+    {
+      "date": "2026-07-22",
+      "title": "미국 20년물 국채 입찰",
+      "category": "treasury_auction",
+      "importance": 4,
+      "impact": [
+        "yields",
+        "USD",
+        "equities"
+      ],
+      "consensus": null,
+      "source_url": "https://www.treasurydirect.gov/"
     }
   ]
 }
