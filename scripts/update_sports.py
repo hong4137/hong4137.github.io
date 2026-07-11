@@ -38,6 +38,10 @@ import json
 import datetime
 import re
 import sys
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
+if hasattr(sys.stderr, 'reconfigure'):
+    sys.stderr.reconfigure(encoding='utf-8')
 import requests
 from datetime import timedelta, date
 
@@ -968,7 +972,7 @@ F1_2026_CALENDAR = [
     {'round': 6, 'name': 'Miami Grand Prix', 'circuit': 'Miami International Autodrome', 'country': 'USA',
      'date_from': '2026-05-01', 'date_to': '2026-05-03', 'local_tz': 'EDT', 'utc_offset': -4, 'sprint': True},
     {'round': 7, 'name': 'Canadian Grand Prix', 'circuit': 'Circuit Gilles Villeneuve, Montreal', 'country': 'Canada',
-     'date_from': '2026-05-15', 'date_to': '2026-05-17', 'local_tz': 'EDT', 'utc_offset': -4, 'sprint': False},
+     'date_from': '2026-05-15', 'date_to': '2026-05-17', 'local_tz': 'EDT', 'utc_offset': -4, 'sprint': True},
     {'round': 8, 'name': 'Monaco Grand Prix', 'circuit': 'Circuit de Monaco', 'country': 'Monaco',
      'date_from': '2026-05-22', 'date_to': '2026-05-24', 'local_tz': 'CEST', 'utc_offset': 2, 'sprint': False},
     {'round': 9, 'name': 'Spanish Grand Prix', 'circuit': 'Circuit de Barcelona-Catalunya', 'country': 'Spain',
@@ -976,30 +980,32 @@ F1_2026_CALENDAR = [
     {'round': 10, 'name': 'Austrian Grand Prix', 'circuit': 'Red Bull Ring, Spielberg', 'country': 'Austria',
      'date_from': '2026-06-26', 'date_to': '2026-06-28', 'local_tz': 'CEST', 'utc_offset': 2, 'sprint': False},
     {'round': 11, 'name': 'British Grand Prix', 'circuit': 'Silverstone Circuit', 'country': 'UK',
-     'date_from': '2026-07-03', 'date_to': '2026-07-05', 'local_tz': 'BST', 'utc_offset': 1, 'sprint': False},
+     'date_from': '2026-07-03', 'date_to': '2026-07-05', 'local_tz': 'BST', 'utc_offset': 1, 'sprint': True},
     {'round': 12, 'name': 'Belgian Grand Prix', 'circuit': 'Circuit de Spa-Francorchamps', 'country': 'Belgium',
-     'date_from': '2026-07-24', 'date_to': '2026-07-26', 'local_tz': 'CEST', 'utc_offset': 2, 'sprint': True},
+     'date_from': '2026-07-17', 'date_to': '2026-07-19', 'local_tz': 'CEST', 'utc_offset': 2, 'sprint': False},
     {'round': 13, 'name': 'Hungarian Grand Prix', 'circuit': 'Hungaroring, Budapest', 'country': 'Hungary',
-     'date_from': '2026-07-31', 'date_to': '2026-08-02', 'local_tz': 'CEST', 'utc_offset': 2, 'sprint': False},
+     'date_from': '2026-07-24', 'date_to': '2026-07-26', 'local_tz': 'CEST', 'utc_offset': 2, 'sprint': False},
     {'round': 14, 'name': 'Dutch Grand Prix', 'circuit': 'Circuit Zandvoort', 'country': 'Netherlands',
-     'date_from': '2026-08-28', 'date_to': '2026-08-30', 'local_tz': 'CEST', 'utc_offset': 2, 'sprint': False},
+     'date_from': '2026-08-21', 'date_to': '2026-08-23', 'local_tz': 'CEST', 'utc_offset': 2, 'sprint': True},
     {'round': 15, 'name': 'Italian Grand Prix', 'circuit': 'Autodromo di Monza', 'country': 'Italy',
      'date_from': '2026-09-04', 'date_to': '2026-09-06', 'local_tz': 'CEST', 'utc_offset': 2, 'sprint': False},
-    {'round': 16, 'name': 'Azerbaijan Grand Prix', 'circuit': 'Baku City Circuit', 'country': 'Azerbaijan',
+    {'round': 16, 'name': 'Spanish Grand Prix (Madrid)', 'circuit': 'Circuito Urbano de Madrid', 'country': 'Spain',
+     'date_from': '2026-09-11', 'date_to': '2026-09-13', 'local_tz': 'CEST', 'utc_offset': 2, 'sprint': False},
+    {'round': 17, 'name': 'Azerbaijan Grand Prix', 'circuit': 'Baku City Circuit', 'country': 'Azerbaijan',
      'date_from': '2026-09-18', 'date_to': '2026-09-20', 'local_tz': 'AZT', 'utc_offset': 4, 'sprint': False},
-    {'round': 17, 'name': 'Singapore Grand Prix', 'circuit': 'Marina Bay Street Circuit', 'country': 'Singapore',
-     'date_from': '2026-10-02', 'date_to': '2026-10-04', 'local_tz': 'SGT', 'utc_offset': 8, 'sprint': False},
-    {'round': 18, 'name': 'United States Grand Prix', 'circuit': 'COTA, Austin', 'country': 'USA',
-     'date_from': '2026-10-16', 'date_to': '2026-10-18', 'local_tz': 'CDT', 'utc_offset': -5, 'sprint': True},
-    {'round': 19, 'name': 'Mexico City Grand Prix', 'circuit': 'Autódromo Hermanos Rodríguez', 'country': 'Mexico',
+    {'round': 18, 'name': 'Singapore Grand Prix', 'circuit': 'Marina Bay Street Circuit', 'country': 'Singapore',
+     'date_from': '2026-10-02', 'date_to': '2026-10-04', 'local_tz': 'SGT', 'utc_offset': 8, 'sprint': True},
+    {'round': 19, 'name': 'United States Grand Prix', 'circuit': 'COTA, Austin', 'country': 'USA',
+     'date_from': '2026-10-16', 'date_to': '2026-10-18', 'local_tz': 'CDT', 'utc_offset': -5, 'sprint': False},
+    {'round': 20, 'name': 'Mexico City Grand Prix', 'circuit': 'Autódromo Hermanos Rodríguez', 'country': 'Mexico',
      'date_from': '2026-10-23', 'date_to': '2026-10-25', 'local_tz': 'CDT', 'utc_offset': -5, 'sprint': False},
-    {'round': 20, 'name': 'São Paulo Grand Prix', 'circuit': 'Interlagos, São Paulo', 'country': 'Brazil',
-     'date_from': '2026-11-06', 'date_to': '2026-11-08', 'local_tz': 'BRT', 'utc_offset': -3, 'sprint': True},
-    {'round': 21, 'name': 'Las Vegas Grand Prix', 'circuit': 'Las Vegas Strip Circuit', 'country': 'USA',
+    {'round': 21, 'name': 'São Paulo Grand Prix', 'circuit': 'Interlagos, São Paulo', 'country': 'Brazil',
+     'date_from': '2026-11-06', 'date_to': '2026-11-08', 'local_tz': 'BRT', 'utc_offset': -3, 'sprint': False},
+    {'round': 22, 'name': 'Las Vegas Grand Prix', 'circuit': 'Las Vegas Strip Circuit', 'country': 'USA',
      'date_from': '2026-11-20', 'date_to': '2026-11-22', 'local_tz': 'PST', 'utc_offset': -8, 'sprint': False},
-    {'round': 22, 'name': 'Qatar Grand Prix', 'circuit': 'Lusail International Circuit', 'country': 'Qatar',
-     'date_from': '2026-11-27', 'date_to': '2026-11-29', 'local_tz': 'AST', 'utc_offset': 3, 'sprint': True},
-    {'round': 23, 'name': 'Abu Dhabi Grand Prix', 'circuit': 'Yas Marina Circuit', 'country': 'UAE',
+    {'round': 23, 'name': 'Qatar Grand Prix', 'circuit': 'Lusail International Circuit', 'country': 'Qatar',
+     'date_from': '2026-11-27', 'date_to': '2026-11-29', 'local_tz': 'AST', 'utc_offset': 3, 'sprint': False},
+    {'round': 24, 'name': 'Abu Dhabi Grand Prix', 'circuit': 'Yas Marina Circuit', 'country': 'UAE',
      'date_from': '2026-12-04', 'date_to': '2026-12-06', 'local_tz': 'GST', 'utc_offset': 4, 'sprint': False},
 ]
 
