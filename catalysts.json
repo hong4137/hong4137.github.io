@@ -1,18 +1,6 @@
 {
-  "generated_at": "2026-07-11 06:58 KST",
+  "generated_at": "2026-07-12 06:44 KST",
   "events": [
-    {
-      "date": "2026-07-13",
-      "title": "OPEC+ 회의",
-      "category": "geopolitical",
-      "importance": 4,
-      "impact": [
-        "oil",
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://www.opec.org/"
-    },
     {
       "date": "2026-07-14",
       "title": "미국 6월 소비자물가지수(CPI) 발표",
@@ -29,27 +17,40 @@
     },
     {
       "date": "2026-07-14",
-      "title": "JPMorgan Chase 2분기 실적 발표",
+      "title": "JP모건체이스 2026년 2분기 실적 발표",
       "category": "earnings",
       "importance": 4,
       "impact": [
         "equities",
-        "VIX"
+        "yields"
       ],
-      "consensus": null,
+      "consensus": "EPS $5.56, Revenue $49.01B",
       "source_url": "https://www.jpmorganchase.com/ir"
     },
     {
       "date": "2026-07-14",
-      "title": "Bank of America 2분기 실적 발표",
+      "title": "뱅크오브아메리카 2026년 2분기 실적 발표",
       "category": "earnings",
       "importance": 4,
       "impact": [
         "equities",
-        "VIX"
+        "yields"
+      ],
+      "consensus": "EPS $1.12-1.14, Revenue $30.61-30.65B",
+      "source_url": "https://investor.bankofamerica.com/"
+    },
+    {
+      "date": "2026-07-14",
+      "title": "미국 6월 실질임금 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
       ],
       "consensus": null,
-      "source_url": "https://investor.bankofamerica.com/"
+      "source_url": "https://www.bls.gov/"
     },
     {
       "date": "2026-07-15",
@@ -63,46 +64,44 @@
         "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.bls.gov/ppi/"
+      "source_url": "https://www.bls.gov/"
     },
     {
-      "date": "2026-07-16",
-      "title": "미국 주간 신규 실업수당 청구 발표",
+      "date": "2026-07-17",
+      "title": "미국 6월 수출입물가지수 발표",
       "category": "economic_data",
       "importance": 4,
       "impact": [
-        "equities",
         "USD",
+        "equities",
         "yields"
       ],
       "consensus": null,
-      "source_url": "https://www.dol.gov/agencies/eta/unemployment-insurance"
-    },
-    {
-      "date": "2026-07-16",
-      "title": "미국 6월 소매판매 발표",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.census.gov/retail/"
+      "source_url": "https://www.bls.gov/"
     },
     {
       "date": "2026-07-22",
-      "title": "미국 20년물 국채 입찰",
-      "category": "treasury_auction",
-      "importance": 4,
+      "title": "테슬라 2026년 2분기 실적 발표",
+      "category": "earnings",
+      "importance": 5,
       "impact": [
-        "yields",
-        "USD",
-        "equities"
+        "equities",
+        "VIX"
+      ],
+      "consensus": "EPS ~$0.47",
+      "source_url": "https://ir.tesla.com/"
+    },
+    {
+      "date": "2026-07-22",
+      "title": "알파벳(GOOGL) 2026년 2분기 실적 발표",
+      "category": "earnings",
+      "importance": 5,
+      "impact": [
+        "equities",
+        "VIX"
       ],
       "consensus": null,
-      "source_url": "https://www.treasurydirect.gov/"
+      "source_url": "https://abc.xyz/investor"
     }
   ]
 }
