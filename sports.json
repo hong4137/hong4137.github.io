@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-12 11:57:09 KST",
+  "updated": "2026-07-12 17:20:49 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -263,8 +263,8 @@
         "away": "Switzerland",
         "kst_date": "07.12",
         "kst_time": "10:00",
-        "score": "1-1",
-        "status": "LIVE",
+        "score": "3-1",
+        "status": "FINISHED",
         "group": ""
       }
     ]
@@ -275,7 +275,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-07-12 11:57:09 (KST)",
+      "🚀 [Start] 2026-07-12 17:20:49 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -337,7 +337,7 @@
       "   [WorldCup] API 응답: 2경기 (UTC 2026-07-11~2026-07-13)",
       "   ✅ World Cup 데이터: 2경기 (Quarter-Finals)",
       "      ✅ 07.12 06:00 KST | Norway vs England [FINISHED] 1-2 ",
-      "      🔴 07.12 10:00 KST | Argentina vs Switzerland [LIVE] 1-1 ",
+      "      ✅ 07.12 10:00 KST | Argentina vs Switzerland [FINISHED] 3-1 ",
       "   ✅ Phase: Quarter-Finals | Matches: 2경기",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
