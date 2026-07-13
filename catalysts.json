@@ -1,49 +1,35 @@
 {
-  "generated_at": "2026-07-13 06:44 KST",
+  "generated_at": "2026-07-14 06:52 KST",
   "events": [
     {
       "date": "2026-07-14",
-      "title": "JP모건체이스 2026년 2분기 실적 발표",
+      "title": "JPMorgan Chase 2분기 2026년 실적 발표",
       "category": "earnings",
-      "importance": 5,
+      "importance": 4,
       "impact": [
         "equities",
-        "VIX",
+        "USD",
         "yields"
       ],
-      "consensus": "EPS $5.56, 매출 $49.01B",
-      "source_url": "https://www.jpmorganchase.com/ir"
+      "consensus": "EPS $5.61, Revenue $49.82B",
+      "source_url": "https://www.jpmorganchase.com/"
     },
     {
       "date": "2026-07-14",
-      "title": "뱅크오브아메리카 2026년 2분기 실적 발표",
+      "title": "Bank of America 2분기 2026년 실적 발표",
       "category": "earnings",
-      "importance": 5,
+      "importance": 4,
       "impact": [
         "equities",
-        "VIX",
+        "USD",
         "yields"
       ],
-      "consensus": "EPS $1.13, 매출 $30.8B",
+      "consensus": "EPS $1.11, Revenue $30.417B",
       "source_url": "https://investor.bankofamerica.com/"
     },
     {
-      "date": "2026-07-14",
-      "title": "미국 2026년 6월 소비자물가지수(CPI) 발표",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
-        "USD",
-        "yields",
-        "equities",
-        "VIX"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/cpi/"
-    },
-    {
       "date": "2026-07-16",
-      "title": "미국 2026년 6월 소매판매 보고서 발표",
+      "title": "미국 6월 소매판매 발표",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -52,7 +38,32 @@
         "yields"
       ],
       "consensus": null,
-      "source_url": "https://www.census.gov/retail/"
+      "source_url": "https://www.census.gov/"
+    },
+    {
+      "date": "2026-07-16",
+      "title": "Netflix 2분기 2026년 실적 발표",
+      "category": "earnings",
+      "importance": 4,
+      "impact": [
+        "equities"
+      ],
+      "consensus": "EPS $0.79, Revenue $12.58B",
+      "source_url": "http://ir.netflix.net/"
+    },
+    {
+      "date": "2026-07-29",
+      "title": "FOMC 회의 및 금리 결정 발표",
+      "category": "fed_fomc",
+      "importance": 5,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.federalreserve.gov/"
     }
   ]
 }
