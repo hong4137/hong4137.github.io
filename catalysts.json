@@ -1,60 +1,10 @@
 {
-  "generated_at": "2026-07-14 06:52 KST",
+  "generated_at": "2026-07-15 06:54 KST",
   "events": [
     {
-      "date": "2026-07-14",
-      "title": "JPMorgan Chase 2분기 2026년 실적 발표",
-      "category": "earnings",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": "EPS $5.61, Revenue $49.82B",
-      "source_url": "https://www.jpmorganchase.com/"
-    },
-    {
-      "date": "2026-07-14",
-      "title": "Bank of America 2분기 2026년 실적 발표",
-      "category": "earnings",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": "EPS $1.11, Revenue $30.417B",
-      "source_url": "https://investor.bankofamerica.com/"
-    },
-    {
-      "date": "2026-07-16",
-      "title": "미국 6월 소매판매 발표",
+      "date": "2026-07-15",
+      "title": "미국 6월 생산자물가지수 (PPI) 발표",
       "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "USD",
-        "equities",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.census.gov/"
-    },
-    {
-      "date": "2026-07-16",
-      "title": "Netflix 2분기 2026년 실적 발표",
-      "category": "earnings",
-      "importance": 4,
-      "impact": [
-        "equities"
-      ],
-      "consensus": "EPS $0.79, Revenue $12.58B",
-      "source_url": "http://ir.netflix.net/"
-    },
-    {
-      "date": "2026-07-29",
-      "title": "FOMC 회의 및 금리 결정 발표",
-      "category": "fed_fomc",
       "importance": 5,
       "impact": [
         "VIX",
@@ -63,7 +13,91 @@
         "USD"
       ],
       "consensus": null,
+      "source_url": "https://www.bls.gov/"
+    },
+    {
+      "date": "2026-07-15",
+      "title": "미국 7월 엠파이어 스테이트 제조업지수 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.newyorkfed.org/"
+    },
+    {
+      "date": "2026-07-16",
+      "title": "미국 6월 소매판매 발표",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "VIX",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.census.gov/"
+    },
+    {
+      "date": "2026-07-16",
+      "title": "미국 7월 필라델피아 연은 제조업지수 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.philadelphiafed.org/"
+    },
+    {
+      "date": "2026-07-16",
+      "title": "넷플릭스 (NFLX) 2분기 실적 발표",
+      "category": "earnings",
+      "importance": 5,
+      "impact": [
+        "equities"
+      ],
+      "consensus": null,
+      "source_url": "https://ir.netflix.com/"
+    },
+    {
+      "date": "2026-07-17",
+      "title": "미국 6월 주택착공 및 건축허가 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.census.gov/"
+    },
+    {
+      "date": "2026-07-17",
+      "title": "미국 6월 산업생산 및 설비가동률 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
       "source_url": "https://www.federalreserve.gov/"
+    },
+    {
+      "date": "2026-07-17",
+      "title": "미국 7월 미시간대 소비자심리지수 (예비치) 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://data.sca.isr.umich.edu/"
     }
   ]
 }
