@@ -1,10 +1,82 @@
 {
-  "generated_at": "2026-07-15 06:54 KST",
+  "generated_at": "2026-07-16 06:56 KST",
   "events": [
     {
-      "date": "2026-07-15",
-      "title": "미국 6월 생산자물가지수 (PPI) 발표",
-      "category": "economic_data",
+      "date": "2026-07-18",
+      "title": "Google Applied AI Conference 2026",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "VIX"
+      ],
+      "consensus": null,
+      "source_url": "https://gdg.community.dev"
+    },
+    {
+      "date": "2026-07-20",
+      "title": "NVIDIA SIGGRAPH 2026 기조연설",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "VIX"
+      ],
+      "consensus": null,
+      "source_url": "https://www.nvidia.com/siggraph"
+    },
+    {
+      "date": "2026-07-22",
+      "title": "Microsoft MCAPS Start for Partners",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "VIX"
+      ],
+      "consensus": null,
+      "source_url": "https://www.microsoft.com/partner"
+    },
+    {
+      "date": "2026-07-26",
+      "title": "NVIDIA DAC 2026 시작",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "VIX"
+      ],
+      "consensus": null,
+      "source_url": "https://www.nvidia.com/dac"
+    },
+    {
+      "date": "2026-07-27",
+      "title": "Visual Studio Live! @ Microsoft HQ 2026 시작",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "VIX"
+      ],
+      "consensus": null,
+      "source_url": "https://vslive.com"
+    },
+    {
+      "date": "2026-07-28",
+      "title": "Microsoft Partner FY27 GTM Kickoff Event",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "VIX"
+      ],
+      "consensus": null,
+      "source_url": "https://www.microsoft.com/partner"
+    },
+    {
+      "date": "2026-07-29",
+      "title": "FOMC 회의 결과 발표",
+      "category": "fed_fomc",
       "importance": 5,
       "impact": [
         "VIX",
@@ -13,91 +85,19 @@
         "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.bls.gov/"
+      "source_url": "https://www.federalreserve.gov"
     },
     {
-      "date": "2026-07-15",
-      "title": "미국 7월 엠파이어 스테이트 제조업지수 발표",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.newyorkfed.org/"
-    },
-    {
-      "date": "2026-07-16",
-      "title": "미국 6월 소매판매 발표",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.census.gov/"
-    },
-    {
-      "date": "2026-07-16",
-      "title": "미국 7월 필라델피아 연은 제조업지수 발표",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.philadelphiafed.org/"
-    },
-    {
-      "date": "2026-07-16",
-      "title": "넷플릭스 (NFLX) 2분기 실적 발표",
+      "date": "2026-07-29",
+      "title": "Meta Platforms 2분기 실적 발표",
       "category": "earnings",
       "importance": 5,
       "impact": [
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://ir.netflix.com/"
-    },
-    {
-      "date": "2026-07-17",
-      "title": "미국 6월 주택착공 및 건축허가 발표",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
         "equities",
-        "USD"
+        "VIX"
       ],
-      "consensus": null,
-      "source_url": "https://www.census.gov/"
-    },
-    {
-      "date": "2026-07-17",
-      "title": "미국 6월 산업생산 및 설비가동률 발표",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.federalreserve.gov/"
-    },
-    {
-      "date": "2026-07-17",
-      "title": "미국 7월 미시간대 소비자심리지수 (예비치) 발표",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://data.sca.isr.umich.edu/"
+      "consensus": "매출 $60.18B, EPS $7.18",
+      "source_url": "https://investor.atmeta.com"
     }
   ]
 }
