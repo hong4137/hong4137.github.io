@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-16 22:56:53 KST",
+  "updated": "2026-07-17 04:14:37 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -127,7 +127,7 @@
       "date": "Jul 17-19",
       "date_from": "2026-07-17",
       "date_to": "2026-07-19",
-      "status": "Next GP",
+      "status": "This Week",
       "sprint": false
     },
     "schedule": [
@@ -247,18 +247,8 @@
     }
   },
   "worldcup": {
-    "phase": "Semi-Finals",
-    "matches": [
-      {
-        "home": "England",
-        "away": "Argentina",
-        "kst_date": "07.16",
-        "kst_time": "04:00",
-        "score": "1-2",
-        "status": "FINISHED",
-        "group": ""
-      }
-    ]
+    "phase": "Group Stage",
+    "matches": []
   },
   "debug": {
     "has_football_key": true,
@@ -266,7 +256,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-07-16 22:56:53 (KST)",
+      "🚀 [Start] 2026-07-17 04:14:37 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -317,7 +307,7 @@
       "      3. Lewis Hamilton (Ferrari) 147pts",
       "      4. Charles Leclerc (Ferrari) 108pts",
       "      5. Lando Norris (McLaren) 97pts",
-      "   ✅ Belgian Grand Prix | Circuit de Spa-Francorchamps | Jul 17-19 [Next GP]",
+      "   ✅ Belgian Grand Prix | Circuit de Spa-Francorchamps | Jul 17-19 [This Week]",
       "      📅 07.17 20:30 KST | FP1",
       "      📅 07.18 00:00 KST | FP2",
       "      📅 07.18 19:30 KST | FP3",
@@ -325,10 +315,9 @@
       "      📅 07.19 22:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
-      "   [WorldCup] API 응답: 1경기 (UTC 2026-07-15~2026-07-17)",
-      "   ✅ World Cup 데이터: 1경기 (Semi-Finals)",
-      "      ✅ 07.16 04:00 KST | England vs Argentina [FINISHED] 1-2 ",
-      "   ✅ Phase: Semi-Finals | Matches: 1경기",
+      "   [WorldCup] API 응답: 1경기 (UTC 2026-07-16~2026-07-18)",
+      "   ✅ World Cup 데이터: 0경기 (Group Stage)",
+      "   ✅ Phase: Group Stage | Matches: 0경기",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
       "      Recent: - vs - - (-)",
