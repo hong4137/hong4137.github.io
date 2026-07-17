@@ -1,81 +1,34 @@
 {
-  "generated_at": "2026-07-16 06:56 KST",
+  "generated_at": "2026-07-18 06:49 KST",
   "events": [
     {
-      "date": "2026-07-18",
-      "title": "Google Applied AI Conference 2026",
-      "category": "tech_conf",
+      "date": "2026-07-21",
+      "title": "미국 6월 주별 고용 및 실업률 발표",
+      "category": "economic_data",
       "importance": 4,
       "impact": [
         "equities",
-        "VIX"
+        "USD",
+        "yields"
       ],
       "consensus": null,
-      "source_url": "https://gdg.community.dev"
-    },
-    {
-      "date": "2026-07-20",
-      "title": "NVIDIA SIGGRAPH 2026 기조연설",
-      "category": "tech_conf",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "VIX"
-      ],
-      "consensus": null,
-      "source_url": "https://www.nvidia.com/siggraph"
+      "source_url": "https://www.bls.gov/"
     },
     {
       "date": "2026-07-22",
-      "title": "Microsoft MCAPS Start for Partners",
-      "category": "tech_conf",
+      "title": "테슬라 (TSLA) 2026년 2분기 실적 발표",
+      "category": "earnings",
       "importance": 4,
       "impact": [
         "equities",
         "VIX"
       ],
-      "consensus": null,
-      "source_url": "https://www.microsoft.com/partner"
-    },
-    {
-      "date": "2026-07-26",
-      "title": "NVIDIA DAC 2026 시작",
-      "category": "tech_conf",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "VIX"
-      ],
-      "consensus": null,
-      "source_url": "https://www.nvidia.com/dac"
-    },
-    {
-      "date": "2026-07-27",
-      "title": "Visual Studio Live! @ Microsoft HQ 2026 시작",
-      "category": "tech_conf",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "VIX"
-      ],
-      "consensus": null,
-      "source_url": "https://vslive.com"
+      "consensus": "EPS $0.47, 매출 $25.64B",
+      "source_url": "https://ir.tesla.com/"
     },
     {
       "date": "2026-07-28",
-      "title": "Microsoft Partner FY27 GTM Kickoff Event",
-      "category": "tech_conf",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "VIX"
-      ],
-      "consensus": null,
-      "source_url": "https://www.microsoft.com/partner"
-    },
-    {
-      "date": "2026-07-29",
-      "title": "FOMC 회의 결과 발표",
+      "title": "FOMC 회의 시작",
       "category": "fed_fomc",
       "importance": 5,
       "impact": [
@@ -84,20 +37,74 @@
         "equities",
         "USD"
       ],
-      "consensus": null,
-      "source_url": "https://www.federalreserve.gov"
+      "consensus": "현재 목표 범위 3.5% – 3.75% 유지 예상",
+      "source_url": "https://www.federalreserve.gov/"
     },
     {
       "date": "2026-07-29",
-      "title": "Meta Platforms 2분기 실적 발표",
+      "title": "FOMC 금리 결정 및 성명 발표",
+      "category": "fed_fomc",
+      "importance": 5,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": "현재 목표 범위 3.5% – 3.75% 유지 예상",
+      "source_url": "https://www.federalreserve.gov/"
+    },
+    {
+      "date": "2026-07-29",
+      "title": "마이크로소프트 (MSFT) 2026년 4분기 실적 발표",
       "category": "earnings",
       "importance": 5,
       "impact": [
         "equities",
         "VIX"
       ],
-      "consensus": "매출 $60.18B, EPS $7.18",
-      "source_url": "https://investor.atmeta.com"
+      "consensus": "EPS $4.24",
+      "source_url": "https://www.microsoft.com/en-us/Investor/"
+    },
+    {
+      "date": "2026-07-29",
+      "title": "메타 플랫폼스 (META) 2026년 2분기 실적 발표",
+      "category": "earnings",
+      "importance": 5,
+      "impact": [
+        "equities",
+        "VIX"
+      ],
+      "consensus": "EPS $7.18, 매출 $60.22B",
+      "source_url": "https://investor.atmeta.com/"
+    },
+    {
+      "date": "2026-07-30",
+      "title": "미국 2026년 2분기 GDP (잠정치) 발표",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "equities",
+        "USD",
+        "yields",
+        "VIX"
+      ],
+      "consensus": "1.8% 연율 성장 예상",
+      "source_url": "https://www.bea.gov/"
+    },
+    {
+      "date": "2026-07-30",
+      "title": "미국 2026년 6월 개인소비지출 (PCE) 물가지수 발표",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "equities",
+        "USD",
+        "yields",
+        "VIX"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bea.gov/"
     }
   ]
 }
