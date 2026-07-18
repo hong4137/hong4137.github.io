@@ -1,70 +1,55 @@
 {
-  "generated_at": "2026-07-18 06:49 KST",
+  "generated_at": "2026-07-19 06:45 KST",
   "events": [
-    {
-      "date": "2026-07-21",
-      "title": "미국 6월 주별 고용 및 실업률 발표",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/"
-    },
     {
       "date": "2026-07-22",
       "title": "테슬라 (TSLA) 2026년 2분기 실적 발표",
       "category": "earnings",
-      "importance": 4,
+      "importance": 5,
       "impact": [
         "equities",
         "VIX"
       ],
-      "consensus": "EPS $0.47, 매출 $25.64B",
+      "consensus": null,
       "source_url": "https://ir.tesla.com/"
     },
     {
-      "date": "2026-07-28",
-      "title": "FOMC 회의 시작",
-      "category": "fed_fomc",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": "현재 목표 범위 3.5% – 3.75% 유지 예상",
-      "source_url": "https://www.federalreserve.gov/"
-    },
-    {
-      "date": "2026-07-29",
-      "title": "FOMC 금리 결정 및 성명 발표",
-      "category": "fed_fomc",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": "현재 목표 범위 3.5% – 3.75% 유지 예상",
-      "source_url": "https://www.federalreserve.gov/"
-    },
-    {
-      "date": "2026-07-29",
-      "title": "마이크로소프트 (MSFT) 2026년 4분기 실적 발표",
+      "date": "2026-07-22",
+      "title": "알파벳 (GOOGL) 2026년 2분기 실적 발표",
       "category": "earnings",
       "importance": 5,
       "impact": [
         "equities",
         "VIX"
       ],
-      "consensus": "EPS $4.24",
-      "source_url": "https://www.microsoft.com/en-us/Investor/"
+      "consensus": "EPS $2.90, Revenue $116.9B",
+      "source_url": "https://abc.xyz/investor/"
+    },
+    {
+      "date": "2026-07-29",
+      "title": "FOMC 회의 및 금리 결정 발표",
+      "category": "fed_fomc",
+      "importance": 5,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.federalreserve.gov/"
+    },
+    {
+      "date": "2026-07-29",
+      "title": "마이크로소프트 (MSFT) 2026년 2분기 실적 발표",
+      "category": "earnings",
+      "importance": 5,
+      "impact": [
+        "equities",
+        "VIX"
+      ],
+      "consensus": "EPS ~$4.04, Revenue ~$81.4B",
+      "source_url": "https://www.microsoft.com/investor/"
     },
     {
       "date": "2026-07-29",
@@ -75,36 +60,44 @@
         "equities",
         "VIX"
       ],
-      "consensus": "EPS $7.18, 매출 $60.22B",
-      "source_url": "https://investor.atmeta.com/"
+      "consensus": null,
+      "source_url": "https://investor.fb.com/"
     },
     {
-      "date": "2026-07-30",
-      "title": "미국 2026년 2분기 GDP (잠정치) 발표",
+      "date": "2026-07-29",
+      "title": "미국 2026년 2분기 GDP (예비치) 발표",
       "category": "economic_data",
-      "importance": 5,
+      "importance": 4,
       "impact": [
         "equities",
         "USD",
-        "yields",
-        "VIX"
-      ],
-      "consensus": "1.8% 연율 성장 예상",
-      "source_url": "https://www.bea.gov/"
-    },
-    {
-      "date": "2026-07-30",
-      "title": "미국 2026년 6월 개인소비지출 (PCE) 물가지수 발표",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
-        "equities",
-        "USD",
-        "yields",
-        "VIX"
+        "yields"
       ],
       "consensus": null,
       "source_url": "https://www.bea.gov/"
+    },
+    {
+      "date": "2026-07-30",
+      "title": "애플 (AAPL) 2026년 2분기 실적 발표",
+      "category": "earnings",
+      "importance": 5,
+      "impact": [
+        "equities",
+        "VIX"
+      ],
+      "consensus": null,
+      "source_url": "https://investor.apple.com/"
+    },
+    {
+      "date": "2026-08-02",
+      "title": "OPEC+ 월간 회의",
+      "category": "geopolitical",
+      "importance": 4,
+      "impact": [
+        "oil"
+      ],
+      "consensus": null,
+      "source_url": "https://www.opec.org/"
     }
   ]
 }
