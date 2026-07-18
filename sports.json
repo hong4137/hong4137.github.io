@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-18 22:19:50 KST",
+  "updated": "2026-07-19 04:07:48 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -247,13 +247,22 @@
     }
   },
   "worldcup": {
-    "phase": "Third Place",
+    "phase": "Final",
     "matches": [
       {
         "home": "France",
         "away": "England",
         "kst_date": "07.19",
         "kst_time": "06:00",
+        "score": "",
+        "status": "SCHEDULED",
+        "group": ""
+      },
+      {
+        "home": "Spain",
+        "away": "Argentina",
+        "kst_date": "07.20",
+        "kst_time": "04:00",
         "score": "",
         "status": "SCHEDULED",
         "group": ""
@@ -266,7 +275,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-07-18 22:19:50 (KST)",
+      "🚀 [Start] 2026-07-19 04:07:48 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -325,10 +334,11 @@
       "      📅 07.19 22:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
-      "   [WorldCup] API 응답: 2경기 (UTC 2026-07-17~2026-07-19)",
-      "   ✅ World Cup 데이터: 1경기 (Third Place)",
+      "   [WorldCup] API 응답: 2경기 (UTC 2026-07-18~2026-07-20)",
+      "   ✅ World Cup 데이터: 2경기 (Final)",
       "      📅 07.19 06:00 KST | France vs England [SCHEDULED]  ",
-      "   ✅ Phase: Third Place | Matches: 1경기",
+      "      📅 07.20 04:00 KST | Spain vs Argentina [SCHEDULED]  ",
+      "   ✅ Phase: Final | Matches: 2경기",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
       "      Recent: - vs - - (-)",
