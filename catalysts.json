@@ -1,9 +1,21 @@
 {
-  "generated_at": "2026-07-19 06:45 KST",
+  "generated_at": "2026-07-20 06:47 KST",
   "events": [
     {
       "date": "2026-07-22",
-      "title": "테슬라 (TSLA) 2026년 2분기 실적 발표",
+      "title": "알파벳 (GOOGL) 2분기 실적 발표",
+      "category": "earnings",
+      "importance": 5,
+      "impact": [
+        "equities",
+        "VIX"
+      ],
+      "consensus": null,
+      "source_url": "https://abc.xyz/investor/"
+    },
+    {
+      "date": "2026-07-22",
+      "title": "테슬라 (TSLA) 2분기 실적 발표",
       "category": "earnings",
       "importance": 5,
       "impact": [
@@ -14,20 +26,21 @@
       "source_url": "https://ir.tesla.com/"
     },
     {
-      "date": "2026-07-22",
-      "title": "알파벳 (GOOGL) 2026년 2분기 실적 발표",
-      "category": "earnings",
-      "importance": 5,
+      "date": "2026-07-23",
+      "title": "미국 신규 실업수당 청구건수",
+      "category": "economic_data",
+      "importance": 4,
       "impact": [
         "equities",
-        "VIX"
+        "USD",
+        "yields"
       ],
-      "consensus": "EPS $2.90, Revenue $116.9B",
-      "source_url": "https://abc.xyz/investor/"
+      "consensus": null,
+      "source_url": "https://www.bls.gov/"
     },
     {
-      "date": "2026-07-29",
-      "title": "FOMC 회의 및 금리 결정 발표",
+      "date": "2026-07-28",
+      "title": "FOMC 회의 시작",
       "category": "fed_fomc",
       "importance": 5,
       "impact": [
@@ -41,60 +54,41 @@
     },
     {
       "date": "2026-07-29",
-      "title": "마이크로소프트 (MSFT) 2026년 2분기 실적 발표",
-      "category": "earnings",
+      "title": "FOMC 정책 성명 발표",
+      "category": "fed_fomc",
       "importance": 5,
       "impact": [
+        "VIX",
+        "yields",
         "equities",
-        "VIX"
-      ],
-      "consensus": "EPS ~$4.04, Revenue ~$81.4B",
-      "source_url": "https://www.microsoft.com/investor/"
-    },
-    {
-      "date": "2026-07-29",
-      "title": "메타 플랫폼스 (META) 2026년 2분기 실적 발표",
-      "category": "earnings",
-      "importance": 5,
-      "impact": [
-        "equities",
-        "VIX"
+        "USD"
       ],
       "consensus": null,
-      "source_url": "https://investor.fb.com/"
+      "source_url": "https://www.federalreserve.gov/"
     },
     {
-      "date": "2026-07-29",
-      "title": "미국 2026년 2분기 GDP (예비치) 발표",
+      "date": "2026-07-30",
+      "title": "미국 2분기 GDP (잠정) 발표",
       "category": "economic_data",
-      "importance": 4,
+      "importance": 5,
       "impact": [
         "equities",
         "USD",
-        "yields"
+        "yields",
+        "VIX"
       ],
       "consensus": null,
       "source_url": "https://www.bea.gov/"
     },
     {
-      "date": "2026-07-30",
-      "title": "애플 (AAPL) 2026년 2분기 실적 발표",
-      "category": "earnings",
-      "importance": 5,
-      "impact": [
-        "equities",
-        "VIX"
-      ],
-      "consensus": null,
-      "source_url": "https://investor.apple.com/"
-    },
-    {
       "date": "2026-08-02",
-      "title": "OPEC+ 월간 회의",
+      "title": "OPEC+ 회의",
       "category": "geopolitical",
       "importance": 4,
       "impact": [
-        "oil"
+        "oil",
+        "equities",
+        "USD"
       ],
       "consensus": null,
       "source_url": "https://www.opec.org/"
