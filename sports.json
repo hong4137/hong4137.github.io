@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-19 04:07:48 KST",
+  "updated": "2026-07-19 11:54:33 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -254,8 +254,8 @@
         "away": "England",
         "kst_date": "07.19",
         "kst_time": "06:00",
-        "score": "",
-        "status": "SCHEDULED",
+        "score": "4-6",
+        "status": "FINISHED",
         "group": ""
       },
       {
@@ -275,7 +275,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-07-19 04:07:48 (KST)",
+      "🚀 [Start] 2026-07-19 11:54:33 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -336,7 +336,7 @@
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
       "   [WorldCup] API 응답: 2경기 (UTC 2026-07-18~2026-07-20)",
       "   ✅ World Cup 데이터: 2경기 (Final)",
-      "      📅 07.19 06:00 KST | France vs England [SCHEDULED]  ",
+      "      ✅ 07.19 06:00 KST | France vs England [FINISHED] 4-6 ",
       "      📅 07.20 04:00 KST | Spain vs Argentina [SCHEDULED]  ",
       "   ✅ Phase: Final | Matches: 2경기",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
