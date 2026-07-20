@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-20 23:09:35 KST",
+  "updated": "2026-07-21 04:45:17 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -247,18 +247,8 @@
     }
   },
   "worldcup": {
-    "phase": "Final",
-    "matches": [
-      {
-        "home": "Spain",
-        "away": "Argentina",
-        "kst_date": "07.20",
-        "kst_time": "04:00",
-        "score": "1-0",
-        "status": "FINISHED",
-        "group": ""
-      }
-    ]
+    "phase": "Group Stage",
+    "matches": []
   },
   "debug": {
     "has_football_key": true,
@@ -266,7 +256,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-07-20 23:09:35 (KST)",
+      "🚀 [Start] 2026-07-21 04:45:17 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -325,10 +315,9 @@
       "      📅 07.26 22:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
-      "   [WorldCup] API 응답: 1경기 (UTC 2026-07-19~2026-07-21)",
-      "   ✅ World Cup 데이터: 1경기 (Final)",
-      "      ✅ 07.20 04:00 KST | Spain vs Argentina [FINISHED] 1-0 ",
-      "   ✅ Phase: Final | Matches: 1경기",
+      "   [WorldCup] API 응답: 0경기 (UTC 2026-07-20~2026-07-22)",
+      "   ✅ World Cup 데이터: 0경기 (Group Stage)",
+      "   ✅ Phase: Group Stage | Matches: 0경기",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
       "      Recent: - vs - - (-)",
