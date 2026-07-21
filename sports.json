@@ -1,15 +1,15 @@
 {
-  "updated": "2026-07-21 17:31:48 KST",
+  "updated": "2026-07-21 22:56:01 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
     "display_matchday": "R1",
-    "leader": "AFC Bournemouth",
+    "leader": "Arsenal",
     "top4": [
-      "AFC Bournemouth",
       "Arsenal",
-      "Aston Villa",
-      "Brentford"
+      "Manchester City",
+      "Manchester United",
+      "Aston Villa"
     ],
     "matches": [
       {
@@ -256,15 +256,15 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-07-21 17:31:48 (KST)",
+      "🚀 [Start] 2026-07-21 22:56:01 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
       "   - Search: Serper API ✅",
       "   - AI Parse: Gemini API ✅",
       "\n⚽ [Step 1/5] Premier League 순위...",
-      "   ✅ 1위: AFC Bournemouth",
-      "   ✅ Top 4: AFC Bournemouth, Arsenal, Aston Villa, Brentford",
+      "   ✅ 1위: Arsenal",
+      "   ✅ Top 4: Arsenal, Manchester City, Manchester United, Aston Villa",
       "   ✅ 현재 라운드: R1",
       "\n⚽ [Step 2/5] Premier League 경기 선정 (v2.4)...",
       "   [티어 우선순위]",
@@ -278,8 +278,6 @@
       "   📋 전체: 10경기 (라운드: [1])",
       "   🎯 선정 대상: R1 (10경기)",
       "   📊 상태별: {'SCHEDULED': 10}",
-      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
