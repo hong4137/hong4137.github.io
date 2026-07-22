@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-21 06:57 KST",
+  "generated_at": "2026-07-23 07:01 KST",
   "events": [
     {
-      "date": "2026-07-29",
-      "title": "FOMC 회의 결과 및 성명 발표",
+      "date": "2026-07-28",
+      "title": "FOMC 회의 시작",
       "category": "fed_fomc",
       "importance": 5,
       "impact": [
@@ -17,27 +17,17 @@
     },
     {
       "date": "2026-07-29",
-      "title": "Microsoft (MSFT) 2026년 4분기 실적 발표",
-      "category": "earnings",
+      "title": "FOMC 성명 및 금리 결정 발표",
+      "category": "fed_fomc",
       "importance": 5,
       "impact": [
+        "VIX",
+        "yields",
         "equities",
-        "VIX"
+        "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.microsoft.com/en-us/Investor/"
-    },
-    {
-      "date": "2026-07-30",
-      "title": "Apple (AAPL) 2026년 3분기 실적 발표",
-      "category": "earnings",
-      "importance": 5,
-      "impact": [
-        "equities",
-        "VIX"
-      ],
-      "consensus": "1.89 EPS",
-      "source_url": "https://www.apple.com/investor/"
+      "source_url": "https://www.federalreserve.gov/"
     },
     {
       "date": "2026-08-02",
@@ -49,6 +39,73 @@
       ],
       "consensus": null,
       "source_url": "https://www.opec.org/"
+    },
+    {
+      "date": "2026-08-03",
+      "title": "미국 7월 ISM 제조업 PMI 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.ismworld.org/"
+    },
+    {
+      "date": "2026-08-04",
+      "title": "미국 7월 JOLTS 채용공고 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bls.gov/"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "미국 7월 비농업 고용지수 (NFP) 발표",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bls.gov/"
+    },
+    {
+      "date": "2026-08-12",
+      "title": "미국 7월 소비자물가지수 (CPI) 발표",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bls.gov/"
+    },
+    {
+      "date": "2026-08-13",
+      "title": "미국 7월 생산자물가지수 (PPI) 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bls.gov/"
     }
   ]
 }
