@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-23 23:05:22 KST",
+  "updated": "2026-07-24 04:20:34 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -127,7 +127,7 @@
       "date": "Jul 24-26",
       "date_from": "2026-07-24",
       "date_to": "2026-07-26",
-      "status": "Next GP",
+      "status": "This Week",
       "sprint": false
     },
     "schedule": [
@@ -256,7 +256,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-07-23 23:05:22 (KST)",
+      "🚀 [Start] 2026-07-24 04:20:34 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -305,7 +305,7 @@
       "      3. George Russell (Mercedes) 154pts",
       "      4. Charles Leclerc (Ferrari) 126pts",
       "      5. Lando Norris (McLaren) 103pts",
-      "   ✅ Hungarian Grand Prix | Hungaroring, Budapest | Jul 24-26 [Next GP]",
+      "   ✅ Hungarian Grand Prix | Hungaroring, Budapest | Jul 24-26 [This Week]",
       "      📅 07.24 20:30 KST | FP1",
       "      📅 07.25 00:00 KST | FP2",
       "      📅 07.25 19:30 KST | FP3",
@@ -313,7 +313,7 @@
       "      📅 07.26 22:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
-      "   [WorldCup] API 응답: 0경기 (UTC 2026-07-22~2026-07-24)",
+      "   [WorldCup] API 응답: 0경기 (UTC 2026-07-23~2026-07-25)",
       "   ✅ World Cup 데이터: 0경기 (Group Stage)",
       "   ✅ Phase: Group Stage | Matches: 0경기",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
