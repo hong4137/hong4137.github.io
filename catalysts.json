@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-23 07:01 KST",
+  "generated_at": "2026-07-24 07:01 KST",
   "events": [
     {
-      "date": "2026-07-28",
-      "title": "FOMC 회의 시작",
+      "date": "2026-07-29",
+      "title": "FOMC 회의 및 금리 결정",
       "category": "fed_fomc",
       "importance": 5,
       "impact": [
@@ -17,58 +17,31 @@
     },
     {
       "date": "2026-07-29",
-      "title": "FOMC 성명 및 금리 결정 발표",
-      "category": "fed_fomc",
+      "title": "Microsoft (MSFT) 실적 발표",
+      "category": "earnings",
       "importance": 5,
       "impact": [
-        "VIX",
-        "yields",
         "equities",
-        "USD"
+        "VIX"
       ],
-      "consensus": null,
-      "source_url": "https://www.federalreserve.gov/"
+      "consensus": "EPS $4.04, Revenue $81.4B",
+      "source_url": "https://investor.microsoft.com/"
     },
     {
-      "date": "2026-08-02",
-      "title": "OPEC+ 월간 회의",
-      "category": "geopolitical",
-      "importance": 4,
-      "impact": [
-        "oil"
-      ],
-      "consensus": null,
-      "source_url": "https://www.opec.org/"
-    },
-    {
-      "date": "2026-08-03",
-      "title": "미국 7월 ISM 제조업 PMI 발표",
-      "category": "economic_data",
-      "importance": 4,
+      "date": "2026-07-29",
+      "title": "Meta Platforms (META) 실적 발표",
+      "category": "earnings",
+      "importance": 5,
       "impact": [
         "equities",
-        "USD",
-        "yields"
+        "VIX"
       ],
       "consensus": null,
-      "source_url": "https://www.ismworld.org/"
+      "source_url": "https://investor.fb.com/"
     },
     {
-      "date": "2026-08-04",
-      "title": "미국 7월 JOLTS 채용공고 발표",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/"
-    },
-    {
-      "date": "2026-08-07",
-      "title": "미국 7월 비농업 고용지수 (NFP) 발표",
+      "date": "2026-07-30",
+      "title": "미국 2026년 2분기 GDP (잠정치) 발표",
       "category": "economic_data",
       "importance": 5,
       "impact": [
@@ -77,35 +50,32 @@
         "equities",
         "USD"
       ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/"
+      "consensus": "2.1%",
+      "source_url": "https://www.bea.gov/"
     },
     {
-      "date": "2026-08-12",
-      "title": "미국 7월 소비자물가지수 (CPI) 발표",
-      "category": "economic_data",
+      "date": "2026-07-30",
+      "title": "Apple (AAPL) 실적 발표",
+      "category": "earnings",
       "importance": 5,
       "impact": [
-        "VIX",
-        "yields",
         "equities",
-        "USD"
+        "VIX"
       ],
       "consensus": null,
-      "source_url": "https://www.bls.gov/"
+      "source_url": "https://investor.apple.com/"
     },
     {
-      "date": "2026-08-13",
-      "title": "미국 7월 생산자물가지수 (PPI) 발표",
-      "category": "economic_data",
-      "importance": 4,
+      "date": "2026-07-30",
+      "title": "Amazon (AMZN) 실적 발표",
+      "category": "earnings",
+      "importance": 5,
       "impact": [
         "equities",
-        "USD",
-        "yields"
+        "VIX"
       ],
       "consensus": null,
-      "source_url": "https://www.bls.gov/"
+      "source_url": "https://ir.aboutamazon.com/"
     }
   ]
 }
