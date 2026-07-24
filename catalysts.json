@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-24 07:01 KST",
+  "generated_at": "2026-07-25 07:02 KST",
   "events": [
     {
       "date": "2026-07-29",
-      "title": "FOMC 회의 및 금리 결정",
+      "title": "FOMC 금리 결정 및 성명 발표",
       "category": "fed_fomc",
       "importance": 5,
       "impact": [
@@ -17,31 +17,19 @@
     },
     {
       "date": "2026-07-29",
-      "title": "Microsoft (MSFT) 실적 발표",
+      "title": "Meta (META) 2분기 실적 발표",
       "category": "earnings",
       "importance": 5,
       "impact": [
         "equities",
         "VIX"
       ],
-      "consensus": "EPS $4.04, Revenue $81.4B",
-      "source_url": "https://investor.microsoft.com/"
-    },
-    {
-      "date": "2026-07-29",
-      "title": "Meta Platforms (META) 실적 발표",
-      "category": "earnings",
-      "importance": 5,
-      "impact": [
-        "equities",
-        "VIX"
-      ],
-      "consensus": null,
+      "consensus": "EPS $7.20, Revenue $60.2123 billion",
       "source_url": "https://investor.fb.com/"
     },
     {
       "date": "2026-07-30",
-      "title": "미국 2026년 2분기 GDP (잠정치) 발표",
+      "title": "미국 2분기 GDP (잠정치) 발표",
       "category": "economic_data",
       "importance": 5,
       "impact": [
@@ -50,32 +38,71 @@
         "equities",
         "USD"
       ],
-      "consensus": "2.1%",
+      "consensus": "1.8% real annualized rate",
       "source_url": "https://www.bea.gov/"
     },
     {
       "date": "2026-07-30",
-      "title": "Apple (AAPL) 실적 발표",
+      "title": "Apple (AAPL) 3분기 실적 발표",
       "category": "earnings",
       "importance": 5,
       "impact": [
         "equities",
         "VIX"
       ],
-      "consensus": null,
-      "source_url": "https://investor.apple.com/"
+      "consensus": "EPS $1.89",
+      "source_url": "https://www.apple.com/investor/"
     },
     {
       "date": "2026-07-30",
-      "title": "Amazon (AMZN) 실적 발표",
+      "title": "Amazon (AMZN) 2분기 실적 발표",
       "category": "earnings",
       "importance": 5,
       "impact": [
         "equities",
         "VIX"
       ],
-      "consensus": null,
+      "consensus": "Revenue $196 billion, EPS $1.82",
       "source_url": "https://ir.aboutamazon.com/"
+    },
+    {
+      "date": "2026-08-02",
+      "title": "OPEC+ 7개국 회의 (산유량 조정 논의)",
+      "category": "geopolitical",
+      "importance": 4,
+      "impact": [
+        "oil",
+        "USD",
+        "equities"
+      ],
+      "consensus": "Production adjustment of 188,000 bpd from additional voluntary cuts",
+      "source_url": "https://www.opec.org/"
+    },
+    {
+      "date": "2026-08-03",
+      "title": "미국 7월 ISM 제조업 PMI 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.ismworld.org/"
+    },
+    {
+      "date": "2026-08-04",
+      "title": "미국 6월 JOLTS 구인·이직 보고서 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bls.gov/jlt/"
     }
   ]
 }
