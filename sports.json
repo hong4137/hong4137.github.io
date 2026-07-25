@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-25 22:38:12 KST",
+  "updated": "2026-07-26 04:09:11 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -256,7 +256,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-07-25 22:38:12 (KST)",
+      "🚀 [Start] 2026-07-26 04:09:11 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -313,7 +313,7 @@
       "      📅 07.26 22:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
-      "   [WorldCup] API 응답: 0경기 (UTC 2026-07-24~2026-07-26)",
+      "   [WorldCup] API 응답: 0경기 (UTC 2026-07-25~2026-07-27)",
       "   ✅ World Cup 데이터: 0경기 (Group Stage)",
       "   ✅ Phase: Group Stage | Matches: 0경기",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
