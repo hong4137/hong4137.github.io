@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-26 22:26:27 KST",
+  "updated": "2026-07-27 04:13:39 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -120,48 +120,48 @@
   },
   "f1": {
     "next_race": {
-      "round": 13,
-      "name": "Hungarian Grand Prix",
-      "circuit": "Hungaroring, Budapest",
-      "country": "Hungary",
-      "date": "Jul 24-26",
-      "date_from": "2026-07-24",
-      "date_to": "2026-07-26",
-      "status": "This Week",
-      "sprint": false
+      "round": 14,
+      "name": "Dutch Grand Prix",
+      "circuit": "Circuit Zandvoort",
+      "country": "Netherlands",
+      "date": "Aug 21-23",
+      "date_from": "2026-08-21",
+      "date_to": "2026-08-23",
+      "status": "Next GP",
+      "sprint": true
     },
     "schedule": [
       {
         "name": "FP1",
-        "date": "07.24",
+        "date": "08.21",
         "day_local": "Fri",
         "kst_time": "20:30",
         "local_time": "13:30"
       },
       {
-        "name": "FP2",
-        "date": "07.25",
+        "name": "Sprint Qualifying",
+        "date": "08.22",
         "day_local": "Fri",
-        "kst_time": "00:00",
-        "local_time": "17:00"
+        "kst_time": "00:30",
+        "local_time": "17:30"
       },
       {
-        "name": "FP3",
-        "date": "07.25",
+        "name": "Sprint",
+        "date": "08.22",
         "day_local": "Sat",
-        "kst_time": "19:30",
-        "local_time": "12:30"
+        "kst_time": "19:00",
+        "local_time": "12:00"
       },
       {
         "name": "Qualifying",
-        "date": "07.25",
+        "date": "08.22",
         "day_local": "Sat",
         "kst_time": "23:00",
         "local_time": "16:00"
       },
       {
         "name": "Race",
-        "date": "07.26",
+        "date": "08.23",
         "day_local": "Sun",
         "kst_time": "22:00",
         "local_time": "15:00"
@@ -172,61 +172,61 @@
         "pos": 1,
         "driver": "Kimi Antonelli",
         "team": "Mercedes",
-        "points": 204
+        "points": 219
       },
       {
         "pos": 2,
         "driver": "Lewis Hamilton",
         "team": "Ferrari",
-        "points": 159
+        "points": 169
       },
       {
         "pos": 3,
         "driver": "George Russell",
         "team": "Mercedes",
-        "points": 154
+        "points": 160
       },
       {
         "pos": 4,
         "driver": "Charles Leclerc",
         "team": "Ferrari",
-        "points": 126
+        "points": 138
       },
       {
         "pos": 5,
         "driver": "Lando Norris",
         "team": "McLaren",
-        "points": 103
+        "points": 128
       },
       {
         "pos": 6,
+        "driver": "Max Verstappen",
+        "team": "Red Bull",
+        "points": 109
+      },
+      {
+        "pos": 7,
         "driver": "Oscar Piastri",
         "team": "McLaren",
         "points": 92
       },
       {
-        "pos": 7,
-        "driver": "Max Verstappen",
-        "team": "Red Bull",
-        "points": 91
-      },
-      {
         "pos": 8,
         "driver": "Isack Hadjar",
         "team": "Racing Bulls",
-        "points": 60
+        "points": 68
       },
       {
         "pos": 9,
-        "driver": "Pierre Gasly",
-        "team": "Alpine",
-        "points": 42
+        "driver": "Liam Lawson",
+        "team": "Red Bull",
+        "points": 43
       },
       {
         "pos": 10,
-        "driver": "Liam Lawson",
-        "team": "Red Bull",
-        "points": 39
+        "driver": "Pierre Gasly",
+        "team": "Alpine",
+        "points": 42
       }
     ]
   },
@@ -256,7 +256,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-07-26 22:26:27 (KST)",
+      "🚀 [Start] 2026-07-27 04:13:39 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -300,20 +300,20 @@
       "   [F1] 드라이버 순위 조회...",
       "      ✅ 순위 직접 파싱 성공 (www.formula1.com): 22명",
       "   ✅ 순위: 10명",
-      "      1. Kimi Antonelli (Mercedes) 204pts",
-      "      2. Lewis Hamilton (Ferrari) 159pts",
-      "      3. George Russell (Mercedes) 154pts",
-      "      4. Charles Leclerc (Ferrari) 126pts",
-      "      5. Lando Norris (McLaren) 103pts",
-      "   ✅ Hungarian Grand Prix | Hungaroring, Budapest | Jul 24-26 [This Week]",
-      "      📅 07.24 20:30 KST | FP1",
-      "      📅 07.25 00:00 KST | FP2",
-      "      📅 07.25 19:30 KST | FP3",
-      "      📅 07.25 23:00 KST | Qualifying",
-      "      📅 07.26 22:00 KST | Race",
+      "      1. Kimi Antonelli (Mercedes) 219pts",
+      "      2. Lewis Hamilton (Ferrari) 169pts",
+      "      3. George Russell (Mercedes) 160pts",
+      "      4. Charles Leclerc (Ferrari) 138pts",
+      "      5. Lando Norris (McLaren) 128pts",
+      "   ✅ Dutch Grand Prix | Circuit Zandvoort | Aug 21-23 [Next GP]",
+      "      📅 08.21 20:30 KST | FP1",
+      "      📅 08.22 00:30 KST | Sprint Qualifying",
+      "      📅 08.22 19:00 KST | Sprint",
+      "      📅 08.22 23:00 KST | Qualifying",
+      "      📅 08.23 22:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...",
-      "   [WorldCup] API 응답: 0경기 (UTC 2026-07-25~2026-07-27)",
+      "   [WorldCup] API 응답: 0경기 (UTC 2026-07-26~2026-07-28)",
       "   ✅ World Cup 데이터: 0경기 (Group Stage)",
       "   ✅ Phase: Group Stage | Matches: 0경기",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
