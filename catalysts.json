@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-28 07:02 KST",
+  "generated_at": "2026-07-29 06:59 KST",
   "events": [
     {
       "date": "2026-07-29",
-      "title": "FOMC 회의 및 금리 결정",
+      "title": "FOMC 회의 결과 및 성명 발표",
       "category": "fed_fomc",
       "importance": 5,
       "impact": [
@@ -13,46 +13,95 @@
         "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+      "source_url": "https://www.federalreserve.gov/"
     },
     {
-      "date": "2026-07-30",
-      "title": "미국 2분기 GDP (잠정치) 발표",
-      "category": "economic_data",
+      "date": "2026-07-29",
+      "title": "Microsoft (MSFT) 2026년 4분기 실적 발표",
+      "category": "earnings",
       "importance": 5,
       "impact": [
         "equities",
-        "USD",
-        "yields"
+        "VIX"
+      ],
+      "consensus": "EPS $4.23, Revenue $87.61B",
+      "source_url": "https://www.microsoft.com/investor/"
+    },
+    {
+      "date": "2026-07-29",
+      "title": "Meta Platforms (META) 2026년 2분기 실적 발표",
+      "category": "earnings",
+      "importance": 5,
+      "impact": [
+        "equities",
+        "VIX"
+      ],
+      "consensus": "Revenue $60.22B, EPS $7.14",
+      "source_url": "https://investor.fb.com/"
+    },
+    {
+      "date": "2026-07-30",
+      "title": "Apple (AAPL) 2026년 3분기 실적 발표",
+      "category": "earnings",
+      "importance": 5,
+      "impact": [
+        "equities",
+        "VIX"
       ],
       "consensus": null,
-      "source_url": "https://www.bea.gov/data/gdp/gross-domestic-product"
+      "source_url": "https://investor.apple.com/"
+    },
+    {
+      "date": "2026-07-30",
+      "title": "Amazon (AMZN) 2026년 2분기 실적 발표",
+      "category": "earnings",
+      "importance": 5,
+      "impact": [
+        "equities",
+        "VIX"
+      ],
+      "consensus": "Revenue $196.02B, EPS $1.82",
+      "source_url": "https://ir.aboutamazon.com/"
     },
     {
       "date": "2026-08-02",
-      "title": "OPEC+ JMMC 회의",
+      "title": "OPEC+ 월간 회의",
       "category": "geopolitical",
       "importance": 4,
       "impact": [
         "oil",
-        "equities",
-        "USD"
+        "equities"
       ],
       "consensus": null,
       "source_url": "https://www.opec.org/"
     },
     {
-      "date": "2026-08-03",
-      "title": "미국 7월 ISM 제조업 PMI 발표",
+      "date": "2026-08-07",
+      "title": "미국 7월 비농업 고용보고서 (NFP)",
       "category": "economic_data",
-      "importance": 4,
+      "importance": 5,
       "impact": [
+        "VIX",
+        "yields",
         "equities",
-        "USD",
-        "yields"
+        "USD"
+      ],
+      "consensus": "57.00K",
+      "source_url": "https://www.bls.gov/"
+    },
+    {
+      "date": "2026-08-12",
+      "title": "미국 7월 소비자물가지수 (CPI)",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.ismworld.org/supply-management-news-and-insights/reports/pmi-reports/"
+      "source_url": "https://www.bls.gov/cpi/"
     }
   ]
 }
