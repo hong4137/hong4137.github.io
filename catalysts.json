@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-31 07:03 KST",
+  "generated_at": "2026-08-01 07:00 KST",
   "events": [
     {
       "date": "2026-08-02",
-      "title": "OPEC+ 7개국 회의",
+      "title": "OPEC+ 회의",
       "category": "geopolitical",
       "importance": 4,
       "impact": [
@@ -14,7 +14,7 @@
     },
     {
       "date": "2026-08-03",
-      "title": "미국 ISM 제조업 PMI",
+      "title": "미국 ISM 제조업 PMI 발표",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -22,12 +22,12 @@
         "USD",
         "yields"
       ],
-      "consensus": "53.3",
+      "consensus": "54.0",
       "source_url": "https://www.ismworld.org/"
     },
     {
       "date": "2026-08-05",
-      "title": "미국 ISM 서비스업 PMI",
+      "title": "미국 ISM 서비스 PMI 발표",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -35,21 +35,47 @@
         "USD",
         "yields"
       ],
-      "consensus": "54.5",
+      "consensus": null,
       "source_url": "https://www.ismworld.org/"
     },
     {
+      "date": "2026-08-06",
+      "title": "미국 신규 실업수당 청구건수",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": "196K",
+      "source_url": "https://www.dol.gov/"
+    },
+    {
       "date": "2026-08-07",
-      "title": "미국 비농업 고용보고서",
+      "title": "미국 비농업 고용보고서 (NFP)",
       "category": "economic_data",
       "importance": 5,
       "impact": [
         "equities",
         "USD",
-        "yields"
+        "yields",
+        "VIX"
       ],
-      "consensus": "41K",
+      "consensus": "91K",
       "source_url": "https://www.bls.gov/"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "미국 30년물 국채 입찰",
+      "category": "treasury_auction",
+      "importance": 4,
+      "impact": [
+        "yields",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://home.treasury.gov/"
     },
     {
       "date": "2026-08-12",
@@ -61,45 +87,21 @@
         "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.treasury.gov/"
+      "source_url": "https://home.treasury.gov/"
     },
     {
       "date": "2026-08-12",
-      "title": "미국 CPI 발표",
+      "title": "미국 소비자물가지수 (CPI) 발표",
       "category": "economic_data",
       "importance": 5,
       "impact": [
         "equities",
         "USD",
-        "yields"
+        "yields",
+        "VIX"
       ],
       "consensus": null,
-      "source_url": "https://www.bls.gov/"
-    },
-    {
-      "date": "2026-08-13",
-      "title": "미국 PPI 발표",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/"
-    },
-    {
-      "date": "2026-08-14",
-      "title": "미국 소매판매",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.census.gov/"
+      "source_url": "https://www.bls.gov/cpi/"
     }
   ]
 }
