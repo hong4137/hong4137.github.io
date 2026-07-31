@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-31 17:51:50 KST",
+  "updated": "2026-07-31 23:11:18 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -256,7 +256,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-07-31 17:51:50 (KST)",
+      "🚀 [Start] 2026-07-31 23:11:18 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -278,7 +278,7 @@
       "   📋 전체: 10경기 (라운드: [1])",
       "   🎯 선정 대상: R1 (10경기)",
       "   📊 상태별: {'SCHEDULED': 10}",
-      "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   ⚠️ Serper API exception: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
       "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
