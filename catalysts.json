@@ -1,85 +1,37 @@
 {
-  "generated_at": "2026-08-03 06:51 KST",
+  "generated_at": "2026-08-04 07:04 KST",
   "events": [
     {
-      "date": "2026-08-03",
-      "title": "미국 ISM 제조업 구매관리자지수 (7월)",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.ismworld.org/"
-    },
-    {
-      "date": "2026-08-05",
-      "title": "미국 ADP 고용보고서 (7월)",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.adp.com/"
-    },
-    {
-      "date": "2026-08-05",
-      "title": "미국 ISM 비제조업 구매관리자지수 (7월)",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.ismworld.org/"
-    },
-    {
       "date": "2026-08-07",
-      "title": "미국 비농업 고용보고서 (7월)",
+      "title": "미국 비농업 고용지수 (7월)",
       "category": "economic_data",
       "importance": 5,
       "impact": [
+        "VIX",
+        "yields",
         "equities",
-        "USD",
-        "yields"
+        "USD"
+      ],
+      "consensus": "88.00K",
+      "source_url": "https://www.bls.gov/"
+    },
+    {
+      "date": "2026-08-12",
+      "title": "미국 소비자물가지수 (7월)",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
       ],
       "consensus": null,
       "source_url": "https://www.bls.gov/"
     },
     {
       "date": "2026-08-12",
-      "title": "구글 Made by Google 이벤트 (Pixel 11, Watch 5 발표)",
-      "category": "tech_conf",
-      "importance": 4,
-      "impact": [
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://blog.google/"
-    },
-    {
-      "date": "2026-08-12",
-      "title": "미국 소비자물가지수 (CPI) (7월)",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/"
-    },
-    {
-      "date": "2026-08-12",
-      "title": "MSCI 8월 정기 지수 재조정 발표",
+      "title": "MSCI 2026년 8월 지수 정기 변경 발표",
       "category": "market_structure",
       "importance": 4,
       "impact": [
@@ -89,17 +41,31 @@
       "source_url": "https://www.msci.com/"
     },
     {
-      "date": "2026-08-14",
+      "date": "2026-08-13",
+      "title": "미국 생산자물가지수 (7월)",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bls.gov/"
+    },
+    {
+      "date": "2026-08-15",
       "title": "미국 소매판매 (7월)",
       "category": "economic_data",
       "importance": 4,
       "impact": [
+        "VIX",
         "equities",
-        "USD",
-        "yields"
+        "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.census.gov/"
+      "source_url": "https://www.bea.gov/"
     }
   ]
 }
