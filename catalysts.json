@@ -1,102 +1,95 @@
 {
-  "generated_at": "2026-08-05 07:08 KST",
+  "generated_at": "2026-08-06 07:08 KST",
   "events": [
     {
-      "date": "2026-08-05",
-      "title": "Fed Governor Lisa D. Cook 경제 전망 연설",
-      "category": "fed_fomc",
-      "importance": 4,
-      "impact": [
-        "USD",
-        "yields",
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://www.federalreserve.gov/"
-    },
-    {
-      "date": "2026-08-05",
-      "title": "미국 ISM 서비스업 PMI 발표",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.ismworld.org/"
-    },
-    {
       "date": "2026-08-06",
-      "title": "미국 생산성 (예비) 발표",
+      "title": "미국 주간 신규 실업수당 청구",
       "category": "economic_data",
       "importance": 4,
       "impact": [
         "equities",
-        "USD",
-        "yields"
+        "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.bls.gov/"
+      "source_url": "https://www.dol.gov/ui/data.pdf"
     },
     {
-      "date": "2026-08-07",
-      "title": "미국 시간당 임금 (예비) 발표",
-      "category": "economic_data",
+      "date": "2026-08-12",
+      "title": "Google Made by Google (Pixel 11 발표)",
+      "category": "tech_conf",
       "importance": 4,
       "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/"
-    },
-    {
-      "date": "2026-08-08",
-      "title": "Fed 부의장 Michelle W. Bowman 대담",
-      "category": "fed_fomc",
-      "importance": 4,
-      "impact": [
-        "USD",
-        "yields",
         "equities"
       ],
       "consensus": null,
-      "source_url": "https://www.federalreserve.gov/"
+      "source_url": "https://blog.google/"
     },
     {
-      "date": "2026-08-08",
-      "title": "미국 신규 실업수당 청구건수 발표",
+      "date": "2026-08-12",
+      "title": "미국 7월 CPI 발표",
       "category": "economic_data",
-      "importance": 4,
+      "importance": 5,
       "impact": [
+        "VIX",
+        "yields",
         "equities",
-        "USD",
-        "yields"
+        "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.bls.gov/"
+      "source_url": "https://www.bls.gov/cpi/"
+    },
+    {
+      "date": "2026-08-12",
+      "title": "MSCI 8월 정기 지수 재조정 발표",
+      "category": "market_structure",
+      "importance": 4,
+      "impact": [
+        "equities"
+      ],
+      "consensus": null,
+      "source_url": "https://www.msci.com/"
     },
     {
       "date": "2026-08-13",
-      "title": "미국 생산자물가지수 (근원) 발표",
+      "title": "미국 주간 신규 실업수당 청구",
       "category": "economic_data",
-      "importance": 5,
+      "importance": 4,
       "impact": [
-        "VIX",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.dol.gov/ui/data.pdf"
+    },
+    {
+      "date": "2026-08-13",
+      "title": "미국 7월 PPI 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
         "yields",
         "equities",
         "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.bls.gov/"
+      "source_url": "https://www.bls.gov/ppi/"
     },
     {
       "date": "2026-08-14",
-      "title": "미국 소매판매 (핵심) 발표",
+      "title": "미국 7월 소매판매 발표",
       "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.census.gov/retail/"
+    },
+    {
+      "date": "2026-08-19",
+      "title": "FOMC 의사록 공개",
+      "category": "fed_fomc",
       "importance": 5,
       "impact": [
         "VIX",
@@ -105,7 +98,7 @@
         "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.census.gov/"
+      "source_url": "https://www.federalreserve.gov/"
     }
   ]
 }
