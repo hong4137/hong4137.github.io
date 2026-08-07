@@ -1,6 +1,30 @@
 {
-  "generated_at": "2026-08-07 10:00 KST",
+  "generated_at": "2026-08-08 06:34 KST",
   "events": [
+    {
+      "date": "2026-08-12",
+      "title": "미국 10년물 국채 입찰",
+      "category": "treasury_auction",
+      "importance": 4,
+      "impact": [
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.treasury.gov/"
+    },
+    {
+      "date": "2026-08-12",
+      "title": "MSCI 8월 지수 검토 결과 발표",
+      "category": "market_structure",
+      "importance": 4,
+      "impact": [
+        "equities"
+      ],
+      "consensus": null,
+      "source_url": "https://www.msci.com/"
+    },
     {
       "date": "2026-08-12",
       "title": "미국 7월 소비자물가지수(CPI) 발표",
@@ -16,17 +40,17 @@
       "source_url": "https://www.bls.gov/cpi/"
     },
     {
-      "date": "2026-08-12",
-      "title": "미국 10년물 국채 입찰",
+      "date": "2026-08-13",
+      "title": "미국 30년물 국채 입찰",
       "category": "treasury_auction",
       "importance": 4,
       "impact": [
         "yields",
-        "USD",
-        "equities"
+        "equities",
+        "USD"
       ],
       "consensus": null,
-      "source_url": "https://home.treasury.gov/"
+      "source_url": "https://www.treasury.gov/"
     },
     {
       "date": "2026-08-13",
@@ -43,47 +67,20 @@
       "source_url": "https://www.bls.gov/ppi/"
     },
     {
-      "date": "2026-08-13",
-      "title": "미국 주간 신규 실업수당 청구건수 발표",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.dol.gov/"
-    },
-    {
-      "date": "2026-08-13",
-      "title": "미국 30년물 국채 입찰",
-      "category": "treasury_auction",
-      "importance": 4,
-      "impact": [
-        "yields",
-        "USD",
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://home.treasury.gov/"
-    },
-    {
       "date": "2026-08-14",
       "title": "미국 7월 소매판매 발표",
       "category": "economic_data",
       "importance": 4,
       "impact": [
         "equities",
-        "USD",
-        "yields"
+        "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.census.gov/retail/"
+      "source_url": "https://www.census.gov/"
     },
     {
       "date": "2026-08-19",
-      "title": "FOMC 7월 회의록 공개",
+      "title": "FOMC 의사록 공개",
       "category": "fed_fomc",
       "importance": 5,
       "impact": [
