@@ -220,6 +220,9 @@ def is_big_6(team_name):
 
 def get_epl_standings(api_key):
     """Football-Data.org에서 EPL 순위 가져오기"""
+    if not api_key:
+        return None, None, None
+
     url = f"{FOOTBALL_DATA_API_URL}/competitions/PL/standings"
     headers = {"X-Auth-Token": api_key}
 
@@ -242,6 +245,9 @@ def get_epl_standings(api_key):
 
 def get_epl_matches(api_key, matchday=None):
     """Football-Data.org에서 EPL 경기 일정 가져오기"""
+    if not api_key:
+        return []
+
     url = f"{FOOTBALL_DATA_API_URL}/competitions/PL/matches"
     headers = {"X-Auth-Token": api_key}
 
@@ -2327,14 +2333,13 @@ def update_sports_data():
     gemini_api_key = os.environ.get("GEMINI_API_KEY")
 
     if not football_api_key:
-        log("❌ Error: FOOTBALL_DATA_API_KEY Missing")
-        raise ValueError("FOOTBALL_DATA_API_KEY Missing")
+        log("⚠️ FOOTBALL_DATA_API_KEY 없음 → EPL은 기존 데이터 유지, Korean Players는 폴백/안전값 사용")
 
     kst_now = get_kst_now()
 
     log(f"🚀 [Start] {kst_now.strftime('%Y-%m-%d %H:%M:%S')} (KST)")
     log(f"   Data Sources:")
-    log(f"   - EPL: Football-Data.org ✅")
+    log(f"   - EPL: Football-Data.org {'✅' if football_api_key else '❌'}")
     log(f"   - NBA: balldontlie.io {'✅' if balldontlie_api_key else '❌'}")
     log(f"   - Search: Serper API {'✅' if serper_api_key else '❌'}")
     log(f"   - AI Parse: Gemini API {'✅' if gemini_api_key else '❌'}")
@@ -2354,10 +2359,17 @@ def update_sports_data():
         log(f"   ✅ Top 4: {', '.join(top_4_teams)}")
         log(f"   ✅ 현재 라운드: R{current_matchday}")
     else:
-        log("   ⚠️ 순위 정보 가져오기 실패, 기본값 사용")
-        leader_team = "Arsenal"
-        top_4_teams = ["Arsenal", "Manchester City", "Liverpool", "Chelsea"]
-        current_matchday = None
+        existing_epl = existing_data.get("epl", {}) if existing_data else {}
+        if existing_epl:
+            log("   ⚠️ 순위 정보 가져오기 실패, 기존 EPL 데이터 사용")
+            leader_team = existing_epl.get("leader") or "Arsenal"
+            top_4_teams = existing_epl.get("top4") or ["Arsenal", "Manchester City", "Liverpool", "Chelsea"]
+            current_matchday = existing_epl.get("matchday") or existing_epl.get("selected_round")
+        else:
+            log("   ⚠️ 순위 정보 가져오기 실패, 기본값 사용")
+            leader_team = "Arsenal"
+            top_4_teams = ["Arsenal", "Manchester City", "Liverpool", "Chelsea"]
+            current_matchday = None
 
     # =========================================================================
     # STEP 2: EPL 경기 일정 + 6가지 룰 + 티어 우선순위
@@ -2418,12 +2430,19 @@ def update_sports_data():
     log(f"   🎯 선정 대상: R{target_round} ({len(target_matches)}경기)")
     log(f"   📊 상태별: {status_count}")
 
-    # v2.4: 단일 라운드(target_matches)만 전달
-    validated_epl, selected_round, is_new_selection = process_epl_matches(
-        target_matches, top_4_teams, leader_team, serper_api_key, existing_data,
-        football_api_key=football_api_key,
-        current_matchday=target_round
-    )
+    existing_epl = existing_data.get("epl", {}) if existing_data else {}
+    if not football_api_key and existing_epl:
+        validated_epl = existing_epl.get("selected_matches") or existing_epl.get("matches") or []
+        selected_round = existing_epl.get("selected_round") or current_matchday
+        is_new_selection = False
+        log(f"   ⚠️ FOOTBALL_DATA_API_KEY 없음 → 기존 EPL 경기 유지: {len(validated_epl)}경기 (R{selected_round})")
+    else:
+        # v2.4: 단일 라운드(target_matches)만 전달
+        validated_epl, selected_round, is_new_selection = process_epl_matches(
+            target_matches, top_4_teams, leader_team, serper_api_key, existing_data,
+            football_api_key=football_api_key,
+            current_matchday=target_round
+        )
     
     if is_new_selection:
         log(f"   ✅ 새로 선정됨: {len(validated_epl)}경기 (R{selected_round})")
@@ -2447,8 +2466,13 @@ def update_sports_data():
             time_info = f"{game.get('kst_time', '')} KST" if game.get('kst_time') else 'TBD'
             log(f"      {loc_icon} {game['date']} vs {game['opp']} | {time_info} | {venue}")
     else:
-        nba_data = get_nba_default_data()
-        log("   ⚠️ BALLDONTLIE_API_KEY 없음, 기본값 사용")
+        existing_nba = existing_data.get("nba") if existing_data else None
+        if existing_nba:
+            nba_data = existing_nba
+            log("   ⚠️ BALLDONTLIE_API_KEY 없음, 기존 NBA 데이터 유지")
+        else:
+            nba_data = get_nba_default_data()
+            log("   ⚠️ BALLDONTLIE_API_KEY 없음, 기본값 사용")
 
     # =========================================================================
     # STEP 4: F1 (v2.5: 순위 + 세부 스케줄)
