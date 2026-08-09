@@ -957,6 +957,20 @@ def inject_allstar_data(nba_data, kst_now):
     return nba_data
 
 # =============================================================================
+# Korean Players 함수 (Football-Data.org 우선 + Serper/Gemini 폴백)
+# =============================================================================
+
+# 코리안리거 추적 대상 (하이브리드 소스: API 우선 → 검색 폴백)
+KOREAN_PLAYERS = [
+    {"player": "이강인", "team_label": "ATM", "team_name": "Atletico Madrid",
+     "team_id": 78, "competition_label": "La Liga"},
+    {"player": "김민재", "team_label": "Bayern", "team_name": "Bayern Munich",
+     "team_id": 5, "competition_label": "Bundesliga"},
+    {"player": "손흥민", "team_label": "LAFC", "team_name": "LAFC",
+     "team_id": None, "competition_label": "MLS"},
+]
+
+# =============================================================================
 # F1 함수 - v2.5 (순위 + 세부 스케줄)
 # =============================================================================
 
@@ -1590,6 +1604,105 @@ def search_f1_data(serper_key, gemini_key=None):
         log("   ⚠️ 순위 조회 실패")
     
     return f1_data
+
+# =============================================================================
+# Korean Players 데이터 수집 함수
+# =============================================================================
+def get_korean_player_match_from_api(team_id, football_key):
+    """football-data.org 팀 다음 경기 조회 (이강인·김민재 전용, MLS 미지원)"""
+    if not team_id or not football_key:
+        return None
+    url = f"{FOOTBALL_DATA_API_URL}/teams/{team_id}/matches"
+    headers = {"X-Auth-Token": football_key}
+    params = {"status": "SCHEDULED", "limit": 1}
+    try:
+        r = requests.get(url, headers=headers, params=params, timeout=10)
+        if r.status_code != 200:
+            log(f"   ⚠️ team {team_id} matches API error: {r.status_code}")
+            return None
+        matches = r.json().get("matches", [])
+        if not matches:
+            return None
+        m = matches[0]
+        time_info = convert_utc_to_kst(m.get("utcDate", ""))
+        if not time_info:
+            return None
+        home = m.get("homeTeam", {})
+        away = m.get("awayTeam", {})
+        is_home = str(home.get("id")) == str(team_id)
+        opponent = away.get("name", "-") if is_home else home.get("name", "-")
+        return {
+            "opponent": opponent,
+            "venue": "home" if is_home else "away",
+            "kst_date": time_info["kst_date"],
+            "kst_time": time_info["kst_time"],
+            "competition": m.get("competition", {}).get("name", ""),
+            "status": "SCHEDULED",
+        }
+    except Exception as e:
+        log(f"   ⚠️ team {team_id} matches exception: {e}")
+        return None
+
+
+def get_korean_player_match_from_search(team_name, serper_key, gemini_key):
+    """Serper 검색 + Gemini 파싱 (MLS 등 API 미지원 리그 / API 실패 폴백)"""
+    if not serper_key or not gemini_key:
+        return None
+    search_result = call_serper_api(f"{team_name} next match schedule date time", serper_key)
+    if not search_result:
+        return None
+    snippet_text = json.dumps(search_result.get("organic", [])[:5])
+    prompt = (
+        f"다음 검색결과에서 {team_name}의 다음 경기 정보를 JSON으로만 추출해줘 (설명 없이 JSON만). "
+        f'형식: {{"opponent": str, "venue": "home 또는 away", "date_utc": "YYYY-MM-DDTHH:MM:SSZ", "competition": str}}. '
+        f"정보를 찾을 수 없으면 null만 반환.\n\n검색결과: {snippet_text}"
+    )
+    parsed = call_gemini_api(prompt, gemini_key)
+    if not parsed:
+        return None
+    try:
+        data = json.loads(parsed.strip().strip('```json').strip('```'))
+        if not data:
+            return None
+        time_info = convert_utc_to_kst(data.get("date_utc", ""))
+        if not time_info:
+            return None
+        return {
+            "opponent": data.get("opponent", "-"),
+            "venue": data.get("venue", "-"),
+            "kst_date": time_info["kst_date"],
+            "kst_time": time_info["kst_time"],
+            "competition": data.get("competition", ""),
+            "status": "SCHEDULED",
+        }
+    except Exception:
+        return None
+
+
+def get_korean_players_data(football_key, serper_key, gemini_key):
+    """코리안리거 3인 다음 경기 데이터 수집 (하이브리드: API 우선, 검색 폴백)"""
+    results = []
+    for p in KOREAN_PLAYERS:
+        match_info = None
+        if p["team_id"]:
+            match_info = get_korean_player_match_from_api(p["team_id"], football_key)
+        if not match_info:
+            match_info = get_korean_player_match_from_search(p["team_name"], serper_key, gemini_key)
+
+        entry = {
+            "player": p["player"],
+            "team": p["team_label"],
+            "opponent": match_info["opponent"] if match_info else "-",
+            "venue": match_info["venue"] if match_info else "-",
+            "kst_date": match_info["kst_date"] if match_info else "-",
+            "kst_time": match_info["kst_time"] if match_info else "-",
+            "competition": match_info["competition"] if match_info else p["competition_label"],
+            "status": match_info["status"] if match_info else "UNKNOWN",
+        }
+        results.append(entry)
+        icon = "✅" if match_info else "⚠️"
+        log(f"   {icon} {p['player']} ({p['team_label']}): vs {entry['opponent']} | {entry['kst_date']} {entry['kst_time']} KST")
+    return results
 
 # =============================================================================
 # 테니스 함수 - v2.5 (Apps Script Web App + Serper/Gemini 보완)
@@ -2352,12 +2465,15 @@ def update_sports_data():
         log(f"   ✅ 순위: {len(f1_data['standings'])}명 로드")
 
     # =========================================================================
-    # STEP 5a: 2026 FIFA World Cup (Football-Data.org API)
+    # STEP 5a: Korean Players (하이브리드: Football-Data.org + Serper/Gemini)
     # =========================================================================
-    log("\n🏆 [Step 5a] 2026 FIFA World Cup (Football-Data.org API)...")
+    log("\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...")
 
-    worldcup_data = get_worldcup_data(football_api_key)
-    log(f"   ✅ Phase: {worldcup_data['phase']} | Matches: {len(worldcup_data['matches'])}경기")
+    korean_players_data = get_korean_players_data(football_api_key, serper_api_key, gemini_api_key)
+
+    # @disabled:worldcup — 월드컵 종료로 데이터 수집 중단. 다음 대회 시 주석 해제.
+    # worldcup_data = get_worldcup_data(football_api_key)
+    # log(f"   ✅ Phase: {worldcup_data['phase']} | Matches: {len(worldcup_data['matches'])}경기")
 
     # =========================================================================
     # STEP 5: Tennis (v6: Sofascore Web App — Gemini 없음)
@@ -2413,7 +2529,8 @@ def update_sports_data():
         "nba": nba_data,
         "f1": f1_data,
         "tennis": clean_tennis,
-        "worldcup": worldcup_data,
+        "korean_players": korean_players_data,
+        # "worldcup": worldcup_data,  # @disabled:worldcup — 데이터 자체 중단
         "debug": {
             "has_football_key": bool(football_api_key),
             "has_serper_key": bool(serper_api_key),
@@ -2431,7 +2548,7 @@ def update_sports_data():
     log(f"   NBA: {len(nba_data['schedule'])}경기")
     log(f"   F1: {next_race.get('name', '-')} | {len(f1_data.get('schedule', []))}세션 | {len(f1_data.get('standings', []))}명 순위")
     log(f"   Tennis: {final_next.get('event', '-')} | {final_next.get('detail', '-')}")
-    log(f"   WorldCup: {worldcup_data['phase']} | {len(worldcup_data['matches'])}경기")
+    log(f"   Korean Players: {len(korean_players_data)}명")
     log(f"   파일: {SPORTS_FILE}")
 
     return sports_data
