@@ -565,7 +565,8 @@
                 const locIcon = isHome ? '🏠' : (isAway ? '✈️' : '');
                 const vsLabel = isAway ? '@ ' : 'vs ';
                 const opponent = p.opponent && p.opponent !== '-' ? p.opponent : 'TBD';
-                const dateText = p.kst_date && p.kst_date !== '-' ? p.kst_date : 'TBD';
+                const isEstimated = p.status === 'ESTIMATED';
+                const dateText = p.kst_date && p.kst_date !== '-' ? p.kst_date : (isEstimated ? 'Estimated' : 'TBD');
                 const timeText = p.kst_time && p.kst_time !== '-' ? `${p.kst_time} KST` : '';
                 h += `<div style="display:flex; justify-content:space-between; align-items:center; padding:8px; border-radius:6px; background:rgba(255,255,255,0.03);">` +
                         `<div>` +
