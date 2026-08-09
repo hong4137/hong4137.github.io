@@ -565,13 +565,16 @@
                 const locIcon = isHome ? '🏠' : (isAway ? '✈️' : '');
                 const vsLabel = isAway ? '@ ' : 'vs ';
                 const opponent = p.opponent && p.opponent !== '-' ? p.opponent : 'TBD';
-                const isEstimated = p.status === 'ESTIMATED';
-                const dateText = p.kst_date && p.kst_date !== '-' ? p.kst_date : (isEstimated ? 'Estimated' : 'TBD');
+                const competition = p.competition && p.competition !== '-' ? p.competition : '';
+                const matchLine = competition
+                    ? `🏆 ${competition} · ${locIcon} ${vsLabel}${opponent}`
+                    : `${locIcon} ${vsLabel}${opponent}`;
+                const dateText = p.kst_date && p.kst_date !== '-' ? p.kst_date : 'TBD';
                 const timeText = p.kst_time && p.kst_time !== '-' ? `${p.kst_time} KST` : '';
                 h += `<div style="display:flex; justify-content:space-between; align-items:center; padding:8px; border-radius:6px; background:rgba(255,255,255,0.03);">` +
                         `<div>` +
                             `<div style="font-size:12px; font-weight:bold; color:white;">🇰🇷 ${p.player} <span style="color:#888; font-weight:normal;">(${p.team})</span></div>` +
-                            `<div style="font-size:11px; color:#aaa; margin-top:2px;">${locIcon} ${vsLabel}${opponent}</div>` +
+                            `<div style="font-size:11px; color:#aaa; margin-top:2px;">${matchLine}</div>` +
                         `</div>` +
                         `<div style="text-align:right;">` +
                             `<div style="font-size:12px; font-weight:bold; color:#ddd;">${dateText}</div>` +

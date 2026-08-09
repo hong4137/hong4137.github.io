@@ -976,11 +976,53 @@ KOREAN_PLAYERS = [
      "team_id": None, "competition_label": "MLS"},
 ]
 
-# 최초 실행 시(기존 sports.json도 없을 때) 사용할 기본 예상 매치업 — API/검색 모두 실패 시 최종 폴백
+# 대회명 → 표시용 축약 라벨
+COMPETITION_SHORT_LABELS = {
+    "Primera Division": "La Liga",
+    "Bundesliga": "Bundesliga",
+    "Premier League": "Premier League",
+    "Major League Soccer": "MLS",
+    "DFB-Pokal": "DFB-Pokal",
+    "Copa del Rey": "Copa del Rey",
+    "UEFA Champions League": "UCL",
+    "UEFA Europa League": "UEL",
+}
+
+# 컵대회 녹아웃 스테이지 → 한국어 라벨
+STAGE_LABELS_KR = {
+    "GROUP_STAGE": "조별리그",
+    "LAST_16": "16강",
+    "ROUND_OF_16": "16강",
+    "QUARTER_FINALS": "8강",
+    "SEMI_FINALS": "4강",
+    "FINAL": "결승",
+}
+
+def format_match_round_label(match, fallback_label):
+    """football-data.org 매치 정보 → 'La Liga R1' / 'DFB-Pokal 16강' / '친선전' 등 표시용 라벨"""
+    comp = match.get("competition", {}) or {}
+    comp_name = comp.get("name", "")
+
+    if "friendl" in comp_name.lower():
+        return "친선전"
+
+    short = COMPETITION_SHORT_LABELS.get(comp_name, comp_name or fallback_label)
+    stage = match.get("stage", "")
+    matchday = match.get("matchday")
+
+    if stage == "REGULAR_SEASON" and matchday:
+        return f"{short} R{matchday}"
+    if stage in STAGE_LABELS_KR:
+        return f"{short} {STAGE_LABELS_KR[stage]}"
+    if matchday:
+        return f"{short} R{matchday}"
+    return short
+
+# 하드코딩 — F1_2026_CALENDAR와 동일한 관리 방식. API/검색 모두 실패 시 최종 폴백.
 KOREAN_PLAYERS_DEFAULT_FALLBACK = {
-    "이강인": {"opponent": "Real Madrid", "venue": "away", "kst_date": "-", "kst_time": "-", "competition": "La Liga"},
-    "김민재": {"opponent": "Dortmund", "venue": "home", "kst_date": "-", "kst_time": "-", "competition": "Bundesliga"},
-    "손흥민": {"opponent": "Inter Miami", "venue": "home", "kst_date": "-", "kst_time": "-", "competition": "MLS"},
+    "이강인": {"opponent": "Málaga CF", "venue": "home", "kst_date": "08.20", "kst_time": "04:00", "competition": "La Liga R1"},
+    "김민재": {"opponent": "VfB Stuttgart", "venue": "home", "kst_date": "08.29", "kst_time": "03:30", "competition": "Bundesliga R1"},
+    "손흥민": {"opponent": "Querétaro", "venue": "home", "kst_date": "08.13", "kst_time": "11:30", "competition": "Leagues Cup League Phase"},
 }
 
 # =============================================================================
@@ -1621,7 +1663,7 @@ def search_f1_data(serper_key, gemini_key=None):
 # =============================================================================
 # Korean Players 데이터 수집 함수
 # =============================================================================
-def get_korean_player_match_from_api(team_id, football_key):
+def get_korean_player_match_from_api(team_id, football_key, fallback_label):
     """football-data.org 팀 다음 경기 조회 (이강인·김민재 전용, MLS 미지원)"""
     if not team_id or not football_key:
         return None
@@ -1649,7 +1691,7 @@ def get_korean_player_match_from_api(team_id, football_key):
             "venue": "home" if is_home else "away",
             "kst_date": time_info["kst_date"],
             "kst_time": time_info["kst_time"],
-            "competition": m.get("competition", {}).get("name", ""),
+            "competition": format_match_round_label(m, fallback_label),
             "status": "SCHEDULED",
         }
     except Exception as e:
@@ -1657,7 +1699,7 @@ def get_korean_player_match_from_api(team_id, football_key):
         return None
 
 
-def get_korean_player_match_from_search(team_name, serper_key, gemini_key):
+def get_korean_player_match_from_search(team_name, serper_key, gemini_key, fallback_label):
     """Serper 검색 + Gemini 파싱 (MLS 등 API 미지원 리그 / API 실패 폴백)"""
     if not serper_key or not gemini_key:
         return None
@@ -1667,7 +1709,9 @@ def get_korean_player_match_from_search(team_name, serper_key, gemini_key):
     snippet_text = json.dumps(search_result.get("organic", [])[:5])
     prompt = (
         f"다음 검색결과에서 {team_name}의 다음 경기 정보를 JSON으로만 추출해줘 (설명 없이 JSON만). "
-        f'형식: {{"opponent": str, "venue": "home 또는 away", "date_utc": "YYYY-MM-DDTHH:MM:SSZ", "competition": str}}. '
+        f'형식: {{"opponent": str, "venue": "home 또는 away", "date_utc": "YYYY-MM-DDTHH:MM:SSZ", '
+        f'"competition": str}}. "competition"은 "La Liga R1", "DFB-Pokal 16강", "친선전"처럼 '
+        f"대회명과 라운드/스테이지를 구체적으로 조합해서 작성해줘. "
         f"정보를 찾을 수 없으면 null만 반환.\n\n검색결과: {snippet_text}"
     )
     parsed = call_gemini_api(prompt, gemini_key)
@@ -1685,7 +1729,7 @@ def get_korean_player_match_from_search(team_name, serper_key, gemini_key):
             "venue": data.get("venue", "-"),
             "kst_date": time_info["kst_date"],
             "kst_time": time_info["kst_time"],
-            "competition": data.get("competition", ""),
+            "competition": data.get("competition") or fallback_label,
             "status": "SCHEDULED",
         }
     except Exception:
@@ -1703,9 +1747,9 @@ def get_korean_players_data(football_key, serper_key, gemini_key, existing_data=
     for p in KOREAN_PLAYERS:
         match_info = None
         if p["team_id"]:
-            match_info = get_korean_player_match_from_api(p["team_id"], football_key)
+            match_info = get_korean_player_match_from_api(p["team_id"], football_key, p["competition_label"])
         if not match_info:
-            match_info = get_korean_player_match_from_search(p["team_name"], serper_key, gemini_key)
+            match_info = get_korean_player_match_from_search(p["team_name"], serper_key, gemini_key, p["competition_label"])
 
         if match_info:
             entry = {
@@ -1721,7 +1765,14 @@ def get_korean_players_data(football_key, serper_key, gemini_key, existing_data=
             log(f"   ✅ {p['player']} ({p['team_label']}): vs {entry['opponent']} | {entry['kst_date']} {entry['kst_time']} KST")
         else:
             existing_entry = existing_by_player.get(p["player"])
-            if existing_entry and existing_entry.get("opponent", "-") not in ("-", None):
+            existing_has_schedule = (
+                existing_entry
+                and existing_entry.get("opponent", "-") not in ("-", None)
+                and existing_entry.get("kst_date", "-") not in ("-", None)
+                and existing_entry.get("kst_time", "-") not in ("-", None)
+                and existing_entry.get("competition", "-") not in ("-", None)
+            )
+            if existing_has_schedule:
                 entry = existing_entry
                 log(f"   ⚠️ {p['player']} 수집 실패 → 기존 데이터 유지 (vs {entry.get('opponent', '-')})")
             else:

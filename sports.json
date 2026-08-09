@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-10 00:12:16 KST",
+  "updated": "2026-08-10 00:40:05 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -250,31 +250,31 @@
     {
       "player": "이강인",
       "team": "ATM",
-      "opponent": "Real Madrid",
-      "venue": "away",
-      "kst_date": "-",
-      "kst_time": "-",
-      "competition": "La Liga",
+      "opponent": "Málaga CF",
+      "venue": "home",
+      "kst_date": "08.20",
+      "kst_time": "04:00",
+      "competition": "La Liga R1",
       "status": "ESTIMATED"
     },
     {
       "player": "김민재",
       "team": "Bayern",
-      "opponent": "Dortmund",
+      "opponent": "VfB Stuttgart",
       "venue": "home",
-      "kst_date": "-",
-      "kst_time": "-",
-      "competition": "Bundesliga",
+      "kst_date": "08.29",
+      "kst_time": "03:30",
+      "competition": "Bundesliga R1",
       "status": "ESTIMATED"
     },
     {
       "player": "손흥민",
       "team": "LAFC",
-      "opponent": "Inter Miami",
+      "opponent": "Querétaro",
       "venue": "home",
-      "kst_date": "-",
-      "kst_time": "-",
-      "competition": "MLS",
+      "kst_date": "08.13",
+      "kst_time": "11:30",
+      "competition": "Leagues Cup League Phase",
       "status": "ESTIMATED"
     }
   ],
@@ -285,7 +285,7 @@
     "has_balldontlie_key": false,
     "logs": [
       "⚠️ FOOTBALL_DATA_API_KEY 없음 → EPL은 기존 데이터 유지, Korean Players는 폴백/안전값 사용",
-      "🚀 [Start] 2026-08-10 00:12:16 (KST)",
+      "🚀 [Start] 2026-08-10 00:40:05 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ❌",
       "   - NBA: balldontlie.io ❌",
@@ -328,9 +328,9 @@
       "      📅 08.23 22:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...",
-      "   ⚠️ 이강인 수집 실패 → 기존 데이터 유지 (vs Real Madrid)",
-      "   ⚠️ 김민재 수집 실패 → 기존 데이터 유지 (vs Dortmund)",
-      "   ⚠️ 손흥민 수집 실패 → 기존 데이터 유지 (vs Inter Miami)",
+      "   ⚠️ 이강인 수집 실패, 기존 데이터 없음 → 기본 예상 일정 사용 (vs Málaga CF)",
+      "   ⚠️ 김민재 수집 실패, 기존 데이터 없음 → 기본 예상 일정 사용 (vs VfB Stuttgart)",
+      "   ⚠️ 손흥민 수집 실패, 기존 데이터 없음 → 기본 예상 일정 사용 (vs Querétaro)",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
       "      Recent: - vs - - (-)",
