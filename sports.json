@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-09 23:47:30 KST",
+  "updated": "2026-08-10 00:12:16 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -250,32 +250,32 @@
     {
       "player": "이강인",
       "team": "ATM",
-      "opponent": "-",
-      "venue": "-",
+      "opponent": "Real Madrid",
+      "venue": "away",
       "kst_date": "-",
       "kst_time": "-",
       "competition": "La Liga",
-      "status": "UNKNOWN"
+      "status": "ESTIMATED"
     },
     {
       "player": "김민재",
       "team": "Bayern",
-      "opponent": "-",
-      "venue": "-",
+      "opponent": "Dortmund",
+      "venue": "home",
       "kst_date": "-",
       "kst_time": "-",
       "competition": "Bundesliga",
-      "status": "UNKNOWN"
+      "status": "ESTIMATED"
     },
     {
       "player": "손흥민",
       "team": "LAFC",
-      "opponent": "-",
-      "venue": "-",
+      "opponent": "Inter Miami",
+      "venue": "home",
       "kst_date": "-",
       "kst_time": "-",
       "competition": "MLS",
-      "status": "UNKNOWN"
+      "status": "ESTIMATED"
     }
   ],
   "debug": {
@@ -285,7 +285,7 @@
     "has_balldontlie_key": false,
     "logs": [
       "⚠️ FOOTBALL_DATA_API_KEY 없음 → EPL은 기존 데이터 유지, Korean Players는 폴백/안전값 사용",
-      "🚀 [Start] 2026-08-09 23:47:30 (KST)",
+      "🚀 [Start] 2026-08-10 00:12:16 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ❌",
       "   - NBA: balldontlie.io ❌",
@@ -328,9 +328,9 @@
       "      📅 08.23 22:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...",
-      "   ⚠️ 이강인 (ATM): vs - | - - KST",
-      "   ⚠️ 김민재 (Bayern): vs - | - - KST",
-      "   ⚠️ 손흥민 (LAFC): vs - | - - KST",
+      "   ⚠️ 이강인 수집 실패 → 기존 데이터 유지 (vs Real Madrid)",
+      "   ⚠️ 김민재 수집 실패 → 기존 데이터 유지 (vs Dortmund)",
+      "   ⚠️ 손흥민 수집 실패 → 기존 데이터 유지 (vs Inter Miami)",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
       "      Recent: - vs - - (-)",

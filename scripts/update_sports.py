@@ -976,6 +976,13 @@ KOREAN_PLAYERS = [
      "team_id": None, "competition_label": "MLS"},
 ]
 
+# 최초 실행 시(기존 sports.json도 없을 때) 사용할 기본 예상 매치업 — API/검색 모두 실패 시 최종 폴백
+KOREAN_PLAYERS_DEFAULT_FALLBACK = {
+    "이강인": {"opponent": "Real Madrid", "venue": "away", "kst_date": "-", "kst_time": "-", "competition": "La Liga"},
+    "김민재": {"opponent": "Dortmund", "venue": "home", "kst_date": "-", "kst_time": "-", "competition": "Bundesliga"},
+    "손흥민": {"opponent": "Inter Miami", "venue": "home", "kst_date": "-", "kst_time": "-", "competition": "MLS"},
+}
+
 # =============================================================================
 # F1 함수 - v2.5 (순위 + 세부 스케줄)
 # =============================================================================
@@ -1685,8 +1692,13 @@ def get_korean_player_match_from_search(team_name, serper_key, gemini_key):
         return None
 
 
-def get_korean_players_data(football_key, serper_key, gemini_key):
-    """코리안리거 3인 다음 경기 데이터 수집 (하이브리드: API 우선, 검색 폴백)"""
+def get_korean_players_data(football_key, serper_key, gemini_key, existing_data=None):
+    """코리안리거 3인 다음 경기 데이터 수집
+    우선순위: API 조회 → 검색 폴백 → 기존 sports.json 데이터 유지 → 기본 예상 매치업
+    """
+    existing_list = (existing_data or {}).get("korean_players") or []
+    existing_by_player = {e.get("player"): e for e in existing_list if e.get("player")}
+
     results = []
     for p in KOREAN_PLAYERS:
         match_info = None
@@ -1695,19 +1707,37 @@ def get_korean_players_data(football_key, serper_key, gemini_key):
         if not match_info:
             match_info = get_korean_player_match_from_search(p["team_name"], serper_key, gemini_key)
 
-        entry = {
-            "player": p["player"],
-            "team": p["team_label"],
-            "opponent": match_info["opponent"] if match_info else "-",
-            "venue": match_info["venue"] if match_info else "-",
-            "kst_date": match_info["kst_date"] if match_info else "-",
-            "kst_time": match_info["kst_time"] if match_info else "-",
-            "competition": match_info["competition"] if match_info else p["competition_label"],
-            "status": match_info["status"] if match_info else "UNKNOWN",
-        }
+        if match_info:
+            entry = {
+                "player": p["player"],
+                "team": p["team_label"],
+                "opponent": match_info["opponent"],
+                "venue": match_info["venue"],
+                "kst_date": match_info["kst_date"],
+                "kst_time": match_info["kst_time"],
+                "competition": match_info["competition"],
+                "status": match_info["status"],
+            }
+            log(f"   ✅ {p['player']} ({p['team_label']}): vs {entry['opponent']} | {entry['kst_date']} {entry['kst_time']} KST")
+        else:
+            existing_entry = existing_by_player.get(p["player"])
+            if existing_entry and existing_entry.get("opponent", "-") not in ("-", None):
+                entry = existing_entry
+                log(f"   ⚠️ {p['player']} 수집 실패 → 기존 데이터 유지 (vs {entry.get('opponent', '-')})")
+            else:
+                fb = KOREAN_PLAYERS_DEFAULT_FALLBACK.get(p["player"], {})
+                entry = {
+                    "player": p["player"],
+                    "team": p["team_label"],
+                    "opponent": fb.get("opponent", "-"),
+                    "venue": fb.get("venue", "-"),
+                    "kst_date": fb.get("kst_date", "-"),
+                    "kst_time": fb.get("kst_time", "-"),
+                    "competition": fb.get("competition", p["competition_label"]),
+                    "status": "ESTIMATED",
+                }
+                log(f"   ⚠️ {p['player']} 수집 실패, 기존 데이터 없음 → 기본 예상 일정 사용 (vs {entry['opponent']})")
         results.append(entry)
-        icon = "✅" if match_info else "⚠️"
-        log(f"   {icon} {p['player']} ({p['team_label']}): vs {entry['opponent']} | {entry['kst_date']} {entry['kst_time']} KST")
     return results
 
 # =============================================================================
@@ -2493,7 +2523,7 @@ def update_sports_data():
     # =========================================================================
     log("\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...")
 
-    korean_players_data = get_korean_players_data(football_api_key, serper_api_key, gemini_api_key)
+    korean_players_data = get_korean_players_data(football_api_key, serper_api_key, gemini_api_key, existing_data)
 
     # @disabled:worldcup — 월드컵 종료로 데이터 수집 중단. 다음 대회 시 주석 해제.
     # worldcup_data = get_worldcup_data(football_api_key)
