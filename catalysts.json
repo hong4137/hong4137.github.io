@@ -1,32 +1,29 @@
 {
-  "generated_at": "2026-08-10 06:26 KST",
+  "generated_at": "2026-08-11 06:37 KST",
   "events": [
     {
       "date": "2026-08-11",
-      "title": "7월 기존주택판매",
+      "title": "미국 기존 주택 판매 (7월)",
       "category": "economic_data",
       "importance": 4,
       "impact": [
         "equities",
-        "yields",
-        "USD"
+        "USD",
+        "yields"
       ],
-      "consensus": null,
+      "consensus": "4.05M",
       "source_url": "https://www.nar.realtor/"
     },
     {
       "date": "2026-08-12",
-      "title": "7월 소비자물가지수 (CPI)",
-      "category": "economic_data",
-      "importance": 5,
+      "title": "구글 Made by Google 2026 이벤트 (Pixel 11, Watch 5 발표)",
+      "category": "tech_conf",
+      "importance": 4,
       "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
+        "equities"
       ],
-      "consensus": "3% 이상 (YoY)",
-      "source_url": "https://www.bls.gov/cpi/"
+      "consensus": null,
+      "source_url": "https://store.google.com/"
     },
     {
       "date": "2026-08-12",
@@ -42,11 +39,26 @@
       "source_url": "https://home.treasury.gov/"
     },
     {
+      "date": "2026-08-12",
+      "title": "미국 소비자 물가 지수 (CPI) (7월)",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bls.gov/cpi/"
+    },
+    {
       "date": "2026-08-13",
-      "title": "7월 생산자물가지수 (PPI)",
+      "title": "미국 생산자 물가 지수 (PPI) (7월)",
       "category": "economic_data",
       "importance": 4,
       "impact": [
+        "VIX",
         "yields",
         "equities",
         "USD"
@@ -68,32 +80,19 @@
       "source_url": "https://home.treasury.gov/"
     },
     {
+      "date": "2026-08-13",
+      "title": "NVIDIA GTC AI 컨퍼런스 2026",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": [
+        "equities"
+      ],
+      "consensus": null,
+      "source_url": "https://www.nvidia.com/gtc/"
+    },
+    {
       "date": "2026-08-14",
-      "title": "7월 소매판매",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.census.gov/"
-    },
-    {
-      "date": "2026-08-18",
-      "title": "7월 산업생산",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.federalreserve.gov/"
-    },
-    {
-      "date": "2026-08-18",
-      "title": "7월 주택착공 및 건축허가",
+      "title": "미국 소매 판매 (7월)",
       "category": "economic_data",
       "importance": 4,
       "impact": [
