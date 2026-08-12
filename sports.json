@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-12 22:13:15 KST",
+  "updated": "2026-08-13 04:03:06 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -239,11 +239,11 @@
       "date": "-"
     },
     "next": {
-      "event": "US Open",
+      "event": "-",
       "detail": "-",
-      "match_time": "Aug 25",
-      "tournament_dates": "Aug 25 - Sep 7",
-      "status": "Grand Slam"
+      "match_time": "TBD",
+      "tournament_dates": "",
+      "status": "-"
     }
   },
   "korean_players": [
@@ -284,7 +284,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-08-12 22:13:15 (KST)",
+      "🚀 [Start] 2026-08-13 04:03:06 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -346,12 +346,11 @@
       "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ⚠️ 손흥민 수집 실패 → 기존 데이터 유지 (vs Querétaro)",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
-      "   ✅ Web App 응답:",
-      "      Recent: - vs - - (-)",
-      "      Next: US Open | Aug 25",
+      "   ⚠️ Web App 호출 실패: 404",
+      "   ⚠️ Web App 실패 → 기본값",
       "   📊 최종:",
       "      Recent: - vs - - (-) | -",
-      "      Next: US Open | - | Aug 25",
+      "      Next: - | - | TBD",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
     ]
