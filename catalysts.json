@@ -1,22 +1,23 @@
 {
-  "generated_at": "2026-08-13 06:40 KST",
+  "generated_at": "2026-08-15 06:20 KST",
   "events": [
     {
-      "date": "2026-08-13",
-      "title": "미국 생산자물가지수 (PPI) 발표",
-      "category": "economic_data",
-      "importance": 4,
+      "date": "2026-08-19",
+      "title": "FOMC 의사록 공개 (7월 회의)",
+      "category": "fed_fomc",
+      "importance": 5,
       "impact": [
+        "VIX",
+        "yields",
         "equities",
-        "USD",
-        "yields"
+        "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.bls.gov/"
+      "source_url": "https://www.federalreserve.gov"
     },
     {
-      "date": "2026-08-13",
-      "title": "미국 30년물 국채 입찰",
+      "date": "2026-08-19",
+      "title": "미국 20년물 국채 입찰",
       "category": "treasury_auction",
       "importance": 4,
       "impact": [
@@ -25,11 +26,11 @@
         "equities"
       ],
       "consensus": null,
-      "source_url": "https://home.treasury.gov/"
+      "source_url": "https://home.treasury.gov"
     },
     {
-      "date": "2026-08-14",
-      "title": "미국 소매판매 (Retail Sales) 발표",
+      "date": "2026-08-20",
+      "title": "주간 신규 실업수당 청구건수",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -37,60 +38,38 @@
         "USD",
         "yields"
       ],
-      "consensus": null,
-      "source_url": "https://www.census.gov/"
+      "consensus": "209K",
+      "source_url": "https://www.dol.gov"
     },
     {
-      "date": "2026-08-18",
-      "title": "NVIDIA Actuate 26 컨퍼런스 시작",
-      "category": "tech_conf",
+      "date": "2026-08-20",
+      "title": "미국 30년물 물가연동국채(TIPS) 입찰",
+      "category": "treasury_auction",
       "importance": 4,
       "impact": [
+        "yields",
+        "USD",
         "equities"
       ],
       "consensus": null,
-      "source_url": "https://www.nvidia.com/"
-    },
-    {
-      "date": "2026-08-19",
-      "title": "FOMC 의사록 공개",
-      "category": "fed_fomc",
-      "importance": 5,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.federalreserve.gov/"
-    },
-    {
-      "date": "2026-08-23",
-      "title": "NVIDIA Hot Chips 2026 시작",
-      "category": "tech_conf",
-      "importance": 4,
-      "impact": [
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://www.nvidia.com/"
-    },
-    {
-      "date": "2026-08-25",
-      "title": "미국 FHFA 주택가격지수 발표",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.fhfa.gov/"
+      "source_url": "https://home.treasury.gov"
     },
     {
       "date": "2026-08-26",
-      "title": "미국 GDP (2차 잠정) 발표",
+      "title": "미국 2분기 GDP (2차 추정치)",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": "1.5% QoQ",
+      "source_url": "https://www.bea.gov"
+    },
+    {
+      "date": "2026-08-26",
+      "title": "미국 7월 내구재 주문",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -99,7 +78,34 @@
         "yields"
       ],
       "consensus": null,
-      "source_url": "https://www.bea.gov/"
+      "source_url": "https://www.census.gov"
+    },
+    {
+      "date": "2026-08-26",
+      "title": "미국 7월 개인소비지출 (PCE)",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bea.gov"
+    },
+    {
+      "date": "2026-08-28",
+      "title": "잭슨홀 경제정책 심포지엄 (Fed 의장 연설)",
+      "category": "fed_fomc",
+      "importance": 5,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.kansascityfed.org"
     }
   ]
 }
