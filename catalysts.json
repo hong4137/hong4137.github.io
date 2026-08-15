@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-15 06:20 KST",
+  "generated_at": "2026-08-16 06:16 KST",
   "events": [
     {
       "date": "2026-08-19",
-      "title": "FOMC 의사록 공개 (7월 회의)",
+      "title": "FOMC 7월 회의록 공개",
       "category": "fed_fomc",
       "importance": 5,
       "impact": [
@@ -13,89 +13,50 @@
         "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.federalreserve.gov"
+      "source_url": "https://www.federalreserve.gov/"
     },
     {
-      "date": "2026-08-19",
-      "title": "미국 20년물 국채 입찰",
-      "category": "treasury_auction",
+      "date": "2026-08-26",
+      "title": "미국 2분기 GDP (2차 추정치) 발표",
+      "category": "economic_data",
       "importance": 4,
       "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": "1.6% QoQ annualized",
+      "source_url": "https://www.bea.gov/"
+    },
+    {
+      "date": "2026-08-26",
+      "title": "NVIDIA 2분기 실적 발표",
+      "category": "earnings",
+      "importance": 5,
+      "impact": [
+        "equities",
+        "VIX"
+      ],
+      "consensus": null,
+      "source_url": "https://investor.nvidia.com/"
+    },
+    {
+      "date": "2026-08-27",
+      "title": "잭슨홀 경제정책 심포지엄 시작",
+      "category": "geopolitical",
+      "importance": 4,
+      "impact": [
+        "VIX",
         "yields",
-        "USD",
-        "equities"
+        "equities",
+        "USD"
       ],
       "consensus": null,
-      "source_url": "https://home.treasury.gov"
-    },
-    {
-      "date": "2026-08-20",
-      "title": "주간 신규 실업수당 청구건수",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": "209K",
-      "source_url": "https://www.dol.gov"
-    },
-    {
-      "date": "2026-08-20",
-      "title": "미국 30년물 물가연동국채(TIPS) 입찰",
-      "category": "treasury_auction",
-      "importance": 4,
-      "impact": [
-        "yields",
-        "USD",
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://home.treasury.gov"
-    },
-    {
-      "date": "2026-08-26",
-      "title": "미국 2분기 GDP (2차 추정치)",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": "1.5% QoQ",
-      "source_url": "https://www.bea.gov"
-    },
-    {
-      "date": "2026-08-26",
-      "title": "미국 7월 내구재 주문",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.census.gov"
-    },
-    {
-      "date": "2026-08-26",
-      "title": "미국 7월 개인소비지출 (PCE)",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bea.gov"
+      "source_url": "https://www.kansascityfed.org/"
     },
     {
       "date": "2026-08-28",
-      "title": "잭슨홀 경제정책 심포지엄 (Fed 의장 연설)",
+      "title": "잭슨홀: Fed 의장 연설",
       "category": "fed_fomc",
       "importance": 5,
       "impact": [
@@ -105,7 +66,7 @@
         "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.kansascityfed.org"
+      "source_url": "https://www.federalreserve.gov/"
     }
   ]
 }
