@@ -1022,7 +1022,7 @@ def format_match_round_label(match, fallback_label):
 KOREAN_PLAYERS_DEFAULT_FALLBACK = {
     "이강인": {"opponent": "Málaga CF", "venue": "home", "kst_date": "08.20", "kst_time": "04:00", "competition": "La Liga R1"},
     "김민재": {"opponent": "VfB Stuttgart", "venue": "home", "kst_date": "08.29", "kst_time": "03:30", "competition": "Bundesliga R1"},
-    "손흥민": {"opponent": "Querétaro", "venue": "home", "kst_date": "08.13", "kst_time": "11:30", "competition": "Leagues Cup League Phase"},
+    "손흥민": {"opponent": "Colorado Rapids", "venue": "away", "kst_date": "08.20", "kst_time": "10:30", "competition": "MLS"},
 }
 
 # =============================================================================
@@ -1703,16 +1703,22 @@ def get_korean_player_match_from_search(team_name, serper_key, gemini_key, fallb
     """Serper 검색 + Gemini 파싱 (MLS 등 API 미지원 리그 / API 실패 폴백)"""
     if not serper_key or not gemini_key:
         return None
-    search_result = call_serper_api(f"{team_name} next match schedule date time", serper_key)
+    search_result = call_serper_api(
+        f"{team_name} next match schedule official fixture 2026 date time kickoff",
+        serper_key,
+    )
     if not search_result:
         return None
     snippet_text = json.dumps(search_result.get("organic", [])[:5])
+    kst_today = get_kst_now().strftime("%Y-%m-%d")
     prompt = (
-        f"다음 검색결과에서 {team_name}의 다음 경기 정보를 JSON으로만 추출해줘 (설명 없이 JSON만). "
+        f"다음 검색결과에서 {team_name}의 다음(향후) 예정 경기 정보를 JSON으로만 추출해줘 (설명 없이 JSON만). "
+        f"오늘은 {kst_today}(KST)이며, 오늘 날짜 이후에 열리는 가장 가까운 경기만 추출해줘. "
+        f"이미 종료되었거나 오늘 이전 날짜의 경기는 절대 반환하지 마. "
         f'형식: {{"opponent": str, "venue": "home 또는 away", "date_utc": "YYYY-MM-DDTHH:MM:SSZ", '
         f'"competition": str}}. "competition"은 "La Liga R1", "DFB-Pokal 16강", "친선전"처럼 '
         f"대회명과 라운드/스테이지를 구체적으로 조합해서 작성해줘. "
-        f"정보를 찾을 수 없으면 null만 반환.\n\n검색결과: {snippet_text}"
+        f"정보를 찾을 수 없거나 확실하지 않으면 null만 반환.\n\n검색결과: {snippet_text}"
     )
     parsed = call_gemini_api(prompt, gemini_key)
     if not parsed:
@@ -1736,6 +1742,16 @@ def get_korean_player_match_from_search(team_name, serper_key, gemini_key, fallb
         return None
 
 
+def is_future_match(entry):
+    """분리 저장된 KST 날짜와 시간으로 아직 지나지 않은 경기인지 확인한다."""
+    kst_date = entry.get("kst_date", "-")
+    kst_time = entry.get("kst_time", "-")
+    if kst_date in ("-", None) or kst_time in ("-", None):
+        return False
+    combined = f"{kst_date} {kst_time} (KST)"
+    return not is_match_past(combined)
+
+
 def get_korean_players_data(football_key, serper_key, gemini_key, existing_data=None):
     """코리안리거 3인 다음 경기 데이터 수집
     우선순위: API 조회 → 검색 폴백 → 기존 sports.json 데이터 유지 → 기본 예상 매치업
@@ -1750,6 +1766,10 @@ def get_korean_players_data(football_key, serper_key, gemini_key, existing_data=
             match_info = get_korean_player_match_from_api(p["team_id"], football_key, p["competition_label"])
         if not match_info:
             match_info = get_korean_player_match_from_search(p["team_name"], serper_key, gemini_key, p["competition_label"])
+
+        if match_info and not is_future_match(match_info):
+            log(f"   ⚠️ {p['player']} 검색 결과가 과거 날짜({match_info.get('kst_date', '-')}) → 폐기")
+            match_info = None
 
         if match_info:
             entry = {
@@ -1771,11 +1791,14 @@ def get_korean_players_data(football_key, serper_key, gemini_key, existing_data=
                 and existing_entry.get("kst_date", "-") not in ("-", None)
                 and existing_entry.get("kst_time", "-") not in ("-", None)
                 and existing_entry.get("competition", "-") not in ("-", None)
+                and is_future_match(existing_entry)
             )
             if existing_has_schedule:
                 entry = existing_entry
                 log(f"   ⚠️ {p['player']} 수집 실패 → 기존 데이터 유지 (vs {entry.get('opponent', '-')})")
             else:
+                if existing_entry and not is_future_match(existing_entry):
+                    log(f"   ⚠️ {p['player']} 기존 데이터 만료(과거 경기: {existing_entry.get('kst_date', '-')}) → 폴백으로 대체")
                 fb = KOREAN_PLAYERS_DEFAULT_FALLBACK.get(p["player"], {})
                 entry = {
                     "player": p["player"],
