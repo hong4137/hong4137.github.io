@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16 06:16 KST",
+  "generated_at": "2026-08-17 06:15 KST",
   "events": [
     {
       "date": "2026-08-19",
@@ -16,57 +16,41 @@
       "source_url": "https://www.federalreserve.gov/"
     },
     {
-      "date": "2026-08-26",
-      "title": "미국 2분기 GDP (2차 추정치) 발표",
+      "date": "2026-08-19",
+      "title": "미국 20년물 국채 입찰",
+      "category": "treasury_auction",
+      "importance": 4,
+      "impact": [
+        "yields",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://home.treasury.gov/"
+    },
+    {
+      "date": "2026-08-20",
+      "title": "주간 신규 실업수당 청구건수 발표",
       "category": "economic_data",
       "importance": 4,
       "impact": [
         "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": "1.6% QoQ annualized",
-      "source_url": "https://www.bea.gov/"
-    },
-    {
-      "date": "2026-08-26",
-      "title": "NVIDIA 2분기 실적 발표",
-      "category": "earnings",
-      "importance": 5,
-      "impact": [
-        "equities",
-        "VIX"
+        "USD"
       ],
       "consensus": null,
-      "source_url": "https://investor.nvidia.com/"
+      "source_url": "https://www.bls.gov/"
     },
     {
-      "date": "2026-08-27",
-      "title": "잭슨홀 경제정책 심포지엄 시작",
-      "category": "geopolitical",
+      "date": "2026-08-20",
+      "title": "미국 30년물 물가연동국채 (TIPS) 입찰",
+      "category": "treasury_auction",
       "importance": 4,
       "impact": [
-        "VIX",
         "yields",
-        "equities",
-        "USD"
+        "USD",
+        "inflation"
       ],
       "consensus": null,
-      "source_url": "https://www.kansascityfed.org/"
-    },
-    {
-      "date": "2026-08-28",
-      "title": "잭슨홀: Fed 의장 연설",
-      "category": "fed_fomc",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.federalreserve.gov/"
+      "source_url": "https://home.treasury.gov/"
     }
   ]
 }
