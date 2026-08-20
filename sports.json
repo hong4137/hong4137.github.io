@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-20 21:52:27 KST",
+  "updated": "2026-08-21 03:40:45 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -127,7 +127,7 @@
       "date": "Aug 21-23",
       "date_from": "2026-08-21",
       "date_to": "2026-08-23",
-      "status": "Next GP",
+      "status": "This Week",
       "sprint": true
     },
     "schedule": [
@@ -284,7 +284,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-08-20 21:52:27 (KST)",
+      "🚀 [Start] 2026-08-21 03:40:45 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -303,7 +303,7 @@
       "   T5. Early KO: 토요일 12:30 UK",
       "   T6. Leader: 1위 팀 포함",
       "   [최대 선정: 3경기]",
-      "   📋 전체: 10경기 (라운드: [1])",
+      "   📋 전체: 11경기 (라운드: [1, 2])",
       "   🎯 선정 대상: R1 (10경기)",
       "   📊 상태별: {'TIMED': 10}",
       "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
@@ -335,7 +335,7 @@
       "      3. George Russell (Mercedes) 160pts",
       "      4. Charles Leclerc (Ferrari) 138pts",
       "      5. Lando Norris (McLaren) 128pts",
-      "   ✅ Dutch Grand Prix | Circuit Zandvoort | Aug 21-23 [Next GP]",
+      "   ✅ Dutch Grand Prix | Circuit Zandvoort | Aug 21-23 [This Week]",
       "      📅 08.21 20:30 KST | FP1",
       "      📅 08.22 00:30 KST | Sprint Qualifying",
       "      📅 08.22 19:00 KST | Sprint",
