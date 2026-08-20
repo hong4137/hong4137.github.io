@@ -1,48 +1,9 @@
 {
-  "generated_at": "2026-08-20 06:21 KST",
+  "generated_at": "2026-08-21 06:23 KST",
   "events": [
     {
-      "date": "2026-08-20",
-      "title": "미국 주간 신규 실업수당 청구",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/"
-    },
-    {
-      "date": "2026-08-20",
-      "title": "미국 30년물 물가연동국채(TIPS) 입찰",
-      "category": "treasury_auction",
-      "importance": 4,
-      "impact": [
-        "yields",
-        "USD",
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://www.treasurydirect.gov/"
-    },
-    {
-      "date": "2026-08-26",
-      "title": "미국 2분기 GDP (2차 추정치)",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bea.gov/"
-    },
-    {
       "date": "2026-08-27",
-      "title": "잭슨홀 경제정책 심포지엄 시작 (27일~29일)",
+      "title": "잭슨홀 경제정책 심포지엄 시작 (연준 의장 연설 8/28)",
       "category": "fed_fomc",
       "importance": 5,
       "impact": [
@@ -55,21 +16,8 @@
       "source_url": "https://www.kansascityfed.org/"
     },
     {
-      "date": "2026-09-06",
-      "title": "OPEC+ 회의",
-      "category": "geopolitical",
-      "importance": 4,
-      "impact": [
-        "oil",
-        "equities",
-        "USD"
-      ],
-      "consensus": "18.8만 bpd 증산",
-      "source_url": "https://www.opec.org/"
-    },
-    {
-      "date": "2026-09-10",
-      "title": "미국 8월 생산자물가지수 (PPI)",
+      "date": "2026-09-01",
+      "title": "미국 8월 ISM 제조업 구매관리자지수 발표",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -78,33 +26,59 @@
         "yields"
       ],
       "consensus": null,
-      "source_url": "https://www.bls.gov/ppi/"
+      "source_url": "https://www.ismworld.org/"
     },
     {
-      "date": "2026-09-11",
-      "title": "미국 8월 소비자물가지수 (CPI)",
+      "date": "2026-09-01",
+      "title": "미국 8월 구인·이직보고서 (JOLTS) 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bls.gov/"
+    },
+    {
+      "date": "2026-09-02",
+      "title": "미국 8월 ADP 민간고용보고서 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.adp.com/"
+    },
+    {
+      "date": "2026-09-03",
+      "title": "미국 8월 ISM 비제조업 구매관리자지수 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.ismworld.org/"
+    },
+    {
+      "date": "2026-09-04",
+      "title": "미국 8월 비농업 고용보고서 (NFP) 발표",
       "category": "economic_data",
       "importance": 5,
       "impact": [
         "equities",
         "USD",
-        "yields",
-        "VIX"
+        "yields"
       ],
       "consensus": null,
-      "source_url": "https://www.bls.gov/cpi/"
-    },
-    {
-      "date": "2026-09-18",
-      "title": "쿼드러플 위칭 데이",
-      "category": "market_structure",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "VIX"
-      ],
-      "consensus": null,
-      "source_url": "https://www.lseg.com/"
+      "source_url": "https://www.bls.gov/"
     }
   ]
 }
