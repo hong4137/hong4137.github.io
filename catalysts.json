@@ -1,9 +1,51 @@
 {
-  "generated_at": "2026-08-21 06:23 KST",
+  "generated_at": "2026-08-22 06:19 KST",
   "events": [
     {
+      "date": "2026-08-26",
+      "title": "미국 7월 개인소비지출(PCE) 물가지수 발표",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": "전월 대비 +0.1% (헤드라인), +0.2% (근원)",
+      "source_url": "https://www.bea.gov/"
+    },
+    {
+      "date": "2026-08-26",
+      "title": "미국 2분기 GDP (2차 추정치) 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": "1.5% (연율, 1차 추정치)",
+      "source_url": "https://www.bea.gov/"
+    },
+    {
       "date": "2026-08-27",
-      "title": "잭슨홀 경제정책 심포지엄 시작 (연준 의장 연설 8/28)",
+      "title": "잭슨홀 경제정책 심포지엄 시작",
+      "category": "fed_fomc",
+      "importance": 5,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.kansascityfed.org/"
+    },
+    {
+      "date": "2026-08-28",
+      "title": "Fed 의장 잭슨홀 경제정책 심포지엄 연설",
       "category": "fed_fomc",
       "importance": 5,
       "impact": [
@@ -17,65 +59,38 @@
     },
     {
       "date": "2026-09-01",
-      "title": "미국 8월 ISM 제조업 구매관리자지수 발표",
+      "title": "미국 8월 ISM 제조업 구매관리자지수(PMI) 발표",
       "category": "economic_data",
       "importance": 4,
       "impact": [
         "equities",
-        "USD",
-        "yields"
+        "USD"
       ],
-      "consensus": null,
+      "consensus": "55.2 (예상), 55.6 (이전)",
       "source_url": "https://www.ismworld.org/"
     },
     {
-      "date": "2026-09-01",
-      "title": "미국 8월 구인·이직보고서 (JOLTS) 발표",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/"
-    },
-    {
-      "date": "2026-09-02",
-      "title": "미국 8월 ADP 민간고용보고서 발표",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.adp.com/"
-    },
-    {
       "date": "2026-09-03",
-      "title": "미국 8월 ISM 비제조업 구매관리자지수 발표",
+      "title": "미국 8월 ISM 서비스업 구매관리자지수(PMI) 발표",
       "category": "economic_data",
       "importance": 4,
       "impact": [
         "equities",
-        "USD",
-        "yields"
+        "USD"
       ],
-      "consensus": null,
+      "consensus": "53.9 (예상), 54.6 (이전)",
       "source_url": "https://www.ismworld.org/"
     },
     {
       "date": "2026-09-04",
-      "title": "미국 8월 비농업 고용보고서 (NFP) 발표",
+      "title": "미국 8월 비농업 고용지수(NFP) 발표",
       "category": "economic_data",
       "importance": 5,
       "impact": [
+        "VIX",
+        "yields",
         "equities",
-        "USD",
-        "yields"
+        "USD"
       ],
       "consensus": null,
       "source_url": "https://www.bls.gov/"
