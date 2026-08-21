@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-21 21:51:02 KST",
+  "updated": "2026-08-22 03:38:10 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -284,7 +284,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-08-21 21:51:02 (KST)",
+      "🚀 [Start] 2026-08-22 03:38:10 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -303,7 +303,7 @@
       "   T5. Early KO: 토요일 12:30 UK",
       "   T6. Leader: 1위 팀 포함",
       "   [최대 선정: 3경기]",
-      "   📋 전체: 11경기 (라운드: [1, 2])",
+      "   📋 전체: 15경기 (라운드: [1, 2])",
       "   🎯 선정 대상: R1 (10경기)",
       "   📊 상태별: {'TIMED': 10}",
       "   ⚠️ Serper API error: status=400, body={\"message\":\"Not enough credits\",\"statusCode\":400}",
