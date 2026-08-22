@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-22 15:41:41 KST",
+  "updated": "2026-08-22 21:41:10 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -7,9 +7,9 @@
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
+      "Hull City AFC",
       "AFC Bournemouth",
-      "Aston Villa",
-      "Brentford"
+      "Aston Villa"
     ],
     "matches": [
       {
@@ -172,43 +172,43 @@
         "pos": 1,
         "driver": "Kimi Antonelli",
         "team": "Mercedes",
-        "points": 219
+        "points": 224
       },
       {
         "pos": 2,
         "driver": "Lewis Hamilton",
         "team": "Ferrari",
-        "points": 169
+        "points": 171
       },
       {
         "pos": 3,
         "driver": "George Russell",
         "team": "Mercedes",
-        "points": 160
+        "points": 168
       },
       {
         "pos": 4,
         "driver": "Charles Leclerc",
         "team": "Ferrari",
-        "points": 138
+        "points": 145
       },
       {
         "pos": 5,
         "driver": "Lando Norris",
         "team": "McLaren",
-        "points": 128
+        "points": 134
       },
       {
         "pos": 6,
         "driver": "Max Verstappen",
         "team": "Red Bull",
-        "points": 109
+        "points": 112
       },
       {
         "pos": 7,
         "driver": "Oscar Piastri",
         "team": "McLaren",
-        "points": 92
+        "points": 96
       },
       {
         "pos": 8,
@@ -218,15 +218,15 @@
       },
       {
         "pos": 9,
-        "driver": "Liam Lawson",
-        "team": "Red Bull",
+        "driver": "Pierre Gasly",
+        "team": "Alpine",
         "points": 43
       },
       {
         "pos": 10,
-        "driver": "Pierre Gasly",
-        "team": "Alpine",
-        "points": 42
+        "driver": "Liam Lawson",
+        "team": "Red Bull",
+        "points": 43
       }
     ]
   },
@@ -284,7 +284,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-08-22 15:41:41 (KST)",
+      "🚀 [Start] 2026-08-22 21:41:10 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -292,7 +292,7 @@
       "   - AI Parse: Gemini API ✅",
       "\n⚽ [Step 1/5] Premier League 순위...",
       "   ✅ 1위: Arsenal",
-      "   ✅ Top 4: Arsenal, AFC Bournemouth, Aston Villa, Brentford",
+      "   ✅ Top 4: Arsenal, Hull City AFC, AFC Bournemouth, Aston Villa",
       "   ✅ 현재 라운드: R1",
       "\n⚽ [Step 2/5] Premier League 경기 선정 (v2.4)...",
       "   [티어 우선순위]",
@@ -305,9 +305,7 @@
       "   [최대 선정: 3경기]",
       "   📋 전체: 15경기 (라운드: [1, 2])",
       "   🎯 선정 대상: R1 (10경기)",
-      "   📊 상태별: {'FINISHED': 1, 'TIMED': 9}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   📊 상태별: {'FINISHED': 1, 'IN_PLAY': 1, 'TIMED': 8}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
@@ -330,11 +328,11 @@
       "   [F1] 드라이버 순위 조회...",
       "      ✅ 순위 직접 파싱 성공 (www.formula1.com): 22명",
       "   ✅ 순위: 10명",
-      "      1. Kimi Antonelli (Mercedes) 219pts",
-      "      2. Lewis Hamilton (Ferrari) 169pts",
-      "      3. George Russell (Mercedes) 160pts",
-      "      4. Charles Leclerc (Ferrari) 138pts",
-      "      5. Lando Norris (McLaren) 128pts",
+      "      1. Kimi Antonelli (Mercedes) 224pts",
+      "      2. Lewis Hamilton (Ferrari) 171pts",
+      "      3. George Russell (Mercedes) 168pts",
+      "      4. Charles Leclerc (Ferrari) 145pts",
+      "      5. Lando Norris (McLaren) 134pts",
       "   ✅ Dutch Grand Prix | Circuit Zandvoort | Aug 21-23 [This Week]",
       "      📅 08.21 20:30 KST | FP1",
       "      📅 08.22 00:30 KST | Sprint Qualifying",
@@ -346,8 +344,7 @@
       "   ✅ 이강인 (ATM): vs Villarreal CF | 08.24 00:00 KST",
       "   ✅ 김민재 (Bayern): vs VfB Stuttgart | 08.29 03:30 KST",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ⚠️ 손흥민 기존 데이터 만료(과거 경기: 08.20) → 폴백으로 대체",
-      "   ⚠️ 손흥민 수집 실패, 기존 데이터 없음 → 기본 예상 일정 사용 (vs Portland Timbers)",
+      "   ⚠️ 손흥민 수집 실패 → 기존 데이터 유지 (vs Portland Timbers)",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
       "      Recent: - vs - - (-)",
