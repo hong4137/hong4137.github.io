@@ -145,7 +145,11 @@ def call_serper_api(query, api_key):
         if response.status_code == 200:
             return response.json()
         else:
-            log(f"   ⚠️ Serper API error: status={response.status_code}, body={response.text[:300]}")
+            body = response.text[:300]
+            if response.status_code == 400 and "credit" in body.lower():
+                log(f"   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={body}")
+            else:
+                log(f"   ⚠️ Serper API error: status={response.status_code}, body={body}")
     except Exception as e:
         log(f"   ⚠️ Serper API exception: {e}")
     return None
@@ -1022,7 +1026,7 @@ def format_match_round_label(match, fallback_label):
 KOREAN_PLAYERS_DEFAULT_FALLBACK = {
     "이강인": {"opponent": "Málaga CF", "venue": "home", "kst_date": "08.20", "kst_time": "04:00", "competition": "La Liga R1"},
     "김민재": {"opponent": "VfB Stuttgart", "venue": "home", "kst_date": "08.29", "kst_time": "03:30", "competition": "Bundesliga R1"},
-    "손흥민": {"opponent": "Colorado Rapids", "venue": "away", "kst_date": "08.20", "kst_time": "10:30", "competition": "MLS"},
+    "손흥민": {"opponent": "Portland Timbers", "venue": "home", "kst_date": "08.23", "kst_time": "11:30", "competition": "MLS"},
 }
 
 # =============================================================================
@@ -1810,7 +1814,10 @@ def get_korean_players_data(football_key, serper_key, gemini_key, existing_data=
                     "competition": fb.get("competition", p["competition_label"]),
                     "status": "ESTIMATED",
                 }
-                log(f"   ⚠️ {p['player']} 수집 실패, 기존 데이터 없음 → 기본 예상 일정 사용 (vs {entry['opponent']})")
+                if not is_future_match(entry):
+                    log(f"   🚨 {p['player']} 폴백 데이터도 만료됨(과거: {entry['kst_date']} {entry['kst_time']}) — KOREAN_PLAYERS_DEFAULT_FALLBACK 수동 갱신 필요! (vs {entry['opponent']})")
+                else:
+                    log(f"   ⚠️ {p['player']} 수집 실패, 기존 데이터 없음 → 기본 예상 일정 사용 (vs {entry['opponent']})")
         results.append(entry)
     return results
 
