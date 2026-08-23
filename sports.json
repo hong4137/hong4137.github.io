@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-23 10:26:12 KST",
+  "updated": "2026-08-23 15:42:42 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -284,7 +284,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-08-23 10:26:12 (KST)",
+      "🚀 [Start] 2026-08-23 15:42:42 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -340,7 +340,8 @@
       "   ✅ 이강인 (ATM): vs Villarreal CF | 08.24 00:00 KST",
       "   ✅ 김민재 (Bayern): vs VfB Stuttgart | 08.29 03:30 KST",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ⚠️ 손흥민 수집 실패 → 기존 데이터 유지 (vs Portland Timbers)",
+      "   ⚠️ 손흥민 기존 데이터 만료(과거 경기: 08.23) → 폴백으로 대체",
+      "   🚨 손흥민 폴백 데이터도 만료됨(과거: 08.23 11:30) — KOREAN_PLAYERS_DEFAULT_FALLBACK 수동 갱신 필요! (vs Portland Timbers)",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
       "      Recent: - vs - - (-)",
