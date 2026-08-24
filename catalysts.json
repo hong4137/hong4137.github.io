@@ -1,35 +1,9 @@
 {
-  "generated_at": "2026-08-24 06:16 KST",
+  "generated_at": "2026-08-25 06:24 KST",
   "events": [
     {
-      "date": "2026-08-26",
-      "title": "미국 7월 개인소비지출(PCE) 물가지수 발표",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": "3.7% YoY",
-      "source_url": "https://www.bea.gov/"
-    },
-    {
       "date": "2026-08-27",
-      "title": "미국 주간 신규 실업수당 청구 건수 발표",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.dol.gov/"
-    },
-    {
-      "date": "2026-08-28",
-      "title": "잭슨홀 경제 심포지엄 (Fed 의장 연설)",
+      "title": "잭슨홀 경제정책 심포지엄 시작",
       "category": "fed_fomc",
       "importance": 5,
       "impact": [
@@ -38,12 +12,12 @@
         "equities",
         "USD"
       ],
-      "consensus": null,
+      "consensus": "Fed 의장 연설 (8월 28일 예상)",
       "source_url": "https://www.kansascityfed.org/"
     },
     {
       "date": "2026-09-01",
-      "title": "미국 8월 ISM 제조업 구매관리자지수(PMI) 발표",
+      "title": "미국 8월 ISM 제조업 PMI 발표",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -51,59 +25,33 @@
         "USD",
         "yields"
       ],
-      "consensus": "55.2",
+      "consensus": "55.2 (예상)",
       "source_url": "https://www.ismworld.org/"
     },
     {
       "date": "2026-09-04",
-      "title": "미국 8월 비농업 고용지수(NFP) 발표",
+      "title": "미국 8월 비농업 고용보고서 발표",
       "category": "economic_data",
       "importance": 5,
       "impact": [
-        "VIX",
-        "yields",
         "equities",
-        "USD"
+        "USD",
+        "yields",
+        "VIX"
       ],
-      "consensus": null,
+      "consensus": "80,000 (예상)",
       "source_url": "https://www.bls.gov/"
     },
     {
       "date": "2026-09-06",
-      "title": "OPEC+ 회의",
+      "title": "OPEC+ 월간 회의",
       "category": "geopolitical",
       "importance": 4,
       "impact": [
-        "oil",
-        "equities"
+        "oil"
       ],
-      "consensus": "+188k bpd (9월 생산량 조정)",
+      "consensus": "시장 상황 검토 및 생산량 조정 논의",
       "source_url": "https://www.opec.org/"
-    },
-    {
-      "date": "2026-09-09",
-      "title": "Apple 신제품 발표 이벤트 (iPhone 18 Pro/Ultra 예상)",
-      "category": "tech_conf",
-      "importance": 4,
-      "impact": [
-        "equities"
-      ],
-      "consensus": "iPhone 18 Pro, iPhone 18 Pro Max, iPhone Ultra (폴더블) 예상",
-      "source_url": "https://www.apple.com/"
-    },
-    {
-      "date": "2026-09-11",
-      "title": "미국 8월 소비자물가지수(CPI) 발표",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/"
     }
   ]
 }
