@@ -967,17 +967,18 @@ def inject_allstar_data(nba_data, kst_now):
     return nba_data
 
 # =============================================================================
-# Korean Players 함수 (Football-Data.org 우선 + Serper/Gemini 폴백)
+# Korean Players 함수 (TheSportsDB/Football-Data.org 우선 + Serper/Gemini 폴백)
 # =============================================================================
 
 # 코리안리거 추적 대상 (하이브리드 소스: API 우선 → 검색 폴백)
 KOREAN_PLAYERS = [
     {"player": "이강인", "team_label": "ATM", "team_name": "Atletico Madrid",
-     "team_id": 78, "competition_label": "La Liga"},
+     "team_id": 78, "competition_label": "La Liga", "thesportsdb_url": None},
     {"player": "김민재", "team_label": "Bayern", "team_name": "Bayern Munich",
-     "team_id": 5, "competition_label": "Bundesliga"},
+     "team_id": 5, "competition_label": "Bundesliga", "thesportsdb_url": None},
     {"player": "손흥민", "team_label": "LAFC", "team_name": "LAFC",
-     "team_id": None, "competition_label": "MLS"},
+     "team_id": None, "competition_label": "MLS",
+     "thesportsdb_url": "https://www.thesportsdb.com/api/v1/json/3/eventsnext.php?id=136050"},
 ]
 
 # 대회명 → 표시용 축약 라벨
@@ -1667,6 +1668,55 @@ def search_f1_data(serper_key, gemini_key=None):
 # =============================================================================
 # Korean Players 데이터 수집 함수
 # =============================================================================
+def get_korean_player_match_from_thesportsdb(event_url, team_name):
+    """TheSportsDB 무료 API로 다음 경기 조회 (Serper 크레딧 소진과 무관하게 항상 사용 가능)"""
+    try:
+        r = requests.get(event_url, timeout=10)
+        if r.status_code != 200:
+            log(f"   ⚠️ TheSportsDB API error: {r.status_code}")
+            return None
+        events = r.json().get("events") or []
+        if not events:
+            return None
+        e = events[0]
+        home = e.get("strHomeTeam", "") or ""
+        away = e.get("strAwayTeam", "") or ""
+        date_event = e.get("dateEvent", "")
+        str_time = e.get("strTime", "")
+        if not date_event or not str_time:
+            # 시간 미확정 경기는 KST 변환이 부정확해질 수 있어 다음 소스(Serper)로 넘김
+            return None
+        utc_iso = f"{date_event}T{str_time}Z"
+        time_info = convert_utc_to_kst(utc_iso)
+        if not time_info:
+            return None
+        # TheSportsDB는 LAFC를 "Los Angeles FC"로 반환하므로 홈 경기 판정에도 별칭을 적용한다.
+        team_aliases = {team_name.lower()}
+        if team_name.lower() == "lafc":
+            team_aliases.add("los angeles fc")
+        is_home = any(alias in home.lower() for alias in team_aliases)
+        is_away = any(alias in away.lower() for alias in team_aliases)
+        if not is_home and not is_away:
+            return None
+        opponent = away if is_home else home
+        if not opponent:
+            return None
+        round_num = e.get("intRound")
+        league = e.get("strLeague") or "MLS"
+        competition = f"{league} R{round_num}" if round_num else league
+        return {
+            "opponent": opponent,
+            "venue": "home" if is_home else "away",
+            "kst_date": time_info["kst_date"],
+            "kst_time": time_info["kst_time"],
+            "competition": competition,
+            "status": "SCHEDULED",
+        }
+    except Exception as ex:
+        log(f"   ⚠️ TheSportsDB exception: {ex}")
+        return None
+
+
 def get_korean_player_match_from_api(team_id, football_key, fallback_label):
     """football-data.org 팀 다음 경기 조회 (이강인·김민재 전용, MLS 미지원)"""
     if not team_id or not football_key:
@@ -1758,7 +1808,7 @@ def is_future_match(entry):
 
 def get_korean_players_data(football_key, serper_key, gemini_key, existing_data=None):
     """코리안리거 3인 다음 경기 데이터 수집
-    우선순위: API 조회 → 검색 폴백 → 기존 sports.json 데이터 유지 → 기본 예상 매치업
+    우선순위: TheSportsDB → API 조회 → 검색 폴백 → 기존 sports.json 데이터 유지 → 기본 예상 매치업
     """
     existing_list = (existing_data or {}).get("korean_players") or []
     existing_by_player = {e.get("player"): e for e in existing_list if e.get("player")}
@@ -1766,7 +1816,9 @@ def get_korean_players_data(football_key, serper_key, gemini_key, existing_data=
     results = []
     for p in KOREAN_PLAYERS:
         match_info = None
-        if p["team_id"]:
+        if p.get("thesportsdb_url"):
+            match_info = get_korean_player_match_from_thesportsdb(p["thesportsdb_url"], p["team_name"])
+        if not match_info and p["team_id"]:
             match_info = get_korean_player_match_from_api(p["team_id"], football_key, p["competition_label"])
         if not match_info:
             match_info = get_korean_player_match_from_search(p["team_name"], serper_key, gemini_key, p["competition_label"])
