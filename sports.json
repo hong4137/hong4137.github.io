@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-24 21:53:12 KST",
+  "updated": "2026-08-25 03:41:42 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 1,
@@ -239,11 +239,11 @@
       "date": "-"
     },
     "next": {
-      "event": "US Open",
+      "event": "Shanghai Masters",
       "detail": "-",
-      "match_time": "Aug 25",
-      "tournament_dates": "Aug 25 - Sep 7",
-      "status": "Grand Slam"
+      "match_time": "Oct 5",
+      "tournament_dates": "Oct 5 - 12",
+      "status": "Masters"
     }
   },
   "korean_players": [
@@ -270,12 +270,12 @@
     {
       "player": "손흥민",
       "team": "LAFC",
-      "opponent": "Portland Timbers",
-      "venue": "home",
-      "kst_date": "08.23",
-      "kst_time": "11:30",
-      "competition": "MLS",
-      "status": "ESTIMATED"
+      "opponent": "DC United",
+      "venue": "away",
+      "kst_date": "08.30",
+      "kst_time": "08:30",
+      "competition": "American Major League Soccer R20",
+      "status": "SCHEDULED"
     }
   ],
   "debug": {
@@ -284,7 +284,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-08-24 21:53:12 (KST)",
+      "🚀 [Start] 2026-08-25 03:41:42 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -334,16 +334,14 @@
       "\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...",
       "   ✅ 이강인 (ATM): vs Sevilla FC | 08.30 04:30 KST",
       "   ✅ 김민재 (Bayern): vs VfB Stuttgart | 08.29 03:30 KST",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ⚠️ 손흥민 기존 데이터 만료(과거 경기: 08.23) → 폴백으로 대체",
-      "   🚨 손흥민 폴백 데이터도 만료됨(과거: 08.23 11:30) — KOREAN_PLAYERS_DEFAULT_FALLBACK 수동 갱신 필요! (vs Portland Timbers)",
+      "   ✅ 손흥민 (LAFC): vs DC United | 08.30 08:30 KST",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
       "      Recent: - vs - - (-)",
-      "      Next: US Open | Aug 25",
+      "      Next: Shanghai Masters | Oct 5",
       "   📊 최종:",
       "      Recent: - vs - - (-) | -",
-      "      Next: US Open | - | Aug 25",
+      "      Next: Shanghai Masters | - | Oct 5",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
     ]
