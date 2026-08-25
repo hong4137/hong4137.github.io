@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-25 06:24 KST",
+  "generated_at": "2026-08-26 06:23 KST",
   "events": [
     {
-      "date": "2026-08-27",
-      "title": "잭슨홀 경제정책 심포지엄 시작",
-      "category": "fed_fomc",
+      "date": "2026-08-26",
+      "title": "미국 7월 개인소비지출(PCE) 물가지수 발표",
+      "category": "economic_data",
       "importance": 5,
       "impact": [
         "VIX",
@@ -12,8 +12,22 @@
         "equities",
         "USD"
       ],
-      "consensus": "Fed 의장 연설 (8월 28일 예상)",
-      "source_url": "https://www.kansascityfed.org/"
+      "consensus": "Core PCE 3.3% YoY, Headline PCE 3.6% YoY",
+      "source_url": "https://www.bea.gov/"
+    },
+    {
+      "date": "2026-08-26",
+      "title": "미국 2분기 GDP 2차 추정치 발표",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bea.gov/"
     },
     {
       "date": "2026-09-01",
@@ -25,33 +39,57 @@
         "USD",
         "yields"
       ],
-      "consensus": "55.2 (예상)",
+      "consensus": "55.2",
       "source_url": "https://www.ismworld.org/"
     },
     {
-      "date": "2026-09-04",
-      "title": "미국 8월 비농업 고용보고서 발표",
+      "date": "2026-09-01",
+      "title": "미국 7월 JOLTS 채용공고 발표",
       "category": "economic_data",
-      "importance": 5,
+      "importance": 4,
       "impact": [
         "equities",
         "USD",
-        "yields",
-        "VIX"
+        "yields"
       ],
-      "consensus": "80,000 (예상)",
+      "consensus": "7.496M",
+      "source_url": "https://www.bls.gov/"
+    },
+    {
+      "date": "2026-09-04",
+      "title": "미국 8월 비농업 고용지수 (NFP) 발표",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
       "source_url": "https://www.bls.gov/"
     },
     {
       "date": "2026-09-06",
-      "title": "OPEC+ 월간 회의",
+      "title": "OPEC+ 월간 회의 (생산량 결정)",
       "category": "geopolitical",
       "importance": 4,
       "impact": [
         "oil"
       ],
-      "consensus": "시장 상황 검토 및 생산량 조정 논의",
+      "consensus": null,
       "source_url": "https://www.opec.org/"
+    },
+    {
+      "date": "2026-09-09",
+      "title": "Apple iPhone 18 Pro 및 폴더블폰 공개 이벤트",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": [
+        "equities"
+      ],
+      "consensus": null,
+      "source_url": "https://www.apple.com/"
     }
   ]
 }
