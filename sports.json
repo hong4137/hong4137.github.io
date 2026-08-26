@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-26 21:54:54 KST",
+  "updated": "2026-08-27 04:48:41 KST",
   "epl": {
     "matchday": 1,
     "selected_round": 2,
@@ -25,7 +25,7 @@
         ],
         "rule_str": "Challenger, Leader",
         "matchday": 2,
-        "status": "2026-08-30 13:00:00Z",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -40,7 +40,7 @@
         ],
         "rule_str": "Prime Time",
         "matchday": 2,
-        "status": "2026-08-30 15:30:00Z",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -55,7 +55,7 @@
         ],
         "rule_str": "Early KO",
         "matchday": 2,
-        "status": "2026-08-29 11:30:00Z",
+        "status": "TIMED",
         "score": "-"
       }
     ],
@@ -73,7 +73,7 @@
         ],
         "rule_str": "Challenger, Leader",
         "matchday": 2,
-        "status": "2026-08-30 13:00:00Z",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -88,7 +88,7 @@
         ],
         "rule_str": "Prime Time",
         "matchday": 2,
-        "status": "2026-08-30 15:30:00Z",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -103,7 +103,7 @@
         ],
         "rule_str": "Early KO",
         "matchday": 2,
-        "status": "2026-08-29 11:30:00Z",
+        "status": "TIMED",
         "score": "-"
       }
     ]
@@ -284,7 +284,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-08-26 21:54:54 (KST)",
+      "🚀 [Start] 2026-08-27 04:48:41 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -305,7 +305,7 @@
       "   [최대 선정: 3경기]",
       "   📋 전체: 20경기 (라운드: [1, 2])",
       "   🎯 선정 대상: R2 (10경기)",
-      "   📊 상태별: {'2026-08-28 19:00:00Z': 1, '2026-08-29 11:30:00Z': 1, '2026-08-29 14:00:00Z': 2, '2026-08-29 16:30:00Z': 1, '2026-08-30 13:00:00Z': 3, '2026-08-30 15:30:00Z': 1, '2026-08-31 19:00:00Z': 1}",
+      "   📊 상태별: {'TIMED': 10}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
@@ -313,9 +313,9 @@
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   📌 기존 선정 유지 (R2)",
-      "      ⏳ Chelsea vs Brighton & Hove Albion [2026-08-30 13:00:00Z] -",
-      "      ⏳ Manchester United vs Ipswich Town [2026-08-30 15:30:00Z] -",
-      "      ⏳ Liverpool vs Nottingham Forest [2026-08-29 11:30:00Z] -",
+      "      ⏳ Chelsea vs Brighton & Hove Albion [TIMED] -",
+      "      ⏳ Manchester United vs Ipswich Town [TIMED] -",
+      "      ⏳ Liverpool vs Nottingham Forest [TIMED] -",
       "   ✅ 기존 선정 유지: 3경기 (R2)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
