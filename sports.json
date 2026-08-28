@@ -1,15 +1,15 @@
 {
-  "updated": "2026-08-28 19:11:48 KST",
+  "updated": "2026-08-29 06:49:43 KST",
   "epl": {
     "matchday": 2,
     "selected_round": 2,
     "display_matchday": "R2",
-    "leader": "Brighton & Hove Albion",
+    "leader": "Manchester City",
     "top4": [
+      "Manchester City",
       "Brighton & Hove Albion",
       "Arsenal",
-      "Brentford",
-      "Everton"
+      "Brentford"
     ],
     "matches": [
       {
@@ -260,11 +260,11 @@
     {
       "player": "김민재",
       "team": "Bayern",
-      "opponent": "VfB Stuttgart",
-      "venue": "home",
-      "kst_date": "08.29",
-      "kst_time": "03:30",
-      "competition": "Bundesliga R1",
+      "opponent": "FC Schalke 04",
+      "venue": "away",
+      "kst_date": "09.06",
+      "kst_time": "01:30",
+      "competition": "Bundesliga R2",
       "status": "SCHEDULED"
     },
     {
@@ -274,7 +274,7 @@
       "venue": "away",
       "kst_date": "08.30",
       "kst_time": "08:30",
-      "competition": "American Major League Soccer R20",
+      "competition": "American Major League Soccer R22",
       "status": "SCHEDULED"
     }
   ],
@@ -284,15 +284,15 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-08-28 19:11:48 (KST)",
+      "🚀 [Start] 2026-08-29 06:49:43 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
       "   - Search: Serper API ✅",
       "   - AI Parse: Gemini API ✅",
       "\n⚽ [Step 1/5] Premier League 순위...",
-      "   ✅ 1위: Brighton & Hove Albion",
-      "   ✅ Top 4: Brighton & Hove Albion, Arsenal, Brentford, Everton",
+      "   ✅ 1위: Manchester City",
+      "   ✅ Top 4: Manchester City, Brighton & Hove Albion, Arsenal, Brentford",
       "   ✅ 현재 라운드: R2",
       "\n⚽ [Step 2/5] Premier League 경기 선정 (v2.4)...",
       "   [티어 우선순위]",
@@ -303,9 +303,9 @@
       "   T5. Early KO: 토요일 12:30 UK",
       "   T6. Leader: 1위 팀 포함",
       "   [최대 선정: 3경기]",
-      "   📋 전체: 11경기 (라운드: [2, 3])",
+      "   📋 전체: 18경기 (라운드: [2, 3])",
       "   🎯 선정 대상: R2 (10경기)",
-      "   📊 상태별: {'TIMED': 10}",
+      "   📊 상태별: {'FINISHED': 1, 'TIMED': 9}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
@@ -342,7 +342,7 @@
       "   ✅ 순위: 10명 로드",
       "\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...",
       "   ✅ 이강인 (ATM): vs Sevilla FC | 08.30 04:30 KST",
-      "   ✅ 김민재 (Bayern): vs VfB Stuttgart | 08.29 03:30 KST",
+      "   ✅ 김민재 (Bayern): vs FC Schalke 04 | 09.06 01:30 KST",
       "   ✅ 손흥민 (LAFC): vs DC United | 08.30 08:30 KST",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
