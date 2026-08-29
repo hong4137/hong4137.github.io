@@ -1,36 +1,20 @@
 {
-  "generated_at": "2026-08-28 14:05 KST",
+  "generated_at": "2026-08-29 12:02 KST",
   "events": [
     {
-      "date": "2026-08-28",
-      "title": "잭슨홀 경제정책 심포지엄 (Fed 의장 연설)",
-      "category": "fed_fomc",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.kansascityfed.org/"
-    },
-    {
-      "date": "2026-09-01",
-      "title": "미국 ISM 제조업 PMI (8월)",
-      "category": "economic_data",
+      "date": "2026-08-31",
+      "title": "MSCI 지수 리밸런싱",
+      "category": "market_structure",
       "importance": 4,
       "impact": [
-        "equities",
-        "USD",
-        "yields"
+        "equities"
       ],
-      "consensus": "55.2",
-      "source_url": "https://www.ismworld.org/"
+      "consensus": null,
+      "source_url": "https://www.msci.com/"
     },
     {
       "date": "2026-09-01",
-      "title": "미국 JOLTS 구인·이직 보고서 (7월)",
+      "title": "JOLTS (구인·이직 보고서) 발표",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -42,8 +26,8 @@
       "source_url": "https://www.bls.gov/"
     },
     {
-      "date": "2026-09-03",
-      "title": "미국 ISM 서비스업 PMI (8월)",
+      "date": "2026-09-02",
+      "title": "베이지북 공개",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -52,36 +36,51 @@
         "yields"
       ],
       "consensus": null,
-      "source_url": "https://www.ismworld.org/"
+      "source_url": "https://www.federalreserve.gov/"
     },
     {
-      "date": "2026-09-04",
-      "title": "미국 비농업 고용보고서 (8월)",
+      "date": "2026-09-03",
+      "title": "주간 신규 실업수당 청구건수",
       "category": "economic_data",
-      "importance": 5,
+      "importance": 4,
       "impact": [
-        "VIX",
         "equities",
         "USD",
         "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bls.gov/"
+    },
+    {
+      "date": "2026-09-04",
+      "title": "비농업 고용보고서 (NFP) 발표",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "equities",
+        "USD",
+        "yields",
+        "VIX"
       ],
       "consensus": null,
       "source_url": "https://www.bls.gov/"
     },
     {
       "date": "2026-09-06",
-      "title": "OPEC+ 월간 회의",
+      "title": "OPEC+ 회의",
       "category": "geopolitical",
       "importance": 4,
       "impact": [
-        "oil"
+        "oil",
+        "equities",
+        "USD"
       ],
       "consensus": null,
       "source_url": "https://www.opec.org/"
     },
     {
       "date": "2026-09-09",
-      "title": "Apple 신제품 발표 (iPhone 18 Pro, 폴더블 iPhone 등)",
+      "title": "Apple 신제품 발표 이벤트",
       "category": "tech_conf",
       "importance": 4,
       "impact": [
@@ -91,12 +90,11 @@
       "source_url": "https://www.apple.com/"
     },
     {
-      "date": "2026-09-11",
-      "title": "미국 소비자물가지수 (CPI) (8월)",
+      "date": "2026-09-10",
+      "title": "주간 신규 실업수당 청구건수",
       "category": "economic_data",
-      "importance": 5,
+      "importance": 4,
       "impact": [
-        "VIX",
         "equities",
         "USD",
         "yields"
