@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-29 06:49:43 KST",
+  "updated": "2026-08-29 15:10:52 KST",
   "epl": {
     "matchday": 2,
     "selected_round": 2,
@@ -236,7 +236,7 @@
       "opponent": "Roman Safiullin",
       "result": "L",
       "score": "-",
-      "date": "Aug 31"
+      "date": "Sep 1"
     },
     "next": {
       "event": "Shanghai Masters",
@@ -284,7 +284,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-08-29 06:49:43 (KST)",
+      "🚀 [Start] 2026-08-29 15:10:52 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -349,7 +349,7 @@
       "      Recent: US Open, Men vs Roman Safiullin L (-)",
       "      Next: Shanghai Masters | Oct 5",
       "   📊 최종:",
-      "      Recent: US Open, Men vs Roman Safiullin L (-) | Aug 31",
+      "      Recent: US Open, Men vs Roman Safiullin L (-) | Sep 1",
       "      Next: Shanghai Masters | - | Oct 5",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
