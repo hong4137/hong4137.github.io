@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-29 15:10:52 KST",
+  "updated": "2026-08-30 01:22:44 KST",
   "epl": {
     "matchday": 2,
     "selected_round": 2,
@@ -7,9 +7,9 @@
     "leader": "Manchester City",
     "top4": [
       "Manchester City",
-      "Brighton & Hove Albion",
-      "Arsenal",
-      "Brentford"
+      "Hull City AFC",
+      "Everton",
+      "Brighton & Hove Albion"
     ],
     "matches": [
       {
@@ -55,8 +55,8 @@
         ],
         "rule_str": "Early KO",
         "matchday": 2,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "2-2"
       }
     ],
     "selected_matches": [
@@ -103,8 +103,8 @@
         ],
         "rule_str": "Early KO",
         "matchday": 2,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "2-2"
       }
     ]
   },
@@ -232,11 +232,11 @@
   },
   "tennis": {
     "recent": {
-      "event": "US Open, Men",
-      "opponent": "Roman Safiullin",
-      "result": "L",
+      "event": "-",
+      "opponent": "-",
+      "result": "-",
       "score": "-",
-      "date": "Sep 1"
+      "date": "-"
     },
     "next": {
       "event": "Shanghai Masters",
@@ -284,7 +284,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-08-29 15:10:52 (KST)",
+      "🚀 [Start] 2026-08-30 01:22:44 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -292,7 +292,7 @@
       "   - AI Parse: Gemini API ✅",
       "\n⚽ [Step 1/5] Premier League 순위...",
       "   ✅ 1위: Manchester City",
-      "   ✅ Top 4: Manchester City, Brighton & Hove Albion, Arsenal, Brentford",
+      "   ✅ Top 4: Manchester City, Hull City AFC, Everton, Brighton & Hove Albion",
       "   ✅ 현재 라운드: R2",
       "\n⚽ [Step 2/5] Premier League 경기 선정 (v2.4)...",
       "   [티어 우선순위]",
@@ -303,11 +303,9 @@
       "   T5. Early KO: 토요일 12:30 UK",
       "   T6. Leader: 1위 팀 포함",
       "   [최대 선정: 3경기]",
-      "   📋 전체: 18경기 (라운드: [2, 3])",
+      "   📋 전체: 20경기 (라운드: [2, 3])",
       "   🎯 선정 대상: R2 (10경기)",
-      "   📊 상태별: {'FINISHED': 1, 'TIMED': 9}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   📊 상태별: {'FINISHED': 4, 'TIMED': 6}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
@@ -315,7 +313,7 @@
       "   📌 기존 선정 유지 (R2)",
       "      ⏳ Chelsea vs Brighton & Hove Albion [TIMED] -",
       "      ⏳ Manchester United vs Ipswich Town [TIMED] -",
-      "      ⏳ Liverpool vs Nottingham Forest [TIMED] -",
+      "      ✅ Liverpool vs Nottingham Forest [FINISHED] 2-2",
       "   ✅ 기존 선정 유지: 3경기 (R2)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
@@ -348,8 +346,9 @@
       "   ✅ Web App 응답:",
       "      Recent: US Open, Men vs Roman Safiullin L (-)",
       "      Next: Shanghai Masters | Oct 5",
+      "   ⚠️ Tennis: 'recent'에 스코어 없는 미경기 감지(vs Roman Safiullin) → next로 재분류",
       "   📊 최종:",
-      "      Recent: US Open, Men vs Roman Safiullin L (-) | Sep 1",
+      "      Recent: - vs - - (-) | -",
       "      Next: Shanghai Masters | - | Oct 5",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
