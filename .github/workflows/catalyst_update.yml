@@ -43,5 +43,6 @@ jobs:
           else
             git add catalysts.json
             git commit -m "📅 Update catalysts $(TZ='Asia/Seoul' date +'%Y-%m-%d %H:%M KST')"
+            git pull --rebase origin main
             git push
           fi

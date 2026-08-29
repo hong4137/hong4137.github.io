@@ -1,0 +1,280 @@
+{
+  "updated": "2026-08-30 02:38:28 KST",
+  "hot_issues": [
+    {
+      "headline": "Beşiktaş 3-0 승리",
+      "detail": "오현규 선발, 1골 0도움",
+      "player": "오현규"
+    },
+    {
+      "headline": "Birmingham City 1-6 패배",
+      "detail": "백승호 선발, 0골 1도움",
+      "player": "백승호"
+    },
+    {
+      "headline": "Crvena Zvezda 4-0 승리",
+      "detail": "Serbian Super Liga R6 · 설영우 출전 여부 미확인",
+      "player": "설영우"
+    },
+    {
+      "headline": "Porto 2-0 승리",
+      "detail": "황인범 교체 출전, 0골 0도움",
+      "player": "황인범"
+    }
+  ],
+  "players": [
+    {
+      "player": "황희찬",
+      "team": "Wolverhampton Wanderers",
+      "competition": "-",
+      "opponent": "-",
+      "venue": "-",
+      "kst_date": "-",
+      "kst_time": "-",
+      "status": "UNKNOWN",
+      "team_result": {
+        "id_event": "2501249",
+        "opponent": "Blackburn Rovers",
+        "venue": "home",
+        "kst_date": "08.15",
+        "kst_time": "04:00",
+        "competition": "English League Championship R1",
+        "result": "D",
+        "goals_for": 2,
+        "goals_against": 2
+      },
+      "involvement": {
+        "played": false,
+        "started": false
+      },
+      "player_stat": null
+    },
+    {
+      "player": "이재성",
+      "team": "Mainz",
+      "competition": "-",
+      "opponent": "-",
+      "venue": "-",
+      "kst_date": "-",
+      "kst_time": "-",
+      "status": "UNKNOWN",
+      "team_result": {
+        "id_event": "2542077",
+        "opponent": "Bournemouth",
+        "venue": "home",
+        "kst_date": "08.15",
+        "kst_time": "22:30",
+        "competition": "Club Friendlies R0",
+        "result": "W",
+        "goals_for": 2,
+        "goals_against": 1
+      },
+      "involvement": null,
+      "player_stat": null
+    },
+    {
+      "player": "황인범",
+      "team": "Porto",
+      "competition": "-",
+      "opponent": "-",
+      "venue": "-",
+      "kst_date": "-",
+      "kst_time": "-",
+      "status": "UNKNOWN",
+      "team_result": {
+        "id_event": "2513952",
+        "opponent": "Arouca",
+        "venue": "home",
+        "kst_date": "08.24",
+        "kst_time": "04:30",
+        "competition": "Portuguese Primeira Liga R3",
+        "result": "W",
+        "goals_for": 2,
+        "goals_against": 0
+      },
+      "involvement": {
+        "played": true,
+        "started": false
+      },
+      "player_stat": {
+        "started": false,
+        "minutes": 14,
+        "goals": 0,
+        "assists": 0
+      }
+    },
+    {
+      "player": "배준호",
+      "team": "Stoke City",
+      "competition": "-",
+      "opponent": "-",
+      "venue": "-",
+      "kst_date": "-",
+      "kst_time": "-",
+      "status": "UNKNOWN",
+      "team_result": {
+        "id_event": "2570500",
+        "opponent": "Hull City",
+        "venue": "home",
+        "kst_date": "08.26",
+        "kst_time": "03:45",
+        "competition": "EFL Cup R64",
+        "result": "D",
+        "goals_for": 1,
+        "goals_against": 1
+      },
+      "involvement": {
+        "played": false,
+        "started": false
+      },
+      "player_stat": null
+    },
+    {
+      "player": "오현규",
+      "team": "Beşiktaş",
+      "competition": "Turkish Super Lig R3",
+      "opponent": "Çorum",
+      "venue": "home",
+      "kst_date": "09.01",
+      "kst_time": "03:30",
+      "status": "SCHEDULED",
+      "team_result": {
+        "id_event": "2573280",
+        "opponent": "Kauno Žalgiris",
+        "venue": "home",
+        "kst_date": "08.21",
+        "kst_time": "02:00",
+        "competition": "UEFA Europa League R0",
+        "result": "W",
+        "goals_for": 3,
+        "goals_against": 0
+      },
+      "involvement": {
+        "played": true,
+        "started": true
+      },
+      "player_stat": {
+        "started": true,
+        "minutes": 60,
+        "goals": 1,
+        "assists": 0
+      }
+    },
+    {
+      "player": "백승호",
+      "team": "Birmingham City",
+      "competition": "English League Championship R4",
+      "opponent": "Southampton",
+      "venue": "home",
+      "kst_date": "09.02",
+      "kst_time": "04:00",
+      "status": "SCHEDULED",
+      "team_result": {
+        "id_event": "2570489",
+        "opponent": "Brentford",
+        "venue": "home",
+        "kst_date": "08.26",
+        "kst_time": "04:00",
+        "competition": "EFL Cup R64",
+        "result": "L",
+        "goals_for": 1,
+        "goals_against": 6
+      },
+      "involvement": {
+        "played": true,
+        "started": true
+      },
+      "player_stat": {
+        "started": true,
+        "minutes": 83,
+        "goals": 0,
+        "assists": 1
+      }
+    },
+    {
+      "player": "엄지성",
+      "team": "Swansea City",
+      "competition": "-",
+      "opponent": "-",
+      "venue": "-",
+      "kst_date": "-",
+      "kst_time": "-",
+      "status": "UNKNOWN",
+      "team_result": {
+        "id_event": "2501270",
+        "opponent": "Sheffield United",
+        "venue": "home",
+        "kst_date": "08.22",
+        "kst_time": "23:00",
+        "competition": "English League Championship R2",
+        "result": "D",
+        "goals_for": 0,
+        "goals_against": 0
+      },
+      "involvement": {
+        "played": true,
+        "started": false
+      },
+      "player_stat": {
+        "started": false,
+        "minutes": 29,
+        "goals": 0,
+        "assists": 0
+      }
+    },
+    {
+      "player": "조규성",
+      "team": "FC Midtjylland",
+      "competition": "Danish Superliga R6",
+      "opponent": "Silkeborg IF",
+      "venue": "away",
+      "kst_date": "08.30",
+      "kst_time": "21:00",
+      "status": "SCHEDULED",
+      "team_result": {
+        "id_event": "2481816",
+        "opponent": "Randers FC",
+        "venue": "home",
+        "kst_date": "08.23",
+        "kst_time": "21:00",
+        "competition": "Danish Superliga R5",
+        "result": "W",
+        "goals_for": 1,
+        "goals_against": 0
+      },
+      "involvement": {
+        "played": true,
+        "started": true
+      },
+      "player_stat": {
+        "started": true,
+        "minutes": 90,
+        "goals": 0,
+        "assists": 0
+      }
+    },
+    {
+      "player": "설영우",
+      "team": "Crvena Zvezda",
+      "competition": "Serbian Super Liga R7",
+      "opponent": "Zemun",
+      "venue": "away",
+      "kst_date": "08.31",
+      "kst_time": "03:00",
+      "status": "SCHEDULED",
+      "team_result": {
+        "id_event": "2491228",
+        "opponent": "Čukarički",
+        "venue": "home",
+        "kst_date": "08.24",
+        "kst_time": "02:00",
+        "competition": "Serbian Super Liga R6",
+        "result": "W",
+        "goals_for": 4,
+        "goals_against": 0
+      },
+      "involvement": null,
+      "player_stat": null
+    }
+  ]
+}

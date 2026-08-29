@@ -38,6 +38,7 @@ import json
 import datetime
 import re
 import sys
+import time
 if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8')
 if hasattr(sys.stderr, 'reconfigure'):
@@ -62,9 +63,13 @@ TZ_PST = ZoneInfo("America/Los_Angeles")
 # 설정
 # =============================================================================
 SPORTS_FILE = 'sports.json'
+KOREAN_OVERSEAS_FILE = 'korean_overseas.json'
+KOREAN_OVERSEAS_HISTORY_FILE = 'korean_overseas_history.json'
 FOOTBALL_DATA_API_URL = "https://api.football-data.org/v4"
 SERPER_API_URL = "https://google.serper.dev/search"
 BALLDONTLIE_API_URL = "https://api.balldontlie.io/v1"
+THESPORTSDB_BASE = "https://www.thesportsdb.com/api/v1/json/3"
+OVERSEAS_REQUEST_DELAY_SEC = 2
 WARRIORS_TEAM_ID = 10  # Golden State Warriors
 
 # Big 6는 고정값
@@ -404,6 +409,16 @@ def load_existing_sports_data():
     except:
         pass
     return None
+
+def load_json_safe(file_path, default=None):
+    """JSON 파일을 안전하게 로드하고 파일 부재/파싱 실패 시 기본값을 반환한다."""
+    try:
+        if os.path.exists(file_path):
+            with open(file_path, 'r', encoding='utf-8') as f:
+                return json.load(f)
+    except Exception as ex:
+        log(f"   ⚠️ JSON 로드 실패({file_path}): {ex}")
+    return default
 
 # =============================================================================
 # v2.4 신규: 경기 시간 경과 확인
@@ -979,6 +994,20 @@ KOREAN_PLAYERS = [
     {"player": "손흥민", "team_label": "LAFC", "team_name": "LAFC",
      "team_id": None, "competition_label": "MLS",
      "thesportsdb_url": "https://www.thesportsdb.com/api/v1/json/3/eventsnext.php?id=136050"},
+]
+
+# 해외파 코리안리거 돋보기 — 위 KOREAN_PLAYERS 3인은 별도 파이프라인으로 유지
+# 팀 ID는 TheSportsDB searchplayers/searchteams, 슬러그는 ESPN 공식 선수 페이지로 재검증했다.
+KOREAN_OVERSEAS_PLAYERS = [
+    {"player": "황희찬", "team_label": "Wolverhampton Wanderers", "thesportsdb_team_id": 133599, "espn_player_id": 237224, "espn_slug": "hwang-hee-chan"},
+    {"player": "이재성", "team_label": "Mainz", "thesportsdb_team_id": 133665, "espn_player_id": 134103, "espn_slug": "lee-jae-sung"},
+    {"player": "황인범", "team_label": "Porto", "thesportsdb_team_id": 134114, "espn_player_id": 280061, "espn_slug": "hwang-in-beom"},
+    {"player": "배준호", "team_label": "Stoke City", "thesportsdb_team_id": 133609, "espn_player_id": 362208, "espn_slug": "bae-jun-ho"},
+    {"player": "오현규", "team_label": "Beşiktaş", "thesportsdb_team_id": 133794, "espn_player_id": 302434, "espn_slug": "oh-hyun-gyu"},
+    {"player": "백승호", "team_label": "Birmingham City", "thesportsdb_team_id": 133597, "espn_player_id": 256598, "espn_slug": "paik-seung-ho"},
+    {"player": "엄지성", "team_label": "Swansea City", "thesportsdb_team_id": 133614, "espn_player_id": 297791, "espn_slug": "eom-ji-sung"},
+    {"player": "조규성", "team_label": "FC Midtjylland", "thesportsdb_team_id": 133891, "espn_player_id": 303464, "espn_slug": "cho-gue-sung"},
+    {"player": "설영우", "team_label": "Crvena Zvezda", "thesportsdb_team_id": 133987, "espn_player_id": 302793, "espn_slug": "seol-young-woo"},
 ]
 
 # 대회명 → 표시용 축약 라벨
@@ -1874,6 +1903,445 @@ def get_korean_players_data(football_key, serper_key, gemini_key, existing_data=
     return results
 
 # =============================================================================
+# 해외파 코리안리거 돋보기 (TheSportsDB 일정/결과 + ESPN 개인 스탯)
+# =============================================================================
+def _sportsdb_event_time(event):
+    """TheSportsDB 이벤트의 UTC timestamp를 KST 표시값으로 변환한다."""
+    timestamp = event.get("strTimestamp")
+    if not timestamp:
+        date_event = event.get("dateEvent")
+        str_time = event.get("strTime")
+        if not date_event or not str_time:
+            return None
+        timestamp = f"{date_event}T{str_time}"
+    if not re.search(r'(?:Z|[+-]\d{2}:\d{2})$', timestamp):
+        timestamp += "Z"
+    return convert_utc_to_kst(timestamp)
+
+
+def get_overseas_team_next_match(team_id, team_label):
+    """TheSportsDB에서 팀의 가장 가까운 다음 경기를 조회한다."""
+    if not team_id:
+        return None
+    try:
+        response = requests.get(
+            f"{THESPORTSDB_BASE}/eventsnext.php",
+            params={"id": team_id},
+            timeout=10,
+        )
+        if response.status_code != 200:
+            log(f"   ⚠️ TheSportsDB eventsnext 실패({team_label}): {response.status_code}")
+            return None
+
+        for event in response.json().get("events") or []:
+            time_info = _sportsdb_event_time(event)
+            if not time_info:
+                continue
+            if time_info["datetime_kst"] <= get_kst_now():
+                continue
+            is_home = str(event.get("idHomeTeam")) == str(team_id)
+            opponent = event.get("strAwayTeam") if is_home else event.get("strHomeTeam")
+            if not opponent:
+                continue
+            round_num = event.get("intRound")
+            league = event.get("strLeague") or "-"
+            competition = f"{league} R{round_num}" if round_num else league
+            return {
+                "opponent": opponent,
+                "venue": "home" if is_home else "away",
+                "kst_date": time_info["kst_date"],
+                "kst_time": time_info["kst_time"],
+                "competition": competition,
+                "status": "SCHEDULED",
+            }
+    except Exception as ex:
+        log(f"   ⚠️ TheSportsDB eventsnext 예외({team_label}): {ex}")
+    return None
+
+
+def get_overseas_team_last_match(team_id, team_label):
+    """TheSportsDB에서 팀의 가장 최근 완료 경기 결과를 조회한다."""
+    if not team_id:
+        return None
+    try:
+        response = requests.get(
+            f"{THESPORTSDB_BASE}/eventslast.php",
+            params={"id": team_id},
+            timeout=10,
+        )
+        if response.status_code != 200:
+            log(f"   ⚠️ TheSportsDB eventslast 실패({team_label}): {response.status_code}")
+            return None
+
+        for event in response.json().get("results") or []:
+            time_info = _sportsdb_event_time(event)
+            if not time_info:
+                continue
+            try:
+                home_score = int(event.get("intHomeScore"))
+                away_score = int(event.get("intAwayScore"))
+            except (TypeError, ValueError):
+                continue
+
+            is_home = str(event.get("idHomeTeam")) == str(team_id)
+            opponent = event.get("strAwayTeam") if is_home else event.get("strHomeTeam")
+            if not opponent:
+                continue
+            goals_for = home_score if is_home else away_score
+            goals_against = away_score if is_home else home_score
+            result = "W" if goals_for > goals_against else ("L" if goals_for < goals_against else "D")
+            round_num = event.get("intRound")
+            league = event.get("strLeague") or "-"
+            competition = f"{league} R{round_num}" if round_num else league
+            return {
+                "id_event": event.get("idEvent"),
+                "opponent": opponent,
+                "venue": "home" if is_home else "away",
+                "kst_date": time_info["kst_date"],
+                "kst_time": time_info["kst_time"],
+                "competition": competition,
+                "result": result,
+                "goals_for": goals_for,
+                "goals_against": goals_against,
+            }
+    except Exception as ex:
+        log(f"   ⚠️ TheSportsDB eventslast 예외({team_label}): {ex}")
+    return None
+
+
+def _espn_parse_player_block(html, espn_slug, espn_player_id=None):
+    """ESPN 경기 HTML의 선수별 구조화 JSON 블록을 파싱한다."""
+    player_path = (
+        rf'/soccer/player/_/id/{re.escape(str(espn_player_id))}/[^"?]+'
+        if espn_player_id
+        else rf'/soccer/player/_/id/\d+/{re.escape(espn_slug)}'
+    )
+    pattern = (
+        rf'"lnk":"{player_path}"'
+        rf'[^{{}}]*"stats":\{{([^}}]*)\}}'
+    )
+    match = re.search(pattern, html, re.IGNORECASE)
+    if not match:
+        return None, None
+
+    stats = json.loads("{" + match.group(1) + "}")
+    # 빈 stats 객체는 명단에는 있었지만 실제 출전하지 않은 선수다.
+    appearances = int(stats.get("appearances", 0) or 0)
+    if appearances <= 0:
+        return None, {"played": False, "started": False}
+
+    started = stats.get("subIns") == "0"
+    goals = int(stats.get("totalGoals", 0) or 0)
+    assists = int(stats.get("goalAssists", 0) or 0)
+
+    # 현재 선수 블록 안의 subIn/subOut 이벤트로 출전시간을 계산한다.
+    # 예: 76분 교체 투입은 76분이 아니라 약 14분 출전이다.
+    next_player = html.find('"lnk":"/soccer/player/_/id/', match.end())
+    segment_end = next_player if next_player != -1 else min(len(html), match.end() + 5000)
+    player_segment = html[match.start():segment_end]
+    substitution_events = re.findall(
+        r'"minute":"(\d+)(?:\+\d+)?\'"[^{}]{0,160}?"iconType":"(subIn|subOut)"',
+        player_segment,
+        re.IGNORECASE,
+    )
+    minutes = None
+    if started:
+        sub_out = next((int(minute) for minute, kind in substitution_events if kind.lower() == "subout"), None)
+        minutes = sub_out if sub_out is not None else 90
+    else:
+        sub_in = next((int(minute) for minute, kind in substitution_events if kind.lower() == "subin"), None)
+        minutes = max(0, 90 - sub_in) if sub_in is not None else None
+
+    return {
+        "started": started,
+        "minutes": minutes,
+        "goals": goals,
+        "assists": assists,
+    }, {"played": True, "started": started}
+
+
+def get_overseas_player_stat_from_espn(
+    espn_slug,
+    team_label,
+    opponent,
+    serper_key,
+    espn_player_id=None,
+    match_context=None,
+    include_involvement=False,
+):
+    """Serper로 ESPN 경기 페이지를 찾아 구조화 JSON에서 개인 스탯을 추출한다.
+
+    기본 반환값은 player_stat 또는 None이다. 내부 조립 단계에서는
+    include_involvement=True로 호출해 확인 가능한 결장 상태도 함께 받는다.
+    """
+    def result(player_stat=None, involvement=None):
+        return (player_stat, involvement) if include_involvement else player_stat
+
+    if not serper_key or not espn_slug or not opponent:
+        return result()
+    try:
+        query_context = f" {match_context}" if match_context else ""
+        search_result = call_serper_api(
+            f"{team_label} vs {opponent}{query_context} site:espn.com/soccer/match/_/gameId/",
+            serper_key,
+        )
+        if not search_result:
+            return result()
+        espn_url = next(
+            (
+                item.get("link")
+                for item in search_result.get("organic", [])
+                if "espn.com/soccer/match" in (item.get("link") or "")
+            ),
+            None,
+        )
+        if not espn_url:
+            log(f"   ⚠️ ESPN 경기 페이지 검색 실패({team_label} vs {opponent})")
+            return result()
+
+        page = requests.get(
+            espn_url,
+            headers={"User-Agent": "Mozilla/5.0"},
+            timeout=15,
+        )
+        if page.status_code != 200:
+            log(f"   ⚠️ ESPN 페이지 접근 실패({team_label}): {page.status_code}")
+            return result()
+
+        player_stat, involvement = _espn_parse_player_block(page.text, espn_slug, espn_player_id)
+        if player_stat or involvement:
+            return result(player_stat, involvement)
+
+        # 다른 선수들의 stats 블록은 있는데 대상 선수만 없으면 스쿼드 제외로 확정한다.
+        lineup_stats_count = len(re.findall(
+            r'"lnk":"/soccer/player/_/id/\d+/[^"?]+"[^{{}}]*"stats":\{',
+            page.text,
+            re.IGNORECASE,
+        ))
+        if lineup_stats_count >= 2:
+            log(f"   ℹ️ ESPN 라인업에 '{espn_slug}' 없음 — 결장/스쿼드 제외")
+            return result(None, {"played": False, "started": False})
+
+        log(f"   ℹ️ ESPN 페이지에 라인업 데이터 없음({team_label} vs {opponent})")
+    except Exception as ex:
+        log(f"   ⚠️ ESPN 개인 스탯 추출 예외({team_label}): {ex}")
+    return result()
+
+
+def append_history(history, player, new_record, cap=10):
+    """선수별 경기 이력을 최신순으로 저장하고 최대 cap개로 제한한다."""
+    records = history.get(player, [])
+    event_id = new_record.get("id_event")
+    if event_id:
+        records = [r for r in records if str(r.get("id_event")) != str(event_id)]
+    else:
+        records = [r for r in records if r.get("kst_date") != new_record.get("kst_date")]
+    records.insert(0, new_record)
+    history[player] = records[:cap]
+    return history
+
+
+def _same_overseas_match(cached, latest):
+    if not cached or not latest:
+        return False
+    if cached.get("id_event") and latest.get("id_event"):
+        return str(cached["id_event"]) == str(latest["id_event"])
+    return cached.get("kst_date") == latest.get("kst_date")
+
+
+def get_korean_overseas_data(serper_key, existing_history=None, existing_data=None):
+    """9명 해외파의 다음 경기, 최근 팀 결과, ESPN 개인 스탯과 이력을 조립한다."""
+    history = existing_history if isinstance(existing_history, dict) else {}
+    existing_players = (existing_data or {}).get("players") or []
+    existing_by_player = {
+        entry.get("player"): entry
+        for entry in existing_players
+        if entry.get("player")
+    }
+    players_out = []
+
+    for player in KOREAN_OVERSEAS_PLAYERS:
+        player_name = player["player"]
+        team_label = player["team_label"]
+        schedule_info = get_overseas_team_next_match(player["thesportsdb_team_id"], team_label)
+        team_result = get_overseas_team_last_match(player["thesportsdb_team_id"], team_label)
+        existing_entry = existing_by_player.get(player_name)
+        if not schedule_info and existing_entry and is_future_match(existing_entry):
+            schedule_info = {
+                "opponent": existing_entry.get("opponent", "-"),
+                "venue": existing_entry.get("venue", "-"),
+                "kst_date": existing_entry.get("kst_date", "-"),
+                "kst_time": existing_entry.get("kst_time", "-"),
+                "competition": existing_entry.get("competition", "-"),
+                "status": existing_entry.get("status", "SCHEDULED"),
+            }
+            log(f"   ♻️ {player_name}: 다음 일정 API 실패 → 기존 일정 유지")
+        cached = (history.get(player_name) or [{}])[0]
+        already_covered = (
+            _same_overseas_match(cached, team_result)
+            and (cached.get("player_stat") is not None or cached.get("involvement") is not None)
+        )
+
+        player_stat = None
+        involvement = None
+        if already_covered:
+            player_stat = cached.get("player_stat")
+            involvement = cached.get("involvement")
+            log(f"   ⏭️ {player_name}: 동일 경기({team_result.get('kst_date')}) 이미 확인됨 — ESPN 재조회 생략")
+        elif team_result and player.get("espn_slug") and serper_key:
+            player_stat, involvement = get_overseas_player_stat_from_espn(
+                player["espn_slug"],
+                team_label,
+                team_result.get("opponent"),
+                serper_key,
+                espn_player_id=player.get("espn_player_id"),
+                match_context=(
+                    f"{get_kst_now().year} {team_result.get('kst_date')} "
+                    f"{team_result.get('goals_for')}-{team_result.get('goals_against')}"
+                ),
+                include_involvement=True,
+            )
+            # 실제 Serper/ESPN 경로를 시도한 경우에만 다음 선수 호출 전 페이싱한다.
+            time.sleep(OVERSEAS_REQUEST_DELAY_SEC)
+
+        if team_result:
+            history_record = {
+                **team_result,
+                "involvement": involvement,
+                "player_stat": player_stat,
+            }
+            history = append_history(history, player_name, history_record)
+        elif cached:
+            team_result = {
+                key: value
+                for key, value in cached.items()
+                if key not in ("involvement", "player_stat")
+            }
+            involvement = cached.get("involvement")
+            player_stat = cached.get("player_stat")
+
+        entry = {
+            "player": player_name,
+            "team": team_label,
+            "competition": (schedule_info or {}).get("competition", "-"),
+            "opponent": (schedule_info or {}).get("opponent", "-"),
+            "venue": (schedule_info or {}).get("venue", "-"),
+            "kst_date": (schedule_info or {}).get("kst_date", "-"),
+            "kst_time": (schedule_info or {}).get("kst_time", "-"),
+            "status": (schedule_info or {}).get("status", "UNKNOWN"),
+            "team_result": team_result,
+            "involvement": involvement,
+            "player_stat": player_stat,
+        }
+        players_out.append(entry)
+        recent_label = "-"
+        if team_result:
+            recent_label = f"{team_result['result']} {team_result['goals_for']}-{team_result['goals_against']}"
+        log(f"   {'✅' if schedule_info else '⚠️'} {player_name} ({team_label}): 다음 vs {entry['opponent']} | 최근 {recent_label}")
+
+    return players_out, history
+
+
+def _fallback_overseas_hot_issues(players_out):
+    """Gemini가 없거나 실패해도 팀 결과 기반의 중립적 핫이슈를 제공한다."""
+    candidates = [p for p in players_out if p.get("team_result")]
+    candidates.sort(
+        key=lambda p: (
+            (p.get("player_stat") or {}).get("goals", 0) * 2
+            + (p.get("player_stat") or {}).get("assists", 0),
+            {"W": 2, "D": 1, "L": 0}.get(p["team_result"].get("result"), 0),
+            p["team_result"].get("goals_for", 0) - p["team_result"].get("goals_against", 0),
+            p["team_result"].get("goals_for", 0),
+        ),
+        reverse=True,
+    )
+    issues = []
+    for player in candidates[:4]:
+        team_result = player["team_result"]
+        result_word = {"W": "승리", "D": "무승부", "L": "패배"}.get(team_result.get("result"), "경기")
+        headline = f"{player['team']} {team_result['goals_for']}-{team_result['goals_against']} {result_word}"
+        involvement = player.get("involvement")
+        player_stat = player.get("player_stat")
+        if player_stat:
+            start_label = "선발" if player_stat.get("started") else "교체 출전"
+            detail = f"{player['player']} {start_label}, {player_stat.get('goals', 0)}골 {player_stat.get('assists', 0)}도움"
+        elif involvement and involvement.get("played") is False:
+            detail = f"{team_result.get('competition', '-')} · {player['player']} 결장"
+        else:
+            detail = f"{team_result.get('competition', '-')} · {player['player']} 출전 여부 미확인"
+        issues.append({"headline": headline, "detail": detail, "player": player["player"]})
+    return issues
+
+
+def summarize_overseas_hot_issues(players_out, gemini_key):
+    """전체 해외파 데이터를 한 번에 요약하며 실패 시 중립적 로컬 요약으로 폴백한다."""
+    fallback = _fallback_overseas_hot_issues(players_out)
+    if not gemini_key:
+        return fallback
+    brief_data = [
+        {
+            "player": player["player"],
+            "team": player["team"],
+            "team_result": player.get("team_result"),
+            "involvement": player.get("involvement"),
+            "player_stat": player.get("player_stat"),
+        }
+        for player in players_out
+        if player.get("team_result")
+    ]
+    if not brief_data:
+        return []
+    prompt = (
+        "다음은 해외파 한국 축구선수 소속팀의 최근 결과와 확인된 개인 출전 정보다. "
+        "involvement가 null이거나 played가 false이면 팀 승리를 선수 개인의 기여나 활약으로 표현하지 마라. "
+        "개인 기여는 involvement.played=true 또는 player_stat이 있는 경우에만 언급하라. "
+        "눈에 띄는 항목 3~4개를 JSON 배열로만 답하라. "
+        '형식: [{"headline": str, "detail": str, "player": str}].\n\n'
+        + json.dumps(brief_data, ensure_ascii=False)
+    )
+    parsed = call_gemini_api(prompt, gemini_key)
+    if not parsed:
+        return fallback
+    try:
+        cleaned = re.sub(r'^```(?:json)?\s*|\s*```$', '', parsed.strip(), flags=re.IGNORECASE)
+        issues = json.loads(cleaned)
+        valid_players = {p["player"] for p in players_out}
+        if not isinstance(issues, list):
+            return fallback
+        player_lookup = {p["player"]: p for p in players_out}
+        fallback_lookup = {issue["player"]: issue for issue in fallback}
+        validated = []
+        seen_players = set()
+        for issue in issues:
+            if (
+                not isinstance(issue, dict)
+                or issue.get("player") not in valid_players
+                or not isinstance(issue.get("headline"), str)
+                or not isinstance(issue.get("detail"), str)
+            ):
+                continue
+            player_name = issue["player"]
+            if player_name in seen_players:
+                continue
+            source = player_lookup[player_name]
+            involvement = source.get("involvement")
+            if not source.get("player_stat") and not (involvement and involvement.get("played") is True):
+                issue = fallback_lookup.get(player_name, issue)
+            validated.append(issue)
+            seen_players.add(player_name)
+
+        for issue in fallback:
+            if len(validated) >= 4:
+                break
+            if issue["player"] not in seen_players:
+                validated.append(issue)
+                seen_players.add(issue["player"])
+        return validated[:4] or fallback
+    except Exception as ex:
+        log(f"   ⚠️ 해외파 핫이슈 JSON 파싱 실패: {ex}")
+        return fallback
+
+# =============================================================================
 # 테니스 함수 - v2.5 (Apps Script Web App + Serper/Gemini 보완)
 # =============================================================================
 TENNIS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbyl0S8XLRt4F9NYjO95ZYKOaPwppsI7v1xra-fuCIQZvNptFsDerXqq_peHtTn-Rt2qJw/exec"
@@ -2703,6 +3171,21 @@ def update_sports_data():
     log(f"      Next: {final_next.get('event', '-')} | {final_next.get('detail', '-')} | {final_next.get('match_time', '-')}")
 
     # =========================================================================
+    # STEP 6: 해외파 코리안리거 돋보기
+    # =========================================================================
+    log("\n🌍 [Step 6] 해외파 코리안리거 돋보기...")
+
+    existing_overseas_data = load_json_safe(KOREAN_OVERSEAS_FILE, {})
+    existing_overseas_history = load_json_safe(KOREAN_OVERSEAS_HISTORY_FILE, {})
+    overseas_players, overseas_history = get_korean_overseas_data(
+        serper_api_key,
+        existing_overseas_history,
+        existing_overseas_data,
+    )
+    overseas_hot_issues = summarize_overseas_hot_issues(overseas_players, gemini_api_key)
+    log(f"   ✅ 해외파 {len(overseas_players)}명 수집, 핫이슈 {len(overseas_hot_issues)}건")
+
+    # =========================================================================
     # NBA All-Star Week 데이터 삽입 (기간 내 자동 표시/숨김)
     # =========================================================================
     nba_data = inject_allstar_data(nba_data, kst_now)
@@ -2745,13 +3228,24 @@ def update_sports_data():
     with open(SPORTS_FILE, 'w', encoding='utf-8') as f:
         json.dump(sports_data, f, ensure_ascii=False, indent=2)
 
+    with open(KOREAN_OVERSEAS_HISTORY_FILE, 'w', encoding='utf-8') as f:
+        json.dump(overseas_history, f, ensure_ascii=False, indent=2)
+
+    with open(KOREAN_OVERSEAS_FILE, 'w', encoding='utf-8') as f:
+        json.dump({
+            "updated": kst_now.strftime("%Y-%m-%d %H:%M:%S KST"),
+            "hot_issues": overseas_hot_issues,
+            "players": overseas_players,
+        }, f, ensure_ascii=False, indent=2)
+
     log(f"✅ [Complete]")
     log(f"   EPL: {len(validated_epl)}경기 ({display_matchday})")
     log(f"   NBA: {len(nba_data['schedule'])}경기")
     log(f"   F1: {next_race.get('name', '-')} | {len(f1_data.get('schedule', []))}세션 | {len(f1_data.get('standings', []))}명 순위")
     log(f"   Tennis: {final_next.get('event', '-')} | {final_next.get('detail', '-')}")
     log(f"   Korean Players: {len(korean_players_data)}명")
-    log(f"   파일: {SPORTS_FILE}")
+    log(f"   Korean Overseas: {len(overseas_players)}명 | 핫이슈 {len(overseas_hot_issues)}건")
+    log(f"   파일: {SPORTS_FILE}, {KOREAN_OVERSEAS_FILE}, {KOREAN_OVERSEAS_HISTORY_FILE}")
 
     return sports_data
 

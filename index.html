@@ -63,6 +63,7 @@
         .sport-card { background-color: var(--card-bg); border-radius: 12px; padding: 15px; }
         .sport-header { display: flex; justify-content: space-between; align-items: center; }
         .loading-text { color: #555; font-style: italic; font-size: 13px; }
+        .overseas-player-row { display:grid; grid-template-columns:70px minmax(110px, 150px) minmax(140px, 1fr) 105px 120px; gap:8px; align-items:center; padding:7px 8px; border-radius:4px; background:rgba(255,255,255,0.02); font-size:11px; }
         .weather-info { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
         .temp-big { font-size: 48px; font-weight: bold; }
         .weather-desc { font-size: 14px; color: var(--text-sub); }
@@ -118,6 +119,11 @@
             .sports-grid { grid-template-columns: 1fr !important; gap: 10px; }
             .card { min-height: auto; padding: 14px; }
             .sport-card { padding: 12px; }
+            .overseas-player-row { grid-template-columns:65px minmax(0, 1fr) auto; gap:4px 8px; align-items:start; }
+            .overseas-competition { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+            .overseas-opponent { grid-column:2 / 4; }
+            .overseas-match-time { grid-column:2; }
+            .overseas-stat { grid-column:3; grid-row:3; }
             .temp-big { font-size: 36px; }
             .weather-desc { font-size: 12px; }
             .world-clock { padding: 8px 0; margin-bottom: 10px; }
@@ -165,6 +171,7 @@
             <a href="https://heatmap-navy.vercel.app/" target="_blank" class="shortcut-item"><i class="fab fa-usd"></i><span>Investment Map</span></a>
             <a href="https://hong4137.github.io/market-watcher/" target="_blank" class="shortcut-item"><i class="fas fa-chart-line"></i><span>Market Watcher</span></a>
             <a href="https://hong4137.github.io/Must-News/" target="_blank" class="shortcut-item"><i class="fas fa-newspaper"></i><span>Must News</span></a>
+            <a href="https://reading-log.hong4137.workers.dev/" target="_blank" class="shortcut-item"><i class="fas fa-book-open"></i><span>Reading Log</span></a>
             <a href="https://outlook.office.com/" target="_blank" class="shortcut-item"><i class="fas fa-envelope"></i><span>Outlook</span></a>
             <a href="https://www.linkedin.com/" target="_blank" class="shortcut-item"><i class="fab fa-linkedin"></i><span>LinkedIn</span></a>
         </div>
@@ -261,6 +268,17 @@
                         <span id="f1-badge" style="font-size:10px; background:#333; padding:2px 6px; border-radius:4px; color:#aaa;">Next GP</span>
                     </div>
                     <div id="f1-content" style="margin-top: 10px;"><div class="loading-text">Loading...</div></div>
+                </div>
+                <div class="sport-card" style="grid-column:1 / -1;">
+                    <div id="overseas-header" class="sport-header" role="button" tabindex="0" aria-expanded="false" style="cursor:pointer;" onclick="toggleOverseasDetail()" onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); toggleOverseasDetail(); }">
+                        <div style="display:flex; align-items:center; gap:8px;"><span style="font-size:1.2rem;">🌍</span><span class="sport-title-link" style="cursor:default;">해외파 코리안리거 돋보기</span></div>
+                        <span id="overseas-toggle-icon" style="font-size:11px; color:#666;">▾ 상세보기</span>
+                    </div>
+                    <div id="overseas-summary" style="margin-top:10px;"><div class="loading-text">Loading...</div></div>
+                    <div id="overseas-detail" style="display:none; margin-top:10px;">
+                        <div id="overseas-hot-issues" style="display:flex; flex-direction:column; gap:8px;"></div>
+                        <div id="overseas-players" style="margin-top:12px; display:flex; flex-direction:column; gap:4px;"></div>
+                    </div>
                 </div>
             </div>
             <div style="margin-top: 25px;">
@@ -585,6 +603,103 @@
             el.innerHTML = h;
         }
 
+        function escapeOverseasHtml(value) {
+            return String(value == null ? '' : value)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function renderOverseasSummary(data) {
+            const el = document.getElementById('overseas-summary');
+            if (!el) return;
+            const issues = (data && data.hot_issues) || [];
+            const players = (data && data.players) || [];
+            if (issues.length === 0) {
+                el.innerHTML = `<div class="loading-text">특별한 이슈 없음 · 선수 ${players.length}명 추적 중</div>`;
+                return;
+            }
+            const top = issues[0] || {};
+            const moreCount = issues.length - 1;
+            el.innerHTML = `<div style="font-size:12px; font-weight:bold; color:#ffc400; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">🔥 ${escapeOverseasHtml(top.headline || '-')}</div>` +
+                (moreCount > 0 ? `<div style="font-size:11px; color:#666; margin-top:2px;">외 ${moreCount}건의 소식 · 선수 ${players.length}명 추적 중</div>` : '');
+        }
+
+        function toggleOverseasDetail() {
+            const detail = document.getElementById('overseas-detail');
+            const icon = document.getElementById('overseas-toggle-icon');
+            const header = document.getElementById('overseas-header');
+            if (!detail) return;
+            const isOpen = detail.style.display !== 'none';
+            detail.style.display = isOpen ? 'none' : 'block';
+            if (icon) icon.textContent = isOpen ? '▾ 상세보기' : '▴ 접기';
+            if (header) header.setAttribute('aria-expanded', String(!isOpen));
+        }
+
+        function renderOverseasWidget(data) {
+            renderOverseasSummary(data);
+            const issuesEl = document.getElementById('overseas-hot-issues');
+            const playersEl = document.getElementById('overseas-players');
+            if (!issuesEl || !playersEl) return;
+
+            const issues = (data && data.hot_issues) || [];
+            issuesEl.innerHTML = issues.length
+                ? issues.map(issue => `<div style="padding:8px; border-radius:6px; background:rgba(255,196,0,0.08); border-left:3px solid #ffc400;"><div style="font-size:12px; font-weight:bold; color:#ffc400;">🔥 ${escapeOverseasHtml(issue.headline || '-')}</div><div style="font-size:11px; color:#aaa; margin-top:2px;">${escapeOverseasHtml(issue.detail || '-')}</div></div>`).join('')
+                : '<div class="loading-text">특별한 이슈 없음</div>';
+
+            const players = (data && data.players) || [];
+            if (!players.length) {
+                playersEl.innerHTML = '<div class="loading-text">선수 데이터 없음</div>';
+                return;
+            }
+            playersEl.innerHTML = players.map(player => {
+                const playerStat = player.player_stat;
+                const teamResult = player.team_result;
+                const involvement = player.involvement;
+                let statText = '-';
+                if (playerStat) {
+                    const minutesLabel = playerStat.minutes != null
+                        ? `${escapeOverseasHtml(playerStat.minutes)}'`
+                        : (playerStat.started ? '선발' : '교체');
+                    const ratingLabel = playerStat.rating && playerStat.rating !== '-'
+                        ? ` (${escapeOverseasHtml(playerStat.rating)})`
+                        : '';
+                    statText = `${minutesLabel} ${escapeOverseasHtml(playerStat.goals || 0)}G ${escapeOverseasHtml(playerStat.assists || 0)}A${ratingLabel}`;
+                } else if (teamResult && involvement && involvement.played === false) {
+                    statText = '<span style="color:#666;">결장</span>';
+                } else if (teamResult) {
+                    const resultColor = teamResult.result === 'W' ? '#4CAF50' : (teamResult.result === 'L' ? '#f44336' : '#aaa');
+                    const teamBadge = (!involvement || involvement.played !== true)
+                        ? '<span style="color:#666; font-size:9px;" title="출전 여부 확인 불가">(팀)</span> '
+                        : '';
+                    statText = `${teamBadge}<span style="color:${resultColor};">${escapeOverseasHtml(teamResult.result || '-')}</span> ${escapeOverseasHtml(teamResult.goals_for)}-${escapeOverseasHtml(teamResult.goals_against)}`;
+                }
+                const opponent = player.opponent && player.opponent !== '-' ? player.opponent : 'TBD';
+                const timeText = `${player.kst_date || '-'} ${player.kst_time && player.kst_time !== '-' ? player.kst_time : ''}`.trim();
+                return `<div class="overseas-player-row">` +
+                    `<span style="color:white; font-weight:bold;">${escapeOverseasHtml(player.player || '-')}</span>` +
+                    `<span class="overseas-competition" style="color:#888;">${escapeOverseasHtml(player.competition || '-')}</span>` +
+                    `<span class="overseas-opponent" style="color:#aaa;">vs ${escapeOverseasHtml(opponent)}</span>` +
+                    `<span class="overseas-match-time" style="color:#ddd;">${escapeOverseasHtml(timeText)}</span>` +
+                    `<span class="overseas-stat" style="color:#66ccff; text-align:right;">${statText}</span>` +
+                `</div>`;
+            }).join('');
+        }
+
+        async function loadOverseasData() {
+            try {
+                const response = await fetch('./korean_overseas.json?v=' + Date.now());
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                renderOverseasWidget(await response.json());
+            } catch (error) {
+                const summary = document.getElementById('overseas-summary');
+                if (summary) summary.innerHTML = '<div class="loading-text">해외파 데이터를 불러오지 못했습니다.</div>';
+                console.error('Overseas Error:', error);
+            }
+        }
+
         async function loadSportsData() {
             try {
                 const r = await fetch('./sports.json?v=' + Date.now()); if (!r.ok) throw new Error("fail"); const data = await r.json();
@@ -616,7 +731,7 @@
 
         document.getElementById('current-date').innerText = new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
         updateWorldClock(); setInterval(updateWorldClock, 60000);
-        loadBriefingMenu(); loadSportsData(); loadMacroCalendar(); loadWeather(); loadTradingViewWidget(); renderQuickLinks();
+        loadBriefingMenu(); loadSportsData(); loadOverseasData(); loadMacroCalendar(); loadWeather(); loadTradingViewWidget(); renderQuickLinks();
         if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js').catch(() => {}); }
     </script>
 </body>
