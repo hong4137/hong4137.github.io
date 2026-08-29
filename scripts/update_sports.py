@@ -2313,6 +2313,21 @@ def format_tennis_data(raw_data):
     
     recent = raw_data.get('recent', {})
     next_data = raw_data.get('next', {})
+
+    # v2.6: 스코어 없는 미경기가 'recent'(완료 경기)로 잘못 분류되는 Web App 버그 방어
+    recent_score = recent.get('score', '-')
+    recent_has_event = recent.get('event', '-') not in ('-', '', None)
+    if recent_score in ('-', '', None) and recent_has_event:
+        log(f"   ⚠️ Tennis: 'recent'에 스코어 없는 미경기 감지(vs {recent.get('opponent', '-')}) → next로 재분류")
+        if next_data.get('event', '-') in ('-', '', None):
+            next_data = {
+                'event': recent.get('event', '-'),
+                'opponent': recent.get('opponent', '-'),
+                'round': recent.get('round', '-'),
+                'date': recent.get('date', '-'),
+                'time_kst': recent.get('time_kst', '-'),
+            }
+        recent = {}
     
     next_event = next_data.get('event', '-')
     next_opponent = next_data.get('opponent', '-')
