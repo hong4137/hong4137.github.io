@@ -269,6 +269,7 @@
                     </div>
                     <div id="f1-content" style="margin-top: 10px;"><div class="loading-text">Loading...</div></div>
                 </div>
+                <!-- @disabled:korean-overseas — 아키텍처 재설계 중. GAS+Sheets 완성 시 복원.
                 <div class="sport-card" style="grid-column:1 / -1;">
                     <div id="overseas-header" class="sport-header" role="button" tabindex="0" aria-expanded="false" style="cursor:pointer;" onclick="toggleOverseasDetail()" onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); toggleOverseasDetail(); }">
                         <div style="display:flex; align-items:center; gap:8px;"><span style="font-size:1.2rem;">🌍</span><span class="sport-title-link" style="cursor:default;">해외파 코리안리거 돋보기</span></div>
@@ -280,6 +281,7 @@
                         <div id="overseas-players" style="margin-top:12px; display:flex; flex-direction:column; gap:4px;"></div>
                     </div>
                 </div>
+                -->
             </div>
             <div style="margin-top: 25px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
@@ -603,6 +605,7 @@
             el.innerHTML = h;
         }
 
+        /* @disabled:korean-overseas — 아키텍처 재설계 중. GAS+Sheets 완성 시 복원.
         function escapeOverseasHtml(value) {
             return String(value == null ? '' : value)
                 .replace(/&/g, '&amp;')
@@ -700,6 +703,8 @@
             }
         }
 
+        */
+
         async function loadSportsData() {
             try {
                 const r = await fetch('./sports.json?v=' + Date.now()); if (!r.ok) throw new Error("fail"); const data = await r.json();
@@ -731,7 +736,7 @@
 
         document.getElementById('current-date').innerText = new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
         updateWorldClock(); setInterval(updateWorldClock, 60000);
-        loadBriefingMenu(); loadSportsData(); loadOverseasData(); loadMacroCalendar(); loadWeather(); loadTradingViewWidget(); renderQuickLinks();
+        loadBriefingMenu(); loadSportsData(); loadMacroCalendar(); loadWeather(); loadTradingViewWidget(); renderQuickLinks();
         if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js').catch(() => {}); }
     </script>
 </body>

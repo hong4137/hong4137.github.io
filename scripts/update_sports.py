@@ -3170,20 +3170,22 @@ def update_sports_data():
     log(f"      Recent: {final_recent.get('event', '-')} vs {final_recent.get('opponent', '-')} {final_recent.get('result', '-')} ({final_recent.get('score', '-')}) | {final_recent.get('date', '-')}")
     log(f"      Next: {final_next.get('event', '-')} | {final_next.get('detail', '-')} | {final_next.get('match_time', '-')}")
 
-    # =========================================================================
-    # STEP 6: 해외파 코리안리거 돋보기
-    # =========================================================================
-    log("\n🌍 [Step 6] 해외파 코리안리거 돋보기...")
-
-    existing_overseas_data = load_json_safe(KOREAN_OVERSEAS_FILE, {})
-    existing_overseas_history = load_json_safe(KOREAN_OVERSEAS_HISTORY_FILE, {})
-    overseas_players, overseas_history = get_korean_overseas_data(
-        serper_api_key,
-        existing_overseas_history,
-        existing_overseas_data,
-    )
-    overseas_hot_issues = summarize_overseas_hot_issues(overseas_players, gemini_api_key)
-    log(f"   ✅ 해외파 {len(overseas_players)}명 수집, 핫이슈 {len(overseas_hot_issues)}건")
+    # @disabled:korean-overseas — 아키텍처 재설계 중. GAS+Sheets 완성 시 복원.
+    # # =========================================================================
+    # # STEP 6: 해외파 코리안리거 돋보기
+    # # =========================================================================
+    # log("\n🌍 [Step 6] 해외파 코리안리거 돋보기...")
+    #
+    # existing_overseas_data = load_json_safe(KOREAN_OVERSEAS_FILE, {})
+    # existing_overseas_history = load_json_safe(KOREAN_OVERSEAS_HISTORY_FILE, {})
+    # overseas_players, overseas_history = get_korean_overseas_data(
+    #     serper_api_key,
+    #     existing_overseas_history,
+    #     existing_overseas_data,
+    # )
+    # overseas_hot_issues = summarize_overseas_hot_issues(overseas_players, gemini_api_key)
+    # log(f"   ✅ 해외파 {len(overseas_players)}명 수집, 핫이슈 {len(overseas_hot_issues)}건")
+    overseas_players, overseas_history, overseas_hot_issues = [], {}, []  # @disabled:korean-overseas 대체값 — 아래 저장 블록이 참조하므로 빈 값으로 유지
 
     # =========================================================================
     # NBA All-Star Week 데이터 삽입 (기간 내 자동 표시/숨김)
@@ -3228,15 +3230,16 @@ def update_sports_data():
     with open(SPORTS_FILE, 'w', encoding='utf-8') as f:
         json.dump(sports_data, f, ensure_ascii=False, indent=2)
 
-    with open(KOREAN_OVERSEAS_HISTORY_FILE, 'w', encoding='utf-8') as f:
-        json.dump(overseas_history, f, ensure_ascii=False, indent=2)
-
-    with open(KOREAN_OVERSEAS_FILE, 'w', encoding='utf-8') as f:
-        json.dump({
-            "updated": kst_now.strftime("%Y-%m-%d %H:%M:%S KST"),
-            "hot_issues": overseas_hot_issues,
-            "players": overseas_players,
-        }, f, ensure_ascii=False, indent=2)
+    # @disabled:korean-overseas — 아키텍처 재설계 중. GAS+Sheets 완성 시 복원.
+    # with open(KOREAN_OVERSEAS_HISTORY_FILE, 'w', encoding='utf-8') as f:
+    #     json.dump(overseas_history, f, ensure_ascii=False, indent=2)
+    #
+    # with open(KOREAN_OVERSEAS_FILE, 'w', encoding='utf-8') as f:
+    #     json.dump({
+    #         "updated": kst_now.strftime("%Y-%m-%d %H:%M:%S KST"),
+    #         "hot_issues": overseas_hot_issues,
+    #         "players": overseas_players,
+    #     }, f, ensure_ascii=False, indent=2)
 
     log(f"✅ [Complete]")
     log(f"   EPL: {len(validated_epl)}경기 ({display_matchday})")
@@ -3244,8 +3247,10 @@ def update_sports_data():
     log(f"   F1: {next_race.get('name', '-')} | {len(f1_data.get('schedule', []))}세션 | {len(f1_data.get('standings', []))}명 순위")
     log(f"   Tennis: {final_next.get('event', '-')} | {final_next.get('detail', '-')}")
     log(f"   Korean Players: {len(korean_players_data)}명")
-    log(f"   Korean Overseas: {len(overseas_players)}명 | 핫이슈 {len(overseas_hot_issues)}건")
-    log(f"   파일: {SPORTS_FILE}, {KOREAN_OVERSEAS_FILE}, {KOREAN_OVERSEAS_HISTORY_FILE}")
+    # @disabled:korean-overseas — 아키텍처 재설계 중. GAS+Sheets 완성 시 복원.
+    # log(f"   Korean Overseas: {len(overseas_players)}명 | 핫이슈 {len(overseas_hot_issues)}건")
+    # log(f"   파일: {SPORTS_FILE}, {KOREAN_OVERSEAS_FILE}, {KOREAN_OVERSEAS_HISTORY_FILE}")
+    log(f"   파일: {SPORTS_FILE}")  # @disabled:korean-overseas — 원래 로그에서 overseas 파일 경로 제거
 
     return sports_data
 
