@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-31 01:15:49 KST",
+  "updated": "2026-08-31 05:43:37 KST",
   "epl": {
     "matchday": 2,
     "selected_round": 2,
@@ -9,7 +9,7 @@
       "Manchester City",
       "Hull City AFC",
       "Chelsea",
-      "Ipswich Town"
+      "Brentford"
     ],
     "matches": [
       {
@@ -40,8 +40,8 @@
         ],
         "rule_str": "Prime Time",
         "matchday": 2,
-        "status": "IN_PLAY",
-        "score": "0-1"
+        "status": "FINISHED",
+        "score": "5-2"
       },
       {
         "match_id": 560552,
@@ -56,7 +56,7 @@
         "rule_str": "Early KO",
         "matchday": 2,
         "status": "FINISHED",
-        "score": "N/A"
+        "score": "2-2"
       }
     ],
     "selected_matches": [
@@ -88,8 +88,8 @@
         ],
         "rule_str": "Prime Time",
         "matchday": 2,
-        "status": "IN_PLAY",
-        "score": "0-1"
+        "status": "FINISHED",
+        "score": "5-2"
       },
       {
         "match_id": 560552,
@@ -104,7 +104,7 @@
         "rule_str": "Early KO",
         "matchday": 2,
         "status": "FINISHED",
-        "score": "N/A"
+        "score": "2-2"
       }
     ]
   },
@@ -284,7 +284,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-08-31 01:15:49 (KST)",
+      "🚀 [Start] 2026-08-31 05:43:37 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -292,7 +292,7 @@
       "   - AI Parse: Gemini API ✅",
       "\n⚽ [Step 1/5] Premier League 순위...",
       "   ✅ 1위: Manchester City",
-      "   ✅ Top 4: Manchester City, Hull City AFC, Chelsea, Ipswich Town",
+      "   ✅ Top 4: Manchester City, Hull City AFC, Chelsea, Brentford",
       "   ✅ 현재 라운드: R2",
       "\n⚽ [Step 2/5] Premier League 경기 선정 (v2.4)...",
       "   [티어 우선순위]",
@@ -305,16 +305,8 @@
       "   [최대 선정: 3경기]",
       "   📋 전체: 20경기 (라운드: [2, 3])",
       "   🎯 선정 대상: R2 (10경기)",
-      "   📊 상태별: {'FINISHED': 4, 'TIMED': 5, 'IN_PLAY': 1}",
-      "      ⏰ 강제 FINISHED: Liverpool vs Nottingham Forest",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   📌 기존 선정 유지 (R2)",
-      "      ✅ Chelsea vs Brighton & Hove Albion [FINISHED] 4-3",
-      "      🔴 Manchester United vs Ipswich Town [IN_PLAY] 0-1",
-      "      ✅ Liverpool vs Nottingham Forest [FINISHED] N/A",
+      "   📊 상태별: {'FINISHED': 9, 'TIMED': 1}",
+      "   🔄 R2 경기 모두 종료 → 새로 선정 불필요",
       "   ✅ 기존 선정 유지: 3경기 (R2)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
@@ -368,9 +360,10 @@
       "   ✅ 엄지성 (Swansea City): 다음 vs Watford | 최근 D 0-0",
       "   ⏭️ 조규성: 동일 경기(08.23) 이미 확인됨 — ESPN 재조회 생략",
       "   ⚠️ 조규성 (FC Midtjylland): 다음 vs - | 최근 W 1-0",
+      "   ♻️ 설영우: 다음 일정 API 실패 → 기존 일정 유지",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ✅ 설영우 (Crvena Zvezda): 다음 vs Zemun | 최근 W 4-0",
-      "   ⚠️ 해외파 핫이슈 JSON 파싱 실패: Unterminated string starting at: line 4 column 15 (char 60)",
+      "   ⚠️ 해외파 핫이슈 JSON 파싱 실패: Expecting value: line 4 column 14 (char 66)",
       "   ✅ 해외파 9명 수집, 핫이슈 4건",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
