@@ -1,6 +1,19 @@
 {
   "황희찬": [
     {
+      "id_event": "2501274",
+      "opponent": "Stoke City",
+      "venue": "home",
+      "kst_date": "08.29",
+      "kst_time": "20:30",
+      "competition": "English League Championship R3",
+      "result": "W",
+      "goals_for": 4,
+      "goals_against": 1,
+      "involvement": null,
+      "player_stat": null
+    },
+    {
       "id_event": "2501249",
       "opponent": "Blackburn Rovers",
       "venue": "home",
@@ -18,6 +31,19 @@
     }
   ],
   "이재성": [
+    {
+      "id_event": "2508335",
+      "opponent": "Paderborn",
+      "venue": "home",
+      "kst_date": "08.29",
+      "kst_time": "22:30",
+      "competition": "German Bundesliga R1",
+      "result": "D",
+      "goals_for": 0,
+      "goals_against": 0,
+      "involvement": null,
+      "player_stat": null
+    },
     {
       "id_event": "2542077",
       "opponent": "Bournemouth",

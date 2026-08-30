@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-30 05:35:43 KST",
+  "updated": "2026-08-30 13:18:35 KST",
   "hot_issues": [
     {
       "headline": "Beşiktaş 3-0 승리",
@@ -17,57 +17,54 @@
       "player": "설영우"
     },
     {
-      "headline": "Porto 2-0 승리",
-      "detail": "황인범 교체 출전, 0골 0도움",
-      "player": "황인범"
+      "headline": "Wolverhampton Wanderers 4-1 승리",
+      "detail": "English League Championship R3 · 황희찬 출전 여부 미확인",
+      "player": "황희찬"
     }
   ],
   "players": [
     {
       "player": "황희찬",
       "team": "Wolverhampton Wanderers",
-      "competition": "-",
-      "opponent": "-",
-      "venue": "-",
-      "kst_date": "-",
-      "kst_time": "-",
-      "status": "UNKNOWN",
+      "competition": "English League Championship R4",
+      "opponent": "West Ham United",
+      "venue": "away",
+      "kst_date": "09.02",
+      "kst_time": "03:45",
+      "status": "SCHEDULED",
       "team_result": {
-        "id_event": "2501249",
-        "opponent": "Blackburn Rovers",
+        "id_event": "2501274",
+        "opponent": "Stoke City",
         "venue": "home",
-        "kst_date": "08.15",
-        "kst_time": "04:00",
-        "competition": "English League Championship R1",
-        "result": "D",
-        "goals_for": 2,
-        "goals_against": 2
+        "kst_date": "08.29",
+        "kst_time": "20:30",
+        "competition": "English League Championship R3",
+        "result": "W",
+        "goals_for": 4,
+        "goals_against": 1
       },
-      "involvement": {
-        "played": false,
-        "started": false
-      },
+      "involvement": null,
       "player_stat": null
     },
     {
       "player": "이재성",
       "team": "Mainz",
-      "competition": "-",
-      "opponent": "-",
-      "venue": "-",
-      "kst_date": "-",
-      "kst_time": "-",
-      "status": "UNKNOWN",
+      "competition": "German Bundesliga R2",
+      "opponent": "Hamburg",
+      "venue": "away",
+      "kst_date": "09.06",
+      "kst_time": "22:30",
+      "status": "SCHEDULED",
       "team_result": {
-        "id_event": "2542077",
-        "opponent": "Bournemouth",
+        "id_event": "2508335",
+        "opponent": "Paderborn",
         "venue": "home",
-        "kst_date": "08.15",
+        "kst_date": "08.29",
         "kst_time": "22:30",
-        "competition": "Club Friendlies R0",
-        "result": "W",
-        "goals_for": 2,
-        "goals_against": 1
+        "competition": "German Bundesliga R1",
+        "result": "D",
+        "goals_for": 0,
+        "goals_against": 0
       },
       "involvement": null,
       "player_stat": null
@@ -75,12 +72,12 @@
     {
       "player": "황인범",
       "team": "Porto",
-      "competition": "-",
-      "opponent": "-",
-      "venue": "-",
-      "kst_date": "-",
-      "kst_time": "-",
-      "status": "UNKNOWN",
+      "competition": "Portuguese Primeira Liga R5",
+      "opponent": "Moreirense",
+      "venue": "home",
+      "kst_date": "09.05",
+      "kst_time": "04:15",
+      "status": "SCHEDULED",
       "team_result": {
         "id_event": "2513952",
         "opponent": "Arouca",
@@ -106,12 +103,12 @@
     {
       "player": "배준호",
       "team": "Stoke City",
-      "competition": "-",
-      "opponent": "-",
-      "venue": "-",
-      "kst_date": "-",
-      "kst_time": "-",
-      "status": "UNKNOWN",
+      "competition": "English League Championship R4",
+      "opponent": "Norwich City",
+      "venue": "home",
+      "kst_date": "09.02",
+      "kst_time": "04:00",
+      "status": "SCHEDULED",
       "team_result": {
         "id_event": "2570500",
         "opponent": "Hull City",
@@ -194,12 +191,12 @@
     {
       "player": "엄지성",
       "team": "Swansea City",
-      "competition": "-",
-      "opponent": "-",
-      "venue": "-",
-      "kst_date": "-",
-      "kst_time": "-",
-      "status": "UNKNOWN",
+      "competition": "English League Championship R4",
+      "opponent": "Watford",
+      "venue": "home",
+      "kst_date": "09.02",
+      "kst_time": "03:45",
+      "status": "SCHEDULED",
       "team_result": {
         "id_event": "2501270",
         "opponent": "Sheffield United",
