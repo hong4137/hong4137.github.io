@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-30 20:29:06 KST",
+  "updated": "2026-08-31 01:15:49 KST",
   "hot_issues": [
     {
       "headline": "Beşiktaş 3-0 승리",
@@ -222,12 +222,12 @@
     {
       "player": "조규성",
       "team": "FC Midtjylland",
-      "competition": "Danish Superliga R6",
-      "opponent": "Silkeborg IF",
-      "venue": "away",
-      "kst_date": "08.30",
-      "kst_time": "21:00",
-      "status": "SCHEDULED",
+      "competition": "-",
+      "opponent": "-",
+      "venue": "-",
+      "kst_date": "-",
+      "kst_time": "-",
+      "status": "UNKNOWN",
       "team_result": {
         "id_event": "2481816",
         "opponent": "Randers FC",
