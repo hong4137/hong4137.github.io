@@ -621,10 +621,14 @@
                 el.innerHTML = `<div class="loading-text">특별한 이슈 없음 · 선수 ${players.length}명 추적 중</div>`;
                 return;
             }
-            const top = issues[0] || {};
-            const moreCount = issues.length - 1;
-            el.innerHTML = `<div style="font-size:12px; font-weight:bold; color:#ffc400; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">🔥 ${escapeOverseasHtml(top.headline || '-')}</div>` +
-                (moreCount > 0 ? `<div style="font-size:11px; color:#666; margin-top:2px;">외 ${moreCount}건의 소식 · 선수 ${players.length}명 추적 중</div>` : '');
+            // v3.1: 접힌 상태에서도 1건만 보여주고 나머지를 "외 N건"으로 숨기지 않고,
+            // 최대 3건까지는 그대로 나열 — 상세보기를 눌러야만 보이던 정보를 줄임
+            const shown = issues.slice(0, 3);
+            const moreCount = issues.length - shown.length;
+            el.innerHTML = shown.map(issue =>
+                `<div style="font-size:12px; font-weight:bold; color:#ffc400; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">🔥 ${escapeOverseasHtml(issue.headline || '-')}</div>`
+            ).join('') +
+                `<div style="font-size:11px; color:#666; margin-top:2px;">${moreCount > 0 ? `외 ${moreCount}건의 소식 · ` : ''}선수 ${players.length}명 추적 중</div>`;
         }
 
         function toggleOverseasDetail() {
