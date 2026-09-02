@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-03 03:48:46 KST",
+  "updated": "2026-09-03 05:41:33 KST",
   "epl": {
     "matchday": 2,
     "selected_round": 3,
@@ -286,7 +286,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-03 03:48:46 (KST)",
+      "🚀 [Start] 2026-09-03 05:41:33 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -353,6 +353,8 @@
       "   📊 최종:",
       "      Recent: US Open, Men vs Roman Safiullin W (6-4, 6-4, 6-4) | Sep 1",
       "      Next: US Open, Men | R64 vs Jaime Faria | Sep 3 09:10 KST",
+      "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
+      "   ✅ 해외파 9명 수집, 핫이슈 2건",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
     ]

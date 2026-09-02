@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-03 04:20:42 KST",
+  "updated": "2026-09-03 05:41:33 KST",
   "hot_issues": [
     {
       "headline": "Swansea City 2-0 승리",
@@ -158,14 +158,14 @@
         "opponent": "AGF",
         "venue": "away",
         "date": "09.03",
-        "team_score": 1,
+        "team_score": 2,
         "opponent_score": 0,
         "result": "W",
         "player_status": "PLAYED",
-        "minutes": 53,
+        "minutes": 67,
         "goals": 0,
         "assists": 0,
-        "rating": 6.5
+        "rating": 6.4
       },
       "next": null
     },
