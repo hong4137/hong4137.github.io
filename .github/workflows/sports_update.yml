@@ -43,10 +43,10 @@ jobs:
           git config --local user.name "github-actions[bot]"
           
           # 변경사항 확인
-          if git diff --quiet sports.json; then
+          if git diff --quiet sports.json korean_overseas.json; then
             echo "No changes to commit"
           else
-            git add sports.json
+            git add sports.json korean_overseas.json
             git commit -m "🏆 Update sports data $(TZ='Asia/Seoul' date +'%Y-%m-%d %H:%M KST')"
             git pull --rebase origin main
             git push

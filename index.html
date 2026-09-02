@@ -269,7 +269,6 @@
                     </div>
                     <div id="f1-content" style="margin-top: 10px;"><div class="loading-text">Loading...</div></div>
                 </div>
-                <!-- @disabled:korean-overseas — 아키텍처 재설계 중. GAS+Sheets 완성 시 복원.
                 <div class="sport-card" style="grid-column:1 / -1;">
                     <div id="overseas-header" class="sport-header" role="button" tabindex="0" aria-expanded="false" style="cursor:pointer;" onclick="toggleOverseasDetail()" onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); toggleOverseasDetail(); }">
                         <div style="display:flex; align-items:center; gap:8px;"><span style="font-size:1.2rem;">🌍</span><span class="sport-title-link" style="cursor:default;">해외파 코리안리거 돋보기</span></div>
@@ -281,7 +280,6 @@
                         <div id="overseas-players" style="margin-top:12px; display:flex; flex-direction:column; gap:4px;"></div>
                     </div>
                 </div>
-                -->
             </div>
             <div style="margin-top: 25px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
@@ -605,7 +603,6 @@
             el.innerHTML = h;
         }
 
-        /* @disabled:korean-overseas — 아키텍처 재설계 중. GAS+Sheets 완성 시 복원.
         function escapeOverseasHtml(value) {
             return String(value == null ? '' : value)
                 .replace(/&/g, '&amp;')
@@ -658,34 +655,30 @@
                 return;
             }
             playersEl.innerHTML = players.map(player => {
-                const playerStat = player.player_stat;
-                const teamResult = player.team_result;
-                const involvement = player.involvement;
-                let statText = '-';
-                if (playerStat) {
-                    const minutesLabel = playerStat.minutes != null
-                        ? `${escapeOverseasHtml(playerStat.minutes)}'`
-                        : (playerStat.started ? '선발' : '교체');
-                    const ratingLabel = playerStat.rating && playerStat.rating !== '-'
-                        ? ` (${escapeOverseasHtml(playerStat.rating)})`
-                        : '';
-                    statText = `${minutesLabel} ${escapeOverseasHtml(playerStat.goals || 0)}G ${escapeOverseasHtml(playerStat.assists || 0)}A${ratingLabel}`;
-                } else if (teamResult && involvement && involvement.played === false) {
-                    statText = '<span style="color:#666;">결장</span>';
-                } else if (teamResult) {
-                    const resultColor = teamResult.result === 'W' ? '#4CAF50' : (teamResult.result === 'L' ? '#f44336' : '#aaa');
-                    const teamBadge = (!involvement || involvement.played !== true)
-                        ? '<span style="color:#666; font-size:9px;" title="출전 여부 확인 불가">(팀)</span> '
-                        : '';
-                    statText = `${teamBadge}<span style="color:${resultColor};">${escapeOverseasHtml(teamResult.result || '-')}</span> ${escapeOverseasHtml(teamResult.goals_for)}-${escapeOverseasHtml(teamResult.goals_against)}`;
+                const recent = player.recent;
+                const next = player.next;
+
+                let statText = '<span style="color:#666;">-</span>';
+                if (recent) {
+                    if (recent.player_status === 'PLAYED') {
+                        const ratingLabel = recent.rating != null ? ` (${escapeOverseasHtml(recent.rating)})` : '';
+                        statText = `${escapeOverseasHtml(recent.minutes)}' ${escapeOverseasHtml(recent.goals || 0)}G ${escapeOverseasHtml(recent.assists || 0)}A${ratingLabel}`;
+                    } else {
+                        statText = '<span style="color:#666;">결장</span>';
+                    }
                 }
-                const opponent = player.opponent && player.opponent !== '-' ? player.opponent : 'TBD';
-                const timeText = `${player.kst_date || '-'} ${player.kst_time && player.kst_time !== '-' ? player.kst_time : ''}`.trim();
+
+                // next가 있으면 다음 경기 기준, 없으면 최근 경기 기준으로 상대/일정 표시
+                const source = next || recent;
+                const opponent = source && source.opponent && source.opponent !== '-' ? source.opponent : 'TBD';
+                const competition = source ? (source.event || '-') : '-';
+                const dateText = source ? `${source.date || '-'}${source.time_kst ? ' ' + source.time_kst : ''}` : '-';
+
                 return `<div class="overseas-player-row">` +
                     `<span style="color:white; font-weight:bold;">${escapeOverseasHtml(player.player || '-')}</span>` +
-                    `<span class="overseas-competition" style="color:#888;">${escapeOverseasHtml(player.competition || '-')}</span>` +
+                    `<span class="overseas-competition" style="color:#888;">${escapeOverseasHtml(competition)}</span>` +
                     `<span class="overseas-opponent" style="color:#aaa;">vs ${escapeOverseasHtml(opponent)}</span>` +
-                    `<span class="overseas-match-time" style="color:#ddd;">${escapeOverseasHtml(timeText)}</span>` +
+                    `<span class="overseas-match-time" style="color:#ddd;">${escapeOverseasHtml(dateText)}</span>` +
                     `<span class="overseas-stat" style="color:#66ccff; text-align:right;">${statText}</span>` +
                 `</div>`;
             }).join('');
@@ -702,8 +695,6 @@
                 console.error('Overseas Error:', error);
             }
         }
-
-        */
 
         async function loadSportsData() {
             try {
@@ -736,7 +727,7 @@
 
         document.getElementById('current-date').innerText = new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
         updateWorldClock(); setInterval(updateWorldClock, 60000);
-        loadBriefingMenu(); loadSportsData(); loadMacroCalendar(); loadWeather(); loadTradingViewWidget(); renderQuickLinks();
+        loadBriefingMenu(); loadSportsData(); loadOverseasData(); loadMacroCalendar(); loadWeather(); loadTradingViewWidget(); renderQuickLinks();
         if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js').catch(() => {}); }
     </script>
 </body>

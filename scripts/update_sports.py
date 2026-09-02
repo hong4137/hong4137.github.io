@@ -64,7 +64,7 @@ TZ_PST = ZoneInfo("America/Los_Angeles")
 # =============================================================================
 SPORTS_FILE = 'sports.json'
 KOREAN_OVERSEAS_FILE = 'korean_overseas.json'
-KOREAN_OVERSEAS_HISTORY_FILE = 'korean_overseas_history.json'
+KOREAN_FOOTBALL_GAS_URL = "https://script.google.com/macros/s/AKfycbyf_Jd-mVvpzLTxvEw8vVTuYDOn4FYEVKRk26cthWP0xKJ8oiioCfWorjHUdOgJlkGnvA/exec"
 FOOTBALL_DATA_API_URL = "https://api.football-data.org/v4"
 SERPER_API_URL = "https://google.serper.dev/search"
 BALLDONTLIE_API_URL = "https://api.balldontlie.io/v1"
@@ -106,6 +106,49 @@ def log(message):
     """버퍼링 없이 즉시 출력 + LOG_MESSAGES에 누적"""
     print(message, flush=True)
     LOG_MESSAGES.append(str(message))
+
+
+def fetch_korean_football_webapp():
+    """GAS Web App에서 해외파 코리안리거 9명 데이터를 가져온다. 실패 시 None."""
+    try:
+        response = requests.get(KOREAN_FOOTBALL_GAS_URL, timeout=30)
+        if response.status_code != 200:
+            log(f"   ⚠️ 해외파 Web App 호출 실패: {response.status_code}")
+            return None
+        data = response.json()
+        if 'error' in data:
+            log(f"   ⚠️ 해외파 Web App 오류: {data['error']}")
+            return None
+        return data
+    except Exception as e:
+        log(f"   ⚠️ 해외파 Web App 예외: {e}")
+        return None
+
+
+def build_football_hot_issues(players):
+    """AI 없이 구조화된 데이터에서 규칙 기반으로 주목할 소식 추출(골/도움/평점 8.0+)."""
+    issues = []
+    for p in players:
+        recent = p.get('recent')
+        if not recent or recent.get('player_status') != 'PLAYED':
+            continue
+        goals = recent.get('goals', 0) or 0
+        assists = recent.get('assists', 0) or 0
+        rating = recent.get('rating')
+        if goals > 0 or assists > 0 or (rating and rating >= 8.0):
+            result_kr = {'W': '승리', 'L': '패배', 'D': '무승부'}.get(recent.get('result'), '-')
+            headline = f"{p.get('team', '-')} {recent.get('team_score', '-')}-{recent.get('opponent_score', '-')} {result_kr}"
+            stat_bits = []
+            if goals:
+                stat_bits.append(f"{goals}골")
+            if assists:
+                stat_bits.append(f"{assists}도움")
+            detail = f"{p.get('player', '-')} {recent.get('minutes', '-')}분 출전" + (f", {' '.join(stat_bits)}" if stat_bits else "")
+            issues.append({"headline": headline, "detail": detail, "_sort": goals * 2 + assists})
+    issues.sort(key=lambda x: x['_sort'], reverse=True)
+    for i in issues:
+        i.pop('_sort', None)
+    return issues[:4]
 
 # =============================================================================
 # 타임존 변환 함수
@@ -3170,22 +3213,18 @@ def update_sports_data():
     log(f"      Recent: {final_recent.get('event', '-')} vs {final_recent.get('opponent', '-')} {final_recent.get('result', '-')} ({final_recent.get('score', '-')}) | {final_recent.get('date', '-')}")
     log(f"      Next: {final_next.get('event', '-')} | {final_next.get('detail', '-')} | {final_next.get('match_time', '-')}")
 
-    # @disabled:korean-overseas — 아키텍처 재설계 중. GAS+Sheets 완성 시 복원.
-    # # =========================================================================
-    # # STEP 6: 해외파 코리안리거 돋보기
-    # # =========================================================================
-    # log("\n🌍 [Step 6] 해외파 코리안리거 돋보기...")
-    #
-    # existing_overseas_data = load_json_safe(KOREAN_OVERSEAS_FILE, {})
-    # existing_overseas_history = load_json_safe(KOREAN_OVERSEAS_HISTORY_FILE, {})
-    # overseas_players, overseas_history = get_korean_overseas_data(
-    #     serper_api_key,
-    #     existing_overseas_history,
-    #     existing_overseas_data,
-    # )
-    # overseas_hot_issues = summarize_overseas_hot_issues(overseas_players, gemini_api_key)
-    # log(f"   ✅ 해외파 {len(overseas_players)}명 수집, 핫이슈 {len(overseas_hot_issues)}건")
-    overseas_players, overseas_history, overseas_hot_issues = [], {}, []  # @disabled:korean-overseas 대체값 — 아래 저장 블록이 참조하므로 빈 값으로 유지
+    # =========================================================================
+    # STEP 6: 해외파 코리안리거 돋보기 (v3.0 — Sofascore GAS, Sheets/AI 불필요)
+    # =========================================================================
+    log("\n🌍 [Step 6] 해외파 코리안리거 돋보기...")
+    football_gas_data = fetch_korean_football_webapp()
+    if football_gas_data:
+        overseas_players = football_gas_data.get('players', [])
+        overseas_hot_issues = build_football_hot_issues(overseas_players)
+        log(f"   ✅ 해외파 {len(overseas_players)}명 수집, 핫이슈 {len(overseas_hot_issues)}건")
+    else:
+        overseas_players, overseas_hot_issues = [], []
+        log("   ⚠️ 해외파 데이터 수집 실패 → 빈 값 유지")
 
     # =========================================================================
     # NBA All-Star Week 데이터 삽입 (기간 내 자동 표시/숨김)
@@ -3230,16 +3269,12 @@ def update_sports_data():
     with open(SPORTS_FILE, 'w', encoding='utf-8') as f:
         json.dump(sports_data, f, ensure_ascii=False, indent=2)
 
-    # @disabled:korean-overseas — 아키텍처 재설계 중. GAS+Sheets 완성 시 복원.
-    # with open(KOREAN_OVERSEAS_HISTORY_FILE, 'w', encoding='utf-8') as f:
-    #     json.dump(overseas_history, f, ensure_ascii=False, indent=2)
-    #
-    # with open(KOREAN_OVERSEAS_FILE, 'w', encoding='utf-8') as f:
-    #     json.dump({
-    #         "updated": kst_now.strftime("%Y-%m-%d %H:%M:%S KST"),
-    #         "hot_issues": overseas_hot_issues,
-    #         "players": overseas_players,
-    #     }, f, ensure_ascii=False, indent=2)
+    with open(KOREAN_OVERSEAS_FILE, 'w', encoding='utf-8') as f:
+        json.dump({
+            "updated": kst_now.strftime("%Y-%m-%d %H:%M:%S KST"),
+            "hot_issues": overseas_hot_issues,
+            "players": overseas_players,
+        }, f, ensure_ascii=False, indent=2)
 
     log(f"✅ [Complete]")
     log(f"   EPL: {len(validated_epl)}경기 ({display_matchday})")
@@ -3247,10 +3282,8 @@ def update_sports_data():
     log(f"   F1: {next_race.get('name', '-')} | {len(f1_data.get('schedule', []))}세션 | {len(f1_data.get('standings', []))}명 순위")
     log(f"   Tennis: {final_next.get('event', '-')} | {final_next.get('detail', '-')}")
     log(f"   Korean Players: {len(korean_players_data)}명")
-    # @disabled:korean-overseas — 아키텍처 재설계 중. GAS+Sheets 완성 시 복원.
-    # log(f"   Korean Overseas: {len(overseas_players)}명 | 핫이슈 {len(overseas_hot_issues)}건")
-    # log(f"   파일: {SPORTS_FILE}, {KOREAN_OVERSEAS_FILE}, {KOREAN_OVERSEAS_HISTORY_FILE}")
-    log(f"   파일: {SPORTS_FILE}")  # @disabled:korean-overseas — 원래 로그에서 overseas 파일 경로 제거
+    log(f"   Korean Overseas: {len(overseas_players)}명 | 핫이슈 {len(overseas_hot_issues)}건")
+    log(f"   파일: {SPORTS_FILE}, {KOREAN_OVERSEAS_FILE}")
 
     return sports_data
 
