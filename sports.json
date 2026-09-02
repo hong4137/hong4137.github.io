@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-03 01:10:14 KST",
+  "updated": "2026-09-03 03:48:46 KST",
   "epl": {
     "matchday": 2,
     "selected_round": 3,
@@ -234,18 +234,18 @@
   },
   "tennis": {
     "recent": {
-      "event": "-",
-      "opponent": "-",
-      "result": "-",
-      "score": "-",
-      "date": "-"
+      "event": "US Open, Men",
+      "opponent": "Roman Safiullin",
+      "result": "W",
+      "score": "6-4, 6-4, 6-4",
+      "date": "Sep 1"
     },
     "next": {
-      "event": "Shanghai Masters",
-      "detail": "-",
-      "match_time": "Oct 5",
-      "tournament_dates": "Oct 5 - 12",
-      "status": "Masters"
+      "event": "US Open, Men",
+      "detail": "R64 vs Jaime Faria",
+      "match_time": "Sep 3 09:10 KST",
+      "tournament_dates": "Aug 25 - Sep 7",
+      "status": "Grand Slam"
     }
   },
   "korean_players": [
@@ -286,7 +286,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-03 01:10:14 (KST)",
+      "🚀 [Start] 2026-09-03 03:48:46 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -348,12 +348,11 @@
       "   ✅ 손흥민 (LAFC): vs Real Salt Lake | 09.06 10:30 KST",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
-      "      Recent: US Open, Men vs Jaime Faria L (-)",
-      "      Next: Shanghai Masters | Oct 5",
-      "   ⚠️ Tennis: 'recent'에 스코어 없는 미경기 감지(vs Jaime Faria) → next로 재분류",
+      "      Recent: US Open, Men vs Roman Safiullin W (6-4, 6-4, 6-4)",
+      "      Next: US Open, Men | Sep 3",
       "   📊 최종:",
-      "      Recent: - vs - - (-) | -",
-      "      Next: Shanghai Masters | - | Oct 5",
+      "      Recent: US Open, Men vs Roman Safiullin W (6-4, 6-4, 6-4) | Sep 1",
+      "      Next: US Open, Men | R64 vs Jaime Faria | Sep 3 09:10 KST",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
     ]
