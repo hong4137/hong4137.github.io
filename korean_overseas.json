@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-03 05:41:33 KST",
+  "updated": "2026-09-03 12:30:53 KST",
   "hot_issues": [
     {
       "headline": "Swansea City 2-0 승리",
@@ -91,7 +91,13 @@
         "assists": 0,
         "rating": 6.5
       },
-      "next": null
+      "next": {
+        "event": "Championship",
+        "opponent": "Charlton Athletic",
+        "venue": "home",
+        "date": "09.05",
+        "time_kst": "20:30"
+      }
     },
     {
       "player": "오현규",
@@ -148,7 +154,13 @@
         "assists": 1,
         "rating": 8.7
       },
-      "next": null
+      "next": {
+        "event": "Championship",
+        "opponent": "Wrexham",
+        "venue": "home",
+        "date": "09.06",
+        "time_kst": "04:00"
+      }
     },
     {
       "player": "조규성",
@@ -167,7 +179,13 @@
         "assists": 0,
         "rating": 6.4
       },
-      "next": null
+      "next": {
+        "event": "Danish Superliga",
+        "opponent": "FC Nordsjælland",
+        "venue": "home",
+        "date": "09.08",
+        "time_kst": "02:00"
+      }
     },
     {
       "player": "설영우",

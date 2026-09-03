@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-03 05:41:33 KST",
+  "updated": "2026-09-03 12:30:53 KST",
   "epl": {
     "matchday": 2,
     "selected_round": 3,
@@ -235,15 +235,15 @@
   "tennis": {
     "recent": {
       "event": "US Open, Men",
-      "opponent": "Roman Safiullin",
+      "opponent": "Jaime Faria",
       "result": "W",
-      "score": "6-4, 6-4, 6-4",
-      "date": "Sep 1"
+      "score": "4-6, 6-0, 6-3, 6-2",
+      "date": "Sep 3"
     },
     "next": {
       "event": "US Open, Men",
-      "detail": "R64 vs Jaime Faria",
-      "match_time": "Sep 3 09:10 KST",
+      "detail": "R32 vs Yibing Wu",
+      "match_time": "Sep 5 00:00 KST",
       "tournament_dates": "Aug 25 - Sep 7",
       "status": "Grand Slam"
     }
@@ -286,7 +286,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-03 05:41:33 (KST)",
+      "🚀 [Start] 2026-09-03 12:30:53 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -348,11 +348,11 @@
       "   ✅ 손흥민 (LAFC): vs Real Salt Lake | 09.06 10:30 KST",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
-      "      Recent: US Open, Men vs Roman Safiullin W (6-4, 6-4, 6-4)",
-      "      Next: US Open, Men | Sep 3",
+      "      Recent: US Open, Men vs Jaime Faria W (4-6, 6-0, 6-3, 6-2)",
+      "      Next: US Open, Men | Sep 5",
       "   📊 최종:",
-      "      Recent: US Open, Men vs Roman Safiullin W (6-4, 6-4, 6-4) | Sep 1",
-      "      Next: US Open, Men | R64 vs Jaime Faria | Sep 3 09:10 KST",
+      "      Recent: US Open, Men vs Jaime Faria W (4-6, 6-0, 6-3, 6-2) | Sep 3",
+      "      Next: US Open, Men | R32 vs Yibing Wu | Sep 5 00:00 KST",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
       "   ✅ 해외파 9명 수집, 핫이슈 2건",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
