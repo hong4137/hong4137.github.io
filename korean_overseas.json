@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-05 00:56:53 KST",
+  "updated": "2026-09-05 05:26:49 KST",
   "hot_issues": [
     {
       "headline": "Swansea City 2-0 승리",
@@ -60,17 +60,17 @@
       "team": "FC Porto",
       "recent": {
         "event": "Liga Portugal Betclic",
-        "opponent": "Académico Viseu FC",
-        "venue": "away",
-        "date": "08.30",
-        "team_score": 3,
-        "opponent_score": 0,
-        "result": "W",
-        "player_status": "PLAYED",
-        "minutes": 30,
+        "opponent": "Moreirense",
+        "venue": "home",
+        "date": "09.05",
+        "team_score": 1,
+        "opponent_score": 1,
+        "result": "D",
+        "player_status": "DNP",
+        "minutes": 0,
         "goals": 0,
         "assists": 0,
-        "rating": 6.9
+        "rating": null
       },
       "next": null
     },
