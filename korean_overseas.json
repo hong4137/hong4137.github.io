@@ -1,10 +1,6 @@
 {
-  "updated": "2026-09-05 23:47:12 KST",
+  "updated": "2026-09-06 05:03:21 KST",
   "hot_issues": [
-    {
-      "headline": "엄지성 1골 1도움 (Swansea City 2-0 승)",
-      "detail": "Championship vs Watford | 90분 출전 | 평점 8.7"
-    },
     {
       "headline": "설영우 1도움 (FC Augsburg 3-0 승)",
       "detail": "Bundesliga vs FC Schalke 04 | 1분 출전"
@@ -98,17 +94,17 @@
       "team": "Beşiktaş JK",
       "recent": {
         "event": "Trendyol Süper Lig",
-        "opponent": "Çorum FK",
-        "venue": "home",
-        "date": "09.01",
-        "team_score": 6,
-        "opponent_score": 2,
+        "opponent": "Fenerbahçe",
+        "venue": "away",
+        "date": "09.06",
+        "team_score": 2,
+        "opponent_score": 1,
         "result": "W",
         "player_status": "PLAYED",
-        "minutes": 19,
+        "minutes": 12,
         "goals": 0,
         "assists": 0,
-        "rating": 6.6
+        "rating": 6.5
       },
       "next": null
     },
@@ -136,25 +132,19 @@
       "team": "Swansea City",
       "recent": {
         "event": "Championship",
-        "opponent": "Watford",
-        "venue": "home",
-        "date": "09.02",
-        "team_score": 2,
-        "opponent_score": 0,
-        "result": "W",
-        "player_status": "PLAYED",
-        "minutes": 90,
-        "goals": 1,
-        "assists": 1,
-        "rating": 8.7
-      },
-      "next": {
-        "event": "Championship",
         "opponent": "Wrexham",
         "venue": "home",
         "date": "09.06",
-        "time_kst": "04:00"
-      }
+        "team_score": 0,
+        "opponent_score": 0,
+        "result": "D",
+        "player_status": "PLAYED",
+        "minutes": 47,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.5
+      },
+      "next": null
     },
     {
       "player": "조규성",
