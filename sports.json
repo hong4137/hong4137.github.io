@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-05 19:09:09 KST",
+  "updated": "2026-09-05 23:47:12 KST",
   "epl": {
     "matchday": 3,
     "selected_round": 3,
@@ -7,9 +7,9 @@
     "leader": "Manchester City",
     "top4": [
       "Manchester City",
+      "Leeds United",
       "Arsenal",
-      "Hull City AFC",
-      "Chelsea"
+      "Hull City AFC"
     ],
     "matches": [
       {
@@ -41,8 +41,8 @@
         ],
         "rule_str": "Early KO",
         "matchday": 3,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "2-2"
       },
       {
         "match_id": 560563,
@@ -56,8 +56,8 @@
         ],
         "rule_str": "Leader",
         "matchday": 3,
-        "status": "TIMED",
-        "score": "-"
+        "status": "IN_PLAY",
+        "score": "1-0"
       }
     ],
     "selected_matches": [
@@ -90,8 +90,8 @@
         ],
         "rule_str": "Early KO",
         "matchday": 3,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "2-2"
       },
       {
         "match_id": 560563,
@@ -105,8 +105,8 @@
         ],
         "rule_str": "Leader",
         "matchday": 3,
-        "status": "TIMED",
-        "score": "-"
+        "status": "IN_PLAY",
+        "score": "1-0"
       }
     ]
   },
@@ -252,11 +252,11 @@
     {
       "player": "이강인",
       "team": "ATM",
-      "opponent": "Athletic Club",
+      "opponent": "Liverpool FC",
       "venue": "away",
-      "kst_date": "09.05",
-      "kst_time": "23:15",
-      "competition": "La Liga R4",
+      "kst_date": "09.10",
+      "kst_time": "04:00",
+      "competition": "UCL R1",
       "status": "SCHEDULED"
     },
     {
@@ -286,7 +286,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-05 19:09:09 (KST)",
+      "🚀 [Start] 2026-09-05 23:47:12 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -294,7 +294,7 @@
       "   - AI Parse: Gemini API ✅",
       "\n⚽ [Step 1/5] Premier League 순위...",
       "   ✅ 1위: Manchester City",
-      "   ✅ Top 4: Manchester City, Arsenal, Hull City AFC, Chelsea",
+      "   ✅ Top 4: Manchester City, Leeds United, Arsenal, Hull City AFC",
       "   ✅ 현재 라운드: R3",
       "\n⚽ [Step 2/5] Premier League 경기 선정 (v2.4)...",
       "   [티어 우선순위]",
@@ -307,17 +307,15 @@
       "   [최대 선정: 3경기]",
       "   📋 전체: 17경기 (라운드: [3, 4])",
       "   🎯 선정 대상: R3 (10경기)",
-      "   📊 상태별: {'FINISHED': 1, 'TIMED': 9}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   📊 상태별: {'FINISHED': 2, 'IN_PLAY': 5, 'TIMED': 3}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   📌 기존 선정 유지 (R3)",
       "      ⏳ Arsenal vs Chelsea [TIMED] -",
-      "      ⏳ Newcastle United vs AFC Bournemouth [TIMED] -",
-      "      ⏳ Manchester City vs Coventry City [TIMED] -",
+      "      ✅ Newcastle United vs AFC Bournemouth [FINISHED] 2-2",
+      "      🔴 Manchester City vs Coventry City [IN_PLAY] 1-0",
       "   ✅ 기존 선정 유지: 3경기 (R3)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
@@ -343,7 +341,7 @@
       "      📅 09.06 22:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...",
-      "   ✅ 이강인 (ATM): vs Athletic Club | 09.05 23:15 KST",
+      "   ✅ 이강인 (ATM): vs Liverpool FC | 09.10 04:00 KST",
       "   ✅ 김민재 (Bayern): vs FC Schalke 04 | 09.06 01:30 KST",
       "   ✅ 손흥민 (LAFC): vs Real Salt Lake | 09.06 10:30 KST",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",

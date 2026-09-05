@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-05 19:09:09 KST",
+  "updated": "2026-09-05 23:47:12 KST",
   "hot_issues": [
     {
       "headline": "엄지성 1골 1도움 (Swansea City 2-0 승)",
@@ -79,25 +79,19 @@
       "team": "Stoke City",
       "recent": {
         "event": "Championship",
-        "opponent": "Norwich City",
-        "venue": "home",
-        "date": "09.02",
-        "team_score": 1,
-        "opponent_score": 0,
-        "result": "W",
-        "player_status": "PLAYED",
-        "minutes": 90,
-        "goals": 0,
-        "assists": 0,
-        "rating": 6.5
-      },
-      "next": {
-        "event": "Championship",
         "opponent": "Charlton Athletic",
         "venue": "home",
         "date": "09.05",
-        "time_kst": "20:30"
-      }
+        "team_score": 4,
+        "opponent_score": 0,
+        "result": "W",
+        "player_status": "DNP",
+        "minutes": 0,
+        "goals": 0,
+        "assists": 0,
+        "rating": null
+      },
+      "next": null
     },
     {
       "player": "오현규",
