@@ -136,14 +136,20 @@ def build_football_hot_issues(players):
         assists = recent.get('assists', 0) or 0
         rating = recent.get('rating')
         if goals > 0 or assists > 0 or (rating and rating >= 8.0):
-            result_kr = {'W': '승리', 'L': '패배', 'D': '무승부'}.get(recent.get('result'), '-')
-            headline = f"{p.get('team', '-')} {recent.get('team_score', '-')}-{recent.get('opponent_score', '-')} {result_kr}"
+            # v3.2: 접힌 상태에서 팀 이름만 보이고 어떤 선수인지 안 보이던 문제 수정
+            # → 헤드라인을 선수 중심으로, 팀 결과는 괄호 안 보조 정보로
+            result_kr = {'W': '승', 'L': '패', 'D': '무'}.get(recent.get('result'), '-')
             stat_bits = []
             if goals:
                 stat_bits.append(f"{goals}골")
             if assists:
                 stat_bits.append(f"{assists}도움")
-            detail = f"{p.get('player', '-')} {recent.get('minutes', '-')}분 출전" + (f", {' '.join(stat_bits)}" if stat_bits else "")
+            stat_label = ' '.join(stat_bits) if stat_bits else (f"평점 {rating}" if rating and rating >= 8.0 else '')
+            score_str = f"{recent.get('team_score', '-')}-{recent.get('opponent_score', '-')}"
+            headline = f"{p.get('player', '-')} {stat_label} ({p.get('team', '-')} {score_str} {result_kr})"
+            detail = f"{recent.get('event', '-')} vs {recent.get('opponent', '-')} | {recent.get('minutes', '-')}분 출전"
+            if rating:
+                detail += f" | 평점 {rating}"
             issues.append({"headline": headline, "detail": detail, "_sort": goals * 2 + assists})
     issues.sort(key=lambda x: x['_sort'], reverse=True)
     for i in issues:
