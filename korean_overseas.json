@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-06 05:03:21 KST",
+  "updated": "2026-09-06 12:31:28 KST",
   "hot_issues": [
     {
       "headline": "설영우 1도움 (FC Augsburg 3-0 승)",
@@ -139,12 +139,18 @@
         "opponent_score": 0,
         "result": "D",
         "player_status": "PLAYED",
-        "minutes": 47,
+        "minutes": 53,
         "goals": 0,
         "assists": 0,
-        "rating": 6.5
+        "rating": 6.6
       },
-      "next": null
+      "next": {
+        "event": "Championship",
+        "opponent": "Southampton",
+        "venue": "away",
+        "date": "09.09",
+        "time_kst": "03:45"
+      }
     },
     {
       "player": "조규성",
