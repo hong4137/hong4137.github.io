@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-06 12:31:28 KST",
+  "updated": "2026-09-06 19:29:57 KST",
   "hot_issues": [
     {
       "headline": "설영우 1도움 (FC Augsburg 3-0 승)",
@@ -125,7 +125,13 @@
         "assists": 0,
         "rating": null
       },
-      "next": null
+      "next": {
+        "event": "Championship",
+        "opponent": "Wolverhampton",
+        "venue": "home",
+        "date": "09.06",
+        "time_kst": "20:00"
+      }
     },
     {
       "player": "엄지성",
