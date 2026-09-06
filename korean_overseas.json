@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-06 19:29:57 KST",
+  "updated": "2026-09-07 00:06:56 KST",
   "hot_issues": [
     {
       "headline": "설영우 1도움 (FC Augsburg 3-0 승)",
@@ -31,25 +31,19 @@
       "team": "1. FSV Mainz 05",
       "recent": {
         "event": "Bundesliga",
-        "opponent": "SC Paderborn 07",
-        "venue": "home",
-        "date": "08.29",
-        "team_score": 0,
-        "opponent_score": 0,
-        "result": "D",
-        "player_status": "PLAYED",
-        "minutes": 68,
-        "goals": 0,
-        "assists": 0,
-        "rating": 6.3
-      },
-      "next": {
-        "event": "Bundesliga",
         "opponent": "Hamburger SV",
         "venue": "away",
         "date": "09.06",
-        "time_kst": "22:30"
-      }
+        "team_score": 3,
+        "opponent_score": 0,
+        "result": "W",
+        "player_status": "PLAYED",
+        "minutes": 69,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.5
+      },
+      "next": null
     },
     {
       "player": "황인범",
@@ -113,25 +107,19 @@
       "team": "Birmingham City",
       "recent": {
         "event": "Championship",
-        "opponent": "Southampton",
-        "venue": "home",
-        "date": "09.02",
-        "team_score": 1,
-        "opponent_score": 1,
-        "result": "D",
-        "player_status": "PLAYED",
-        "minutes": 3,
-        "goals": 0,
-        "assists": 0,
-        "rating": null
-      },
-      "next": {
-        "event": "Championship",
         "opponent": "Wolverhampton",
         "venue": "home",
         "date": "09.06",
-        "time_kst": "20:00"
-      }
+        "team_score": 2,
+        "opponent_score": 2,
+        "result": "D",
+        "player_status": "PLAYED",
+        "minutes": 90,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.9
+      },
+      "next": null
     },
     {
       "player": "엄지성",
@@ -200,7 +188,13 @@
         "assists": 1,
         "rating": null
       },
-      "next": null
+      "next": {
+        "event": "Bundesliga",
+        "opponent": "Eintracht Frankfurt",
+        "venue": "away",
+        "date": "09.07",
+        "time_kst": "00:30"
+      }
     }
   ]
 }
