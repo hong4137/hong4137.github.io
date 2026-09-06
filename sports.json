@@ -1,112 +1,84 @@
 {
-  "updated": "2026-09-07 00:06:56 KST",
+  "updated": "2026-09-07 05:07:41 KST",
   "epl": {
     "matchday": 3,
-    "selected_round": 3,
-    "display_matchday": "R3",
+    "selected_round": 4,
+    "display_matchday": "R4",
     "leader": "Manchester City",
     "top4": [
       "Manchester City",
-      "Hull City AFC",
       "Arsenal",
+      "Hull City AFC",
       "Chelsea"
     ],
     "matches": [
       {
-        "match_id": 560570,
-        "home": "Arsenal",
-        "away": "Chelsea",
-        "kst_time": "09.07 00:30 (KST)",
+        "match_id": 560580,
+        "home": "Manchester United",
+        "away": "Manchester City",
+        "kst_time": "09.14 00:30 (KST)",
         "uk_time": "Sunday 16:30 (UK)",
         "local": "",
         "rules": [
           "Big Match",
-          "Top Tier",
-          "Prime Time"
+          "Prime Time",
+          "Leader"
         ],
-        "rule_str": "Big Match, Top Tier, Prime Time",
-        "matchday": 3,
-        "status": "TIMED",
+        "rule_str": "Big Match, Prime Time, Leader",
+        "matchday": 4,
+        "status": "SCHEDULED",
         "score": "-"
       },
       {
-        "match_id": 560571,
-        "home": "Newcastle United",
-        "away": "AFC Bournemouth",
-        "kst_time": "09.05 20:30 (KST)",
-        "uk_time": "Saturday 12:30 (UK)",
-        "local": "",
-        "rules": [
-          "Early KO"
-        ],
-        "rule_str": "Early KO",
-        "matchday": 3,
-        "status": "FINISHED",
-        "score": "2-2"
-      },
-      {
-        "match_id": 560563,
-        "home": "Manchester City",
-        "away": "Coventry City",
-        "kst_time": "09.05 23:00 (KST)",
+        "match_id": 560581,
+        "home": "Chelsea",
+        "away": "Hull City AFC",
+        "kst_time": "09.12 23:00 (KST)",
         "uk_time": "Saturday 15:00 (UK)",
         "local": "",
         "rules": [
-          "Leader"
+          "Top Tier",
+          "Challenger"
         ],
-        "rule_str": "Leader",
-        "matchday": 3,
-        "status": "FINISHED",
-        "score": "1-0"
+        "rule_str": "Top Tier, Challenger",
+        "matchday": 4,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ],
     "selected_matches": [
       {
-        "match_id": 560570,
-        "home": "Arsenal",
-        "away": "Chelsea",
-        "kst_time": "09.07 00:30 (KST)",
+        "match_id": 560580,
+        "home": "Manchester United",
+        "away": "Manchester City",
+        "kst_time": "09.14 00:30 (KST)",
         "uk_time": "Sunday 16:30 (UK)",
         "local": "",
         "rules": [
           "Big Match",
-          "Top Tier",
-          "Prime Time"
+          "Prime Time",
+          "Leader"
         ],
-        "rule_str": "Big Match, Top Tier, Prime Time",
-        "matchday": 3,
-        "status": "TIMED",
+        "rule_str": "Big Match, Prime Time, Leader",
+        "matchday": 4,
+        "status": "SCHEDULED",
         "score": "-"
       },
       {
-        "match_id": 560571,
-        "home": "Newcastle United",
-        "away": "AFC Bournemouth",
-        "kst_time": "09.05 20:30 (KST)",
-        "uk_time": "Saturday 12:30 (UK)",
-        "local": "",
-        "rules": [
-          "Early KO"
-        ],
-        "rule_str": "Early KO",
-        "matchday": 3,
-        "status": "FINISHED",
-        "score": "2-2"
-      },
-      {
-        "match_id": 560563,
-        "home": "Manchester City",
-        "away": "Coventry City",
-        "kst_time": "09.05 23:00 (KST)",
+        "match_id": 560581,
+        "home": "Chelsea",
+        "away": "Hull City AFC",
+        "kst_time": "09.12 23:00 (KST)",
         "uk_time": "Saturday 15:00 (UK)",
         "local": "",
         "rules": [
-          "Leader"
+          "Top Tier",
+          "Challenger"
         ],
-        "rule_str": "Leader",
-        "matchday": 3,
-        "status": "FINISHED",
-        "score": "1-0"
+        "rule_str": "Top Tier, Challenger",
+        "matchday": 4,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ]
   },
@@ -174,25 +146,25 @@
         "pos": 1,
         "driver": "Kimi Antonelli",
         "team": "Mercedes",
-        "points": 242
+        "points": 267
       },
       {
         "pos": 2,
         "driver": "George Russell",
         "team": "Mercedes",
-        "points": 183
+        "points": 201
       },
       {
         "pos": 3,
         "driver": "Lewis Hamilton",
         "team": "Ferrari",
-        "points": 183
+        "points": 191
       },
       {
         "pos": 4,
         "driver": "Lando Norris",
         "team": "McLaren",
-        "points": 159
+        "points": 171
       },
       {
         "pos": 5,
@@ -204,13 +176,13 @@
         "pos": 6,
         "driver": "Max Verstappen",
         "team": "Red Bull",
-        "points": 112
+        "points": 127
       },
       {
         "pos": 7,
         "driver": "Oscar Piastri",
         "team": "McLaren",
-        "points": 106
+        "points": 116
       },
       {
         "pos": 8,
@@ -228,24 +200,24 @@
         "pos": 10,
         "driver": "Pierre Gasly",
         "team": "Alpine",
-        "points": 35
+        "points": 41
       }
     ]
   },
   "tennis": {
     "recent": {
       "event": "US Open, Men",
-      "opponent": "Yibing Wu",
+      "opponent": "Tommy Paul",
       "result": "W",
-      "score": "6-3, 6-4, 6-1",
-      "date": "Sep 5"
+      "score": "6-4, 6-3, 3-1",
+      "date": "Sep 7"
     },
     "next": {
-      "event": "US Open, Men",
-      "detail": "R16 vs Tommy Paul",
-      "match_time": "Sep 7 03:00 KST",
-      "tournament_dates": "Aug 25 - Sep 7",
-      "status": "Grand Slam"
+      "event": "Shanghai Masters",
+      "detail": "-",
+      "match_time": "Oct 5",
+      "tournament_dates": "Oct 5 - 12",
+      "status": "Masters"
     }
   },
   "korean_players": [
@@ -286,7 +258,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-07 00:06:56 (KST)",
+      "🚀 [Start] 2026-09-07 05:07:41 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -294,7 +266,7 @@
       "   - AI Parse: Gemini API ✅",
       "\n⚽ [Step 1/5] Premier League 순위...",
       "   ✅ 1위: Manchester City",
-      "   ✅ Top 4: Manchester City, Hull City AFC, Arsenal, Chelsea",
+      "   ✅ Top 4: Manchester City, Arsenal, Hull City AFC, Chelsea",
       "   ✅ 현재 라운드: R3",
       "\n⚽ [Step 2/5] Premier League 경기 선정 (v2.4)...",
       "   [티어 우선순위]",
@@ -306,15 +278,17 @@
       "   T6. Leader: 1위 팀 포함",
       "   [최대 선정: 3경기]",
       "   📋 전체: 20경기 (라운드: [3, 4])",
-      "   🎯 선정 대상: R3 (10경기)",
-      "   📊 상태별: {'FINISHED': 9, 'TIMED': 1}",
+      "   🎯 선정 대상: R4 (10경기)",
+      "   📊 상태별: {'TIMED': 10}",
+      "   🔄 라운드 변경: R3 → R4 (새로 선정)",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   📌 기존 선정 유지 (R3)",
-      "      ⏳ Arsenal vs Chelsea [TIMED] -",
-      "      ✅ Newcastle United vs AFC Bournemouth [FINISHED] 2-2",
-      "      ✅ Manchester City vs Coventry City [FINISHED] 1-0",
-      "   ✅ 기존 선정 유지: 3경기 (R3)",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🏆 R4에서 2경기 선정:",
+      "      • [T1] Manchester United vs Manchester City [Big Match, Prime Time, Leader] 09.14 00:30 (KST)",
+      "      • [T2] Chelsea vs Hull City AFC [Top Tier, Challenger] 09.12 23:00 (KST)",
+      "   ✅ 새로 선정됨: 2경기 (R4)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ✅ 전적: 38-46 | 순위: -",
@@ -326,10 +300,10 @@
       "   [F1] 드라이버 순위 조회...",
       "      ✅ 순위 직접 파싱 성공 (www.formula1.com): 22명",
       "   ✅ 순위: 10명",
-      "      1. Kimi Antonelli (Mercedes) 242pts",
-      "      2. George Russell (Mercedes) 183pts",
-      "      3. Lewis Hamilton (Ferrari) 183pts",
-      "      4. Lando Norris (McLaren) 159pts",
+      "      1. Kimi Antonelli (Mercedes) 267pts",
+      "      2. George Russell (Mercedes) 201pts",
+      "      3. Lewis Hamilton (Ferrari) 191pts",
+      "      4. Lando Norris (McLaren) 171pts",
       "      5. Charles Leclerc (Ferrari) 155pts",
       "   ✅ Spanish Grand Prix (Madrid) | Circuito Urbano de Madrid | Sep 11-13 [Next GP]",
       "      📅 09.11 20:30 KST | FP1",
@@ -346,11 +320,11 @@
       "   🚨 손흥민 폴백 데이터도 만료됨(과거: 08.23 11:30) — KOREAN_PLAYERS_DEFAULT_FALLBACK 수동 갱신 필요! (vs Portland Timbers)",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
-      "      Recent: US Open, Men vs Yibing Wu W (6-3, 6-4, 6-1)",
-      "      Next: US Open, Men | Sep 7",
+      "      Recent: US Open, Men vs Tommy Paul W (6-4, 6-3, 3-1)",
+      "      Next: Shanghai Masters | Oct 5",
       "   📊 최종:",
-      "      Recent: US Open, Men vs Yibing Wu W (6-3, 6-4, 6-1) | Sep 5",
-      "      Next: US Open, Men | R16 vs Tommy Paul | Sep 7 03:00 KST",
+      "      Recent: US Open, Men vs Tommy Paul W (6-4, 6-3, 3-1) | Sep 7",
+      "      Next: Shanghai Masters | - | Oct 5",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
       "   ✅ 해외파 9명 수집, 핫이슈 1건",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",

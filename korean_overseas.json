@@ -1,9 +1,9 @@
 {
-  "updated": "2026-09-07 00:06:56 KST",
+  "updated": "2026-09-07 05:07:41 KST",
   "hot_issues": [
     {
-      "headline": "설영우 1도움 (FC Augsburg 3-0 승)",
-      "detail": "Bundesliga vs FC Schalke 04 | 1분 출전"
+      "headline": "이재성 1도움 (1. FSV Mainz 05 5-0 승)",
+      "detail": "Bundesliga vs Hamburger SV | 88분 출전 | 평점 7"
     }
   ],
   "players": [
@@ -34,14 +34,14 @@
         "opponent": "Hamburger SV",
         "venue": "away",
         "date": "09.06",
-        "team_score": 3,
+        "team_score": 5,
         "opponent_score": 0,
         "result": "W",
         "player_status": "PLAYED",
-        "minutes": 69,
+        "minutes": 88,
         "goals": 0,
-        "assists": 0,
-        "rating": 6.5
+        "assists": 1,
+        "rating": 7
       },
       "next": null
     },
@@ -117,7 +117,7 @@
         "minutes": 90,
         "goals": 0,
         "assists": 0,
-        "rating": 6.9
+        "rating": 7
       },
       "next": null
     },
@@ -176,25 +176,19 @@
       "team": "FC Augsburg",
       "recent": {
         "event": "Bundesliga",
-        "opponent": "FC Schalke 04",
-        "venue": "home",
-        "date": "08.31",
-        "team_score": 3,
-        "opponent_score": 0,
-        "result": "W",
-        "player_status": "PLAYED",
-        "minutes": 1,
-        "goals": 0,
-        "assists": 1,
-        "rating": null
-      },
-      "next": {
-        "event": "Bundesliga",
         "opponent": "Eintracht Frankfurt",
         "venue": "away",
         "date": "09.07",
-        "time_kst": "00:30"
-      }
+        "team_score": 4,
+        "opponent_score": 1,
+        "result": "W",
+        "player_status": "PLAYED",
+        "minutes": 18,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.4
+      },
+      "next": null
     }
   ]
 }
