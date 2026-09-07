@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-08 02:29:05 KST",
+  "updated": "2026-09-08 06:14:26 KST",
   "hot_issues": [
     {
       "headline": "이재성 1도움 (1. FSV Mainz 05 5-0 승)",
@@ -68,7 +68,13 @@
         "assists": 0,
         "rating": 6.5
       },
-      "next": null
+      "next": {
+        "event": "UEFA Champions League",
+        "opponent": "Manchester City",
+        "venue": "home",
+        "date": "09.09",
+        "time_kst": "04:00"
+      }
     },
     {
       "player": "배준호",
@@ -166,14 +172,14 @@
         "opponent": "FC Nordsjælland",
         "venue": "home",
         "date": "09.08",
-        "team_score": 0,
-        "opponent_score": 0,
+        "team_score": 2,
+        "opponent_score": 2,
         "result": "D",
         "player_status": "PLAYED",
-        "minutes": 27,
+        "minutes": 65,
         "goals": 0,
         "assists": 0,
-        "rating": 6.4
+        "rating": 6.3
       },
       "next": null
     },
