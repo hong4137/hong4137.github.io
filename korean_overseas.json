@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-07 20:52:49 KST",
+  "updated": "2026-09-08 02:29:05 KST",
   "hot_issues": [
     {
       "headline": "이재성 1도움 (1. FSV Mainz 05 5-0 승)",
@@ -43,7 +43,13 @@
         "assists": 1,
         "rating": 7
       },
-      "next": null
+      "next": {
+        "event": "Bundesliga",
+        "opponent": "Eintracht Frankfurt",
+        "venue": "home",
+        "date": "09.12",
+        "time_kst": "22:30"
+      }
     },
     {
       "player": "황인범",
@@ -157,25 +163,19 @@
       "team": "FC Midtjylland",
       "recent": {
         "event": "Danish Superliga",
-        "opponent": "AGF",
-        "venue": "away",
-        "date": "09.03",
-        "team_score": 2,
+        "opponent": "FC Nordsjælland",
+        "venue": "home",
+        "date": "09.08",
+        "team_score": 0,
         "opponent_score": 0,
-        "result": "W",
+        "result": "D",
         "player_status": "PLAYED",
-        "minutes": 67,
+        "minutes": 27,
         "goals": 0,
         "assists": 0,
         "rating": 6.4
       },
-      "next": {
-        "event": "Danish Superliga",
-        "opponent": "FC Nordsjælland",
-        "venue": "home",
-        "date": "09.08",
-        "time_kst": "02:00"
-      }
+      "next": null
     },
     {
       "player": "설영우",

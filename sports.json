@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-07 20:52:49 KST",
+  "updated": "2026-09-08 02:29:05 KST",
   "epl": {
     "matchday": 3,
     "selected_round": 4,
@@ -215,7 +215,7 @@
     "next": {
       "event": "US Open, Men",
       "detail": "QF vs Ben Shelton",
-      "match_time": "Sep 9 00:30 KST",
+      "match_time": "Sep 9 09:10 KST",
       "tournament_dates": "Aug 25 - Sep 7",
       "status": "Grand Slam"
     }
@@ -258,7 +258,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-07 20:52:49 (KST)",
+      "🚀 [Start] 2026-09-08 02:29:05 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -321,7 +321,7 @@
       "      Next: US Open, Men | Sep 9",
       "   📊 최종:",
       "      Recent: US Open, Men vs Tommy Paul W (6-4, 6-3, 6-4) | Sep 7",
-      "      Next: US Open, Men | QF vs Ben Shelton | Sep 9 00:30 KST",
+      "      Next: US Open, Men | QF vs Ben Shelton | Sep 9 09:10 KST",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
       "   ✅ 해외파 9명 수집, 핫이슈 1건",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
