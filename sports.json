@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-07 05:07:41 KST",
+  "updated": "2026-09-07 12:31:27 KST",
   "epl": {
     "matchday": 3,
     "selected_round": 4,
@@ -26,7 +26,7 @@
         ],
         "rule_str": "Big Match, Prime Time, Leader",
         "matchday": 4,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -42,7 +42,7 @@
         ],
         "rule_str": "Top Tier, Challenger",
         "matchday": 4,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ],
@@ -61,7 +61,7 @@
         ],
         "rule_str": "Big Match, Prime Time, Leader",
         "matchday": 4,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -77,7 +77,7 @@
         ],
         "rule_str": "Top Tier, Challenger",
         "matchday": 4,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ]
@@ -209,15 +209,15 @@
       "event": "US Open, Men",
       "opponent": "Tommy Paul",
       "result": "W",
-      "score": "6-4, 6-3, 3-1",
+      "score": "6-4, 6-3, 6-4",
       "date": "Sep 7"
     },
     "next": {
-      "event": "Shanghai Masters",
-      "detail": "-",
-      "match_time": "Oct 5",
-      "tournament_dates": "Oct 5 - 12",
-      "status": "Masters"
+      "event": "US Open, Men",
+      "detail": "QF vs Ben Shelton",
+      "match_time": "Sep 9 00:30 KST",
+      "tournament_dates": "Aug 25 - Sep 7",
+      "status": "Grand Slam"
     }
   },
   "korean_players": [
@@ -244,12 +244,12 @@
     {
       "player": "손흥민",
       "team": "LAFC",
-      "opponent": "Portland Timbers",
+      "opponent": "New York Red Bulls",
       "venue": "home",
-      "kst_date": "08.23",
+      "kst_date": "09.10",
       "kst_time": "11:30",
-      "competition": "MLS",
-      "status": "ESTIMATED"
+      "competition": "American Major League Soccer R24",
+      "status": "SCHEDULED"
     }
   ],
   "debug": {
@@ -258,7 +258,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-07 05:07:41 (KST)",
+      "🚀 [Start] 2026-09-07 12:31:27 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -280,15 +280,14 @@
       "   📋 전체: 20경기 (라운드: [3, 4])",
       "   🎯 선정 대상: R4 (10경기)",
       "   📊 상태별: {'TIMED': 10}",
-      "   🔄 라운드 변경: R3 → R4 (새로 선정)",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🏆 R4에서 2경기 선정:",
-      "      • [T1] Manchester United vs Manchester City [Big Match, Prime Time, Leader] 09.14 00:30 (KST)",
-      "      • [T2] Chelsea vs Hull City AFC [Top Tier, Challenger] 09.12 23:00 (KST)",
-      "   ✅ 새로 선정됨: 2경기 (R4)",
+      "   📌 기존 선정 유지 (R4)",
+      "      ⏳ Manchester United vs Manchester City [TIMED] -",
+      "      ⏳ Chelsea vs Hull City AFC [TIMED] -",
+      "   ✅ 기존 선정 유지: 2경기 (R4)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ✅ 전적: 38-46 | 순위: -",
@@ -315,16 +314,14 @@
       "\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...",
       "   ✅ 이강인 (ATM): vs Liverpool FC | 09.10 04:00 KST",
       "   ✅ 김민재 (Bayern): vs FK Bodø/Glimt | 09.11 04:00 KST",
-      "   ⚠️ 손흥민 검색 결과가 과거 날짜(09.06) → 폐기",
-      "   ⚠️ 손흥민 기존 데이터 만료(과거 경기: 08.23) → 폴백으로 대체",
-      "   🚨 손흥민 폴백 데이터도 만료됨(과거: 08.23 11:30) — KOREAN_PLAYERS_DEFAULT_FALLBACK 수동 갱신 필요! (vs Portland Timbers)",
+      "   ✅ 손흥민 (LAFC): vs New York Red Bulls | 09.10 11:30 KST",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
-      "      Recent: US Open, Men vs Tommy Paul W (6-4, 6-3, 3-1)",
-      "      Next: Shanghai Masters | Oct 5",
+      "      Recent: US Open, Men vs Tommy Paul W (6-4, 6-3, 6-4)",
+      "      Next: US Open, Men | Sep 9",
       "   📊 최종:",
-      "      Recent: US Open, Men vs Tommy Paul W (6-4, 6-3, 3-1) | Sep 7",
-      "      Next: Shanghai Masters | - | Oct 5",
+      "      Recent: US Open, Men vs Tommy Paul W (6-4, 6-3, 6-4) | Sep 7",
+      "      Next: US Open, Men | QF vs Ben Shelton | Sep 9 00:30 KST",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
       "   ✅ 해외파 9명 수집, 핫이슈 1건",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",

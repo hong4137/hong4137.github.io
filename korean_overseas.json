@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-07 05:07:41 KST",
+  "updated": "2026-09-07 12:31:27 KST",
   "hot_issues": [
     {
       "headline": "이재성 1도움 (1. FSV Mainz 05 5-0 승)",
@@ -119,7 +119,13 @@
         "assists": 0,
         "rating": 7
       },
-      "next": null
+      "next": {
+        "event": "Championship",
+        "opponent": "Norwich City",
+        "venue": "away",
+        "date": "09.10",
+        "time_kst": "03:45"
+      }
     },
     {
       "player": "엄지성",
