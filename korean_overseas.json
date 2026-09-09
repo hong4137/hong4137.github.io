@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-10 01:07:42 KST",
+  "updated": "2026-09-10 05:38:05 KST",
   "hot_issues": [
     {
       "headline": "이재성 1도움 (1. FSV Mainz 05 5-0 승)",
@@ -119,24 +119,24 @@
       "team": "Birmingham City",
       "recent": {
         "event": "Championship",
-        "opponent": "Wolverhampton",
-        "venue": "home",
-        "date": "09.06",
-        "team_score": 2,
+        "opponent": "Norwich City",
+        "venue": "away",
+        "date": "09.10",
+        "team_score": 1,
         "opponent_score": 2,
-        "result": "D",
+        "result": "L",
         "player_status": "PLAYED",
-        "minutes": 90,
+        "minutes": 86,
         "goals": 0,
         "assists": 0,
         "rating": 7
       },
       "next": {
         "event": "Championship",
-        "opponent": "Norwich City",
+        "opponent": "Derby County",
         "venue": "away",
-        "date": "09.10",
-        "time_kst": "03:45"
+        "date": "09.12",
+        "time_kst": "20:30"
       }
     },
     {

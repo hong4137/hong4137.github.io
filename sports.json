@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-10 01:07:42 KST",
+  "updated": "2026-09-10 05:38:05 KST",
   "epl": {
     "matchday": 4,
     "selected_round": 4,
@@ -224,11 +224,11 @@
     {
       "player": "이강인",
       "team": "ATM",
-      "opponent": "Liverpool FC",
+      "opponent": "Real Sociedad de Fútbol",
       "venue": "away",
-      "kst_date": "09.10",
+      "kst_date": "09.14",
       "kst_time": "04:00",
-      "competition": "UCL R1",
+      "competition": "La Liga R5",
       "status": "SCHEDULED"
     },
     {
@@ -258,7 +258,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-10 01:07:42 (KST)",
+      "🚀 [Start] 2026-09-10 05:38:05 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -312,7 +312,7 @@
       "      📅 09.13 22:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...",
-      "   ✅ 이강인 (ATM): vs Liverpool FC | 09.10 04:00 KST",
+      "   ✅ 이강인 (ATM): vs Real Sociedad de Fútbol | 09.14 04:00 KST",
       "   ✅ 김민재 (Bayern): vs FK Bodø/Glimt | 09.11 04:00 KST",
       "   ✅ 손흥민 (LAFC): vs New York Red Bulls | 09.10 11:30 KST",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
