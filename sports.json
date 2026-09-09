@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-09 05:51:14 KST",
+  "updated": "2026-09-09 12:41:27 KST",
   "epl": {
     "matchday": 3,
     "selected_round": 4,
@@ -206,18 +206,18 @@
   },
   "tennis": {
     "recent": {
-      "event": "-",
-      "opponent": "-",
+      "event": "US Open, Men",
+      "opponent": "Ben Shelton",
       "result": "-",
-      "score": "-",
-      "date": "-"
+      "score": "4-4",
+      "date": "Sep 9"
     },
     "next": {
-      "event": "-",
+      "event": "Shanghai Masters",
       "detail": "-",
-      "match_time": "TBD",
-      "tournament_dates": "",
-      "status": "-"
+      "match_time": "Oct 5",
+      "tournament_dates": "Oct 5 - 12",
+      "status": "Masters"
     }
   },
   "korean_players": [
@@ -258,7 +258,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-09 05:51:14 (KST)",
+      "🚀 [Start] 2026-09-09 12:41:27 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -316,14 +316,14 @@
       "   ✅ 김민재 (Bayern): vs FK Bodø/Glimt | 09.11 04:00 KST",
       "   ✅ 손흥민 (LAFC): vs New York Red Bulls | 09.10 11:30 KST",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
-      "   ⚠️ Web App 호출 실패: 404",
-      "   ⚠️ Web App 실패 → 기본값",
+      "   ✅ Web App 응답:",
+      "      Recent: US Open, Men vs Ben Shelton - (4-4)",
+      "      Next: Shanghai Masters | Oct 5",
       "   📊 최종:",
-      "      Recent: - vs - - (-) | -",
-      "      Next: - | - | TBD",
+      "      Recent: US Open, Men vs Ben Shelton - (4-4) | Sep 9",
+      "      Next: Shanghai Masters | - | Oct 5",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
-      "   ⚠️ 해외파 Web App 호출 실패: 404",
-      "   ⚠️ 해외파 데이터 수집 실패 → 빈 값 유지",
+      "   ✅ 해외파 9명 수집, 핫이슈 1건",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
     ]
