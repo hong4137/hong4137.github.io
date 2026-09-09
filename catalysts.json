@@ -1,29 +1,19 @@
 {
-  "generated_at": "2026-09-09 08:08 KST",
+  "generated_at": "2026-09-10 07:53 KST",
   "events": [
     {
-      "date": "2026-09-09",
-      "title": "Apple iPhone 18 Pro 및 폴더블 아이폰 공개 이벤트",
-      "category": "tech_conf",
+      "date": "2026-09-10",
+      "title": "미국 생산자물가지수 (PPI) 발표",
+      "category": "economic_data",
       "importance": 4,
       "impact": [
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://www.apple.com/"
-    },
-    {
-      "date": "2026-09-09",
-      "title": "미국 10년물 국채 입찰",
-      "category": "treasury_auction",
-      "importance": 4,
-      "impact": [
+        "VIX",
         "yields",
         "equities",
         "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.treasurydirect.gov/"
+      "source_url": "https://www.bls.gov/"
     },
     {
       "date": "2026-09-10",
@@ -36,39 +26,11 @@
         "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.treasurydirect.gov/"
-    },
-    {
-      "date": "2026-09-10",
-      "title": "미국 8월 생산자물가지수 (PPI) 발표",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/ppi/"
-    },
-    {
-      "date": "2026-09-11",
-      "title": "미국 8월 소비자물가지수 (CPI) 발표",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": "3.4% YoY",
-      "source_url": "https://www.bls.gov/cpi/"
+      "source_url": "https://fiscaldata.treasury.gov/"
     },
     {
       "date": "2026-09-16",
-      "title": "FOMC 회의 결과 및 금리 결정",
+      "title": "FOMC 회의 시작",
       "category": "fed_fomc",
       "importance": 5,
       "impact": [
@@ -82,28 +44,16 @@
     },
     {
       "date": "2026-09-16",
-      "title": "미국 8월 소매판매 발표",
-      "category": "economic_data",
+      "title": "미국 10년물 국채 입찰",
+      "category": "treasury_auction",
       "importance": 4,
       "impact": [
-        "VIX",
+        "yields",
         "equities",
         "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.census.gov/retail/"
-    },
-    {
-      "date": "2026-09-18",
-      "title": "쿼드러플 위칭 데이 (선물/옵션 만기일)",
-      "category": "market_structure",
-      "importance": 4,
-      "impact": [
-        "VIX",
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://www.cboe.com/"
+      "source_url": "https://fiscaldata.treasury.gov/"
     }
   ]
 }
