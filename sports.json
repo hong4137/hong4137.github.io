@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-11 01:00:42 KST",
+  "updated": "2026-09-11 05:33:06 KST",
   "epl": {
     "matchday": 4,
     "selected_round": 4,
@@ -206,18 +206,18 @@
   },
   "tennis": {
     "recent": {
-      "event": "-",
-      "opponent": "-",
-      "result": "-",
-      "score": "-",
-      "date": "-"
+      "event": "US Open, Men",
+      "opponent": "Ben Shelton",
+      "result": "L",
+      "score": "7-6, 1-6, 3-6, 6-1, 6-7",
+      "date": "Sep 9"
     },
     "next": {
-      "event": "-",
+      "event": "Shanghai Masters",
       "detail": "-",
-      "match_time": "TBD",
-      "tournament_dates": "",
-      "status": "-"
+      "match_time": "Oct 5",
+      "tournament_dates": "Oct 5 - 12",
+      "status": "Masters"
     }
   },
   "korean_players": [
@@ -234,11 +234,11 @@
     {
       "player": "김민재",
       "team": "Bayern",
-      "opponent": "FK Bodø/Glimt",
-      "venue": "home",
-      "kst_date": "09.11",
-      "kst_time": "04:00",
-      "competition": "UCL R1",
+      "opponent": "SV 07 Elversberg",
+      "venue": "away",
+      "kst_date": "09.14",
+      "kst_time": "00:30",
+      "competition": "Bundesliga R3",
       "status": "SCHEDULED"
     },
     {
@@ -258,7 +258,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-11 01:00:42 (KST)",
+      "🚀 [Start] 2026-09-11 05:33:06 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -313,19 +313,19 @@
       "   ✅ 순위: 10명 로드",
       "\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...",
       "   ✅ 이강인 (ATM): vs Real Sociedad de Fútbol | 09.14 04:00 KST",
-      "   ✅ 김민재 (Bayern): vs FK Bodø/Glimt | 09.11 04:00 KST",
+      "   ✅ 김민재 (Bayern): vs SV 07 Elversberg | 09.14 00:30 KST",
       "   ⚠️ 손흥민 검색 결과가 과거 날짜(09.10) → 폐기",
       "   ⚠️ 손흥민 기존 데이터 만료(과거 경기: 08.23) → 폴백으로 대체",
       "   🚨 손흥민 폴백 데이터도 만료됨(과거: 08.23 11:30) — KOREAN_PLAYERS_DEFAULT_FALLBACK 수동 갱신 필요! (vs Portland Timbers)",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
-      "   ⚠️ Web App 타임아웃",
-      "   ⚠️ Web App 실패 → 기본값",
+      "   ✅ Web App 응답:",
+      "      Recent: US Open, Men vs Ben Shelton L (7-6, 1-6, 3-6, 6-1, 6-7)",
+      "      Next: Shanghai Masters | Oct 5",
       "   📊 최종:",
-      "      Recent: - vs - - (-) | -",
-      "      Next: - | - | TBD",
+      "      Recent: US Open, Men vs Ben Shelton L (7-6, 1-6, 3-6, 6-1, 6-7) | Sep 9",
+      "      Next: Shanghai Masters | - | Oct 5",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
-      "   ⚠️ 해외파 Web App 예외: HTTPSConnectionPool(host='script.googleusercontent.com', port=443): Read timed out. (read timeout=30)",
-      "   ⚠️ 해외파 데이터 수집 실패 → 빈 값 유지",
+      "   ✅ 해외파 9명 수집, 핫이슈 1건",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
     ]
