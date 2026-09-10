@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-10 05:38:05 KST",
+  "updated": "2026-09-10 12:39:02 KST",
   "hot_issues": [
     {
       "headline": "이재성 1도움 (1. FSV Mainz 05 5-0 승)",
@@ -126,10 +126,10 @@
         "opponent_score": 2,
         "result": "L",
         "player_status": "PLAYED",
-        "minutes": 86,
+        "minutes": 90,
         "goals": 0,
         "assists": 0,
-        "rating": 7
+        "rating": 6.8
       },
       "next": {
         "event": "Championship",
