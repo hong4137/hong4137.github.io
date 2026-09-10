@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-10 19:52:05 KST",
+  "updated": "2026-09-11 01:00:42 KST",
   "epl": {
     "matchday": 4,
     "selected_round": 4,
@@ -101,7 +101,7 @@
       "date": "Sep 11-13",
       "date_from": "2026-09-11",
       "date_to": "2026-09-13",
-      "status": "Next GP",
+      "status": "This Week",
       "sprint": false
     },
     "schedule": [
@@ -206,18 +206,18 @@
   },
   "tennis": {
     "recent": {
-      "event": "US Open, Men",
-      "opponent": "Ben Shelton",
-      "result": "L",
-      "score": "7-6, 1-6, 3-6, 6-1, 6-7",
-      "date": "Sep 9"
+      "event": "-",
+      "opponent": "-",
+      "result": "-",
+      "score": "-",
+      "date": "-"
     },
     "next": {
-      "event": "Shanghai Masters",
+      "event": "-",
       "detail": "-",
-      "match_time": "Oct 5",
-      "tournament_dates": "Oct 5 - 12",
-      "status": "Masters"
+      "match_time": "TBD",
+      "tournament_dates": "",
+      "status": "-"
     }
   },
   "korean_players": [
@@ -258,7 +258,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-10 19:52:05 (KST)",
+      "🚀 [Start] 2026-09-11 01:00:42 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -277,7 +277,7 @@
       "   T5. Early KO: 토요일 12:30 UK",
       "   T6. Leader: 1위 팀 포함",
       "   [최대 선정: 3경기]",
-      "   📋 전체: 10경기 (라운드: [4])",
+      "   📋 전체: 11경기 (라운드: [4, 5])",
       "   🎯 선정 대상: R4 (10경기)",
       "   📊 상태별: {'TIMED': 10}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
@@ -304,7 +304,7 @@
       "      3. Lewis Hamilton (Ferrari) 191pts",
       "      4. Lando Norris (McLaren) 171pts",
       "      5. Charles Leclerc (Ferrari) 155pts",
-      "   ✅ Spanish Grand Prix (Madrid) | Circuito Urbano de Madrid | Sep 11-13 [Next GP]",
+      "   ✅ Spanish Grand Prix (Madrid) | Circuito Urbano de Madrid | Sep 11-13 [This Week]",
       "      📅 09.11 20:30 KST | FP1",
       "      📅 09.12 00:00 KST | FP2",
       "      📅 09.12 19:30 KST | FP3",
@@ -315,17 +315,17 @@
       "   ✅ 이강인 (ATM): vs Real Sociedad de Fútbol | 09.14 04:00 KST",
       "   ✅ 김민재 (Bayern): vs FK Bodø/Glimt | 09.11 04:00 KST",
       "   ⚠️ 손흥민 검색 결과가 과거 날짜(09.10) → 폐기",
-      "   ⚠️ 손흥민 기존 데이터 만료(과거 경기: 09.10) → 폴백으로 대체",
+      "   ⚠️ 손흥민 기존 데이터 만료(과거 경기: 08.23) → 폴백으로 대체",
       "   🚨 손흥민 폴백 데이터도 만료됨(과거: 08.23 11:30) — KOREAN_PLAYERS_DEFAULT_FALLBACK 수동 갱신 필요! (vs Portland Timbers)",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
-      "   ✅ Web App 응답:",
-      "      Recent: US Open, Men vs Ben Shelton L (7-6, 1-6, 3-6, 6-1, 6-7)",
-      "      Next: Shanghai Masters | Oct 5",
+      "   ⚠️ Web App 타임아웃",
+      "   ⚠️ Web App 실패 → 기본값",
       "   📊 최종:",
-      "      Recent: US Open, Men vs Ben Shelton L (7-6, 1-6, 3-6, 6-1, 6-7) | Sep 9",
-      "      Next: Shanghai Masters | - | Oct 5",
+      "      Recent: - vs - - (-) | -",
+      "      Next: - | - | TBD",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
-      "   ✅ 해외파 9명 수집, 핫이슈 1건",
+      "   ⚠️ 해외파 Web App 예외: HTTPSConnectionPool(host='script.googleusercontent.com', port=443): Read timed out. (read timeout=30)",
+      "   ⚠️ 해외파 데이터 수집 실패 → 빈 값 유지",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
     ]
