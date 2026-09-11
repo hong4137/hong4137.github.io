@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-11 05:33:06 KST",
+  "updated": "2026-09-11 12:37:22 KST",
   "epl": {
     "matchday": 4,
     "selected_round": 4,
@@ -244,12 +244,12 @@
     {
       "player": "손흥민",
       "team": "LAFC",
-      "opponent": "Portland Timbers",
-      "venue": "home",
-      "kst_date": "08.23",
-      "kst_time": "11:30",
-      "competition": "MLS",
-      "status": "ESTIMATED"
+      "opponent": "Sporting Kansas City",
+      "venue": "away",
+      "kst_date": "09.13",
+      "kst_time": "09:30",
+      "competition": "American Major League Soccer R25",
+      "status": "SCHEDULED"
     }
   ],
   "debug": {
@@ -258,7 +258,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-11 05:33:06 (KST)",
+      "🚀 [Start] 2026-09-11 12:37:22 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -314,9 +314,7 @@
       "\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...",
       "   ✅ 이강인 (ATM): vs Real Sociedad de Fútbol | 09.14 04:00 KST",
       "   ✅ 김민재 (Bayern): vs SV 07 Elversberg | 09.14 00:30 KST",
-      "   ⚠️ 손흥민 검색 결과가 과거 날짜(09.10) → 폐기",
-      "   ⚠️ 손흥민 기존 데이터 만료(과거 경기: 08.23) → 폴백으로 대체",
-      "   🚨 손흥민 폴백 데이터도 만료됨(과거: 08.23 11:30) — KOREAN_PLAYERS_DEFAULT_FALLBACK 수동 갱신 필요! (vs Portland Timbers)",
+      "   ✅ 손흥민 (LAFC): vs Sporting Kansas City | 09.13 09:30 KST",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
       "      Recent: US Open, Men vs Ben Shelton L (7-6, 1-6, 3-6, 6-1, 6-7)",
