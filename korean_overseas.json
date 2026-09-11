@@ -1,9 +1,13 @@
 {
-  "updated": "2026-09-12 01:04:25 KST",
+  "updated": "2026-09-12 05:38:31 KST",
   "hot_issues": [
     {
       "headline": "이재성 1도움 (1. FSV Mainz 05 5-0 승)",
       "detail": "Bundesliga vs Hamburger SV | 88분 출전 | 평점 7"
+    },
+    {
+      "headline": "오현규 1도움 (Beşiktaş JK 3-0 승)",
+      "detail": "Trendyol Süper Lig vs Erzurumspor FK | 90분 출전 | 평점 6.8"
     }
   ],
   "players": [
@@ -11,18 +15,18 @@
       "player": "황희찬",
       "team": "FC Schalke 04",
       "recent": {
-        "event": "FIFA World Cup, Group A",
-        "opponent": "South Africa",
+        "event": "Bundesliga",
+        "opponent": "1. FC Union Berlin",
         "venue": "away",
-        "date": "06.25",
-        "team_score": 0,
+        "date": "09.12",
+        "team_score": 2,
         "opponent_score": 1,
-        "result": "L",
+        "result": "W",
         "player_status": "PLAYED",
-        "minutes": 45,
+        "minutes": 19,
         "goals": 0,
         "assists": 0,
-        "rating": 6.5
+        "rating": 6.4
       },
       "next": null
     },
@@ -100,25 +104,19 @@
       "team": "Beşiktaş JK",
       "recent": {
         "event": "Trendyol Süper Lig",
-        "opponent": "Fenerbahçe",
-        "venue": "away",
-        "date": "09.06",
-        "team_score": 2,
-        "opponent_score": 1,
-        "result": "W",
-        "player_status": "PLAYED",
-        "minutes": 12,
-        "goals": 0,
-        "assists": 0,
-        "rating": 6.5
-      },
-      "next": {
-        "event": "Trendyol Süper Lig",
         "opponent": "Erzurumspor FK",
         "venue": "home",
         "date": "09.12",
-        "time_kst": "02:00"
-      }
+        "team_score": 3,
+        "opponent_score": 0,
+        "result": "W",
+        "player_status": "PLAYED",
+        "minutes": 90,
+        "goals": 0,
+        "assists": 1,
+        "rating": 6.8
+      },
+      "next": null
     },
     {
       "player": "백승호",
