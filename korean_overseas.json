@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-11 19:48:39 KST",
+  "updated": "2026-09-12 01:04:25 KST",
   "hot_issues": [
     {
       "headline": "이재성 1도움 (1. FSV Mainz 05 5-0 승)",
@@ -112,7 +112,13 @@
         "assists": 0,
         "rating": 6.5
       },
-      "next": null
+      "next": {
+        "event": "Trendyol Süper Lig",
+        "opponent": "Erzurumspor FK",
+        "venue": "home",
+        "date": "09.12",
+        "time_kst": "02:00"
+      }
     },
     {
       "player": "백승호",
