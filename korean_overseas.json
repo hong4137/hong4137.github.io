@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-12 12:41:23 KST",
+  "updated": "2026-09-12 19:17:23 KST",
   "hot_issues": [
     {
       "headline": "황희찬 1도움 (FC Schalke 04 3-1 승)",
@@ -76,13 +76,7 @@
         "assists": 0,
         "rating": 6.3
       },
-      "next": {
-        "event": "Liga Portugal Betclic",
-        "opponent": "Casa Pia",
-        "venue": "away",
-        "date": "09.13",
-        "time_kst": "02:00"
-      }
+      "next": null
     },
     {
       "player": "배준호",
