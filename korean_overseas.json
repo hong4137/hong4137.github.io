@@ -1,5 +1,196 @@
 {
-  "updated": "2026-09-13 00:11:59 KST",
-  "hot_issues": [],
-  "players": []
+  "updated": "2026-09-13 05:18:28 KST",
+  "hot_issues": [
+    {
+      "headline": "백승호 1골 (Birmingham City 2-1 승)",
+      "detail": "Championship vs Derby County | 30분 출전 | 평점 7.5"
+    },
+    {
+      "headline": "황희찬 1도움 (FC Schalke 04 3-1 승)",
+      "detail": "Bundesliga vs 1. FC Union Berlin | 10분 출전 | 평점 6.6"
+    },
+    {
+      "headline": "오현규 1도움 (Beşiktaş JK 3-0 승)",
+      "detail": "Trendyol Süper Lig vs Erzurumspor FK | 90분 출전 | 평점 6.8"
+    }
+  ],
+  "players": [
+    {
+      "player": "황희찬",
+      "team": "FC Schalke 04",
+      "recent": {
+        "event": "Bundesliga",
+        "opponent": "1. FC Union Berlin",
+        "venue": "away",
+        "date": "09.12",
+        "team_score": 3,
+        "opponent_score": 1,
+        "result": "W",
+        "player_status": "PLAYED",
+        "minutes": 10,
+        "goals": 0,
+        "assists": 1,
+        "rating": 6.6
+      },
+      "next": null
+    },
+    {
+      "player": "이재성",
+      "team": "1. FSV Mainz 05",
+      "recent": {
+        "event": "Bundesliga",
+        "opponent": "Eintracht Frankfurt",
+        "venue": "home",
+        "date": "09.12",
+        "team_score": 1,
+        "opponent_score": 3,
+        "result": "L",
+        "player_status": "PLAYED",
+        "minutes": 45,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.3
+      },
+      "next": null
+    },
+    {
+      "player": "황인범",
+      "team": "FC Porto",
+      "recent": {
+        "event": "Liga Portugal Betclic",
+        "opponent": "Casa Pia",
+        "venue": "away",
+        "date": "09.13",
+        "team_score": 4,
+        "opponent_score": 1,
+        "result": "W",
+        "player_status": "PLAYED",
+        "minutes": 70,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.9
+      },
+      "next": null
+    },
+    {
+      "player": "배준호",
+      "team": "Stoke City",
+      "recent": {
+        "event": "Championship",
+        "opponent": "Cardiff City",
+        "venue": "away",
+        "date": "09.09",
+        "team_score": 1,
+        "opponent_score": 1,
+        "result": "D",
+        "player_status": "PLAYED",
+        "minutes": 31,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.4
+      },
+      "next": null
+    },
+    {
+      "player": "오현규",
+      "team": "Beşiktaş JK",
+      "recent": {
+        "event": "Trendyol Süper Lig",
+        "opponent": "Erzurumspor FK",
+        "venue": "home",
+        "date": "09.12",
+        "team_score": 3,
+        "opponent_score": 0,
+        "result": "W",
+        "player_status": "PLAYED",
+        "minutes": 90,
+        "goals": 0,
+        "assists": 1,
+        "rating": 6.8
+      },
+      "next": null
+    },
+    {
+      "player": "백승호",
+      "team": "Birmingham City",
+      "recent": {
+        "event": "Championship",
+        "opponent": "Derby County",
+        "venue": "away",
+        "date": "09.12",
+        "team_score": 2,
+        "opponent_score": 1,
+        "result": "W",
+        "player_status": "PLAYED",
+        "minutes": 30,
+        "goals": 1,
+        "assists": 0,
+        "rating": 7.5
+      },
+      "next": null
+    },
+    {
+      "player": "엄지성",
+      "team": "Swansea City",
+      "recent": {
+        "event": "Championship",
+        "opponent": "Southampton",
+        "venue": "away",
+        "date": "09.09",
+        "team_score": 1,
+        "opponent_score": 3,
+        "result": "L",
+        "player_status": "PLAYED",
+        "minutes": 12,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.3
+      },
+      "next": null
+    },
+    {
+      "player": "조규성",
+      "team": "FC Midtjylland",
+      "recent": {
+        "event": "Oddset Pokalen",
+        "opponent": "Sundby BK",
+        "venue": "away",
+        "date": "09.11",
+        "team_score": 7,
+        "opponent_score": 0,
+        "result": "W",
+        "player_status": "NOT_IN_SQUAD",
+        "minutes": 0,
+        "goals": 0,
+        "assists": 0,
+        "rating": null
+      },
+      "next": {
+        "event": "Danish Superliga",
+        "opponent": "Brøndby IF",
+        "venue": "home",
+        "date": "09.15",
+        "time_kst": "02:00"
+      }
+    },
+    {
+      "player": "설영우",
+      "team": "FC Augsburg",
+      "recent": {
+        "event": "Bundesliga",
+        "opponent": "Bayer 04 Leverkusen",
+        "venue": "home",
+        "date": "09.12",
+        "team_score": 2,
+        "opponent_score": 2,
+        "result": "D",
+        "player_status": "PLAYED",
+        "minutes": 13,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.3
+      },
+      "next": null
+    }
+  ]
 }
