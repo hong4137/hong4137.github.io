@@ -1,6 +1,10 @@
 {
-  "updated": "2026-09-12 05:38:31 KST",
+  "updated": "2026-09-12 12:41:23 KST",
   "hot_issues": [
+    {
+      "headline": "황희찬 1도움 (FC Schalke 04 3-1 승)",
+      "detail": "Bundesliga vs 1. FC Union Berlin | 10분 출전 | 평점 6.6"
+    },
     {
       "headline": "이재성 1도움 (1. FSV Mainz 05 5-0 승)",
       "detail": "Bundesliga vs Hamburger SV | 88분 출전 | 평점 7"
@@ -19,14 +23,14 @@
         "opponent": "1. FC Union Berlin",
         "venue": "away",
         "date": "09.12",
-        "team_score": 2,
+        "team_score": 3,
         "opponent_score": 1,
         "result": "W",
         "player_status": "PLAYED",
-        "minutes": 19,
+        "minutes": 10,
         "goals": 0,
-        "assists": 0,
-        "rating": 6.4
+        "assists": 1,
+        "rating": 6.6
       },
       "next": null
     },
