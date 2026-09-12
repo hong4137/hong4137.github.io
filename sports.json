@@ -1,15 +1,15 @@
 {
-  "updated": "2026-09-12 19:17:23 KST",
+  "updated": "2026-09-13 00:11:59 KST",
   "epl": {
     "matchday": 4,
     "selected_round": 4,
     "display_matchday": "R4",
-    "leader": "Manchester City",
+    "leader": "Hull City AFC",
     "top4": [
+      "Hull City AFC",
       "Manchester City",
       "Arsenal",
-      "Hull City AFC",
-      "Chelsea"
+      "Brentford"
     ],
     "matches": [
       {
@@ -42,8 +42,8 @@
         ],
         "rule_str": "Top Tier, Challenger",
         "matchday": 4,
-        "status": "TIMED",
-        "score": "-"
+        "status": "IN_PLAY",
+        "score": "1-2"
       }
     ],
     "selected_matches": [
@@ -77,8 +77,8 @@
         ],
         "rule_str": "Top Tier, Challenger",
         "matchday": 4,
-        "status": "TIMED",
-        "score": "-"
+        "status": "IN_PLAY",
+        "score": "1-2"
       }
     ]
   },
@@ -258,15 +258,15 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-12 19:17:23 (KST)",
+      "🚀 [Start] 2026-09-13 00:11:59 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
       "   - Search: Serper API ✅",
       "   - AI Parse: Gemini API ✅",
       "\n⚽ [Step 1/5] Premier League 순위...",
-      "   ✅ 1위: Manchester City",
-      "   ✅ Top 4: Manchester City, Arsenal, Hull City AFC, Chelsea",
+      "   ✅ 1위: Hull City AFC",
+      "   ✅ Top 4: Hull City AFC, Manchester City, Arsenal, Brentford",
       "   ✅ 현재 라운드: R4",
       "\n⚽ [Step 2/5] Premier League 경기 선정 (v2.4)...",
       "   [티어 우선순위]",
@@ -277,16 +277,16 @@
       "   T5. Early KO: 토요일 12:30 UK",
       "   T6. Leader: 1위 팀 포함",
       "   [최대 선정: 3경기]",
-      "   📋 전체: 16경기 (라운드: [4, 5])",
+      "   📋 전체: 20경기 (라운드: [4, 5])",
       "   🎯 선정 대상: R4 (10경기)",
-      "   📊 상태별: {'TIMED': 10}",
+      "   📊 상태별: {'PAUSED': 3, 'IN_PLAY': 2, 'TIMED': 5}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   📌 기존 선정 유지 (R4)",
       "      ⏳ Manchester United vs Manchester City [TIMED] -",
-      "      ⏳ Chelsea vs Hull City AFC [TIMED] -",
+      "      🔴 Chelsea vs Hull City AFC [IN_PLAY] 1-2",
       "   ✅ 기존 선정 유지: 2경기 (R4)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
@@ -323,7 +323,8 @@
       "      Recent: US Open, Men vs Ben Shelton L (7-6, 1-6, 3-6, 6-1, 6-7) | Sep 9",
       "      Next: Shanghai Masters | - | Oct 5",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
-      "   ✅ 해외파 9명 수집, 핫이슈 3건",
+      "   ⚠️ 해외파 Web App 예외: HTTPSConnectionPool(host='script.googleusercontent.com', port=443): Read timed out. (read timeout=30)",
+      "   ⚠️ 해외파 데이터 수집 실패 → 빈 값 유지",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
     ]
