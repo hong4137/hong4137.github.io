@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-13 12:49:00 KST",
+  "updated": "2026-09-13 20:17:35 KST",
   "epl": {
     "matchday": 4,
     "selected_round": 4,
@@ -288,7 +288,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-13 12:49:00 (KST)",
+      "🚀 [Start] 2026-09-13 20:17:35 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -344,7 +344,7 @@
       "   ✅ 이강인 (ATM): vs Real Sociedad de Fútbol | 09.14 04:00 KST",
       "   ✅ 김민재 (Bayern): vs SV 07 Elversberg | 09.14 00:30 KST",
       "   ⚠️ 손흥민 검색 결과가 과거 날짜(09.13) → 폐기",
-      "   ⚠️ 손흥민 기존 데이터 만료(과거 경기: 09.13) → 폴백으로 대체",
+      "   ⚠️ 손흥민 기존 데이터 만료(과거 경기: 08.23) → 폴백으로 대체",
       "   🚨 손흥민 폴백 데이터도 만료됨(과거: 08.23 11:30) — KOREAN_PLAYERS_DEFAULT_FALLBACK 수동 갱신 필요! (vs Portland Timbers)",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
