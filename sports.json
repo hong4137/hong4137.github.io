@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-13 20:17:35 KST",
+  "updated": "2026-09-14 00:47:51 KST",
   "epl": {
     "matchday": 4,
     "selected_round": 4,
@@ -9,7 +9,7 @@
       "Arsenal",
       "Manchester City",
       "Hull City AFC",
-      "Chelsea"
+      "Brighton & Hove Albion"
     ],
     "matches": [
       {
@@ -26,8 +26,8 @@
         ],
         "rule_str": "Big Match, Prime Time, Leader",
         "matchday": 4,
-        "status": "TIMED",
-        "score": "-"
+        "status": "IN_PLAY",
+        "score": "0-0"
       },
       {
         "match_id": 560581,
@@ -76,8 +76,8 @@
         ],
         "rule_str": "Big Match, Prime Time, Leader",
         "matchday": 4,
-        "status": "TIMED",
-        "score": "-"
+        "status": "IN_PLAY",
+        "score": "0-0"
       },
       {
         "match_id": 560581,
@@ -124,50 +124,50 @@
   },
   "f1": {
     "next_race": {
-      "round": 16,
-      "name": "Spanish Grand Prix (Madrid)",
-      "circuit": "Circuito Urbano de Madrid",
-      "country": "Spain",
-      "date": "Sep 11-13",
-      "date_from": "2026-09-11",
-      "date_to": "2026-09-13",
-      "status": "This Week",
+      "round": 17,
+      "name": "Azerbaijan Grand Prix",
+      "circuit": "Baku City Circuit",
+      "country": "Azerbaijan",
+      "date": "Sep 18-20",
+      "date_from": "2026-09-18",
+      "date_to": "2026-09-20",
+      "status": "Next GP",
       "sprint": false
     },
     "schedule": [
       {
         "name": "FP1",
-        "date": "09.11",
+        "date": "09.18",
         "day_local": "Fri",
-        "kst_time": "20:30",
+        "kst_time": "18:30",
         "local_time": "13:30"
       },
       {
         "name": "FP2",
-        "date": "09.12",
+        "date": "09.18",
         "day_local": "Fri",
-        "kst_time": "00:00",
+        "kst_time": "22:00",
         "local_time": "17:00"
       },
       {
         "name": "FP3",
-        "date": "09.12",
+        "date": "09.19",
         "day_local": "Sat",
-        "kst_time": "19:30",
+        "kst_time": "17:30",
         "local_time": "12:30"
       },
       {
         "name": "Qualifying",
-        "date": "09.12",
+        "date": "09.19",
         "day_local": "Sat",
-        "kst_time": "23:00",
+        "kst_time": "21:00",
         "local_time": "16:00"
       },
       {
         "name": "Race",
-        "date": "09.13",
+        "date": "09.20",
         "day_local": "Sun",
-        "kst_time": "22:00",
+        "kst_time": "20:00",
         "local_time": "15:00"
       }
     ],
@@ -176,13 +176,13 @@
         "pos": 1,
         "driver": "Kimi Antonelli",
         "team": "Mercedes",
-        "points": 267
+        "points": 292
       },
       {
         "pos": 2,
         "driver": "George Russell",
         "team": "Mercedes",
-        "points": 201
+        "points": 211
       },
       {
         "pos": 3,
@@ -194,25 +194,25 @@
         "pos": 4,
         "driver": "Lando Norris",
         "team": "McLaren",
-        "points": 171
+        "points": 186
       },
       {
         "pos": 5,
         "driver": "Charles Leclerc",
         "team": "Ferrari",
-        "points": 155
+        "points": 167
       },
       {
         "pos": 6,
         "driver": "Max Verstappen",
         "team": "Red Bull",
-        "points": 127
+        "points": 145
       },
       {
         "pos": 7,
         "driver": "Oscar Piastri",
         "team": "McLaren",
-        "points": 116
+        "points": 120
       },
       {
         "pos": 8,
@@ -224,7 +224,7 @@
         "pos": 9,
         "driver": "Liam Lawson",
         "team": "Red Bull",
-        "points": 51
+        "points": 59
       },
       {
         "pos": 10,
@@ -264,11 +264,11 @@
     {
       "player": "김민재",
       "team": "Bayern",
-      "opponent": "SV 07 Elversberg",
-      "venue": "away",
-      "kst_date": "09.14",
-      "kst_time": "00:30",
-      "competition": "Bundesliga R3",
+      "opponent": "1. FC Union Berlin",
+      "venue": "home",
+      "kst_date": "09.19",
+      "kst_time": "03:30",
+      "competition": "Bundesliga R4",
       "status": "SCHEDULED"
     },
     {
@@ -288,7 +288,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-13 20:17:35 (KST)",
+      "🚀 [Start] 2026-09-14 00:47:51 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -296,7 +296,7 @@
       "   - AI Parse: Gemini API ✅",
       "\n⚽ [Step 1/5] Premier League 순위...",
       "   ✅ 1위: Arsenal",
-      "   ✅ Top 4: Arsenal, Manchester City, Hull City AFC, Chelsea",
+      "   ✅ Top 4: Arsenal, Manchester City, Hull City AFC, Brighton & Hove Albion",
       "   ✅ 현재 라운드: R4",
       "\n⚽ [Step 2/5] Premier League 경기 선정 (v2.4)...",
       "   [티어 우선순위]",
@@ -309,11 +309,11 @@
       "   [최대 선정: 3경기]",
       "   📋 전체: 20경기 (라운드: [4, 5])",
       "   🎯 선정 대상: R4 (10경기)",
-      "   📊 상태별: {'FINISHED': 7, 'TIMED': 3}",
+      "   📊 상태별: {'FINISHED': 8, 'IN_PLAY': 1, 'TIMED': 1}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   📌 기존 선정 유지 (R4)",
-      "      ⏳ Manchester United vs Manchester City [TIMED] -",
+      "      🔴 Manchester United vs Manchester City [IN_PLAY] 0-0",
       "      ✅ Chelsea vs Hull City AFC [FINISHED] 2-2",
       "      ✅ Sunderland AFC vs Arsenal [FINISHED] 0-2",
       "   ✅ 기존 선정 유지: 3경기 (R4)",
@@ -328,21 +328,21 @@
       "   [F1] 드라이버 순위 조회...",
       "      ✅ 순위 직접 파싱 성공 (www.formula1.com): 22명",
       "   ✅ 순위: 10명",
-      "      1. Kimi Antonelli (Mercedes) 267pts",
-      "      2. George Russell (Mercedes) 201pts",
+      "      1. Kimi Antonelli (Mercedes) 292pts",
+      "      2. George Russell (Mercedes) 211pts",
       "      3. Lewis Hamilton (Ferrari) 191pts",
-      "      4. Lando Norris (McLaren) 171pts",
-      "      5. Charles Leclerc (Ferrari) 155pts",
-      "   ✅ Spanish Grand Prix (Madrid) | Circuito Urbano de Madrid | Sep 11-13 [This Week]",
-      "      📅 09.11 20:30 KST | FP1",
-      "      📅 09.12 00:00 KST | FP2",
-      "      📅 09.12 19:30 KST | FP3",
-      "      📅 09.12 23:00 KST | Qualifying",
-      "      📅 09.13 22:00 KST | Race",
+      "      4. Lando Norris (McLaren) 186pts",
+      "      5. Charles Leclerc (Ferrari) 167pts",
+      "   ✅ Azerbaijan Grand Prix | Baku City Circuit | Sep 18-20 [Next GP]",
+      "      📅 09.18 18:30 KST | FP1",
+      "      📅 09.18 22:00 KST | FP2",
+      "      📅 09.19 17:30 KST | FP3",
+      "      📅 09.19 21:00 KST | Qualifying",
+      "      📅 09.20 20:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...",
       "   ✅ 이강인 (ATM): vs Real Sociedad de Fútbol | 09.14 04:00 KST",
-      "   ✅ 김민재 (Bayern): vs SV 07 Elversberg | 09.14 00:30 KST",
+      "   ✅ 김민재 (Bayern): vs 1. FC Union Berlin | 09.19 03:30 KST",
       "   ⚠️ 손흥민 검색 결과가 과거 날짜(09.13) → 폐기",
       "   ⚠️ 손흥민 기존 데이터 만료(과거 경기: 08.23) → 폴백으로 대체",
       "   🚨 손흥민 폴백 데이터도 만료됨(과거: 08.23 11:30) — KOREAN_PLAYERS_DEFAULT_FALLBACK 수동 갱신 필요! (vs Portland Timbers)",
