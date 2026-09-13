@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-14 00:47:51 KST",
+  "updated": "2026-09-14 05:28:26 KST",
   "epl": {
     "matchday": 4,
     "selected_round": 4,
@@ -26,8 +26,8 @@
         ],
         "rule_str": "Big Match, Prime Time, Leader",
         "matchday": 4,
-        "status": "IN_PLAY",
-        "score": "0-0"
+        "status": "FINISHED",
+        "score": "0-1"
       },
       {
         "match_id": 560581,
@@ -76,8 +76,8 @@
         ],
         "rule_str": "Big Match, Prime Time, Leader",
         "matchday": 4,
-        "status": "IN_PLAY",
-        "score": "0-0"
+        "status": "FINISHED",
+        "score": "0-1"
       },
       {
         "match_id": 560581,
@@ -254,11 +254,11 @@
     {
       "player": "이강인",
       "team": "ATM",
-      "opponent": "Real Sociedad de Fútbol",
-      "venue": "away",
-      "kst_date": "09.14",
-      "kst_time": "04:00",
-      "competition": "La Liga R5",
+      "opponent": "CA Osasuna",
+      "venue": "home",
+      "kst_date": "09.17",
+      "kst_time": "02:00",
+      "competition": "La Liga R6",
       "status": "SCHEDULED"
     },
     {
@@ -288,7 +288,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-14 00:47:51 (KST)",
+      "🚀 [Start] 2026-09-14 05:28:26 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -309,13 +309,8 @@
       "   [최대 선정: 3경기]",
       "   📋 전체: 20경기 (라운드: [4, 5])",
       "   🎯 선정 대상: R4 (10경기)",
-      "   📊 상태별: {'FINISHED': 8, 'IN_PLAY': 1, 'TIMED': 1}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   📌 기존 선정 유지 (R4)",
-      "      🔴 Manchester United vs Manchester City [IN_PLAY] 0-0",
-      "      ✅ Chelsea vs Hull City AFC [FINISHED] 2-2",
-      "      ✅ Sunderland AFC vs Arsenal [FINISHED] 0-2",
+      "   📊 상태별: {'FINISHED': 9, 'TIMED': 1}",
+      "   🔄 R4 경기 모두 종료 → 새로 선정 불필요",
       "   ✅ 기존 선정 유지: 3경기 (R4)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
@@ -341,7 +336,7 @@
       "      📅 09.20 20:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...",
-      "   ✅ 이강인 (ATM): vs Real Sociedad de Fútbol | 09.14 04:00 KST",
+      "   ✅ 이강인 (ATM): vs CA Osasuna | 09.17 02:00 KST",
       "   ✅ 김민재 (Bayern): vs 1. FC Union Berlin | 09.19 03:30 KST",
       "   ⚠️ 손흥민 검색 결과가 과거 날짜(09.13) → 폐기",
       "   ⚠️ 손흥민 기존 데이터 만료(과거 경기: 08.23) → 폴백으로 대체",
