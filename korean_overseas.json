@@ -1,6 +1,10 @@
 {
-  "updated": "2026-09-14 21:08:04 KST",
+  "updated": "2026-09-15 06:36:48 KST",
   "hot_issues": [
+    {
+      "headline": "조규성 1골 1도움 (FC Midtjylland 4-1 승)",
+      "detail": "Danish Superliga vs Brøndby IF | 90분 출전 | 평점 7.4"
+    },
     {
       "headline": "백승호 1골 (Birmingham City 2-1 승)",
       "detail": "Championship vs Derby County | 30분 출전 | 평점 7.5"
@@ -76,7 +80,13 @@
         "assists": 0,
         "rating": 6.9
       },
-      "next": null
+      "next": {
+        "event": "Liga Portugal Betclic",
+        "opponent": "Benfica",
+        "venue": "home",
+        "date": "09.21",
+        "time_kst": "04:30"
+      }
     },
     {
       "player": "배준호",
@@ -164,26 +174,20 @@
       "player": "조규성",
       "team": "FC Midtjylland",
       "recent": {
-        "event": "Oddset Pokalen",
-        "opponent": "Sundby BK",
-        "venue": "away",
-        "date": "09.11",
-        "team_score": 7,
-        "opponent_score": 0,
-        "result": "W",
-        "player_status": "NOT_IN_SQUAD",
-        "minutes": 0,
-        "goals": 0,
-        "assists": 0,
-        "rating": null
-      },
-      "next": {
         "event": "Danish Superliga",
         "opponent": "Brøndby IF",
         "venue": "home",
         "date": "09.15",
-        "time_kst": "02:00"
-      }
+        "team_score": 4,
+        "opponent_score": 1,
+        "result": "W",
+        "player_status": "PLAYED",
+        "minutes": 90,
+        "goals": 1,
+        "assists": 1,
+        "rating": 7.4
+      },
+      "next": null
     },
     {
       "player": "설영우",
