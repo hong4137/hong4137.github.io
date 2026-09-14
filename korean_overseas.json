@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-14 05:28:26 KST",
+  "updated": "2026-09-14 12:56:47 KST",
   "hot_issues": [
     {
       "headline": "백승호 1골 (Birmingham City 2-1 승)",
@@ -114,7 +114,13 @@
         "assists": 1,
         "rating": 6.8
       },
-      "next": null
+      "next": {
+        "event": "Trendyol Süper Lig",
+        "opponent": "Amed Sportif Faaliyetler",
+        "venue": "away",
+        "date": "09.21",
+        "time_kst": "02:00"
+      }
     },
     {
       "player": "백승호",
