@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-17 01:22:33 KST",
+  "updated": "2026-09-17 06:00:25 KST",
   "epl": {
     "matchday": 4,
     "selected_round": 5,
@@ -230,29 +230,29 @@
   },
   "tennis": {
     "recent": {
-      "event": "-",
-      "opponent": "-",
-      "result": "-",
-      "score": "-",
-      "date": "-"
+      "event": "US Open, Men",
+      "opponent": "Ben Shelton",
+      "result": "L",
+      "score": "7-6, 1-6, 3-6, 6-1, 6-7",
+      "date": "Sep 9"
     },
     "next": {
-      "event": "-",
+      "event": "Shanghai Masters",
       "detail": "-",
-      "match_time": "TBD",
-      "tournament_dates": "",
-      "status": "-"
+      "match_time": "Oct 5",
+      "tournament_dates": "Oct 5 - 12",
+      "status": "Masters"
     }
   },
   "korean_players": [
     {
       "player": "이강인",
       "team": "ATM",
-      "opponent": "CA Osasuna",
+      "opponent": "Real Madrid CF",
       "venue": "home",
-      "kst_date": "09.17",
-      "kst_time": "02:00",
-      "competition": "La Liga R6",
+      "kst_date": "09.20",
+      "kst_time": "23:15",
+      "competition": "La Liga R7",
       "status": "SCHEDULED"
     },
     {
@@ -282,7 +282,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-17 01:22:33 (KST)",
+      "🚀 [Start] 2026-09-17 06:00:25 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -339,18 +339,18 @@
       "      📅 09.20 20:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...",
-      "   ✅ 이강인 (ATM): vs CA Osasuna | 09.17 02:00 KST",
+      "   ✅ 이강인 (ATM): vs Real Madrid CF | 09.20 23:15 KST",
       "   ✅ 김민재 (Bayern): vs 1. FC Union Berlin | 09.19 03:30 KST",
       "   ✅ 손흥민 (LAFC): vs San Jose Earthquakes | 09.20 08:30 KST",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
-      "   ⚠️ Web App 호출 실패: 404",
-      "   ⚠️ Web App 실패 → 기본값",
+      "   ✅ Web App 응답:",
+      "      Recent: US Open, Men vs Ben Shelton L (7-6, 1-6, 3-6, 6-1, 6-7)",
+      "      Next: Shanghai Masters | Oct 5",
       "   📊 최종:",
-      "      Recent: - vs - - (-) | -",
-      "      Next: - | - | TBD",
+      "      Recent: US Open, Men vs Ben Shelton L (7-6, 1-6, 3-6, 6-1, 6-7) | Sep 9",
+      "      Next: Shanghai Masters | - | Oct 5",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
-      "   ⚠️ 해외파 Web App 호출 실패: 404",
-      "   ⚠️ 해외파 데이터 수집 실패 → 빈 값 유지",
+      "   ✅ 해외파 9명 수집, 핫이슈 4건",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
     ]
