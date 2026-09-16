@@ -1,48 +1,54 @@
 {
-  "generated_at": "2026-09-16 08:22 KST",
+  "generated_at": "2026-09-17 08:30 KST",
   "events": [
     {
-      "date": "2026-09-16",
-      "title": "FOMC 금리 결정, 성명 및 기자회견",
-      "category": "fed_fomc",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": "25bp 인상 (3.75% -> 4.00%)",
-      "source_url": "https://www.federalreserve.gov/"
-    },
-    {
-      "date": "2026-09-16",
-      "title": "미국 소매판매 (8월)",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": "0.8% MoM 증가",
-      "source_url": "https://www.census.gov/"
-    },
-    {
       "date": "2026-09-18",
-      "title": "쿼드러플 위칭 데이 (주식, 지수 선물/옵션 만기)",
+      "title": "쿼드러플 위칭 데이 (주식, 지수, 선물 옵션 만기)",
       "category": "market_structure",
       "importance": 4,
       "impact": [
-        "VIX",
+        "equities",
+        "VIX"
+      ],
+      "consensus": null,
+      "source_url": "https://quantifiedstrategies.com/"
+    },
+    {
+      "date": "2026-09-22",
+      "title": "Google Cloud Summit (카타르)",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": [
         "equities"
       ],
       "consensus": null,
-      "source_url": "https://www.investopedia.com/"
+      "source_url": "https://cloud.google.com/events/"
+    },
+    {
+      "date": "2026-09-23",
+      "title": "Meta Connect 2026 키노트 (AI, 혼합 현실, 웨어러블)",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": [
+        "equities"
+      ],
+      "consensus": null,
+      "source_url": "https://www.meta.com/connect/"
+    },
+    {
+      "date": "2026-09-24",
+      "title": "Meta Connect 2026 개발자 세션 (AI, 혼합 현실, 웨어러블)",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": [
+        "equities"
+      ],
+      "consensus": null,
+      "source_url": "https://www.meta.com/connect/"
     },
     {
       "date": "2026-09-29",
-      "title": "미국 JOLTS (구인·이직 보고서) (8월)",
+      "title": "JOLTS (구인·이직 보고서) 8월",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -50,7 +56,7 @@
         "USD",
         "yields"
       ],
-      "consensus": "7.106M",
+      "consensus": "7.106 M",
       "source_url": "https://www.bls.gov/jlt/"
     },
     {
@@ -68,7 +74,20 @@
     },
     {
       "date": "2026-09-30",
-      "title": "미국 개인 소득 및 지출 (PCE 인플레이션) (8월)",
+      "title": "개인소비지출 (PCE) 8월",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bea.gov/"
+    },
+    {
+      "date": "2026-10-14",
+      "title": "소비자물가지수 (CPI) 9월",
       "category": "economic_data",
       "importance": 5,
       "impact": [
@@ -77,7 +96,7 @@
         "yields"
       ],
       "consensus": null,
-      "source_url": "https://www.bea.gov/"
+      "source_url": "https://www.bls.gov/cpi/"
     }
   ]
 }
