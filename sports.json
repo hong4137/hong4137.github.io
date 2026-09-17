@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-17 20:12:33 KST",
+  "updated": "2026-09-18 01:29:19 KST",
   "epl": {
     "matchday": 5,
     "selected_round": 5,
@@ -125,7 +125,7 @@
       "date": "Sep 18-20",
       "date_from": "2026-09-18",
       "date_to": "2026-09-20",
-      "status": "Next GP",
+      "status": "This Week",
       "sprint": false
     },
     "schedule": [
@@ -282,7 +282,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-17 20:12:33 (KST)",
+      "🚀 [Start] 2026-09-18 01:29:19 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -331,7 +331,7 @@
       "      3. Lewis Hamilton (Ferrari) 191pts",
       "      4. Lando Norris (McLaren) 186pts",
       "      5. Charles Leclerc (Ferrari) 167pts",
-      "   ✅ Azerbaijan Grand Prix | Baku City Circuit | Sep 18-20 [Next GP]",
+      "   ✅ Azerbaijan Grand Prix | Baku City Circuit | Sep 18-20 [This Week]",
       "      📅 09.18 18:30 KST | FP1",
       "      📅 09.18 22:00 KST | FP2",
       "      📅 09.19 17:30 KST | FP3",
