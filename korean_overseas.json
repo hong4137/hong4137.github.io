@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-18 01:29:19 KST",
+  "updated": "2026-09-18 06:03:04 KST",
   "hot_issues": [
     {
       "headline": "조규성 1골 1도움 (FC Midtjylland 4-1 승)",
@@ -12,10 +12,6 @@
     {
       "headline": "황희찬 1도움 (FC Schalke 04 3-1 승)",
       "detail": "Bundesliga vs 1. FC Union Berlin | 10분 출전 | 평점 6.6"
-    },
-    {
-      "headline": "오현규 1도움 (Beşiktaş JK 3-0 승)",
-      "detail": "Trendyol Süper Lig vs Erzurumspor FK | 90분 출전 | 평점 6.8"
     }
   ],
   "players": [
@@ -111,18 +107,18 @@
       "player": "오현규",
       "team": "Beşiktaş JK",
       "recent": {
-        "event": "Trendyol Süper Lig",
-        "opponent": "Erzurumspor FK",
+        "event": "UEFA Europa League",
+        "opponent": "Olympique de Marseille",
         "venue": "home",
-        "date": "09.12",
-        "team_score": 3,
-        "opponent_score": 0,
+        "date": "09.18",
+        "team_score": 4,
+        "opponent_score": 1,
         "result": "W",
         "player_status": "PLAYED",
-        "minutes": 90,
+        "minutes": 13,
         "goals": 0,
-        "assists": 1,
-        "rating": 6.8
+        "assists": 0,
+        "rating": 6.5
       },
       "next": {
         "event": "Trendyol Süper Lig",
