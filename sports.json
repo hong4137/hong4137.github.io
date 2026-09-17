@@ -1,7 +1,7 @@
 {
-  "updated": "2026-09-17 12:58:39 KST",
+  "updated": "2026-09-17 20:12:33 KST",
   "epl": {
-    "matchday": 4,
+    "matchday": 5,
     "selected_round": 5,
     "display_matchday": "R5",
     "leader": "Arsenal",
@@ -282,7 +282,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-17 12:58:39 (KST)",
+      "🚀 [Start] 2026-09-17 20:12:33 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -291,7 +291,7 @@
       "\n⚽ [Step 1/5] Premier League 순위...",
       "   ✅ 1위: Arsenal",
       "   ✅ Top 4: Arsenal, Manchester City, Leeds United, Hull City AFC",
-      "   ✅ 현재 라운드: R4",
+      "   ✅ 현재 라운드: R5",
       "\n⚽ [Step 2/5] Premier League 경기 선정 (v2.4)...",
       "   [티어 우선순위]",
       "   T1. Big Match: Big 6 vs Big 6",
@@ -301,7 +301,7 @@
       "   T5. Early KO: 토요일 12:30 UK",
       "   T6. Leader: 1위 팀 포함",
       "   [최대 선정: 3경기]",
-      "   📋 전체: 20경기 (라운드: [4, 5])",
+      "   📋 전체: 10경기 (라운드: [5])",
       "   🎯 선정 대상: R5 (10경기)",
       "   📊 상태별: {'TIMED': 10}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
