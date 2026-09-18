@@ -1124,11 +1124,11 @@ F1_2026_CALENDAR = [
     {'round': 6, 'name': 'Miami Grand Prix', 'circuit': 'Miami International Autodrome', 'country': 'USA',
      'date_from': '2026-05-01', 'date_to': '2026-05-03', 'local_tz': 'EDT', 'utc_offset': -4, 'sprint': True},
     {'round': 7, 'name': 'Canadian Grand Prix', 'circuit': 'Circuit Gilles Villeneuve, Montreal', 'country': 'Canada',
-     'date_from': '2026-05-15', 'date_to': '2026-05-17', 'local_tz': 'EDT', 'utc_offset': -4, 'sprint': True},
+     'date_from': '2026-05-22', 'date_to': '2026-05-24', 'local_tz': 'EDT', 'utc_offset': -4, 'sprint': True},
     {'round': 8, 'name': 'Monaco Grand Prix', 'circuit': 'Circuit de Monaco', 'country': 'Monaco',
-     'date_from': '2026-05-22', 'date_to': '2026-05-24', 'local_tz': 'CEST', 'utc_offset': 2, 'sprint': False},
-    {'round': 9, 'name': 'Spanish Grand Prix', 'circuit': 'Circuit de Barcelona-Catalunya', 'country': 'Spain',
      'date_from': '2026-06-05', 'date_to': '2026-06-07', 'local_tz': 'CEST', 'utc_offset': 2, 'sprint': False},
+    {'round': 9, 'name': 'Spanish Grand Prix', 'circuit': 'Circuit de Barcelona-Catalunya', 'country': 'Spain',
+     'date_from': '2026-06-12', 'date_to': '2026-06-14', 'local_tz': 'CEST', 'utc_offset': 2, 'sprint': False},
     {'round': 10, 'name': 'Austrian Grand Prix', 'circuit': 'Red Bull Ring, Spielberg', 'country': 'Austria',
      'date_from': '2026-06-26', 'date_to': '2026-06-28', 'local_tz': 'CEST', 'utc_offset': 2, 'sprint': False},
     {'round': 11, 'name': 'British Grand Prix', 'circuit': 'Silverstone Circuit', 'country': 'UK',
@@ -1144,17 +1144,25 @@ F1_2026_CALENDAR = [
     {'round': 16, 'name': 'Spanish Grand Prix (Madrid)', 'circuit': 'Circuito Urbano de Madrid', 'country': 'Spain',
      'date_from': '2026-09-11', 'date_to': '2026-09-13', 'local_tz': 'CEST', 'utc_offset': 2, 'sprint': False},
     {'round': 17, 'name': 'Azerbaijan Grand Prix', 'circuit': 'Baku City Circuit', 'country': 'Azerbaijan',
-     'date_from': '2026-09-18', 'date_to': '2026-09-20', 'local_tz': 'AZT', 'utc_offset': 4, 'sprint': False},
+     'date_from': '2026-09-24', 'date_to': '2026-09-26', 'local_tz': 'AZT', 'utc_offset': 4, 'sprint': False,
+     'custom_schedule': [
+         # 목-금-토 포맷 (Remembrance Day 9/27 회피, 토요일 레이스)
+         ('thu', 'FP1', 12, 30),
+         ('thu', 'FP2', 16, 0),
+         ('fri', 'FP3', 12, 30),
+         ('fri', 'Qualifying', 16, 0),
+         ('sat', 'Race', 15, 0),
+     ]},
     {'round': 18, 'name': 'Singapore Grand Prix', 'circuit': 'Marina Bay Street Circuit', 'country': 'Singapore',
-     'date_from': '2026-10-02', 'date_to': '2026-10-04', 'local_tz': 'SGT', 'utc_offset': 8, 'sprint': True},
+     'date_from': '2026-10-09', 'date_to': '2026-10-11', 'local_tz': 'SGT', 'utc_offset': 8, 'sprint': True},
     {'round': 19, 'name': 'United States Grand Prix', 'circuit': 'COTA, Austin', 'country': 'USA',
-     'date_from': '2026-10-16', 'date_to': '2026-10-18', 'local_tz': 'CDT', 'utc_offset': -5, 'sprint': False},
-    {'round': 20, 'name': 'Mexico City Grand Prix', 'circuit': 'Autódromo Hermanos Rodríguez', 'country': 'Mexico',
      'date_from': '2026-10-23', 'date_to': '2026-10-25', 'local_tz': 'CDT', 'utc_offset': -5, 'sprint': False},
+    {'round': 20, 'name': 'Mexico City Grand Prix', 'circuit': 'Autódromo Hermanos Rodríguez', 'country': 'Mexico',
+     'date_from': '2026-10-30', 'date_to': '2026-11-01', 'local_tz': 'CDT', 'utc_offset': -5, 'sprint': False},
     {'round': 21, 'name': 'São Paulo Grand Prix', 'circuit': 'Interlagos, São Paulo', 'country': 'Brazil',
      'date_from': '2026-11-06', 'date_to': '2026-11-08', 'local_tz': 'BRT', 'utc_offset': -3, 'sprint': False},
     {'round': 22, 'name': 'Las Vegas Grand Prix', 'circuit': 'Las Vegas Strip Circuit', 'country': 'USA',
-     'date_from': '2026-11-20', 'date_to': '2026-11-22', 'local_tz': 'PST', 'utc_offset': -8, 'sprint': False},
+     'date_from': '2026-11-19', 'date_to': '2026-11-21', 'local_tz': 'PST', 'utc_offset': -8, 'sprint': False},
     {'round': 23, 'name': 'Qatar Grand Prix', 'circuit': 'Lusail International Circuit', 'country': 'Qatar',
      'date_from': '2026-11-27', 'date_to': '2026-11-29', 'local_tz': 'AST', 'utc_offset': 3, 'sprint': False},
     {'round': 24, 'name': 'Abu Dhabi Grand Prix', 'circuit': 'Yas Marina Circuit', 'country': 'UAE',
@@ -1190,6 +1198,36 @@ def get_f1_race_schedule(gp_info):
     date_from = datetime.date.fromisoformat(gp_info['date_from'])
     utc_offset = gp_info.get('utc_offset', 0)
     is_sprint = gp_info.get('sprint', False)
+    custom_schedule = gp_info.get('custom_schedule', None)
+
+    # custom_schedule이 있으면 우선 사용 (바쿠 목-토 등 특수 포맷)
+    if custom_schedule:
+        sessions = []
+        day_map = {
+            'thu': date_from,
+            'fri': date_from + timedelta(days=1),
+            'sat': date_from + timedelta(days=2),
+            'sun': date_from + timedelta(days=3),
+        }
+        for day_key, name, local_h, local_m in custom_schedule:
+            day = day_map.get(day_key, date_from)
+            utc_h = local_h - utc_offset
+            kst_h = utc_h + 9
+            kst_date = day
+            if kst_h >= 24:
+                kst_h -= 24
+                kst_date = day + timedelta(days=1)
+            elif kst_h < 0:
+                kst_h += 24
+                kst_date = day - timedelta(days=1)
+            sessions.append({
+                'name': name,
+                'date': kst_date.strftime("%m.%d"),
+                'day_local': day.strftime("%a"),
+                'kst_time': f"{kst_h:02d}:{local_m:02d}",
+                'local_time': f"{local_h:02d}:{local_m:02d}",
+            })
+        return sessions
     
     friday = date_from
     saturday = date_from + timedelta(days=1)
@@ -1560,8 +1598,13 @@ def get_f1_schedule_from_search(gp_info, serper_key, gemini_key):
     today_str = kst_now.strftime("%B %d, %Y")
     
     is_sprint = gp_info.get('sprint', False)
+    custom_schedule = gp_info.get('custom_schedule', None)
     
-    if is_sprint:
+    if custom_schedule:
+        day_labels = {'thu': 'Thursday', 'fri': 'Friday', 'sat': 'Saturday', 'sun': 'Sunday'}
+        session_days = ", ".join(f"{name} ({day_labels.get(day, day)})" for day, name, _, _ in custom_schedule)
+        format_hint = f"This is a SPECIAL weekend format (NOT the usual Friday-Sunday). Sessions are: {session_days}. Do not assume a standard Friday-Sunday layout."
+    elif is_sprint:
         format_hint = "This is a SPRINT weekend. Sessions are: FP1 (Friday), Sprint Qualifying (Friday), Sprint (Saturday), Qualifying (Saturday), Race (Sunday)."
     else:
         format_hint = "This is a STANDARD weekend. Sessions are: FP1 (Friday), FP2 (Friday), FP3 (Saturday), Qualifying (Saturday), Race (Sunday)."
