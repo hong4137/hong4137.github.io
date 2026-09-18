@@ -1,5 +1,214 @@
 {
-  "updated": "2026-09-18 12:45:48 KST",
-  "hot_issues": [],
-  "players": []
+  "updated": "2026-09-18 19:45:33 KST",
+  "hot_issues": [
+    {
+      "headline": "조규성 1골 1도움 (FC Midtjylland 4-1 승)",
+      "detail": "Danish Superliga vs Brøndby IF | 90분 출전 | 평점 7.8"
+    },
+    {
+      "headline": "백승호 1골 (Birmingham City 2-1 승)",
+      "detail": "Championship vs Derby County | 30분 출전 | 평점 7.5"
+    },
+    {
+      "headline": "황희찬 1도움 (FC Schalke 04 3-1 승)",
+      "detail": "Bundesliga vs 1. FC Union Berlin | 10분 출전 | 평점 6.6"
+    }
+  ],
+  "players": [
+    {
+      "player": "황희찬",
+      "team": "FC Schalke 04",
+      "recent": {
+        "event": "Bundesliga",
+        "opponent": "1. FC Union Berlin",
+        "venue": "away",
+        "date": "09.12",
+        "team_score": 3,
+        "opponent_score": 1,
+        "result": "W",
+        "player_status": "PLAYED",
+        "minutes": 10,
+        "goals": 0,
+        "assists": 1,
+        "rating": 6.6
+      },
+      "next": null
+    },
+    {
+      "player": "이재성",
+      "team": "1. FSV Mainz 05",
+      "recent": {
+        "event": "Bundesliga",
+        "opponent": "Eintracht Frankfurt",
+        "venue": "home",
+        "date": "09.12",
+        "team_score": 1,
+        "opponent_score": 3,
+        "result": "L",
+        "player_status": "PLAYED",
+        "minutes": 45,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.3
+      },
+      "next": {
+        "event": "Bundesliga",
+        "opponent": "Borussia M'gladbach",
+        "venue": "away",
+        "date": "09.19",
+        "time_kst": "22:30"
+      }
+    },
+    {
+      "player": "황인범",
+      "team": "FC Porto",
+      "recent": {
+        "event": "Liga Portugal Betclic",
+        "opponent": "Casa Pia",
+        "venue": "away",
+        "date": "09.13",
+        "team_score": 4,
+        "opponent_score": 1,
+        "result": "W",
+        "player_status": "PLAYED",
+        "minutes": 70,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.9
+      },
+      "next": {
+        "event": "Liga Portugal Betclic",
+        "opponent": "Benfica",
+        "venue": "home",
+        "date": "09.21",
+        "time_kst": "04:30"
+      }
+    },
+    {
+      "player": "배준호",
+      "team": "Stoke City",
+      "recent": {
+        "event": "Asian Games, Group D",
+        "opponent": "Qatar U23",
+        "venue": "away",
+        "date": "09.15",
+        "team_score": 4,
+        "opponent_score": 1,
+        "result": "W",
+        "player_status": "DNP",
+        "minutes": 0,
+        "goals": 0,
+        "assists": 0,
+        "rating": null
+      },
+      "next": null
+    },
+    {
+      "player": "오현규",
+      "team": "Beşiktaş JK",
+      "recent": {
+        "event": "UEFA Europa League",
+        "opponent": "Olympique de Marseille",
+        "venue": "home",
+        "date": "09.18",
+        "team_score": 4,
+        "opponent_score": 1,
+        "result": "W",
+        "player_status": "PLAYED",
+        "minutes": 8,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.5
+      },
+      "next": {
+        "event": "Trendyol Süper Lig",
+        "opponent": "Amed Sportif Faaliyetler",
+        "venue": "away",
+        "date": "09.21",
+        "time_kst": "02:00"
+      }
+    },
+    {
+      "player": "백승호",
+      "team": "Birmingham City",
+      "recent": {
+        "event": "Championship",
+        "opponent": "Derby County",
+        "venue": "away",
+        "date": "09.12",
+        "team_score": 2,
+        "opponent_score": 1,
+        "result": "W",
+        "player_status": "PLAYED",
+        "minutes": 30,
+        "goals": 1,
+        "assists": 0,
+        "rating": 7.5
+      },
+      "next": null
+    },
+    {
+      "player": "엄지성",
+      "team": "Swansea City",
+      "recent": {
+        "event": "Asian Games, Group D",
+        "opponent": "Qatar U23",
+        "venue": "away",
+        "date": "09.15",
+        "team_score": 4,
+        "opponent_score": 1,
+        "result": "W",
+        "player_status": "DNP",
+        "minutes": 0,
+        "goals": 3,
+        "assists": 0,
+        "rating": null
+      },
+      "next": null
+    },
+    {
+      "player": "조규성",
+      "team": "FC Midtjylland",
+      "recent": {
+        "event": "Danish Superliga",
+        "opponent": "Brøndby IF",
+        "venue": "home",
+        "date": "09.15",
+        "team_score": 4,
+        "opponent_score": 1,
+        "result": "W",
+        "player_status": "PLAYED",
+        "minutes": 90,
+        "goals": 1,
+        "assists": 1,
+        "rating": 7.8
+      },
+      "next": {
+        "event": "Danish Superliga",
+        "opponent": "Odense Boldklub",
+        "venue": "away",
+        "date": "09.20",
+        "time_kst": "01:00"
+      }
+    },
+    {
+      "player": "설영우",
+      "team": "FC Augsburg",
+      "recent": {
+        "event": "Bundesliga",
+        "opponent": "Bayer 04 Leverkusen",
+        "venue": "home",
+        "date": "09.12",
+        "team_score": 2,
+        "opponent_score": 2,
+        "result": "D",
+        "player_status": "PLAYED",
+        "minutes": 13,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.3
+      },
+      "next": null
+    }
+  ]
 }

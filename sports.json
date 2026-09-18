@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-18 12:45:48 KST",
+  "updated": "2026-09-18 19:45:33 KST",
   "epl": {
     "matchday": 5,
     "selected_round": 5,
@@ -282,7 +282,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-18 12:45:48 (KST)",
+      "🚀 [Start] 2026-09-18 19:45:33 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -350,8 +350,7 @@
       "      Recent: US Open, Men vs Ben Shelton L (7-6, 1-6, 3-6, 6-1, 6-7) | Sep 9",
       "      Next: Shanghai Masters | - | Oct 5",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
-      "   ⚠️ 해외파 Web App 예외: HTTPSConnectionPool(host='script.googleusercontent.com', port=443): Read timed out. (read timeout=30)",
-      "   ⚠️ 해외파 데이터 수집 실패 → 빈 값 유지",
+      "   ✅ 해외파 9명 수집, 핫이슈 3건",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
     ]
