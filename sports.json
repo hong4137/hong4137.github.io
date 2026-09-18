@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-18 19:45:33 KST",
+  "updated": "2026-09-19 01:01:13 KST",
   "epl": {
     "matchday": 5,
     "selected_round": 5,
@@ -122,45 +122,45 @@
       "name": "Azerbaijan Grand Prix",
       "circuit": "Baku City Circuit",
       "country": "Azerbaijan",
-      "date": "Sep 18-20",
-      "date_from": "2026-09-18",
-      "date_to": "2026-09-20",
-      "status": "This Week",
+      "date": "Sep 24-26",
+      "date_from": "2026-09-24",
+      "date_to": "2026-09-26",
+      "status": "Next GP",
       "sprint": false
     },
     "schedule": [
       {
         "name": "FP1",
-        "date": "09.18",
-        "day_local": "Fri",
-        "kst_time": "18:30",
-        "local_time": "13:30"
+        "date": "09.24",
+        "day_local": "Thu",
+        "kst_time": "17:30",
+        "local_time": "12:30"
       },
       {
         "name": "FP2",
-        "date": "09.18",
-        "day_local": "Fri",
-        "kst_time": "22:00",
-        "local_time": "17:00"
+        "date": "09.24",
+        "day_local": "Thu",
+        "kst_time": "21:00",
+        "local_time": "16:00"
       },
       {
         "name": "FP3",
-        "date": "09.19",
-        "day_local": "Sat",
+        "date": "09.25",
+        "day_local": "Fri",
         "kst_time": "17:30",
         "local_time": "12:30"
       },
       {
         "name": "Qualifying",
-        "date": "09.19",
-        "day_local": "Sat",
+        "date": "09.25",
+        "day_local": "Fri",
         "kst_time": "21:00",
         "local_time": "16:00"
       },
       {
         "name": "Race",
-        "date": "09.20",
-        "day_local": "Sun",
+        "date": "09.26",
+        "day_local": "Sat",
         "kst_time": "20:00",
         "local_time": "15:00"
       }
@@ -282,7 +282,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-18 19:45:33 (KST)",
+      "🚀 [Start] 2026-09-19 01:01:13 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -331,12 +331,12 @@
       "      3. Lewis Hamilton (Ferrari) 191pts",
       "      4. Lando Norris (McLaren) 186pts",
       "      5. Charles Leclerc (Ferrari) 167pts",
-      "   ✅ Azerbaijan Grand Prix | Baku City Circuit | Sep 18-20 [This Week]",
-      "      📅 09.18 18:30 KST | FP1",
-      "      📅 09.18 22:00 KST | FP2",
-      "      📅 09.19 17:30 KST | FP3",
-      "      📅 09.19 21:00 KST | Qualifying",
-      "      📅 09.20 20:00 KST | Race",
+      "   ✅ Azerbaijan Grand Prix | Baku City Circuit | Sep 24-26 [Next GP]",
+      "      📅 09.24 17:30 KST | FP1",
+      "      📅 09.24 21:00 KST | FP2",
+      "      📅 09.25 17:30 KST | FP3",
+      "      📅 09.25 21:00 KST | Qualifying",
+      "      📅 09.26 20:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...",
       "   ✅ 이강인 (ATM): vs Real Madrid CF | 09.20 23:15 KST",
