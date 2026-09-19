@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-20 00:33:27 KST",
+  "updated": "2026-09-20 05:12:27 KST",
   "epl": {
     "matchday": 5,
     "selected_round": 5,
@@ -25,8 +25,8 @@
         ],
         "rule_str": "Top Tier, Challenger",
         "matchday": 5,
-        "status": "SCHEDULED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "3-0"
       },
       {
         "match_id": 560583,
@@ -40,7 +40,7 @@
         ],
         "rule_str": "Prime Time",
         "matchday": 5,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -55,7 +55,7 @@
         ],
         "rule_str": "Leader",
         "matchday": 5,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ],
@@ -73,8 +73,8 @@
         ],
         "rule_str": "Top Tier, Challenger",
         "matchday": 5,
-        "status": "SCHEDULED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "3-0"
       },
       {
         "match_id": 560583,
@@ -88,7 +88,7 @@
         ],
         "rule_str": "Prime Time",
         "matchday": 5,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -103,7 +103,7 @@
         ],
         "rule_str": "Leader",
         "matchday": 5,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ]
@@ -284,7 +284,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-20 00:33:27 (KST)",
+      "🚀 [Start] 2026-09-20 05:12:27 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -305,26 +305,16 @@
       "   [최대 선정: 3경기]",
       "   📋 전체: 10경기 (라운드: [5])",
       "   🎯 선정 대상: R5 (10경기)",
-      "   📊 상태별: {'FINISHED': 2, 'IN_PLAY': 3, 'TIMED': 5}",
+      "   📊 상태별: {'FINISHED': 6, 'TIMED': 4}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🔄 더 높은 티어 경기 발견 → 재선정",
-      "      ⬆️ [T2] Brighton & Hove Albion vs Arsenal [Top Tier, Challenger]",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🏆 R5에서 3경기 선정:",
-      "      • [T2] Brighton & Hove Albion vs Arsenal [Top Tier, Challenger] 09.19 23:00 (KST)",
-      "      • [T4] Fulham vs Manchester United [Prime Time] 09.21 00:30 (KST)",
-      "      • [T6] Manchester City vs Sunderland AFC [Leader] 09.20 22:00 (KST)",
-      "   ✅ 새로 선정됨: 3경기 (R5)",
+      "   📌 기존 선정 유지 (R5)",
+      "      ✅ Brighton & Hove Albion vs Arsenal [FINISHED] 3-0",
+      "      ⏳ Fulham vs Manchester United [TIMED] -",
+      "      ⏳ Manchester City vs Sunderland AFC [TIMED] -",
+      "   ✅ 기존 선정 유지: 3경기 (R5)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ✅ 전적: 38-46 | 순위: -",
@@ -360,7 +350,7 @@
       "      Recent: US Open, Men vs Ben Shelton L (7-6, 1-6, 3-6, 6-1, 6-7) | Sep 9",
       "      Next: Shanghai Masters | - | Oct 5",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
-      "   ✅ 해외파 9명 수집, 핫이슈 2건",
+      "   ✅ 해외파 9명 수집, 핫이슈 1건",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
     ]

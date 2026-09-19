@@ -1,10 +1,6 @@
 {
-  "updated": "2026-09-20 00:33:27 KST",
+  "updated": "2026-09-20 05:12:27 KST",
   "hot_issues": [
-    {
-      "headline": "조규성 1골 1도움 (FC Midtjylland 4-1 승)",
-      "detail": "Danish Superliga vs Brøndby IF | 90분 출전 | 평점 7.8"
-    },
     {
       "headline": "황희찬 1도움 (FC Schalke 04 3-1 승)",
       "detail": "Bundesliga vs 1. FC Union Berlin | 10분 출전 | 평점 6.6"
@@ -45,7 +41,7 @@
         "minutes": 65,
         "goals": 0,
         "assists": 0,
-        "rating": 6.7
+        "rating": 6.9
       },
       "next": null
     },
@@ -121,13 +117,13 @@
         "venue": "home",
         "date": "09.19",
         "team_score": 2,
-        "opponent_score": 1,
-        "result": "W",
-        "player_status": "DNP",
-        "minutes": 0,
+        "opponent_score": 2,
+        "result": "D",
+        "player_status": "PLAYED",
+        "minutes": 12,
         "goals": 0,
         "assists": 0,
-        "rating": null
+        "rating": 6.3
       },
       "next": null
     },
@@ -155,25 +151,19 @@
       "team": "FC Midtjylland",
       "recent": {
         "event": "Danish Superliga",
-        "opponent": "Brøndby IF",
-        "venue": "home",
-        "date": "09.15",
-        "team_score": 4,
-        "opponent_score": 1,
-        "result": "W",
-        "player_status": "PLAYED",
-        "minutes": 90,
-        "goals": 1,
-        "assists": 1,
-        "rating": 7.8
-      },
-      "next": {
-        "event": "Danish Superliga",
         "opponent": "Odense Boldklub",
         "venue": "away",
         "date": "09.20",
-        "time_kst": "01:00"
-      }
+        "team_score": 1,
+        "opponent_score": 1,
+        "result": "D",
+        "player_status": "PLAYED",
+        "minutes": 73,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.7
+      },
+      "next": null
     },
     {
       "player": "설영우",
