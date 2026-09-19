@@ -1,13 +1,9 @@
 {
-  "updated": "2026-09-19 19:29:41 KST",
+  "updated": "2026-09-20 00:33:27 KST",
   "hot_issues": [
     {
       "headline": "조규성 1골 1도움 (FC Midtjylland 4-1 승)",
       "detail": "Danish Superliga vs Brøndby IF | 90분 출전 | 평점 7.8"
-    },
-    {
-      "headline": "백승호 1골 (Birmingham City 2-1 승)",
-      "detail": "Championship vs Derby County | 30분 출전 | 평점 7.5"
     },
     {
       "headline": "황희찬 1도움 (FC Schalke 04 3-1 승)",
@@ -39,25 +35,19 @@
       "team": "1. FSV Mainz 05",
       "recent": {
         "event": "Bundesliga",
-        "opponent": "Eintracht Frankfurt",
-        "venue": "home",
-        "date": "09.12",
-        "team_score": 1,
-        "opponent_score": 3,
-        "result": "L",
-        "player_status": "PLAYED",
-        "minutes": 45,
-        "goals": 0,
-        "assists": 0,
-        "rating": 6.3
-      },
-      "next": {
-        "event": "Bundesliga",
         "opponent": "Borussia M'gladbach",
         "venue": "away",
         "date": "09.19",
-        "time_kst": "22:30"
-      }
+        "team_score": 4,
+        "opponent_score": 3,
+        "result": "W",
+        "player_status": "PLAYED",
+        "minutes": 65,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.7
+      },
+      "next": null
     },
     {
       "player": "황인범",
@@ -120,30 +110,24 @@
         "assists": 0,
         "rating": 6.5
       },
-      "next": {
-        "event": "Trendyol Süper Lig",
-        "opponent": "Amed Sportif Faaliyetler",
-        "venue": "away",
-        "date": "09.21",
-        "time_kst": "02:00"
-      }
+      "next": null
     },
     {
       "player": "백승호",
       "team": "Birmingham City",
       "recent": {
         "event": "Championship",
-        "opponent": "Derby County",
-        "venue": "away",
-        "date": "09.12",
+        "opponent": "Middlesbrough",
+        "venue": "home",
+        "date": "09.19",
         "team_score": 2,
         "opponent_score": 1,
         "result": "W",
-        "player_status": "PLAYED",
-        "minutes": 30,
-        "goals": 1,
+        "player_status": "DNP",
+        "minutes": 0,
+        "goals": 0,
         "assists": 0,
-        "rating": 7.5
+        "rating": null
       },
       "next": null
     },
@@ -196,17 +180,17 @@
       "team": "FC Augsburg",
       "recent": {
         "event": "Bundesliga",
-        "opponent": "Bayer 04 Leverkusen",
-        "venue": "home",
-        "date": "09.12",
+        "opponent": "SV Werder Bremen",
+        "venue": "away",
+        "date": "09.19",
         "team_score": 2,
-        "opponent_score": 2,
-        "result": "D",
+        "opponent_score": 3,
+        "result": "L",
         "player_status": "PLAYED",
-        "minutes": 13,
+        "minutes": 16,
         "goals": 0,
         "assists": 0,
-        "rating": 6.3
+        "rating": 6.1
       },
       "next": null
     }
