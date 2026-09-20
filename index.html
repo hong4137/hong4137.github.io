@@ -662,18 +662,22 @@
                 const recent = player.recent;
                 const next = player.next;
 
+                // next가 있으면 다음 경기(미래) 기준으로 표시 — 이때는 과거 스탯을 섞어 보여주지 않음
+                const showingNext = !!next;
+                const source = next || recent;
+
                 let statText = '<span style="color:#666;">-</span>';
-                if (recent) {
+                if (!showingNext && recent) {
                     if (recent.player_status === 'PLAYED') {
                         const ratingLabel = recent.rating != null ? ` (${escapeOverseasHtml(recent.rating)})` : '';
                         statText = `${escapeOverseasHtml(recent.minutes)}' ${escapeOverseasHtml(recent.goals || 0)}G ${escapeOverseasHtml(recent.assists || 0)}A${ratingLabel}`;
                     } else {
                         statText = '<span style="color:#666;">결장</span>';
                     }
+                } else if (showingNext) {
+                    statText = '<span style="color:#666;">예정</span>';
                 }
 
-                // next가 있으면 다음 경기 기준, 없으면 최근 경기 기준으로 상대/일정 표시
-                const source = next || recent;
                 const opponent = source && source.opponent && source.opponent !== '-' ? source.opponent : 'TBD';
                 const competition = source ? (source.event || '-') : '-';
                 const dateText = source ? `${source.date || '-'}${source.time_kst ? ' ' + source.time_kst : ''}` : '-';

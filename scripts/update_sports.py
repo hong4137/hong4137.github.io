@@ -146,7 +146,7 @@ def build_football_hot_issues(players):
                 stat_bits.append(f"{assists}도움")
             stat_label = ' '.join(stat_bits) if stat_bits else (f"평점 {rating}" if rating and rating >= 8.0 else '')
             score_str = f"{recent.get('team_score', '-')}-{recent.get('opponent_score', '-')}"
-            headline = f"{p.get('player', '-')} {stat_label} ({p.get('team', '-')} {score_str} {result_kr})"
+            headline = f"{p.get('player', '-')} {stat_label} ({p.get('team', '-')} {score_str} {result_kr}) · {recent.get('date', '-')}"
             detail = f"{recent.get('event', '-')} vs {recent.get('opponent', '-')} | {recent.get('minutes', '-')}분 출전"
             if rating:
                 detail += f" | 평점 {rating}"
