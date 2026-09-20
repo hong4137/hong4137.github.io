@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-20 19:52:04 KST",
+  "updated": "2026-09-21 00:39:29 KST",
   "hot_issues": [
     {
       "headline": "황희찬 1도움 (FC Schalke 04 3-1 승) · 09.12",
@@ -24,7 +24,13 @@
         "assists": 1,
         "rating": 6.6
       },
-      "next": null
+      "next": {
+        "event": "Bundesliga",
+        "opponent": "SV 07 Elversberg",
+        "venue": "home",
+        "date": "09.21",
+        "time_kst": "00:30"
+      }
     },
     {
       "player": "이재성",
