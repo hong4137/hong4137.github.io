@@ -1,8 +1,8 @@
 {
-  "updated": "2026-09-20 12:58:37 KST",
+  "updated": "2026-09-20 19:52:04 KST",
   "hot_issues": [
     {
-      "headline": "황희찬 1도움 (FC Schalke 04 3-1 승)",
+      "headline": "황희찬 1도움 (FC Schalke 04 3-1 승) · 09.12",
       "detail": "Bundesliga vs 1. FC Union Berlin | 10분 출전 | 평점 6.6"
     }
   ],
@@ -62,13 +62,7 @@
         "assists": 0,
         "rating": 6.9
       },
-      "next": {
-        "event": "Liga Portugal Betclic",
-        "opponent": "Benfica",
-        "venue": "home",
-        "date": "09.21",
-        "time_kst": "04:30"
-      }
+      "next": null
     },
     {
       "player": "배준호",
