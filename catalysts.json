@@ -1,18 +1,56 @@
 {
-  "generated_at": "2026-09-20 07:38 KST",
+  "generated_at": "2026-09-21 07:55 KST",
   "events": [
     {
-      "date": "2026-10-01",
-      "title": "미국 10년물 국채 입찰",
-      "category": "treasury_auction",
+      "date": "2026-09-24",
+      "title": "미국 주간 신규 실업수당 청구건수 발표",
+      "category": "economic_data",
       "importance": 4,
       "impact": [
-        "yields",
+        "equities",
         "USD",
-        "equities"
+        "yields"
       ],
       "consensus": null,
-      "source_url": "https://www.frbservices.org/"
+      "source_url": "https://www.dol.gov/"
+    },
+    {
+      "date": "2026-09-30",
+      "title": "마이크론 테크놀로지 (MU) 4분기 실적 발표",
+      "category": "earnings",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "VIX"
+      ],
+      "consensus": null,
+      "source_url": "https://investor.micron.com/"
+    },
+    {
+      "date": "2026-10-01",
+      "title": "미국 주간 신규 실업수당 청구건수 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.dol.gov/"
+    },
+    {
+      "date": "2026-10-02",
+      "title": "미국 9월 비농업 고용보고서 (NFP) 발표",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bls.gov/"
     }
   ]
 }
