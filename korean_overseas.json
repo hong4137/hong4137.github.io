@@ -1,36 +1,25 @@
 {
-  "updated": "2026-09-21 00:39:29 KST",
-  "hot_issues": [
-    {
-      "headline": "황희찬 1도움 (FC Schalke 04 3-1 승) · 09.12",
-      "detail": "Bundesliga vs 1. FC Union Berlin | 10분 출전 | 평점 6.6"
-    }
-  ],
+  "updated": "2026-09-21 05:29:03 KST",
+  "hot_issues": [],
   "players": [
     {
       "player": "황희찬",
       "team": "FC Schalke 04",
       "recent": {
         "event": "Bundesliga",
-        "opponent": "1. FC Union Berlin",
-        "venue": "away",
-        "date": "09.12",
-        "team_score": 3,
-        "opponent_score": 1,
-        "result": "W",
-        "player_status": "PLAYED",
-        "minutes": 10,
-        "goals": 0,
-        "assists": 1,
-        "rating": 6.6
-      },
-      "next": {
-        "event": "Bundesliga",
         "opponent": "SV 07 Elversberg",
         "venue": "home",
         "date": "09.21",
-        "time_kst": "00:30"
-      }
+        "team_score": 0,
+        "opponent_score": 0,
+        "result": "D",
+        "player_status": "PLAYED",
+        "minutes": 20,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.6
+      },
+      "next": null
     },
     {
       "player": "이재성",
@@ -56,17 +45,17 @@
       "team": "FC Porto",
       "recent": {
         "event": "Liga Portugal Betclic",
-        "opponent": "Casa Pia",
-        "venue": "away",
-        "date": "09.13",
-        "team_score": 4,
-        "opponent_score": 1,
+        "opponent": "Benfica",
+        "venue": "home",
+        "date": "09.21",
+        "team_score": 1,
+        "opponent_score": 0,
         "result": "W",
         "player_status": "PLAYED",
-        "minutes": 70,
+        "minutes": 13,
         "goals": 0,
         "assists": 0,
-        "rating": 6.9
+        "rating": 6.5
       },
       "next": null
     },
@@ -93,18 +82,18 @@
       "player": "오현규",
       "team": "Beşiktaş JK",
       "recent": {
-        "event": "UEFA Europa League",
-        "opponent": "Olympique de Marseille",
-        "venue": "home",
-        "date": "09.18",
-        "team_score": 4,
-        "opponent_score": 1,
-        "result": "W",
+        "event": "Trendyol Süper Lig",
+        "opponent": "Amed Sportif Faaliyetler",
+        "venue": "away",
+        "date": "09.21",
+        "team_score": 2,
+        "opponent_score": 3,
+        "result": "L",
         "player_status": "PLAYED",
-        "minutes": 8,
+        "minutes": 11,
         "goals": 0,
         "assists": 0,
-        "rating": 6.5
+        "rating": 6.4
       },
       "next": null
     },
