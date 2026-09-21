@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-21 07:55 KST",
+  "generated_at": "2026-09-22 08:47 KST",
   "events": [
     {
-      "date": "2026-09-24",
-      "title": "미국 주간 신규 실업수당 청구건수 발표",
+      "date": "2026-09-29",
+      "title": "미국 JOLTS (구인·이직 보고서) (8월)",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -12,23 +12,11 @@
         "yields"
       ],
       "consensus": null,
-      "source_url": "https://www.dol.gov/"
+      "source_url": "https://www.bls.gov/jlt/"
     },
     {
       "date": "2026-09-30",
-      "title": "마이크론 테크놀로지 (MU) 4분기 실적 발표",
-      "category": "earnings",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "VIX"
-      ],
-      "consensus": null,
-      "source_url": "https://investor.micron.com/"
-    },
-    {
-      "date": "2026-10-01",
-      "title": "미국 주간 신규 실업수당 청구건수 발표",
+      "title": "미국 GDP (2분기 최종치)",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -37,11 +25,37 @@
         "yields"
       ],
       "consensus": null,
-      "source_url": "https://www.dol.gov/"
+      "source_url": "https://www.bea.gov/"
+    },
+    {
+      "date": "2026-09-30",
+      "title": "미국 개인소득 및 지출 (PCE) (8월)",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bea.gov/"
+    },
+    {
+      "date": "2026-10-01",
+      "title": "미국 ISM 제조업 PMI (9월)",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.ismworld.org/"
     },
     {
       "date": "2026-10-02",
-      "title": "미국 9월 비농업 고용보고서 (NFP) 발표",
+      "title": "미국 비농업 고용지수 (NFP) (9월)",
       "category": "economic_data",
       "importance": 5,
       "impact": [
@@ -51,6 +65,19 @@
       ],
       "consensus": null,
       "source_url": "https://www.bls.gov/"
+    },
+    {
+      "date": "2026-10-05",
+      "title": "미국 ISM 서비스업 PMI (9월)",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.ismworld.org/"
     }
   ]
 }
