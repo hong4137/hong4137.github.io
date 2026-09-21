@@ -1,6 +1,11 @@
 {
-  "updated": "2026-09-21 05:29:03 KST",
-  "hot_issues": [],
+  "updated": "2026-09-21 12:56:16 KST",
+  "hot_issues": [
+    {
+      "headline": "황인범 1골 (FC Porto 3-1 승) · 09.21",
+      "detail": "Liga Portugal Betclic vs Benfica | 52분 출전 | 평점 7.8"
+    }
+  ],
   "players": [
     {
       "player": "황희찬",
@@ -17,7 +22,7 @@
         "minutes": 20,
         "goals": 0,
         "assists": 0,
-        "rating": 6.6
+        "rating": 6.5
       },
       "next": null
     },
@@ -48,14 +53,14 @@
         "opponent": "Benfica",
         "venue": "home",
         "date": "09.21",
-        "team_score": 1,
-        "opponent_score": 0,
+        "team_score": 3,
+        "opponent_score": 1,
         "result": "W",
         "player_status": "PLAYED",
-        "minutes": 13,
-        "goals": 0,
+        "minutes": 52,
+        "goals": 1,
         "assists": 0,
-        "rating": 6.5
+        "rating": 7.8
       },
       "next": null
     },
