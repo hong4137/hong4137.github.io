@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-22 20:09:18 KST",
+  "updated": "2026-09-23 01:31:07 KST",
   "hot_issues": [
     {
       "headline": "황인범 1골 (FC Porto 3-1 승) · 09.21",
@@ -73,9 +73,9 @@
         "venue": "away",
         "date": "09.22",
         "team_score": 0,
-        "opponent_score": 0,
-        "result": "D",
-        "player_status": "NOT_IN_SQUAD",
+        "opponent_score": 2,
+        "result": "L",
+        "player_status": "DNP",
         "minutes": 0,
         "goals": 0,
         "assists": 0,
@@ -130,9 +130,9 @@
         "venue": "away",
         "date": "09.22",
         "team_score": 0,
-        "opponent_score": 0,
-        "result": "D",
-        "player_status": "NOT_IN_SQUAD",
+        "opponent_score": 2,
+        "result": "L",
+        "player_status": "DNP",
         "minutes": 0,
         "goals": 0,
         "assists": 0,
