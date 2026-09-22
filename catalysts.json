@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-22 08:47 KST",
+  "generated_at": "2026-09-23 08:26 KST",
   "events": [
     {
-      "date": "2026-09-29",
-      "title": "미국 JOLTS (구인·이직 보고서) (8월)",
+      "date": "2026-09-28",
+      "title": "미국 소매판매 수정치 (8월)",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -12,72 +12,94 @@
         "yields"
       ],
       "consensus": null,
-      "source_url": "https://www.bls.gov/jlt/"
+      "source_url": "https://www.census.gov/retail/"
     },
     {
       "date": "2026-09-30",
-      "title": "미국 GDP (2분기 최종치)",
+      "title": "미국 개인소득/소비, PCE 물가지수 (8월) 및 GDP 최종치 (Q2)",
       "category": "economic_data",
-      "importance": 4,
+      "importance": 5,
       "impact": [
+        "VIX",
+        "yields",
         "equities",
-        "USD",
-        "yields"
+        "USD"
       ],
       "consensus": null,
       "source_url": "https://www.bea.gov/"
     },
     {
       "date": "2026-09-30",
-      "title": "미국 개인소득 및 지출 (PCE) (8월)",
+      "title": "미국 시카고 PMI (9월)",
       "category": "economic_data",
       "importance": 4,
       "impact": [
         "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bea.gov/"
-    },
-    {
-      "date": "2026-10-01",
-      "title": "미국 ISM 제조업 PMI (9월)",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
+        "USD"
       ],
       "consensus": null,
       "source_url": "https://www.ismworld.org/"
     },
     {
+      "date": "2026-09-30",
+      "title": "Microsoft Cyber Genius (AI 기반 보안)",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": [
+        "equities"
+      ],
+      "consensus": null,
+      "source_url": "https://www.microsoft.com/"
+    },
+    {
       "date": "2026-10-02",
-      "title": "미국 비농업 고용지수 (NFP) (9월)",
+      "title": "미국 비농업 고용보고서 (9월)",
       "category": "economic_data",
       "importance": 5,
       "impact": [
+        "VIX",
+        "yields",
         "equities",
-        "USD",
-        "yields"
+        "USD"
       ],
       "consensus": null,
       "source_url": "https://www.bls.gov/"
     },
     {
-      "date": "2026-10-05",
-      "title": "미국 ISM 서비스업 PMI (9월)",
-      "category": "economic_data",
+      "date": "2026-10-04",
+      "title": "OPEC+ 회의",
+      "category": "geopolitical",
       "importance": 4,
       "impact": [
-        "equities",
-        "USD",
-        "yields"
+        "oil"
       ],
       "consensus": null,
-      "source_url": "https://www.ismworld.org/"
+      "source_url": "https://www.opec.org/"
+    },
+    {
+      "date": "2026-10-07",
+      "title": "FOMC 회의록 공개 (9월 회의)",
+      "category": "fed_fomc",
+      "importance": 5,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.federalreserve.gov/"
+    },
+    {
+      "date": "2026-10-07",
+      "title": "Microsoft Windows 및 Surface 이벤트 (AI PC)",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": [
+        "equities"
+      ],
+      "consensus": null,
+      "source_url": "https://www.microsoft.com/"
     }
   ]
 }
