@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-23 19:59:57 KST",
+  "updated": "2026-09-24 01:20:24 KST",
   "epl": {
     "matchday": 6,
     "selected_round": 6,
@@ -24,7 +24,7 @@
         ],
         "rule_str": "Big Match",
         "matchday": 6,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -41,7 +41,7 @@
         ],
         "rule_str": "Big Match, Prime Time, Leader",
         "matchday": 6,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -56,7 +56,7 @@
         ],
         "rule_str": "Early KO",
         "matchday": 6,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ],
@@ -73,7 +73,7 @@
         ],
         "rule_str": "Big Match",
         "matchday": 6,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -90,7 +90,7 @@
         ],
         "rule_str": "Big Match, Prime Time, Leader",
         "matchday": 6,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       },
       {
@@ -105,7 +105,7 @@
         ],
         "rule_str": "Early KO",
         "matchday": 6,
-        "status": "SCHEDULED",
+        "status": "TIMED",
         "score": "-"
       }
     ]
@@ -129,7 +129,7 @@
       "date": "Sep 24-26",
       "date_from": "2026-09-24",
       "date_to": "2026-09-26",
-      "status": "Next GP",
+      "status": "This Week",
       "sprint": false
     },
     "schedule": [
@@ -286,7 +286,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-23 19:59:57 (KST)",
+      "🚀 [Start] 2026-09-24 01:20:24 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -308,18 +308,17 @@
       "   📋 전체: 10경기 (라운드: [6])",
       "   🎯 선정 대상: R6 (10경기)",
       "   📊 상태별: {'TIMED': 10}",
-      "   🔄 라운드 변경: R5 → R6 (새로 선정)",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🏆 R6에서 3경기 선정:",
-      "      • [T1] Manchester United vs Tottenham [Big Match] 10.11 01:30 (KST)",
-      "      • [T1] Liverpool vs Manchester City [Big Match, Prime Time, Leader] 10.12 00:30 (KST)",
-      "      • [T5] Arsenal vs Leeds United [Early KO] 10.10 20:30 (KST)",
-      "   ✅ 새로 선정됨: 3경기 (R6)",
+      "   📌 기존 선정 유지 (R6)",
+      "      ⏳ Manchester United vs Tottenham [TIMED] -",
+      "      ⏳ Liverpool vs Manchester City [TIMED] -",
+      "      ⏳ Arsenal vs Leeds United [TIMED] -",
+      "   ✅ 기존 선정 유지: 3경기 (R6)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ✅ 전적: 38-46 | 순위: -",
@@ -336,7 +335,7 @@
       "      3. Lewis Hamilton (Ferrari) 191pts",
       "      4. Lando Norris (McLaren) 186pts",
       "      5. Charles Leclerc (Ferrari) 167pts",
-      "   ✅ Azerbaijan Grand Prix | Baku City Circuit | Sep 24-26 [Next GP]",
+      "   ✅ Azerbaijan Grand Prix | Baku City Circuit | Sep 24-26 [This Week]",
       "      📅 09.24 17:30 KST | FP1",
       "      📅 09.24 21:00 KST | FP2",
       "      📅 09.25 17:30 KST | FP3",
