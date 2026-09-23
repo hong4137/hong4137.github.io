@@ -1,9 +1,9 @@
 {
-  "updated": "2026-09-23 12:51:03 KST",
+  "updated": "2026-09-23 19:59:57 KST",
   "epl": {
-    "matchday": 5,
-    "selected_round": 5,
-    "display_matchday": "R5",
+    "matchday": 6,
+    "selected_round": 6,
+    "display_matchday": "R6",
     "leader": "Manchester City",
     "top4": [
       "Manchester City",
@@ -13,98 +13,100 @@
     ],
     "matches": [
       {
-        "match_id": 560586,
-        "home": "Brighton & Hove Albion",
-        "away": "Arsenal",
-        "kst_time": "09.19 23:00 (KST)",
-        "uk_time": "Saturday 15:00 (UK)",
+        "match_id": 560600,
+        "home": "Manchester United",
+        "away": "Tottenham",
+        "kst_time": "10.11 01:30 (KST)",
+        "uk_time": "Saturday 17:30 (UK)",
         "local": "",
         "rules": [
-          "Top Tier",
-          "Challenger"
+          "Big Match"
         ],
-        "rule_str": "Top Tier, Challenger",
-        "matchday": 5,
-        "status": "FINISHED",
-        "score": "3-0"
+        "rule_str": "Big Match",
+        "matchday": 6,
+        "status": "SCHEDULED",
+        "score": "-"
       },
       {
-        "match_id": 560583,
-        "home": "Fulham",
-        "away": "Manchester United",
-        "kst_time": "09.21 00:30 (KST)",
+        "match_id": 560598,
+        "home": "Liverpool",
+        "away": "Manchester City",
+        "kst_time": "10.12 00:30 (KST)",
         "uk_time": "Sunday 16:30 (UK)",
         "local": "",
         "rules": [
-          "Prime Time"
-        ],
-        "rule_str": "Prime Time",
-        "matchday": 5,
-        "status": "FINISHED",
-        "score": "1-1"
-      },
-      {
-        "match_id": 560590,
-        "home": "Manchester City",
-        "away": "Sunderland AFC",
-        "kst_time": "09.20 22:00 (KST)",
-        "uk_time": "Sunday 14:00 (UK)",
-        "local": "",
-        "rules": [
+          "Big Match",
+          "Prime Time",
           "Leader"
         ],
-        "rule_str": "Leader",
-        "matchday": 5,
-        "status": "FINISHED",
-        "score": "5-3"
+        "rule_str": "Big Match, Prime Time, Leader",
+        "matchday": 6,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 560593,
+        "home": "Arsenal",
+        "away": "Leeds United",
+        "kst_time": "10.10 20:30 (KST)",
+        "uk_time": "Saturday 12:30 (UK)",
+        "local": "",
+        "rules": [
+          "Early KO"
+        ],
+        "rule_str": "Early KO",
+        "matchday": 6,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ],
     "selected_matches": [
       {
-        "match_id": 560586,
-        "home": "Brighton & Hove Albion",
-        "away": "Arsenal",
-        "kst_time": "09.19 23:00 (KST)",
-        "uk_time": "Saturday 15:00 (UK)",
+        "match_id": 560600,
+        "home": "Manchester United",
+        "away": "Tottenham",
+        "kst_time": "10.11 01:30 (KST)",
+        "uk_time": "Saturday 17:30 (UK)",
         "local": "",
         "rules": [
-          "Top Tier",
-          "Challenger"
+          "Big Match"
         ],
-        "rule_str": "Top Tier, Challenger",
-        "matchday": 5,
-        "status": "FINISHED",
-        "score": "3-0"
+        "rule_str": "Big Match",
+        "matchday": 6,
+        "status": "SCHEDULED",
+        "score": "-"
       },
       {
-        "match_id": 560583,
-        "home": "Fulham",
-        "away": "Manchester United",
-        "kst_time": "09.21 00:30 (KST)",
+        "match_id": 560598,
+        "home": "Liverpool",
+        "away": "Manchester City",
+        "kst_time": "10.12 00:30 (KST)",
         "uk_time": "Sunday 16:30 (UK)",
         "local": "",
         "rules": [
-          "Prime Time"
-        ],
-        "rule_str": "Prime Time",
-        "matchday": 5,
-        "status": "FINISHED",
-        "score": "1-1"
-      },
-      {
-        "match_id": 560590,
-        "home": "Manchester City",
-        "away": "Sunderland AFC",
-        "kst_time": "09.20 22:00 (KST)",
-        "uk_time": "Sunday 14:00 (UK)",
-        "local": "",
-        "rules": [
+          "Big Match",
+          "Prime Time",
           "Leader"
         ],
-        "rule_str": "Leader",
-        "matchday": 5,
-        "status": "FINISHED",
-        "score": "5-3"
+        "rule_str": "Big Match, Prime Time, Leader",
+        "matchday": 6,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 560593,
+        "home": "Arsenal",
+        "away": "Leeds United",
+        "kst_time": "10.10 20:30 (KST)",
+        "uk_time": "Saturday 12:30 (UK)",
+        "local": "",
+        "rules": [
+          "Early KO"
+        ],
+        "rule_str": "Early KO",
+        "matchday": 6,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ]
   },
@@ -232,18 +234,18 @@
   },
   "tennis": {
     "recent": {
-      "event": "-",
-      "opponent": "-",
-      "result": "-",
-      "score": "-",
-      "date": "-"
+      "event": "US Open, Men",
+      "opponent": "Ben Shelton",
+      "result": "L",
+      "score": "7-6, 1-6, 3-6, 6-1, 6-7",
+      "date": "Sep 9"
     },
     "next": {
-      "event": "-",
+      "event": "Shanghai Masters",
       "detail": "-",
-      "match_time": "TBD",
-      "tournament_dates": "",
-      "status": "-"
+      "match_time": "Oct 5",
+      "tournament_dates": "Oct 5 - 12",
+      "status": "Masters"
     }
   },
   "korean_players": [
@@ -284,7 +286,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-23 12:51:03 (KST)",
+      "🚀 [Start] 2026-09-23 19:59:57 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -293,7 +295,7 @@
       "\n⚽ [Step 1/5] Premier League 순위...",
       "   ✅ 1위: Manchester City",
       "   ✅ Top 4: Manchester City, Arsenal, Brighton & Hove Albion, Brentford",
-      "   ✅ 현재 라운드: R5",
+      "   ✅ 현재 라운드: R6",
       "\n⚽ [Step 2/5] Premier League 경기 선정 (v2.4)...",
       "   [티어 우선순위]",
       "   T1. Big Match: Big 6 vs Big 6",
@@ -303,11 +305,21 @@
       "   T5. Early KO: 토요일 12:30 UK",
       "   T6. Leader: 1위 팀 포함",
       "   [최대 선정: 3경기]",
-      "   📋 전체: 10경기 (라운드: [5])",
-      "   🎯 선정 대상: R5 (10경기)",
-      "   📊 상태별: {'FINISHED': 10}",
-      "   🔄 R5 경기 모두 종료 → 새로 선정 불필요",
-      "   ✅ 기존 선정 유지: 3경기 (R5)",
+      "   📋 전체: 10경기 (라운드: [6])",
+      "   🎯 선정 대상: R6 (10경기)",
+      "   📊 상태별: {'TIMED': 10}",
+      "   🔄 라운드 변경: R5 → R6 (새로 선정)",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🏆 R6에서 3경기 선정:",
+      "      • [T1] Manchester United vs Tottenham [Big Match] 10.11 01:30 (KST)",
+      "      • [T1] Liverpool vs Manchester City [Big Match, Prime Time, Leader] 10.12 00:30 (KST)",
+      "      • [T5] Arsenal vs Leeds United [Early KO] 10.10 20:30 (KST)",
+      "   ✅ 새로 선정됨: 3경기 (R6)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ✅ 전적: 38-46 | 순위: -",
@@ -336,11 +348,12 @@
       "   ✅ 김민재 (Bayern): vs FC Augsburg | 10.10 22:30 KST",
       "   ✅ 손흥민 (LAFC): vs FC Dallas | 09.27 09:30 KST",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
-      "   ⚠️ Web App 타임아웃",
-      "   ⚠️ Web App 실패 → 기본값",
+      "   ✅ Web App 응답:",
+      "      Recent: US Open, Men vs Ben Shelton L (7-6, 1-6, 3-6, 6-1, 6-7)",
+      "      Next: Shanghai Masters | Oct 5",
       "   📊 최종:",
-      "      Recent: - vs - - (-) | -",
-      "      Next: - | - | TBD",
+      "      Recent: US Open, Men vs Ben Shelton L (7-6, 1-6, 3-6, 6-1, 6-7) | Sep 9",
+      "      Next: Shanghai Masters | - | Oct 5",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
       "   ✅ 해외파 9명 수집, 핫이슈 1건",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
