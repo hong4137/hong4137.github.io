@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-24 12:43:34 KST",
+  "updated": "2026-09-24 20:18:59 KST",
   "hot_issues": [
     {
       "headline": "황인범 1골 (FC Porto 3-1 승) · 09.21",
@@ -11,18 +11,18 @@
       "player": "황희찬",
       "team": "FC Schalke 04",
       "recent": {
-        "event": "Bundesliga",
-        "opponent": "SV 07 Elversberg",
-        "venue": "home",
-        "date": "09.21",
+        "event": "Int. Friendly Games",
+        "opponent": "South Korea",
+        "venue": "away",
+        "date": "09.24",
         "team_score": 0,
         "opponent_score": 0,
         "result": "D",
-        "player_status": "PLAYED",
-        "minutes": 20,
+        "player_status": "DNP",
+        "minutes": 0,
         "goals": 0,
         "assists": 0,
-        "rating": 6.5
+        "rating": null
       },
       "next": null
     },
@@ -30,18 +30,18 @@
       "player": "이재성",
       "team": "1. FSV Mainz 05",
       "recent": {
-        "event": "Bundesliga",
-        "opponent": "Borussia M'gladbach",
+        "event": "Int. Friendly Games",
+        "opponent": "South Korea",
         "venue": "away",
-        "date": "09.19",
-        "team_score": 4,
-        "opponent_score": 3,
-        "result": "W",
+        "date": "09.24",
+        "team_score": 0,
+        "opponent_score": 0,
+        "result": "D",
         "player_status": "PLAYED",
-        "minutes": 65,
+        "minutes": 9,
         "goals": 0,
         "assists": 0,
-        "rating": 6.9
+        "rating": 6.7
       },
       "next": null
     },
@@ -87,18 +87,18 @@
       "player": "오현규",
       "team": "Beşiktaş JK",
       "recent": {
-        "event": "Trendyol Süper Lig",
-        "opponent": "Amed Sportif Faaliyetler",
+        "event": "Int. Friendly Games",
+        "opponent": "South Korea",
         "venue": "away",
-        "date": "09.21",
-        "team_score": 2,
-        "opponent_score": 3,
-        "result": "L",
+        "date": "09.24",
+        "team_score": 0,
+        "opponent_score": 0,
+        "result": "D",
         "player_status": "PLAYED",
-        "minutes": 11,
+        "minutes": 9,
         "goals": 0,
         "assists": 0,
-        "rating": 6.4
+        "rating": 6.5
       },
       "next": null
     },
@@ -106,18 +106,18 @@
       "player": "백승호",
       "team": "Birmingham City",
       "recent": {
-        "event": "Championship",
-        "opponent": "Middlesbrough",
-        "venue": "home",
-        "date": "09.19",
-        "team_score": 2,
-        "opponent_score": 2,
+        "event": "Int. Friendly Games",
+        "opponent": "South Korea",
+        "venue": "away",
+        "date": "09.24",
+        "team_score": 0,
+        "opponent_score": 0,
         "result": "D",
-        "player_status": "PLAYED",
-        "minutes": 12,
+        "player_status": "DNP",
+        "minutes": 0,
         "goals": 0,
         "assists": 0,
-        "rating": 6.3
+        "rating": null
       },
       "next": null
     },
@@ -169,18 +169,18 @@
       "player": "설영우",
       "team": "FC Augsburg",
       "recent": {
-        "event": "Bundesliga",
-        "opponent": "SV Werder Bremen",
+        "event": "Int. Friendly Games",
+        "opponent": "South Korea",
         "venue": "away",
-        "date": "09.19",
-        "team_score": 2,
-        "opponent_score": 3,
-        "result": "L",
+        "date": "09.24",
+        "team_score": 0,
+        "opponent_score": 0,
+        "result": "D",
         "player_status": "PLAYED",
-        "minutes": 16,
+        "minutes": 9,
         "goals": 0,
         "assists": 0,
-        "rating": 6.1
+        "rating": 6.4
       },
       "next": null
     }
