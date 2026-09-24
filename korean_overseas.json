@@ -1,9 +1,13 @@
 {
-  "updated": "2026-09-24 20:18:59 KST",
+  "updated": "2026-09-25 01:42:48 KST",
   "hot_issues": [
     {
       "headline": "황인범 1골 (FC Porto 3-1 승) · 09.21",
       "detail": "Liga Portugal Betclic vs Benfica | 52분 출전 | 평점 7.8"
+    },
+    {
+      "headline": "오현규 1골 (Beşiktaş JK 0-3 패) · 09.24",
+      "detail": "Int. Friendly Games vs South Korea | 75분 출전 | 평점 8.1"
     }
   ],
   "players": [
@@ -16,13 +20,13 @@
         "venue": "away",
         "date": "09.24",
         "team_score": 0,
-        "opponent_score": 0,
-        "result": "D",
-        "player_status": "DNP",
-        "minutes": 0,
+        "opponent_score": 3,
+        "result": "L",
+        "player_status": "PLAYED",
+        "minutes": 25,
         "goals": 0,
         "assists": 0,
-        "rating": null
+        "rating": 6.9
       },
       "next": null
     },
@@ -35,13 +39,13 @@
         "venue": "away",
         "date": "09.24",
         "team_score": 0,
-        "opponent_score": 0,
-        "result": "D",
+        "opponent_score": 3,
+        "result": "L",
         "player_status": "PLAYED",
-        "minutes": 9,
+        "minutes": 90,
         "goals": 0,
         "assists": 0,
-        "rating": 6.7
+        "rating": 6.6
       },
       "next": null
     },
@@ -92,13 +96,13 @@
         "venue": "away",
         "date": "09.24",
         "team_score": 0,
-        "opponent_score": 0,
-        "result": "D",
+        "opponent_score": 3,
+        "result": "L",
         "player_status": "PLAYED",
-        "minutes": 9,
-        "goals": 0,
+        "minutes": 75,
+        "goals": 1,
         "assists": 0,
-        "rating": 6.5
+        "rating": 8.1
       },
       "next": null
     },
@@ -111,8 +115,8 @@
         "venue": "away",
         "date": "09.24",
         "team_score": 0,
-        "opponent_score": 0,
-        "result": "D",
+        "opponent_score": 3,
+        "result": "L",
         "player_status": "DNP",
         "minutes": 0,
         "goals": 0,
@@ -174,13 +178,13 @@
         "venue": "away",
         "date": "09.24",
         "team_score": 0,
-        "opponent_score": 0,
-        "result": "D",
+        "opponent_score": 3,
+        "result": "L",
         "player_status": "PLAYED",
-        "minutes": 9,
+        "minutes": 90,
         "goals": 0,
         "assists": 0,
-        "rating": 6.4
+        "rating": 6.6
       },
       "next": null
     }
