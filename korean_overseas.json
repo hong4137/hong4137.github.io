@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25 12:59:09 KST",
+  "updated": "2026-09-25 20:23:59 KST",
   "hot_issues": [
     {
       "headline": "황인범 1골 (FC Porto 3-1 승) · 09.21",
@@ -7,7 +7,7 @@
     },
     {
       "headline": "오현규 1골 (Beşiktaş JK 0-3 패) · 09.24",
-      "detail": "Int. Friendly Games vs South Korea | 75분 출전 | 평점 8.1"
+      "detail": "International Friendly Games vs South Korea | 75분 출전 | 평점 8.1"
     }
   ],
   "players": [
@@ -15,7 +15,7 @@
       "player": "황희찬",
       "team": "FC Schalke 04",
       "recent": {
-        "event": "Int. Friendly Games",
+        "event": "International Friendly Games",
         "opponent": "South Korea",
         "venue": "away",
         "date": "09.24",
@@ -34,7 +34,7 @@
       "player": "이재성",
       "team": "1. FSV Mainz 05",
       "recent": {
-        "event": "Int. Friendly Games",
+        "event": "International Friendly Games",
         "opponent": "South Korea",
         "venue": "away",
         "date": "09.24",
@@ -72,14 +72,14 @@
       "player": "배준호",
       "team": "Stoke City",
       "recent": {
-        "event": "Asian Games, Group D",
+        "event": "Asian Games, Knockout stage",
         "opponent": "South Korea U23",
         "venue": "away",
-        "date": "09.22",
+        "date": "09.25",
         "team_score": 0,
-        "opponent_score": 2,
+        "opponent_score": 1,
         "result": "L",
-        "player_status": "DNP",
+        "player_status": "NOT_IN_SQUAD",
         "minutes": 0,
         "goals": 0,
         "assists": 0,
@@ -91,7 +91,7 @@
       "player": "오현규",
       "team": "Beşiktaş JK",
       "recent": {
-        "event": "Int. Friendly Games",
+        "event": "International Friendly Games",
         "opponent": "South Korea",
         "venue": "away",
         "date": "09.24",
@@ -110,7 +110,7 @@
       "player": "백승호",
       "team": "Birmingham City",
       "recent": {
-        "event": "Int. Friendly Games",
+        "event": "International Friendly Games",
         "opponent": "South Korea",
         "venue": "away",
         "date": "09.24",
@@ -129,14 +129,14 @@
       "player": "엄지성",
       "team": "Swansea City",
       "recent": {
-        "event": "Asian Games, Group D",
+        "event": "Asian Games, Knockout stage",
         "opponent": "South Korea U23",
         "venue": "away",
-        "date": "09.22",
+        "date": "09.25",
         "team_score": 0,
-        "opponent_score": 2,
+        "opponent_score": 1,
         "result": "L",
-        "player_status": "DNP",
+        "player_status": "NOT_IN_SQUAD",
         "minutes": 0,
         "goals": 0,
         "assists": 0,
@@ -173,7 +173,7 @@
       "player": "설영우",
       "team": "FC Augsburg",
       "recent": {
-        "event": "Int. Friendly Games",
+        "event": "International Friendly Games",
         "opponent": "South Korea",
         "venue": "away",
         "date": "09.24",
