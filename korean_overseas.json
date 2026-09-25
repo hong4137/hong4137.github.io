@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25 20:23:59 KST",
+  "updated": "2026-09-26 01:47:50 KST",
   "hot_issues": [
     {
       "headline": "황인범 1골 (FC Porto 3-1 승) · 09.21",
@@ -77,9 +77,9 @@
         "venue": "away",
         "date": "09.25",
         "team_score": 0,
-        "opponent_score": 1,
+        "opponent_score": 4,
         "result": "L",
-        "player_status": "NOT_IN_SQUAD",
+        "player_status": "DNP",
         "minutes": 0,
         "goals": 0,
         "assists": 0,
@@ -104,7 +104,13 @@
         "assists": 0,
         "rating": 8.1
       },
-      "next": null
+      "next": {
+        "event": "Trendyol Süper Lig",
+        "opponent": "Kocaelispor",
+        "venue": "home",
+        "date": "10.12",
+        "time_kst": "01:00"
+      }
     },
     {
       "player": "백승호",
@@ -134,9 +140,9 @@
         "venue": "away",
         "date": "09.25",
         "team_score": 0,
-        "opponent_score": 1,
+        "opponent_score": 4,
         "result": "L",
-        "player_status": "NOT_IN_SQUAD",
+        "player_status": "DNP",
         "minutes": 0,
         "goals": 0,
         "assists": 0,
