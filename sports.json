@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-26 19:59:32 KST",
+  "updated": "2026-09-27 00:59:19 KST",
   "epl": {
     "matchday": 6,
     "selected_round": 6,
@@ -122,50 +122,50 @@
   },
   "f1": {
     "next_race": {
-      "round": 17,
-      "name": "Azerbaijan Grand Prix",
-      "circuit": "Baku City Circuit",
-      "country": "Azerbaijan",
-      "date": "Sep 24-26",
-      "date_from": "2026-09-24",
-      "date_to": "2026-09-26",
-      "status": "This Week",
-      "sprint": false
+      "round": 18,
+      "name": "Singapore Grand Prix",
+      "circuit": "Marina Bay Street Circuit",
+      "country": "Singapore",
+      "date": "Oct 09-11",
+      "date_from": "2026-10-09",
+      "date_to": "2026-10-11",
+      "status": "Next GP",
+      "sprint": true
     },
     "schedule": [
       {
         "name": "FP1",
-        "date": "09.24",
-        "day_local": "Thu",
-        "kst_time": "17:30",
-        "local_time": "12:30"
-      },
-      {
-        "name": "FP2",
-        "date": "09.24",
-        "day_local": "Thu",
-        "kst_time": "21:00",
-        "local_time": "16:00"
-      },
-      {
-        "name": "FP3",
-        "date": "09.25",
+        "date": "10.09",
         "day_local": "Fri",
-        "kst_time": "17:30",
-        "local_time": "12:30"
+        "kst_time": "14:30",
+        "local_time": "13:30"
+      },
+      {
+        "name": "Sprint Qualifying",
+        "date": "10.09",
+        "day_local": "Fri",
+        "kst_time": "18:30",
+        "local_time": "17:30"
+      },
+      {
+        "name": "Sprint",
+        "date": "10.10",
+        "day_local": "Sat",
+        "kst_time": "13:00",
+        "local_time": "12:00"
       },
       {
         "name": "Qualifying",
-        "date": "09.25",
-        "day_local": "Fri",
-        "kst_time": "21:00",
+        "date": "10.10",
+        "day_local": "Sat",
+        "kst_time": "17:00",
         "local_time": "16:00"
       },
       {
         "name": "Race",
-        "date": "09.26",
-        "day_local": "Sat",
-        "kst_time": "20:00",
+        "date": "10.11",
+        "day_local": "Sun",
+        "kst_time": "16:00",
         "local_time": "15:00"
       }
     ],
@@ -174,19 +174,19 @@
         "pos": 1,
         "driver": "Kimi Antonelli",
         "team": "Mercedes",
-        "points": 292
+        "points": 302
       },
       {
         "pos": 2,
         "driver": "George Russell",
         "team": "Mercedes",
-        "points": 211
+        "points": 236
       },
       {
         "pos": 3,
         "driver": "Lewis Hamilton",
         "team": "Ferrari",
-        "points": 191
+        "points": 199
       },
       {
         "pos": 4,
@@ -198,13 +198,13 @@
         "pos": 5,
         "driver": "Charles Leclerc",
         "team": "Ferrari",
-        "points": 167
+        "points": 179
       },
       {
         "pos": 6,
         "driver": "Max Verstappen",
         "team": "Red Bull",
-        "points": 145
+        "points": 163
       },
       {
         "pos": 7,
@@ -216,7 +216,7 @@
         "pos": 8,
         "driver": "Isack Hadjar",
         "team": "Racing Bulls",
-        "points": 71
+        "points": 86
       },
       {
         "pos": 9,
@@ -286,7 +286,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-26 19:59:32 (KST)",
+      "🚀 [Start] 2026-09-27 00:59:19 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -330,17 +330,17 @@
       "   [F1] 드라이버 순위 조회...",
       "      ✅ 순위 직접 파싱 성공 (www.formula1.com): 22명",
       "   ✅ 순위: 10명",
-      "      1. Kimi Antonelli (Mercedes) 292pts",
-      "      2. George Russell (Mercedes) 211pts",
-      "      3. Lewis Hamilton (Ferrari) 191pts",
+      "      1. Kimi Antonelli (Mercedes) 302pts",
+      "      2. George Russell (Mercedes) 236pts",
+      "      3. Lewis Hamilton (Ferrari) 199pts",
       "      4. Lando Norris (McLaren) 186pts",
-      "      5. Charles Leclerc (Ferrari) 167pts",
-      "   ✅ Azerbaijan Grand Prix | Baku City Circuit | Sep 24-26 [This Week]",
-      "      📅 09.24 17:30 KST | FP1",
-      "      📅 09.24 21:00 KST | FP2",
-      "      📅 09.25 17:30 KST | FP3",
-      "      📅 09.25 21:00 KST | Qualifying",
-      "      📅 09.26 20:00 KST | Race",
+      "      5. Charles Leclerc (Ferrari) 179pts",
+      "   ✅ Singapore Grand Prix | Marina Bay Street Circuit | Oct 09-11 [Next GP]",
+      "      📅 10.09 14:30 KST | FP1",
+      "      📅 10.09 18:30 KST | Sprint Qualifying",
+      "      📅 10.10 13:00 KST | Sprint",
+      "      📅 10.10 17:00 KST | Qualifying",
+      "      📅 10.11 16:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...",
       "   ✅ 이강인 (ATM): vs Deportivo Alavés | 10.10 23:15 KST",
