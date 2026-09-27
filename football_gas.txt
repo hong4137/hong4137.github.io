@@ -1,0 +1,269 @@
+// ============================================
+// 해외파 코리안리거 돋보기 — Football Data API v1
+// Sofascore 기반, Sheets 불필요 (CacheService로 대체)
+// ============================================
+// 설계 요약:
+// - Google Sheets/트리거로 예산 관리하던 API-Football 대신, 무료·키 불필요한
+//   Sofascore를 테니스(Alcaraz) 스크립트와 같은 방식으로 사용
+// - 선수 이름으로 직접 검색 → 개인 sofascore player_id 확보
+//   (이적해도 항상 최신 소속팀 자동 반영, config 시트에 팀 고정할 필요 없음)
+// - 세트/스코어 존재 여부로 완료 경기(recent) vs 예정 경기(next) 자체 판별
+//   (Sofascore의 status 필드명을 추측해 의존하지 않음 — 테니스 v7과 동일 원칙)
+// - Sheets 없이 CacheService(30분 TTL)로 캐싱, 15분마다 트리거로 미리 갱신
+//   → 사용자가 실제로 페이지를 열 때는 항상 캐시된 빠른 응답만 받음
+// - "미확인" 상태 없음: PLAYED(출전) / DNP(스쿼드 포함, 0분) / NOT_IN_SQUAD(스탯 없음)
+// ============================================
+
+var SOFASCORE_API = 'https://www.sofascore.com/api/v1';
+var CACHE_KEY = 'korean_overseas_football_v1';
+var CACHE_TTL_SECONDS = 1800; // 30분
+
+var PLAYERS = [
+  { name: '황희찬', search: 'Hwang Hee-chan' },
+  { name: '이재성', search: 'Lee Jae-sung' },
+  { name: '황인범', search: 'Hwang In-beom' },
+  { name: '배준호', search: 'Bae Jun-ho' },
+  { name: '오현규', search: 'Oh Hyeon-gyu' },
+  { name: '백승호', search: 'Paik Seung-ho' },
+  { name: '엄지성', search: 'Eom Ji-sung' },
+  { name: '조규성', search: 'Cho Gue-sung' },
+  { name: '설영우', search: 'Seol Young-woo' }
+];
+
+// ============================================
+// 진입점
+// ============================================
+function doGet() {
+  var cache = CacheService.getScriptCache();
+  var cached = cache.get(CACHE_KEY);
+  if (cached) {
+    return ContentService.createTextOutput(cached).setMimeType(ContentService.MimeType.JSON);
+  }
+  var json = JSON.stringify(buildAllPlayersData_());
+  cache.put(CACHE_KEY, json, CACHE_TTL_SECONDS);
+  return ContentService.createTextOutput(json).setMimeType(ContentService.MimeType.JSON);
+}
+
+// 트리거가 주기적으로 호출 — 캐시를 항상 미리 채워둠(사용자는 느린 요청을 절대 안 겪음)
+function refreshCache() {
+  var json = JSON.stringify(buildAllPlayersData_());
+  CacheService.getScriptCache().put(CACHE_KEY, json, CACHE_TTL_SECONDS);
+  Logger.log('✅ 캐시 갱신 완료: ' + json.length + ' bytes');
+}
+
+// 최초 1회 수동 실행 — 15분마다 refreshCache 자동 실행되도록 등록
+function setupTrigger() {
+  ScriptApp.getProjectTriggers().forEach(function (t) {
+    if (t.getHandlerFunction() === 'refreshCache') ScriptApp.deleteTrigger(t);
+  });
+  ScriptApp.newTrigger('refreshCache').timeBased().everyMinutes(15).create();
+  Logger.log('✅ 트리거 등록 완료: refreshCache, 15분마다 자동 실행');
+}
+
+// 테스트용 — 캐시 안 거치고 직접 실행해서 로그로 확인
+function testFootball() {
+  Logger.log(JSON.stringify(buildAllPlayersData_(), null, 2));
+}
+
+// =====================================================
+// [임시 디버그] 조규성 브뢴뷔전 스탯 원본 확인용 — 확인 후 삭제
+// =====================================================
+function debugChoGueSungStats() {
+  var searchData = fetchJsonSafe_('/search/all?q=' + encodeURIComponent('Cho Gue-sung'));
+  var candidates = ((searchData && searchData.results) || []).filter(function (r) { return r.type === 'player'; });
+  if (candidates.length === 0) { Logger.log('선수 검색 실패'); return; }
+  var playerId = candidates[0].entity.id;
+  Logger.log('playerId=' + playerId + ', team=' + (candidates[0].entity.team && candidates[0].entity.team.name));
+
+  // last 이벤트 여러 개 조회 (0, 1페이지) — 브뢴뷔전(09.15)이 며칠 지났으니 최신 목록에 없을 수도 있음
+  ['0', '1'].forEach(function (page) {
+    var evData = fetchJsonSafe_('/player/' + playerId + '/events/last/' + page);
+    (evData && evData.events || []).forEach(function (ev) {
+      var opp = (ev.homeTeam && ev.homeTeam.name) + ' vs ' + (ev.awayTeam && ev.awayTeam.name);
+      Logger.log('[last/' + page + '] ' + ev.id + ' | ' + opp + ' | ' + new Date(ev.startTimestamp * 1000).toISOString());
+      if (opp.indexOf('Br') >= 0 || opp.indexOf('ndby') >= 0) {
+        var statResp = fetchJsonSafe_('/event/' + ev.id + '/player/' + playerId + '/statistics');
+        Logger.log('>>> 브뢴뷔전 원본 스탯 전체: ' + JSON.stringify(statResp));
+      }
+    });
+  });
+}
+
+// ============================================
+// 전체 9명 데이터 구성
+// ============================================
+function buildAllPlayersData_() {
+  var result = { updated: getNowKstString_(), players: [] };
+  PLAYERS.forEach(function (p) {
+    try {
+      result.players.push(getPlayerData_(p));
+    } catch (e) {
+      Logger.log(p.name + ' 처리 오류: ' + e.message);
+      result.players.push({ player: p.name, team: '-', recent: null, next: null });
+    }
+    Utilities.sleep(300);
+  });
+  return result;
+}
+
+function getPlayerData_(player) {
+  var searchData = fetchJsonSafe_('/search/all?q=' + encodeURIComponent(player.search));
+  var candidates = ((searchData && searchData.results) || []).filter(function (r) {
+    return r.type === 'player';
+  });
+  if (candidates.length === 0) {
+    Logger.log(player.name + ': 검색 결과 없음(' + player.search + ')');
+    return { player: player.name, team: '-', recent: null, next: null };
+  }
+  var entity = candidates[0].entity;
+  var playerId = entity.id;
+  var teamId = entity.team && entity.team.id;
+  var team = (entity.team && entity.team.name) || '-';
+
+  var lastEvents = (fetchJsonSafe_('/player/' + playerId + '/events/last/0') || {}).events || [];
+  var nextEvents = (fetchJsonSafe_('/player/' + playerId + '/events/next/0') || {}).events || [];
+  var events = lastEvents.concat(nextEvents);
+
+  var recentEvent = pickRecentEvent_(events, teamId);
+  var nextEvent = pickNextEvent_(events, teamId);
+
+  return {
+    player: player.name,
+    team: team,
+    recent: recentEvent ? buildRecentMatch_(recentEvent, playerId, teamId) : null,
+    next: nextEvent ? buildNextMatch_(nextEvent, teamId) : null
+  };
+}
+
+// ============================================
+// recent/next 판별 — 스코어 존재 여부로 자체 판별(테니스 v7과 동일 원칙)
+// ============================================
+function isFinished_(ev) {
+  return !!(ev.homeScore && ev.homeScore.current !== undefined);
+}
+
+// 소속 클럽(teamId)이 실제로 관여한 경기인지 확인 — A매치/국가대표 경기 등 배제
+function involvesTeam_(ev, teamId) {
+  return !!(teamId && (
+    (ev.homeTeam && ev.homeTeam.id === teamId) ||
+    (ev.awayTeam && ev.awayTeam.id === teamId)
+  ));
+}
+
+function pickRecentEvent_(events, teamId) {
+  var finished = events.filter(function (ev) {
+    return isFinished_(ev) && involvesTeam_(ev, teamId);
+  });
+  if (finished.length === 0) return null;
+  finished.sort(function (a, b) { return b.startTimestamp - a.startTimestamp; });
+  return finished[0];
+}
+
+function pickNextEvent_(events, teamId) {
+  var now = Math.floor(Date.now() / 1000);
+  var pastBuffer = 6 * 60 * 60; // 진행중/막 시작한 경기 포함, 그보다 과거는 이상치로 제외
+  var upcoming = events.filter(function (ev) {
+    return !isFinished_(ev) && involvesTeam_(ev, teamId) && ev.startTimestamp >= (now - pastBuffer);
+  });
+  if (upcoming.length === 0) return null;
+  upcoming.sort(function (a, b) { return a.startTimestamp - b.startTimestamp; });
+  return upcoming[0];
+}
+
+// ============================================
+// recent 상세 (팀 스코어 + 선수 개인 출전 기록)
+// ============================================
+function buildRecentMatch_(ev, playerId, teamId) {
+  var isHome = ev.homeTeam && ev.homeTeam.id === teamId;
+  var opponent = isHome ? safeName_(ev.awayTeam) : safeName_(ev.homeTeam);
+  var teamScore = isHome ? ev.homeScore.current : ev.awayScore.current;
+  var oppScore = isHome ? ev.awayScore.current : ev.homeScore.current;
+  var result = teamScore > oppScore ? 'W' : (teamScore < oppScore ? 'L' : 'D');
+  var competition = (ev.tournament && ev.tournament.name) || '-';
+  var involvement = getPlayerInvolvement_(ev.id, playerId);
+
+  return {
+    event: competition,
+    opponent: opponent,
+    venue: isHome ? 'home' : 'away',
+    date: formatDateKst_(ev.startTimestamp),
+    team_score: teamScore,
+    opponent_score: oppScore,
+    result: result,
+    player_status: involvement.status,
+    minutes: involvement.minutes,
+    goals: involvement.goals,
+    assists: involvement.assists,
+    rating: involvement.rating
+  };
+}
+
+// 개인 스탯 endpoint로 출전 여부 판정 — "미확인" 상태 없음
+// PLAYED(출전, minutes>0) / DNP(스쿼드 포함, 0분) / NOT_IN_SQUAD(스탯 자체 없음)
+function getPlayerInvolvement_(eventId, playerId) {
+  var data = fetchJsonSafe_('/event/' + eventId + '/player/' + playerId + '/statistics');
+  if (!data || !data.statistics) {
+    return { status: 'NOT_IN_SQUAD', minutes: 0, goals: 0, assists: 0, rating: null };
+  }
+  var s = data.statistics;
+  var minutes = s.minutesPlayed || 0;
+  return {
+    status: minutes > 0 ? 'PLAYED' : 'DNP',
+    minutes: minutes,
+    goals: s.goals || 0,           // 0골이면 필드 자체가 없음 → 기본값 0 처리 필수
+    assists: s.goalAssist || 0,    // 필드명이 assists가 아니라 goalAssist
+    rating: s.rating || null
+  };
+}
+
+// ============================================
+// next 상세
+// ============================================
+function buildNextMatch_(ev, teamId) {
+  var isHome = ev.homeTeam && ev.homeTeam.id === teamId;
+  var opponent = isHome ? safeName_(ev.awayTeam) : safeName_(ev.homeTeam);
+  var competition = (ev.tournament && ev.tournament.name) || '-';
+
+  return {
+    event: competition,
+    opponent: opponent,
+    venue: isHome ? 'home' : 'away',
+    date: formatDateKst_(ev.startTimestamp),
+    time_kst: formatTimeKst_(ev.startTimestamp)
+  };
+}
+
+// ============================================
+// 유틸리티
+// ============================================
+function safeName_(team) {
+  return (team && team.name) || '-';
+}
+
+function fetchJsonSafe_(path) {
+  try {
+    var resp = UrlFetchApp.fetch(SOFASCORE_API + path, {
+      headers: { 'User-Agent': 'Mozilla/5.0', 'Accept': 'application/json' },
+      muteHttpExceptions: true
+    });
+    if (resp.getResponseCode() !== 200) return null;
+    return JSON.parse(resp.getContentText());
+  } catch (e) {
+    Logger.log(path + ' 오류: ' + e.message);
+    return null;
+  }
+}
+
+function formatDateKst_(ts) {
+  if (!ts) return '-';
+  return Utilities.formatDate(new Date(ts * 1000), 'Asia/Seoul', 'MM.dd');
+}
+
+function formatTimeKst_(ts) {
+  if (!ts) return '-';
+  return Utilities.formatDate(new Date(ts * 1000), 'Asia/Seoul', 'HH:mm');
+}
+
+function getNowKstString_() {
+  return Utilities.formatDate(new Date(), 'Asia/Seoul', 'yyyy-MM-dd HH:mm') + ' KST';
+}

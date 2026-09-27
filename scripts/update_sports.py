@@ -135,6 +135,13 @@ def build_football_hot_issues(players):
         goals = recent.get('goals', 0) or 0
         assists = recent.get('assists', 0) or 0
         rating = recent.get('rating')
+        team_score = recent.get('team_score', 0) or 0
+
+        # sanity check: 팀 스코어보다 개인 골/도움이 많으면 데이터 소스 불일치 — 이 항목은 스킵
+        if goals > team_score or assists > team_score:
+            log(f"   ⚠️ 해외파 sanity check 실패: {p.get('player','-')} {goals}골{assists}도움 vs 팀 {team_score}골 → 핫이슈 제외")
+            continue
+
         if goals > 0 or assists > 0 or (rating and rating >= 8.0):
             # v3.2: 접힌 상태에서 팀 이름만 보이고 어떤 선수인지 안 보이던 문제 수정
             # → 헤드라인을 선수 중심으로, 팀 결과는 괄호 안 보조 정보로
