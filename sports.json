@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-27 20:38:04 KST",
+  "updated": "2026-09-28 01:36:18 KST",
   "epl": {
     "matchday": 6,
     "selected_round": 6,
@@ -234,18 +234,18 @@
   },
   "tennis": {
     "recent": {
-      "event": "-",
-      "opponent": "-",
-      "result": "-",
-      "score": "-",
-      "date": "-"
+      "event": "US Open, Men",
+      "opponent": "Ben Shelton",
+      "result": "L",
+      "score": "7-6, 1-6, 3-6, 6-1, 6-7",
+      "date": "Sep 9"
     },
     "next": {
-      "event": "-",
+      "event": "Shanghai Masters",
       "detail": "-",
-      "match_time": "TBD",
-      "tournament_dates": "",
-      "status": "-"
+      "match_time": "Oct 5",
+      "tournament_dates": "Oct 5 - 12",
+      "status": "Masters"
     }
   },
   "korean_players": [
@@ -286,7 +286,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-09-27 20:38:04 (KST)",
+      "🚀 [Start] 2026-09-28 01:36:18 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -349,11 +349,12 @@
       "   ⚠️ 손흥민 기존 데이터 만료(과거 경기: 08.23) → 폴백으로 대체",
       "   🚨 손흥민 폴백 데이터도 만료됨(과거: 08.23 11:30) — KOREAN_PLAYERS_DEFAULT_FALLBACK 수동 갱신 필요! (vs Portland Timbers)",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
-      "   ⚠️ Web App 타임아웃",
-      "   ⚠️ Web App 실패 → 기본값",
+      "   ✅ Web App 응답:",
+      "      Recent: US Open, Men vs Ben Shelton L (7-6, 1-6, 3-6, 6-1, 6-7)",
+      "      Next: Shanghai Masters | Oct 5",
       "   📊 최종:",
-      "      Recent: - vs - - (-) | -",
-      "      Next: - | - | TBD",
+      "      Recent: US Open, Men vs Ben Shelton L (7-6, 1-6, 3-6, 6-1, 6-7) | Sep 9",
+      "      Next: Shanghai Masters | - | Oct 5",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
       "   ✅ 해외파 9명 수집, 핫이슈 1건",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
