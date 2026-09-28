@@ -163,14 +163,14 @@
         </div>
         <div class="menu-label">바로가기</div>
         <div style="display: flex; flex-direction: column; gap: 2px;">
-            <a href="https://hong4137.github.io/briefing/index.html" target="_blank" class="shortcut-item"><i class="fas fa-globe"></i><span>Briefing Site</span></a>
+            <a href="https://news.sharktalk.co.kr/" target="_blank" class="shortcut-item"><i class="fas fa-globe"></i><span>Briefing Site</span></a>
             <a href="https://hong4137.github.io/schooltodo" target="_blank" class="shortcut-item"><i class="fas fa-sticky-note"></i><span>School ToDo</span></a>
             <a href="https://cio.sharktalk.co.kr/" target="_blank" class="shortcut-item"><i class="fas fa-arrow-trend-up"></i><span>투자 노트</span></a>
             <a href="https://me.sharktalk.co.kr/datepicker/" target="_blank" class="shortcut-item"><i class="fas fa-calendar-check"></i><span>약속 잡기</span></a>
             <a href="https://ttimesvibe.github.io/main/" target="_blank" class="shortcut-item"><i class="fab fa-youtube"></i><span>티타임즈 CMS</span></a>
-            <a href="https://heatmap-navy.vercel.app/" target="_blank" class="shortcut-item"><i class="fab fa-usd"></i><span>Investment Map</span></a>
+            <a href="https://map.sharktalk.co.kr/" target="_blank" class="shortcut-item"><i class="fab fa-usd"></i><span>Investment Map</span></a>
             <a href="https://hong4137.github.io/market-watcher/" target="_blank" class="shortcut-item"><i class="fas fa-chart-line"></i><span>Market Watcher</span></a>
-            <a href="https://hong4137.github.io/Must-News/" target="_blank" class="shortcut-item"><i class="fas fa-newspaper"></i><span>Must News</span></a>
+            <a href="https://must.sharktalk.co.kr/" target="_blank" class="shortcut-item"><i class="fas fa-newspaper"></i><span>Must News</span></a>
             <a href="https://kid.sharktalk.co.kr/" target="_blank" class="shortcut-item"><i class="fas fa-book-open"></i><span>Reading Log</span></a>
             <a href="https://outlook.office.com/" target="_blank" class="shortcut-item"><i class="fas fa-envelope"></i><span>Outlook</span></a>
             <a href="https://www.linkedin.com/" target="_blank" class="shortcut-item"><i class="fab fa-linkedin"></i><span>LinkedIn</span></a>
@@ -394,7 +394,7 @@
         async function loadBriefingMenu() {
             const mc = document.getElementById('briefing-menu');
             try {
-                const r = await fetch('https://hong4137.github.io/briefing/list.json?v=' + Date.now()); if (!r.ok) throw new Error("fail"); const data = await r.json();
+                const r = await fetch('https://news.sharktalk.co.kr/list.json?v=' + Date.now()); if (!r.ok) throw new Error("fail"); const data = await r.json();
                 const g = {}; data.forEach(item => { let ym = (item.date && /^\d{4}-\d{2}/.test(item.date)) ? item.date.substring(0, 7) : 'special'; if (!g[ym]) g[ym] = []; g[ym].push(item); });
                 const sorted = Object.keys(g).sort((a, b) => { if (a === 'special') return -1; if (b === 'special') return 1; return b.localeCompare(a); });
                 let html = '';
