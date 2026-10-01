@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-01 13:47:19 KST",
+  "updated": "2026-10-01 21:39:55 KST",
   "epl": {
     "matchday": 6,
     "selected_round": 6,
@@ -234,16 +234,16 @@
   },
   "tennis": {
     "recent": {
-      "event": "US Open, Men",
-      "opponent": "Ben Shelton",
-      "result": "L",
-      "score": "7-6, 1-6, 3-6, 6-1, 6-7",
-      "date": "Sep 9"
+      "event": "Tokyo",
+      "opponent": "Alex Michelsen",
+      "result": "W",
+      "score": "7-6, 4-6, 6-1",
+      "date": "Oct 1"
     },
     "next": {
       "event": "Tokyo",
-      "detail": "R32 vs Alex Michelsen",
-      "match_time": "Oct 1 16:00 KST",
+      "detail": "R16 vs Matteo Arnaldi",
+      "match_time": "Oct 3 11:00 KST",
       "tournament_dates": "",
       "status": "-"
     }
@@ -286,7 +286,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-10-01 13:47:19 (KST)",
+      "🚀 [Start] 2026-10-01 21:39:55 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -348,13 +348,14 @@
       "   ✅ 손흥민 (LAFC): vs Vancouver Whitecaps | 10.11 11:30 KST",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
-      "      Recent: US Open, Men vs Ben Shelton L (7-6, 1-6, 3-6, 6-1, 6-7)",
-      "      Next: Tokyo | Oct 1",
+      "      Recent: Tokyo vs Alex Michelsen W (7-6, 4-6, 6-1)",
+      "      Next: Tokyo | Oct 3",
       "   📊 최종:",
-      "      Recent: US Open, Men vs Ben Shelton L (7-6, 1-6, 3-6, 6-1, 6-7) | Sep 9",
-      "      Next: Tokyo | R32 vs Alex Michelsen | Oct 1 16:00 KST",
+      "      Recent: Tokyo vs Alex Michelsen W (7-6, 4-6, 6-1) | Oct 1",
+      "      Next: Tokyo | R16 vs Matteo Arnaldi | Oct 3 11:00 KST",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
-      "   ✅ 해외파 9명 수집, 핫이슈 1건",
+      "   ⚠️ 해외파 Web App 호출 실패: 404",
+      "   ⚠️ 해외파 데이터 수집 실패 → 빈 값 유지",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
     ]
