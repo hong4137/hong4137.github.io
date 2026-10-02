@@ -1,36 +1,9 @@
 {
-  "generated_at": "2026-10-01 09:19 KST",
+  "generated_at": "2026-10-02 09:29 KST",
   "events": [
     {
-      "date": "2026-10-02",
-      "title": "미국 비농업 고용보고서 (NFP)",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/"
-    },
-    {
-      "date": "2026-10-04",
-      "title": "OPEC+ 장관급 회의",
-      "category": "geopolitical",
-      "importance": 4,
-      "impact": [
-        "oil",
-        "equities",
-        "USD"
-      ],
-      "consensus": "생산량 동결",
-      "source_url": "https://www.opec.org/"
-    },
-    {
       "date": "2026-10-05",
-      "title": "미국 ISM 서비스 PMI",
+      "title": "미국 ISM 서비스 PMI 발표",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -43,50 +16,21 @@
       "source_url": "https://www.ismworld.org/"
     },
     {
-      "date": "2026-10-07",
-      "title": "FOMC 의사록 공개 (9월 회의)",
-      "category": "fed_fomc",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.federalreserve.gov/"
-    },
-    {
-      "date": "2026-10-08",
-      "title": "미국 신규 실업수당 청구건수",
-      "category": "economic_data",
+      "date": "2026-10-13",
+      "title": "JP모건체이스 2026년 3분기 실적 발표",
+      "category": "earnings",
       "importance": 4,
       "impact": [
-        "VIX",
-        "yields",
         "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.dol.gov/"
-    },
-    {
-      "date": "2026-10-14",
-      "title": "미국 소비자물가지수 (CPI)",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
         "VIX",
-        "yields",
-        "equities",
-        "USD"
+        "yields"
       ],
-      "consensus": "3.7% YoY",
-      "source_url": "https://www.bls.gov/cpi/"
+      "consensus": "$5.88 EPS",
+      "source_url": "https://www.jpmorganchase.com/"
     },
     {
       "date": "2026-10-15",
-      "title": "미국 소매판매",
+      "title": "미국 소매판매 발표 (9월 데이터)",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -96,21 +40,7 @@
         "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.census.gov/retail/"
-    },
-    {
-      "date": "2026-10-15",
-      "title": "미국 생산자물가지수 (PPI)",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/ppi/"
+      "source_url": "https://www.census.gov/"
     }
   ]
 }
