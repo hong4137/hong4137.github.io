@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-05 13:40:02 KST",
+  "updated": "2026-10-05 22:55:52 KST",
   "epl": {
     "matchday": 6,
     "selected_round": 6,
@@ -235,15 +235,15 @@
   "tennis": {
     "recent": {
       "event": "Tokyo",
-      "opponent": "Denis Shapovalov",
+      "opponent": "Jaume Munar",
       "result": "W",
-      "score": "7-6, 2-1",
-      "date": "Oct 4"
+      "score": "5-7, 6-3, 6-1",
+      "date": "Oct 5"
     },
     "next": {
       "event": "Tokyo",
-      "detail": "SF vs Jaume Munar",
-      "match_time": "Oct 5 16:00 KST",
+      "detail": "F vs Jiri Lehečka",
+      "match_time": "Oct 6 18:00 KST",
       "tournament_dates": "",
       "status": "-"
     }
@@ -286,7 +286,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-10-05 13:40:02 (KST)",
+      "🚀 [Start] 2026-10-05 22:55:52 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -348,11 +348,11 @@
       "   ✅ 손흥민 (LAFC): vs Vancouver Whitecaps | 10.11 11:30 KST",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
-      "      Recent: Tokyo vs Denis Shapovalov W (7-6, 2-1)",
-      "      Next: Tokyo | Oct 5",
+      "      Recent: Tokyo vs Jaume Munar W (5-7, 6-3, 6-1)",
+      "      Next: Tokyo | Oct 6",
       "   📊 최종:",
-      "      Recent: Tokyo vs Denis Shapovalov W (7-6, 2-1) | Oct 4",
-      "      Next: Tokyo | SF vs Jaume Munar | Oct 5 16:00 KST",
+      "      Recent: Tokyo vs Jaume Munar W (5-7, 6-3, 6-1) | Oct 5",
+      "      Next: Tokyo | F vs Jiri Lehečka | Oct 6 18:00 KST",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
       "   ✅ 해외파 9명 수집, 핫이슈 1건",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
