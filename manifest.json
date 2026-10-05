@@ -1,5 +1,5 @@
 {
-  "name": "Hello, World! Dashboard",
+  "name": "SharkTalk Dashboard",
   "short_name": "Dashboard",
   "description": "Jae's personal dashboard - 날씨, 주식, 스포츠, 외신 브리핑",
   "start_url": "/",
