@@ -175,8 +175,6 @@
             <a href="https://ndx.sharktalk.co.kr/" target="_blank" class="shortcut-item"><i class="fas fa-chart-line"></i><span>Market Watcher</span></a>
             <a href="https://must.sharktalk.co.kr/" target="_blank" class="shortcut-item"><i class="fas fa-newspaper"></i><span>Must News</span></a>
             <a href="https://kid.sharktalk.co.kr/" target="_blank" class="shortcut-item"><i class="fas fa-book-open"></i><span>Reading Log</span></a>
-            <a href="https://outlook.office.com/" target="_blank" class="shortcut-item"><i class="fas fa-envelope"></i><span>Outlook</span></a>
-            <a href="https://www.linkedin.com/" target="_blank" class="shortcut-item"><i class="fab fa-linkedin"></i><span>LinkedIn</span></a>
         </div>
         <div style="margin-top: auto; padding-top: 20px;">
             <a href="https://github.com/hong4137" target="_blank" class="nav-item"><i class="fab fa-github"></i><span>GitHub Profile</span></a>
@@ -327,6 +325,7 @@
         let tempStocks = [];
 
         const DEFAULT_LINKS = [
+            { emoji: "💼", name: "LinkedIn", url: "https://www.linkedin.com/" },
             { emoji: "🟢", name: "수파베이스", url: "https://supabase.com/" },
             { emoji: "🟠", name: "클라우드플레어", url: "https://dash.cloudflare.com/" },
             { emoji: "🎬", name: "VOD 전달", url: "https://hong4137.github.io/mgmt-2026/" },
@@ -335,9 +334,25 @@
             { emoji: "🧠", name: "클로드", url: "https://claude.ai" },
             { emoji: "🟩", name: "네이버", url: "https://www.naver.com/" },
             { emoji: "🔵", name: "다음", url: "https://www.daum.net/" },
+            { emoji: "📧", name: "Outlook", url: "https://outlook.office.com/" },
             { emoji: "✉️", name: "지메일", url: "https://mail.google.com/" }
         ];
         let currentLinks = JSON.parse(localStorage.getItem('dashboard_links')) || DEFAULT_LINKS;
+        // 2026-10-07 사이드바 바로가기의 LinkedIn·Outlook 을 Quick Links 로 옮김.
+        // 이미 편집해 저장한 목록에도 한 번만 넣어 준다 (LinkedIn 은 맨 앞, Outlook 은 지메일 앞 — 없으면 맨 뒤)
+        try {
+            if (localStorage.getItem('dashboard_links') && !localStorage.getItem('dashboard_links_mig_20261007')) {
+                const has = (frag) => currentLinks.some(l => (l.url || '').includes(frag));
+                if (!has('linkedin.com')) currentLinks.unshift({ emoji: "💼", name: "LinkedIn", url: "https://www.linkedin.com/" });
+                if (!has('outlook.office.com')) {
+                    const gi = currentLinks.findIndex(l => (l.url || '').includes('mail.google.com'));
+                    const ol = { emoji: "📧", name: "Outlook", url: "https://outlook.office.com/" };
+                    if (gi >= 0) currentLinks.splice(gi, 0, ol); else currentLinks.push(ol);
+                }
+                localStorage.setItem('dashboard_links', JSON.stringify(currentLinks));
+                localStorage.setItem('dashboard_links_mig_20261007', '1');
+            }
+        } catch (e) { /* 저장소를 못 쓰면 기본 목록 그대로 */ }
         let tempLinks = [];
 
         function renderQuickLinks() {
