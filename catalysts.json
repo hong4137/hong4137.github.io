@@ -1,6 +1,18 @@
 {
-  "generated_at": "2026-10-06 10:38 KST",
+  "generated_at": "2026-10-07 09:19 KST",
   "events": [
+    {
+      "date": "2026-10-08",
+      "title": "미국 주간 신규 실업수당 청구",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.dol.gov/agencies/eta/unemployment-insurance-data"
+    },
     {
       "date": "2026-10-13",
       "title": "JPMorgan Chase (JPM) 2026년 3분기 실적 발표",
@@ -8,10 +20,24 @@
       "importance": 5,
       "impact": [
         "equities",
-        "yields"
+        "VIX"
       ],
-      "consensus": "EPS $5.84",
-      "source_url": "https://www.jpmorganchase.com/"
+      "consensus": "EPS $5.90, Revenue $51.19B",
+      "source_url": "https://www.jpmorganchase.com/ir"
+    },
+    {
+      "date": "2026-10-14",
+      "title": "미국 9월 소비자물가지수 (CPI) 발표",
+      "category": "economic_data",
+      "importance": 5,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bls.gov/cpi/"
     },
     {
       "date": "2026-10-14",
@@ -20,23 +46,50 @@
       "importance": 5,
       "impact": [
         "equities",
-        "yields"
+        "VIX"
       ],
-      "consensus": "EPS $1.17",
+      "consensus": "EPS $1.16, Revenue $30.79B",
       "source_url": "https://investor.bankofamerica.com/"
     },
     {
       "date": "2026-10-15",
-      "title": "미국 소매판매 (9월)",
+      "title": "미국 9월 생산자물가지수 (PPI) 발표",
       "category": "economic_data",
-      "importance": 5,
+      "importance": 4,
       "impact": [
+        "VIX",
+        "yields",
         "equities",
-        "USD",
-        "yields"
+        "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.census.gov/"
+      "source_url": "https://www.bls.gov/ppi/"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "미국 9월 소매판매 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.census.gov/retail/index.html"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "미국 주간 신규 실업수당 청구",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.dol.gov/agencies/eta/unemployment-insurance-data"
     },
     {
       "date": "2026-10-20",
@@ -44,10 +97,11 @@
       "category": "earnings",
       "importance": 5,
       "impact": [
-        "equities"
+        "equities",
+        "VIX"
       ],
-      "consensus": "EPS $0.82",
-      "source_url": "https://ir.netflix.net/"
+      "consensus": "EPS $0.82, Revenue $12.88B",
+      "source_url": "https://ir.netflix.com/"
     }
   ]
 }
