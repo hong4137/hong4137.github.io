@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-08 22:00:21 KST",
+  "updated": "2026-10-09 08:03:13 KST",
   "epl": {
     "matchday": 6,
     "selected_round": 6,
@@ -127,6 +127,15 @@
         "location": "away",
         "venue": "@ Los Angeles",
         "channel": ""
+      },
+      {
+        "opp": "Grizzlies",
+        "date": "10.24",
+        "kst_time": "11:00",
+        "local_time": "7:00 PM PT",
+        "location": "home",
+        "venue": "Chase Center",
+        "channel": ""
       }
     ]
   },
@@ -139,7 +148,7 @@
       "date": "Oct 09-11",
       "date_from": "2026-10-09",
       "date_to": "2026-10-11",
-      "status": "Next GP",
+      "status": "This Week",
       "sprint": true
     },
     "schedule": [
@@ -296,7 +305,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-10-08 22:00:21 (KST)",
+      "🚀 [Start] 2026-10-09 08:03:13 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -332,8 +341,9 @@
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ✅ 전적: 38-46 | 순위: -",
-      "   ✅ 다음 일정: 1경기",
+      "   ✅ 다음 일정: 2경기",
       "      ✈️ 10.22 vs Lakers | 11:00 KST | @ Los Angeles",
+      "      🏠 10.24 vs Grizzlies | 11:00 KST | Chase Center",
       "\n🏎️ [Step 4/5] F1 (v2.5: 순위 + 세부 스케줄)...",
       "   [F1] 세부 스케줄 조회...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
@@ -346,7 +356,7 @@
       "      3. Lewis Hamilton (Ferrari) 214pts",
       "      4. Charles Leclerc (Ferrari) 191pts",
       "      5. Lando Norris (McLaren) 188pts",
-      "   ✅ Singapore Grand Prix | Marina Bay Street Circuit | Oct 09-11 [Next GP]",
+      "   ✅ Singapore Grand Prix | Marina Bay Street Circuit | Oct 09-11 [This Week]",
       "      📅 10.09 14:30 KST | FP1",
       "      📅 10.09 18:30 KST | Sprint Qualifying",
       "      📅 10.10 13:00 KST | Sprint",
