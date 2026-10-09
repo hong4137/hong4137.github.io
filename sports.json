@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-09 14:08:46 KST",
+  "updated": "2026-10-09 21:47:01 KST",
   "epl": {
     "matchday": 6,
     "selected_round": 6,
@@ -262,7 +262,7 @@
     "next": {
       "event": "Shanghai",
       "detail": "R64 vs Juan Manuel Cerundolo",
-      "match_time": "Oct 10 13:00 KST",
+      "match_time": "Oct 10 19:00 KST",
       "tournament_dates": "Oct 5 - 12",
       "status": "Masters"
     }
@@ -305,7 +305,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-10-09 14:08:46 (KST)",
+      "🚀 [Start] 2026-10-09 21:47:01 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -373,7 +373,7 @@
       "      Next: Shanghai | Oct 10",
       "   📊 최종:",
       "      Recent: Tokyo vs Jiri Lehečka W (7-6, 6-4) | Oct 6",
-      "      Next: Shanghai | R64 vs Juan Manuel Cerundolo | Oct 10 13:00 KST",
+      "      Next: Shanghai | R64 vs Juan Manuel Cerundolo | Oct 10 19:00 KST",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
       "   ✅ 해외파 9명 수집, 핫이슈 1건",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
