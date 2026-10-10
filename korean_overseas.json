@@ -1,11 +1,6 @@
 {
-  "updated": "2026-10-10 21:05:10 KST",
-  "hot_issues": [
-    {
-      "headline": "황인범 1골 (FC Porto 3-1 승) · 09.21",
-      "detail": "Liga Portugal Betclic vs Benfica | 52분 출전 | 평점 7.8"
-    }
-  ],
+  "updated": "2026-10-11 06:18:02 KST",
+  "hot_issues": [],
   "players": [
     {
       "player": "황희찬",
@@ -31,42 +26,36 @@
       "team": "1. FSV Mainz 05",
       "recent": {
         "event": "Bundesliga",
-        "opponent": "Borussia M'gladbach",
-        "venue": "away",
-        "date": "09.19",
-        "team_score": 4,
-        "opponent_score": 3,
-        "result": "W",
-        "player_status": "PLAYED",
-        "minutes": 65,
-        "goals": 0,
-        "assists": 0,
-        "rating": 6.9
-      },
-      "next": {
-        "event": "Bundesliga",
         "opponent": "Bayer 04 Leverkusen",
         "venue": "home",
         "date": "10.10",
-        "time_kst": "22:30"
-      }
+        "team_score": 3,
+        "opponent_score": 4,
+        "result": "L",
+        "player_status": "PLAYED",
+        "minutes": 20,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.6
+      },
+      "next": null
     },
     {
       "player": "황인범",
       "team": "FC Porto",
       "recent": {
         "event": "Liga Portugal Betclic",
-        "opponent": "Benfica",
-        "venue": "home",
-        "date": "09.21",
-        "team_score": 3,
+        "opponent": "CS Marítimo",
+        "venue": "away",
+        "date": "10.11",
+        "team_score": 2,
         "opponent_score": 1,
         "result": "W",
         "player_status": "PLAYED",
-        "minutes": 52,
-        "goals": 1,
+        "minutes": 54,
+        "goals": 0,
         "assists": 0,
-        "rating": 7.8
+        "rating": 6.7
       },
       "next": null
     },
@@ -75,17 +64,17 @@
       "team": "Stoke City",
       "recent": {
         "event": "Championship",
-        "opponent": "Cardiff City",
+        "opponent": "Bolton Wanderers",
         "venue": "away",
-        "date": "09.09",
-        "team_score": 1,
+        "date": "10.10",
+        "team_score": 2,
         "opponent_score": 1,
-        "result": "D",
-        "player_status": "PLAYED",
-        "minutes": 31,
+        "result": "W",
+        "player_status": "DNP",
+        "minutes": 0,
         "goals": 0,
         "assists": 0,
-        "rating": 6.4
+        "rating": null
       },
       "next": null
     },
@@ -106,13 +95,7 @@
         "assists": 0,
         "rating": 6.4
       },
-      "next": {
-        "event": "Trendyol Süper Lig",
-        "opponent": "Kocaelispor",
-        "venue": "home",
-        "date": "10.12",
-        "time_kst": "01:00"
-      }
+      "next": null
     },
     {
       "player": "백승호",
@@ -141,14 +124,14 @@
         "opponent": "Norwich City",
         "venue": "home",
         "date": "10.10",
-        "team_score": 0,
+        "team_score": 2,
         "opponent_score": 1,
-        "result": "L",
-        "player_status": "DNP",
-        "minutes": 0,
+        "result": "W",
+        "player_status": "PLAYED",
+        "minutes": 13,
         "goals": 0,
         "assists": 0,
-        "rating": null
+        "rating": 6.2
       },
       "next": null
     },
@@ -169,30 +152,24 @@
         "assists": 0,
         "rating": 6.7
       },
-      "next": {
-        "event": "Danish Superliga",
-        "opponent": "FC København",
-        "venue": "home",
-        "date": "10.12",
-        "time_kst": "01:00"
-      }
+      "next": null
     },
     {
       "player": "설영우",
       "team": "FC Augsburg",
       "recent": {
         "event": "Bundesliga",
-        "opponent": "SV Werder Bremen",
-        "venue": "away",
-        "date": "09.19",
+        "opponent": "FC Bayern München",
+        "venue": "home",
+        "date": "10.10",
         "team_score": 2,
-        "opponent_score": 3,
-        "result": "L",
+        "opponent_score": 2,
+        "result": "D",
         "player_status": "PLAYED",
-        "minutes": 16,
+        "minutes": 62,
         "goals": 0,
         "assists": 0,
-        "rating": 6.1
+        "rating": 6.9
       },
       "next": null
     }
