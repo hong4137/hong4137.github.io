@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-10 13:54:22 KST",
+  "updated": "2026-10-10 21:05:10 KST",
   "hot_issues": [
     {
       "headline": "황인범 1골 (FC Porto 3-1 승) · 09.21",
@@ -138,17 +138,17 @@
       "team": "Swansea City",
       "recent": {
         "event": "Championship",
-        "opponent": "Southampton",
-        "venue": "away",
-        "date": "09.09",
-        "team_score": 1,
-        "opponent_score": 3,
+        "opponent": "Norwich City",
+        "venue": "home",
+        "date": "10.10",
+        "team_score": 0,
+        "opponent_score": 1,
         "result": "L",
-        "player_status": "PLAYED",
-        "minutes": 12,
+        "player_status": "DNP",
+        "minutes": 0,
         "goals": 0,
         "assists": 0,
-        "rating": 6.3
+        "rating": null
       },
       "next": null
     },

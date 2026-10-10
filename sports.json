@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-10 13:54:22 KST",
+  "updated": "2026-10-10 21:05:10 KST",
   "epl": {
     "matchday": 6,
     "selected_round": 6,
@@ -9,7 +9,7 @@
       "Manchester City",
       "Arsenal",
       "Brighton & Hove Albion",
-      "Brentford"
+      "Leeds United"
     ],
     "matches": [
       {
@@ -56,8 +56,8 @@
         ],
         "rule_str": "Early KO",
         "matchday": 6,
-        "status": "TIMED",
-        "score": "-"
+        "status": "IN_PLAY",
+        "score": "0-0"
       }
     ],
     "selected_matches": [
@@ -105,8 +105,8 @@
         ],
         "rule_str": "Early KO",
         "matchday": 6,
-        "status": "TIMED",
-        "score": "-"
+        "status": "IN_PLAY",
+        "score": "0-0"
       }
     ]
   },
@@ -193,7 +193,7 @@
         "pos": 1,
         "driver": "Kimi Antonelli",
         "team": "Mercedes",
-        "points": 320
+        "points": 325
       },
       {
         "pos": 2,
@@ -205,25 +205,25 @@
         "pos": 3,
         "driver": "Lewis Hamilton",
         "team": "Ferrari",
-        "points": 214
+        "points": 221
       },
       {
         "pos": 4,
         "driver": "Charles Leclerc",
         "team": "Ferrari",
-        "points": 191
+        "points": 197
       },
       {
         "pos": 5,
-        "driver": "Lando Norris",
-        "team": "McLaren",
-        "points": 188
+        "driver": "Max Verstappen",
+        "team": "Red Bull",
+        "points": 196
       },
       {
         "pos": 6,
-        "driver": "Max Verstappen",
-        "team": "Red Bull",
-        "points": 188
+        "driver": "Lando Norris",
+        "team": "McLaren",
+        "points": 189
       },
       {
         "pos": 7,
@@ -241,7 +241,7 @@
         "pos": 9,
         "driver": "Liam Lawson",
         "team": "Red Bull",
-        "points": 65
+        "points": 69
       },
       {
         "pos": 10,
@@ -253,17 +253,17 @@
   },
   "tennis": {
     "recent": {
-      "event": "Tokyo",
-      "opponent": "Jiri Lehečka",
+      "event": "Shanghai",
+      "opponent": "Juan Manuel Cerundolo",
       "result": "W",
-      "score": "7-6, 6-4",
-      "date": "Oct 6"
+      "score": "6-3, 2-1",
+      "date": "Oct 10"
     },
     "next": {
-      "event": "Shanghai",
-      "detail": "R64 vs Juan Manuel Cerundolo",
-      "match_time": "Oct 10 19:00 KST",
-      "tournament_dates": "Oct 5 - 12",
+      "event": "Paris Masters",
+      "detail": "-",
+      "match_time": "Oct 27",
+      "tournament_dates": "Oct 27 - Nov 2",
       "status": "Masters"
     }
   },
@@ -305,7 +305,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-10-10 13:54:22 (KST)",
+      "🚀 [Start] 2026-10-10 21:05:10 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -313,7 +313,7 @@
       "   - AI Parse: Gemini API ✅",
       "\n⚽ [Step 1/5] Premier League 순위...",
       "   ✅ 1위: Manchester City",
-      "   ✅ Top 4: Manchester City, Arsenal, Brighton & Hove Albion, Brentford",
+      "   ✅ Top 4: Manchester City, Arsenal, Brighton & Hove Albion, Leeds United",
       "   ✅ 현재 라운드: R6",
       "\n⚽ [Step 2/5] Premier League 경기 선정 (v2.4)...",
       "   [티어 우선순위]",
@@ -326,7 +326,7 @@
       "   [최대 선정: 3경기]",
       "   📋 전체: 15경기 (라운드: [6, 7])",
       "   🎯 선정 대상: R6 (10경기)",
-      "   📊 상태별: {'TIMED': 10}",
+      "   📊 상태별: {'IN_PLAY': 1, 'TIMED': 9}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
@@ -336,7 +336,7 @@
       "   📌 기존 선정 유지 (R6)",
       "      ⏳ Manchester United vs Tottenham [TIMED] -",
       "      ⏳ Liverpool vs Manchester City [TIMED] -",
-      "      ⏳ Arsenal vs Leeds United [TIMED] -",
+      "      🔴 Arsenal vs Leeds United [IN_PLAY] 0-0",
       "   ✅ 기존 선정 유지: 3경기 (R6)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
@@ -351,11 +351,11 @@
       "   [F1] 드라이버 순위 조회...",
       "      ✅ 순위 직접 파싱 성공 (www.formula1.com): 22명",
       "   ✅ 순위: 10명",
-      "      1. Kimi Antonelli (Mercedes) 320pts",
+      "      1. Kimi Antonelli (Mercedes) 325pts",
       "      2. George Russell (Mercedes) 236pts",
-      "      3. Lewis Hamilton (Ferrari) 214pts",
-      "      4. Charles Leclerc (Ferrari) 191pts",
-      "      5. Lando Norris (McLaren) 188pts",
+      "      3. Lewis Hamilton (Ferrari) 221pts",
+      "      4. Charles Leclerc (Ferrari) 197pts",
+      "      5. Max Verstappen (Red Bull) 196pts",
       "   ✅ Singapore Grand Prix | Marina Bay Street Circuit | Oct 09-11 [This Week]",
       "      📅 10.09 14:30 KST | FP1",
       "      📅 10.09 18:30 KST | Sprint Qualifying",
@@ -369,11 +369,11 @@
       "   ✅ 손흥민 (LAFC): vs Vancouver Whitecaps | 10.11 11:30 KST",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
-      "      Recent: Tokyo vs Jiri Lehečka W (7-6, 6-4)",
-      "      Next: Shanghai | Oct 10",
+      "      Recent: Shanghai vs Juan Manuel Cerundolo W (6-3, 2-1)",
+      "      Next: Paris Masters | Oct 27",
       "   📊 최종:",
-      "      Recent: Tokyo vs Jiri Lehečka W (7-6, 6-4) | Oct 6",
-      "      Next: Shanghai | R64 vs Juan Manuel Cerundolo | Oct 10 19:00 KST",
+      "      Recent: Shanghai vs Juan Manuel Cerundolo W (6-3, 2-1) | Oct 10",
+      "      Next: Paris Masters | - | Oct 27",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
       "   ✅ 해외파 9명 수집, 핫이슈 1건",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
