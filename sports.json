@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-11 21:18:33 KST",
+  "updated": "2026-10-12 06:37:24 KST",
   "epl": {
     "matchday": 6,
     "selected_round": 6,
@@ -41,8 +41,8 @@
         ],
         "rule_str": "Big Match, Prime Time, Leader",
         "matchday": 6,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "0-3"
       },
       {
         "match_id": 560593,
@@ -90,8 +90,8 @@
         ],
         "rule_str": "Big Match, Prime Time, Leader",
         "matchday": 6,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "0-3"
       },
       {
         "match_id": 560593,
@@ -141,50 +141,50 @@
   },
   "f1": {
     "next_race": {
-      "round": 18,
-      "name": "Singapore Grand Prix",
-      "circuit": "Marina Bay Street Circuit",
-      "country": "Singapore",
-      "date": "Oct 09-11",
-      "date_from": "2026-10-09",
-      "date_to": "2026-10-11",
-      "status": "This Week",
-      "sprint": true
+      "round": 19,
+      "name": "United States Grand Prix",
+      "circuit": "COTA, Austin",
+      "country": "USA",
+      "date": "Oct 23-25",
+      "date_from": "2026-10-23",
+      "date_to": "2026-10-25",
+      "status": "Next GP",
+      "sprint": false
     },
     "schedule": [
       {
         "name": "FP1",
-        "date": "10.09",
+        "date": "10.24",
         "day_local": "Fri",
-        "kst_time": "14:30",
+        "kst_time": "03:30",
         "local_time": "13:30"
       },
       {
-        "name": "Sprint Qualifying",
-        "date": "10.09",
+        "name": "FP2",
+        "date": "10.24",
         "day_local": "Fri",
-        "kst_time": "18:30",
-        "local_time": "17:30"
+        "kst_time": "07:00",
+        "local_time": "17:00"
       },
       {
-        "name": "Sprint",
-        "date": "10.10",
+        "name": "FP3",
+        "date": "10.25",
         "day_local": "Sat",
-        "kst_time": "13:00",
-        "local_time": "12:00"
+        "kst_time": "02:30",
+        "local_time": "12:30"
       },
       {
         "name": "Qualifying",
-        "date": "10.10",
+        "date": "10.25",
         "day_local": "Sat",
-        "kst_time": "17:00",
+        "kst_time": "06:00",
         "local_time": "16:00"
       },
       {
         "name": "Race",
-        "date": "10.11",
+        "date": "10.26",
         "day_local": "Sun",
-        "kst_time": "16:00",
+        "kst_time": "05:00",
         "local_time": "15:00"
       }
     ],
@@ -193,55 +193,55 @@
         "pos": 1,
         "driver": "Kimi Antonelli",
         "team": "Mercedes",
-        "points": 325
+        "points": 340
       },
       {
         "pos": 2,
         "driver": "George Russell",
         "team": "Mercedes",
-        "points": 236
+        "points": 238
       },
       {
         "pos": 3,
         "driver": "Lewis Hamilton",
         "team": "Ferrari",
-        "points": 221
+        "points": 229
       },
       {
         "pos": 4,
-        "driver": "Charles Leclerc",
-        "team": "Ferrari",
-        "points": 197
+        "driver": "Max Verstappen",
+        "team": "Red Bull",
+        "points": 221
       },
       {
         "pos": 5,
-        "driver": "Max Verstappen",
-        "team": "Red Bull",
-        "points": 196
+        "driver": "Charles Leclerc",
+        "team": "Ferrari",
+        "points": 215
       },
       {
         "pos": 6,
         "driver": "Lando Norris",
         "team": "McLaren",
-        "points": 189
+        "points": 201
       },
       {
         "pos": 7,
         "driver": "Oscar Piastri",
         "team": "McLaren",
-        "points": 128
+        "points": 138
       },
       {
         "pos": 8,
         "driver": "Isack Hadjar",
         "team": "Racing Bulls",
-        "points": 96
+        "points": 97
       },
       {
         "pos": 9,
         "driver": "Liam Lawson",
         "team": "Red Bull",
-        "points": 69
+        "points": 75
       },
       {
         "pos": 10,
@@ -305,7 +305,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-10-11 21:18:33 (KST)",
+      "🚀 [Start] 2026-10-12 06:37:24 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -324,15 +324,10 @@
       "   T5. Early KO: 토요일 12:30 UK",
       "   T6. Leader: 1위 팀 포함",
       "   [최대 선정: 3경기]",
-      "   📋 전체: 19경기 (라운드: [6, 7])",
+      "   📋 전체: 20경기 (라운드: [6, 7])",
       "   🎯 선정 대상: R6 (10경기)",
-      "   📊 상태별: {'FINISHED': 6, 'TIMED': 4}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   📌 기존 선정 유지 (R6)",
-      "      ✅ Manchester United vs Tottenham [FINISHED] 1-1",
-      "      ⏳ Liverpool vs Manchester City [TIMED] -",
-      "      ✅ Arsenal vs Leeds United [FINISHED] 2-1",
+      "   📊 상태별: {'FINISHED': 9, 'TIMED': 1}",
+      "   🔄 R6 경기 모두 종료 → 새로 선정 불필요",
       "   ✅ 기존 선정 유지: 3경기 (R6)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
@@ -347,23 +342,23 @@
       "   [F1] 드라이버 순위 조회...",
       "      ✅ 순위 직접 파싱 성공 (www.formula1.com): 22명",
       "   ✅ 순위: 10명",
-      "      1. Kimi Antonelli (Mercedes) 325pts",
-      "      2. George Russell (Mercedes) 236pts",
-      "      3. Lewis Hamilton (Ferrari) 221pts",
-      "      4. Charles Leclerc (Ferrari) 197pts",
-      "      5. Max Verstappen (Red Bull) 196pts",
-      "   ✅ Singapore Grand Prix | Marina Bay Street Circuit | Oct 09-11 [This Week]",
-      "      📅 10.09 14:30 KST | FP1",
-      "      📅 10.09 18:30 KST | Sprint Qualifying",
-      "      📅 10.10 13:00 KST | Sprint",
-      "      📅 10.10 17:00 KST | Qualifying",
-      "      📅 10.11 16:00 KST | Race",
+      "      1. Kimi Antonelli (Mercedes) 340pts",
+      "      2. George Russell (Mercedes) 238pts",
+      "      3. Lewis Hamilton (Ferrari) 229pts",
+      "      4. Max Verstappen (Red Bull) 221pts",
+      "      5. Charles Leclerc (Ferrari) 215pts",
+      "   ✅ United States Grand Prix | COTA, Austin | Oct 23-25 [Next GP]",
+      "      📅 10.24 03:30 KST | FP1",
+      "      📅 10.24 07:00 KST | FP2",
+      "      📅 10.25 02:30 KST | FP3",
+      "      📅 10.25 06:00 KST | Qualifying",
+      "      📅 10.26 05:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...",
       "   ✅ 이강인 (ATM): vs Manchester United FC | 10.14 04:00 KST",
       "   ✅ 김민재 (Bayern): vs Viking FK | 10.14 04:00 KST",
       "   ⚠️ 손흥민 검색 결과가 과거 날짜(10.11) → 폐기",
-      "   ⚠️ 손흥민 기존 데이터 만료(과거 경기: 10.11) → 폴백으로 대체",
+      "   ⚠️ 손흥민 기존 데이터 만료(과거 경기: 08.23) → 폴백으로 대체",
       "   🚨 손흥민 폴백 데이터도 만료됨(과거: 08.23 11:30) — KOREAN_PLAYERS_DEFAULT_FALLBACK 수동 갱신 필요! (vs Portland Timbers)",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
