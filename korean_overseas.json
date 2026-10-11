@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-11 13:41:15 KST",
+  "updated": "2026-10-11 21:18:33 KST",
   "hot_issues": [],
   "players": [
     {
@@ -171,7 +171,13 @@
         "assists": 0,
         "rating": 6.9
       },
-      "next": null
+      "next": {
+        "event": "Bundesliga",
+        "opponent": "SV 07 Elversberg",
+        "venue": "away",
+        "date": "10.17",
+        "time_kst": "22:30"
+      }
     }
   ]
 }
