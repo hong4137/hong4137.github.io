@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-13 22:46:38 KST",
+  "updated": "2026-10-14 07:23:12 KST",
   "epl": {
     "matchday": 6,
     "selected_round": 7,
@@ -267,21 +267,21 @@
     {
       "player": "이강인",
       "team": "ATM",
-      "opponent": "Manchester United FC",
-      "venue": "home",
-      "kst_date": "10.14",
-      "kst_time": "04:00",
-      "competition": "UCL R2",
+      "opponent": "RCD Espanyol de Barcelona",
+      "venue": "away",
+      "kst_date": "10.17",
+      "kst_time": "21:00",
+      "competition": "La Liga R9",
       "status": "SCHEDULED"
     },
     {
       "player": "김민재",
       "team": "Bayern",
-      "opponent": "Viking FK",
-      "venue": "away",
-      "kst_date": "10.14",
-      "kst_time": "04:00",
-      "competition": "UCL R2",
+      "opponent": "RB Leipzig",
+      "venue": "home",
+      "kst_date": "10.18",
+      "kst_time": "01:30",
+      "competition": "Bundesliga R6",
       "status": "SCHEDULED"
     },
     {
@@ -301,7 +301,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-10-13 22:46:38 (KST)",
+      "🚀 [Start] 2026-10-14 07:23:12 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -362,8 +362,8 @@
       "      📅 10.26 05:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...",
-      "   ✅ 이강인 (ATM): vs Manchester United FC | 10.14 04:00 KST",
-      "   ✅ 김민재 (Bayern): vs Viking FK | 10.14 04:00 KST",
+      "   ✅ 이강인 (ATM): vs RCD Espanyol de Barcelona | 10.17 21:00 KST",
+      "   ✅ 김민재 (Bayern): vs RB Leipzig | 10.18 01:30 KST",
       "   ✅ 손흥민 (LAFC): vs Austin FC | 10.15 11:30 KST",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",

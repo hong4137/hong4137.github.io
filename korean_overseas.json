@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-13 22:46:38 KST",
+  "updated": "2026-10-14 07:23:12 KST",
   "hot_issues": [],
   "players": [
     {
@@ -64,17 +64,17 @@
       "team": "Stoke City",
       "recent": {
         "event": "Championship",
-        "opponent": "Bolton Wanderers",
-        "venue": "away",
-        "date": "10.10",
+        "opponent": "Middlesbrough",
+        "venue": "home",
+        "date": "10.14",
         "team_score": 2,
-        "opponent_score": 1,
-        "result": "W",
-        "player_status": "DNP",
-        "minutes": 0,
+        "opponent_score": 3,
+        "result": "L",
+        "player_status": "PLAYED",
+        "minutes": 67,
         "goals": 0,
         "assists": 0,
-        "rating": null
+        "rating": 6.3
       },
       "next": null
     },
@@ -121,17 +121,17 @@
       "team": "Swansea City",
       "recent": {
         "event": "Championship",
-        "opponent": "Norwich City",
-        "venue": "home",
-        "date": "10.10",
-        "team_score": 2,
-        "opponent_score": 1,
+        "opponent": "Millwall",
+        "venue": "away",
+        "date": "10.14",
+        "team_score": 1,
+        "opponent_score": 0,
         "result": "W",
-        "player_status": "PLAYED",
-        "minutes": 13,
+        "player_status": "DNP",
+        "minutes": 0,
         "goals": 0,
         "assists": 0,
-        "rating": 6.2
+        "rating": null
       },
       "next": null
     },
