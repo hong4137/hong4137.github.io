@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-14 20:24:05 KST",
+  "updated": "2026-10-15 01:44:55 KST",
   "hot_issues": [],
   "players": [
     {
@@ -95,7 +95,13 @@
         "assists": 0,
         "rating": null
       },
-      "next": null
+      "next": {
+        "event": "UEFA Europa League",
+        "opponent": "TSG Hoffenheim",
+        "venue": "away",
+        "date": "10.16",
+        "time_kst": "04:00"
+      }
     },
     {
       "player": "백승호",
@@ -152,7 +158,13 @@
         "assists": 0,
         "rating": 6
       },
-      "next": null
+      "next": {
+        "event": "UEFA Conference League",
+        "opponent": "KF Egnatia",
+        "venue": "away",
+        "date": "10.16",
+        "time_kst": "01:45"
+      }
     },
     {
       "player": "설영우",
