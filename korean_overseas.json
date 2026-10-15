@@ -1,6 +1,15 @@
 {
-  "updated": "2026-10-16 01:30:54 KST",
-  "hot_issues": [],
+  "updated": "2026-10-16 06:02:24 KST",
+  "hot_issues": [
+    {
+      "headline": "오현규 2골 1도움 (Beşiktaş JK 3-2 승) · 10.16",
+      "detail": "UEFA Europa League vs TSG Hoffenheim | 85분 출전 | 평점 9.4"
+    },
+    {
+      "headline": "조규성 1골 (FC Midtjylland 1-1 무) · 10.16",
+      "detail": "UEFA Conference League vs KF Egnatia | 45분 출전 | 평점 7.3"
+    }
+  ],
   "players": [
     {
       "player": "황희찬",
@@ -88,25 +97,25 @@
       "player": "오현규",
       "team": "Beşiktaş JK",
       "recent": {
-        "event": "Trendyol Süper Lig",
-        "opponent": "Kocaelispor",
-        "venue": "home",
-        "date": "10.12",
-        "team_score": 2,
-        "opponent_score": 1,
-        "result": "W",
-        "player_status": "DNP",
-        "minutes": 0,
-        "goals": 0,
-        "assists": 0,
-        "rating": null
-      },
-      "next": {
         "event": "UEFA Europa League",
         "opponent": "TSG Hoffenheim",
         "venue": "away",
         "date": "10.16",
-        "time_kst": "04:00"
+        "team_score": 3,
+        "opponent_score": 2,
+        "result": "W",
+        "player_status": "PLAYED",
+        "minutes": 85,
+        "goals": 2,
+        "assists": 1,
+        "rating": 9.4
+      },
+      "next": {
+        "event": "Trendyol Süper Lig",
+        "opponent": "Trabzonspor",
+        "venue": "away",
+        "date": "10.20",
+        "time_kst": "02:00"
       }
     },
     {
@@ -151,26 +160,20 @@
       "player": "조규성",
       "team": "FC Midtjylland",
       "recent": {
-        "event": "Danish Superliga",
-        "opponent": "FC København",
-        "venue": "home",
-        "date": "10.12",
-        "team_score": 2,
-        "opponent_score": 1,
-        "result": "W",
-        "player_status": "PLAYED",
-        "minutes": 12,
-        "goals": 0,
-        "assists": 0,
-        "rating": 6
-      },
-      "next": {
         "event": "UEFA Conference League",
         "opponent": "KF Egnatia",
         "venue": "away",
         "date": "10.16",
-        "time_kst": "01:45"
-      }
+        "team_score": 1,
+        "opponent_score": 1,
+        "result": "D",
+        "player_status": "PLAYED",
+        "minutes": 45,
+        "goals": 1,
+        "assists": 0,
+        "rating": 7.3
+      },
+      "next": null
     },
     {
       "player": "설영우",

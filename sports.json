@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-16 01:30:54 KST",
+  "updated": "2026-10-16 06:02:24 KST",
   "epl": {
     "matchday": 7,
     "selected_round": 7,
@@ -301,7 +301,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-10-16 01:30:54 (KST)",
+      "🚀 [Start] 2026-10-16 06:02:24 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -375,7 +375,7 @@
       "      Recent: Shanghai vs Zizou Bergs L (5-7, 6-7) | Oct 12",
       "      Next: Paris Masters | - | Oct 27",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
-      "   ✅ 해외파 9명 수집, 핫이슈 0건",
+      "   ✅ 해외파 9명 수집, 핫이슈 2건",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
     ]
