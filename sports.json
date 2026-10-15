@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-15 20:00:53 KST",
+  "updated": "2026-10-16 01:30:54 KST",
   "epl": {
     "matchday": 7,
     "selected_round": 7,
@@ -301,7 +301,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-10-15 20:00:53 (KST)",
+      "🚀 [Start] 2026-10-16 01:30:54 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -320,7 +320,7 @@
       "   T5. Early KO: 토요일 12:30 UK",
       "   T6. Leader: 1위 팀 포함",
       "   [최대 선정: 3경기]",
-      "   📋 전체: 10경기 (라운드: [7])",
+      "   📋 전체: 11경기 (라운드: [7, 8])",
       "   🎯 선정 대상: R7 (10경기)",
       "   📊 상태별: {'TIMED': 10}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
@@ -365,7 +365,7 @@
       "   ✅ 이강인 (ATM): vs RCD Espanyol de Barcelona | 10.17 21:00 KST",
       "   ✅ 김민재 (Bayern): vs RB Leipzig | 10.18 01:30 KST",
       "   ⚠️ 손흥민 검색 결과가 과거 날짜(10.15) → 폐기",
-      "   ⚠️ 손흥민 기존 데이터 만료(과거 경기: 10.15) → 폴백으로 대체",
+      "   ⚠️ 손흥민 기존 데이터 만료(과거 경기: 08.23) → 폴백으로 대체",
       "   🚨 손흥민 폴백 데이터도 만료됨(과거: 08.23 11:30) — KOREAN_PLAYERS_DEFAULT_FALLBACK 수동 갱신 필요! (vs Portland Timbers)",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",

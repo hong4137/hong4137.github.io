@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-15 20:00:53 KST",
+  "updated": "2026-10-16 01:30:54 KST",
   "hot_issues": [],
   "players": [
     {
@@ -76,7 +76,13 @@
         "assists": 0,
         "rating": 6.3
       },
-      "next": null
+      "next": {
+        "event": "Championship",
+        "opponent": "Derby County",
+        "venue": "away",
+        "date": "10.17",
+        "time_kst": "23:00"
+      }
     },
     {
       "player": "오현규",
