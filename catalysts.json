@@ -1,22 +1,9 @@
 {
-  "generated_at": "2026-10-15 08:37 KST",
+  "generated_at": "2026-10-16 08:31 KST",
   "events": [
     {
-      "date": "2026-10-19",
-      "title": "10년 만기 미국 국채 입찰",
-      "category": "treasury_auction",
-      "importance": 4,
-      "impact": [
-        "yields",
-        "USD",
-        "equities"
-      ],
-      "consensus": null,
-      "source_url": "https://www.treasurydirect.gov/"
-    },
-    {
       "date": "2026-10-21",
-      "title": "테슬라 (TSLA) 실적 발표",
+      "title": "테슬라 (TSLA) 3분기 실적 발표",
       "category": "earnings",
       "importance": 5,
       "impact": [
@@ -27,8 +14,33 @@
       "source_url": "https://ir.tesla.com/"
     },
     {
+      "date": "2026-10-27",
+      "title": "FOMC 회의 시작",
+      "category": "fed_fomc",
+      "importance": 5,
+      "impact": [
+        "VIX",
+        "yields",
+        "equities",
+        "USD"
+      ],
+      "consensus": null,
+      "source_url": "https://www.federalreserve.gov/"
+    },
+    {
+      "date": "2026-10-27",
+      "title": "GitHub Universe 2026",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": [
+        "equities"
+      ],
+      "consensus": null,
+      "source_url": "https://github.com/"
+    },
+    {
       "date": "2026-10-28",
-      "title": "FOMC 회의 및 금리 결정",
+      "title": "FOMC 성명 및 금리 결정",
       "category": "fed_fomc",
       "importance": 5,
       "impact": [
@@ -42,19 +54,7 @@
     },
     {
       "date": "2026-10-28",
-      "title": "마이크로소프트 (MSFT) 실적 발표",
-      "category": "earnings",
-      "importance": 5,
-      "impact": [
-        "equities",
-        "VIX"
-      ],
-      "consensus": null,
-      "source_url": "https://www.microsoft.com/investor/"
-    },
-    {
-      "date": "2026-10-28",
-      "title": "알파벳 (GOOGL) 실적 발표",
+      "title": "알파벳 (GOOGL) 3분기 실적 발표",
       "category": "earnings",
       "importance": 5,
       "impact": [
@@ -66,7 +66,19 @@
     },
     {
       "date": "2026-10-28",
-      "title": "메타 플랫폼스 (META) 실적 발표",
+      "title": "마이크로소프트 (MSFT) 3분기 실적 발표",
+      "category": "earnings",
+      "importance": 5,
+      "impact": [
+        "equities",
+        "VIX"
+      ],
+      "consensus": null,
+      "source_url": "https://www.microsoft.com/investor/"
+    },
+    {
+      "date": "2026-10-28",
+      "title": "메타 (META) 3분기 실적 발표",
       "category": "earnings",
       "importance": 5,
       "impact": [
@@ -77,30 +89,17 @@
       "source_url": "https://investor.fb.com/"
     },
     {
-      "date": "2026-10-29",
-      "title": "아마존 (AMZN) 실적 발표",
-      "category": "earnings",
-      "importance": 5,
-      "impact": [
-        "equities",
-        "VIX"
-      ],
-      "consensus": null,
-      "source_url": "https://ir.aboutamazon.com/"
-    },
-    {
-      "date": "2026-10-29",
-      "title": "미국 3분기 GDP (잠정) 및 PCE 물가 지수",
+      "date": "2026-10-30",
+      "title": "미국 3분기 고용비용지수 (ECI) 발표",
       "category": "economic_data",
-      "importance": 5,
+      "importance": 4,
       "impact": [
-        "VIX",
         "yields",
         "equities",
         "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.bea.gov/"
+      "source_url": "https://www.bls.gov/"
     }
   ]
 }
