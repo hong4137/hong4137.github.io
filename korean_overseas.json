@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-16 19:56:50 KST",
+  "updated": "2026-10-17 01:16:16 KST",
   "hot_issues": [
     {
       "headline": "오현규 2골 1도움 (Beşiktaş JK 3-2 승) · 10.16",
@@ -85,13 +85,7 @@
         "assists": 0,
         "rating": 6.3
       },
-      "next": {
-        "event": "Championship",
-        "opponent": "Derby County",
-        "venue": "away",
-        "date": "10.17",
-        "time_kst": "23:00"
-      }
+      "next": null
     },
     {
       "player": "오현규",
