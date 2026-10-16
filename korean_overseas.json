@@ -1,9 +1,9 @@
 {
-  "updated": "2026-10-16 06:02:24 KST",
+  "updated": "2026-10-16 12:38:50 KST",
   "hot_issues": [
     {
       "headline": "오현규 2골 1도움 (Beşiktaş JK 3-2 승) · 10.16",
-      "detail": "UEFA Europa League vs TSG Hoffenheim | 85분 출전 | 평점 9.4"
+      "detail": "UEFA Europa League vs TSG Hoffenheim | 85분 출전 | 평점 9.1"
     },
     {
       "headline": "조규성 1골 (FC Midtjylland 1-1 무) · 10.16",
@@ -108,7 +108,7 @@
         "minutes": 85,
         "goals": 2,
         "assists": 1,
-        "rating": 9.4
+        "rating": 9.1
       },
       "next": {
         "event": "Trendyol Süper Lig",
