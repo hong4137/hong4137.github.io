@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-16 12:38:50 KST",
+  "updated": "2026-10-16 19:56:50 KST",
   "epl": {
     "matchday": 7,
     "selected_round": 7,
@@ -301,7 +301,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-10-16 12:38:50 (KST)",
+      "🚀 [Start] 2026-10-16 19:56:50 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -364,7 +364,7 @@
       "\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...",
       "   ✅ 이강인 (ATM): vs RCD Espanyol de Barcelona | 10.17 21:00 KST",
       "   ✅ 김민재 (Bayern): vs RB Leipzig | 10.18 01:30 KST",
-      "   ⚠️ TheSportsDB exception: HTTPSConnectionPool(host='www.thesportsdb.com', port=443): Read timed out. (read timeout=10)",
+      "   ⚠️ TheSportsDB API error: 503",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ⚠️ 손흥민 기존 데이터 만료(과거 경기: 08.23) → 폴백으로 대체",
       "   🚨 손흥민 폴백 데이터도 만료됨(과거: 08.23 11:30) — KOREAN_PLAYERS_DEFAULT_FALLBACK 수동 갱신 필요! (vs Portland Timbers)",
