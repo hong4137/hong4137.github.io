@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-18 00:10:43 KST",
+  "updated": "2026-10-18 05:16:35 KST",
   "hot_issues": [
     {
       "headline": "오현규 2골 1도움 (Beşiktaş JK 3-2 승) · 10.16",
@@ -23,10 +23,10 @@
         "opponent_score": 1,
         "result": "L",
         "player_status": "PLAYED",
-        "minutes": 9,
+        "minutes": 30,
         "goals": 0,
         "assists": 0,
-        "rating": 6.5
+        "rating": 6.4
       },
       "next": null
     },
@@ -42,10 +42,10 @@
         "opponent_score": 0,
         "result": "W",
         "player_status": "PLAYED",
-        "minutes": 69,
+        "minutes": 76,
         "goals": 0,
         "assists": 0,
-        "rating": 7.4
+        "rating": 7.5
       },
       "next": null
     },
@@ -82,9 +82,9 @@
         "opponent": "Derby County",
         "venue": "away",
         "date": "10.17",
-        "team_score": 0,
+        "team_score": 1,
         "opponent_score": 0,
-        "result": "D",
+        "result": "W",
         "player_status": "DNP",
         "minutes": 0,
         "goals": 0,
@@ -110,13 +110,7 @@
         "assists": 1,
         "rating": 9.1
       },
-      "next": {
-        "event": "Trendyol Süper Lig",
-        "opponent": "Trabzonspor",
-        "venue": "away",
-        "date": "10.20",
-        "time_kst": "02:00"
-      }
+      "next": null
     },
     {
       "player": "백승호",
@@ -148,11 +142,11 @@
         "team_score": 0,
         "opponent_score": 1,
         "result": "L",
-        "player_status": "DNP",
-        "minutes": 0,
+        "player_status": "PLAYED",
+        "minutes": 33,
         "goals": 0,
         "assists": 0,
-        "rating": null
+        "rating": 6.7
       },
       "next": null
     },
@@ -183,14 +177,14 @@
         "opponent": "SV 07 Elversberg",
         "venue": "away",
         "date": "10.17",
-        "team_score": 1,
-        "opponent_score": 3,
+        "team_score": 3,
+        "opponent_score": 4,
         "result": "L",
-        "player_status": "DNP",
-        "minutes": 0,
+        "player_status": "PLAYED",
+        "minutes": 16,
         "goals": 0,
         "assists": 0,
-        "rating": null
+        "rating": 6.6
       },
       "next": null
     }

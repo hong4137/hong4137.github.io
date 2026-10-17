@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-18 00:10:43 KST",
+  "updated": "2026-10-18 05:16:35 KST",
   "epl": {
     "matchday": 7,
     "selected_round": 7,
@@ -9,7 +9,7 @@
       "Manchester City",
       "Arsenal",
       "Brighton & Hove Albion",
-      "Brentford"
+      "Chelsea"
     ],
     "matches": [
       {
@@ -24,8 +24,8 @@
         ],
         "rule_str": "Challenger",
         "matchday": 7,
-        "status": "IN_PLAY",
-        "score": "1-0"
+        "status": "FINISHED",
+        "score": "1-2"
       },
       {
         "match_id": 560608,
@@ -71,8 +71,8 @@
         ],
         "rule_str": "Challenger",
         "matchday": 7,
-        "status": "IN_PLAY",
-        "score": "1-0"
+        "status": "FINISHED",
+        "score": "1-2"
       },
       {
         "match_id": 560608,
@@ -277,11 +277,11 @@
     {
       "player": "김민재",
       "team": "Bayern",
-      "opponent": "RB Leipzig",
+      "opponent": "Arsenal FC",
       "venue": "home",
-      "kst_date": "10.18",
-      "kst_time": "01:30",
-      "competition": "Bundesliga R6",
+      "kst_date": "10.22",
+      "kst_time": "04:00",
+      "competition": "UCL R3",
       "status": "SCHEDULED"
     },
     {
@@ -301,7 +301,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-10-18 00:10:43 (KST)",
+      "🚀 [Start] 2026-10-18 05:16:35 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -309,7 +309,7 @@
       "   - AI Parse: Gemini API ✅",
       "\n⚽ [Step 1/5] Premier League 순위...",
       "   ✅ 1위: Manchester City",
-      "   ✅ Top 4: Manchester City, Arsenal, Brighton & Hove Albion, Brentford",
+      "   ✅ Top 4: Manchester City, Arsenal, Brighton & Hove Albion, Chelsea",
       "   ✅ 현재 라운드: R7",
       "\n⚽ [Step 2/5] Premier League 경기 선정 (v2.4)...",
       "   [티어 우선순위]",
@@ -322,15 +322,11 @@
       "   [최대 선정: 3경기]",
       "   📋 전체: 20경기 (라운드: [7, 8])",
       "   🎯 선정 대상: R7 (10경기)",
-      "   📊 상태별: {'FINISHED': 1, 'IN_PLAY': 3, 'TIMED': 6}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   📊 상태별: {'FINISHED': 5, 'TIMED': 5}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   📌 기존 선정 유지 (R7)",
-      "      🔴 Brentford vs Liverpool [IN_PLAY] 1-0",
+      "      ✅ Brentford vs Liverpool [FINISHED] 1-2",
       "      ⏳ Nottingham Forest vs Arsenal [TIMED] -",
       "      ✅ Everton vs Chelsea [FINISHED] 0-2",
       "   ✅ 기존 선정 유지: 3경기 (R7)",
@@ -361,7 +357,7 @@
       "   ✅ 순위: 10명 로드",
       "\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...",
       "   ✅ 이강인 (ATM): vs VfB Stuttgart | 10.21 04:00 KST",
-      "   ✅ 김민재 (Bayern): vs RB Leipzig | 10.18 01:30 KST",
+      "   ✅ 김민재 (Bayern): vs Arsenal FC | 10.22 04:00 KST",
       "   ⚠️ TheSportsDB API error: 403",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ⚠️ 손흥민 수집 실패 → 기존 데이터 유지 (vs New York City FC)",
