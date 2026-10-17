@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-17 19:18:17 KST",
+  "updated": "2026-10-18 00:10:43 KST",
   "epl": {
     "matchday": 7,
     "selected_round": 7,
@@ -24,8 +24,8 @@
         ],
         "rule_str": "Challenger",
         "matchday": 7,
-        "status": "TIMED",
-        "score": "-"
+        "status": "IN_PLAY",
+        "score": "1-0"
       },
       {
         "match_id": 560608,
@@ -54,8 +54,8 @@
         ],
         "rule_str": "Early KO",
         "matchday": 7,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "0-2"
       }
     ],
     "selected_matches": [
@@ -71,8 +71,8 @@
         ],
         "rule_str": "Challenger",
         "matchday": 7,
-        "status": "TIMED",
-        "score": "-"
+        "status": "IN_PLAY",
+        "score": "1-0"
       },
       {
         "match_id": 560608,
@@ -101,8 +101,8 @@
         ],
         "rule_str": "Early KO",
         "matchday": 7,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "0-2"
       }
     ]
   },
@@ -267,11 +267,11 @@
     {
       "player": "이강인",
       "team": "ATM",
-      "opponent": "RCD Espanyol de Barcelona",
+      "opponent": "VfB Stuttgart",
       "venue": "away",
-      "kst_date": "10.17",
-      "kst_time": "21:00",
-      "competition": "La Liga R9",
+      "kst_date": "10.21",
+      "kst_time": "04:00",
+      "competition": "UCL R3",
       "status": "SCHEDULED"
     },
     {
@@ -301,7 +301,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-10-17 19:18:17 (KST)",
+      "🚀 [Start] 2026-10-18 00:10:43 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -320,11 +320,9 @@
       "   T5. Early KO: 토요일 12:30 UK",
       "   T6. Leader: 1위 팀 포함",
       "   [최대 선정: 3경기]",
-      "   📋 전체: 15경기 (라운드: [7, 8])",
+      "   📋 전체: 20경기 (라운드: [7, 8])",
       "   🎯 선정 대상: R7 (10경기)",
-      "   📊 상태별: {'TIMED': 10}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   📊 상태별: {'FINISHED': 1, 'IN_PLAY': 3, 'TIMED': 6}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
@@ -332,9 +330,9 @@
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   📌 기존 선정 유지 (R7)",
-      "      ⏳ Brentford vs Liverpool [TIMED] -",
+      "      🔴 Brentford vs Liverpool [IN_PLAY] 1-0",
       "      ⏳ Nottingham Forest vs Arsenal [TIMED] -",
-      "      ⏳ Everton vs Chelsea [TIMED] -",
+      "      ✅ Everton vs Chelsea [FINISHED] 0-2",
       "   ✅ 기존 선정 유지: 3경기 (R7)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
@@ -362,7 +360,7 @@
       "      📅 10.26 05:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...",
-      "   ✅ 이강인 (ATM): vs RCD Espanyol de Barcelona | 10.17 21:00 KST",
+      "   ✅ 이강인 (ATM): vs VfB Stuttgart | 10.21 04:00 KST",
       "   ✅ 김민재 (Bayern): vs RB Leipzig | 10.18 01:30 KST",
       "   ⚠️ TheSportsDB API error: 403",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
