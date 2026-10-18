@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-18 19:34:13 KST",
+  "updated": "2026-10-19 00:32:23 KST",
   "hot_issues": [
     {
       "headline": "오현규 2골 1도움 (Beşiktaş JK 3-2 승) · 10.16",
@@ -47,7 +47,13 @@
         "assists": 0,
         "rating": 7.5
       },
-      "next": null
+      "next": {
+        "event": "Bundesliga",
+        "opponent": "SV Werder Bremen",
+        "venue": "home",
+        "date": "10.24",
+        "time_kst": "22:30"
+      }
     },
     {
       "player": "황인범",
