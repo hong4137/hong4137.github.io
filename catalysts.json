@@ -1,17 +1,39 @@
 {
-  "generated_at": "2026-10-18 07:50 KST",
+  "generated_at": "2026-10-19 07:43 KST",
   "events": [
     {
-      "date": "2026-10-28",
-      "title": "Microsoft (MSFT) 2027년 1분기 실적 발표",
+      "date": "2026-10-20",
+      "title": "Google Public Sector Summit (워싱턴 D.C.)",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": [
+        "equities"
+      ],
+      "consensus": null,
+      "source_url": "https://cloud.google.com/blog/"
+    },
+    {
+      "date": "2026-10-20",
+      "title": "NVIDIA GTC 베를린 2026",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": [
+        "equities"
+      ],
+      "consensus": null,
+      "source_url": "https://www.nvidia.com/gtc/"
+    },
+    {
+      "date": "2026-10-21",
+      "title": "Meta Platforms (META) 3분기 실적 발표 (예상)",
       "category": "earnings",
       "importance": 5,
       "impact": [
         "equities",
         "VIX"
       ],
-      "consensus": "EPS $2.93, Revenue $90.62B",
-      "source_url": "https://www.microsoft.com/en-us/investor/"
+      "consensus": null,
+      "source_url": "https://investor.fb.com/"
     },
     {
       "date": "2026-10-28",
@@ -28,8 +50,43 @@
       "source_url": "https://www.federalreserve.gov/"
     },
     {
-      "date": "2026-11-02",
-      "title": "미국 ISM 제조업 PMI (10월)",
+      "date": "2026-10-28",
+      "title": "Alphabet (GOOGL) 3분기 실적 발표",
+      "category": "earnings",
+      "importance": 5,
+      "impact": [
+        "equities",
+        "VIX"
+      ],
+      "consensus": null,
+      "source_url": "https://abc.xyz/investor/"
+    },
+    {
+      "date": "2026-10-28",
+      "title": "Tesla (TSLA) 3분기 실적 발표",
+      "category": "earnings",
+      "importance": 5,
+      "impact": [
+        "equities",
+        "VIX"
+      ],
+      "consensus": null,
+      "source_url": "https://ir.tesla.com/"
+    },
+    {
+      "date": "2026-10-28",
+      "title": "Apple 제품 발표 (터치스크린 MacBook, iPad mini, M6 Mac)",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": [
+        "equities"
+      ],
+      "consensus": null,
+      "source_url": "https://www.apple.com/newsroom/"
+    },
+    {
+      "date": "2026-10-29",
+      "title": "미국 3분기 GDP (잠정치) 발표",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -38,72 +95,7 @@
         "yields"
       ],
       "consensus": null,
-      "source_url": "https://www.ismworld.org/"
-    },
-    {
-      "date": "2026-11-02",
-      "title": "Apple (AAPL) 2026년 4분기 실적 발표",
-      "category": "earnings",
-      "importance": 5,
-      "impact": [
-        "equities",
-        "VIX"
-      ],
-      "consensus": "EPS $1.99, Revenue $113.38B",
-      "source_url": "https://investor.apple.com/"
-    },
-    {
-      "date": "2026-11-06",
-      "title": "미국 비농업 고용보고서 (10월)",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/"
-    },
-    {
-      "date": "2026-11-10",
-      "title": "미국 소비자물가지수 (10월)",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/cpi/"
-    },
-    {
-      "date": "2026-11-13",
-      "title": "미국 생산자물가지수 (10월)",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bls.gov/ppi/"
-    },
-    {
-      "date": "2026-11-17",
-      "title": "NVIDIA (NVDA) 2027년 3분기 실적 발표",
-      "category": "earnings",
-      "importance": 5,
-      "impact": [
-        "equities",
-        "VIX"
-      ],
-      "consensus": null,
-      "source_url": "https://investor.nvidia.com/"
+      "source_url": "https://www.bea.gov/"
     }
   ]
 }
