@@ -1,9 +1,9 @@
 {
-  "updated": "2026-10-19 21:29:06 KST",
+  "updated": "2026-10-20 07:05:48 KST",
   "epl": {
     "matchday": 7,
-    "selected_round": 7,
-    "display_matchday": "R7",
+    "selected_round": 8,
+    "display_matchday": "R8",
     "leader": "Manchester City",
     "top4": [
       "Manchester City",
@@ -13,96 +13,96 @@
     ],
     "matches": [
       {
-        "match_id": 560611,
-        "home": "Brentford",
-        "away": "Liverpool",
-        "kst_time": "10.17 23:00 (KST)",
-        "uk_time": "Saturday 15:00 (UK)",
+        "match_id": 560617,
+        "home": "Chelsea",
+        "away": "Tottenham",
+        "kst_time": "10.25 01:30 (KST)",
+        "uk_time": "Saturday 17:30 (UK)",
+        "local": "",
+        "rules": [
+          "Big Match"
+        ],
+        "rule_str": "Big Match",
+        "matchday": 8,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 560612,
+        "home": "Liverpool",
+        "away": "Brighton & Hove Albion",
+        "kst_time": "10.25 23:00 (KST)",
+        "uk_time": "Sunday 14:00 (UK)",
         "local": "",
         "rules": [
           "Challenger"
         ],
         "rule_str": "Challenger",
-        "matchday": 7,
-        "status": "FINISHED",
-        "score": "1-2"
+        "matchday": 8,
+        "status": "SCHEDULED",
+        "score": "-"
       },
       {
-        "match_id": 560608,
-        "home": "Nottingham Forest",
-        "away": "Arsenal",
-        "kst_time": "10.19 00:30 (KST)",
+        "match_id": 560621,
+        "home": "Sunderland AFC",
+        "away": "Leeds United",
+        "kst_time": "10.26 01:30 (KST)",
         "uk_time": "Sunday 16:30 (UK)",
         "local": "",
         "rules": [
           "Prime Time"
         ],
         "rule_str": "Prime Time",
-        "matchday": 7,
-        "status": "FINISHED",
-        "score": "0-1"
-      },
-      {
-        "match_id": 560603,
-        "home": "Everton",
-        "away": "Chelsea",
-        "kst_time": "10.17 20:30 (KST)",
-        "uk_time": "Saturday 12:30 (UK)",
-        "local": "",
-        "rules": [
-          "Early KO"
-        ],
-        "rule_str": "Early KO",
-        "matchday": 7,
-        "status": "FINISHED",
-        "score": "0-2"
+        "matchday": 8,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ],
     "selected_matches": [
       {
-        "match_id": 560611,
-        "home": "Brentford",
-        "away": "Liverpool",
-        "kst_time": "10.17 23:00 (KST)",
-        "uk_time": "Saturday 15:00 (UK)",
+        "match_id": 560617,
+        "home": "Chelsea",
+        "away": "Tottenham",
+        "kst_time": "10.25 01:30 (KST)",
+        "uk_time": "Saturday 17:30 (UK)",
+        "local": "",
+        "rules": [
+          "Big Match"
+        ],
+        "rule_str": "Big Match",
+        "matchday": 8,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 560612,
+        "home": "Liverpool",
+        "away": "Brighton & Hove Albion",
+        "kst_time": "10.25 23:00 (KST)",
+        "uk_time": "Sunday 14:00 (UK)",
         "local": "",
         "rules": [
           "Challenger"
         ],
         "rule_str": "Challenger",
-        "matchday": 7,
-        "status": "FINISHED",
-        "score": "1-2"
+        "matchday": 8,
+        "status": "SCHEDULED",
+        "score": "-"
       },
       {
-        "match_id": 560608,
-        "home": "Nottingham Forest",
-        "away": "Arsenal",
-        "kst_time": "10.19 00:30 (KST)",
+        "match_id": 560621,
+        "home": "Sunderland AFC",
+        "away": "Leeds United",
+        "kst_time": "10.26 01:30 (KST)",
         "uk_time": "Sunday 16:30 (UK)",
         "local": "",
         "rules": [
           "Prime Time"
         ],
         "rule_str": "Prime Time",
-        "matchday": 7,
-        "status": "FINISHED",
-        "score": "0-1"
-      },
-      {
-        "match_id": 560603,
-        "home": "Everton",
-        "away": "Chelsea",
-        "kst_time": "10.17 20:30 (KST)",
-        "uk_time": "Saturday 12:30 (UK)",
-        "local": "",
-        "rules": [
-          "Early KO"
-        ],
-        "rule_str": "Early KO",
-        "matchday": 7,
-        "status": "FINISHED",
-        "score": "0-2"
+        "matchday": 8,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ]
   },
@@ -301,7 +301,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-10-19 21:29:06 (KST)",
+      "🚀 [Start] 2026-10-20 07:05:48 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -321,10 +321,22 @@
       "   T6. Leader: 1위 팀 포함",
       "   [최대 선정: 3경기]",
       "   📋 전체: 20경기 (라운드: [7, 8])",
-      "   🎯 선정 대상: R7 (10경기)",
-      "   📊 상태별: {'FINISHED': 9, 'TIMED': 1}",
-      "   🔄 R7 경기 모두 종료 → 새로 선정 불필요",
-      "   ✅ 기존 선정 유지: 3경기 (R7)",
+      "   🎯 선정 대상: R8 (10경기)",
+      "   📊 상태별: {'TIMED': 10}",
+      "   🔄 라운드 변경: R7 → R8 (새로 선정)",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🏆 R8에서 3경기 선정:",
+      "      • [T1] Chelsea vs Tottenham [Big Match] 10.25 01:30 (KST)",
+      "      • [T3] Liverpool vs Brighton & Hove Albion [Challenger] 10.25 23:00 (KST)",
+      "      • [T4] Sunderland AFC vs Leeds United [Prime Time] 10.26 01:30 (KST)",
+      "   ✅ 새로 선정됨: 3경기 (R8)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ✅ 전적: 38-46 | 순위: -",
@@ -365,7 +377,7 @@
       "      Recent: Shanghai vs Zizou Bergs L (5-7, 6-7) | Oct 12",
       "      Next: Paris Masters | - | Oct 27",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
-      "   ✅ 해외파 9명 수집, 핫이슈 2건",
+      "   ✅ 해외파 9명 수집, 핫이슈 0건",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
     ]
