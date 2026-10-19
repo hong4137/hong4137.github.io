@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-19 12:45:52 KST",
+  "updated": "2026-10-19 21:29:06 KST",
   "hot_issues": [
     {
       "headline": "오현규 2골 1도움 (Beşiktaş JK 3-2 승) · 10.16",
@@ -116,7 +116,13 @@
         "assists": 1,
         "rating": 9.1
       },
-      "next": null
+      "next": {
+        "event": "UEFA Europa League",
+        "opponent": "Crystal Palace",
+        "venue": "home",
+        "date": "10.23",
+        "time_kst": "04:00"
+      }
     },
     {
       "player": "백승호",
@@ -173,7 +179,13 @@
         "assists": 0,
         "rating": 7.3
       },
-      "next": null
+      "next": {
+        "event": "UEFA Conference League",
+        "opponent": "Sint-Truidense VV",
+        "venue": "home",
+        "date": "10.23",
+        "time_kst": "04:00"
+      }
     },
     {
       "player": "설영우",
