@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-21 01:30:43 KST",
+  "updated": "2026-10-21 06:21:36 KST",
   "epl": {
     "matchday": 7,
     "selected_round": 8,
@@ -267,11 +267,11 @@
     {
       "player": "이강인",
       "team": "ATM",
-      "opponent": "VfB Stuttgart",
-      "venue": "away",
-      "kst_date": "10.21",
+      "opponent": "RC Deportivo La Coruña",
+      "venue": "home",
+      "kst_date": "10.25",
       "kst_time": "04:00",
-      "competition": "UCL R3",
+      "competition": "La Liga R10",
       "status": "SCHEDULED"
     },
     {
@@ -301,7 +301,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-10-21 01:30:43 (KST)",
+      "🚀 [Start] 2026-10-21 06:21:36 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -362,7 +362,7 @@
       "      📅 10.26 05:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...",
-      "   ✅ 이강인 (ATM): vs VfB Stuttgart | 10.21 04:00 KST",
+      "   ✅ 이강인 (ATM): vs RC Deportivo La Coruña | 10.25 04:00 KST",
       "   ✅ 김민재 (Bayern): vs Arsenal FC | 10.22 04:00 KST",
       "   ⚠️ TheSportsDB API error: 403",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",

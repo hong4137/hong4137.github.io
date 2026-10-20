@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-21 01:30:43 KST",
+  "updated": "2026-10-21 06:21:36 KST",
   "hot_issues": [],
   "players": [
     {
@@ -51,17 +51,17 @@
       "team": "FC Porto",
       "recent": {
         "event": "UEFA Champions League",
-        "opponent": "Real Betis",
-        "venue": "away",
-        "date": "10.15",
-        "team_score": 2,
-        "opponent_score": 3,
+        "opponent": "PSV Eindhoven",
+        "venue": "home",
+        "date": "10.21",
+        "team_score": 0,
+        "opponent_score": 1,
         "result": "L",
         "player_status": "PLAYED",
-        "minutes": 19,
+        "minutes": 32,
         "goals": 0,
         "assists": 0,
-        "rating": 6.8
+        "rating": 6.9
       },
       "next": {
         "event": "Liga Portugal Betclic",
@@ -107,13 +107,7 @@
         "assists": 0,
         "rating": 6.5
       },
-      "next": {
-        "event": "UEFA Europa League",
-        "opponent": "Crystal Palace",
-        "venue": "home",
-        "date": "10.23",
-        "time_kst": "04:00"
-      }
+      "next": null
     },
     {
       "player": "백승호",
