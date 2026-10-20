@@ -1,33 +1,9 @@
 {
-  "generated_at": "2026-10-20 09:04 KST",
+  "generated_at": "2026-10-21 08:35 KST",
   "events": [
     {
-      "date": "2026-10-21",
-      "title": "넷플릭스 2026년 3분기 실적 발표",
-      "category": "earnings",
-      "importance": 5,
-      "impact": [
-        "equities",
-        "VIX"
-      ],
-      "consensus": null,
-      "source_url": "https://ir.netflix.net/"
-    },
-    {
-      "date": "2026-10-22",
-      "title": "메타 플랫폼스 2026년 3분기 실적 발표",
-      "category": "earnings",
-      "importance": 5,
-      "impact": [
-        "equities",
-        "VIX"
-      ],
-      "consensus": null,
-      "source_url": "https://atmeta.com/"
-    },
-    {
-      "date": "2026-10-27",
-      "title": "FOMC 회의 시작",
+      "date": "2026-10-28",
+      "title": "FOMC 회의 및 성명 발표",
       "category": "fed_fomc",
       "importance": 5,
       "impact": [
@@ -41,21 +17,7 @@
     },
     {
       "date": "2026-10-28",
-      "title": "FOMC 금리 결정 및 성명 발표",
-      "category": "fed_fomc",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.federalreserve.gov/"
-    },
-    {
-      "date": "2026-10-28",
-      "title": "마이크로소프트 2027년 1분기 실적 발표",
+      "title": "마이크로소프트 (MSFT) 2027 회계연도 1분기 실적 발표",
       "category": "earnings",
       "importance": 5,
       "impact": [
@@ -63,11 +25,24 @@
         "VIX"
       ],
       "consensus": null,
-      "source_url": "https://www.microsoft.com/en-us/Investor/"
+      "source_url": "https://www.microsoft.com/en-us/investor/"
     },
     {
       "date": "2026-10-29",
-      "title": "아마존 2026년 3분기 실적 발표",
+      "title": "미국 2026년 3분기 GDP (잠정치) 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.bea.gov/"
+    },
+    {
+      "date": "2026-10-29",
+      "title": "아마존 (AMZN) 2026년 3분기 실적 발표",
       "category": "earnings",
       "importance": 5,
       "impact": [
@@ -78,16 +53,17 @@
       "source_url": "https://ir.aboutamazon.com/"
     },
     {
-      "date": "2026-11-01",
-      "title": "OPEC+ 회의",
-      "category": "geopolitical",
+      "date": "2026-11-04",
+      "title": "미국 2026년 9월 개인소비지출 (PCE) 발표",
+      "category": "economic_data",
       "importance": 4,
       "impact": [
-        "oil",
-        "USD"
+        "equities",
+        "USD",
+        "yields"
       ],
       "consensus": null,
-      "source_url": "https://www.opec.org/"
+      "source_url": "https://www.bea.gov/"
     }
   ]
 }
