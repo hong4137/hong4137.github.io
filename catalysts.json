@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-21 08:35 KST",
+  "generated_at": "2026-10-22 08:52 KST",
   "events": [
     {
       "date": "2026-10-28",
-      "title": "FOMC 회의 및 성명 발표",
+      "title": "FOMC 회의 및 금리 결정",
       "category": "fed_fomc",
       "importance": 5,
       "impact": [
@@ -17,50 +17,50 @@
     },
     {
       "date": "2026-10-28",
-      "title": "마이크로소프트 (MSFT) 2027 회계연도 1분기 실적 발표",
+      "title": "Microsoft Q1 FY27 실적 발표",
       "category": "earnings",
       "importance": 5,
       "impact": [
-        "equities",
-        "VIX"
+        "equities"
       ],
       "consensus": null,
       "source_url": "https://www.microsoft.com/en-us/investor/"
     },
     {
       "date": "2026-10-29",
-      "title": "미국 2026년 3분기 GDP (잠정치) 발표",
+      "title": "Amazon Q3 2026 실적 발표",
+      "category": "earnings",
+      "importance": 5,
+      "impact": [
+        "equities"
+      ],
+      "consensus": "EPS $2.02",
+      "source_url": "https://ir.aboutamazon.com/"
+    },
+    {
+      "date": "2026-10-29",
+      "title": "미국 3분기 GDP (잠정치) 발표",
       "category": "economic_data",
       "importance": 4,
       "impact": [
+        "VIX",
+        "yields",
         "equities",
-        "USD",
-        "yields"
+        "USD"
       ],
       "consensus": null,
       "source_url": "https://www.bea.gov/"
     },
     {
-      "date": "2026-10-29",
-      "title": "아마존 (AMZN) 2026년 3분기 실적 발표",
-      "category": "earnings",
+      "date": "2026-11-04",
+      "title": "미국 9월 개인소득 및 지출 발표 (PCE 포함)",
+      "category": "economic_data",
       "importance": 5,
       "impact": [
+        "VIX",
+        "yields",
         "equities",
-        "VIX"
-      ],
-      "consensus": null,
-      "source_url": "https://ir.aboutamazon.com/"
-    },
-    {
-      "date": "2026-11-04",
-      "title": "미국 2026년 9월 개인소비지출 (PCE) 발표",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
+        "USD"
       ],
       "consensus": null,
       "source_url": "https://www.bea.gov/"
