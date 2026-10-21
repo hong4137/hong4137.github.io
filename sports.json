@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-22 01:48:27 KST",
+  "updated": "2026-10-22 06:22:48 KST",
   "epl": {
     "matchday": 7,
     "selected_round": 8,
@@ -277,11 +277,11 @@
     {
       "player": "김민재",
       "team": "Bayern",
-      "opponent": "Arsenal FC",
-      "venue": "home",
-      "kst_date": "10.22",
-      "kst_time": "04:00",
-      "competition": "UCL R3",
+      "opponent": "SC Freiburg",
+      "venue": "away",
+      "kst_date": "10.26",
+      "kst_time": "01:30",
+      "competition": "Bundesliga R7",
       "status": "SCHEDULED"
     },
     {
@@ -301,7 +301,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-10-22 01:48:27 (KST)",
+      "🚀 [Start] 2026-10-22 06:22:48 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -363,7 +363,7 @@
       "   ✅ 순위: 10명 로드",
       "\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...",
       "   ✅ 이강인 (ATM): vs RC Deportivo La Coruña | 10.25 04:00 KST",
-      "   ✅ 김민재 (Bayern): vs Arsenal FC | 10.22 04:00 KST",
+      "   ✅ 김민재 (Bayern): vs SC Freiburg | 10.26 01:30 KST",
       "   ⚠️ TheSportsDB API error: 403",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ⚠️ 손흥민 기존 데이터 만료(과거 경기: 08.23) → 폴백으로 대체",
