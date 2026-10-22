@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-23 01:48:34 KST",
+  "updated": "2026-10-23 06:17:59 KST",
   "hot_issues": [],
   "players": [
     {
@@ -94,18 +94,18 @@
       "player": "오현규",
       "team": "Beşiktaş JK",
       "recent": {
-        "event": "Trendyol Süper Lig",
-        "opponent": "Trabzonspor",
-        "venue": "away",
-        "date": "10.20",
-        "team_score": 0,
+        "event": "UEFA Europa League",
+        "opponent": "Crystal Palace",
+        "venue": "home",
+        "date": "10.23",
+        "team_score": 2,
         "opponent_score": 2,
-        "result": "L",
+        "result": "D",
         "player_status": "PLAYED",
-        "minutes": 13,
+        "minutes": 75,
         "goals": 0,
         "assists": 0,
-        "rating": 6.5
+        "rating": 5.9
       },
       "next": null
     },
@@ -157,26 +157,20 @@
       "player": "조규성",
       "team": "FC Midtjylland",
       "recent": {
-        "event": "Danish Superliga",
-        "opponent": "Viborg FF",
-        "venue": "away",
-        "date": "10.20",
-        "team_score": 2,
-        "opponent_score": 1,
-        "result": "W",
-        "player_status": "PLAYED",
-        "minutes": 45,
-        "goals": 0,
-        "assists": 0,
-        "rating": 7
-      },
-      "next": {
         "event": "UEFA Conference League",
         "opponent": "Sint-Truidense VV",
         "venue": "home",
         "date": "10.23",
-        "time_kst": "04:00"
-      }
+        "team_score": 0,
+        "opponent_score": 1,
+        "result": "L",
+        "player_status": "PLAYED",
+        "minutes": 45,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.7
+      },
+      "next": null
     },
     {
       "player": "설영우",
