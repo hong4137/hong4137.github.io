@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-22 20:21:13 KST",
+  "updated": "2026-10-23 01:48:34 KST",
   "hot_issues": [],
   "players": [
     {
@@ -145,7 +145,13 @@
         "assists": 0,
         "rating": 6.7
       },
-      "next": null
+      "next": {
+        "event": "Championship",
+        "opponent": "Queens Park Rangers",
+        "venue": "away",
+        "date": "10.24",
+        "time_kst": "23:00"
+      }
     },
     {
       "player": "조규성",

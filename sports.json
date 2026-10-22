@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-22 20:21:13 KST",
+  "updated": "2026-10-23 01:48:34 KST",
   "epl": {
     "matchday": 8,
     "selected_round": 8,
@@ -144,7 +144,7 @@
       "date": "Oct 23-25",
       "date_from": "2026-10-23",
       "date_to": "2026-10-25",
-      "status": "Next GP",
+      "status": "This Week",
       "sprint": false
     },
     "schedule": [
@@ -301,7 +301,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-10-22 20:21:13 (KST)",
+      "🚀 [Start] 2026-10-23 01:48:34 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -355,7 +355,7 @@
       "      3. Lewis Hamilton (Ferrari) 229pts",
       "      4. Max Verstappen (Red Bull) 221pts",
       "      5. Charles Leclerc (Ferrari) 215pts",
-      "   ✅ United States Grand Prix | COTA, Austin | Oct 23-25 [Next GP]",
+      "   ✅ United States Grand Prix | COTA, Austin | Oct 23-25 [This Week]",
       "      📅 10.24 03:30 KST | FP1",
       "      📅 10.24 07:00 KST | FP2",
       "      📅 10.25 02:30 KST | FP3",
