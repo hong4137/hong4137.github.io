@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-22 08:52 KST",
+  "generated_at": "2026-10-23 08:50 KST",
   "events": [
     {
       "date": "2026-10-28",
@@ -17,53 +17,27 @@
     },
     {
       "date": "2026-10-28",
-      "title": "Microsoft Q1 FY27 실적 발표",
+      "title": "Microsoft Q1 2027 실적 발표",
       "category": "earnings",
       "importance": 5,
       "impact": [
-        "equities"
+        "equities",
+        "VIX"
       ],
-      "consensus": null,
-      "source_url": "https://www.microsoft.com/en-us/investor/"
+      "consensus": "EPS $4.71",
+      "source_url": "https://www.microsoft.com/investor/"
     },
     {
-      "date": "2026-10-29",
-      "title": "Amazon Q3 2026 실적 발표",
+      "date": "2026-11-02",
+      "title": "Apple Q4 2026 실적 발표",
       "category": "earnings",
       "importance": 5,
       "impact": [
-        "equities"
-      ],
-      "consensus": "EPS $2.02",
-      "source_url": "https://ir.aboutamazon.com/"
-    },
-    {
-      "date": "2026-10-29",
-      "title": "미국 3분기 GDP (잠정치) 발표",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "VIX",
-        "yields",
         "equities",
-        "USD"
+        "VIX"
       ],
-      "consensus": null,
-      "source_url": "https://www.bea.gov/"
-    },
-    {
-      "date": "2026-11-04",
-      "title": "미국 9월 개인소득 및 지출 발표 (PCE 포함)",
-      "category": "economic_data",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.bea.gov/"
+      "consensus": "EPS $1.99, 매출 $113.37B",
+      "source_url": "https://investor.apple.com/"
     }
   ]
 }
