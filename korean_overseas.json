@@ -1,5 +1,195 @@
 {
-  "updated": "2026-10-22 12:46:27 KST",
+  "updated": "2026-10-22 20:21:13 KST",
   "hot_issues": [],
-  "players": []
+  "players": [
+    {
+      "player": "황희찬",
+      "team": "FC Schalke 04",
+      "recent": {
+        "event": "Bundesliga",
+        "opponent": "1. FSV Mainz 05",
+        "venue": "home",
+        "date": "10.17",
+        "team_score": 0,
+        "opponent_score": 1,
+        "result": "L",
+        "player_status": "PLAYED",
+        "minutes": 30,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.4
+      },
+      "next": null
+    },
+    {
+      "player": "이재성",
+      "team": "1. FSV Mainz 05",
+      "recent": {
+        "event": "Bundesliga",
+        "opponent": "FC Schalke 04",
+        "venue": "away",
+        "date": "10.17",
+        "team_score": 1,
+        "opponent_score": 0,
+        "result": "W",
+        "player_status": "PLAYED",
+        "minutes": 76,
+        "goals": 0,
+        "assists": 0,
+        "rating": 7.5
+      },
+      "next": {
+        "event": "Bundesliga",
+        "opponent": "SV Werder Bremen",
+        "venue": "home",
+        "date": "10.24",
+        "time_kst": "22:30"
+      }
+    },
+    {
+      "player": "황인범",
+      "team": "FC Porto",
+      "recent": {
+        "event": "UEFA Champions League",
+        "opponent": "PSV Eindhoven",
+        "venue": "home",
+        "date": "10.21",
+        "team_score": 0,
+        "opponent_score": 1,
+        "result": "L",
+        "player_status": "PLAYED",
+        "minutes": 32,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.9
+      },
+      "next": {
+        "event": "Liga Portugal Betclic",
+        "opponent": "Gil Vicente",
+        "venue": "away",
+        "date": "10.25",
+        "time_kst": "04:30"
+      }
+    },
+    {
+      "player": "배준호",
+      "team": "Stoke City",
+      "recent": {
+        "event": "Championship",
+        "opponent": "Derby County",
+        "venue": "away",
+        "date": "10.17",
+        "team_score": 1,
+        "opponent_score": 0,
+        "result": "W",
+        "player_status": "DNP",
+        "minutes": 0,
+        "goals": 0,
+        "assists": 0,
+        "rating": null
+      },
+      "next": null
+    },
+    {
+      "player": "오현규",
+      "team": "Beşiktaş JK",
+      "recent": {
+        "event": "Trendyol Süper Lig",
+        "opponent": "Trabzonspor",
+        "venue": "away",
+        "date": "10.20",
+        "team_score": 0,
+        "opponent_score": 2,
+        "result": "L",
+        "player_status": "PLAYED",
+        "minutes": 13,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.5
+      },
+      "next": null
+    },
+    {
+      "player": "백승호",
+      "team": "Birmingham City",
+      "recent": {
+        "event": "Championship",
+        "opponent": "Middlesbrough",
+        "venue": "home",
+        "date": "09.19",
+        "team_score": 2,
+        "opponent_score": 2,
+        "result": "D",
+        "player_status": "PLAYED",
+        "minutes": 12,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.3
+      },
+      "next": null
+    },
+    {
+      "player": "엄지성",
+      "team": "Swansea City",
+      "recent": {
+        "event": "Championship",
+        "opponent": "West Ham United",
+        "venue": "home",
+        "date": "10.17",
+        "team_score": 0,
+        "opponent_score": 1,
+        "result": "L",
+        "player_status": "PLAYED",
+        "minutes": 33,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.7
+      },
+      "next": null
+    },
+    {
+      "player": "조규성",
+      "team": "FC Midtjylland",
+      "recent": {
+        "event": "Danish Superliga",
+        "opponent": "Viborg FF",
+        "venue": "away",
+        "date": "10.20",
+        "team_score": 2,
+        "opponent_score": 1,
+        "result": "W",
+        "player_status": "PLAYED",
+        "minutes": 45,
+        "goals": 0,
+        "assists": 0,
+        "rating": 7
+      },
+      "next": {
+        "event": "UEFA Conference League",
+        "opponent": "Sint-Truidense VV",
+        "venue": "home",
+        "date": "10.23",
+        "time_kst": "04:00"
+      }
+    },
+    {
+      "player": "설영우",
+      "team": "FC Augsburg",
+      "recent": {
+        "event": "Bundesliga",
+        "opponent": "SV 07 Elversberg",
+        "venue": "away",
+        "date": "10.17",
+        "team_score": 3,
+        "opponent_score": 4,
+        "result": "L",
+        "player_status": "PLAYED",
+        "minutes": 16,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.6
+      },
+      "next": null
+    }
+  ]
 }
