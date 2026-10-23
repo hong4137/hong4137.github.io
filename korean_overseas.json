@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-24 01:39:52 KST",
+  "updated": "2026-10-24 06:07:20 KST",
   "hot_issues": [],
   "players": [
     {
@@ -19,7 +19,13 @@
         "assists": 0,
         "rating": 6.4
       },
-      "next": null
+      "next": {
+        "event": "Bundesliga",
+        "opponent": "1. FC Köln",
+        "venue": "away",
+        "date": "10.24",
+        "time_kst": "22:30"
+      }
     },
     {
       "player": "이재성",
