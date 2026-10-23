@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-23 08:50 KST",
+  "generated_at": "2026-10-24 08:43 KST",
   "events": [
     {
       "date": "2026-10-28",
@@ -12,32 +12,98 @@
         "equities",
         "USD"
       ],
-      "consensus": null,
+      "consensus": "금리 동결 예상 (현재 3.75%-4.00%)",
       "source_url": "https://www.federalreserve.gov/"
     },
     {
-      "date": "2026-10-28",
-      "title": "Microsoft Q1 2027 실적 발표",
+      "date": "2026-10-29",
+      "title": "미국 주간 신규 실업수당 청구",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.dol.gov/"
+    },
+    {
+      "date": "2026-10-29",
+      "title": "Amazon (AMZN) 3분기 실적 발표",
       "category": "earnings",
       "importance": 5,
       "impact": [
         "equities",
         "VIX"
       ],
-      "consensus": "EPS $4.71",
-      "source_url": "https://www.microsoft.com/investor/"
+      "consensus": null,
+      "source_url": "https://ir.aboutamazon.com/"
+    },
+    {
+      "date": "2026-11-01",
+      "title": "OPEC+ 장관급 회의",
+      "category": "geopolitical",
+      "importance": 4,
+      "impact": [
+        "oil",
+        "equities",
+        "USD"
+      ],
+      "consensus": "11월 생산량 동결 유지 예상",
+      "source_url": "https://www.opec.org/"
     },
     {
       "date": "2026-11-02",
-      "title": "Apple Q4 2026 실적 발표",
-      "category": "earnings",
+      "title": "미국 ISM 제조업 PMI (10월) 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": "이전 54.5%",
+      "source_url": "https://www.ismworld.org/"
+    },
+    {
+      "date": "2026-11-03",
+      "title": "미국 JOLTS 구인·이직 보고서 (9월) 발표",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": "이전 7.079M",
+      "source_url": "https://www.bls.gov/"
+    },
+    {
+      "date": "2026-11-05",
+      "title": "미국 주간 신규 실업수당 청구",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.dol.gov/"
+    },
+    {
+      "date": "2026-11-06",
+      "title": "미국 비농업 고용보고서 (10월) 발표",
+      "category": "economic_data",
       "importance": 5,
       "impact": [
         "equities",
-        "VIX"
+        "USD",
+        "yields"
       ],
-      "consensus": "EPS $1.99, 매출 $113.37B",
-      "source_url": "https://investor.apple.com/"
+      "consensus": "이전 29,000명",
+      "source_url": "https://www.bls.gov/"
     }
   ]
 }
