@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-24 08:43 KST",
+  "generated_at": "2026-10-25 07:50 KST",
   "events": [
     {
       "date": "2026-10-28",
@@ -12,25 +12,24 @@
         "equities",
         "USD"
       ],
-      "consensus": "금리 동결 예상 (현재 3.75%-4.00%)",
+      "consensus": null,
       "source_url": "https://www.federalreserve.gov/"
     },
     {
-      "date": "2026-10-29",
-      "title": "미국 주간 신규 실업수당 청구",
-      "category": "economic_data",
-      "importance": 4,
+      "date": "2026-10-28",
+      "title": "Alphabet (GOOGL) Q3 2026 실적 발표",
+      "category": "earnings",
+      "importance": 5,
       "impact": [
         "equities",
-        "USD",
-        "yields"
+        "VIX"
       ],
-      "consensus": null,
-      "source_url": "https://www.dol.gov/"
+      "consensus": "EPS $2.94-3.04, Revenue $127.4-127.8B",
+      "source_url": "https://abc.xyz/investor/"
     },
     {
-      "date": "2026-10-29",
-      "title": "Amazon (AMZN) 3분기 실적 발표",
+      "date": "2026-10-28",
+      "title": "Microsoft (MSFT) Q3 2026 실적 발표",
       "category": "earnings",
       "importance": 5,
       "impact": [
@@ -38,50 +37,47 @@
         "VIX"
       ],
       "consensus": null,
-      "source_url": "https://ir.aboutamazon.com/"
+      "source_url": "https://investor.microsoft.com/"
+    },
+    {
+      "date": "2026-10-29",
+      "title": "Amazon (AMZN) Q3 2026 실적 발표",
+      "category": "earnings",
+      "importance": 5,
+      "impact": [
+        "equities",
+        "VIX"
+      ],
+      "consensus": "EPS $1.96-2.01, Revenue $202.11-202.16B",
+      "source_url": "https://www.amazon.com/ir/"
     },
     {
       "date": "2026-11-01",
-      "title": "OPEC+ 장관급 회의",
+      "title": "OPEC+ 회의",
       "category": "geopolitical",
       "importance": 4,
       "impact": [
         "oil",
-        "equities",
-        "USD"
+        "equities"
       ],
-      "consensus": "11월 생산량 동결 유지 예상",
+      "consensus": null,
       "source_url": "https://www.opec.org/"
     },
     {
       "date": "2026-11-02",
-      "title": "미국 ISM 제조업 PMI (10월) 발표",
-      "category": "economic_data",
-      "importance": 4,
+      "title": "Apple (AAPL) Fiscal Q4 2026 실적 발표",
+      "category": "earnings",
+      "importance": 5,
       "impact": [
         "equities",
-        "USD",
-        "yields"
+        "VIX"
       ],
-      "consensus": "이전 54.5%",
-      "source_url": "https://www.ismworld.org/"
+      "consensus": null,
+      "source_url": "https://www.apple.com/investor/"
     },
     {
-      "date": "2026-11-03",
-      "title": "미국 JOLTS 구인·이직 보고서 (9월) 발표",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": "이전 7.079M",
-      "source_url": "https://www.bls.gov/"
-    },
-    {
-      "date": "2026-11-05",
-      "title": "미국 주간 신규 실업수당 청구",
+      "date": "2026-11-02",
+      "title": "미국 ISM 제조업 PMI (10월)",
       "category": "economic_data",
       "importance": 4,
       "impact": [
@@ -90,20 +86,20 @@
         "yields"
       ],
       "consensus": null,
-      "source_url": "https://www.dol.gov/"
+      "source_url": "https://www.ismworld.org/"
     },
     {
-      "date": "2026-11-06",
-      "title": "미국 비농업 고용보고서 (10월) 발표",
+      "date": "2026-11-04",
+      "title": "미국 ISM 서비스업 PMI (10월)",
       "category": "economic_data",
-      "importance": 5,
+      "importance": 4,
       "impact": [
         "equities",
         "USD",
         "yields"
       ],
-      "consensus": "이전 29,000명",
-      "source_url": "https://www.bls.gov/"
+      "consensus": null,
+      "source_url": "https://www.ismworld.org/"
     }
   ]
 }
