@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-24 12:45:18 KST",
+  "updated": "2026-10-24 19:29:51 KST",
   "epl": {
     "matchday": 8,
     "selected_round": 8,
@@ -107,12 +107,12 @@
     ]
   },
   "nba": {
-    "record": "38-47",
+    "record": "38-48",
     "rank": "-",
     "last": {
-      "opp": "Lakers",
+      "opp": "Grizzlies",
       "result": "L",
-      "score": "105-127"
+      "score": "108-111"
     },
     "schedule": [
       {
@@ -301,7 +301,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-10-24 12:45:18 (KST)",
+      "🚀 [Start] 2026-10-24 19:29:51 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -338,8 +338,8 @@
       "   ✅ 기존 선정 유지: 3경기 (R8)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ✅ 전적: 38-47 | 순위: -",
-      "   ✅ 최근 경기: vs Lakers L (105-127)",
+      "   ✅ 전적: 38-48 | 순위: -",
+      "   ✅ 최근 경기: vs Grizzlies L (108-111)",
       "   ✅ 다음 일정: 2경기",
       "      ✈️ 10.25 vs Suns | 11:00 KST | @ Phoenix",
       "      ✈️ 10.27 vs Nuggets | 11:00 KST | @ Denver",
