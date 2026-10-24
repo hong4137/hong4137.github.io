@@ -1,5 +1,188 @@
 {
-  "updated": "2026-10-25 00:33:49 KST",
-  "hot_issues": [],
-  "players": []
+  "updated": "2026-10-25 05:24:38 KST",
+  "hot_issues": [
+    {
+      "headline": "이재성 1골 (1. FSV Mainz 05 2-3 패) · 10.24",
+      "detail": "Bundesliga vs SV Werder Bremen | 75분 출전 | 평점 7.9"
+    }
+  ],
+  "players": [
+    {
+      "player": "황희찬",
+      "team": "FC Schalke 04",
+      "recent": {
+        "event": "Bundesliga",
+        "opponent": "1. FC Köln",
+        "venue": "away",
+        "date": "10.24",
+        "team_score": 0,
+        "opponent_score": 0,
+        "result": "D",
+        "player_status": "PLAYED",
+        "minutes": 90,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.9
+      },
+      "next": null
+    },
+    {
+      "player": "이재성",
+      "team": "1. FSV Mainz 05",
+      "recent": {
+        "event": "Bundesliga",
+        "opponent": "SV Werder Bremen",
+        "venue": "home",
+        "date": "10.24",
+        "team_score": 2,
+        "opponent_score": 3,
+        "result": "L",
+        "player_status": "PLAYED",
+        "minutes": 75,
+        "goals": 1,
+        "assists": 0,
+        "rating": 7.9
+      },
+      "next": null
+    },
+    {
+      "player": "황인범",
+      "team": "FC Porto",
+      "recent": {
+        "event": "Liga Portugal Betclic",
+        "opponent": "Gil Vicente",
+        "venue": "away",
+        "date": "10.25",
+        "team_score": 0,
+        "opponent_score": 0,
+        "result": "D",
+        "player_status": "DNP",
+        "minutes": 0,
+        "goals": 0,
+        "assists": 0,
+        "rating": null
+      },
+      "next": null
+    },
+    {
+      "player": "배준호",
+      "team": "Stoke City",
+      "recent": {
+        "event": "Championship",
+        "opponent": "Bristol City",
+        "venue": "home",
+        "date": "10.24",
+        "team_score": 0,
+        "opponent_score": 0,
+        "result": "D",
+        "player_status": "DNP",
+        "minutes": 0,
+        "goals": 0,
+        "assists": 0,
+        "rating": null
+      },
+      "next": null
+    },
+    {
+      "player": "오현규",
+      "team": "Beşiktaş JK",
+      "recent": {
+        "event": "UEFA Europa League",
+        "opponent": "Crystal Palace",
+        "venue": "home",
+        "date": "10.23",
+        "team_score": 2,
+        "opponent_score": 2,
+        "result": "D",
+        "player_status": "PLAYED",
+        "minutes": 75,
+        "goals": 0,
+        "assists": 0,
+        "rating": 5.9
+      },
+      "next": null
+    },
+    {
+      "player": "백승호",
+      "team": "Birmingham City",
+      "recent": {
+        "event": "Championship",
+        "opponent": "Middlesbrough",
+        "venue": "home",
+        "date": "09.19",
+        "team_score": 2,
+        "opponent_score": 2,
+        "result": "D",
+        "player_status": "PLAYED",
+        "minutes": 12,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.3
+      },
+      "next": null
+    },
+    {
+      "player": "엄지성",
+      "team": "Swansea City",
+      "recent": {
+        "event": "Championship",
+        "opponent": "Queens Park Rangers",
+        "venue": "away",
+        "date": "10.24",
+        "team_score": 0,
+        "opponent_score": 5,
+        "result": "L",
+        "player_status": "PLAYED",
+        "minutes": 26,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.5
+      },
+      "next": null
+    },
+    {
+      "player": "조규성",
+      "team": "FC Midtjylland",
+      "recent": {
+        "event": "UEFA Conference League",
+        "opponent": "Sint-Truidense VV",
+        "venue": "home",
+        "date": "10.23",
+        "team_score": 0,
+        "opponent_score": 1,
+        "result": "L",
+        "player_status": "PLAYED",
+        "minutes": 45,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.7
+      },
+      "next": {
+        "event": "Danish Superliga",
+        "opponent": "Lyngby",
+        "venue": "home",
+        "date": "10.25",
+        "time_kst": "22:00"
+      }
+    },
+    {
+      "player": "설영우",
+      "team": "FC Augsburg",
+      "recent": {
+        "event": "Bundesliga",
+        "opponent": "1. FC Union Berlin",
+        "venue": "home",
+        "date": "10.24",
+        "team_score": 1,
+        "opponent_score": 1,
+        "result": "D",
+        "player_status": "DNP",
+        "minutes": 0,
+        "goals": 0,
+        "assists": 0,
+        "rating": null
+      },
+      "next": null
+    }
+  ]
 }

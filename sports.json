@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-25 00:33:49 KST",
+  "updated": "2026-10-25 05:24:38 KST",
   "epl": {
     "matchday": 8,
     "selected_round": 8,
@@ -24,8 +24,8 @@
         ],
         "rule_str": "Big Match",
         "matchday": 8,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "N/A"
       },
       {
         "match_id": 560612,
@@ -71,8 +71,8 @@
         ],
         "rule_str": "Big Match",
         "matchday": 8,
-        "status": "TIMED",
-        "score": "-"
+        "status": "FINISHED",
+        "score": "N/A"
       },
       {
         "match_id": 560612,
@@ -258,7 +258,7 @@
     "next": {
       "event": "Vienna",
       "detail": "R32 vs Karen Khachanov",
-      "match_time": "Oct 25 18:00 KST",
+      "match_time": "Oct 26 21:00 KST",
       "tournament_dates": "",
       "status": "-"
     }
@@ -301,7 +301,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-10-25 00:33:49 (KST)",
+      "🚀 [Start] 2026-10-25 05:24:38 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -323,6 +323,7 @@
       "   📋 전체: 19경기 (라운드: [8, 9])",
       "   🎯 선정 대상: R8 (10경기)",
       "   📊 상태별: {'FINISHED': 1, 'TIMED': 9}",
+      "      ⏰ 강제 FINISHED: Chelsea vs Tottenham",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
@@ -332,7 +333,7 @@
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   📌 기존 선정 유지 (R8)",
-      "      ⏳ Chelsea vs Tottenham [TIMED] -",
+      "      ✅ Chelsea vs Tottenham [FINISHED] N/A",
       "      ⏳ Liverpool vs Brighton & Hove Albion [TIMED] -",
       "      ⏳ Sunderland AFC vs Leeds United [TIMED] -",
       "   ✅ 기존 선정 유지: 3경기 (R8)",
@@ -372,13 +373,12 @@
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
       "      Recent: Shanghai vs Zizou Bergs L (5-7, 6-7)",
-      "      Next: Vienna | Oct 25",
+      "      Next: Vienna | Oct 26",
       "   📊 최종:",
       "      Recent: Shanghai vs Zizou Bergs L (5-7, 6-7) | Oct 12",
-      "      Next: Vienna | R32 vs Karen Khachanov | Oct 25 18:00 KST",
+      "      Next: Vienna | R32 vs Karen Khachanov | Oct 26 21:00 KST",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
-      "   ⚠️ 해외파 Web App 예외: HTTPSConnectionPool(host='script.googleusercontent.com', port=443): Read timed out. (read timeout=30)",
-      "   ⚠️ 해외파 데이터 수집 실패 → 빈 값 유지",
+      "   ✅ 해외파 9명 수집, 핫이슈 1건",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
     ]
