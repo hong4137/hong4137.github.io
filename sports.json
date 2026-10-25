@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-25 19:56:36 KST",
+  "updated": "2026-10-26 00:43:55 KST",
   "epl": {
     "matchday": 8,
     "selected_round": 8,
@@ -9,7 +9,7 @@
       "Manchester City",
       "Arsenal",
       "Brighton & Hove Albion",
-      "Chelsea"
+      "Liverpool"
     ],
     "matches": [
       {
@@ -39,8 +39,8 @@
         ],
         "rule_str": "Challenger",
         "matchday": 8,
-        "status": "TIMED",
-        "score": "-"
+        "status": "IN_PLAY",
+        "score": "2-0"
       },
       {
         "match_id": 560621,
@@ -86,8 +86,8 @@
         ],
         "rule_str": "Challenger",
         "matchday": 8,
-        "status": "TIMED",
-        "score": "-"
+        "status": "IN_PLAY",
+        "score": "2-0"
       },
       {
         "match_id": 560621,
@@ -137,48 +137,48 @@
   },
   "f1": {
     "next_race": {
-      "round": 19,
-      "name": "United States Grand Prix",
-      "circuit": "COTA, Austin",
-      "country": "USA",
-      "date": "Oct 23-25",
-      "date_from": "2026-10-23",
-      "date_to": "2026-10-25",
-      "status": "This Week",
+      "round": 20,
+      "name": "Mexico City Grand Prix",
+      "circuit": "Autódromo Hermanos Rodríguez",
+      "country": "Mexico",
+      "date": "Oct 30-01",
+      "date_from": "2026-10-30",
+      "date_to": "2026-11-01",
+      "status": "Next GP",
       "sprint": false
     },
     "schedule": [
       {
         "name": "FP1",
-        "date": "10.24",
+        "date": "10.31",
         "day_local": "Fri",
         "kst_time": "03:30",
         "local_time": "13:30"
       },
       {
         "name": "FP2",
-        "date": "10.24",
+        "date": "10.31",
         "day_local": "Fri",
         "kst_time": "07:00",
         "local_time": "17:00"
       },
       {
         "name": "FP3",
-        "date": "10.25",
+        "date": "11.01",
         "day_local": "Sat",
         "kst_time": "02:30",
         "local_time": "12:30"
       },
       {
         "name": "Qualifying",
-        "date": "10.25",
+        "date": "11.01",
         "day_local": "Sat",
         "kst_time": "06:00",
         "local_time": "16:00"
       },
       {
         "name": "Race",
-        "date": "10.26",
+        "date": "11.02",
         "day_local": "Sun",
         "kst_time": "05:00",
         "local_time": "15:00"
@@ -301,7 +301,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-10-25 19:56:36 (KST)",
+      "🚀 [Start] 2026-10-26 00:43:55 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -309,7 +309,7 @@
       "   - AI Parse: Gemini API ✅",
       "\n⚽ [Step 1/5] Premier League 순위...",
       "   ✅ 1위: Manchester City",
-      "   ✅ Top 4: Manchester City, Arsenal, Brighton & Hove Albion, Chelsea",
+      "   ✅ Top 4: Manchester City, Arsenal, Brighton & Hove Albion, Liverpool",
       "   ✅ 현재 라운드: R8",
       "\n⚽ [Step 2/5] Premier League 경기 선정 (v2.4)...",
       "   [티어 우선순위]",
@@ -320,16 +320,16 @@
       "   T5. Early KO: 토요일 12:30 UK",
       "   T6. Leader: 1위 팀 포함",
       "   [최대 선정: 3경기]",
-      "   📋 전체: 19경기 (라운드: [8, 9])",
+      "   📋 전체: 20경기 (라운드: [8, 9])",
       "   🎯 선정 대상: R8 (10경기)",
-      "   📊 상태별: {'FINISHED': 5, 'TIMED': 5}",
+      "   📊 상태별: {'FINISHED': 5, 'IN_PLAY': 4, 'TIMED': 1}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   📌 기존 선정 유지 (R8)",
       "      ✅ Chelsea vs Tottenham [FINISHED] 0-2",
-      "      ⏳ Liverpool vs Brighton & Hove Albion [TIMED] -",
+      "      🔴 Liverpool vs Brighton & Hove Albion [IN_PLAY] 2-0",
       "      ⏳ Sunderland AFC vs Leeds United [TIMED] -",
       "   ✅ 기존 선정 유지: 3경기 (R8)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
@@ -351,12 +351,12 @@
       "      3. Lewis Hamilton (Ferrari) 229pts",
       "      4. Max Verstappen (Red Bull) 221pts",
       "      5. Charles Leclerc (Ferrari) 215pts",
-      "   ✅ United States Grand Prix | COTA, Austin | Oct 23-25 [This Week]",
-      "      📅 10.24 03:30 KST | FP1",
-      "      📅 10.24 07:00 KST | FP2",
-      "      📅 10.25 02:30 KST | FP3",
-      "      📅 10.25 06:00 KST | Qualifying",
-      "      📅 10.26 05:00 KST | Race",
+      "   ✅ Mexico City Grand Prix | Autódromo Hermanos Rodríguez | Oct 30-01 [Next GP]",
+      "      📅 10.31 03:30 KST | FP1",
+      "      📅 10.31 07:00 KST | FP2",
+      "      📅 11.01 02:30 KST | FP3",
+      "      📅 11.01 06:00 KST | Qualifying",
+      "      📅 11.02 05:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...",
       "   ✅ 이강인 (ATM): vs Levante UD | 10.31 22:00 KST",
@@ -373,7 +373,7 @@
       "      Recent: Shanghai vs Zizou Bergs L (5-7, 6-7) | Oct 12",
       "      Next: Vienna | R32 vs Karen Khachanov | Oct 26 21:00 KST",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
-      "   ✅ 해외파 9명 수집, 핫이슈 1건",
+      "   ✅ 해외파 9명 수집, 핫이슈 2건",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
     ]
