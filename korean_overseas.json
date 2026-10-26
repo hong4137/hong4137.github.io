@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-26 05:31:26 KST",
+  "updated": "2026-10-26 12:47:28 KST",
   "hot_issues": [
     {
       "headline": "이재성 1골 (1. FSV Mainz 05 2-3 패) · 10.24",
@@ -116,7 +116,13 @@
         "assists": 0,
         "rating": 5.9
       },
-      "next": null
+      "next": {
+        "event": "Trendyol Süper Lig",
+        "opponent": "Başakşehir FK",
+        "venue": "home",
+        "date": "10.27",
+        "time_kst": "01:00"
+      }
     },
     {
       "player": "백승호",
