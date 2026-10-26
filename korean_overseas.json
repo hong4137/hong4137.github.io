@@ -1,9 +1,13 @@
 {
-  "updated": "2026-10-26 21:27:33 KST",
+  "updated": "2026-10-27 07:24:04 KST",
   "hot_issues": [
     {
       "headline": "이재성 1골 (1. FSV Mainz 05 2-3 패) · 10.24",
       "detail": "Bundesliga vs SV Werder Bremen | 75분 출전 | 평점 7.9"
+    },
+    {
+      "headline": "오현규 1골 (Beşiktaş JK 2-0 승) · 10.27",
+      "detail": "Trendyol Süper Lig vs Başakşehir FK | 25분 출전 | 평점 7.7"
     },
     {
       "headline": "조규성 1골 (FC Midtjylland 3-2 승) · 10.25",
@@ -103,26 +107,20 @@
       "player": "오현규",
       "team": "Beşiktaş JK",
       "recent": {
-        "event": "UEFA Europa League",
-        "opponent": "Crystal Palace",
-        "venue": "home",
-        "date": "10.23",
-        "team_score": 2,
-        "opponent_score": 2,
-        "result": "D",
-        "player_status": "PLAYED",
-        "minutes": 75,
-        "goals": 0,
-        "assists": 0,
-        "rating": 5.9
-      },
-      "next": {
         "event": "Trendyol Süper Lig",
         "opponent": "Başakşehir FK",
         "venue": "home",
         "date": "10.27",
-        "time_kst": "01:00"
-      }
+        "team_score": 2,
+        "opponent_score": 0,
+        "result": "W",
+        "player_status": "PLAYED",
+        "minutes": 25,
+        "goals": 1,
+        "assists": 0,
+        "rating": 7.7
+      },
+      "next": null
     },
     {
       "player": "백승호",
