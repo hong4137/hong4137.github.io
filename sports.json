@@ -1,9 +1,9 @@
 {
-  "updated": "2026-10-26 12:47:28 KST",
+  "updated": "2026-10-26 21:27:33 KST",
   "epl": {
     "matchday": 8,
-    "selected_round": 8,
-    "display_matchday": "R8",
+    "selected_round": 9,
+    "display_matchday": "R9",
     "leader": "Manchester City",
     "top4": [
       "Manchester City",
@@ -13,66 +13,104 @@
     ],
     "matches": [
       {
-        "match_id": 560612,
-        "home": "Liverpool",
-        "away": "Brighton & Hove Albion",
-        "kst_time": "10.25 23:00 (KST)",
-        "uk_time": "Sunday 14:00 (UK)",
+        "match_id": 560626,
+        "home": "Chelsea",
+        "away": "Manchester United",
+        "kst_time": "10.31 21:30 (KST)",
+        "uk_time": "Saturday 12:30 (UK)",
         "local": "",
         "rules": [
-          "Top Tier",
-          "Challenger"
+          "Big Match",
+          "Early KO"
         ],
-        "rule_str": "Top Tier, Challenger",
-        "matchday": 8,
+        "rule_str": "Big Match, Early KO",
+        "matchday": 9,
         "status": "SCHEDULED",
         "score": "-"
       },
       {
-        "match_id": 560621,
-        "home": "Sunderland AFC",
-        "away": "Leeds United",
-        "kst_time": "10.26 01:30 (KST)",
+        "match_id": 560631,
+        "home": "Liverpool",
+        "away": "Arsenal",
+        "kst_time": "11.02 01:30 (KST)",
         "uk_time": "Sunday 16:30 (UK)",
         "local": "",
         "rules": [
+          "Big Match",
+          "Top Tier",
           "Prime Time"
         ],
-        "rule_str": "Prime Time",
-        "matchday": 8,
+        "rule_str": "Big Match, Top Tier, Prime Time",
+        "matchday": 9,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 560623,
+        "home": "Manchester City",
+        "away": "Brighton & Hove Albion",
+        "kst_time": "11.01 00:00 (KST)",
+        "uk_time": "Saturday 15:00 (UK)",
+        "local": "",
+        "rules": [
+          "Top Tier",
+          "Challenger",
+          "Leader"
+        ],
+        "rule_str": "Top Tier, Challenger, Leader",
+        "matchday": 9,
         "status": "SCHEDULED",
         "score": "-"
       }
     ],
     "selected_matches": [
       {
-        "match_id": 560612,
-        "home": "Liverpool",
-        "away": "Brighton & Hove Albion",
-        "kst_time": "10.25 23:00 (KST)",
-        "uk_time": "Sunday 14:00 (UK)",
+        "match_id": 560626,
+        "home": "Chelsea",
+        "away": "Manchester United",
+        "kst_time": "10.31 21:30 (KST)",
+        "uk_time": "Saturday 12:30 (UK)",
         "local": "",
         "rules": [
-          "Top Tier",
-          "Challenger"
+          "Big Match",
+          "Early KO"
         ],
-        "rule_str": "Top Tier, Challenger",
-        "matchday": 8,
+        "rule_str": "Big Match, Early KO",
+        "matchday": 9,
         "status": "SCHEDULED",
         "score": "-"
       },
       {
-        "match_id": 560621,
-        "home": "Sunderland AFC",
-        "away": "Leeds United",
-        "kst_time": "10.26 01:30 (KST)",
+        "match_id": 560631,
+        "home": "Liverpool",
+        "away": "Arsenal",
+        "kst_time": "11.02 01:30 (KST)",
         "uk_time": "Sunday 16:30 (UK)",
         "local": "",
         "rules": [
+          "Big Match",
+          "Top Tier",
           "Prime Time"
         ],
-        "rule_str": "Prime Time",
-        "matchday": 8,
+        "rule_str": "Big Match, Top Tier, Prime Time",
+        "matchday": 9,
+        "status": "SCHEDULED",
+        "score": "-"
+      },
+      {
+        "match_id": 560623,
+        "home": "Manchester City",
+        "away": "Brighton & Hove Albion",
+        "kst_time": "11.01 00:00 (KST)",
+        "uk_time": "Saturday 15:00 (UK)",
+        "local": "",
+        "rules": [
+          "Top Tier",
+          "Challenger",
+          "Leader"
+        ],
+        "rule_str": "Top Tier, Challenger, Leader",
+        "matchday": 9,
         "status": "SCHEDULED",
         "score": "-"
       }
@@ -273,7 +311,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-10-26 12:47:28 (KST)",
+      "🚀 [Start] 2026-10-26 21:27:33 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -293,17 +331,20 @@
       "   T6. Leader: 1위 팀 포함",
       "   [최대 선정: 3경기]",
       "   📋 전체: 20경기 (라운드: [8, 9])",
-      "   🎯 선정 대상: R8 (10경기)",
-      "   📊 상태별: {'FINISHED': 5, 'TIMED': 5}",
-      "   🔄 라운드 변경: R9 → R8 (새로 선정)",
+      "   🎯 선정 대상: R9 (10경기)",
+      "   📊 상태별: {'TIMED': 10}",
+      "   🔄 라운드 변경: R8 → R9 (새로 선정)",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🏆 R8에서 2경기 선정:",
-      "      • [T2] Liverpool vs Brighton & Hove Albion [Top Tier, Challenger] 10.25 23:00 (KST)",
-      "      • [T4] Sunderland AFC vs Leeds United [Prime Time] 10.26 01:30 (KST)",
-      "   ✅ 새로 선정됨: 2경기 (R8)",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🏆 R9에서 3경기 선정:",
+      "      • [T1] Chelsea vs Manchester United [Big Match, Early KO] 10.31 21:30 (KST)",
+      "      • [T1] Liverpool vs Arsenal [Big Match, Top Tier, Prime Time] 11.02 01:30 (KST)",
+      "      • [T2] Manchester City vs Brighton & Hove Albion [Top Tier, Challenger, Leader] 11.01 00:00 (KST)",
+      "   ✅ 새로 선정됨: 3경기 (R9)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ✅ 전적: 38-49 | 순위: -",
