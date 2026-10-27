@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-28 02:39:25 KST",
+  "updated": "2026-10-28 06:55:10 KST",
   "hot_issues": [
     {
       "headline": "오현규 1골 (Beşiktaş JK 2-0 승) · 10.27",
@@ -45,13 +45,13 @@
         "venue": "away",
         "date": "10.28",
         "team_score": 0,
-        "opponent_score": 0,
-        "result": "D",
+        "opponent_score": 2,
+        "result": "L",
         "player_status": "PLAYED",
-        "minutes": 28,
+        "minutes": 63,
         "goals": 0,
         "assists": 0,
-        "rating": 6.4
+        "rating": 6.5
       },
       "next": {
         "event": "Bundesliga",
@@ -189,14 +189,14 @@
         "opponent": "SG Sonnenhof Großaspach",
         "venue": "away",
         "date": "10.28",
-        "team_score": 2,
-        "opponent_score": 1,
+        "team_score": 4,
+        "opponent_score": 2,
         "result": "W",
         "player_status": "PLAYED",
-        "minutes": 28,
+        "minutes": 65,
         "goals": 0,
         "assists": 0,
-        "rating": 6.9
+        "rating": 7.2
       },
       "next": {
         "event": "Bundesliga",
