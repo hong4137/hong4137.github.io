@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-27 20:46:12 KST",
+  "updated": "2026-10-28 02:39:25 KST",
   "epl": {
     "matchday": 8,
     "selected_round": 9,
@@ -259,16 +259,16 @@
   },
   "tennis": {
     "recent": {
-      "event": "Shanghai",
-      "opponent": "Zizou Bergs",
-      "result": "L",
-      "score": "5-7, 6-7",
-      "date": "Oct 12"
+      "event": "Vienna",
+      "opponent": "Karen Khachanov",
+      "result": "W",
+      "score": "6-4, 7-6",
+      "date": "Oct 27"
     },
     "next": {
       "event": "Vienna",
-      "detail": "R32 vs Karen Khachanov",
-      "match_time": "Oct 27 22:40 KST",
+      "detail": "R16 vs R16P15",
+      "match_time": "Oct 28 21:30 KST",
       "tournament_dates": "",
       "status": "-"
     }
@@ -311,7 +311,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-10-27 20:46:12 (KST)",
+      "🚀 [Start] 2026-10-28 02:39:25 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -379,13 +379,13 @@
       "   🚨 손흥민 폴백 데이터도 만료됨(과거: 08.23 11:30) — KOREAN_PLAYERS_DEFAULT_FALLBACK 수동 갱신 필요! (vs Portland Timbers)",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
-      "      Recent: Shanghai vs Zizou Bergs L (5-7, 6-7)",
-      "      Next: Vienna | Oct 27",
+      "      Recent: Vienna vs Karen Khachanov W (6-4, 7-6)",
+      "      Next: Vienna | Oct 28",
       "   📊 최종:",
-      "      Recent: Shanghai vs Zizou Bergs L (5-7, 6-7) | Oct 12",
-      "      Next: Vienna | R32 vs Karen Khachanov | Oct 27 22:40 KST",
+      "      Recent: Vienna vs Karen Khachanov W (6-4, 7-6) | Oct 27",
+      "      Next: Vienna | R16 vs R16P15 | Oct 28 21:30 KST",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
-      "   ✅ 해외파 9명 수집, 핫이슈 3건",
+      "   ✅ 해외파 9명 수집, 핫이슈 2건",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
       "\n💾 [Save] 데이터 저장..."
     ]

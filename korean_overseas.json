@@ -1,10 +1,6 @@
 {
-  "updated": "2026-10-27 20:46:12 KST",
+  "updated": "2026-10-28 02:39:25 KST",
   "hot_issues": [
-    {
-      "headline": "이재성 1골 (1. FSV Mainz 05 2-3 패) · 10.24",
-      "detail": "Bundesliga vs SV Werder Bremen | 75분 출전 | 평점 7.9"
-    },
     {
       "headline": "오현규 1골 (Beşiktaş JK 2-0 승) · 10.27",
       "detail": "Trendyol Süper Lig vs Başakşehir FK | 25분 출전 | 평점 7.7"
@@ -44,18 +40,18 @@
       "player": "이재성",
       "team": "1. FSV Mainz 05",
       "recent": {
-        "event": "Bundesliga",
-        "opponent": "SV Werder Bremen",
-        "venue": "home",
-        "date": "10.24",
-        "team_score": 2,
-        "opponent_score": 3,
-        "result": "L",
+        "event": "DFB Pokal",
+        "opponent": "VfL Bochum 1848",
+        "venue": "away",
+        "date": "10.28",
+        "team_score": 0,
+        "opponent_score": 0,
+        "result": "D",
         "player_status": "PLAYED",
-        "minutes": 75,
-        "goals": 1,
+        "minutes": 28,
+        "goals": 0,
         "assists": 0,
-        "rating": 7.9
+        "rating": 6.4
       },
       "next": {
         "event": "Bundesliga",
@@ -189,18 +185,18 @@
       "player": "설영우",
       "team": "FC Augsburg",
       "recent": {
-        "event": "Bundesliga",
-        "opponent": "1. FC Union Berlin",
-        "venue": "home",
-        "date": "10.24",
-        "team_score": 1,
+        "event": "DFB Pokal",
+        "opponent": "SG Sonnenhof Großaspach",
+        "venue": "away",
+        "date": "10.28",
+        "team_score": 2,
         "opponent_score": 1,
-        "result": "D",
-        "player_status": "DNP",
-        "minutes": 0,
+        "result": "W",
+        "player_status": "PLAYED",
+        "minutes": 28,
         "goals": 0,
         "assists": 0,
-        "rating": null
+        "rating": 6.9
       },
       "next": {
         "event": "Bundesliga",
