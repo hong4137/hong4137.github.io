@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-28 21:19:28 KST",
+  "updated": "2026-10-29 07:18:42 KST",
   "hot_issues": [
     {
       "headline": "오현규 1골 (Beşiktaş JK 2-0 승) · 10.27",
@@ -15,18 +15,18 @@
       "player": "황희찬",
       "team": "FC Schalke 04",
       "recent": {
-        "event": "Bundesliga",
-        "opponent": "1. FC Köln",
+        "event": "DFB Pokal",
+        "opponent": "SG Dynamo Dresden",
         "venue": "away",
-        "date": "10.24",
+        "date": "10.29",
         "team_score": 0,
-        "opponent_score": 0,
-        "result": "D",
+        "opponent_score": 2,
+        "result": "L",
         "player_status": "PLAYED",
-        "minutes": 90,
+        "minutes": 77,
         "goals": 0,
         "assists": 0,
-        "rating": 6.9
+        "rating": 6.8
       },
       "next": {
         "event": "Bundesliga",
@@ -65,18 +65,18 @@
       "player": "황인범",
       "team": "FC Porto",
       "recent": {
-        "event": "Liga Portugal Betclic",
-        "opponent": "Gil Vicente",
-        "venue": "away",
-        "date": "10.25",
+        "event": "Taca da Liga",
+        "opponent": "Académico Viseu FC",
+        "venue": "home",
+        "date": "10.29",
         "team_score": 1,
         "opponent_score": 0,
         "result": "W",
         "player_status": "PLAYED",
-        "minutes": 45,
+        "minutes": 80,
         "goals": 0,
         "assists": 0,
-        "rating": 6.8
+        "rating": 6.6
       },
       "next": null
     },
