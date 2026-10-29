@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-29 07:18:42 KST",
+  "updated": "2026-10-29 13:52:05 KST",
   "hot_issues": [
     {
       "headline": "오현규 1골 (Beşiktaş JK 2-0 승) · 10.27",
@@ -73,10 +73,10 @@
         "opponent_score": 0,
         "result": "W",
         "player_status": "PLAYED",
-        "minutes": 80,
+        "minutes": 90,
         "goals": 0,
         "assists": 0,
-        "rating": 6.6
+        "rating": 6.7
       },
       "next": null
     },
