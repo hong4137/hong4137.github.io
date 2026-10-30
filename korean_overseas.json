@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-30 21:20:24 KST",
+  "updated": "2026-10-31 07:00:43 KST",
   "hot_issues": [
     {
       "headline": "오현규 1골 (Beşiktaş JK 2-0 승) · 10.27",
@@ -30,26 +30,20 @@
       "player": "이재성",
       "team": "1. FSV Mainz 05",
       "recent": {
-        "event": "DFB Pokal",
-        "opponent": "VfL Bochum 1848",
-        "venue": "away",
-        "date": "10.28",
-        "team_score": 0,
-        "opponent_score": 2,
-        "result": "L",
-        "player_status": "PLAYED",
-        "minutes": 63,
-        "goals": 0,
-        "assists": 0,
-        "rating": 6.5
-      },
-      "next": {
         "event": "Bundesliga",
         "opponent": "SV 07 Elversberg",
         "venue": "away",
         "date": "10.31",
-        "time_kst": "04:30"
-      }
+        "team_score": 1,
+        "opponent_score": 4,
+        "result": "L",
+        "player_status": "DNP",
+        "minutes": 0,
+        "goals": 0,
+        "assists": 0,
+        "rating": null
+      },
+      "next": null
     },
     {
       "player": "황인범",
