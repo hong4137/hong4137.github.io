@@ -1,9 +1,13 @@
 {
-  "updated": "2026-10-31 20:51:18 KST",
+  "updated": "2026-11-01 01:58:06 KST",
   "hot_issues": [
     {
       "headline": "오현규 1골 (Beşiktaş JK 2-0 승) · 10.27",
       "detail": "Trendyol Süper Lig vs Başakşehir FK | 25분 출전 | 평점 7.7"
+    },
+    {
+      "headline": "엄지성 1도움 (Swansea City 4-0 승) · 11.01",
+      "detail": "Championship vs Blackburn Rovers | 82분 출전 | 평점 7.2"
     }
   ],
   "players": [
@@ -11,18 +15,18 @@
       "player": "황희찬",
       "team": "FC Schalke 04",
       "recent": {
-        "event": "DFB Pokal",
-        "opponent": "SG Dynamo Dresden",
-        "venue": "away",
-        "date": "10.29",
+        "event": "Bundesliga",
+        "opponent": "RB Leipzig",
+        "venue": "home",
+        "date": "10.31",
         "team_score": 0,
         "opponent_score": 2,
         "result": "L",
         "player_status": "PLAYED",
-        "minutes": 77,
+        "minutes": 83,
         "goals": 0,
         "assists": 0,
-        "rating": 6.8
+        "rating": 7
       },
       "next": null
     },
@@ -69,12 +73,12 @@
       "team": "Stoke City",
       "recent": {
         "event": "Championship",
-        "opponent": "Bristol City",
+        "opponent": "Preston North End",
         "venue": "home",
-        "date": "10.24",
-        "team_score": 0,
+        "date": "10.31",
+        "team_score": 2,
         "opponent_score": 0,
-        "result": "D",
+        "result": "W",
         "player_status": "DNP",
         "minutes": 0,
         "goals": 0,
@@ -126,25 +130,19 @@
       "team": "Swansea City",
       "recent": {
         "event": "Championship",
-        "opponent": "Queens Park Rangers",
-        "venue": "away",
-        "date": "10.24",
-        "team_score": 0,
-        "opponent_score": 5,
-        "result": "L",
-        "player_status": "PLAYED",
-        "minutes": 26,
-        "goals": 0,
-        "assists": 0,
-        "rating": 6.5
-      },
-      "next": {
-        "event": "Championship",
         "opponent": "Blackburn Rovers",
         "venue": "home",
         "date": "11.01",
-        "time_kst": "00:00"
-      }
+        "team_score": 4,
+        "opponent_score": 0,
+        "result": "W",
+        "player_status": "PLAYED",
+        "minutes": 82,
+        "goals": 0,
+        "assists": 1,
+        "rating": 7.2
+      },
+      "next": null
     },
     {
       "player": "조규성",
@@ -175,18 +173,18 @@
       "player": "설영우",
       "team": "FC Augsburg",
       "recent": {
-        "event": "DFB Pokal",
-        "opponent": "SG Sonnenhof Großaspach",
-        "venue": "away",
-        "date": "10.28",
-        "team_score": 4,
+        "event": "Bundesliga",
+        "opponent": "SC Freiburg",
+        "venue": "home",
+        "date": "10.31",
+        "team_score": 1,
         "opponent_score": 2,
-        "result": "W",
-        "player_status": "PLAYED",
-        "minutes": 65,
+        "result": "L",
+        "player_status": "DNP",
+        "minutes": 0,
         "goals": 0,
         "assists": 0,
-        "rating": 7.2
+        "rating": null
       },
       "next": null
     }
