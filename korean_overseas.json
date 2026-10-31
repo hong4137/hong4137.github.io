@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-01 01:58:06 KST",
+  "updated": "2026-11-01 06:09:14 KST",
   "hot_issues": [
     {
       "headline": "오현규 1골 (Beşiktaş JK 2-0 승) · 10.27",
@@ -7,7 +7,7 @@
     },
     {
       "headline": "엄지성 1도움 (Swansea City 4-0 승) · 11.01",
-      "detail": "Championship vs Blackburn Rovers | 82분 출전 | 평점 7.2"
+      "detail": "Championship vs Blackburn Rovers | 90분 출전 | 평점 7.3"
     }
   ],
   "players": [
@@ -26,7 +26,7 @@
         "minutes": 83,
         "goals": 0,
         "assists": 0,
-        "rating": 7
+        "rating": 6.8
       },
       "next": null
     },
@@ -53,18 +53,18 @@
       "player": "황인범",
       "team": "FC Porto",
       "recent": {
-        "event": "Taca da Liga",
-        "opponent": "Académico Viseu FC",
+        "event": "Liga Portugal Betclic",
+        "opponent": "Estoril Praia",
         "venue": "home",
-        "date": "10.29",
+        "date": "11.01",
         "team_score": 1,
         "opponent_score": 0,
         "result": "W",
-        "player_status": "PLAYED",
-        "minutes": 90,
+        "player_status": "DNP",
+        "minutes": 0,
         "goals": 0,
         "assists": 0,
-        "rating": 6.7
+        "rating": null
       },
       "next": null
     },
@@ -137,10 +137,10 @@
         "opponent_score": 0,
         "result": "W",
         "player_status": "PLAYED",
-        "minutes": 82,
+        "minutes": 90,
         "goals": 0,
         "assists": 1,
-        "rating": 7.2
+        "rating": 7.3
       },
       "next": null
     },
