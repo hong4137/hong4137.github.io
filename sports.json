@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-01 06:09:14 KST",
+  "updated": "2026-11-01 13:57:16 KST",
   "epl": {
     "matchday": 9,
     "selected_round": 9,
@@ -311,7 +311,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-11-01 06:09:14 (KST)",
+      "🚀 [Start] 2026-11-01 13:57:16 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -332,7 +332,7 @@
       "   [최대 선정: 3경기]",
       "   📋 전체: 20경기 (라운드: [9, 10])",
       "   🎯 선정 대상: R9 (10경기)",
-      "   📊 상태별: {'FINISHED': 7, 'IN_PLAY': 1, 'TIMED': 2}",
+      "   📊 상태별: {'FINISHED': 8, 'TIMED': 2}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   📌 기존 선정 유지 (R9)",
