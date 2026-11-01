@@ -1,10 +1,6 @@
 {
-  "updated": "2026-11-01 21:50:52 KST",
+  "updated": "2026-11-02 06:47:48 KST",
   "hot_issues": [
-    {
-      "headline": "오현규 1골 (Beşiktaş JK 2-0 승) · 10.27",
-      "detail": "Trendyol Süper Lig vs Başakşehir FK | 25분 출전 | 평점 7.7"
-    },
     {
       "headline": "엄지성 1도움 (Swansea City 4-0 승) · 11.01",
       "detail": "Championship vs Blackburn Rovers | 90분 출전 | 평점 7.3"
@@ -92,19 +88,25 @@
       "team": "Beşiktaş JK",
       "recent": {
         "event": "Trendyol Süper Lig",
-        "opponent": "Başakşehir FK",
-        "venue": "home",
-        "date": "10.27",
+        "opponent": "Kasımpaşa",
+        "venue": "away",
+        "date": "11.02",
         "team_score": 2,
-        "opponent_score": 0,
-        "result": "W",
+        "opponent_score": 2,
+        "result": "D",
         "player_status": "PLAYED",
-        "minutes": 25,
-        "goals": 1,
+        "minutes": 27,
+        "goals": 0,
         "assists": 0,
-        "rating": 7.7
+        "rating": 6.9
       },
-      "next": null
+      "next": {
+        "event": "UEFA Europa League",
+        "opponent": "Celtic",
+        "venue": "away",
+        "date": "11.06",
+        "time_kst": "05:00"
+      }
     },
     {
       "player": "백승호",
@@ -154,26 +156,20 @@
       "player": "조규성",
       "team": "FC Midtjylland",
       "recent": {
-        "event": "Oddset Pokalen",
-        "opponent": "Odense Boldklub",
-        "venue": "home",
-        "date": "10.30",
-        "team_score": 2,
-        "opponent_score": 1,
-        "result": "W",
-        "player_status": "PLAYED",
-        "minutes": 58,
-        "goals": 0,
-        "assists": 0,
-        "rating": 6.4
-      },
-      "next": {
         "event": "Danish Superliga",
         "opponent": "FC Nordsjælland",
         "venue": "away",
         "date": "11.02",
-        "time_kst": "00:00"
-      }
+        "team_score": 3,
+        "opponent_score": 2,
+        "result": "W",
+        "player_status": "DNP",
+        "minutes": 0,
+        "goals": 0,
+        "assists": 0,
+        "rating": null
+      },
+      "next": null
     },
     {
       "player": "설영우",
