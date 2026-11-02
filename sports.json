@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-02 06:47:48 KST",
+  "updated": "2026-11-02 13:58:12 KST",
   "epl": {
     "matchday": 9,
     "selected_round": 9,
@@ -43,7 +43,7 @@
         "rule_str": "Big Match, Top Tier, Prime Time",
         "matchday": 9,
         "status": "FINISHED",
-        "score": "N/A"
+        "score": "0-1"
       },
       {
         "match_id": 560623,
@@ -95,7 +95,7 @@
         "rule_str": "Big Match, Top Tier, Prime Time",
         "matchday": 9,
         "status": "FINISHED",
-        "score": "N/A"
+        "score": "0-1"
       },
       {
         "match_id": 560623,
@@ -117,12 +117,12 @@
     ]
   },
   "nba": {
-    "record": "41-49",
+    "record": "42-49",
     "rank": "-",
     "last": {
-      "opp": "Lakers",
+      "opp": "Clippers",
       "result": "W",
-      "score": "112-95"
+      "score": "124-112"
     },
     "schedule": [
       {
@@ -199,37 +199,37 @@
         "pos": 1,
         "driver": "Kimi Antonelli",
         "team": "Mercedes",
-        "points": 365
+        "points": 380
       },
       {
         "pos": 2,
-        "driver": "George Russell",
-        "team": "Mercedes",
-        "points": 242
+        "driver": "Max Verstappen",
+        "team": "Red Bull",
+        "points": 261
       },
       {
         "pos": 3,
         "driver": "Lewis Hamilton",
         "team": "Ferrari",
-        "points": 241
+        "points": 259
       },
       {
         "pos": 4,
-        "driver": "Max Verstappen",
-        "team": "Red Bull",
-        "points": 236
+        "driver": "George Russell",
+        "team": "Mercedes",
+        "points": 250
       },
       {
         "pos": 5,
         "driver": "Charles Leclerc",
         "team": "Ferrari",
-        "points": 233
+        "points": 245
       },
       {
         "pos": 6,
         "driver": "Lando Norris",
         "team": "McLaren",
-        "points": 211
+        "points": 221
       },
       {
         "pos": 7,
@@ -241,13 +241,13 @@
         "pos": 8,
         "driver": "Isack Hadjar",
         "team": "Racing Bulls",
-        "points": 105
+        "points": 107
       },
       {
         "pos": 9,
         "driver": "Liam Lawson",
         "team": "Red Bull",
-        "points": 77
+        "points": 83
       },
       {
         "pos": 10,
@@ -311,7 +311,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-11-02 06:47:48 (KST)",
+      "🚀 [Start] 2026-11-02 13:58:12 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -332,16 +332,13 @@
       "   [최대 선정: 3경기]",
       "   📋 전체: 20경기 (라운드: [9, 10])",
       "   🎯 선정 대상: R9 (10경기)",
-      "   📊 상태별: {'FINISHED': 8, 'TIMED': 2}",
-      "      ⏰ 강제 FINISHED: Liverpool vs Arsenal",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   📊 상태별: {'FINISHED': 9, 'TIMED': 1}",
       "   🔄 R9 경기 모두 종료 → 새로 선정 불필요",
       "   ✅ 기존 선정 유지: 3경기 (R9)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ✅ 전적: 41-49 | 순위: -",
-      "   ✅ 최근 경기: vs Lakers W (112-95)",
+      "   ✅ 전적: 42-49 | 순위: -",
+      "   ✅ 최근 경기: vs Clippers W (124-112)",
       "   ✅ 다음 일정: 2경기",
       "      🏠 11.03 vs Suns | 12:00 KST | Chase Center",
       "      🏠 11.06 vs Heat | 12:00 KST | Chase Center",
@@ -352,11 +349,11 @@
       "   [F1] 드라이버 순위 조회...",
       "      ✅ 순위 직접 파싱 성공 (www.formula1.com): 22명",
       "   ✅ 순위: 10명",
-      "      1. Kimi Antonelli (Mercedes) 365pts",
-      "      2. George Russell (Mercedes) 242pts",
-      "      3. Lewis Hamilton (Ferrari) 241pts",
-      "      4. Max Verstappen (Red Bull) 236pts",
-      "      5. Charles Leclerc (Ferrari) 233pts",
+      "      1. Kimi Antonelli (Mercedes) 380pts",
+      "      2. Max Verstappen (Red Bull) 261pts",
+      "      3. Lewis Hamilton (Ferrari) 259pts",
+      "      4. George Russell (Mercedes) 250pts",
+      "      5. Charles Leclerc (Ferrari) 245pts",
       "   ✅ São Paulo Grand Prix | Interlagos, São Paulo | Nov 06-08 [Next GP]",
       "      📅 11.07 01:30 KST | FP1",
       "      📅 11.07 05:00 KST | FP2",
