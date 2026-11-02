@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-02 13:58:12 KST",
+  "updated": "2026-11-03 00:00:49 KST",
   "epl": {
     "matchday": 9,
     "selected_round": 9,
@@ -126,8 +126,8 @@
     },
     "schedule": [
       {
-        "opp": "Suns",
-        "date": "11.03",
+        "opp": "Heat",
+        "date": "11.06",
         "kst_time": "12:00",
         "local_time": "7:00 PM PT",
         "location": "home",
@@ -135,10 +135,10 @@
         "channel": ""
       },
       {
-        "opp": "Heat",
-        "date": "11.06",
-        "kst_time": "12:00",
-        "local_time": "7:00 PM PT",
+        "opp": "Magic",
+        "date": "11.08",
+        "kst_time": "10:30",
+        "local_time": "5:30 PM PT",
         "location": "home",
         "venue": "Chase Center",
         "channel": ""
@@ -311,7 +311,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-11-02 13:58:12 (KST)",
+      "🚀 [Start] 2026-11-03 00:00:49 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -340,8 +340,8 @@
       "   ✅ 전적: 42-49 | 순위: -",
       "   ✅ 최근 경기: vs Clippers W (124-112)",
       "   ✅ 다음 일정: 2경기",
-      "      🏠 11.03 vs Suns | 12:00 KST | Chase Center",
       "      🏠 11.06 vs Heat | 12:00 KST | Chase Center",
+      "      🏠 11.08 vs Magic | 10:30 KST | Chase Center",
       "\n🏎️ [Step 4/5] F1 (v2.5: 순위 + 세부 스케줄)...",
       "   [F1] 세부 스케줄 조회...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
