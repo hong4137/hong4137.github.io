@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-03 22:47:46 KST",
+  "updated": "2026-11-04 07:59:06 KST",
   "hot_issues": [
     {
       "headline": "엄지성 1도움 (Swansea City 4-0 승) · 11.01",
@@ -69,17 +69,17 @@
       "team": "Stoke City",
       "recent": {
         "event": "Championship",
-        "opponent": "Preston North End",
-        "venue": "home",
-        "date": "10.31",
+        "opponent": "Blackburn Rovers",
+        "venue": "away",
+        "date": "11.04",
         "team_score": 2,
-        "opponent_score": 0,
+        "opponent_score": 1,
         "result": "W",
-        "player_status": "DNP",
-        "minutes": 0,
+        "player_status": "PLAYED",
+        "minutes": 11,
         "goals": 0,
         "assists": 0,
-        "rating": null
+        "rating": 6.4
       },
       "next": null
     },
@@ -144,13 +144,7 @@
         "assists": 1,
         "rating": 7.3
       },
-      "next": {
-        "event": "Championship",
-        "opponent": "Portsmouth",
-        "venue": "away",
-        "date": "11.04",
-        "time_kst": "04:45"
-      }
+      "next": null
     },
     {
       "player": "조규성",
