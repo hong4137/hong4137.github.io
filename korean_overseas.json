@@ -1,6 +1,10 @@
 {
-  "updated": "2026-11-04 22:55:58 KST",
+  "updated": "2026-11-05 08:20:35 KST",
   "hot_issues": [
+    {
+      "headline": "황인범 1도움 (FC Porto 4-1 승) · 11.05",
+      "detail": "UEFA Champions League vs SSC Napoli | 12분 출전 | 평점 6.9"
+    },
     {
       "headline": "엄지성 1도움 (Swansea City 4-0 승) · 11.01",
       "detail": "Championship vs Blackburn Rovers | 90분 출전 | 평점 7.3"
@@ -49,18 +53,18 @@
       "player": "황인범",
       "team": "FC Porto",
       "recent": {
-        "event": "Liga Portugal Betclic",
-        "opponent": "Estoril Praia",
+        "event": "UEFA Champions League",
+        "opponent": "SSC Napoli",
         "venue": "home",
-        "date": "11.01",
+        "date": "11.05",
         "team_score": 4,
-        "opponent_score": 0,
+        "opponent_score": 1,
         "result": "W",
-        "player_status": "DNP",
-        "minutes": 0,
+        "player_status": "PLAYED",
+        "minutes": 12,
         "goals": 0,
-        "assists": 0,
-        "rating": null
+        "assists": 1,
+        "rating": 6.9
       },
       "next": null
     },
