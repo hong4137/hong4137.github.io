@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-04 14:22:06 KST",
+  "updated": "2026-11-04 22:55:58 KST",
   "hot_issues": [
     {
       "headline": "엄지성 1도움 (Swansea City 4-0 승) · 11.01",
@@ -100,13 +100,7 @@
         "assists": 0,
         "rating": 6.9
       },
-      "next": {
-        "event": "UEFA Europa League",
-        "opponent": "Celtic",
-        "venue": "away",
-        "date": "11.06",
-        "time_kst": "05:00"
-      }
+      "next": null
     },
     {
       "player": "백승호",
@@ -163,7 +157,13 @@
         "assists": 0,
         "rating": null
       },
-      "next": null
+      "next": {
+        "event": "UEFA Conference League",
+        "opponent": "AFC Ajax",
+        "venue": "home",
+        "date": "11.06",
+        "time_kst": "02:45"
+      }
     },
     {
       "player": "설영우",
