@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-05 23:13:03 KST",
+  "updated": "2026-11-06 14:38:25 KST",
   "hot_issues": [
     {
       "headline": "황인범 1도움 (FC Porto 4-1 승) · 11.05",
@@ -91,18 +91,18 @@
       "player": "오현규",
       "team": "Beşiktaş JK",
       "recent": {
-        "event": "Trendyol Süper Lig",
-        "opponent": "Kasımpaşa",
+        "event": "UEFA Europa League",
+        "opponent": "Celtic",
         "venue": "away",
-        "date": "11.02",
+        "date": "11.06",
         "team_score": 2,
-        "opponent_score": 2,
-        "result": "D",
+        "opponent_score": 3,
+        "result": "L",
         "player_status": "PLAYED",
-        "minutes": 27,
+        "minutes": 70,
         "goals": 0,
         "assists": 0,
-        "rating": 6.9
+        "rating": 6
       },
       "next": null
     },
@@ -148,26 +148,20 @@
       "player": "조규성",
       "team": "FC Midtjylland",
       "recent": {
-        "event": "Danish Superliga",
-        "opponent": "FC Nordsjælland",
-        "venue": "away",
-        "date": "11.02",
-        "team_score": 3,
-        "opponent_score": 2,
-        "result": "W",
-        "player_status": "DNP",
-        "minutes": 0,
-        "goals": 0,
-        "assists": 0,
-        "rating": null
-      },
-      "next": {
         "event": "UEFA Conference League",
         "opponent": "AFC Ajax",
         "venue": "home",
         "date": "11.06",
-        "time_kst": "02:45"
-      }
+        "team_score": 1,
+        "opponent_score": 6,
+        "result": "L",
+        "player_status": "PLAYED",
+        "minutes": 45,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.9
+      },
+      "next": null
     },
     {
       "player": "설영우",
