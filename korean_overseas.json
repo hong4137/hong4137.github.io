@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-07 14:07:11 KST",
+  "updated": "2026-11-07 21:38:19 KST",
   "hot_issues": [
     {
       "headline": "황인범 1도움 (FC Porto 4-1 승) · 11.05",
@@ -85,7 +85,13 @@
         "assists": 0,
         "rating": 6.4
       },
-      "next": null
+      "next": {
+        "event": "Championship",
+        "opponent": "Portsmouth",
+        "venue": "away",
+        "date": "11.07",
+        "time_kst": "21:30"
+      }
     },
     {
       "player": "오현규",
