@@ -1,13 +1,9 @@
 {
-  "updated": "2026-11-07 21:38:19 KST",
+  "updated": "2026-11-08 06:34:03 KST",
   "hot_issues": [
     {
       "headline": "황인범 1도움 (FC Porto 4-1 승) · 11.05",
       "detail": "UEFA Champions League vs SSC Napoli | 12분 출전 | 평점 6.9"
-    },
-    {
-      "headline": "엄지성 1도움 (Swansea City 4-0 승) · 11.01",
-      "detail": "Championship vs Blackburn Rovers | 90분 출전 | 평점 7.3"
     }
   ],
   "players": [
@@ -35,17 +31,17 @@
       "team": "1. FSV Mainz 05",
       "recent": {
         "event": "Bundesliga",
-        "opponent": "SV 07 Elversberg",
-        "venue": "away",
-        "date": "10.31",
+        "opponent": "FC Bayern München",
+        "venue": "home",
+        "date": "11.07",
         "team_score": 1,
-        "opponent_score": 4,
+        "opponent_score": 2,
         "result": "L",
-        "player_status": "DNP",
-        "minutes": 0,
+        "player_status": "PLAYED",
+        "minutes": 63,
         "goals": 0,
         "assists": 0,
-        "rating": null
+        "rating": 6.6
       },
       "next": null
     },
@@ -73,25 +69,19 @@
       "team": "Stoke City",
       "recent": {
         "event": "Championship",
-        "opponent": "Blackburn Rovers",
-        "venue": "away",
-        "date": "11.04",
-        "team_score": 2,
-        "opponent_score": 1,
-        "result": "W",
-        "player_status": "PLAYED",
-        "minutes": 11,
-        "goals": 0,
-        "assists": 0,
-        "rating": 6.4
-      },
-      "next": {
-        "event": "Championship",
         "opponent": "Portsmouth",
         "venue": "away",
         "date": "11.07",
-        "time_kst": "21:30"
-      }
+        "team_score": 2,
+        "opponent_score": 1,
+        "result": "W",
+        "player_status": "DNP",
+        "minutes": 0,
+        "goals": 0,
+        "assists": 0,
+        "rating": null
+      },
+      "next": null
     },
     {
       "player": "오현규",
@@ -117,17 +107,17 @@
       "team": "Birmingham City",
       "recent": {
         "event": "Championship",
-        "opponent": "Middlesbrough",
+        "opponent": "Swansea City",
         "venue": "home",
-        "date": "09.19",
+        "date": "11.08",
         "team_score": 2,
-        "opponent_score": 2,
-        "result": "D",
+        "opponent_score": 1,
+        "result": "W",
         "player_status": "PLAYED",
-        "minutes": 12,
+        "minutes": 20,
         "goals": 0,
         "assists": 0,
-        "rating": 6.3
+        "rating": 6.6
       },
       "next": null
     },
@@ -136,17 +126,17 @@
       "team": "Swansea City",
       "recent": {
         "event": "Championship",
-        "opponent": "Blackburn Rovers",
-        "venue": "home",
-        "date": "11.01",
-        "team_score": 4,
-        "opponent_score": 0,
-        "result": "W",
+        "opponent": "Birmingham City",
+        "venue": "away",
+        "date": "11.08",
+        "team_score": 1,
+        "opponent_score": 2,
+        "result": "L",
         "player_status": "PLAYED",
-        "minutes": 90,
+        "minutes": 45,
         "goals": 0,
-        "assists": 1,
-        "rating": 7.3
+        "assists": 0,
+        "rating": 6.9
       },
       "next": null
     },
@@ -167,18 +157,24 @@
         "assists": 0,
         "rating": 6.9
       },
-      "next": null
+      "next": {
+        "event": "Danish Superliga",
+        "opponent": "Sønderjyske Fodbold",
+        "venue": "home",
+        "date": "11.09",
+        "time_kst": "02:00"
+      }
     },
     {
       "player": "설영우",
       "team": "FC Augsburg",
       "recent": {
         "event": "Bundesliga",
-        "opponent": "SC Freiburg",
-        "venue": "home",
-        "date": "10.31",
-        "team_score": 1,
-        "opponent_score": 2,
+        "opponent": "RB Leipzig",
+        "venue": "away",
+        "date": "11.07",
+        "team_score": 2,
+        "opponent_score": 5,
         "result": "L",
         "player_status": "DNP",
         "minutes": 0,
