@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-08 06:34:03 KST",
+  "updated": "2026-11-08 14:01:01 KST",
   "epl": {
     "matchday": 10,
     "selected_round": 10,
@@ -40,7 +40,7 @@
         "rule_str": "Early KO",
         "matchday": 10,
         "status": "FINISHED",
-        "score": "N/A"
+        "score": "1-0"
       },
       {
         "match_id": 560640,
@@ -55,7 +55,7 @@
         "rule_str": "Leader",
         "matchday": 10,
         "status": "FINISHED",
-        "score": "N/A"
+        "score": "1-0"
       }
     ],
     "selected_matches": [
@@ -87,7 +87,7 @@
         "rule_str": "Early KO",
         "matchday": 10,
         "status": "FINISHED",
-        "score": "N/A"
+        "score": "1-0"
       },
       {
         "match_id": 560640,
@@ -102,17 +102,17 @@
         "rule_str": "Leader",
         "matchday": 10,
         "status": "FINISHED",
-        "score": "N/A"
+        "score": "1-0"
       }
     ]
   },
   "nba": {
-    "record": "44-49",
+    "record": "45-49",
     "rank": "-",
     "last": {
-      "opp": "Heat",
+      "opp": "Magic",
       "result": "W",
-      "score": "120-100"
+      "score": "126-119"
     },
     "schedule": [
       {
@@ -301,7 +301,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-11-08 06:34:03 (KST)",
+      "🚀 [Start] 2026-11-08 14:01:01 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -322,24 +322,18 @@
       "   [최대 선정: 3경기]",
       "   📋 전체: 10경기 (라운드: [10])",
       "   🎯 선정 대상: R10 (10경기)",
-      "   📊 상태별: {'FINISHED': 1, 'TIMED': 9}",
-      "      ⏰ 강제 FINISHED: Leeds United vs Tottenham",
-      "      ⏰ 강제 FINISHED: Arsenal vs Hull City AFC",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   📊 상태별: {'FINISHED': 5, 'TIMED': 5}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   📌 기존 선정 유지 (R10)",
       "      ⏳ Manchester United vs Aston Villa [TIMED] -",
-      "      ✅ Leeds United vs Tottenham [FINISHED] N/A",
-      "      ✅ Arsenal vs Hull City AFC [FINISHED] N/A",
+      "      ✅ Leeds United vs Tottenham [FINISHED] 1-0",
+      "      ✅ Arsenal vs Hull City AFC [FINISHED] 1-0",
       "   ✅ 기존 선정 유지: 3경기 (R10)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ✅ 전적: 44-49 | 순위: -",
-      "   ✅ 최근 경기: vs Heat W (120-100)",
+      "   ✅ 전적: 45-49 | 순위: -",
+      "   ✅ 최근 경기: vs Magic W (126-119)",
       "   ✅ 다음 일정: 2경기",
       "      🏠 11.10 vs Pelicans | 12:00 KST | Chase Center",
       "      ✈️ 11.12 vs Rockets | 11:30 KST | @ Houston",

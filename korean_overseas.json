@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-08 06:34:03 KST",
+  "updated": "2026-11-08 14:01:01 KST",
   "hot_issues": [
     {
       "headline": "황인범 1도움 (FC Porto 4-1 승) · 11.05",
@@ -138,7 +138,13 @@
         "assists": 0,
         "rating": 6.9
       },
-      "next": null
+      "next": {
+        "event": "Championship",
+        "opponent": "West Bromwich Albion",
+        "venue": "home",
+        "date": "11.22",
+        "time_kst": "00:00"
+      }
     },
     {
       "player": "조규성",
