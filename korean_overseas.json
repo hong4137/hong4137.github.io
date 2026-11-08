@@ -1,28 +1,23 @@
 {
-  "updated": "2026-11-08 21:55:32 KST",
-  "hot_issues": [
-    {
-      "headline": "황인범 1도움 (FC Porto 4-1 승) · 11.05",
-      "detail": "UEFA Champions League vs SSC Napoli | 12분 출전 | 평점 6.9"
-    }
-  ],
+  "updated": "2026-11-09 06:48:33 KST",
+  "hot_issues": [],
   "players": [
     {
       "player": "황희찬",
       "team": "FC Schalke 04",
       "recent": {
         "event": "Bundesliga",
-        "opponent": "RB Leipzig",
-        "venue": "home",
-        "date": "10.31",
-        "team_score": 0,
+        "opponent": "TSG Hoffenheim",
+        "venue": "away",
+        "date": "11.09",
+        "team_score": 1,
         "opponent_score": 2,
         "result": "L",
         "player_status": "PLAYED",
-        "minutes": 83,
+        "minutes": 90,
         "goals": 0,
         "assists": 0,
-        "rating": 6.8
+        "rating": 6.3
       },
       "next": null
     },
@@ -49,18 +44,18 @@
       "player": "황인범",
       "team": "FC Porto",
       "recent": {
-        "event": "UEFA Champions League",
-        "opponent": "SSC Napoli",
-        "venue": "home",
-        "date": "11.05",
-        "team_score": 4,
+        "event": "Liga Portugal Betclic",
+        "opponent": "Vitória SC",
+        "venue": "away",
+        "date": "11.09",
+        "team_score": 2,
         "opponent_score": 1,
         "result": "W",
         "player_status": "PLAYED",
-        "minutes": 12,
+        "minutes": 24,
         "goals": 0,
-        "assists": 1,
-        "rating": 6.9
+        "assists": 0,
+        "rating": 6.6
       },
       "next": null
     },
@@ -87,18 +82,18 @@
       "player": "오현규",
       "team": "Beşiktaş JK",
       "recent": {
-        "event": "UEFA Europa League",
-        "opponent": "Celtic",
-        "venue": "away",
-        "date": "11.06",
-        "team_score": 2,
-        "opponent_score": 3,
-        "result": "L",
-        "player_status": "PLAYED",
-        "minutes": 70,
+        "event": "Trendyol Süper Lig",
+        "opponent": "Gençlerbirliği",
+        "venue": "home",
+        "date": "11.09",
+        "team_score": 3,
+        "opponent_score": 0,
+        "result": "W",
+        "player_status": "DNP",
+        "minutes": 0,
         "goals": 0,
         "assists": 0,
-        "rating": 6
+        "rating": null
       },
       "next": null
     },
@@ -150,26 +145,20 @@
       "player": "조규성",
       "team": "FC Midtjylland",
       "recent": {
-        "event": "UEFA Conference League",
-        "opponent": "AFC Ajax",
-        "venue": "home",
-        "date": "11.06",
-        "team_score": 1,
-        "opponent_score": 6,
-        "result": "L",
-        "player_status": "PLAYED",
-        "minutes": 45,
-        "goals": 0,
-        "assists": 0,
-        "rating": 6.9
-      },
-      "next": {
         "event": "Danish Superliga",
         "opponent": "Sønderjyske Fodbold",
         "venue": "home",
         "date": "11.09",
-        "time_kst": "02:00"
-      }
+        "team_score": 2,
+        "opponent_score": 2,
+        "result": "D",
+        "player_status": "PLAYED",
+        "minutes": 23,
+        "goals": 0,
+        "assists": 0,
+        "rating": 7.2
+      },
+      "next": null
     },
     {
       "player": "설영우",
