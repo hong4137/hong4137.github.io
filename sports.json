@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09 06:48:33 KST",
+  "updated": "2026-11-09 14:11:32 KST",
   "epl": {
     "matchday": 10,
     "selected_round": 10,
@@ -213,7 +213,7 @@
         "pos": 5,
         "driver": "Charles Leclerc",
         "team": "Ferrari",
-        "points": 251
+        "points": 249
       },
       {
         "pos": 6,
@@ -237,7 +237,7 @@
         "pos": 9,
         "driver": "Liam Lawson",
         "team": "Red Bull",
-        "points": 87
+        "points": 89
       },
       {
         "pos": 10,
@@ -301,7 +301,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-11-09 06:48:33 (KST)",
+      "🚀 [Start] 2026-11-09 14:11:32 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -343,7 +343,7 @@
       "      2. Max Verstappen (Red Bull) 279pts",
       "      3. George Russell (Mercedes) 262pts",
       "      4. Lewis Hamilton (Ferrari) 261pts",
-      "      5. Charles Leclerc (Ferrari) 251pts",
+      "      5. Charles Leclerc (Ferrari) 249pts",
       "   ✅ Las Vegas Grand Prix | Las Vegas Strip Circuit | Nov 19-21 [Next GP]",
       "      📅 11.20 06:30 KST | FP1",
       "      📅 11.20 10:00 KST | FP2",
