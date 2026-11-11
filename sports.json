@@ -1,9 +1,9 @@
 {
-  "updated": "2026-11-11 07:56:45 KST",
+  "updated": "2026-11-11 14:12:49 KST",
   "epl": {
-    "matchday": 10,
-    "selected_round": 10,
-    "display_matchday": "R10",
+    "matchday": 11,
+    "selected_round": 11,
+    "display_matchday": "R11",
     "leader": "Arsenal",
     "top4": [
       "Arsenal",
@@ -13,96 +13,98 @@
     ],
     "matches": [
       {
-        "match_id": 560639,
-        "home": "Manchester United",
-        "away": "Aston Villa",
-        "kst_time": "11.09 01:30 (KST)",
+        "match_id": 560645,
+        "home": "Liverpool",
+        "away": "Manchester United",
+        "kst_time": "11.23 01:30 (KST)",
         "uk_time": "Sunday 16:30 (UK)",
         "local": "",
         "rules": [
+          "Big Match",
           "Prime Time"
         ],
-        "rule_str": "Prime Time",
-        "matchday": 10,
-        "status": "FINISHED",
-        "score": "4-4"
+        "rule_str": "Big Match, Prime Time",
+        "matchday": 11,
+        "status": "SCHEDULED",
+        "score": "-"
       },
       {
-        "match_id": 560632,
-        "home": "Leeds United",
-        "away": "Tottenham",
-        "kst_time": "11.07 21:30 (KST)",
+        "match_id": 560643,
+        "home": "Manchester City",
+        "away": "Fulham",
+        "kst_time": "11.21 21:30 (KST)",
         "uk_time": "Saturday 12:30 (UK)",
         "local": "",
         "rules": [
           "Early KO"
         ],
         "rule_str": "Early KO",
-        "matchday": 10,
-        "status": "FINISHED",
-        "score": "1-0"
+        "matchday": 11,
+        "status": "SCHEDULED",
+        "score": "-"
       },
       {
-        "match_id": 560640,
-        "home": "Arsenal",
-        "away": "Hull City AFC",
-        "kst_time": "11.08 00:00 (KST)",
-        "uk_time": "Saturday 15:00 (UK)",
+        "match_id": 560651,
+        "home": "Newcastle United",
+        "away": "Arsenal",
+        "kst_time": "11.22 02:30 (KST)",
+        "uk_time": "Saturday 17:30 (UK)",
         "local": "",
         "rules": [
           "Leader"
         ],
         "rule_str": "Leader",
-        "matchday": 10,
-        "status": "FINISHED",
-        "score": "1-0"
+        "matchday": 11,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ],
     "selected_matches": [
       {
-        "match_id": 560639,
-        "home": "Manchester United",
-        "away": "Aston Villa",
-        "kst_time": "11.09 01:30 (KST)",
+        "match_id": 560645,
+        "home": "Liverpool",
+        "away": "Manchester United",
+        "kst_time": "11.23 01:30 (KST)",
         "uk_time": "Sunday 16:30 (UK)",
         "local": "",
         "rules": [
+          "Big Match",
           "Prime Time"
         ],
-        "rule_str": "Prime Time",
-        "matchday": 10,
-        "status": "FINISHED",
-        "score": "4-4"
+        "rule_str": "Big Match, Prime Time",
+        "matchday": 11,
+        "status": "SCHEDULED",
+        "score": "-"
       },
       {
-        "match_id": 560632,
-        "home": "Leeds United",
-        "away": "Tottenham",
-        "kst_time": "11.07 21:30 (KST)",
+        "match_id": 560643,
+        "home": "Manchester City",
+        "away": "Fulham",
+        "kst_time": "11.21 21:30 (KST)",
         "uk_time": "Saturday 12:30 (UK)",
         "local": "",
         "rules": [
           "Early KO"
         ],
         "rule_str": "Early KO",
-        "matchday": 10,
-        "status": "FINISHED",
-        "score": "1-0"
+        "matchday": 11,
+        "status": "SCHEDULED",
+        "score": "-"
       },
       {
-        "match_id": 560640,
-        "home": "Arsenal",
-        "away": "Hull City AFC",
-        "kst_time": "11.08 00:00 (KST)",
-        "uk_time": "Saturday 15:00 (UK)",
+        "match_id": 560651,
+        "home": "Newcastle United",
+        "away": "Arsenal",
+        "kst_time": "11.22 02:30 (KST)",
+        "uk_time": "Saturday 17:30 (UK)",
         "local": "",
         "rules": [
           "Leader"
         ],
         "rule_str": "Leader",
-        "matchday": 10,
-        "status": "FINISHED",
-        "score": "1-0"
+        "matchday": 11,
+        "status": "SCHEDULED",
+        "score": "-"
       }
     ]
   },
@@ -301,7 +303,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-11-11 07:56:45 (KST)",
+      "🚀 [Start] 2026-11-11 14:12:49 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -310,7 +312,7 @@
       "\n⚽ [Step 1/5] Premier League 순위...",
       "   ✅ 1위: Arsenal",
       "   ✅ Top 4: Arsenal, Brighton & Hove Albion, Manchester City, Liverpool",
-      "   ✅ 현재 라운드: R10",
+      "   ✅ 현재 라운드: R11",
       "\n⚽ [Step 2/5] Premier League 경기 선정 (v2.4)...",
       "   [티어 우선순위]",
       "   T1. Big Match: Big 6 vs Big 6",
@@ -320,11 +322,21 @@
       "   T5. Early KO: 토요일 12:30 UK",
       "   T6. Leader: 1위 팀 포함",
       "   [최대 선정: 3경기]",
-      "   📋 전체: 10경기 (라운드: [10])",
-      "   🎯 선정 대상: R10 (10경기)",
-      "   📊 상태별: {'FINISHED': 10}",
-      "   🔄 R10 경기 모두 종료 → 새로 선정 불필요",
-      "   ✅ 기존 선정 유지: 3경기 (R10)",
+      "   📋 전체: 10경기 (라운드: [11])",
+      "   🎯 선정 대상: R11 (10경기)",
+      "   📊 상태별: {'TIMED': 10}",
+      "   🔄 라운드 변경: R10 → R11 (새로 선정)",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   🏆 R11에서 3경기 선정:",
+      "      • [T1] Liverpool vs Manchester United [Big Match, Prime Time] 11.23 01:30 (KST)",
+      "      • [T5] Manchester City vs Fulham [Early KO] 11.21 21:30 (KST)",
+      "      • [T6] Newcastle United vs Arsenal [Leader] 11.22 02:30 (KST)",
+      "   ✅ 새로 선정됨: 3경기 (R11)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ✅ 전적: 46-49 | 순위: -",
