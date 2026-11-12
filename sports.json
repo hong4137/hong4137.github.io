@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-12 23:48:07 KST",
+  "updated": "2026-11-13 08:17:58 KST",
   "epl": {
     "matchday": 11,
     "selected_round": 11,
@@ -259,8 +259,8 @@
     },
     "next": {
       "event": "ATP Finals",
-      "detail": "R128 vs Flavio Cobolli",
-      "match_time": "Nov 15 18:00 KST",
+      "detail": "R128 vs Frances Tiafoe",
+      "match_time": "Nov 16 22:00 KST",
       "tournament_dates": "Nov 9 - 16",
       "status": "Finals"
     }
@@ -303,7 +303,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-11-12 23:48:07 (KST)",
+      "🚀 [Start] 2026-11-13 08:17:58 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -372,10 +372,10 @@
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
       "      Recent: Paris vs Ben Shelton W (7-6, 7-5)",
-      "      Next: ATP Finals | Nov 15",
+      "      Next: ATP Finals | Nov 16",
       "   📊 최종:",
       "      Recent: Paris vs Ben Shelton W (7-6, 7-5) | Nov 8",
-      "      Next: ATP Finals | R128 vs Flavio Cobolli | Nov 15 18:00 KST",
+      "      Next: ATP Finals | R128 vs Frances Tiafoe | Nov 16 22:00 KST",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
       "   ✅ 해외파 9명 수집, 핫이슈 0건",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",
