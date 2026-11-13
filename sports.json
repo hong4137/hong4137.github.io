@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-13 23:07:29 KST",
+  "updated": "2026-11-14 08:21:05 KST",
   "epl": {
     "matchday": 11,
     "selected_round": 11,
@@ -118,21 +118,21 @@
     },
     "schedule": [
       {
-        "opp": "Spurs",
-        "date": "11.14",
-        "kst_time": "11:30",
-        "local_time": "6:30 PM PT",
-        "location": "away",
-        "venue": "@ San Antonio",
-        "channel": ""
-      },
-      {
         "opp": "Pelicans",
         "date": "11.17",
         "kst_time": "10:00",
         "local_time": "5:00 PM PT",
         "location": "away",
         "venue": "@ New Orleans",
+        "channel": ""
+      },
+      {
+        "opp": "Mavericks",
+        "date": "11.19",
+        "kst_time": "11:30",
+        "local_time": "6:30 PM PT",
+        "location": "away",
+        "venue": "@ Dallas",
         "channel": ""
       }
     ]
@@ -303,7 +303,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-11-13 23:07:29 (KST)",
+      "🚀 [Start] 2026-11-14 08:21:05 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -341,8 +341,8 @@
       "   ✅ 전적: 46-50 | 순위: -",
       "   ✅ 최근 경기: vs Rockets L (108-115)",
       "   ✅ 다음 일정: 2경기",
-      "      ✈️ 11.14 vs Spurs | 11:30 KST | @ San Antonio",
       "      ✈️ 11.17 vs Pelicans | 10:00 KST | @ New Orleans",
+      "      ✈️ 11.19 vs Mavericks | 11:30 KST | @ Dallas",
       "\n🏎️ [Step 4/5] F1 (v2.5: 순위 + 세부 스케줄)...",
       "   [F1] 세부 스케줄 조회...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
