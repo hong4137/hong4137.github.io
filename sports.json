@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-14 22:08:41 KST",
+  "updated": "2026-11-15 07:04:44 KST",
   "epl": {
     "matchday": 11,
     "selected_round": 11,
@@ -129,8 +129,8 @@
       {
         "opp": "Mavericks",
         "date": "11.19",
-        "kst_time": "11:30",
-        "local_time": "6:30 PM PT",
+        "kst_time": "10:00",
+        "local_time": "5:00 PM PT",
         "location": "away",
         "venue": "@ Dallas",
         "channel": ""
@@ -303,7 +303,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-11-14 22:08:41 (KST)",
+      "🚀 [Start] 2026-11-15 07:04:44 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -342,7 +342,7 @@
       "   ✅ 최근 경기: vs Spurs L (85-123)",
       "   ✅ 다음 일정: 2경기",
       "      ✈️ 11.17 vs Pelicans | 10:00 KST | @ New Orleans",
-      "      ✈️ 11.19 vs Mavericks | 11:30 KST | @ Dallas",
+      "      ✈️ 11.19 vs Mavericks | 10:00 KST | @ Dallas",
       "\n🏎️ [Step 4/5] F1 (v2.5: 순위 + 세부 스케줄)...",
       "   [F1] 세부 스케줄 조회...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
