@@ -1,109 +1,98 @@
 {
-  "generated_at": "2026-11-15 09:41 KST",
+  "generated_at": "2026-11-16 09:41 KST",
   "events": [
     {
-      "date": "2026-11-17",
-      "title": "NVIDIA 2026년 3분기 실적 발표",
-      "category": "earnings",
-      "importance": 5,
+      "date": "2026-11-16",
+      "title": "Fed Vice Chair Philip N. Jefferson 연설: 생산성 및 거시경제 활동",
+      "category": "fed_fomc",
+      "importance": 4,
       "impact": [
+        "yields",
         "equities",
-        "VIX"
+        "USD"
       ],
       "consensus": null,
-      "source_url": "https://investor.nvidia.com/"
+      "source_url": "https://www.federalreserve.gov/"
     },
     {
       "date": "2026-11-17",
-      "title": "Microsoft Ignite 2026 컨퍼런스 시작",
-      "category": "tech_conf",
+      "title": "미국 소매판매 (10월)",
+      "category": "economic_data",
       "importance": 4,
       "impact": [
         "equities",
-        "VIX"
+        "USD",
+        "yields"
       ],
       "consensus": null,
-      "source_url": "https://www.microsoft.com/ignite"
+      "source_url": "https://www.census.gov/"
     },
     {
-      "date": "2026-11-18",
-      "title": "미국 FOMC 10월 회의록 공개",
+      "date": "2026-11-17",
+      "title": "Fed 의장 Kevin Warsh 연설: 생산성 및 고용 태스크포스 컨퍼런스 개회사",
       "category": "fed_fomc",
       "importance": 5,
       "impact": [
+        "VIX",
         "yields",
-        "USD",
         "equities",
-        "VIX"
+        "USD"
       ],
       "consensus": null,
       "source_url": "https://www.federalreserve.gov/"
     },
     {
       "date": "2026-11-18",
-      "title": "미국 20년물 국채 입찰",
-      "category": "treasury_auction",
-      "importance": 4,
+      "title": "FOMC 의사록 (10월 27-28일 회의)",
+      "category": "fed_fomc",
+      "importance": 5,
       "impact": [
+        "VIX",
         "yields",
-        "USD",
-        "equities"
+        "equities",
+        "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.treasurydirect.gov/"
+      "source_url": "https://www.federalreserve.gov/"
     },
     {
       "date": "2026-11-19",
-      "title": "미국 10년물 물가연동국채(TIPS) 입찰",
-      "category": "treasury_auction",
+      "title": "미국 신규 실업수당 청구건수 (11월 14일 주)",
+      "category": "economic_data",
+      "importance": 4,
+      "impact": [
+        "equities",
+        "USD",
+        "yields"
+      ],
+      "consensus": null,
+      "source_url": "https://www.dol.gov/"
+    },
+    {
+      "date": "2026-11-19",
+      "title": "Fed Vice Chair Philip N. Jefferson 토론: 경제 충격 (IMF/브라질 중앙은행 컨퍼런스)",
+      "category": "fed_fomc",
       "importance": 4,
       "impact": [
         "yields",
-        "USD",
-        "equities"
+        "equities",
+        "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.treasurydirect.gov/"
+      "source_url": "https://www.federalreserve.gov/"
     },
     {
       "date": "2026-11-20",
-      "title": "Russell US Indexes 재조정 업데이트 발표",
-      "category": "market_structure",
+      "title": "Fed 이사 Lisa D. Cook 연설: 글로벌 맥락에서의 미국 경제",
+      "category": "fed_fomc",
       "importance": 4,
-      "impact": [
-        "equities",
-        "VIX"
-      ],
-      "consensus": null,
-      "source_url": "https://www.lseg.com/ftse-russell"
-    },
-    {
-      "date": "2026-11-25",
-      "title": "미국 10월 개인소비지출(PCE) 물가지수 및 소비 지출 발표",
-      "category": "economic_data",
-      "importance": 5,
       "impact": [
         "yields",
-        "USD",
         "equities",
-        "VIX"
+        "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.bea.gov/"
-    },
-    {
-      "date": "2026-11-29",
-      "title": "OPEC+ 합동 장관급 감시 위원회(JMMC) 회의",
-      "category": "geopolitical",
-      "importance": 4,
-      "impact": [
-        "oil",
-        "USD",
-        "equities",
-        "VIX"
-      ],
-      "consensus": null,
-      "source_url": "https://www.opec.org/"
+      "source_url": "https://www.federalreserve.gov/"
     }
   ]
 }
