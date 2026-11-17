@@ -1,49 +1,20 @@
 {
-  "generated_at": "2026-11-16 09:41 KST",
+  "generated_at": "2026-11-17 12:22 KST",
   "events": [
     {
-      "date": "2026-11-16",
-      "title": "Fed Vice Chair Philip N. Jefferson 연설: 생산성 및 거시경제 활동",
-      "category": "fed_fomc",
+      "date": "2026-11-17",
+      "title": "Microsoft Ignite 2026 (샌프란시스코)",
+      "category": "tech_conf",
       "importance": 4,
       "impact": [
-        "yields",
-        "equities",
-        "USD"
+        "equities"
       ],
       "consensus": null,
-      "source_url": "https://www.federalreserve.gov/"
-    },
-    {
-      "date": "2026-11-17",
-      "title": "미국 소매판매 (10월)",
-      "category": "economic_data",
-      "importance": 4,
-      "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.census.gov/"
-    },
-    {
-      "date": "2026-11-17",
-      "title": "Fed 의장 Kevin Warsh 연설: 생산성 및 고용 태스크포스 컨퍼런스 개회사",
-      "category": "fed_fomc",
-      "importance": 5,
-      "impact": [
-        "VIX",
-        "yields",
-        "equities",
-        "USD"
-      ],
-      "consensus": null,
-      "source_url": "https://www.federalreserve.gov/"
+      "source_url": "https://www.microsoft.com/events/ignite/"
     },
     {
       "date": "2026-11-18",
-      "title": "FOMC 의사록 (10월 27-28일 회의)",
+      "title": "FOMC 의사록 공개 (10월 27-28일 회의)",
       "category": "fed_fomc",
       "importance": 5,
       "impact": [
@@ -56,43 +27,75 @@
       "source_url": "https://www.federalreserve.gov/"
     },
     {
-      "date": "2026-11-19",
-      "title": "미국 신규 실업수당 청구건수 (11월 14일 주)",
+      "date": "2026-11-27",
+      "title": "Apple 블랙 프라이데이 쇼핑 이벤트 시작",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": [
+        "equities"
+      ],
+      "consensus": null,
+      "source_url": "https://www.apple.com/newsroom/"
+    },
+    {
+      "date": "2026-11-29",
+      "title": "OPEC+ 합동 장관급 감시 위원회 (JMMC) 회의",
+      "category": "geopolitical",
+      "importance": 4,
+      "impact": [
+        "oil"
+      ],
+      "consensus": null,
+      "source_url": "https://www.opec.org/"
+    },
+    {
+      "date": "2026-11-30",
+      "title": "NVIDIA GTC 워싱턴 D.C. 2026 (AI/가속 컴퓨팅 컨퍼런스)",
+      "category": "tech_conf",
+      "importance": 4,
+      "impact": [
+        "equities"
+      ],
+      "consensus": null,
+      "source_url": "https://www.nvidia.com/gtc/"
+    },
+    {
+      "date": "2026-12-01",
+      "title": "MSCI 지수 리밸런싱 적용",
+      "category": "market_structure",
+      "importance": 4,
+      "impact": [
+        "equities"
+      ],
+      "consensus": null,
+      "source_url": "https://www.msci.com/"
+    },
+    {
+      "date": "2026-12-01",
+      "title": "미국 JOLTS (구인·이직 보고서) (10월)",
       "category": "economic_data",
       "importance": 4,
       "impact": [
-        "equities",
-        "USD",
-        "yields"
-      ],
-      "consensus": null,
-      "source_url": "https://www.dol.gov/"
-    },
-    {
-      "date": "2026-11-19",
-      "title": "Fed Vice Chair Philip N. Jefferson 토론: 경제 충격 (IMF/브라질 중앙은행 컨퍼런스)",
-      "category": "fed_fomc",
-      "importance": 4,
-      "impact": [
         "yields",
         "equities",
         "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.federalreserve.gov/"
+      "source_url": "https://www.bls.gov/jlt/"
     },
     {
-      "date": "2026-11-20",
-      "title": "Fed 이사 Lisa D. Cook 연설: 글로벌 맥락에서의 미국 경제",
-      "category": "fed_fomc",
-      "importance": 4,
+      "date": "2026-12-04",
+      "title": "미국 고용 상황 보고서 (비농업 고용) (11월)",
+      "category": "economic_data",
+      "importance": 5,
       "impact": [
+        "VIX",
         "yields",
         "equities",
         "USD"
       ],
       "consensus": null,
-      "source_url": "https://www.federalreserve.gov/"
+      "source_url": "https://www.bls.gov/news.release/empsit.htm"
     }
   ]
 }
