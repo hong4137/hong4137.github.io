@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-19 08:59:25 KST",
+  "updated": "2026-11-19 16:09:46 KST",
   "epl": {
     "matchday": 11,
     "selected_round": 11,
@@ -109,12 +109,12 @@
     ]
   },
   "nba": {
-    "record": "46-52",
+    "record": "46-53",
     "rank": "-",
     "last": {
-      "opp": "Pelicans",
+      "opp": "Mavericks",
       "result": "L",
-      "score": "94-115"
+      "score": "94-116"
     },
     "schedule": [
       {
@@ -303,7 +303,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-11-19 08:59:25 (KST)",
+      "🚀 [Start] 2026-11-19 16:09:46 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -338,8 +338,8 @@
       "   ✅ 기존 선정 유지: 3경기 (R11)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ✅ 전적: 46-52 | 순위: -",
-      "   ✅ 최근 경기: vs Pelicans L (94-115)",
+      "   ✅ 전적: 46-53 | 순위: -",
+      "   ✅ 최근 경기: vs Mavericks L (94-116)",
       "   ✅ 다음 일정: 2경기",
       "      ✈️ 11.20 vs Grizzlies | 10:00 KST | @ Memphis",
       "      🏠 11.23 vs Celtics | 10:30 KST | Chase Center",
