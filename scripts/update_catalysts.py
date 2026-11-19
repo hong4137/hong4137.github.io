@@ -12,6 +12,7 @@ import json
 import os
 import re
 import sys
+import time
 from datetime import datetime
 from pathlib import Path
 
@@ -69,28 +70,37 @@ importance 4 이상만 포함:
 
 
 def call_gemini_with_search(prompt: str, api_key: str) -> str | None:
+    """2026-11 보강: 일시 오류(429·5xx·빈 응답)는 최대 3번 다시 시도하고,
+    google_search 를 켜면 답이 여러 parts 로 쪼개져 올 수 있어 모든 text 를 이어 붙인다
+    (예전엔 parts[0] 만 읽었다). 11-18·19 갱신 실패 대응."""
     payload = {
         "contents": [{"parts": [{"text": prompt}]}],
         "tools": [{"google_search": {}}],
         "generationConfig": {"temperature": 0.1, "maxOutputTokens": 8192},
     }
-    try:
-        r = requests.post(
-            f"{GEMINI_URL}?key={api_key}", json=payload, timeout=90
-        )
-        if r.status_code != 200:
-            log(f"   ⚠️ Gemini error {r.status_code}: {r.text[:200]}")
-            return None
-        data = r.json()
-        return (
-            data.get("candidates", [{}])[0]
-            .get("content", {})
-            .get("parts", [{}])[0]
-            .get("text", "")
-        )
-    except Exception as e:
-        log(f"   ⚠️ Gemini exception: {e}")
-        return None
+    for attempt in range(1, 4):
+        try:
+            r = requests.post(
+                f"{GEMINI_URL}?key={api_key}", json=payload, timeout=120
+            )
+            if r.status_code != 200:
+                log(f"   ⚠️ Gemini error {r.status_code} (시도 {attempt}/3): {r.text[:200]}")
+                if r.status_code in (429, 500, 502, 503, 504) and attempt < 3:
+                    time.sleep(20 * attempt)
+                    continue
+                return None
+            data = r.json()
+            cand = (data.get("candidates") or [{}])[0]
+            parts = (cand.get("content") or {}).get("parts") or []
+            text = "".join(p.get("text", "") for p in parts if isinstance(p, dict))
+            if text.strip():
+                return text
+            log(f"   ⚠️ Gemini 빈 응답 (시도 {attempt}/3, finishReason={cand.get('finishReason')})")
+        except Exception as ex:
+            log(f"   ⚠️ Gemini exception (시도 {attempt}/3): {ex}")
+        if attempt < 3:
+            time.sleep(20 * attempt)
+    return None
 
 
 def parse_events(text: str) -> list[dict]:
@@ -149,16 +159,33 @@ def main() -> int:
     today_iso = datetime.now(KST).strftime("%Y-%m-%d")
     log(f"🔍 검색 시작: {today_kst}")
 
-    text = call_gemini_with_search(build_prompt(today_kst), api_key)
-    if not text:
-        log("❌ Gemini 호출 실패. 기존 catalysts.json 보존.")
-        return 1
+    raw_events = None
+    for attempt in range(1, 3):
+        text = call_gemini_with_search(build_prompt(today_kst), api_key)
+        if not text:
+            break
+        try:
+            raw_events = parse_events(text)
+            break
+        except json.JSONDecodeError as ex:
+            log(f"   ⚠️ JSON 파싱 실패 (시도 {attempt}/2): {ex}")
+            log(f"   응답 일부: {text[:300]}")
 
-    try:
-        raw_events = parse_events(text)
-    except json.JSONDecodeError as e:
-        log(f"❌ JSON 파싱 실패: {e}")
-        log(f"   응답 일부: {text[:300]}")
+    if raw_events is None:
+        # 새로 못 받아도 지난 일정은 지운다 — 화면에 D-0 으로 남지 않게.
+        # generated_at 은 마지막 성공 시각 그대로 두어 대시보드가 '갱신 멈춤'을 보여 주게 하고,
+        # 종료 코드는 실패(1)로 두어 관제실·Actions 가 실패를 알게 한다 (커밋 단계는 always 로 돈다).
+        existing = load_existing() or {}
+        kept = [x for x in existing.get("events", []) if str(x.get("date", "")) >= today_iso]
+        if existing and len(kept) != len(existing.get("events", [])):
+            existing["events"] = kept
+            existing["fetch_failed"] = True
+            existing["pruned_at"] = datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
+            OUTPUT_PATH.write_text(
+                json.dumps(existing, ensure_ascii=False, indent=2), encoding="utf-8"
+            )
+            log(f"   🧹 지난 일정 정리: {len(kept)} events 유지")
+        log("❌ Gemini 수집 실패. 기존 일정(지난 것 제외) 보존.")
         return 1
 
     for e in raw_events:

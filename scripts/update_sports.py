@@ -68,7 +68,8 @@ KOREAN_FOOTBALL_GAS_URL = "https://script.google.com/macros/s/AKfycbyf_Jd-mVvpzL
 FOOTBALL_DATA_API_URL = "https://api.football-data.org/v4"
 SERPER_API_URL = "https://google.serper.dev/search"
 BALLDONTLIE_API_URL = "https://api.balldontlie.io/v1"
-THESPORTSDB_BASE = "https://www.thesportsdb.com/api/v1/json/3"
+# 2026-11: 옛 무료 키 '3' 영구 폐지(403) → 새 무료 테스트 키 '123'
+THESPORTSDB_BASE = "https://www.thesportsdb.com/api/v1/json/123"
 OVERSEAS_REQUEST_DELAY_SEC = 2
 WARRIORS_TEAM_ID = 10  # Golden State Warriors
 
@@ -1049,7 +1050,7 @@ KOREAN_PLAYERS = [
      "team_id": 5, "competition_label": "Bundesliga", "thesportsdb_url": None},
     {"player": "손흥민", "team_label": "LAFC", "team_name": "LAFC",
      "team_id": None, "competition_label": "MLS",
-     "thesportsdb_url": "https://www.thesportsdb.com/api/v1/json/3/eventsnext.php?id=136050"},
+     "thesportsdb_url": "https://www.thesportsdb.com/api/v1/json/123/eventsnext.php?id=136050"},
 ]
 
 # 해외파 코리안리거 돋보기 — 위 KOREAN_PLAYERS 3인은 별도 파이프라인으로 유지
@@ -2895,10 +2896,17 @@ def format_tennis_data(raw_data):
                 'time_kst': recent.get('time_kst', '-'),
             }
         recent = {}
-    
+
     next_event = next_data.get('event', '-')
     next_opponent = next_data.get('opponent', '-')
     next_round = next_data.get('round', '-')
+
+    # v2.7: ATP Finals 는 조별리그(라운드 로빈)라 토너먼트 라운드가 없다.
+    # Web App(GAS parseRound)이 Sofascore 의 '몇 번째 경기' 번호(3)를 R32 로 바꿔 보내므로 바로잡는다.
+    if 'atp finals' in str(next_event).lower() and re.match(r'^R\d+$', str(next_round or '')):
+        next_round = '조별리그'
+    if str(next_round) == 'RR':
+        next_round = '조별리그'
     next_date = next_data.get('date', '-')
     time_kst = next_data.get('time_kst', '-')
     
@@ -2920,12 +2928,9 @@ def format_tennis_data(raw_data):
     else:
         match_time = 'TBD'
     
-    # tournament_dates
+    # tournament_dates — v2.7: 위 표는 2025년 날짜로 고정돼 있어 해가 바뀌면 틀린다
+    # (2026 ATP Finals 가 'Nov 9 - 16' 로 나왔음). 해마다 고칠 표 대신 비워 둔다.
     tournament_dates = ''
-    for keyword, dates in tournament_schedule.items():
-        if keyword in next_event.lower():
-            tournament_dates = dates
-            break
     
     # status (대회 등급)
     next_status = '-'

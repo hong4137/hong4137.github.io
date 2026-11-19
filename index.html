@@ -11,6 +11,10 @@
     <meta name="apple-mobile-web-app-title" content="Dashboard">
     <link rel="apple-touch-icon" href="/icons/icon-192.png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" media="(min-width: 768px)">
+    <link rel="stylesheet" href="/pc.css?v=20261120c">
     <style>
         :root {
             --sidebar-width: 260px;
@@ -141,6 +145,96 @@
     </style>
 </head>
 <body>
+    <!-- ═══ PC 화면 (768px 이상) — pc.css / pc.js. 768px 미만은 아래 옛 화면 그대로 ═══ -->
+    <canvas id="sky" aria-hidden="true"></canvas>
+    <div id="pc">
+        <header class="panel top">
+            <a class="brand" href="./" title="새로 고침">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF7A2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c1.2 3.8 5.2 5.8 5.2 10.2a5.2 5.2 0 0 1-10.4 0c0-2.4 1.4-3.6 2-5.2 1 1 1.6 2 1.6 3.1 1-1.6 1.6-4.1 1.6-8.1z"/></svg>
+                <div><b>SharkTalk</b><br><span id="pcToday"></span></div>
+            </a>
+            <div class="clocks" id="pcClocks" aria-label="세계 시계"></div>
+            <div class="wx">
+                <button type="button" class="wx-btn" id="pcWxBtn" aria-expanded="false" aria-controls="pcWxPop">서울 날씨 …</button>
+                <div class="pop wx-pop" id="pcWxPop" hidden></div>
+            </div>
+            <button type="button" class="cmd" id="pcCmd">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                어디로 갈까요?
+                <span class="kbd">Ctrl K</span>
+            </button>
+            <a class="ops" id="pcOps" href="https://vaaj-35yd.sharktalk.co.kr/" target="_blank" rel="noopener" title="관제실 열기"><span class="dot"></span><span id="pcOpsTxt">관제실</span></a>
+        </header>
+
+        <nav class="panel launch" aria-label="바로가기">
+            <div class="lrow"><h2 class="label">내 서비스</h2><div class="clusters" id="pcMine"></div></div>
+            <div class="lrow"><h2 class="label">업무</h2><div class="chips" id="pcWork"></div></div>
+            <div class="lrow"><h2 class="label">외부</h2><div class="chips" id="pcExt"></div></div>
+        </nav>
+
+        <div class="grid4">
+            <section class="panel brief">
+                <div class="head">
+                    <a class="label" href="https://news.sharktalk.co.kr/" target="_blank" rel="noopener">외신 브리핑</a>
+                    <span class="num" id="pcEd" style="font-size:11px;color:var(--accent-ink)"></span>
+                    <div class="tabs" id="pcTabs" role="tablist" aria-label="브리핑 묶음"></div>
+                </div>
+                <ol class="news" id="pcNews"><li class="sk"></li><li class="sk"></li><li class="sk"></li><li class="sk"></li></ol>
+                <div class="more"><a id="pcAllLink" href="https://news.sharktalk.co.kr/" target="_blank" rel="noopener">모두 보기 →</a></div>
+            </section>
+
+            <section class="panel utd-panel">
+                <div class="head"><a class="label" href="https://signal.sharktalk.co.kr/front.html" target="_blank" rel="noopener">UPTODATE 1면</a><span class="meta" id="pcUtdMeta"></span></div>
+                <a class="utd" id="pcUtd" href="https://signal.sharktalk.co.kr/front.html" target="_blank" rel="noopener"><span class="sk" style="margin:4px 0"></span></a>
+            </section>
+
+            <section class="panel">
+                <div class="head"><h2 class="label">경제 일정</h2><span class="meta" id="pcCalMeta"></span></div>
+                <ul class="cal" id="pcCal"></ul>
+            </section>
+
+            <section class="panel market">
+                <div class="head"><h2 class="label">시장</h2><span class="meta">1년</span><button type="button" id="pcStockBtn" title="종목 편집" aria-label="종목 편집"><i class="fas fa-cog"></i></button></div>
+                <div class="tv tradingview-widget-container" id="pcTv"></div>
+            </section>
+
+            <section class="panel sport">
+                <div class="head"><a class="label" href="https://www.premierleague.com" target="_blank" rel="noopener">프리미어리그</a><span class="meta" id="pcEplMeta"></span></div>
+                <div class="rows" id="pcEpl"><div class="sk"></div></div>
+            </section>
+
+            <section class="panel sport">
+                <div class="head"><h2 class="label">한국 선수</h2><span class="meta">유럽 · MLS</span></div>
+                <div class="rows" id="pcKr"><div class="sk"></div></div>
+                <div class="foot ovwrap" id="pcOvFoot">
+                    <span id="pcOvSum">해외파 돋보기 …</span>
+                    <button type="button" id="pcOvBtn" aria-expanded="false" aria-controls="pcOvPop">상세</button>
+                    <div class="pop ov-pop" id="pcOvPop" hidden></div>
+                </div>
+            </section>
+
+            <section class="panel sport">
+                <div class="head"><h2 class="label">카를로스 알카라스</h2><span class="meta" id="pcTenMeta"></span></div>
+                <div class="rows" id="pcTen"><div class="sk"></div></div>
+            </section>
+
+            <section class="panel sport">
+                <div class="head"><a class="label" href="https://www.formula1.com" target="_blank" rel="noopener">F1</a><span class="meta" id="pcF1Meta"></span></div>
+                <div class="f1" id="pcF1"><div class="sk"></div></div>
+            </section>
+        </div>
+
+        <p class="note"><span id="pcSportsAt"></span></p>
+
+        <div class="pal-bg" id="pcPal" hidden>
+            <div class="pal" role="dialog" aria-modal="true" aria-label="빠른 이동">
+                <label for="pcPalIn" class="sr">검색어</label>
+                <input id="pcPalIn" type="text" placeholder="서비스·도구·기사 제목 (Esc 닫기)" autocomplete="off">
+                <ul id="pcPalList" role="listbox"></ul>
+            </div>
+        </div>
+    </div>
+
     <div class="mobile-header">
         <a href="./" class="mobile-brand" style="text-decoration:none;"><i class="fas fa-fire" style="color:var(--accent-color);"></i> SharkTalk</a>
         <button class="hamburger-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
@@ -390,6 +484,8 @@
         }
 
         function loadTradingViewWidget() {
+            // PC 화면이면 시장 칸(pc.js)에 그린다 — 종목 편집(저장) 뒤에도 같은 길로 들어온다
+            if (window.pcIsPC && window.pcIsPC() && window.pcRenderMarket) { window.pcRenderMarket(currentStocks); return; }
             const c = document.getElementById('tradingview-container'); c.innerHTML = '<div class="tradingview-widget-container__widget"></div>';
             const s = document.createElement('script'); s.type = 'text/javascript'; s.src = 'https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js'; s.async = true;
             s.innerHTML = JSON.stringify({ "colorTheme": "dark", "dateRange": "12M", "showChart": true, "locale": "kr", "largeChartUrl": "", "isTransparent": true, "showSymbolLogo": true, "width": "100%", "height": "400", "tabs": [{ "title": "관심 종목", "symbols": currentStocks }] });
@@ -756,10 +852,18 @@
             } catch (e) { console.log("Weather Error", e); }
         }
 
-        document.getElementById('current-date').innerText = new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
-        updateWorldClock(); setInterval(updateWorldClock, 60000);
-        loadBriefingMenu(); loadSportsData(); loadOverseasData(); loadMacroCalendar(); loadWeather(); loadTradingViewWidget(); renderQuickLinks();
+        // 옛 화면(768px 미만) 시작 — PC 화면에서는 pc.js 가 따로 불러오므로 건너뛴다.
+        // 창을 줄여 휴대폰 폭이 되면 그때 한 번 시작한다 (pc.js 가 window.oldStart 를 부른다).
+        let oldStarted = false;
+        window.oldStart = function () {
+            if (oldStarted) return; oldStarted = true;
+            document.getElementById('current-date').innerText = new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
+            updateWorldClock(); setInterval(updateWorldClock, 60000);
+            loadBriefingMenu(); loadSportsData(); loadOverseasData(); loadMacroCalendar(); loadWeather(); loadTradingViewWidget(); renderQuickLinks();
+        };
+        if (!window.matchMedia('(min-width: 768px)').matches) window.oldStart();
         if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js').catch(() => {}); }
     </script>
+    <script src="/pc.js?v=20261120"></script>
 </body>
 </html>

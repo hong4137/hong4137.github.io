@@ -34,6 +34,8 @@ jobs:
           python scripts/update_catalysts.py
 
       - name: Commit and push changes
+        # 수집이 실패해도 '지난 일정 정리'는 올린다 (스크립트가 실패 코드를 내도 이 단계는 돈다)
+        if: always()
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
