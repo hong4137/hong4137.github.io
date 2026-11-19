@@ -23,3 +23,6 @@ venv/
 # Local secrets
 .env
 .env.local
+
+# GAS 코드 사본 — Serper API 키가 평문으로 들어 있다 (2026-11-20). football_gas.txt 는 이미 추적 중이라 여기 안 넣음
+gas.txt
