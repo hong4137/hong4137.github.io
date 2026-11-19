@@ -296,17 +296,24 @@
   }
 
   // ── 경제 일정 (catalysts) — D-day 는 오늘 기준, 지난 일정은 뺀다 ──
+  var CAL_URL = 'https://signal.sharktalk.co.kr/data/calendar.json';
   function loadCalendar() {
     $('pcCalMeta').textContent = '오늘 ' + md(seoulYMD()) + ' 기준';
-    getJSON(bust('./catalysts.json')).then(function (p) {
+    // 2026-11-20: 대시보드 전용 수집(catalysts.json)을 끄고 Daily UptoDate 경제 일정 하나로 합쳤다.
+    // UptoDate 루틴(06:20)이 오늘~10일 뒤를 쓰고, 1면은 그중 3일치만 싣는다.
+    getJSON(bust(CAL_URL)).then(function (p) {
       var ul = $('pcCal'); ul.innerHTML = '';
-      var evs = (p.events || []).map(function (e) { return { e: e, n: dayDiff(e.date) }; }).filter(function (x) { return x.n >= 0; }).slice(0, 6);
+      var all = (p.events || []).filter(function (e) { return e.verified !== false; })
+        .map(function (e) { return { e: e, n: dayDiff(e.date) }; }).filter(function (x) { return x.n >= 0; });
+      // 3일 안은 모두, 그 뒤는 중요도 4·5 만 — 가까운 중요도 3 일정이 칸을 다 채우지 않게
+      var evs = all.filter(function (x) { return x.n <= 2 || x.e.importance >= 4; }).slice(0, 8);
       if (!evs.length) ul.innerHTML = '<li style="display:block;color:var(--muted)">다가오는 주요 일정 없음</li>';
       evs.forEach(function (x) {
-        var li = el('li', x.e.importance === 5 ? 'imp5' : '');
+        var e = x.e, li = el('li', e.importance === 5 ? 'imp5' : '');
         li.appendChild(el('span', 'dd' + (x.n <= 3 ? ' soon' : ''), x.n === 0 ? '오늘' : 'D-' + x.n));
-        var t = el(x.e.source_url ? 'a' : 'span', 'tt', x.e.title); if (x.e.source_url) { t.href = x.e.source_url; t.target = '_blank'; t.rel = 'noopener'; } t.title = x.e.title;
-        li.appendChild(t); li.appendChild(el('span', 'when', md(x.e.date))); ul.appendChild(li);
+        var t = el(e.source ? 'a' : 'span', 'tt', e.title); if (e.source) { t.href = e.source; t.target = '_blank'; t.rel = 'noopener'; }
+        t.title = e.title + (e.why ? '\n' + e.why : '') + (e.consensus ? '\n예상 ' + e.consensus : '') + (e.previous ? ' · 직전 ' + e.previous : '');
+        li.appendChild(t); li.appendChild(el('span', 'when', md(e.date) + (e.time ? ' ' + e.time : ''))); ul.appendChild(li);
       });
       var age = ageHours(p.generated_at);
       if (age != null && age > 36) { var m = $('pcCalMeta'); m.textContent = ''; m.appendChild(staleTag('갱신 멈춤 · ' + p.generated_at.slice(5, 10).replace('-', '.'))); }

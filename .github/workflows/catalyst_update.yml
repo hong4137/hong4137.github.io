@@ -1,9 +1,8 @@
 name: Update Catalyst Calendar
 
+# 2026-11-20 자동 실행 끔 — 경제 일정은 Daily UptoDate 경제 일정(Signal data/calendar.json, 오늘~10일)
+# 하나로 합쳤다. 대시보드·포털 모두 그쪽을 읽는다. 지우지 않고 수동 실행만 남겨 둔다.
 on:
-  schedule:
-    # KST 06:00 = UTC 21:00 (전일)
-    - cron: '0 21 * * *'
   workflow_dispatch:
 
 jobs:
