@@ -1883,16 +1883,24 @@ def search_f1_data(serper_key, gemini_key=None):
         
         # 2. 세부 스케줄: 먼저 Serper+Gemini로 시도, 실패 시 캘린더 기반
         log("   [F1] 세부 스케줄 조회...")
-        # 2026-11-20: 같은 GP 를 이미 웹 검색으로 찾아 둔 시간표가 있으면 다시 검색하지 않는다
-        # (6시간마다 돌면서 매번 검색하면 검색 요금만 나간다). schedule_source 로 표시해 둔다.
+        # 2026-11-20 검색 요금 줄이기 (6시간마다 돌며 매번 검색하지 않게):
+        #  ① 같은 GP 를 이미 웹 검색으로 찾아 둔 시간표가 있으면 다시 찾지 않는다 (schedule_source='web')
+        #  ② 그 밖에도 검색은 하루(KST) 1회까지 — 사용자 지시 "F1 일정은 하루 한 번만 검색".
+        #     마지막 검색 날짜를 schedule_searched_at 에 남긴다(성공·실패 모두).
         prev_f1 = (load_existing_sports_data() or {}).get('f1') or {}
         prev_sched = prev_f1.get('schedule') or []
-        if (prev_f1.get('schedule_source') == 'web' and prev_sched
-                and (prev_f1.get('next_race') or {}).get('name') == gp_info['name']):
+        same_gp = (prev_f1.get('next_race') or {}).get('name') == gp_info['name']
+        today_kst = kst_now.strftime('%Y-%m-%d')
+        f1_data['schedule_searched_at'] = prev_f1.get('schedule_searched_at')
+        search_schedule = None
+        if prev_f1.get('schedule_source') == 'web' and prev_sched and same_gp:
             search_schedule = prev_sched
             log(f"   ♻️ 같은 GP 의 웹 검색 시간표 재사용: {len(prev_sched)}세션")
+        elif prev_f1.get('schedule_searched_at') == today_kst:
+            log("   ⏭️ F1 일정 검색은 오늘 이미 함 (하루 1회) → 캘린더 기반 시간표")
         else:
             search_schedule = get_f1_schedule_from_search(gp_info, serper_key, gemini_key)
+            f1_data['schedule_searched_at'] = today_kst
 
         if search_schedule:
             f1_data['schedule'] = search_schedule
