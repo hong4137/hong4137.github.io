@@ -239,34 +239,87 @@ def call_balldontlie_api(endpoint, params=None, api_key=None):
         log(f"   ⚠️ balldontlie API exception: {e}")
     return None
 
-# 검색 결과(Serper) 를 JSON 으로 뽑는 단순 추출 작업 — 모델은 아래 한 줄로 고른다
+# 검색 결과를 JSON 으로 뽑는 단순 추출 작업 — 모델은 아래 한 줄로 고른다 (사용자 선택 Haiku 5.5)
 LLM_MODEL = "claude-haiku-5-5"
 
+# 2026-11-20 사용자 결정: Serper(크레딧 소진) 대신 Claude 서버 웹 검색 도구로 찾는다.
+# Serper 코드·키는 되돌리기용으로 남겨 둔다 — 되돌리려면 True.
+USE_SERPER = False
+# Haiku 5.5 는 동적 필터링판(web_search_20260209) 대상이 아니라 기본판을 쓴다. 검색 1천 건당 별도 요금.
+WEB_SEARCH_TOOL = "web_search_20250305"
 
-def call_llm_api(prompt, api_key):
-    """Claude 호출 → 답의 text 를 돌려준다 (2026-11-20 Gemini 에서 교체).
+
+def call_llm_api(prompt, api_key, web_search=None):
+    """Claude 호출 → 마지막 답의 text 를 돌려준다 (2026-11-20 Gemini 에서 교체).
     부르는 쪽이 예전처럼 문자열에서 JSON 을 골라 파싱하므로 돌려주는 모양은 같다.
+    web_search = {"max_uses": n, "allowed_domains": [...]} 를 주면 서버 웹 검색 도구를 붙인다.
     api_key 는 ANTHROPIC_API_KEY. 429·5xx·연결 오류는 SDK 가 알아서 다시 시도한다."""
     if not api_key or anthropic is None:
         return None
     try:
-        client = anthropic.Anthropic(api_key=api_key, max_retries=2, timeout=90)
-        resp = client.messages.create(
-            model=LLM_MODEL,
-            max_tokens=4000,
-            output_config={"effort": "low"},
-            messages=[{"role": "user", "content": prompt}],
-        )
+        client = anthropic.Anthropic(api_key=api_key, max_retries=2, timeout=180)
+        kwargs = {}
+        if web_search:
+            tool = {"type": WEB_SEARCH_TOOL, "name": "web_search", "max_uses": web_search.get("max_uses", 3)}
+            if web_search.get("allowed_domains"):
+                tool["allowed_domains"] = web_search["allowed_domains"]
+            kwargs["tools"] = [tool]
+        messages = [{"role": "user", "content": prompt}]
+        resp = None
+        for _ in range(4):
+            resp = client.messages.create(
+                model=LLM_MODEL,
+                max_tokens=8000 if web_search else 4000,
+                output_config={"effort": "low"},
+                messages=messages,
+                **kwargs,
+            )
+            # 서버 도구 오류는 예외가 아니라 결과 블록 안 error 객체로 온다 (성공이면 content 가 목록)
+            for b in resp.content:
+                if b.type == "web_search_tool_result" and not isinstance(b.content, list):
+                    log(f"   ⚠️ 웹 검색 오류: {getattr(b.content, 'error_code', b.content)}")
+            if resp.stop_reason != "pause_turn":
+                break
+            messages = messages + [{"role": "assistant", "content": resp.content}]
         if resp.stop_reason == "refusal":
             log(f"   ⚠️ Claude 거절: {getattr(resp, 'stop_details', None)}")
             return None
-        return "".join(b.text for b in resp.content if b.type == "text") or None
+        if web_search:
+            n = sum(1 for b in resp.content if b.type == "server_tool_use")
+            log(f"      🔎 Claude 웹 검색 {n}회 (usage: {getattr(resp.usage, 'server_tool_use', None)})")
+        texts = [b.text for b in resp.content if b.type == "text"]
+        # 검색 중간 설명이 앞 text 블록에 섞일 수 있어 JSON 이 든 마지막 블록을 우선
+        for t in reversed(texts):
+            if "[" in t or "{" in t or t.strip() == "null":
+                return t
+        return "".join(texts) or None
     except anthropic.AuthenticationError:
         log("   ⚠️ Claude 인증 실패 — ANTHROPIC_API_KEY 확인")
     except anthropic.APIStatusError as e:
         log(f"   ⚠️ Claude API error {e.status_code}: {str(e.message)[:150]}")
     except anthropic.APIConnectionError as e:
         log(f"   ⚠️ Claude 연결 오류: {e}")
+    return None
+
+
+def extract_json(text):
+    """답에서 JSON 을 꺼낸다 — 코드 울타리·앞뒤 설명이 붙어 와도 바깥 [ ] 또는 { } 를 골라 읽는다."""
+    if not text:
+        return None
+    s = re.sub(r'```(?:json)?', '', text).strip()
+    if s == "null":
+        return None
+    try:
+        return json.loads(s)
+    except Exception:
+        pass
+    for o, c in (("[", "]"), ("{", "}")):
+        i, j = s.find(o), s.rfind(c)
+        if 0 <= i < j:
+            try:
+                return json.loads(s[i:j + 1])
+            except Exception:
+                continue
     return None
 
 
@@ -1376,8 +1429,10 @@ def get_f1_standings(serper_key, gemini_key):
             continue
     
     # =========================================================================
-    # 2차: Serper + Gemini fallback
+    # 2차: (2026-11-20~) Claude 웹 검색 / (옛) Serper + LLM
     # =========================================================================
+    if not USE_SERPER:
+        return get_f1_standings_via_web(gemini_key)
     if not serper_key:
         return None
     
@@ -1456,6 +1511,33 @@ If unsure, respond: []"""
                 log(f"      ⚠️ Gemini F1 standings 파싱 실패")
     
     return None
+
+def get_f1_standings_via_web(api_key):
+    """F1 드라이버 순위를 Claude 웹 검색으로 (직접 fetch 가 모두 실패했을 때만)."""
+    if not api_key:
+        return None
+    today_str = get_kst_now().strftime("%B %d, %Y")
+    prompt = f"""You are an F1 data extractor. Today is {today_str}.
+Use the web_search tool to find the CURRENT 2026 F1 World Championship Driver Standings (top 10) with exact points.
+Prefer formula1.com; cross-check with one other source if the numbers look odd.
+
+Respond with ONLY a JSON array, no markdown, no explanation:
+[{{"pos": 1, "driver": "Full Name", "team": "Team Name", "points": 25}}, ...]
+If you cannot find reliable standings, respond: []"""
+    data = extract_json(call_llm_api(prompt, api_key, web_search={
+        "max_uses": 3,
+        "allowed_domains": ["formula1.com", "motorsport.com", "autosport.com", "espn.com", "racingnews365.com"],
+    }))
+    if isinstance(data, list) and len(data) >= 5:
+        points_set = set(s.get('points', 0) for s in data[:5] if isinstance(s, dict))
+        if len(points_set) >= 3:
+            log(f"      ✅ Claude 웹 검색 순위: {len(data)}명")
+            return data[:10]
+        log(f"      ⚠️ 웹 검색 순위 의심 (포인트 중복): {points_set}")
+    else:
+        log("      ⚠️ 웹 검색 순위 파싱 실패")
+    return None
+
 
 def parse_f1_standings_from_html(html_text):
     """
@@ -1621,24 +1703,26 @@ def get_f1_schedule_from_search(gp_info, serper_key, gemini_key):
     Serper + Gemini로 정확한 세션 시간 가져오기 (선택적 보완)
     캘린더 기반 기본 스케줄이 있으므로, 검색으로 정확한 시간만 보완
     """
-    if not serper_key or not gemini_key or not gp_info:
+    if not gemini_key or not gp_info:
         return None
-    
+
     gp_name = gp_info.get('name', '')
     year = 2026
-    
-    query = f"F1 {year} {gp_name} schedule practice qualifying race start times"
-    result = call_serper_api(query, serper_key)
-    
-    if not result:
-        return None
-    
-    text = ""
-    if 'answerBox' in result:
-        text += result['answerBox'].get('snippet', '') + " "
-    for item in result.get('organic', [])[:5]:
-        text += item.get('snippet', '') + " "
-    
+
+    text = None   # None 이면 Claude 가 웹 검색으로 직접 찾는다 (2026-11-20~)
+    if USE_SERPER:
+        if not serper_key:
+            return None
+        query = f"F1 {year} {gp_name} schedule practice qualifying race start times"
+        result = call_serper_api(query, serper_key)
+        if not result:
+            return None
+        text = ""
+        if 'answerBox' in result:
+            text += result['answerBox'].get('snippet', '') + " "
+        for item in result.get('organic', [])[:5]:
+            text += item.get('snippet', '') + " "
+
     kst_now = get_kst_now()
     today_str = kst_now.strftime("%B %d, %Y")
     
@@ -1658,12 +1742,9 @@ def get_f1_schedule_from_search(gp_info, serper_key, gemini_key):
 Extract the 2026 {gp_name} session schedule with LOCAL times.
 {format_hint}
 
-Search results:
----
-{text[:3000]}
----
+{('Search results:' + chr(10) + '---' + chr(10) + text[:3000] + chr(10) + '---') if text else 'Use the web_search tool to find the official session timetable (formula1.com preferred). Times must be LOCAL circuit time.'}
 
-Respond with ONLY a JSON array, no markdown. Each element:
+Respond with ONLY a JSON array, no markdown, no explanation. Each element:
 {{
   "name": "session name (FP1/FP2/FP3/Sprint Qualifying/Sprint/Qualifying/Race)",
   "date": "YYYY-MM-DD",
@@ -1672,16 +1753,16 @@ Respond with ONLY a JSON array, no markdown. Each element:
 
 If you cannot determine, respond with: []"""
     
-    gemini_response = call_llm_api(prompt, gemini_key)
+    gemini_response = call_llm_api(prompt, gemini_key, web_search=None if text else {
+        "max_uses": 3,
+        "allowed_domains": ["formula1.com", "motorsport.com", "autosport.com", "espn.com", "racingnews365.com"],
+    })
     if not gemini_response:
         return None
-    
+
     try:
-        clean = gemini_response.strip()
-        clean = re.sub(r'^```(?:json)?\s*', '', clean)
-        clean = re.sub(r'\s*```$', '', clean)
-        sessions_raw = json.loads(clean)
-        
+        sessions_raw = extract_json(gemini_response)
+
         if not isinstance(sessions_raw, list) or len(sessions_raw) == 0:
             return None
         
@@ -1802,11 +1883,21 @@ def search_f1_data(serper_key, gemini_key=None):
         
         # 2. 세부 스케줄: 먼저 Serper+Gemini로 시도, 실패 시 캘린더 기반
         log("   [F1] 세부 스케줄 조회...")
-        search_schedule = get_f1_schedule_from_search(gp_info, serper_key, gemini_key)
-        
+        # 2026-11-20: 같은 GP 를 이미 웹 검색으로 찾아 둔 시간표가 있으면 다시 검색하지 않는다
+        # (6시간마다 돌면서 매번 검색하면 검색 요금만 나간다). schedule_source 로 표시해 둔다.
+        prev_f1 = (load_existing_sports_data() or {}).get('f1') or {}
+        prev_sched = prev_f1.get('schedule') or []
+        if (prev_f1.get('schedule_source') == 'web' and prev_sched
+                and (prev_f1.get('next_race') or {}).get('name') == gp_info['name']):
+            search_schedule = prev_sched
+            log(f"   ♻️ 같은 GP 의 웹 검색 시간표 재사용: {len(prev_sched)}세션")
+        else:
+            search_schedule = get_f1_schedule_from_search(gp_info, serper_key, gemini_key)
+
         if search_schedule:
             f1_data['schedule'] = search_schedule
-            log(f"   ✅ Serper+Gemini 스케줄: {len(search_schedule)}세션")
+            f1_data['schedule_source'] = 'web'
+            log(f"   ✅ 검색 기반 스케줄: {len(search_schedule)}세션")
         else:
             f1_data['schedule'] = get_f1_race_schedule(gp_info)
             log(f"   ℹ️ 캘린더 기반 스케줄 (기본값): {len(f1_data['schedule'])}세션")
@@ -1921,15 +2012,19 @@ def get_korean_player_match_from_api(team_id, football_key, fallback_label):
 
 def get_korean_player_match_from_search(team_name, serper_key, gemini_key, fallback_label):
     """Serper 검색 + Gemini 파싱 (MLS 등 API 미지원 리그 / API 실패 폴백)"""
-    if not serper_key or not gemini_key:
+    if not gemini_key:
         return None
-    search_result = call_serper_api(
-        f"{team_name} next match schedule official fixture 2026 date time kickoff",
-        serper_key,
-    )
-    if not search_result:
-        return None
-    snippet_text = json.dumps(search_result.get("organic", [])[:5])
+    snippet_text = None   # None 이면 Claude 가 웹 검색으로 직접 찾는다 (2026-11-20~)
+    if USE_SERPER:
+        if not serper_key:
+            return None
+        search_result = call_serper_api(
+            f"{team_name} next match schedule official fixture 2026 date time kickoff",
+            serper_key,
+        )
+        if not search_result:
+            return None
+        snippet_text = json.dumps(search_result.get("organic", [])[:5])
     kst_today = get_kst_now().strftime("%Y-%m-%d")
     prompt = (
         f"다음 검색결과에서 {team_name}의 다음(향후) 예정 경기 정보를 JSON으로만 추출해줘 (설명 없이 JSON만). "
@@ -1938,13 +2033,15 @@ def get_korean_player_match_from_search(team_name, serper_key, gemini_key, fallb
         f'형식: {{"opponent": str, "venue": "home 또는 away", "date_utc": "YYYY-MM-DDTHH:MM:SSZ", '
         f'"competition": str}}. "competition"은 "La Liga R1", "DFB-Pokal 16강", "친선전"처럼 '
         f"대회명과 라운드/스테이지를 구체적으로 조합해서 작성해줘. "
-        f"정보를 찾을 수 없거나 확실하지 않으면 null만 반환.\n\n검색결과: {snippet_text}"
+        f"정보를 찾을 수 없거나 확실하지 않으면 null만 반환.\n\n"
+        + (f"검색결과: {snippet_text}" if snippet_text else
+           "web_search 도구로 구단 공식 일정·리그 공식 일정(ESPN·FotMob 등)을 찾아 확인해줘. 시각은 반드시 UTC 로.")
     )
-    parsed = call_llm_api(prompt, gemini_key)
+    parsed = call_llm_api(prompt, gemini_key, web_search=None if snippet_text else {"max_uses": 3})
     if not parsed:
         return None
     try:
-        data = json.loads(parsed.strip().strip('```json').strip('```'))
+        data = extract_json(parsed)
         if not data:
             return None
         time_info = convert_utc_to_kst(data.get("date_utc", ""))
