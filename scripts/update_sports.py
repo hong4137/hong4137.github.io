@@ -302,6 +302,21 @@ def call_llm_api(prompt, api_key, web_search=None):
     return None
 
 
+# 웹 검색 하루(KST) 1회 장부 — {이름: "YYYY-MM-DD"}. sports.json 의 web_search_log 로 저장·복원된다.
+# 사용자 지시(2026-11-20): F1 일정·F1 순위 보충·한국 선수 다음 경기 모두 하루 1회.
+_SEARCH_LOG = {}
+
+
+def web_search_allowed(name):
+    """오늘 이 이름으로 아직 검색 안 했으면 True 를 돌려주고 오늘로 적어 둔다. 했으면 False."""
+    today = get_kst_now().strftime('%Y-%m-%d')
+    if _SEARCH_LOG.get(name) == today:
+        log(f"      ⏭️ '{name}' 웹 검색은 오늘 이미 함 (하루 1회) → 저장된 값 사용")
+        return False
+    _SEARCH_LOG[name] = today
+    return True
+
+
 def extract_json(text):
     """답에서 JSON 을 꺼낸다 — 코드 울타리·앞뒤 설명이 붙어 와도 바깥 [ ] 또는 { } 를 골라 읽는다."""
     if not text:
@@ -1432,6 +1447,9 @@ def get_f1_standings(serper_key, gemini_key):
     # 2차: (2026-11-20~) Claude 웹 검색 / (옛) Serper + LLM
     # =========================================================================
     if not USE_SERPER:
+        if gemini_key and not web_search_allowed("f1_standings"):
+            prev = ((load_existing_sports_data() or {}).get('f1') or {}).get('standings') or []
+            return prev[:10] or None
         return get_f1_standings_via_web(gemini_key)
     if not serper_key:
         return None
@@ -2021,6 +2039,9 @@ def get_korean_player_match_from_api(team_id, football_key, fallback_label):
 def get_korean_player_match_from_search(team_name, serper_key, gemini_key, fallback_label):
     """Serper 검색 + Gemini 파싱 (MLS 등 API 미지원 리그 / API 실패 폴백)"""
     if not gemini_key:
+        return None
+    # 하루 1회 — 건너뛰면 None 을 돌려주고, 부르는 쪽이 저장된 기존 경기(아직 안 지난 것)를 그대로 쓴다
+    if not USE_SERPER and not web_search_allowed(f"kr_next:{team_name}"):
         return None
     snippet_text = None   # None 이면 Claude 가 웹 검색으로 직접 찾는다 (2026-11-20~)
     if USE_SERPER:
@@ -3239,6 +3260,9 @@ def update_sports_data():
 
     # 기존 데이터 로드
     existing_data = load_existing_sports_data()
+    # 웹 검색 하루 1회 장부 (F1 순위 보충·한국 선수 다음 경기) — 지난 실행의 기록을 이어 받는다
+    _SEARCH_LOG.clear()
+    _SEARCH_LOG.update((existing_data or {}).get("web_search_log") or {})
 
     # =========================================================================
     # STEP 1: EPL 순위
@@ -3458,6 +3482,7 @@ def update_sports_data():
         },
         "nba": nba_data,
         "f1": f1_data,
+        "web_search_log": dict(_SEARCH_LOG),
         "tennis": clean_tennis,
         "korean_players": korean_players_data,
         # "worldcup": worldcup_data,  # @disabled:worldcup — 데이터 자체 중단
