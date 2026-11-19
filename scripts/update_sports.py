@@ -46,6 +46,11 @@ if hasattr(sys.stderr, 'reconfigure'):
 import requests
 from datetime import timedelta, date
 
+try:
+    import anthropic  # 2026-11-20 Gemini → Claude (검색 결과 JSON 파싱용)
+except ImportError:      # 패키지가 없으면 LLM 파싱만 건너뛰고 나머지 수집은 그대로 돈다
+    anthropic = None
+
 # =============================================================================
 # 타임존 설정
 # =============================================================================
@@ -234,8 +239,40 @@ def call_balldontlie_api(endpoint, params=None, api_key=None):
         log(f"   ⚠️ balldontlie API exception: {e}")
     return None
 
-def call_gemini_api(prompt, api_key):
-    """Gemini API 호출"""
+# 검색 결과(Serper) 를 JSON 으로 뽑는 단순 추출 작업 — 모델은 아래 한 줄로 고른다
+LLM_MODEL = "claude-haiku-5-5"
+
+
+def call_llm_api(prompt, api_key):
+    """Claude 호출 → 답의 text 를 돌려준다 (2026-11-20 Gemini 에서 교체).
+    부르는 쪽이 예전처럼 문자열에서 JSON 을 골라 파싱하므로 돌려주는 모양은 같다.
+    api_key 는 ANTHROPIC_API_KEY. 429·5xx·연결 오류는 SDK 가 알아서 다시 시도한다."""
+    if not api_key or anthropic is None:
+        return None
+    try:
+        client = anthropic.Anthropic(api_key=api_key, max_retries=2, timeout=90)
+        resp = client.messages.create(
+            model=LLM_MODEL,
+            max_tokens=4000,
+            output_config={"effort": "low"},
+            messages=[{"role": "user", "content": prompt}],
+        )
+        if resp.stop_reason == "refusal":
+            log(f"   ⚠️ Claude 거절: {getattr(resp, 'stop_details', None)}")
+            return None
+        return "".join(b.text for b in resp.content if b.type == "text") or None
+    except anthropic.AuthenticationError:
+        log("   ⚠️ Claude 인증 실패 — ANTHROPIC_API_KEY 확인")
+    except anthropic.APIStatusError as e:
+        log(f"   ⚠️ Claude API error {e.status_code}: {str(e.message)[:150]}")
+    except anthropic.APIConnectionError as e:
+        log(f"   ⚠️ Claude 연결 오류: {e}")
+    return None
+
+
+def call_gemini_api_legacy(prompt, api_key):
+    """(옛) Gemini API 호출 — 2026-11-20 부터 쓰지 않음. 되돌릴 때를 위해 남겨 둔다.
+    gemini-2.5-flash 는 신규 사용자에게 404 로 막혀 가고 있었다."""
     if not api_key:
         return None
     
@@ -1400,7 +1437,7 @@ Respond with ONLY a JSON array, no markdown:
 
 If unsure, respond: []"""
         
-        gemini_response = call_gemini_api(prompt, gemini_key)
+        gemini_response = call_llm_api(prompt, gemini_key)
         
         if gemini_response:
             try:
@@ -1635,7 +1672,7 @@ Respond with ONLY a JSON array, no markdown. Each element:
 
 If you cannot determine, respond with: []"""
     
-    gemini_response = call_gemini_api(prompt, gemini_key)
+    gemini_response = call_llm_api(prompt, gemini_key)
     if not gemini_response:
         return None
     
@@ -1903,7 +1940,7 @@ def get_korean_player_match_from_search(team_name, serper_key, gemini_key, fallb
         f"대회명과 라운드/스테이지를 구체적으로 조합해서 작성해줘. "
         f"정보를 찾을 수 없거나 확실하지 않으면 null만 반환.\n\n검색결과: {snippet_text}"
     )
-    parsed = call_gemini_api(prompt, gemini_key)
+    parsed = call_llm_api(prompt, gemini_key)
     if not parsed:
         return None
     try:
@@ -2399,7 +2436,7 @@ def summarize_overseas_hot_issues(players_out, gemini_key):
         '형식: [{"headline": str, "detail": str, "player": str}].\n\n'
         + json.dumps(brief_data, ensure_ascii=False)
     )
-    parsed = call_gemini_api(prompt, gemini_key)
+    parsed = call_llm_api(prompt, gemini_key)
     if not parsed:
         return fallback
     try:
@@ -2657,7 +2694,7 @@ Respond with ONLY a JSON object, no markdown, no explanation:
   "confidence": "high, medium, or low"
 }}"""
 
-    gemini_response = call_gemini_api(prompt, gemini_key)
+    gemini_response = call_llm_api(prompt, gemini_key)
     
     if not gemini_response:
         log("      ⚠️ Gemini 응답 없음 → regex fallback")
@@ -3080,7 +3117,8 @@ def update_sports_data():
     football_api_key = os.environ.get("FOOTBALL_DATA_API_KEY")
     serper_api_key = os.environ.get("SERPER_API_KEY")
     balldontlie_api_key = os.environ.get("BALLDONTLIE_API_KEY")
-    gemini_api_key = os.environ.get("GEMINI_API_KEY")
+    # 2026-11-20 Gemini → Claude. 아래 함수들의 인자 이름(gemini_key)은 옛 이름 그대로 두고 Claude 키를 넘긴다
+    gemini_api_key = os.environ.get("ANTHROPIC_API_KEY")
 
     if not football_api_key:
         log("⚠️ FOOTBALL_DATA_API_KEY 없음 → EPL은 기존 데이터 유지, Korean Players는 폴백/안전값 사용")
@@ -3092,7 +3130,7 @@ def update_sports_data():
     log(f"   - EPL: Football-Data.org {'✅' if football_api_key else '❌'}")
     log(f"   - NBA: balldontlie.io {'✅' if balldontlie_api_key else '❌'}")
     log(f"   - Search: Serper API {'✅' if serper_api_key else '❌'}")
-    log(f"   - AI Parse: Gemini API {'✅' if gemini_api_key else '❌'}")
+    log(f"   - AI Parse: Claude {LLM_MODEL} {'✅' if gemini_api_key and anthropic else '❌'}")
 
     # 기존 데이터 로드
     existing_data = load_existing_sports_data()

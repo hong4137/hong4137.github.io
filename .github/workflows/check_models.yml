@@ -1,4 +1,5 @@
-name: Check Available Models
+# 2026-11-20 Gemini 를 더 이상 쓰지 않는다(스포츠·경제 일정 모두 Claude/UptoDate 로 옮김). 지우지 않고 수동 실행만 남김
+name: "(옛) Check Available Models — Gemini"
 on: workflow_dispatch
 jobs:
   check:

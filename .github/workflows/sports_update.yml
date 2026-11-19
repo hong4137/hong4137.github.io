@@ -26,14 +26,15 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests pytz
+          pip install requests pytz "anthropic>=1.15,<2"
 
       - name: Run update script
         env:
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
           SERPER_API_KEY: ${{ secrets.SERPER_API_KEY }}
           BALLDONTLIE_API_KEY: ${{ secrets.BALLDONTLIE_API_KEY }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # 2026-11-20 검색 결과 파싱을 Gemini → Claude 로 (GEMINI_API_KEY 는 더 이상 안 씀, Secret 은 남겨 둠)
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           python scripts/update_sports.py
 
