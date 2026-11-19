@@ -25,11 +25,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests pytz
+          pip install "anthropic>=1.15,<2" pytz
 
       - name: Run update script
+        # 2026-11-20 Gemini → Claude. 저장소 Settings → Secrets 의 ANTHROPIC_API_KEY 필요
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           python scripts/update_catalysts.py
 
