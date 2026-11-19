@@ -49,19 +49,20 @@
   var WORK = [
     ['티타임즈 CMS', 'pen', 'https://ttimesvibe.github.io/main/'],
     ['VOD 전달', 'play', 'https://hong4137.github.io/mgmt-2026/'],
-    ['이벤터스', 'fav:eventus.png', 'https://event-us.kr/']
+    ['이벤터스', 'fav:f05.png', 'https://event-us.kr/']
   ];
+  // 파비콘 파일은 일부러 중립 이름(f01…) — github.png·gmail.png 같은 이름은 광고 차단 확장이 막아 흰 칸이 됐다(11-20)
   var EXT = [
-    ['GitHub', 'github.png', 'https://github.com/hong4137'],
-    ['클라우드플레어', 'cloudflare.png', 'https://dash.cloudflare.com/'],
-    ['수파베이스', 'supabase.png', 'https://supabase.com/'],
-    ['클로드', 'claude.png', 'https://claude.ai'],
-    ['지메일', 'gmail.png', 'https://mail.google.com/'],
-    ['Outlook', 'outlook.jpg', 'https://outlook.office.com/'],
-    ['네이버', 'naver.png', 'https://www.naver.com/'],
-    ['다음', 'daum.png', 'https://www.daum.net/'],
-    ['LinkedIn', 'linkedin.png', 'https://www.linkedin.com/'],
-    ['챗GPT', 'chatgpt.png', 'https://chatgpt.com/']
+    ['GitHub', 'f06.png', 'https://github.com/hong4137'],
+    ['클라우드플레어', 'f03.png', 'https://dash.cloudflare.com/'],
+    ['수파베이스', 'f11.png', 'https://supabase.com/'],
+    ['클로드', 'f02.png', 'https://claude.ai'],
+    ['지메일', 'f07.png', 'https://mail.google.com/'],
+    ['Outlook', 'f10.jpg', 'https://outlook.office.com/'],
+    ['네이버', 'f09.png', 'https://www.naver.com/'],
+    ['다음', 'f04.png', 'https://www.daum.net/'],
+    ['LinkedIn', 'f08.png', 'https://www.linkedin.com/'],
+    ['챗GPT', 'f01.png', 'https://chatgpt.com/']
   ];
   var OPS_URL = 'https://vaaj-35yd.sharktalk.co.kr/';
 
