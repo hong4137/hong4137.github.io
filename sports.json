@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-20 05:08:13 KST",
+  "updated": "2026-11-20 15:15:16 KST",
   "epl": {
     "matchday": 11,
     "selected_round": 11,
@@ -109,12 +109,12 @@
     ]
   },
   "nba": {
-    "record": "46-53",
+    "record": "46-54",
     "rank": "-",
     "last": {
-      "opp": "Mavericks",
+      "opp": "Grizzlies",
       "result": "L",
-      "score": "94-116"
+      "score": "98-126"
     },
     "schedule": [
       {
@@ -306,7 +306,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-11-20 05:08:13 (KST)",
+      "🚀 [Start] 2026-11-20 15:15:16 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -341,14 +341,14 @@
       "   ✅ 기존 선정 유지: 3경기 (R11)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   ✅ 전적: 46-53 | 순위: -",
-      "   ✅ 최근 경기: vs Mavericks L (94-116)",
+      "   ✅ 전적: 46-54 | 순위: -",
+      "   ✅ 최근 경기: vs Grizzlies L (98-126)",
       "   ✅ 다음 일정: 2경기",
       "      🏠 11.23 vs Celtics | 10:30 KST | Chase Center",
       "      🏠 11.26 vs Kings | 12:00 KST | Chase Center",
       "\n🏎️ [Step 4/5] F1 (v2.5: 순위 + 세부 스케줄)...",
       "   [F1] 세부 스케줄 조회...",
-      "      🔎 Claude 웹 검색 1회 (usage: ServerToolUsage(web_fetch_requests=0, web_search_requests=1))",
+      "   ♻️ 같은 GP 의 웹 검색 시간표 재사용: 5세션",
       "   ✅ 검색 기반 스케줄: 5세션",
       "   [F1] 드라이버 순위 조회...",
       "      ✅ 순위 직접 파싱 성공 (www.formula1.com): 22명",
