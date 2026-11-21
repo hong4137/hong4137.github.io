@@ -142,7 +142,11 @@
 #pc .market{display:flex;flex-direction:column;overflow:hidden}
 #pc .market .head button{color:var(--muted);font-size:12px;padding:0 2px}
 #pc .market .head button:hover{color:var(--fg)}
-#pc .tv{flex:1;min-height:380px;padding:0 4px 4px}
+#pc .tv{flex:1;min-height:380px;padding:0 4px 4px;position:relative;overflow:hidden}
+/* 2026-11-21: 위젯 안 종목 줄(로고·두 줄 이름·큰 가격)은 iframe 안이라 CSS 가 안 닿는다 →
+   위젯을 1/s 크기로 그린 뒤 s 배로 줄여 옆 카드 글자 밀도에 맞춘다(5종목이 스크롤 없이 보이게) */
+/* 위젯이 컨테이너에 style="width:100%;height:100%" 를 써 넣으므로 크기는 !important */
+#pc .tvz{--s:.8;position:absolute;left:4px;top:0;width:calc((100% - 8px) / var(--s))!important;height:calc((100% - 4px) / var(--s))!important;transform:scale(var(--s));transform-origin:0 0}
 /* 부모가 color-scheme:dark 이면 밝은 문서 iframe 뒤를 브라우저가 흰색으로 칠한다 → iframe 은 normal */
 #pc .tv iframe{color-scheme:normal}
 

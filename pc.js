@@ -323,10 +323,11 @@
   // ── 시장: TradingView (옛 화면과 같은 종목 목록) ─────────────
   function renderMarket(stocks) {
     var c = $('pcTv'); if (!c) return;
-    c.innerHTML = '<div class="tradingview-widget-container__widget"></div>';
+    c.innerHTML = '<div class="tvz tradingview-widget-container"><div class="tradingview-widget-container__widget"></div></div>';
+    var box = c.firstChild;
     var s = document.createElement('script'); s.src = 'https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js'; s.async = true;
     s.innerHTML = JSON.stringify({ colorTheme: 'dark', dateRange: '12M', showChart: true, locale: 'kr', largeChartUrl: '', isTransparent: true, showSymbolLogo: true, showFloatingTooltip: false, width: '100%', height: '100%', plotLineColorGrowing: 'rgba(255,122,46,1)', plotLineColorFalling: 'rgba(255,122,46,1)', belowLineFillColorGrowing: 'rgba(255,122,46,0.10)', belowLineFillColorFalling: 'rgba(255,122,46,0.10)', belowLineFillColorGrowingBottom: 'rgba(255,122,46,0)', belowLineFillColorFallingBottom: 'rgba(255,122,46,0)', gridLineColor: 'rgba(255,255,255,0.04)', scaleFontColor: '#8A96A8', symbolActiveColor: 'rgba(255,122,46,0.12)', tabs: [{ title: '관심 종목', symbols: stocks }] });
-    c.appendChild(s);
+    box.appendChild(s);
   }
   window.pcRenderMarket = renderMarket;
 
