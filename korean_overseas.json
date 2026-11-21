@@ -1,23 +1,28 @@
 {
-  "updated": "2026-11-21 15:04:59 KST",
-  "hot_issues": [],
+  "updated": "2026-11-22 03:49:30 KST",
+  "hot_issues": [
+    {
+      "headline": "엄지성 1도움 (Swansea City 2-2 무) · 11.22",
+      "detail": "Championship vs West Bromwich Albion | 63분 출전 | 평점 6.9"
+    }
+  ],
   "players": [
     {
       "player": "황희찬",
       "team": "FC Schalke 04",
       "recent": {
         "event": "Bundesliga",
-        "opponent": "TSG Hoffenheim",
-        "venue": "away",
-        "date": "11.09",
-        "team_score": 1,
-        "opponent_score": 2,
-        "result": "L",
+        "opponent": "VfB Stuttgart",
+        "venue": "home",
+        "date": "11.22",
+        "team_score": 0,
+        "opponent_score": 0,
+        "result": "D",
         "player_status": "PLAYED",
-        "minutes": 90,
+        "minutes": 55,
         "goals": 0,
         "assists": 0,
-        "rating": 6.3
+        "rating": 7
       },
       "next": null
     },
@@ -64,17 +69,17 @@
       "team": "Stoke City",
       "recent": {
         "event": "Championship",
-        "opponent": "Portsmouth",
-        "venue": "away",
-        "date": "11.07",
-        "team_score": 2,
-        "opponent_score": 1,
+        "opponent": "Birmingham City",
+        "venue": "home",
+        "date": "11.22",
+        "team_score": 1,
+        "opponent_score": 0,
         "result": "W",
-        "player_status": "DNP",
-        "minutes": 0,
+        "player_status": "PLAYED",
+        "minutes": 68,
         "goals": 0,
         "assists": 0,
-        "rating": null
+        "rating": 6.3
       },
       "next": null
     },
@@ -102,14 +107,14 @@
       "team": "Birmingham City",
       "recent": {
         "event": "Championship",
-        "opponent": "Swansea City",
-        "venue": "home",
-        "date": "11.08",
-        "team_score": 2,
+        "opponent": "Stoke City",
+        "venue": "away",
+        "date": "11.22",
+        "team_score": 0,
         "opponent_score": 1,
-        "result": "W",
+        "result": "L",
         "player_status": "PLAYED",
-        "minutes": 20,
+        "minutes": 77,
         "goals": 0,
         "assists": 0,
         "rating": 6.6
@@ -121,25 +126,19 @@
       "team": "Swansea City",
       "recent": {
         "event": "Championship",
-        "opponent": "Birmingham City",
-        "venue": "away",
-        "date": "11.08",
-        "team_score": 1,
-        "opponent_score": 2,
-        "result": "L",
-        "player_status": "PLAYED",
-        "minutes": 45,
-        "goals": 0,
-        "assists": 0,
-        "rating": 6.9
-      },
-      "next": {
-        "event": "Championship",
         "opponent": "West Bromwich Albion",
         "venue": "home",
         "date": "11.22",
-        "time_kst": "00:00"
-      }
+        "team_score": 2,
+        "opponent_score": 2,
+        "result": "D",
+        "player_status": "PLAYED",
+        "minutes": 63,
+        "goals": 0,
+        "assists": 1,
+        "rating": 6.9
+      },
+      "next": null
     },
     {
       "player": "조규성",
