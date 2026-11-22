@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-22 14:40:34 KST",
+  "updated": "2026-11-22 23:15:25 KST",
   "hot_issues": [
     {
       "headline": "엄지성 1도움 (Swansea City 2-2 무) · 11.22",
@@ -43,7 +43,13 @@
         "assists": 0,
         "rating": 6.6
       },
-      "next": null
+      "next": {
+        "event": "Bundesliga",
+        "opponent": "FC Augsburg",
+        "venue": "away",
+        "date": "11.22",
+        "time_kst": "23:30"
+      }
     },
     {
       "player": "황인범",
@@ -94,11 +100,11 @@
       "team": "Beşiktaş JK",
       "recent": {
         "event": "Trendyol Süper Lig",
-        "opponent": "Gençlerbirliği",
-        "venue": "home",
-        "date": "11.09",
-        "team_score": 3,
-        "opponent_score": 0,
+        "opponent": "Konyaspor",
+        "venue": "away",
+        "date": "11.22",
+        "team_score": 2,
+        "opponent_score": 1,
         "result": "W",
         "player_status": "DNP",
         "minutes": 0,
@@ -169,7 +175,13 @@
         "assists": 0,
         "rating": 7.2
       },
-      "next": null
+      "next": {
+        "event": "Danish Superliga",
+        "opponent": "Brøndby IF",
+        "venue": "away",
+        "date": "11.24",
+        "time_kst": "03:00"
+      }
     },
     {
       "player": "설영우",
@@ -188,7 +200,13 @@
         "assists": 0,
         "rating": null
       },
-      "next": null
+      "next": {
+        "event": "Bundesliga",
+        "opponent": "1. FSV Mainz 05",
+        "venue": "home",
+        "date": "11.22",
+        "time_kst": "23:30"
+      }
     }
   ]
 }

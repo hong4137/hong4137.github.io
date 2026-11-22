@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-22 14:40:34 KST",
+  "updated": "2026-11-22 23:15:25 KST",
   "epl": {
     "matchday": 11,
     "selected_round": 11,
@@ -191,43 +191,43 @@
         "pos": 1,
         "driver": "Kimi Antonelli",
         "team": "Mercedes",
-        "points": 390
+        "points": 402
       },
       {
         "pos": 2,
         "driver": "Max Verstappen",
         "team": "Red Bull",
-        "points": 279
+        "points": 304
       },
       {
         "pos": 3,
-        "driver": "George Russell",
-        "team": "Mercedes",
-        "points": 262
+        "driver": "Lewis Hamilton",
+        "team": "Ferrari",
+        "points": 267
       },
       {
         "pos": 4,
-        "driver": "Lewis Hamilton",
-        "team": "Ferrari",
-        "points": 261
+        "driver": "George Russell",
+        "team": "Mercedes",
+        "points": 264
       },
       {
         "pos": 5,
-        "driver": "Charles Leclerc",
-        "team": "Ferrari",
-        "points": 249
+        "driver": "Lando Norris",
+        "team": "McLaren",
+        "points": 264
       },
       {
         "pos": 6,
-        "driver": "Lando Norris",
-        "team": "McLaren",
-        "points": 246
+        "driver": "Charles Leclerc",
+        "team": "Ferrari",
+        "points": 250
       },
       {
         "pos": 7,
         "driver": "Oscar Piastri",
         "team": "McLaren",
-        "points": 152
+        "points": 167
       },
       {
         "pos": 8,
@@ -245,7 +245,7 @@
         "pos": 10,
         "driver": "Pierre Gasly",
         "team": "Alpine",
-        "points": 42
+        "points": 52
       }
     ],
     "schedule_searched_at": "2026-11-22",
@@ -306,7 +306,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-11-22 14:40:34 (KST)",
+      "🚀 [Start] 2026-11-22 23:15:25 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -327,7 +327,7 @@
       "   [최대 선정: 3경기]",
       "   📋 전체: 20경기 (라운드: [11, 12])",
       "   🎯 선정 대상: R11 (10경기)",
-      "   📊 상태별: {'FINISHED': 7, 'TIMED': 3}",
+      "   📊 상태별: {'FINISHED': 7, 'IN_PLAY': 1, 'TIMED': 2}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   📌 기존 선정 유지 (R11)",
@@ -349,11 +349,11 @@
       "   [F1] 드라이버 순위 조회...",
       "      ✅ 순위 직접 파싱 성공 (www.formula1.com): 22명",
       "   ✅ 순위: 10명",
-      "      1. Kimi Antonelli (Mercedes) 390pts",
-      "      2. Max Verstappen (Red Bull) 279pts",
-      "      3. George Russell (Mercedes) 262pts",
-      "      4. Lewis Hamilton (Ferrari) 261pts",
-      "      5. Charles Leclerc (Ferrari) 249pts",
+      "      1. Kimi Antonelli (Mercedes) 402pts",
+      "      2. Max Verstappen (Red Bull) 304pts",
+      "      3. Lewis Hamilton (Ferrari) 267pts",
+      "      4. George Russell (Mercedes) 264pts",
+      "      5. Lando Norris (McLaren) 264pts",
       "   ✅ Qatar Grand Prix | Lusail International Circuit | Nov 27-29 [Next GP]",
       "      📅 11.27 22:30 KST | FP1",
       "      📅 11.28 02:00 KST | FP2",
