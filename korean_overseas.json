@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-22 23:15:25 KST",
+  "updated": "2026-11-23 08:22:19 KST",
   "hot_issues": [
     {
       "headline": "엄지성 1도움 (Swansea City 2-2 무) · 11.22",
@@ -31,25 +31,19 @@
       "team": "1. FSV Mainz 05",
       "recent": {
         "event": "Bundesliga",
-        "opponent": "FC Bayern München",
-        "venue": "home",
-        "date": "11.07",
-        "team_score": 1,
-        "opponent_score": 2,
-        "result": "L",
-        "player_status": "PLAYED",
-        "minutes": 63,
-        "goals": 0,
-        "assists": 0,
-        "rating": 6.6
-      },
-      "next": {
-        "event": "Bundesliga",
         "opponent": "FC Augsburg",
         "venue": "away",
         "date": "11.22",
-        "time_kst": "23:30"
-      }
+        "team_score": 1,
+        "opponent_score": 3,
+        "result": "L",
+        "player_status": "DNP",
+        "minutes": 0,
+        "goals": 0,
+        "assists": 0,
+        "rating": null
+      },
+      "next": null
     },
     {
       "player": "황인범",
@@ -103,11 +97,11 @@
         "opponent": "Konyaspor",
         "venue": "away",
         "date": "11.22",
-        "team_score": 2,
-        "opponent_score": 1,
+        "team_score": 4,
+        "opponent_score": 2,
         "result": "W",
-        "player_status": "DNP",
-        "minutes": 0,
+        "player_status": "PLAYED",
+        "minutes": 1,
         "goals": 0,
         "assists": 0,
         "rating": null
@@ -131,7 +125,13 @@
         "assists": 0,
         "rating": 6.6
       },
-      "next": null
+      "next": {
+        "event": "Championship",
+        "opponent": "Burnley",
+        "venue": "away",
+        "date": "11.26",
+        "time_kst": "04:45"
+      }
     },
     {
       "player": "엄지성",
@@ -188,25 +188,19 @@
       "team": "FC Augsburg",
       "recent": {
         "event": "Bundesliga",
-        "opponent": "RB Leipzig",
-        "venue": "away",
-        "date": "11.07",
-        "team_score": 2,
-        "opponent_score": 5,
-        "result": "L",
-        "player_status": "DNP",
-        "minutes": 0,
-        "goals": 0,
-        "assists": 0,
-        "rating": null
-      },
-      "next": {
-        "event": "Bundesliga",
         "opponent": "1. FSV Mainz 05",
         "venue": "home",
         "date": "11.22",
-        "time_kst": "23:30"
-      }
+        "team_score": 3,
+        "opponent_score": 1,
+        "result": "W",
+        "player_status": "PLAYED",
+        "minutes": 17,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.8
+      },
+      "next": null
     }
   ]
 }
