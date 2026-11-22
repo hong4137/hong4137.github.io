@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-22 03:49:30 KST",
+  "updated": "2026-11-22 14:40:34 KST",
   "epl": {
     "matchday": 11,
     "selected_round": 11,
@@ -55,8 +55,8 @@
         ],
         "rule_str": "Leader",
         "matchday": 11,
-        "status": "IN_PLAY",
-        "score": "1-1"
+        "status": "FINISHED",
+        "score": "2-2"
       }
     ],
     "selected_matches": [
@@ -103,8 +103,8 @@
         ],
         "rule_str": "Leader",
         "matchday": 11,
-        "status": "IN_PLAY",
-        "score": "1-1"
+        "status": "FINISHED",
+        "score": "2-2"
       }
     ]
   },
@@ -261,11 +261,11 @@
       "date": "Nov 21"
     },
     "next": {
-      "event": "-",
-      "detail": "-",
-      "match_time": "TBD",
+      "event": "ATP Finals",
+      "detail": "F vs Alexander Zverev",
+      "match_time": "Nov 23 02:00 KST",
       "tournament_dates": "",
-      "status": "-"
+      "status": "Finals"
     }
   },
   "korean_players": [
@@ -306,7 +306,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-11-22 03:49:30 (KST)",
+      "🚀 [Start] 2026-11-22 14:40:34 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -327,15 +327,13 @@
       "   [최대 선정: 3경기]",
       "   📋 전체: 20경기 (라운드: [11, 12])",
       "   🎯 선정 대상: R11 (10경기)",
-      "   📊 상태별: {'FINISHED': 6, 'IN_PLAY': 1, 'TIMED': 3}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   📊 상태별: {'FINISHED': 7, 'TIMED': 3}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   📌 기존 선정 유지 (R11)",
       "      ⏳ Liverpool vs Manchester United [TIMED] -",
       "      ✅ Manchester City vs Fulham [FINISHED] 1-1",
-      "      🔴 Newcastle United vs Arsenal [IN_PLAY] 1-1",
+      "      ✅ Newcastle United vs Arsenal [FINISHED] 2-2",
       "   ✅ 기존 선정 유지: 3경기 (R11)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
@@ -346,7 +344,7 @@
       "      🏠 11.26 vs Kings | 12:00 KST | Chase Center",
       "\n🏎️ [Step 4/5] F1 (v2.5: 순위 + 세부 스케줄)...",
       "   [F1] 세부 스케줄 조회...",
-      "      🔎 Claude 웹 검색 1회 (usage: ServerToolUsage(web_fetch_requests=0, web_search_requests=1))",
+      "   ♻️ 같은 GP 의 웹 검색 시간표 재사용: 5세션",
       "   ✅ 검색 기반 스케줄: 5세션",
       "   [F1] 드라이버 순위 조회...",
       "      ✅ 순위 직접 파싱 성공 (www.formula1.com): 22명",
@@ -370,10 +368,10 @@
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",
       "      Recent: ATP Finals vs Ben Shelton W (3-6, 6-3, 7-6)",
-      "      Next: - | -",
+      "      Next: ATP Finals | Nov 23",
       "   📊 최종:",
       "      Recent: ATP Finals vs Ben Shelton W (3-6, 6-3, 7-6) | Nov 21",
-      "      Next: - | - | TBD",
+      "      Next: ATP Finals | F vs Alexander Zverev | Nov 23 02:00 KST",
       "\n🌍 [Step 6] 해외파 코리안리거 돋보기...",
       "   ✅ 해외파 9명 수집, 핫이슈 1건",
       "   ℹ️ All-Star 표시 기간 아님 (표시: 2026-02-13 ~ 2026-02-17)",

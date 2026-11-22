@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-22 03:49:30 KST",
+  "updated": "2026-11-22 14:40:34 KST",
   "hot_issues": [
     {
       "headline": "엄지성 1도움 (Swansea City 2-2 무) · 11.22",
@@ -19,10 +19,10 @@
         "opponent_score": 0,
         "result": "D",
         "player_status": "PLAYED",
-        "minutes": 55,
+        "minutes": 66,
         "goals": 0,
         "assists": 0,
-        "rating": 7
+        "rating": 7.1
       },
       "next": null
     },
@@ -79,9 +79,15 @@
         "minutes": 68,
         "goals": 0,
         "assists": 0,
-        "rating": 6.3
+        "rating": 6.5
       },
-      "next": null
+      "next": {
+        "event": "Championship",
+        "opponent": "Millwall",
+        "venue": "home",
+        "date": "11.26",
+        "time_kst": "05:00"
+      }
     },
     {
       "player": "오현규",
@@ -138,7 +144,13 @@
         "assists": 1,
         "rating": 6.9
       },
-      "next": null
+      "next": {
+        "event": "Championship",
+        "opponent": "Middlesbrough",
+        "venue": "away",
+        "date": "11.25",
+        "time_kst": "04:45"
+      }
     },
     {
       "player": "조규성",
