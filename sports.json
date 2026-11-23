@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23 08:22:19 KST",
+  "updated": "2026-11-23 15:24:21 KST",
   "epl": {
     "matchday": 11,
     "selected_round": 11,
@@ -26,7 +26,7 @@
         "rule_str": "Big Match, Prime Time",
         "matchday": 11,
         "status": "FINISHED",
-        "score": "N/A"
+        "score": "4-0"
       },
       {
         "match_id": 560643,
@@ -74,7 +74,7 @@
         "rule_str": "Big Match, Prime Time",
         "matchday": 11,
         "status": "FINISHED",
-        "score": "N/A"
+        "score": "4-0"
       },
       {
         "match_id": 560643,
@@ -112,9 +112,9 @@
     "record": "46-54",
     "rank": "-",
     "last": {
-      "opp": "Grizzlies",
-      "result": "L",
-      "score": "98-126"
+      "opp": "Celtics",
+      "result": "W",
+      "score": "88-87"
     },
     "schedule": [
       {
@@ -306,7 +306,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-11-23 08:22:19 (KST)",
+      "🚀 [Start] 2026-11-23 15:24:21 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -327,16 +327,13 @@
       "   [최대 선정: 3경기]",
       "   📋 전체: 20경기 (라운드: [11, 12])",
       "   🎯 선정 대상: R11 (10경기)",
-      "   📊 상태별: {'FINISHED': 7, 'TIMED': 3}",
-      "      ⏰ 강제 FINISHED: Liverpool vs Manchester United",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
-      "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
+      "   📊 상태별: {'FINISHED': 9, 'TIMED': 1}",
       "   🔄 R11 경기 모두 종료 → 새로 선정 불필요",
       "   ✅ 기존 선정 유지: 3경기 (R11)",
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ✅ 전적: 46-54 | 순위: -",
-      "   ✅ 최근 경기: vs Grizzlies L (98-126)",
+      "   ✅ 최근 경기: vs Celtics W (88-87)",
       "   ✅ 다음 일정: 2경기",
       "      🏠 11.26 vs Kings | 12:00 KST | Chase Center",
       "      ✈️ 11.28 vs Trail Blazers | 11:30 KST | @ Portland",
