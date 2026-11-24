@@ -1,13 +1,9 @@
 {
-  "updated": "2026-11-24 17:56:10 KST",
+  "updated": "2026-11-25 07:01:20 KST",
   "hot_issues": [
     {
       "headline": "조규성 1골 (FC Midtjylland 2-0 승) · 11.24",
       "detail": "Danish Superliga vs Brøndby IF | 53분 출전 | 평점 6.6"
-    },
-    {
-      "headline": "엄지성 1도움 (Swansea City 2-2 무) · 11.22",
-      "detail": "Championship vs West Bromwich Albion | 63분 출전 | 평점 6.9"
     }
   ],
   "players": [
@@ -59,18 +55,18 @@
       "player": "황인범",
       "team": "FC Porto",
       "recent": {
-        "event": "Taça de Portugal",
-        "opponent": "USC Paredes",
-        "venue": "home",
-        "date": "11.21",
-        "team_score": 4,
-        "opponent_score": 2,
+        "event": "UEFA Champions League",
+        "opponent": "Feyenoord",
+        "venue": "away",
+        "date": "11.25",
+        "team_score": 1,
+        "opponent_score": 0,
         "result": "W",
-        "player_status": "NOT_IN_SQUAD",
-        "minutes": 0,
+        "player_status": "PLAYED",
+        "minutes": 37,
         "goals": 0,
         "assists": 0,
-        "rating": null
+        "rating": 6.8
       },
       "next": null
     },
@@ -154,25 +150,19 @@
       "team": "Swansea City",
       "recent": {
         "event": "Championship",
-        "opponent": "West Bromwich Albion",
-        "venue": "home",
-        "date": "11.22",
-        "team_score": 2,
-        "opponent_score": 2,
-        "result": "D",
-        "player_status": "PLAYED",
-        "minutes": 63,
-        "goals": 0,
-        "assists": 1,
-        "rating": 6.9
-      },
-      "next": {
-        "event": "Championship",
         "opponent": "Middlesbrough",
         "venue": "away",
         "date": "11.25",
-        "time_kst": "04:45"
-      }
+        "team_score": 1,
+        "opponent_score": 2,
+        "result": "L",
+        "player_status": "PLAYED",
+        "minutes": 61,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6.8
+      },
+      "next": null
     },
     {
       "player": "조규성",
