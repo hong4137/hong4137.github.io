@@ -1,9 +1,9 @@
 {
-  "updated": "2026-11-24 08:32:21 KST",
+  "updated": "2026-11-24 17:56:10 KST",
   "hot_issues": [
     {
       "headline": "조규성 1골 (FC Midtjylland 2-0 승) · 11.24",
-      "detail": "Danish Superliga vs Brøndby IF | 53분 출전 | 평점 6.5"
+      "detail": "Danish Superliga vs Brøndby IF | 53분 출전 | 평점 6.6"
     },
     {
       "headline": "엄지성 1도움 (Swansea City 2-2 무) · 11.22",
@@ -189,9 +189,15 @@
         "minutes": 53,
         "goals": 1,
         "assists": 0,
-        "rating": 6.5
+        "rating": 6.6
       },
-      "next": null
+      "next": {
+        "event": "UEFA Conference League",
+        "opponent": "Pafos FC",
+        "venue": "away",
+        "date": "11.27",
+        "time_kst": "02:45"
+      }
     },
     {
       "player": "설영우",
