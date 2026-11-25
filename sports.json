@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-25 16:32:31 KST",
+  "updated": "2026-11-26 06:15:59 KST",
   "epl": {
     "matchday": 11,
     "selected_round": 12,
@@ -62,21 +62,21 @@
     },
     "schedule": [
       {
-        "opp": "Kings",
-        "date": "11.26",
-        "kst_time": "12:00",
-        "local_time": "7:00 PM PT",
-        "location": "home",
-        "venue": "Chase Center",
-        "channel": ""
-      },
-      {
         "opp": "Trail Blazers",
         "date": "11.28",
         "kst_time": "11:30",
         "local_time": "6:30 PM PT",
         "location": "away",
         "venue": "@ Portland",
+        "channel": ""
+      },
+      {
+        "opp": "Clippers",
+        "date": "11.30",
+        "kst_time": "10:30",
+        "local_time": "5:30 PM PT",
+        "location": "home",
+        "venue": "Chase Center",
         "channel": ""
       }
     ]
@@ -216,21 +216,21 @@
     {
       "player": "이강인",
       "team": "ATM",
-      "opponent": "Viking FK",
-      "venue": "home",
-      "kst_date": "11.26",
-      "kst_time": "05:00",
-      "competition": "UCL R5",
+      "opponent": "Elche CF",
+      "venue": "away",
+      "kst_date": "11.29",
+      "kst_time": "02:30",
+      "competition": "La Liga R14",
       "status": "SCHEDULED"
     },
     {
       "player": "김민재",
       "team": "Bayern",
-      "opponent": "Lille OSC",
+      "opponent": "Hamburger SV",
       "venue": "away",
-      "kst_date": "11.26",
-      "kst_time": "05:00",
-      "competition": "UCL R5",
+      "kst_date": "11.28",
+      "kst_time": "23:30",
+      "competition": "Bundesliga R11",
       "status": "SCHEDULED"
     },
     {
@@ -250,7 +250,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-11-25 16:32:31 (KST)",
+      "🚀 [Start] 2026-11-26 06:15:59 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -269,7 +269,7 @@
       "   T5. Early KO: 토요일 12:30 UK",
       "   T6. Leader: 1위 팀 포함",
       "   [최대 선정: 3경기]",
-      "   📋 전체: 29경기 (라운드: [11, 12, 13])",
+      "   📋 전체: 30경기 (라운드: [11, 12, 13])",
       "   🎯 선정 대상: R12 (10경기)",
       "   📊 상태별: {'TIMED': 10}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
@@ -282,8 +282,8 @@
       "   ✅ 전적: 46-54 | 순위: -",
       "   ✅ 최근 경기: vs Celtics W (88-87)",
       "   ✅ 다음 일정: 2경기",
-      "      🏠 11.26 vs Kings | 12:00 KST | Chase Center",
       "      ✈️ 11.28 vs Trail Blazers | 11:30 KST | @ Portland",
+      "      🏠 11.30 vs Clippers | 10:30 KST | Chase Center",
       "\n🏎️ [Step 4/5] F1 (v2.5: 순위 + 세부 스케줄)...",
       "   [F1] 세부 스케줄 조회...",
       "   ♻️ 같은 GP 의 웹 검색 시간표 재사용: 5세션",
@@ -304,8 +304,8 @@
       "      📅 11.30 01:00 KST | Race",
       "   ✅ 순위: 10명 로드",
       "\n🇰🇷 [Step 5a] Korean Players (이강인·김민재·손흥민)...",
-      "   ✅ 이강인 (ATM): vs Viking FK | 11.26 05:00 KST",
-      "   ✅ 김민재 (Bayern): vs Lille OSC | 11.26 05:00 KST",
+      "   ✅ 이강인 (ATM): vs Elche CF | 11.29 02:30 KST",
+      "   ✅ 김민재 (Bayern): vs Hamburger SV | 11.28 23:30 KST",
       "   ✅ 손흥민 (LAFC): vs St. Louis City SC | 11.29 10:30 KST",
       "\n🎾 [Step 5/5] Tennis (Alcaraz) - v6 (Sofascore)...",
       "   ✅ Web App 응답:",

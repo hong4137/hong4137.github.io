@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-25 16:32:31 KST",
+  "updated": "2026-11-26 06:15:59 KST",
   "hot_issues": [
     {
       "headline": "조규성 1골 (FC Midtjylland 2-0 승) · 11.24",
@@ -75,25 +75,19 @@
       "team": "Stoke City",
       "recent": {
         "event": "Championship",
-        "opponent": "Birmingham City",
-        "venue": "home",
-        "date": "11.22",
-        "team_score": 1,
-        "opponent_score": 0,
-        "result": "W",
-        "player_status": "PLAYED",
-        "minutes": 68,
-        "goals": 0,
-        "assists": 0,
-        "rating": 6.5
-      },
-      "next": {
-        "event": "Championship",
         "opponent": "Millwall",
         "venue": "home",
         "date": "11.26",
-        "time_kst": "05:00"
-      }
+        "team_score": 2,
+        "opponent_score": 0,
+        "result": "W",
+        "player_status": "PLAYED",
+        "minutes": 54,
+        "goals": 0,
+        "assists": 0,
+        "rating": 6
+      },
+      "next": null
     },
     {
       "player": "오현규",
@@ -112,38 +106,26 @@
         "assists": 0,
         "rating": null
       },
-      "next": {
-        "event": "UEFA Europa League",
-        "opponent": "Hapoel Be'er Sheva",
-        "venue": "home",
-        "date": "11.27",
-        "time_kst": "02:45"
-      }
+      "next": null
     },
     {
       "player": "백승호",
       "team": "Birmingham City",
       "recent": {
         "event": "Championship",
-        "opponent": "Stoke City",
-        "venue": "away",
-        "date": "11.22",
-        "team_score": 0,
-        "opponent_score": 1,
-        "result": "L",
-        "player_status": "PLAYED",
-        "minutes": 77,
-        "goals": 0,
-        "assists": 0,
-        "rating": 6.6
-      },
-      "next": {
-        "event": "Championship",
         "opponent": "Burnley",
         "venue": "away",
         "date": "11.26",
-        "time_kst": "04:45"
-      }
+        "team_score": 2,
+        "opponent_score": 0,
+        "result": "W",
+        "player_status": "DNP",
+        "minutes": 0,
+        "goals": 0,
+        "assists": 0,
+        "rating": null
+      },
+      "next": null
     },
     {
       "player": "엄지성",
@@ -162,7 +144,13 @@
         "assists": 0,
         "rating": 6.8
       },
-      "next": null
+      "next": {
+        "event": "Championship",
+        "opponent": "Cardiff City",
+        "venue": "home",
+        "date": "11.29",
+        "time_kst": "21:00"
+      }
     },
     {
       "player": "조규성",
