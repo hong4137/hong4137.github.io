@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-25 07:01:20 KST",
+  "updated": "2026-11-25 16:32:31 KST",
   "hot_issues": [
     {
       "headline": "조규성 1골 (FC Midtjylland 2-0 승) · 11.24",
@@ -63,10 +63,10 @@
         "opponent_score": 0,
         "result": "W",
         "player_status": "PLAYED",
-        "minutes": 37,
+        "minutes": 30,
         "goals": 0,
         "assists": 0,
-        "rating": 6.8
+        "rating": 6.7
       },
       "next": null
     },
