@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-28 05:49:10 KST",
+  "updated": "2026-11-28 15:50:52 KST",
   "epl": {
     "matchday": 12,
     "selected_round": 12,
@@ -56,9 +56,9 @@
     "record": "46-54",
     "rank": "-",
     "last": {
-      "opp": "Kings",
-      "result": "W",
-      "score": "129-110"
+      "opp": "Trail Blazers",
+      "result": "L",
+      "score": "94-116"
     },
     "schedule": [
       {
@@ -250,7 +250,7 @@
     "has_gemini_key": true,
     "has_balldontlie_key": true,
     "logs": [
-      "🚀 [Start] 2026-11-28 05:49:10 (KST)",
+      "🚀 [Start] 2026-11-28 15:50:52 (KST)",
       "   Data Sources:",
       "   - EPL: Football-Data.org ✅",
       "   - NBA: balldontlie.io ✅",
@@ -271,7 +271,7 @@
       "   [최대 선정: 3경기]",
       "   📋 전체: 27경기 (라운드: [12, 13, 14])",
       "   🎯 선정 대상: R12 (10경기)",
-      "   📊 상태별: {'IN_PLAY': 1, 'TIMED': 9}",
+      "   📊 상태별: {'FINISHED': 1, 'TIMED': 9}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   📌 기존 선정 유지 (R12)",
@@ -280,7 +280,7 @@
       "\n🏀 [Step 3/5] NBA Warriors (balldontlie.io API)...",
       "   🚨 Serper API 크레딧 소진 — 검색 기반 데이터(LAFC 등 API 미지원 항목) 수집이 전면 중단됩니다. https://serper.dev 에서 크레딧 충전 필요. body={\"message\":\"Not enough credits\",\"statusCode\":400}",
       "   ✅ 전적: 46-54 | 순위: -",
-      "   ✅ 최근 경기: vs Kings W (129-110)",
+      "   ✅ 최근 경기: vs Trail Blazers L (94-116)",
       "   ✅ 다음 일정: 2경기",
       "      🏠 11.30 vs Clippers | 10:30 KST | Chase Center",
       "      🏠 12.02 vs Jazz | 12:00 KST | Chase Center",
